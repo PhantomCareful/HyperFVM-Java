@@ -50,6 +50,11 @@ Make FVM Great Again🎉🎉🎉
 - 支持“通用模式”：不显示作者专门为美食妙妙屋公会和QQ空间服务器的专属功能和文案，使App更加通用
 - UI设计适配Miuix
 
+# 一些小细节
+- 使用Material You组件构建UI界面，支持Monet主题
+- 完美适配底部小横条沉浸，不要像一些国民级App那样做得稀烂
+- 支持预见式返回动画，在原生Android14+和ColorOS16上能体验到非常丝滑的过渡动画
+
 # 安装
 ## 支持的系统环境
 - ✅Android：支持Android12-16
