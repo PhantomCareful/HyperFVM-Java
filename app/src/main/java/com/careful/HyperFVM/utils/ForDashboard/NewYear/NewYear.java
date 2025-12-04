@@ -82,7 +82,10 @@ public class NewYear {
         String stimeValue = extractSecondStime(xmlContent);
         if (stimeValue == null) {
             Log.e(TAG, "未找到第二个stime属性");
-            mainHandler.post(() -> dbHelper.updateDashboardContent("new_year", "数据解析失败❌"));
+            mainHandler.post(() -> {
+                dbHelper.updateDashboardContent("new_year", "数据解析失败❌");
+                dbHelper.updateDashboardContent("new_year_notification", "失败❌");
+            });
             return;
         }
 
@@ -90,7 +93,10 @@ public class NewYear {
         String[] dates = extractStartAndEndDates(stimeValue);
         if (dates == null || dates.length != 2) {
             Log.e(TAG, "日期格式解析失败，stime值：" + stimeValue);
-            mainHandler.post(() -> dbHelper.updateDashboardContent("new_year", "日期格式错误❌"));
+            mainHandler.post(() -> {
+                dbHelper.updateDashboardContent("new_year", "日期格式错误❌");
+                dbHelper.updateDashboardContent("new_year_notification", "失败❌");
+            });
             return;
         }
 
@@ -105,21 +111,26 @@ public class NewYear {
         // 计算当前在活动中的天数
         int dayOfEvent = calculateDayOfEvent(startDateFull, endDateFull);
 
+        // 计算活动一共几天
+        int lengthOfEvent = calculateLengthOfEvent(startDateFull, endDateFull);
+
         // 生成显示文本（仅展示月日）
         String content;
         if (dayOfEvent == 0) {
             content = String.format("开始：%s\n结束：%s\n活动尚未开始⏳", startDateDisplay, endDateDisplay);
+            dbHelper.updateDashboardContent("new_year_notification", "未开始⏳");
         } else if (dayOfEvent == -1) {
             content = String.format("开始：%s\n结束：%s\n本期活动已结束⏳", startDateDisplay, endDateDisplay);
+            dbHelper.updateDashboardContent("new_year_notification", "结束⏳");
         } else if (dayOfEvent < -1) {
             content = String.format("开始：%s\n结束：%s\n日期计算异常❌", startDateDisplay, endDateDisplay);
+            dbHelper.updateDashboardContent("new_year_notification", "日期错误❌");
         } else {
-            content = String.format("开始：%s\n结束：%s\n进度：(%d/" + "14)" + "✊",startDateDisplay, endDateDisplay, dayOfEvent);
+            content = String.format("开始：%s\n结束：%s\n进度：(%d/" + "%d)✊",startDateDisplay, endDateDisplay, dayOfEvent, lengthOfEvent);
+            dbHelper.updateDashboardContent("new_year_notification", "(" + dayOfEvent + "/" + lengthOfEvent + ")✊");
         }
 
-        mainHandler.post(() -> {
-            dbHelper.updateDashboardContent("new_year", content);
-        });
+        mainHandler.post(() -> dbHelper.updateDashboardContent("new_year", content));
     }
 
     // 提取XML中第二个stime属性的值
@@ -209,6 +220,41 @@ public class NewYear {
         } catch (ParseException e) {
             Log.e(TAG, "计算活动天数失败：" + e.getMessage());
             return -2; // 计算异常
+        }
+    }
+
+    // 计算两个日期之间的天数
+    private int calculateLengthOfEvent(String startDateFull, String endDateFull) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
+            Date startDate = sdf.parse(startDateFull);
+            Date endDate = sdf.parse(endDateFull);
+
+            if (startDate == null || endDate == null) {
+                return -1; // 日期解析失败
+            }
+
+            // 仅保留年月日进行比较（忽略时间）
+            Calendar startCal = Calendar.getInstance();
+            startCal.setTime(startDate);
+            clearTime(startCal);
+
+            Calendar endCal = Calendar.getInstance();
+            endCal.setTime(endDate);
+            clearTime(endCal);
+
+            Calendar currentCal = Calendar.getInstance();
+            clearTime(currentCal);
+
+            long startTime = startCal.getTimeInMillis();
+            long endTime = endCal.getTimeInMillis();
+
+            // 计算间隔天数（起始日为第1天）
+            long intervalMs = endTime - startTime;
+            return (int) (intervalMs / (24 * 60 * 60 * 1000));
+        } catch (ParseException e) {
+            Log.e(TAG, "计算活动天数失败：" + e.getMessage());
+            return -1; // 计算异常
         }
     }
 

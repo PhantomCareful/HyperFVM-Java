@@ -53,7 +53,7 @@ public class ActivityQuery {
     }
 
     // UI更新Handler（用于双倍双爆查询结果回调）
-    private Handler handler = new Handler(Looper.getMainLooper()) {
+    private final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -63,7 +63,8 @@ public class ActivityQuery {
                     dbHelper.updateDashboardContent("double_explosion_rate", doubleExplosionText);
                     break;
                 case PARSE_FAILED:
-                    dbHelper.updateDashboardContent("double_explosion_rate", "查询双倍双爆失败");
+                    dbHelper.updateDashboardContent("double_explosion_rate", "查询双倍双爆失败❌");
+                    dbHelper.updateDashboardContent("double_explosion_rate_notification", "查询失败❌");
                     break;
             }
         }
@@ -90,9 +91,9 @@ public class ActivityQuery {
     // 执行查询并保存结果
     public void queryAndSaveActivity(ActivityQueryListener listener) {
         if (!isNetworkAvailable()) {
-            String result = "网络不可用，无法查询双倍双爆❌";
-            dbHelper.updateDashboardContent("double_explosion_rate", result);
-            listener.onResult(result);
+            dbHelper.updateDashboardContent("double_explosion_rate", "网络不可用，无法查询双倍双爆❌");
+            dbHelper.updateDashboardContent("double_explosion_rate_notification", "网络不可用❌");
+            listener.onResult("❌请检查网络");
             return;
         }
 
@@ -256,7 +257,9 @@ public class ActivityQuery {
             int consecutiveDays = getConsecutiveDays(today);
             String endDate = getEndDate(today, consecutiveDays);
             message = "✅全天双倍双爆\n并将持续到" + endDate + "\n共" + consecutiveDays + "天😊😊😊";
+            dbHelper.updateDashboardContent("double_explosion_rate_notification", "全天✅");
         } else {
+            dbHelper.updateDashboardContent("double_explosion_rate_notification", "限时⏳");
             String nextFullDay = findNextFullDay(today);
             String contentText = getContentText(todayItem.type);
 

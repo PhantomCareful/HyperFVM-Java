@@ -68,7 +68,7 @@ public class ToolsFragment extends Fragment {
         dashboardWednesdayAndThursday = root.findViewById(R.id.dashboard_WednesdayAndThursday);
         dashboardEveryday = root.findViewById(R.id.dashboard_Everyday);
         dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
-        everyMonthAndEveryWeek = new EveryMonthAndEveryWeek(requireContext());
+        everyMonthAndEveryWeek = new EveryMonthAndEveryWeek();
 
         icuHelper = new IcuHelper(requireContext()); // 初始化查黑工具
 
@@ -86,16 +86,18 @@ public class ToolsFragment extends Fragment {
             dashboardDoubleExplosionRate.setText("请等待...");
             dashboardFertilizationTask.setText("请等待...");
             dashboardNewYear.setText("请等待...");
+            dashboardEveryday.setText("请等待...");
+            dashboardWednesdayAndThursday.setText("请等待...");
 
             // 2. 子线程执行：sleep 1秒 + 执行任务 + 主线程更新结果
             new Thread(() -> {
                 try {
-                    // 手动延迟1秒（让用户感知到“正在处理”，避免以为没反应）
-                    Thread.sleep(1000); // 1000毫秒 = 1秒
-
                     // 执行每日任务（耗时操作放子线程）
                     ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
                     executeDailyTasks.executeDailyTasksForRefreshDashboard();
+
+                    // 手动延迟1秒（让用户感知到“正在处理”，避免以为没反应）
+                    Thread.sleep(1000);
 
                     // 3. 切回主线程更新UI：读取数据 + 恢复按钮
                     requireActivity().runOnUiThread(() -> {
@@ -348,12 +350,14 @@ public class ToolsFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void handleWeekAndMonthLogic() {
         // （1）处理周三/周四显示逻辑
+        CardView card_dashboard_WednesdayAndThursday = root.findViewById(R.id.card_dashboard_WednesdayAndThursday);
         if (everyMonthAndEveryWeek.isWednesday()) {
             dashboardWednesdayAndThursday.setText("今天是周三\n看看下午策划要端什么💩上来🙄");
+            card_dashboard_WednesdayAndThursday.setVisibility(View.VISIBLE);
         } else if (everyMonthAndEveryWeek.isThursday()) {
             dashboardWednesdayAndThursday.setText("今天是周四\n10:00-12:00更新维护，请合理安排刷图时间😎");
+            card_dashboard_WednesdayAndThursday.setVisibility(View.VISIBLE);
         } else {
-            CardView card_dashboard_WednesdayAndThursday = root.findViewById(R.id.card_dashboard_WednesdayAndThursday);
             card_dashboard_WednesdayAndThursday.setVisibility(View.GONE);
         }
         // （2）处理每日签到提示（根据1-25号/26号-月底区分显示）

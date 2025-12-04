@@ -8,19 +8,17 @@ import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import java.util.Calendar;
 
 public class EveryMonthAndEveryWeek {
-    private final Calendar calendar;
-
-    public EveryMonthAndEveryWeek(Context context) {
-        calendar = Calendar.getInstance();
-    }
+    private Calendar calendar;
 
     // （1）判断当前是否为周三
     public boolean isWednesday() {
+        calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY;
     }
 
     // （2）判断当前是否为周四
     public boolean isThursday() {
+        calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY;
     }
 
@@ -38,6 +36,7 @@ public class EveryMonthAndEveryWeek {
     // （4）判断是否为当月最后一天
     public boolean isLastDayOfMonth() {
         // 获取当月最大天数（即最后一天的日期）
+        calendar = Calendar.getInstance();
         int maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         // 获取当前日期的天数
         int currentDay = getCurrentDayOfMonth();
@@ -47,16 +46,19 @@ public class EveryMonthAndEveryWeek {
 
     // （5）判断是否为8月
     public boolean isAugust() {
+        calendar = Calendar.getInstance();
         return calendar.get(Calendar.MONTH) == Calendar.AUGUST;
     }
 
     // （6）返回今年是哪一年
     public int getCurrentYear() {
+        calendar = Calendar.getInstance();
         return calendar.get(Calendar.YEAR);
     }
 
     // 辅助方法：获取当前日期是几号（用于签到提示）
     public int getCurrentDayOfMonth() {
+        calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 }

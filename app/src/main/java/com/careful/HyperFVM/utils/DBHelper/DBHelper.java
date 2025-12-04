@@ -69,11 +69,10 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    // 数据库首次创建时调用（若预制数据库不存在，动态创建表结构）
-    // 双重保险
+    // 数据库首次创建时调用
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // 创建meishi_wechat表（与预制数据库结构一致）
+        // 创建meishi_wechat表
         String createMeishi = "CREATE TABLE IF NOT EXISTS " + TABLE_MEISHI_WECHAT + " (" +
                 "openid TEXT PRIMARY KEY," +
                 "server_name TEXT," +
@@ -86,9 +85,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "content TEXT)";
         db.execSQL(createDashboard);
 
-        // 初始化dashboard默认数据（如last_date字段）
-        db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) VALUES ('last_date', '')");
-
         // 升级到版本5以后添加防御卡数据表
         createCardTables(db); // 创建表结构
         // 从5开始，后续版本都需要清空表并重新导入CSV
@@ -98,18 +94,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SETTINGS + " (" +
                 "content TEXT PRIMARY KEY," +
                 "value TEXT)");
-        // 向settings表添加内容
-        // 添加仪表盘通知
-        db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                "VALUES ('通知-温馨礼包', 'false')," +
-                "('通知-双爆信息', 'false')," +
-                "('通知-施肥活动', 'false')," +
-                "('通知-美食悬赏', 'false')," +
-                "('主题-是否动态取色', 'true')," +
-                "('主题-自定义主题色', '宫墙')," +
-                "('主题-深色主题', '跟随系统\uD83C\uDF17')," +
-                "('自动任务', 'false')," +
-                "('自动任务-初始时间', '0')");
     }
 
     @Override
@@ -118,52 +102,20 @@ public class DBHelper extends SQLiteOpenHelper {
     // 数据库版本升级时调用（核心：处理表结构变更）
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 3) {
-            // 插入id为"fertilization_task"的新数据，使用INSERT OR IGNORE避免重复插入
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
-                    "VALUES ('fertilization_task', 'test')");
-            Log.d("DBHelper", "Database version update to 3: add fertilization_task");
-        }
-        if (oldVersion < 4) {
-            // 插入id为"new_year"的新数据，使用INSERT OR IGNORE避免重复插入
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
-                    "VALUES ('new_year', 'test')");
-            Log.d("DBHelper", "Database version update to 4: add new_year");
-        }
-        if (oldVersion < 6) {
-            // 先删除表"settings"
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_SETTINGS);
-            // 创建表"settings"，用于记录设置内容
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SETTINGS + " (" +
-                    "content TEXT PRIMARY KEY," +
-                    "value TEXT)");
-            // 向settings表添加内容
-            // 添加仪表盘通知
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('通知-温馨礼包', 'false')," +
-                    "('通知-双爆信息', 'false')," +
-                    "('通知-施肥活动', 'false')," +
-                    "('通知-美食悬赏', 'false')");
-        }
-
-        if (oldVersion < 8) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('主题-是否动态取色', 'true')," +
-                    "('主题-自定义主题色', '宫墙')");
-        }
-
-        if (oldVersion < 9) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('主题-深色主题', '跟随系统\uD83C\uDF17')," +
-                    "('自动任务', 'false')," +
-                    "('自动任务-初始时间', '0')");
-        }
-
         // 从5开始每次都要做的
         // 添加防御卡数据表
         createCardTables(db); // 创建表结构
         // 清空表并重新导入CSV
         clearAndImportCardData(db);
+
+        // 版本15：优化通知：仪表盘展示的文案和通知展示的文案分开存储
+        if (oldVersion < 15) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
+                    "VALUES ('meishi_wechat_result_text_notification', 'null')," +
+                    "('double_explosion_rate_notification', 'null')," +
+                    "('fertilization_task_notification', 'null')," +
+                    "('new_year_notification', 'null')");
+        }
     }
 
     // 升级到版本5+时添加防御卡数据表，操作为：如果表存在，则清空内容，再将csv的数据导入到表中。
@@ -205,7 +157,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // 重新导入CSV
         importCsvToDb(db, "card_data_index.csv", "card_data_index");
         importCsvToDb(db, "card_data_1.csv", "card_data_1");
-        Log.d("DBHelper", "卡片表数据已更新");
+        Log.d("DBHelper", "Card data csv files updated.");
     }
 
     // 从assets导入CSV数据到数据库

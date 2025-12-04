@@ -237,5 +237,6 @@
     <string name="update_log_content_209">---2.0.9---发版时间：25.11.30---\n\n🤏数据站\n新增 防御卡全能数据库，输入卡片名字即可查询有关该卡片的各种数据\n✅装入进度(14/15)🎉🎉🎉\n调整 将没有技能的防御卡的文案由“无”修改为“该防御卡不支持技能”😌\n\n🤟工具箱\n优化 仪表盘信息展示布局😌\n修复 月末提醒显示异常的问题🤦‍♂️\n修复 查黑系统QQ昵称总是显示加载中的问题(上游网站的问题雨我无瓜🙄🙄🙄)</string>
     <string name="update_log_content_2010">---2.0.10---发版时间：25.12.3---\n\n🤏数据站\n新增 防御卡全能数据库，输入卡片名字即可查询有关该卡片的各种数据\n✅装入进度(15/15)🎉🎉🎉\n修复 增幅类部分卡片图片显示错误的问题🤦‍♂️</string>
     <string name="update_log_content_2011">---2.0.11---发版时间：25.12.4---\n\n🫵重要提示\n本版本起，App正式开源并在Github上提交代码和更新🎉🎉🎉\n\n🫰概览\n调整 一些文案描述✊\n\n🤟工具箱\n新增 仪表盘信息支持手动刷新，推荐周四更新维护期间使用🎉\n\n🫴关于软件\n新增 App的Github仓库地址入口🎉\n调整 一些控件✊</string>
-    <string name="update_log_content_current">@string/update_log_content_2011</string>
+    <string name="update_log_content_2012">---2.0.12---发版时间：25.12.4---\n\n🫵重要提示\n2.0.4及以前的版本将不支持直接升级到本版本及后续版本，需要清除全部数据才能正常使用\n\n🤟工具箱\n优化 通知文案😌\n修复 仪表盘信息手动刷新的若干问题🤦‍♂️\n调整 删除了一些过时的代码，避免💩山😌\n\n🫴关于软件\n修复 PAD模式下的一个布局错误🤦‍♂️</string>
+    <string name="update_log_content_current">@string/update_log_content_2012</string>
 </resources>

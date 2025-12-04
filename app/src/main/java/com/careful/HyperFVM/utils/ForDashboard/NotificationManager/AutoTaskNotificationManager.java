@@ -62,10 +62,10 @@ public class AutoTaskNotificationManager {
     }
 
     public void sendGeneralNotification() {
-        String result = "温馨礼包：" + dbHelper.getDashboardContent("meishi_wechat_result_text") + "\n" +
-                        "双爆信息：" + dbHelper.getDashboardContent("double_explosion_rate") + "\n" +
-                        "施肥活动：" + dbHelper.getDashboardContent("fertilization_task") + "\n" +
-                        "美食悬赏：" + dbHelper.getDashboardContent("new_year");
+        String result = "温馨礼包：" + dbHelper.getDashboardContent("meishi_wechat_result_text_notification") + " " +
+                        "双爆信息：" + dbHelper.getDashboardContent("double_explosion_rate_notification") + "\n" +
+                        "施肥活动：" + dbHelper.getDashboardContent("fertilization_task_notification") + " " +
+                        "美食悬赏：" + dbHelper.getDashboardContent("new_year_notification");
         sendGeneralNotification("自动任务执行完成✅", result, NOTIFICATION_ID_AUTO_MEISHI_WECHAT);
     }
 }

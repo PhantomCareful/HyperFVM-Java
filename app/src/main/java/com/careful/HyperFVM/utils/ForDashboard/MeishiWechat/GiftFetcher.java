@@ -33,6 +33,7 @@ public class GiftFetcher {
 
         if (playerInfos.isEmpty()) {
             String resultText = "✅暂无账号可领取";
+            dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", "暂无✅");
             saveResult(resultText, "成功");
             listener.onResult(resultText);
             return;
@@ -51,6 +52,7 @@ public class GiftFetcher {
                     @Override
                     public void onResult(int successCount) {
                         String text = "✅" + successCount + "个账号已完成领取😎😎";
+                        dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", successCount + "个✅");
                         saveResult(text, "成功");
                         mainHandler.post(() -> listener.onResult(text));
                     }
@@ -58,12 +60,14 @@ public class GiftFetcher {
                     @Override
                     public void onError() {
                         String text = "❌领取失败，锑食服务器又炸了\n将在适当的时间再次尝试领取";
+                        dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", "服务器❌");
                         saveResult(text, "失败");
                         mainHandler.post(() -> listener.onResult(text));
                     }
                 });
             } catch (Exception e) {
                 String text = "❌领取异常\n将在适当的时间再次尝试领取";
+                dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", "失败❌");
                 saveResult(text, "失败");
                 mainHandler.post(() -> listener.onResult(text));
             }
