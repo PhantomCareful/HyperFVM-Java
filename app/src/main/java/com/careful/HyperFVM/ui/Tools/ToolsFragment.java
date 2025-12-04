@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.careful.HyperFVM.Tools.MeishiWechatActivity;
 import com.careful.HyperFVM.Tools.PrestigeCalculatorActivity;
@@ -33,6 +35,8 @@ import java.util.Objects;
 public class ToolsFragment extends Fragment {
     private FragmentToolsBinding binding;
     private View root;
+
+    private Button buttonRefreshDashboard;
 
     private TextView dashboardMeishiWechat;
     private TextView dashboardDoubleExplosionRate;
@@ -53,6 +57,8 @@ public class ToolsFragment extends Fragment {
         setTopAppBarTitle(getResources().getString(R.string.label_tools));
 
         // 初始化控件
+        buttonRefreshDashboard = root.findViewById(R.id.ButtonRefreshDashboard);
+
         dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
         dashboardDoubleExplosionRate = root.findViewById(R.id.dashboard_DoubleExplosionRate);
         dashboardFertilizationTask = root.findViewById(R.id.dashboard_FertilizationTask);
@@ -71,6 +77,49 @@ public class ToolsFragment extends Fragment {
 
         // 处理每周和每月逻辑
         handleWeekAndMonthLogic();
+
+        //刷新仪表盘按钮
+        buttonRefreshDashboard.setOnClickListener(v -> {
+            // 1. 主线程先更新UI：禁用按钮、显示“请等待”
+            buttonRefreshDashboard.setEnabled(false);
+            dashboardMeishiWechat.setText("请等待...");
+            dashboardDoubleExplosionRate.setText("请等待...");
+            dashboardFertilizationTask.setText("请等待...");
+            dashboardNewYear.setText("请等待...");
+
+            // 2. 子线程执行：sleep 1秒 + 执行任务 + 主线程更新结果
+            new Thread(() -> {
+                try {
+                    // 手动延迟1秒（让用户感知到“正在处理”，避免以为没反应）
+                    Thread.sleep(1000); // 1000毫秒 = 1秒
+
+                    // 执行每日任务（耗时操作放子线程）
+                    ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
+                    executeDailyTasks.executeDailyTasksForRefreshDashboard();
+
+                    // 3. 切回主线程更新UI：读取数据 + 恢复按钮
+                    requireActivity().runOnUiThread(() -> {
+                        loadResultsFromDatabase(); // 刷新仪表盘数据
+                        handleWeekAndMonthLogic(); // 更新每周/每月提示
+                        buttonRefreshDashboard.setEnabled(true); // 恢复按钮
+                        Toast.makeText(requireContext(), "刷新完成~", Toast.LENGTH_SHORT).show(); // 可选：提示刷新完成
+                    });
+
+                } catch (InterruptedException e) {
+                    // 捕获sleep中断异常
+                    requireActivity().runOnUiThread(() -> {
+                        buttonRefreshDashboard.setEnabled(true);
+                        Toast.makeText(requireContext(), "刷新被中断", Toast.LENGTH_SHORT).show();
+                    });
+                } catch (Exception e) {
+                    // 捕获其他异常（如数据库/任务执行异常）
+                    requireActivity().runOnUiThread(() -> {
+                        buttonRefreshDashboard.setEnabled(true);
+                        Toast.makeText(requireContext(), "刷新失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }).start();
+        });
 
         //今日运势
         root.findViewById(R.id.Img_ToolsTodayLuckyButton).setOnClickListener(v -> {
@@ -300,16 +349,10 @@ public class ToolsFragment extends Fragment {
     private void handleWeekAndMonthLogic() {
         // （1）处理周三/周四显示逻辑
         if (everyMonthAndEveryWeek.isWednesday()) {
-            //dashboardWednesdayAndThursdayTitle.setVisibility(View.VISIBLE);
-            //dashboardWednesdayAndThursday.setVisibility(View.VISIBLE);
             dashboardWednesdayAndThursday.setText("今天是周三\n看看下午策划要端什么💩上来🙄");
         } else if (everyMonthAndEveryWeek.isThursday()) {
-            //dashboardWednesdayAndThursdayTitle.setVisibility(View.VISIBLE);
-            //dashboardWednesdayAndThursday.setVisibility(View.VISIBLE);
             dashboardWednesdayAndThursday.setText("今天是周四\n10:00-12:00更新维护，请合理安排刷图时间😎");
         } else {
-            //dashboardWednesdayAndThursdayTitle.setVisibility(View.INVISIBLE);
-            //dashboardWednesdayAndThursday.setVisibility(View.INVISIBLE);
             CardView card_dashboard_WednesdayAndThursday = root.findViewById(R.id.card_dashboard_WednesdayAndThursday);
             card_dashboard_WednesdayAndThursday.setVisibility(View.GONE);
         }

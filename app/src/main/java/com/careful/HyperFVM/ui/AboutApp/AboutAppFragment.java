@@ -41,6 +41,9 @@ public class AboutAppFragment extends Fragment {
         //从build.gradle中获取版本号
         getVersion(root);
 
+        //跳转浏览器，前往App的Github主页
+        jumpToGithub(root);
+
         //跳转浏览器，获取软件更新
         getNewVersion(root);
 
@@ -110,11 +113,24 @@ public class AboutAppFragment extends Fragment {
         version_info.setText(versionInfo);
     }
 
-    private void getNewVersion(View root) {
-        Button button = root.findViewById(R.id.Button_GetNewVersion);
-        button.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext())
+    private void jumpToGithub(View root) {
+        TextView textView = root.findViewById(R.id.text_about_app_github);
+        textView.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext())
                 .setTitle("二次确认防误触")
-                .setMessage(getResources().getString(R.string.label_get_new_version)) // 显示链接预览
+                .setMessage("点击确定，前往HyperFVM的Github主页") // 显示链接预览
+                .setPositiveButton("确定", (dialog, which) -> {
+                    // 确认后执行跳转
+                    visitUrl(getResources().getString(R.string.url_jump_to_github));
+                })
+                .setNegativeButton("取消", null) // 取消则不执行操作
+                .show());
+    }
+
+    private void getNewVersion(View root) {
+        TextView textView = root.findViewById(R.id.text_about_app_get_update_123pan);
+        textView.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("二次确认防误触")
+                .setMessage("点击确定，前往123网盘分享页获取App最新版本或历史版本") // 显示链接预览
                 .setPositiveButton("确定", (dialog, which) -> {
                     // 确认后执行跳转
                     visitUrl(getResources().getString(R.string.url_get_new_version));
@@ -137,7 +153,7 @@ public class AboutAppFragment extends Fragment {
     }
 
     private void seeUpdateLogHistory(View root) {
-        root.findViewById(R.id.ButtonUpdateLogHistory).setOnClickListener(v -> {
+        root.findViewById(R.id.text_about_app_see_update_log_history).setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), UpdateLogHistoryActivity.class);
             startActivity(intent);
         });

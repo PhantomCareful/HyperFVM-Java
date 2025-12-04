@@ -26,15 +26,30 @@
                 android:orientation="vertical"
                 android:paddingTop="10dp">
 
-                <TextView
+                <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="@string/label_tools_dashboard"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="6"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/label_tools_dashboard"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
+
+                    <Button
+                        android:id="@+id/ButtonRefreshDashboard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="4"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/label_tools_button_refresh_dashboard"
+                        android:textSize="20sp"/>
+
+                </GridLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_dashboard_Miaomiaowu"

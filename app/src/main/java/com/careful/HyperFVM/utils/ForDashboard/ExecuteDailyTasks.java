@@ -45,6 +45,16 @@ public class ExecuteDailyTasks {
         newYear.execute();
     }
 
+    public void executeDailyTasksForRefreshDashboard() {
+        String today = getCurrentDate();
+        giftFetcher.fetchAndSaveGift(resultText -> {
+            dbHelper.updateDashboardContent("last_date", today);
+        });
+        activityQuery.queryAndSaveActivity(result -> {});
+        fertilizationTask.execute();
+        newYear.execute();
+    }
+
     public static String getCurrentDate() {
         return new SimpleDateFormat(DATE_FORMAT, Locale.CHINA).format(new Date());
     }

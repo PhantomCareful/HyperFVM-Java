@@ -145,26 +145,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <Button
-                    android:id="@+id/ButtonUpdateLogHistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/update_log_history"
-                    android:textSize="20sp"/>
-
-                <Button
-                    android:id="@+id/Button_GetNewVersion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/get_new_version"
-                    android:textSize="20sp"/>
-
             </LinearLayout>
 
         </ScrollView>
@@ -186,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@string/update_log_current"
+                    android:text="@string/label_update_log_current"
                     android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"/>
 
@@ -213,6 +193,69 @@
                             android:text="@string/update_log_content_current"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/label_more"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_about_app_github"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_about_app_github"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:padding="10dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                        <TextView
+                            android:id="@+id/text_about_app_get_update_123pan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_about_app_get_update_123pan"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                        <TextView
+                            android:id="@+id/text_about_app_see_update_log_history"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_about_app_see_update_log_history"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:padding="10dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
 
                     </LinearLayout>
 
