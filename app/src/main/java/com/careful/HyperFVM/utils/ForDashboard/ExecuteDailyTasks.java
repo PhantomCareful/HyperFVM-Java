@@ -36,9 +36,7 @@ public class ExecuteDailyTasks {
         boolean needExecute = !today.equals(lastDate)
                 || "失败".equals(dbHelper.getDashboardContent("meishi_wechat_result"));
         if (needExecute) {
-            giftFetcher.fetchAndSaveGift(resultText -> {
-                dbHelper.updateDashboardContent("last_date", today);
-            });
+            giftFetcher.fetchAndSaveGift(resultText -> dbHelper.updateDashboardContent("last_date", today));
             activityQuery.queryAndSaveActivity(result -> {});
         }
         fertilizationTask.execute();
@@ -47,9 +45,7 @@ public class ExecuteDailyTasks {
 
     public void executeDailyTasksForRefreshDashboard() {
         String today = getCurrentDate();
-        giftFetcher.fetchAndSaveGift(resultText -> {
-            dbHelper.updateDashboardContent("last_date", today);
-        });
+        giftFetcher.fetchAndSaveGift(resultText -> dbHelper.updateDashboardContent("last_date", today));
         activityQuery.queryAndSaveActivity(result -> {});
         fertilizationTask.execute();
         newYear.execute();
