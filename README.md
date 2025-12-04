@@ -66,8 +66,8 @@ Make FVM Great Again🎉🎉🎉
 在此仓库发送相关Issue即可，有空就会回复，禁止发送任何与此App无关的内容
 
 # 致谢❤（排名不分先后）
-So陌路の（数据图作者）：[陌路の综合数据表](https://www.kdocs.cn/l/cmk63gHnvUdi)  
-夏夜浅酌（提拉米鼠作者，美食数据站站长）：[Xiaye2332](https://github.com/Xiaye2332)  
-右撇三叶（部分高清图素材作者）：[高清图图楼_美食大战老鼠吧_百度贴吧](https://tieba.baidu.com/p/6759444219)  
-就喝百事（查黑系统站长）：[美食大战老鼠查黑](https://www.msdzls.icu/fraud/viewFraud)  
-美食妙妙屋公会全体同学：提出建议、帮助测试
+- So陌路の（数据图作者）：[陌路の综合数据表](https://www.kdocs.cn/l/cmk63gHnvUdi)  
+- 夏夜浅酌（提拉米鼠作者，美食数据站站长）：[Xiaye2332](https://github.com/Xiaye2332)  
+- 右撇三叶（部分高清图素材作者）：[高清图图楼_美食大战老鼠吧_百度贴吧](https://tieba.baidu.com/p/6759444219)  
+- 就喝百事（查黑系统站长）：[美食大战老鼠查黑](https://www.msdzls.icu/fraud/viewFraud)  
+- 美食妙妙屋公会全体同学：提出建议、帮助测试
