@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimary">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/QOrA_0"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimary"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/QOrA_1"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/QOrA_2"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/QOrA_3"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/QOrA_4"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/QOrA_5"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/copyright"
+                android:textSize="20sp"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
