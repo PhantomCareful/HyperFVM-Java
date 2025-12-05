@@ -29,6 +29,8 @@ public class DatabaseInfo {
      * 装入了第15张数据图中的卡片信息
      * DB_VERSION = 15
      * 优化通知：仪表盘展示的文案和通知展示的文案分开存储
+     * DB_VERSION = 16
+     * 装入融合卡数据
      */
-    public static final int DB_VERSION = 15;
+    public static final int DB_VERSION = 16;
 }

@@ -1,8 +1,8 @@
-package com.careful.HyperFVM.Tools.DetailCardData;
+package com.careful.HyperFVM.Activities.DetailCardData;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,13 +10,14 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class CardData_1_Activity extends AppCompatActivity {
+public class CardData_2_Activity extends AppCompatActivity {
     private DBHelper dbHelper;
 
     @Override
@@ -30,7 +31,7 @@ public class CardData_1_Activity extends AppCompatActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_card_data_1);
+        setContentView(R.layout.activity_card_data_2);
         setTopAppBarTitle("防御卡数据查询");
 
         // 初始化数据库工具
@@ -51,6 +52,7 @@ public class CardData_1_Activity extends AppCompatActivity {
     }
 
     // 查询并展示卡片数据
+    @SuppressLint({"Range", "DiscouragedApi"})
     private void queryAndShowCardData(String tableName, String cardName) {
         Cursor cursor = null;
         try {
@@ -64,15 +66,35 @@ public class CardData_1_Activity extends AppCompatActivity {
 
             // 逐个绑定控件（确保控件ID与表列名完全一致）
             // 基础信息区域
-            ImageView imageView = findViewById(R.id.Image_View);
-            @SuppressLint("Range") String imageIdStr = cursor.getString(cursor.getColumnIndex("image_id"));
+            ImageView ImageViewCardFusion1 = findViewById(R.id.Image_View_Card_Fusion_1);
+            String imageIdStr = cursor.getString(cursor.getColumnIndex("image_1_id"));
             // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            @SuppressLint("DiscouragedApi") int imageResId = getResources().getIdentifier(
+            int imageResId = getResources().getIdentifier(
                     imageIdStr,
                     "drawable",
                     getPackageName()
             );
-            imageView.setImageResource(imageResId);
+            ImageViewCardFusion1.setImageResource(imageResId);
+
+            ImageView ImageViewCardFusion2 = findViewById(R.id.Image_View_Card_Fusion_2);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_2_id"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCardFusion2.setImageResource(imageResId);
+
+            ImageView ImageViewCardFusionResult = findViewById(R.id.Image_View_Card_Fusion_Result);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCardFusionResult.setImageResource(imageResId);
 
             setTextToView(R.id.name, "👀卡片名称：" + getStringFromCursor(cursor, "name"));
             setTextToView(R.id.category, "\uD83D\uDFE2所属分类：" + getStringFromCursor(cursor, "category"));
@@ -81,8 +103,9 @@ public class CardData_1_Activity extends AppCompatActivity {
             setTextToView(R.id.transfer_change, getStringFromCursor(cursor, "transfer_change"));
             setTextToView(R.id.sub_card, "\uD83D\uDD35作为副卡：" + getStringFromCursor(cursor, "sub_card"));
 
-            // 数据信息区域（星级）
+            // 星级信息
             setTextToView(R.id.star, "\uD83C\uDF1F强化提升：" + getStringFromCursor(cursor, "star"));
+            setTextToView(R.id.star_detail, getStringFromCursor(cursor, "star_detail"));
             setTextToView(R.id.star_0, getStringFromCursor(cursor, "star_0"));
             setTextToView(R.id.star_1, getStringFromCursor(cursor, "star_1"));
             setTextToView(R.id.star_2, getStringFromCursor(cursor, "star_2"));
@@ -103,11 +126,35 @@ public class CardData_1_Activity extends AppCompatActivity {
             setTextToView(R.id.star_M, getStringFromCursor(cursor, "star_M"));
             setTextToView(R.id.star_U, getStringFromCursor(cursor, "star_U"));
 
+            // 品阶信息
+            setTextToView(R.id.star_fusion, "\uD83C\uDF1F品阶提升：" + getStringFromCursor(cursor, "star_fusion"));
+            setTextToView(R.id.star_fusion_detail, getStringFromCursor(cursor, "star_fusion_detail"));
+            setTextToView(R.id.star_fusion_0, getStringFromCursor(cursor, "star_fusion_0"));
+            setTextToView(R.id.star_fusion_1, getStringFromCursor(cursor, "star_fusion_1"));
+            setTextToView(R.id.star_fusion_2, getStringFromCursor(cursor, "star_fusion_2"));
+            setTextToView(R.id.star_fusion_3, getStringFromCursor(cursor, "star_fusion_3"));
+            setTextToView(R.id.star_fusion_4, getStringFromCursor(cursor, "star_fusion_4"));
+            setTextToView(R.id.star_fusion_5, getStringFromCursor(cursor, "star_fusion_5"));
+            setTextToView(R.id.star_fusion_6, getStringFromCursor(cursor, "star_fusion_6"));
+            setTextToView(R.id.star_fusion_7, getStringFromCursor(cursor, "star_fusion_7"));
+            setTextToView(R.id.star_fusion_8, getStringFromCursor(cursor, "star_fusion_8"));
+            setTextToView(R.id.star_fusion_9, getStringFromCursor(cursor, "star_fusion_9"));
+            setTextToView(R.id.star_fusion_10, getStringFromCursor(cursor, "star_fusion_10"));
+            setTextToView(R.id.star_fusion_11, getStringFromCursor(cursor, "star_fusion_11"));
+            setTextToView(R.id.star_fusion_12, getStringFromCursor(cursor, "star_fusion_12"));
+            setTextToView(R.id.star_fusion_13, getStringFromCursor(cursor, "star_fusion_13"));
+            setTextToView(R.id.star_fusion_14, getStringFromCursor(cursor, "star_fusion_14"));
+            setTextToView(R.id.star_fusion_15, getStringFromCursor(cursor, "star_fusion_15"));
+            setTextToView(R.id.star_fusion_16, getStringFromCursor(cursor, "star_fusion_16"));
+            setTextToView(R.id.star_fusion_M, getStringFromCursor(cursor, "star_fusion_M"));
+            setTextToView(R.id.star_fusion_U, getStringFromCursor(cursor, "star_fusion_U"));
+
             // 技能信息
             if (getStringFromCursor(cursor, "skill").equals("该防御卡不支持技能")) {
                 findViewById(R.id.Card_Skill).setVisibility(View.GONE);
             }
             setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
+            setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill"));
             setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
             setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
             setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));

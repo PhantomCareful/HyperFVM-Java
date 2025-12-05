@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.Tools.DetailCardData.CardData_1_Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
 import com.careful.HyperFVM.databinding.FragmentDataStationCardDataIndexBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
@@ -123,11 +124,19 @@ public class CardDataIndexFragment extends Fragment {
                         Toast.makeText(requireContext(), "未找到该卡片", Toast.LENGTH_SHORT).show();
                         return;
                     }
+
                     // 跳转详情页
-                    Intent intent = new Intent(requireActivity(), CardData_1_Activity.class);
-                    intent.putExtra("name", cardName);
-                    intent.putExtra("table", tableName);
-                    startActivity(intent);
+                    Intent intent = null;
+                    if (tableName.equals("card_data_1")) {
+                        intent = new Intent(requireActivity(), CardData_1_Activity.class);
+                    } else if (tableName.equals("card_data_2")) {
+                        intent = new Intent(requireActivity(), CardData_2_Activity.class);
+                    }
+                    if (intent != null) {
+                        intent.putExtra("name", cardName);
+                        intent.putExtra("table", tableName);
+                        startActivity(intent);
+                    }
                 })
                 .setNegativeButton("取消", null)
                 .show();

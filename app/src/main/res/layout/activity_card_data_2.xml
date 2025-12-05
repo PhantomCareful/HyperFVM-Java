@@ -66,19 +66,60 @@
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
-                        <ImageView
-                            android:id="@+id/Image_View"
-                            android:layout_width="80dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/card_data_index_1_1_1_2"/>
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/Image_View_Card_Fusion_1"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_3_2_5_2"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="➕"
+                                android:textSize="30sp"
+                                android:gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"/>
+
+                            <ImageView
+                                android:id="@+id/Image_View_Card_Fusion_2"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_9_1_1_2"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="🟰"
+                                android:textSize="30sp"
+                                android:gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"/>
+
+                            <ImageView
+                                android:id="@+id/Image_View_Card_Fusion_Result"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_16_1_3_1"/>
+
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="卡片名称：合金水管"
+                            android:text="卡片名称：火影怪味鱿鱼"
                             android:textSize="20sp"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"/>
@@ -87,7 +128,7 @@
                             android:id="@+id/category"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="所属分类：管线类/水管类"
+                            android:text="所属分类：类海星类/章鱼类海星"
                             android:textSize="20sp"
                             android:layout_marginBottom="15dp"/>
 
@@ -95,7 +136,7 @@
                             android:id="@+id/price"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="耗能：125"
+                            android:text="耗能：155"
                             android:textSize="20sp"
                             android:layout_marginBottom="15dp"/>
 
@@ -103,7 +144,7 @@
                             android:id="@+id/base_info"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="不转：双向水管\n能力：对前后方都可以攻击\n\n一转：控温双向水管\n能力：前方多出一发子弹\n\n二转：合金水管\n能力：前后各再多出一发子弹"
+                            android:text="主卡信息：\n\n不转：怪味鱿鱼\n能力：套在章鱼烧卡片上使用，向8个方向分别发射1发子弹\n\n一转：爆汁怪味鱿鱼\n能力：子弹可以反弹\n\n二转：天椒怪味鱿鱼\n能力：各路增加1发子弹\n\n融合信息：\n\n初级融合(+火影章鱼烧)：火影怪味鱿鱼\n能力：无需底座\n\n深度融合(+合金水管)：合金怪味鱿鱼\n能力：前后路各增加1发子弹，并且中路子弹可以过火\n\n灵魂融合(+松塔爆破机)：松香怪味鱿鱼\n能力：向前再增加2路子弹，共计22发"
                             android:textSize="20sp"
                             android:layout_marginBottom="15dp"/>
 
@@ -111,7 +152,7 @@
                             android:id="@+id/transfer_change"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="子弹数(后+前)：2+1/2+2/3+3"
+                            android:text="深度融合前后各3发且中路可过火\n灵魂融合子弹方向0°,±30,±60°,±90°,±135°,180°"
                             android:textSize="20sp"
                             android:layout_marginBottom="15dp"/>
 
@@ -175,10 +216,11 @@
                                 android:text="星级"
                                 android:textSize="20sp"/>
                             <TextView
+                                android:id="@+id/star_detail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_columnWeight="1"
-                                android:text="数据"
+                                android:text="攻击力"
                                 android:textSize="20sp"/>
 
                         </GridLayout>
@@ -334,7 +376,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="2"
-                                    android:text="10"
+                                    android:text="32"
                                     android:textSize="20sp"
                                     android:gravity="center"/>
                                 <TextView
@@ -342,7 +384,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="12"
+                                    android:text="39"
                                     android:textSize="20sp"
                                     android:textColor="#bf4f14"
                                     android:gravity="center"/>
@@ -351,7 +393,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="14"
+                                    android:text="45"
                                     android:textSize="20sp"
                                     android:textColor="#bf4f14"
                                     android:gravity="center"/>
@@ -360,7 +402,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="16"
+                                    android:text="52"
                                     android:textSize="20sp"
                                     android:textColor="#bf4f14"
                                     android:gravity="center"/>
@@ -369,7 +411,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="18"
+                                    android:text="65"
                                     android:textSize="20sp"
                                     android:textColor="#a5a5a5"
                                     android:gravity="center"/>
@@ -378,7 +420,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="20"
+                                    android:text="78"
                                     android:textSize="20sp"
                                     android:textColor="#a5a5a5"
                                     android:gravity="center"/>
@@ -387,7 +429,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="22"
+                                    android:text="91"
                                     android:textSize="20sp"
                                     android:textColor="#a5a5a5"
                                     android:gravity="center"/>
@@ -396,7 +438,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="26"
+                                    android:text="110"
                                     android:textSize="20sp"
                                     android:textColor="#ffc000"
                                     android:gravity="center"/>
@@ -405,7 +447,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="32"
+                                    android:text="130"
                                     android:textSize="20sp"
                                     android:textColor="#ffc000"
                                     android:gravity="center"/>
@@ -414,7 +456,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="40"
+                                    android:text="149"
                                     android:textSize="20sp"
                                     android:textColor="#ffc000"
                                     android:gravity="center"/>
@@ -423,7 +465,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="2"
-                                    android:text="55"
+                                    android:text="182"
                                     android:textSize="20sp"
                                     android:textColor="#47d45a"
                                     android:gravity="center"/>
@@ -432,7 +474,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="70"
+                                    android:text="234"
                                     android:textSize="20sp"
                                     android:textColor="#45b0e1"
                                     android:gravity="center"/>
@@ -441,7 +483,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="85"
+                                    android:text="299"
                                     android:textSize="20sp"
                                     android:textColor="#ffff00ff"
                                     android:gravity="center"/>
@@ -450,7 +492,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="100"
+                                    android:text="370"
                                     android:textSize="20sp"
                                     android:textColor="#ff0000"
                                     android:gravity="center"/>
@@ -459,7 +501,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="115"
+                                    android:text="448"
                                     android:textSize="20sp"
                                     android:textColor="#7030a0"
                                     android:gravity="center"/>
@@ -468,7 +510,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="130"
+                                    android:text="533"
                                     android:textSize="20sp"
                                     android:textColor="#e97132"
                                     android:gravity="center"/>
@@ -477,7 +519,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="145"
+                                    android:text="630"
                                     android:textSize="20sp"
                                     android:textColor="#ffc00000"
                                     android:gravity="center"/>
@@ -492,6 +534,380 @@
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_U"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="null"
+                                    android:textSize="20sp"
+                                    android:textColor="#ffc00000"
+                                    android:gravity="center"/>
+
+                            </GridLayout>
+
+                        </HorizontalScrollView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/star_fusion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="品阶提升：攻击附加"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <GridLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:columnCount="1"
+                            android:rowCount="2">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="品阶"
+                                android:textSize="20sp"/>
+                            <TextView
+                                android:id="@+id/star_fusion_detail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="攻击附加"
+                                android:textSize="20sp"/>
+
+                        </GridLayout>
+
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:scrollbars="none">
+
+                            <GridLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:columnCount="19"
+                                android:rowCount="2">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="0"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="I"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="II"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="III"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="IV"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="V"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="VI"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="VII"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="VIII"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="IX"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="X"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XI"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XII"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XIII"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XIV"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XV"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XVI"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XVII"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="XVIII"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+
+                                <TextView
+                                    android:id="@+id/star_fusion_0"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="2"
+                                    android:text="0"
+                                    android:textSize="20sp"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_1"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="19"
+                                    android:textSize="20sp"
+                                    android:textColor="#bf4f14"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_2"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="23"
+                                    android:textSize="20sp"
+                                    android:textColor="#bf4f14"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_3"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="27"
+                                    android:textSize="20sp"
+                                    android:textColor="#bf4f14"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_4"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="31"
+                                    android:textSize="20sp"
+                                    android:textColor="#a5a5a5"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_5"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="38"
+                                    android:textSize="20sp"
+                                    android:textColor="#a5a5a5"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_6"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="45"
+                                    android:textSize="20sp"
+                                    android:textColor="#a5a5a5"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_7"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="55"
+                                    android:textSize="20sp"
+                                    android:textColor="#ffc000"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_8"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="65"
+                                    android:textSize="20sp"
+                                    android:textColor="#ffc000"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_9"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="75"
+                                    android:textSize="20sp"
+                                    android:textColor="#ffc000"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_10"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="2"
+                                    android:text="90"
+                                    android:textSize="20sp"
+                                    android:textColor="#47d45a"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_11"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="120"
+                                    android:textSize="20sp"
+                                    android:textColor="#45b0e1"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_12"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="150"
+                                    android:textSize="20sp"
+                                    android:textColor="#ffff00ff"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_13"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="180"
+                                    android:textSize="20sp"
+                                    android:textColor="#ff0000"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_14"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="220"
+                                    android:textSize="20sp"
+                                    android:textColor="#7030a0"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_15"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="270"
+                                    android:textSize="20sp"
+                                    android:textColor="#e97132"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_16"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="330"
+                                    android:textSize="20sp"
+                                    android:textColor="#ffc00000"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_M"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="null"
+                                    android:textSize="20sp"
+                                    android:textColor="#ffc00000"
+                                    android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/star_fusion_U"
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
@@ -550,10 +966,11 @@
                                 android:textSize="20sp"
                                 android:textColor="?attr/colorOnPrimaryContainer"/>
                             <TextView
+                                android:id="@+id/skill_detail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_columnWeight="1"
-                                android:text="数据"
+                                android:text="攻击间隔"
                                 android:textSize="20sp"
                                 android:textColor="?attr/colorOnPrimaryContainer"/>
 
@@ -648,7 +1065,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="1.3"
+                                    android:text="1.5"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -657,7 +1074,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="1.25"
+                                    android:text="1.45"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -666,7 +1083,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="1.2"
+                                    android:text="1.4"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -675,7 +1092,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="1.15"
+                                    android:text="1.35"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -684,7 +1101,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="1.1"
+                                    android:text="1.3"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -693,7 +1110,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="1.05"
+                                    android:text="1.25"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -702,7 +1119,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="1"
+                                    android:text="1.2"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -711,7 +1128,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="0.95"
+                                    android:text="1.15"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -720,7 +1137,7 @@
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
-                                    android:text="0.9"
+                                    android:text="1.05"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
@@ -765,7 +1182,7 @@
                             android:id="@+id/additional_info"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="[食神谱]水煮鱼：攻击力+10%"
+                            android:text="🚫[子弹不可过火]\n\n🍮[反弹]子弹可被反弹\n\n😋[食神谱]奇境下午茶：攻击力提升15%"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"/>
 

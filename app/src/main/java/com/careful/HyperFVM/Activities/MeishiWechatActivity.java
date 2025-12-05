@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Tools;
+package com.careful.HyperFVM.Activities;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -192,7 +192,6 @@ public class MeishiWechatActivity extends AppCompatActivity {
                     );
                 }
             } catch (IOException e) {
-                e.printStackTrace();
                 // 用Handler显示Toast（主线程）
                 mainHandler.post(() ->
                         Toast.makeText(MeishiWechatActivity.this, "网络错误：无法连接服务器", Toast.LENGTH_SHORT).show()
@@ -232,7 +231,6 @@ public class MeishiWechatActivity extends AppCompatActivity {
                     Toast.makeText(MeishiWechatActivity.this, "解析失败：未找到区服和角色信息", Toast.LENGTH_SHORT).show()
             );
         } catch (Exception e) {
-            e.printStackTrace();
             // 异常提示（UI操作，用Handler）
             mainHandler.post(() ->
                     Toast.makeText(MeishiWechatActivity.this, "解析错误：" + e.getMessage(), Toast.LENGTH_SHORT).show()

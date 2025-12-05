@@ -1,5 +1,6 @@
-package com.careful.HyperFVM.Tools;
+package com.careful.HyperFVM.Activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,7 +20,7 @@ public class PrestigeCalculatorActivity extends AppCompatActivity {
 
     // 存储所有输入框和对应币值（顺序需与输入框一一对应）
     private List<TextInputEditText> inputEditTexts = new ArrayList<>();
-    private long[] denominations = {1, 5, 10, 50, 100, 200, 500, 1000, 2000, 3000, 4000, 5000, 8000, 10000, 600, 500};
+    private final long[] denominations = {1, 5, 10, 50, 100, 200, 500, 1000, 2000, 3000, 4000, 5000, 8000, 10000, 600, 500};
     private TextInputEditText etCoinChange; // 零钱输入框（单独处理，币值为1）
     private TextView tvTotal; // 结果显示
 
@@ -107,13 +108,14 @@ public class PrestigeCalculatorActivity extends AppCompatActivity {
     }
 
     // 计算威望总数
+    @SuppressLint("SetTextI18n")
     private void calculateTotal() {
         long total = 0;
 
         // 1. 计算零钱（币值为1）
         String coinChangeStr = etCoinChange.getText().toString().trim();
         long coinChange = coinChangeStr.isEmpty() ? 0 : Long.parseLong(coinChangeStr);
-        total += coinChange * 1;
+        total += coinChange;
 
         // 2. 计算各礼包总威望（输入框与币值数组顺序对应）
         for (int i = 0; i < inputEditTexts.size(); i++) {

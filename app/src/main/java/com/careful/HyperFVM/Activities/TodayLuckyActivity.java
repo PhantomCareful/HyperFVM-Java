@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Tools;
+package com.careful.HyperFVM.Activities;
 
 import android.graphics.ImageDecoder;
 import android.graphics.Outline;
@@ -76,9 +76,7 @@ public class TodayLuckyActivity extends AppCompatActivity {
         }
 
         //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> {
-            this.finish();
-        });
+        toolbar.setNavigationOnClickListener(v -> this.finish());
     }
 
     //加载Gif动图
