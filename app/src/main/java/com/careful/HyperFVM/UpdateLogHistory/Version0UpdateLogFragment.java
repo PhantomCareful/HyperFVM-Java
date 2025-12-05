@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentVersion0UpdateLogBinding;
+import com.careful.HyperFVM.utils.OtherUtils.UpdateLogReader;
 
 public class Version0UpdateLogFragment extends Fragment {
 
@@ -18,7 +22,34 @@ public class Version0UpdateLogFragment extends Fragment {
 
         //初始化binding
         binding = FragmentVersion0UpdateLogBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
-        return binding.getRoot();
+        //显示历史版本更新日志
+        getHistoryUpdateLog0(root);
+
+        return root;
+    }
+
+    private void getHistoryUpdateLog0(View root) {
+        TextView currentUpdateLog = root.findViewById(R.id.about_app_history_update_log_0);
+        // 调用工具类异步读取更新日志
+        UpdateLogReader.readAssetsTxtAsync(
+                requireContext(),
+                "HistoryUpdateLog0.txt", // assets下的文件名
+                new UpdateLogReader.ReadCallback() {
+                    @Override
+                    public void onReadSuccess(String content) {
+                        // 读取成功，展示到TextView
+                        currentUpdateLog.setText(content);
+                    }
+
+                    @Override
+                    public void onReadFailed(String errorMsg) {
+                        // 读取失败，提示用户
+                        currentUpdateLog.setText(errorMsg);
+                        Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 }

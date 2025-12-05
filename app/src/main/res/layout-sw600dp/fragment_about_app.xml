@@ -188,9 +188,10 @@
                         android:background="?attr/selectableItemBackground">
 
                         <TextView
+                            android:id="@+id/about_app_current_update_log"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/update_log_content_current"
+                            android:text="null"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"/>
 

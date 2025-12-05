@@ -80,7 +80,7 @@ public class DashboardNotificationManager {
     // 发送“双爆信息”通知
     public void sendActivityNotification() {
         // 读取双倍双爆结果
-        String activityResult = dbHelper.getDashboardContent("double_explosion_rate");
+        String activityResult = dbHelper.getDashboardContent("double_explosion_rate_notification");
         activityResult = (activityResult.isEmpty() ? "null" : activityResult);
 
         sendImportantNotification("双爆信息", activityResult, NOTIFICATION_ID_ACTIVITY);
@@ -89,7 +89,7 @@ public class DashboardNotificationManager {
     // 发送“施肥任务”通知
     public void sendFertilizationTaskNotification() {
         // 读取施肥活动结果
-        String fertilizationTaskResult = dbHelper.getDashboardContent("fertilization_task");
+        String fertilizationTaskResult = dbHelper.getDashboardContent("fertilization_task_notification");
         fertilizationTaskResult = (fertilizationTaskResult.isEmpty() ? "null" : fertilizationTaskResult);
 
         sendImportantNotification("施肥任务", fertilizationTaskResult, NOTIFICATION_ID_FERTILIZATION_TASK);
@@ -98,7 +98,7 @@ public class DashboardNotificationManager {
     // 发送“美食悬赏”通知
     public void sendNewYearNotification() {
         // 读取美食悬赏活动结果
-        String newYearResult = dbHelper.getDashboardContent("new_year");
+        String newYearResult = dbHelper.getDashboardContent("new_year_notification");
         newYearResult = (newYearResult.isEmpty() ? "null" : newYearResult);
 
         sendImportantNotification("美食悬赏", newYearResult, NOTIFICATION_ID_NEW_YEAR);
