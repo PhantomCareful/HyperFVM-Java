@@ -54,10 +54,8 @@ public class CardData_2_Activity extends AppCompatActivity {
     // 查询并展示卡片数据
     @SuppressLint({"Range", "DiscouragedApi"})
     private void queryAndShowCardData(String tableName, String cardName) {
-        Cursor cursor = null;
-        try {
+        try (Cursor cursor = dbHelper.getCardData(tableName, cardName)) {
             // 从指定表中查询卡片数据
-            cursor = dbHelper.getCardData(tableName, cardName);
             if (cursor == null || !cursor.moveToFirst()) {
                 // 无数据时提示
                 ((TextView) findViewById(R.id.name)).setText("未找到卡片数据");
@@ -154,7 +152,7 @@ public class CardData_2_Activity extends AppCompatActivity {
                 findViewById(R.id.Card_Skill).setVisibility(View.GONE);
             }
             setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
-            setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill"));
+            setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill_detail"));
             setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
             setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
             setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));
@@ -174,12 +172,8 @@ public class CardData_2_Activity extends AppCompatActivity {
 
         } catch (Exception e) {
             ((TextView) findViewById(R.id.name)).setText("数据加载失败");
-        } finally {
-            // 关闭游标，避免内存泄漏
-            if (cursor != null) {
-                cursor.close();
-            }
         }
+        // 关闭游标，避免内存泄漏
     }
 
     // 辅助方法：设置文本到控件，避免重复代码

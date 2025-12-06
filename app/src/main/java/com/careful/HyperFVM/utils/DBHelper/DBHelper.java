@@ -87,8 +87,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // 升级到版本5以后添加防御卡数据表
         createCardTables(db);
-        // 升级到版本6以后添加融合卡数据表
+        // 升级到版本16以后添加融合卡数据表
         createCardFusionTables(db);
+        // 升级到版本17以后为金卡添加分解&兑换数据，金卡数据单独成表
+        createGoldenCardFusionTables(db);
         // 从5开始，后续版本都需要清空表并重新导入CSV
         clearAndImportCardData(db);
 
@@ -110,6 +112,9 @@ public class DBHelper extends SQLiteOpenHelper {
         // 从16开始每次都要做的
         // 添加融合卡数据表
         createCardFusionTables(db);
+        // 从17开始每次都要做的
+        // 添加金卡数据表
+        createGoldenCardFusionTables(db);
         // 清空表并重新导入CSV
         clearAndImportCardData(db);
 
@@ -125,11 +130,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // 升级到版本5+时添加防御卡数据表，操作为：如果表存在，则清空内容，再将csv的数据导入到表中。
     private void createCardTables(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS card_data_index");
         // 创建card_data_index表
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_index (" +
                 "name TEXT PRIMARY KEY, " +
                 "table_name TEXT NOT NULL)");
 
+        db.execSQL("DROP TABLE card_data_1");
         // 创建card_data_1表（字段与CSV对应）
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_1 (" +
                 "name TEXT PRIMARY KEY, " +
@@ -137,7 +144,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "base_info TEXT, " +
                 "is_animal_card TEXT, " +
                 "is_constellation_card TEXT, " +
-                "is_golden_crad TEXT, " +
+                "is_golden_card TEXT, " +
                 "category TEXT, " +
                 "price_0 TEXT, " +
                 "sub_card TEXT, " +
@@ -154,7 +161,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // 升级到版本16+时添加融合卡数据表，操作为：如果表存在，则清空内容，再将csv的数据导入到表中。
-    private void createCardFusionTables(SQLiteDatabase db) {// 创建card_data_2表（字段与CSV对应）
+    private void createCardFusionTables(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS card_data_2");
+        // 创建card_data_2表（字段与CSV对应）
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_2 (" +
                 "name TEXT PRIMARY KEY, " +
                 "image_1_id TEXT, " +
@@ -174,11 +183,54 @@ public class DBHelper extends SQLiteOpenHelper {
                 "star_fusion_5 TEXT, star_fusion_6 TEXT, star_fusion_7 TEXT, star_fusion_8 TEXT, star_fusion_9 TEXT, " +
                 "star_fusion_10 TEXT, star_fusion_11 TEXT, star_fusion_12 TEXT, star_fusion_13 TEXT, star_fusion_14 TEXT, " +
                 "star_fusion_15 TEXT, star_fusion_16 TEXT, star_fusion_M TEXT, star_fusion_U TEXT, " +
-                "skill TEXT, " +
+                "skill TEXT, skill_detail TEXT, " +
                 "skill_0 TEXT, skill_1 TEXT, skill_2 TEXT, skill_3 TEXT, skill_4 TEXT, " +
                 "skill_5 TEXT, skill_6 TEXT, skill_7 TEXT, skill_8 TEXT, " +
                 "transfer_change TEXT, " +
                 "additional_info TEXT)");
+    }
+
+    // 升级到版本17+时，为金卡装入分解&兑换数据，因此金卡数据表需要单独分离出来，操作为：如果表存在，则清空内容，再将csv的数据导入到表中。
+    private void createGoldenCardFusionTables(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS card_data_3");
+        db.execSQL("CREATE TABLE IF NOT EXISTS card_data_3 (" +
+                "name TEXT PRIMARY KEY, " +
+                "image_id TEXT, " +
+                "base_info TEXT, " +
+                "category TEXT, " +
+                "price_0 TEXT, " +
+                "sub_card TEXT, " +
+                "star TEXT, " +
+                "star_detail TEXT, " +
+                "star_0 TEXT, star_1 TEXT, star_2 TEXT, star_3 TEXT, star_4 TEXT, " +
+                "star_5 TEXT, star_6 TEXT, star_7 TEXT, star_8 TEXT, star_9 TEXT, " +
+                "star_10 TEXT, star_11 TEXT, star_12 TEXT, star_13 TEXT, star_14 TEXT, " +
+                "star_15 TEXT, star_16 TEXT, star_M TEXT, star_U TEXT, " +
+                "skill TEXT, " +
+                "skill_detail TEXT, " +
+                "skill_0 TEXT, skill_1 TEXT, skill_2 TEXT, skill_3 TEXT, skill_4 TEXT, " +
+                "skill_5 TEXT, skill_6 TEXT, skill_7 TEXT, skill_8 TEXT, " +
+                "transfer_change TEXT, " +
+                "additional_info TEXT, " +
+                "decompose_item TEXT, " +
+                "decompose_card_1 TEXT, decompose_card_2 TEXT, decompose_card_3 TEXT, decompose_card_4 TEXT, " +
+                "decompose_skill_1 TEXT, decompose_skill_2 TEXT, decompose_skill_3 TEXT, decompose_skill_4 TEXT, " +
+                "decompose_transfer_1_a TEXT, decompose_transfer_1_b TEXT, decompose_transfer_1_c TEXT, " +
+                "decompose_transfer_2_a TEXT, decompose_transfer_2_b TEXT, decompose_transfer_2_c TEXT, " +
+                "decompose_transfer_3_a TEXT, decompose_transfer_3_b TEXT, decompose_transfer_3_c TEXT, " +
+                "decompose_compose TEXT, " +
+                "get_card_1 TEXT, get_card_2 TEXT, get_card_3 TEXT, get_card_4 TEXT, " +
+                "get_skill_1 TEXT, get_skill_2 TEXT, get_skill_3 TEXT, get_skill_4 TEXT, " +
+                "get_transfer_1_a TEXT, get_transfer_1_b TEXT, get_transfer_1_c TEXT, " +
+                "get_transfer_2_a TEXT, get_transfer_2_b TEXT, get_transfer_2_c TEXT, " +
+                "get_transfer_3_a TEXT, get_transfer_3_b TEXT, get_transfer_3_c TEXT, " +
+                "get_compose TEXT, " +
+                "decompose_image_id_card_1 TEXT, decompose_image_id_card_2 TEXT, decompose_image_id_card_3 TEXT, decompose_image_id_card_4 TEXT, " +
+                "decompose_image_id_skill_1 TEXT, decompose_image_id_skill_2 TEXT, decompose_image_id_skill_3 TEXT, decompose_image_id_skill_4 TEXT, " +
+                "decompose_image_id_transfer_1_a TEXT, decompose_image_id_transfer_1_b TEXT, decompose_image_id_transfer_1_c TEXT, " +
+                "decompose_image_id_transfer_2_a TEXT, decompose_image_id_transfer_2_b TEXT, decompose_image_id_transfer_2_c TEXT, " +
+                "decompose_image_id_transfer_3_a TEXT, decompose_image_id_transfer_3_b TEXT, decompose_image_id_transfer_3_c TEXT, " +
+                "decompose_image_id_compose TEXT)");
     }
 
     // 清空表并重新导入CSV数据（每次升级都执行）
@@ -187,11 +239,13 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM card_data_index");
         db.execSQL("DELETE FROM card_data_1");
         db.execSQL("DELETE FROM card_data_2");
+        db.execSQL("DELETE FROM card_data_3");
 
         // 重新导入CSV
         importCsvToDb(db, "card_data_index.csv", "card_data_index");
         importCsvToDb(db, "card_data_1.csv", "card_data_1");
         importCsvToDb(db, "card_data_2.csv", "card_data_2");
+        importCsvToDb(db, "card_data_3.csv", "card_data_3");
         Log.d("DBHelper", "Card data csv files updated.");
     }
 
@@ -242,7 +296,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         // Insert row into database
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_1 (" +
-                                            "name, image_id, base_info, is_animal_card, is_constellation_card, is_golden_crad, " +
+                                            "name, image_id, base_info, is_animal_card, is_constellation_card, is_golden_card, " +
                                             "category, price_0, sub_card, star, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
@@ -279,9 +333,9 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "star_fusion, star_fusion_detail, " +
                                             "star_fusion_0, star_fusion_1, star_fusion_2, star_fusion_3, star_fusion_4, star_fusion_5, star_fusion_6, star_fusion_7, star_fusion_8, star_fusion_9, " +
                                             "star_fusion_10, star_fusion_11, star_fusion_12, star_fusion_13, star_fusion_14, star_fusion_15, star_fusion_16, star_fusion_M, star_fusion_U, " +
-                                            "skill, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
+                                            "skill, skill_detail, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
                                             "transfer_change, additional_info) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -295,11 +349,78 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[45], rowData[46], rowData[47], rowData[48], rowData[49],
                                             rowData[50], rowData[51], rowData[52], rowData[53], rowData[54],
                                             rowData[55], rowData[56], rowData[57], rowData[58], rowData[59],
-                                            rowData[60], rowData[61]
+                                            rowData[60], rowData[61], rowData[62]
                                     });
                             importedCount++;
                         } catch (Exception e) {
                             Log.e("DBHelper", "Failed to insert row into card_data_2. Error: " + e.getMessage() +
+                                    ". Row data: " + arrayToString(rowData));
+                        }
+                        break;
+                    // Handle card_data_3 table
+                    case "card_data_3":
+                        if (rowData.length != 95) {
+                            Log.e("DBHelper", "card_data_3 CSV row column count mismatch. Expected 95, got " + rowData.length +
+                                    ". Row data: " + arrayToString(rowData));
+                            continue;
+                        }
+                        try {
+                            db.execSQL("INSERT OR IGNORE INTO card_data_3 (" +
+                                            "name, image_id, base_info, category, price_0, sub_card, " +
+                                            "star, star_detail, " +
+                                            "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
+                                            "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
+                                            "skill, skill_detail, " +
+                                            "skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
+                                            "transfer_change, additional_info, decompose_item, " +
+                                            "decompose_card_1, decompose_card_2, decompose_card_3, decompose_card_4, " +
+                                            "decompose_skill_1, decompose_skill_2, decompose_skill_3, decompose_skill_4, " +
+                                            "decompose_transfer_1_a, decompose_transfer_1_b, decompose_transfer_1_c, " +
+                                            "decompose_transfer_2_a, decompose_transfer_2_b, decompose_transfer_2_c, " +
+                                            "decompose_transfer_3_a, decompose_transfer_3_b, decompose_transfer_3_c, " +
+                                            "decompose_compose, " +
+                                            "get_card_1, get_card_2, get_card_3, get_card_4, " +
+                                            "get_skill_1, get_skill_2, get_skill_3, get_skill_4, " +
+                                            "get_transfer_1_a, get_transfer_1_b, get_transfer_1_c, " +
+                                            "get_transfer_2_a, get_transfer_2_b, get_transfer_2_c, " +
+                                            "get_transfer_3_a, get_transfer_3_b, get_transfer_3_c, " +
+                                            "get_compose, " +
+                                            "decompose_image_id_card_1, decompose_image_id_card_2, decompose_image_id_card_3, decompose_image_id_card_4, " +
+                                            "decompose_image_id_skill_1, decompose_image_id_skill_2, decompose_image_id_skill_3, decompose_image_id_skill_4, " +
+                                            "decompose_image_id_transfer_1_a, decompose_image_id_transfer_1_b, decompose_image_id_transfer_1_c, " +
+                                            "decompose_image_id_transfer_2_a, decompose_image_id_transfer_2_b, decompose_image_id_transfer_2_c, " +
+                                            "decompose_image_id_transfer_3_a, decompose_image_id_transfer_3_b, decompose_image_id_transfer_3_c, " +
+                                            "decompose_image_id_compose) " +
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                    new String[]{
+                                            rowData[0], rowData[1], rowData[2], rowData[3], rowData[4], rowData[5],
+                                            rowData[6], rowData[7],
+                                            rowData[8], rowData[9], rowData[10], rowData[11], rowData[12], rowData[13], rowData[14], rowData[15], rowData[16], rowData[17],
+                                            rowData[18], rowData[19], rowData[20], rowData[21], rowData[22], rowData[23], rowData[24], rowData[25], rowData[26],
+                                            rowData[27], rowData[28],
+                                            rowData[29], rowData[30], rowData[31], rowData[32], rowData[33], rowData[34], rowData[35], rowData[36], rowData[37],
+                                            rowData[38], rowData[39], rowData[40],
+                                            rowData[41], rowData[42], rowData[43], rowData[44],
+                                            rowData[45], rowData[46], rowData[47], rowData[48],
+                                            rowData[49], rowData[50], rowData[51],
+                                            rowData[52], rowData[53], rowData[54],
+                                            rowData[55], rowData[56], rowData[57],
+                                            rowData[58],
+                                            rowData[59], rowData[60], rowData[61], rowData[62],
+                                            rowData[63], rowData[64], rowData[65], rowData[66],
+                                            rowData[67], rowData[68], rowData[69],
+                                            rowData[70], rowData[71], rowData[72],
+                                            rowData[73], rowData[74], rowData[75],
+                                            rowData[76],
+                                            rowData[77], rowData[78], rowData[79], rowData[80],
+                                            rowData[81], rowData[82], rowData[83], rowData[84],
+                                            rowData[85], rowData[86], rowData[87],
+                                            rowData[88], rowData[89], rowData[90],
+                                            rowData[91], rowData[92], rowData[93], rowData[94]
+                                    });
+                            importedCount++;
+                        } catch (Exception e) {
+                            Log.e("DBHelper", "Failed to insert row into card_data_3. Error: " + e.getMessage() +
                                     ". Row data: " + arrayToString(rowData));
                         }
                         break;

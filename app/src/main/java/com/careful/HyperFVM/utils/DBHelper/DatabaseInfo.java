@@ -31,6 +31,8 @@ public class DatabaseInfo {
      * 优化通知：仪表盘展示的文案和通知展示的文案分开存储
      * DB_VERSION = 16
      * 装入融合卡数据
+     * DB_VERSION = 17
+     * 装入金卡分解兑换数据
      */
-    public static final int DB_VERSION = 16;
+    public static final int DB_VERSION = 17;
 }

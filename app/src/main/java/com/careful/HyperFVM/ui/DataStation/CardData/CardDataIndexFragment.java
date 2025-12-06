@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
@@ -127,10 +129,16 @@ public class CardDataIndexFragment extends Fragment {
 
                     // 跳转详情页
                     Intent intent = null;
-                    if (tableName.equals("card_data_1")) {
-                        intent = new Intent(requireActivity(), CardData_1_Activity.class);
-                    } else if (tableName.equals("card_data_2")) {
-                        intent = new Intent(requireActivity(), CardData_2_Activity.class);
+                    switch (tableName) {
+                        case "card_data_1":
+                            intent = new Intent(requireActivity(), CardData_1_Activity.class);
+                            break;
+                        case "card_data_2":
+                            intent = new Intent(requireActivity(), CardData_2_Activity.class);
+                            break;
+                        case "card_data_3":
+                            intent = new Intent(requireActivity(), CardData_3_Activity.class);
+                            break;
                     }
                     if (intent != null) {
                         intent.putExtra("name", cardName);

@@ -80,6 +80,7 @@
                             android:layout_height="wrap_content"
                             android:text="卡片名称：合金水管"
                             android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"/>
 
@@ -89,6 +90,7 @@
                             android:layout_height="wrap_content"
                             android:text="所属分类：管线类/水管类"
                             android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
                             android:layout_marginBottom="15dp"/>
 
                         <TextView
@@ -97,6 +99,7 @@
                             android:layout_height="wrap_content"
                             android:text="耗能：125"
                             android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
                             android:layout_marginBottom="15dp"/>
 
                         <TextView
@@ -105,6 +108,7 @@
                             android:layout_height="wrap_content"
                             android:text="不转：双向水管\n能力：对前后方都可以攻击\n\n一转：控温双向水管\n能力：前方多出一发子弹\n\n二转：合金水管\n能力：前后各再多出一发子弹"
                             android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
                             android:layout_marginBottom="15dp"/>
 
                         <TextView
@@ -113,6 +117,7 @@
                             android:layout_height="wrap_content"
                             android:text="子弹数(后+前)：2+1/2+2/3+3"
                             android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
                             android:layout_marginBottom="15dp"/>
 
                         <TextView
@@ -120,7 +125,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="作为副卡：好卡😀"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"/>
 
                     </LinearLayout>
 
@@ -173,13 +179,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_columnWeight="1"
                                 android:text="星级"
-                                android:textSize="20sp"/>
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_columnWeight="1"
                                 android:text="数据"
-                                android:textSize="20sp"/>
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </GridLayout>
 
@@ -201,6 +209,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="0"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -208,6 +217,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -215,6 +225,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="2"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -222,6 +233,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="3"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -229,6 +241,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="4"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -236,6 +249,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="5"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -243,6 +257,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="6"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -250,6 +265,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="7"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -257,6 +273,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="8"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -264,6 +281,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="9"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -271,6 +289,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="10"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -278,6 +297,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="11"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -285,6 +305,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="12"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -292,6 +313,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="13"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -299,6 +321,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="14"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -306,6 +329,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="15"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -313,6 +337,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="16"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -320,12 +345,14 @@
                                     android:layout_columnWeight="1"
                                     android:text="Max"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
                                     android:text="Ultra"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:textSize="20sp"
                                     android:gravity="center"/>
 
@@ -336,6 +363,7 @@
                                     android:layout_columnWeight="2"
                                     android:text="10"
                                     android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_1"
