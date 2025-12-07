@@ -33,6 +33,8 @@ public class DatabaseInfo {
      * 装入融合卡数据
      * DB_VERSION = 17
      * 装入金卡分解兑换数据
+     * DB_VERSION = 18
+     * 装入全部金卡分解兑换数据
      */
-    public static final int DB_VERSION = 17;
+    public static final int DB_VERSION = 18;
 }

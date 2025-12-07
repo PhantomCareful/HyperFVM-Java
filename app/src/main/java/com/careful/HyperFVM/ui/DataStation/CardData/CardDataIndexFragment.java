@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,18 +127,15 @@ public class CardDataIndexFragment extends Fragment {
                     }
 
                     // 跳转详情页
-                    Intent intent = null;
-                    switch (tableName) {
-                        case "card_data_1":
-                            intent = new Intent(requireActivity(), CardData_1_Activity.class);
-                            break;
-                        case "card_data_2":
-                            intent = new Intent(requireActivity(), CardData_2_Activity.class);
-                            break;
-                        case "card_data_3":
-                            intent = new Intent(requireActivity(), CardData_3_Activity.class);
-                            break;
-                    }
+                    Intent intent = switch (tableName) {
+                        case "card_data_1" ->
+                                new Intent(requireActivity(), CardData_1_Activity.class);
+                        case "card_data_2" ->
+                                new Intent(requireActivity(), CardData_2_Activity.class);
+                        case "card_data_3" ->
+                                new Intent(requireActivity(), CardData_3_Activity.class);
+                        default -> null;
+                    };
                     if (intent != null) {
                         intent.putExtra("name", cardName);
                         intent.putExtra("table", tableName);
