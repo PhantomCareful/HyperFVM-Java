@@ -11,8 +11,8 @@ android {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
         targetSdk = 36
-        versionCode = 38
-        versionName = "2.1.2"
+        versionCode = 39
+        versionName = "2.1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,4 +75,9 @@ dependencies {
 
     //后台任务需要用的
     implementation(libs.androidx.work.runtime)
+
+    //支持显示MarkDown笔记
+    implementation(libs.core)
+    implementation(libs.ext.tables)
+    implementation(libs.ext.strikethrough)
 }

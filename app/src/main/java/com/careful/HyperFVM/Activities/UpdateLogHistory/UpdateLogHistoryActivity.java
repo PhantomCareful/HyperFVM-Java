@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.UpdateLogHistory;
+package com.careful.HyperFVM.Activities.UpdateLogHistory;
 
 import android.os.Bundle;
 

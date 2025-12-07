@@ -11,12 +11,6 @@
     <string name="label_settings_navigation">设置</string>
     <string name="label_about_app">关于软件🫴</string>
     <string name="label_about_app_navigation">关于</string>
-    <string name="QOrA_0">写在最前面：\n这个App是我计划了很久的作品，承诺永久免费，纯净无广，希望同学们能够喜欢🥰🥰🥰</string>
-    <string name="QOrA_1">1.这个软件是干什么的🤔\n\n这是一个基于网页游戏美食大战老鼠的工具箱，目前已包含但不限于如下功能，欢迎同学们使用：\n✅包含可能是最全面的数据图合集\n✅防御卡全能数据库，您可以按名查询指定防御卡的数据\n✅快捷批量领取温馨礼包\n✅仪表盘功能，展示各类重要信息\n✅接入查黑系统，输入QQ号查询是否有行骗记录\n✅各类实用网站，一键跳转</string>
-    <string name="QOrA_2">2.软件可以在哪些设备上运行🤔\n\n✅Android：您可以在底层为Android12以及更高版本的系统上使用本软件。\n\n✅HarmonyOS：您可以在鸿蒙4.3、鸿蒙4.0、鸿蒙3.0等基于AOSP12的版本上使用本软件。\n\n❌iOS和Windows：由于我目前学到的知识有限，因此目前尚未适配。敬请谅解。</string>
-    <string name="QOrA_3">3.后续计划实现的功能🤔\n\n这个App将长期维护，未来将持续增加更多实用功能。当前计划开发的功能(排名不分先后)：\n\n⭐防御卡数据库：查询星座卡、生肖卡、金卡时支持展示相应的分解兑换信息\n⭐防御卡数据库：查询卡片时支持展示相应的配方、材料、技能书的掉落信息(如果有的话)\n⭐支持一堆在线功能，比如：App支持应用内检查更新、所有数据图不再内置App，均从仓库获取\n⭐App分为“社区版”和“妙妙屋专版”：“社区版”功能和文案更通用，“妙妙屋专版”会比“社区版”多一些专属功能\n⭐UI引擎适配Miuix</string>
-    <string name="QOrA_4">4.版本号不同位置分别表示什么意思🤔\n\n版本号一共有3位。从左到右：\n\n⭐第1位代表大版本，每+1表示有重大功能更新，这个可以参见前面讲的开发计划；\n\n⭐第2位代表小迭代，每+1表示有新增的小功能或者已有功能的优化；\n\n⭐第3位代表测试版本，每+1表示有问题修复或者新功能超前测试。\n\n⭐第3位不为0时表示该版本为测试版，非必要可以不更新，第3位为0时表示该版本为正式版，推荐更新。</string>
-    <string name="QOrA_5">5.如何反馈Bug和建议🤔\n\nGithub：前往App的Github主页提交Issue，有空的时候就会回复✍️\n\n美食妙妙屋的同学：直接在公会群里艾特我即可，注意把需求描述清楚，这样能更快地处理您的需求✍️</string>
     <string name="label_card_data">防御卡数据</string>
     <string name="label_weapon_gem_data">武器宝石数据</string>
     <string name="label_decompose_exchange_data">道具分解&amp;兑换汇总</string>

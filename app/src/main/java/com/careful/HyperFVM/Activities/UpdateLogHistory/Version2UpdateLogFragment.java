@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.UpdateLogHistory;
+package com.careful.HyperFVM.Activities.UpdateLogHistory;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,36 +11,42 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.databinding.FragmentVersion1UpdateLogBinding;
+import com.careful.HyperFVM.databinding.FragmentVersion2UpdateLogBinding;
 import com.careful.HyperFVM.utils.OtherUtils.UpdateLogReader;
 
-public class Version1UpdateLogFragment extends Fragment {
+import io.noties.markwon.Markwon;
+import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 
-    private FragmentVersion1UpdateLogBinding binding;
+public class Version2UpdateLogFragment extends Fragment {
+
+    private FragmentVersion2UpdateLogBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //初始化binding
-        binding = FragmentVersion1UpdateLogBinding.inflate(inflater, container, false);
+        binding = FragmentVersion2UpdateLogBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //显示历史版本更新日志
-        getHistoryUpdateLog1(root);
+        getHistoryUpdateLog2(root);
 
         return root;
     }
 
-    private void getHistoryUpdateLog1(View root) {
-        TextView currentUpdateLog = root.findViewById(R.id.about_app_history_update_log_1);
+    private void getHistoryUpdateLog2(View root) {
+        TextView currentUpdateLog = root.findViewById(R.id.about_app_history_update_log_2);
         // 调用工具类异步读取更新日志
         UpdateLogReader.readAssetsTxtAsync(
                 requireContext(),
-                "HistoryUpdateLog1.txt", // assets下的文件名
+                "HistoryUpdateLog2.txt", // assets下的文件名
                 new UpdateLogReader.ReadCallback() {
                     @Override
                     public void onReadSuccess(String content) {
                         // 读取成功，展示到TextView
-                        currentUpdateLog.setText(content);
+                        Markwon markwon = Markwon.builder(requireContext())
+                                .usePlugin(StrikethroughPlugin.create())// 启用删除线支持
+                                .build();
+                        markwon.setMarkdown(currentUpdateLog, content);
                     }
 
                     @Override

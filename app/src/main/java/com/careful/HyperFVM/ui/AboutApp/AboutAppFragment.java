@@ -16,11 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.UpdateLogHistory.UpdateLogHistoryActivity;
+import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
 import com.careful.HyperFVM.utils.OtherUtils.UpdateLogReader;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import io.noties.markwon.Markwon;
+import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 
 public class AboutAppFragment extends Fragment {
 
@@ -126,7 +129,10 @@ public class AboutAppFragment extends Fragment {
                     @Override
                     public void onReadSuccess(String content) {
                         // 读取成功，展示到TextView
-                        currentUpdateLog.setText(content);
+                        Markwon markwon = Markwon.builder(requireContext())
+                                .usePlugin(StrikethroughPlugin.create())// 启用删除线支持
+                                .build();
+                        markwon.setMarkdown(currentUpdateLog, content);
                     }
 
                     @Override

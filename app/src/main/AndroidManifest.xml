@@ -54,7 +54,7 @@
             android:exported="false"
             android:theme="@style/Theme.HyperFVMJava" />
         <activity
-            android:name=".UpdateLogHistory.UpdateLogHistoryActivity"
+            android:name=".Activities.UpdateLogHistory.UpdateLogHistoryActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.TodayLuckyActivity"

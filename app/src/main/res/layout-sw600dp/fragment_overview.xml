@@ -41,10 +41,11 @@
                         card_view:cardBackgroundColor="?attr/colorPrimary">
 
                         <TextView
+                            android:id="@+id/overview_top"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="@string/QOrA_0"
+                            android:text="null"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimary"
                             android:clickable="true"
@@ -62,10 +63,11 @@
                         card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
 
                         <TextView
+                            android:id="@+id/overview1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="@string/QOrA_1"
+                            android:text="null"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             android:clickable="true"
@@ -83,10 +85,11 @@
                         card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
 
                         <TextView
+                            android:id="@+id/overview2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="@string/QOrA_2"
+                            android:text="null"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             android:clickable="true"
@@ -112,10 +115,11 @@
                         card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
 
                         <TextView
+                            android:id="@+id/overview3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="@string/QOrA_3"
+                            android:text="null"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             android:clickable="true"
@@ -133,10 +137,11 @@
                         card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
 
                         <TextView
+                            android:id="@+id/overview4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="@string/QOrA_4"
+                            android:text="null"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             android:clickable="true"
@@ -154,10 +159,11 @@
                         card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
 
                         <TextView
+                            android:id="@+id/overview5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="@string/QOrA_5"
+                            android:text="null"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             android:clickable="true"
