@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataStationThirdBinding;
-import com.careful.HyperFVM.utils.OtherUtils.ImageViewerUtil;
+import com.careful.HyperFVM.utils.OtherUtils.ImageViewerOutUtil;
 
 public class WorldBossFragment extends Fragment {
 
@@ -22,12 +22,12 @@ public class WorldBossFragment extends Fragment {
         View root = binding.getRoot();
 
         ImageView imageView = root.findViewById(R.id.Image_View);
-        imageView.setImageResource(R.drawable.mouse_world_boss);
+        imageView.setImageResource(R.drawable.data_image_mouse_hp_6);
 
         // 调用工具类绑定点击事件，参数：当前Fragment、ImageView、临时文件名、authority
         // 传入FileProvider的authority（与AndroidManifest.xml中一致）
         String authority = requireContext().getPackageName() + ".fileprovider";
-        ImageViewerUtil.setupImageViewer(this, imageView, "temp.png", authority);
+        ImageViewerOutUtil.setupImageViewer(this, imageView, "temp.png", authority);
 
         return root;
     }

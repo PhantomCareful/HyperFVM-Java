@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ImageViewerUtil {
+public class ImageViewerOutUtil {
     private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     // 传入应用包名（用于FileProvider授权）

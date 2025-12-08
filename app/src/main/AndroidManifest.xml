@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application
@@ -23,15 +22,15 @@
         android:theme="@style/Theme.HyperFVMJava"
         android:usesCleartextTraffic="true"
         tools:targetApi="upside_down_cake">
-
+        <activity
+            android:name=".Activities.ImageViewerActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.DetailCardData.CardData_1_Activity"
             android:exported="false" />
-
         <activity
             android:name=".Activities.DetailCardData.CardData_2_Activity"
             android:exported="false" />
-
         <activity
             android:name=".Activities.DetailCardData.CardData_3_Activity"
             android:exported="false" />
@@ -67,6 +66,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -82,10 +82,9 @@
 
         <service
             android:name=".Service.PersistentService"
+            android:exported="false"
             android:foregroundServiceType="dataSync"
-            android:stopWithTask="false"
-            android:exported="false" />
-
+            android:stopWithTask="false" />
     </application>
 
 </manifest>

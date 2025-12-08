@@ -48,14 +48,14 @@ public class MouseHPDataFragment extends Fragment {
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
         //添加Fragment和对应的标题，按标签顺序
-        adapter.addFragment(new MeiweiHuoshanFukongFragment(), getResources().getString(R.string.mouse_meiwei_huoshan_fukong));
-        adapter.addFragment(new XingjiHaidiJingjiFragment(), getResources().getString(R.string.mouse_xingji_haidi_jingji));
-        adapter.addFragment(new FanwaiFragment(), getResources().getString(R.string.mouse_fanwai));
-        adapter.addFragment(new CrossServerFragment(), getResources().getString(R.string.mouse_cross_server));
-        adapter.addFragment(new MotaFragment(), getResources().getString(R.string.mouse_mota));
-        adapter.addFragment(new MotaBossFragment(), getResources().getString(R.string.mouse_mota_boss));
-        adapter.addFragment(new WorldBossFragment(), getResources().getString(R.string.mouse_world_boss));
-        adapter.addFragment(new CrossServerBossFragment(), getResources().getString(R.string.mouse_cross_server_boss));
-        adapter.addFragment(new SpecialFragment(), getResources().getString(R.string.mouse_special));
+        adapter.addFragment(new MeiweiHuoshanFukongFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_1));
+        adapter.addFragment(new XingjiHaidiJingjiFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_2));
+        adapter.addFragment(new FanwaiFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_3));
+        adapter.addFragment(new CrossServerFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_4));
+        adapter.addFragment(new MotaFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_5));
+        adapter.addFragment(new MotaBossFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_8));
+        adapter.addFragment(new WorldBossFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_6));
+        adapter.addFragment(new CrossServerBossFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_7));
+        adapter.addFragment(new SpecialFragment(), getResources().getString(R.string.text_data_images_index_mouse_hp_10));
     }
 }

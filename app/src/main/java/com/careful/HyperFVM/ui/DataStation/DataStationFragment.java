@@ -19,11 +19,6 @@ import androidx.viewpager2.widget.ViewPager2;
 // 导入MainActivity用于跳转
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataStationBinding;
-import com.careful.HyperFVM.ui.DataStation.CardData.CardDataFragment;
-import com.careful.HyperFVM.ui.DataStation.DecomposeAndExchangeData.DecomposeAndExchangeDataFragment;
-import com.careful.HyperFVM.ui.DataStation.MouseHPData.MouseHPDataFragment;
-import com.careful.HyperFVM.ui.DataStation.OtherData.OtherDataFragment;
-import com.careful.HyperFVM.ui.DataStation.WeaponAndGemData.WeaponAndGemDataFragment;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.OtherUtils.TabLayoutFragmentStateAdapter;
@@ -70,7 +65,7 @@ public class DataStationFragment extends Fragment {
         TabLayoutFragmentStateAdapter adapter = new TabLayoutFragmentStateAdapter(this);
         initTabLayoutFragments(adapter);
         viewPager2.setAdapter(adapter);
-        viewPager2.setUserInputEnabled(false);
+        viewPager2.setUserInputEnabled(true);
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) ->
                 tab.setText(adapter.getPageTitle(position))
         ).attach();
@@ -113,11 +108,9 @@ public class DataStationFragment extends Fragment {
     }
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
-        adapter.addFragment(new CardDataFragment(), getResources().getString(R.string.label_card_data));
-        adapter.addFragment(new WeaponAndGemDataFragment(), getResources().getString(R.string.label_weapon_gem_data));
-        adapter.addFragment(new DecomposeAndExchangeDataFragment(), getResources().getString(R.string.label_decompose_exchange_data));
-        adapter.addFragment(new MouseHPDataFragment(), getResources().getString(R.string.label_mouse_hp_data));
-        adapter.addFragment(new OtherDataFragment(), getResources().getString(R.string.label_other_data));
+        adapter.addFragment(new CardDataIndexFragment(), getResources().getString(R.string.card_data_index));
+        adapter.addFragment(new CardDataAuxiliaryListFragment(), getResources().getString(R.string.card_data_auxiliary_list));
+        adapter.addFragment(new DataImagesIndexFragment(), getResources().getString(R.string.data_images_index));
     }
 
     @Override

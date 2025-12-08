@@ -43,11 +43,11 @@ public class WeaponAndGemDataFragment extends Fragment {
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
         //添加Fragment和对应的标题，按标签顺序
-        adapter.addFragment(new WeaponAndGemGoldenComposeFragment(), getResources().getString(R.string.weapon_and_gem_golden_compose));
-        adapter.addFragment(new WeaponMainFragment(), getResources().getString(R.string.weapon_main));
-        adapter.addFragment(new WeaponSubFragment(), getResources().getString(R.string.weapon_sub));
-        adapter.addFragment(new WeaponSuperFragment(), getResources().getString(R.string.weapon_super));
-        adapter.addFragment(new WeaponAppearanceFragment(), getResources().getString(R.string.weapon_appearance));
-        adapter.addFragment(new GemDecomposeFragment(), getResources().getString(R.string.gem_decompose));
+        adapter.addFragment(new WeaponAndGemGoldenComposeFragment(), getResources().getString(R.string.text_data_images_index_weapon_and_gem_0_1));
+        adapter.addFragment(new WeaponMainFragment(), getResources().getString(R.string.text_data_images_index_weapon_and_gem_1));
+        adapter.addFragment(new WeaponSubFragment(), getResources().getString(R.string.text_data_images_index_weapon_and_gem_2));
+        adapter.addFragment(new WeaponSuperFragment(), getResources().getString(R.string.text_data_images_index_weapon_and_gem_3));
+        adapter.addFragment(new WeaponAppearanceFragment(), getResources().getString(R.string.text_data_images_index_weapon_and_gem_4));
+        adapter.addFragment(new GemDecomposeFragment(), getResources().getString(R.string.text_data_images_index_weapon_and_gem_5));
     }
 }

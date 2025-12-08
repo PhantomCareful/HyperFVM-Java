@@ -48,16 +48,16 @@ public class DecomposeAndExchangeDataFragment extends Fragment {
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
         //添加Fragment和对应的标题，按标签顺序
-        adapter.addFragment(new GoldenCardFragment(), getResources().getString(R.string.golden_card));
-        adapter.addFragment(new ConstellationCardFragment(), getResources().getString(R.string.constellation_card));
-        adapter.addFragment(new ChickenCardFragment(), getResources().getString(R.string.chicken_card));
-        adapter.addFragment(new DogCardFragment(), getResources().getString(R.string.dog_card));
-        adapter.addFragment(new PigCardFragment(), getResources().getString(R.string.pig_card));
-        adapter.addFragment(new CatCardFragment(), getResources().getString(R.string.cat_card));
-        adapter.addFragment(new CattleCardFragment(), getResources().getString(R.string.cattle_card));
-        adapter.addFragment(new TigerCardFragment(), getResources().getString(R.string.tiger_card));
-        adapter.addFragment(new RabbitCardFragment(), getResources().getString(R.string.rabbit_card));
-        adapter.addFragment(new DragonCardFragment(), getResources().getString(R.string.dragon_card));
-        adapter.addFragment(new SnakeCardFragment(), getResources().getString(R.string.snake_card));
+        adapter.addFragment(new GoldenCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_1));
+        adapter.addFragment(new ConstellationCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_2));
+        adapter.addFragment(new ChickenCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_3));
+        adapter.addFragment(new DogCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_4));
+        adapter.addFragment(new PigCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_5));
+        adapter.addFragment(new CatCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_6));
+        adapter.addFragment(new CattleCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_7));
+        adapter.addFragment(new TigerCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_8));
+        adapter.addFragment(new RabbitCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_9));
+        adapter.addFragment(new DragonCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_10));
+        adapter.addFragment(new SnakeCardFragment(), getResources().getString(R.string.text_data_images_index_decompose_and_get_11));
     }
 }

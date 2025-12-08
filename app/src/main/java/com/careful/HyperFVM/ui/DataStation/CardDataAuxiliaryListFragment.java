@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.ui.DataStation.CardData;
+package com.careful.HyperFVM.ui.DataStation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

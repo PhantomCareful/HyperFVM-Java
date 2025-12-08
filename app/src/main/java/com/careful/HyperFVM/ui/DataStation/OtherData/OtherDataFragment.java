@@ -48,14 +48,14 @@ public class OtherDataFragment extends Fragment {
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
         //添加Fragment和对应的标题，按标签顺序
-        adapter.addFragment(new BadgeFragment(), getResources().getString(R.string.other_badge));
-        adapter.addFragment(new VIPFragment(), getResources().getString(R.string.other_vip));
-        adapter.addFragment(new LuckyFragment(), getResources().getString(R.string.other_lucky));
-        adapter.addFragment(new MillionaireFragment(), getResources().getString(R.string.other_millionaire));
-        adapter.addFragment(new BetFragment(), getResources().getString(R.string.other_bet));
-        adapter.addFragment(new PetFragment(), getResources().getString(R.string.other_pet));
-        adapter.addFragment(new CryStoneFragment(), getResources().getString(R.string.other_cry_stone));
-        adapter.addFragment(new CookeryFragment(), getResources().getString(R.string.other_cookery));
-        adapter.addFragment(new WorldBossLevelFragment(), getResources().getString(R.string.other_world_boss_level));
+        adapter.addFragment(new BadgeFragment(), getResources().getString(R.string.text_data_images_index_others_1));
+        adapter.addFragment(new VIPFragment(), getResources().getString(R.string.text_data_images_index_others_2));
+        adapter.addFragment(new LuckyFragment(), getResources().getString(R.string.text_data_images_index_others_3));
+        adapter.addFragment(new MillionaireFragment(), getResources().getString(R.string.text_data_images_index_others_4));
+        adapter.addFragment(new BetFragment(), getResources().getString(R.string.text_data_images_index_others_5));
+        adapter.addFragment(new PetFragment(), getResources().getString(R.string.text_data_images_index_others_6));
+        adapter.addFragment(new CryStoneFragment(), getResources().getString(R.string.text_data_images_index_card_17));
+        adapter.addFragment(new CookeryFragment(), getResources().getString(R.string.text_data_images_index_card_18));
+        adapter.addFragment(new WorldBossLevelFragment(), getResources().getString(R.string.text_data_images_index_others_7));
     }
 }

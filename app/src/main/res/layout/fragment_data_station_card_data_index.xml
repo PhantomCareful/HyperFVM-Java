@@ -46,7 +46,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/both_way_and_three_shot"
+                android:text="@string/text_data_images_index_card_1"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -275,7 +275,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/x_pult"
+                android:text="@string/text_data_images_index_card_2"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -532,7 +532,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/star_and_pvp"
+                android:text="@string/text_data_images_index_card_3"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -768,7 +768,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/auxiliary"
+                android:text="@string/text_data_images_index_card_4"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -1025,7 +1025,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/energy_flower"
+                android:text="@string/text_data_images_index_card_5"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -1203,7 +1203,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/jelly_pudding_and_tray"
+                android:text="@string/text_data_images_index_card_6"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -1367,7 +1367,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/air_force_i"
+                android:text="@string/text_data_images_index_card_7"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -1545,7 +1545,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/eight_directions"
+                android:text="@string/text_data_images_index_card_8"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -1702,7 +1702,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/follow"
+                android:text="@string/text_data_images_index_card_9"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -1968,7 +1968,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/sundry"
+                android:text="@string/text_data_images_index_card_10"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -2227,7 +2227,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/straight_shot"
+                android:text="@string/text_data_images_index_card_11"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -2575,7 +2575,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/ash_bomb"
+                android:text="@string/text_data_images_index_card_12"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -2902,7 +2902,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/ashless_bomb"
+                android:text="@string/text_data_images_index_card_13"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -3210,7 +3210,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/cool_down_and_upgrade_and_drive_fog_and_clear_obstacle_and_special_effect"
+                android:text="@string/text_data_images_index_card_14"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
@@ -3616,7 +3616,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/bread_common_and_bread_middle_and_guard_protector"
+                android:text="@string/text_data_images_index_card_15"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"/>
 
