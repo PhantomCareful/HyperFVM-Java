@@ -6,7 +6,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <ScrollView
+    <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -292,6 +292,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
 
 </LinearLayout>

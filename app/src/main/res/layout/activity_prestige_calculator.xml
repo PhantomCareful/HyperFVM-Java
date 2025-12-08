@@ -41,7 +41,7 @@
             android:gravity="center"
             tools:ignore="MissingConstraints" />
 
-        <ScrollView
+        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="16dp"
@@ -560,7 +560,7 @@
                     android:layout_marginBottom="25dp"
                     android:gravity="center"/>
             </LinearLayout>
-        </ScrollView>
+        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
