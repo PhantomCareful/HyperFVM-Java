@@ -1,10 +1,5 @@
 package com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
-
 import java.util.Calendar;
 
 public class EveryMonthAndEveryWeek {
@@ -25,7 +20,6 @@ public class EveryMonthAndEveryWeek {
     // （3）每日通知
     public String dailyNotifications() {
         int currentDayOfMonth = getCurrentDayOfMonth();
-        Log.d("DPI", "DPI is " + SmallestWidthUtil.getSmallestWidthDp());
         if (currentDayOfMonth >= 1 && currentDayOfMonth <= 24) {
             return "记得每天都要签到\n本月进度\n(" + currentDayOfMonth + "/25)✊✊✊";
         } else {

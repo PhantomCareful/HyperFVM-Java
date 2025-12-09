@@ -62,7 +62,6 @@ public final class SmallestWidthUtil {
             return Math.round(smallestSidePx / density);
 
         } catch (Exception e) {
-            e.printStackTrace();
             return -1;
         }
     }

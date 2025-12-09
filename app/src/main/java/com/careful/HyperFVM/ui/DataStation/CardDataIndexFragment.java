@@ -70,7 +70,7 @@ public class CardDataIndexFragment extends Fragment {
         View dialogView = inflater.inflate(R.layout.item_dialog_input_card_data, null);
 
         // 获取控件（替换为RecyclerView）
-        TextInputEditText etCardName = dialogView.findViewById(R.id.et_card_name);
+        TextInputEditText etCardName = dialogView.findViewById(R.id.textInputEditText);
         RecyclerView suggestionList = dialogView.findViewById(R.id.suggestion_list);
 
         // 初始化适配器（使用自定义Material风格适配器）

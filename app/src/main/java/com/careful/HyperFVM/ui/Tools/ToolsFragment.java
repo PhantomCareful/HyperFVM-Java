@@ -17,6 +17,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.ui.Dialog.CommonDialogFragment;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
@@ -27,14 +28,12 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Objects;
 
 public class ToolsFragment extends Fragment {
     private FragmentToolsBinding binding;
     private View root;
+
+    private CommonDialogFragment dialog;
 
     private Button buttonRefreshDashboard;
 
@@ -268,52 +267,52 @@ public class ToolsFragment extends Fragment {
     }
 
     private void showQQInputDialog() {
-        // 加载自定义布局
-        LayoutInflater inflater = LayoutInflater.from(requireContext());
-        View dialogView = inflater.inflate(R.layout.item_dialog_input_layout_icu, null);
-        // 获取布局中的输入框
-        TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
-        TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
+        // 关闭可能存在的弹窗（关键：避免叠加）
+        dismissAllDialogs();
 
-        new MaterialAlertDialogBuilder(requireContext())
+        dialog = new CommonDialogFragment.Builder()
                 .setTitle("查黑系统")
-                .setView(dialogView)
-                .setPositiveButton("确定", (dialog, which) -> {
-                    if (etQQ != null) {
-                        String qqNumber = Objects.requireNonNull(etQQ.getText()).toString().trim();
-                        if (qqNumber.isEmpty()) {
-                            Toast.makeText(requireContext(), "请输入QQ号", Toast.LENGTH_SHORT).show();
-                        } else if (!qqNumber.matches("\\d+")) {
-                            Toast.makeText(requireContext(), "QQ号只能包含数字", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // 使用Icu类查询
-                            icuHelper.queryFraudInfo(qqNumber, new IcuHelper.QueryCallback() {
-                                @Override
-                                public void onSuccess(IcuHelper.FraudResult result) {
-                                    showResultDialog(result);
-                                }
+                .setCustomLayout(R.layout.item_dialog_input_layout_icu)
+                .setPositiveButtonText("查询")
+                .setNegativeButtonText("取消")
+                .build();
 
-                                @Override
-                                public void onError(String message) {
-                                    new MaterialAlertDialogBuilder(requireContext())
-                                            .setTitle("查询失败")
-                                            .setMessage(message)
-                                            .setPositiveButton("确定", null)
-                                            .show();
-                                }
-                            });
+        // 设置回调
+        dialog.setCallback(new CommonDialogFragment.Callback() {
+            @Override
+            public void onPositiveClick(String qqNumber) {
+                if (qqNumber.isEmpty()) {
+                    Toast.makeText(requireContext(), "请输入QQ号", Toast.LENGTH_SHORT).show();
+                } else if (!qqNumber.matches("\\d+")) {
+                    Toast.makeText(requireContext(), "QQ号只能包含数字", Toast.LENGTH_SHORT).show();
+                } else {
+                    icuHelper.queryFraudInfo(qqNumber, new IcuHelper.QueryCallback() {
+                        @Override
+                        public void onSuccess(IcuHelper.FraudResult result) {
+                            showResultDialog(result);
                         }
-                    }
-                })
-                .setNegativeButton("取消", null)
-                .show();
+
+                        @Override
+                        public void onError(String message) {
+                            dialog = new CommonDialogFragment.Builder()
+                                    .setTitle("查询失败")
+                                    .setPositiveButtonText("确定")
+                                    .build();
+                        }
+                    });
+                }
+            }
+        });
+
+        // 显示弹窗（使用getChildFragmentManager，与当前Fragment生命周期绑定）
+        if (isAdded() && !isDetached()) {
+            dialog.show(getChildFragmentManager(), "qq_input_dialog");
+        }
     }
 
-    // 显示查询结果弹窗（MaterialYou风格）
+    // 显示查询结果弹窗
     private void showResultDialog(IcuHelper.FraudResult result) {
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext());
-        dialogBuilder.setTitle(result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)");
-
+        // 构建结果弹窗
         StringBuilder content = new StringBuilder();
         content.append("QQ号：").append(result.qq).append("\n\n");
         content.append("昵称：").append(result.nickname).append("\n\n");
@@ -324,9 +323,15 @@ public class ToolsFragment extends Fragment {
             content.append("该QQ号暂未被标记为骗子。");
         }
 
-        dialogBuilder.setMessage(content.toString())
-                .setPositiveButton("确定", null)
-                .show();
+        CommonDialogFragment resultDialog = new CommonDialogFragment.Builder()
+                .setTitle(result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)")
+                .setMessage(content.toString())
+                .setPositiveButtonText("确定")
+                .build();
+
+        if (isAdded() && !isDetached()) {
+            resultDialog.show(getChildFragmentManager(), "result_dialog");
+        }
     }
 
     // 从数据库读取结果并显示
@@ -383,9 +388,30 @@ public class ToolsFragment extends Fragment {
         }
     }
 
+    // 关闭所有弹窗
+    private void dismissAllDialogs() {
+        // 方式1：通过FragmentManager关闭所有弹窗
+        getChildFragmentManager().getFragments().forEach(fragment -> {
+            if (fragment instanceof CommonDialogFragment) {
+                ((CommonDialogFragment) fragment).dismiss();
+            }
+        });
+    }
+
+    // 在生命周期关键节点关闭弹窗
+    @Override
+    public void onPause() {
+        super.onPause();
+        dismissAllDialogs(); // 页面不可见时关闭
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        icuHelper.shutdown(); // 释放资源
+        dismissAllDialogs(); // View销毁时关闭
+        if (icuHelper != null) {
+            icuHelper.shutdown(); // 释放资源
+        }
+        binding = null;
     }
 }
