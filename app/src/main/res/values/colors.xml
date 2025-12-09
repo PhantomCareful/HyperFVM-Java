@@ -5,6 +5,9 @@
     <color name="ic_launcher_background">@android:color/system_accent1_100</color>
     <color name="splash_color">@color/material_dynamic_primary100</color>
 
+    <!--Blur叠加色-->
+    <color name="blur_overlay_color">#80ffffff</color>
+
     <!--宫墙-->
     <color name="md_red_gongqiang_primary">#904B3C</color>
     <color name="md_red_gongqiang_onPrimary">#FFFFFF</color>

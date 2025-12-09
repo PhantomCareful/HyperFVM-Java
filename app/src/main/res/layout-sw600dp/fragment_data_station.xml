@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:paddingTop="100dp"
+        android:paddingTop="10dp"
         app:singleSelection="true"
         app:selectionRequired="true">
 

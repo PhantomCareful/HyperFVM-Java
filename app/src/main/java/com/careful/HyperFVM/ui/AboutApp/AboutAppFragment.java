@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.ui.AboutApp;
 
+import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,12 +20,8 @@ import androidx.fragment.app.Fragment;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
-import com.careful.HyperFVM.utils.OtherUtils.UpdateLogReader;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import io.noties.markwon.Markwon;
-import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 
 public class AboutAppFragment extends Fragment {
 
@@ -44,8 +42,9 @@ public class AboutAppFragment extends Fragment {
         //从build.gradle中获取版本号
         getVersion(root);
 
-        //显示当前版本更新日志
-        getCurrentUpdateLog(root);
+        //显示致谢名单和当前版本更新日志
+        getContent(requireContext(), root.findViewById(R.id.about_app_thanks_list), "ThanksList.txt");
+        getContent(requireContext(), root.findViewById(R.id.about_app_current_update_log), "CurrentUpdateLog.txt");
 
         //跳转浏览器，前往App的Github主页
         jumpToGithub(root);
@@ -117,32 +116,6 @@ public class AboutAppFragment extends Fragment {
         TextView version_info = root.findViewById(R.id.version_info);
         String versionInfo = versionName + "(" + versionCode + ")" + versionSuffix;
         version_info.setText(versionInfo);
-    }
-
-    private void getCurrentUpdateLog(View root) {
-        TextView currentUpdateLog = root.findViewById(R.id.about_app_current_update_log);
-        // 调用工具类异步读取更新日志
-        UpdateLogReader.readAssetsTxtAsync(
-                requireContext(),
-                "CurrentUpdateLog.txt", // assets下的文件名
-                new UpdateLogReader.ReadCallback() {
-                    @Override
-                    public void onReadSuccess(String content) {
-                        // 读取成功，展示到TextView
-                        Markwon markwon = Markwon.builder(requireContext())
-                                .usePlugin(StrikethroughPlugin.create())// 启用删除线支持
-                                .build();
-                        markwon.setMarkdown(currentUpdateLog, content);
-                    }
-
-                    @Override
-                    public void onReadFailed(String errorMsg) {
-                        // 读取失败，提示用户
-                        currentUpdateLog.setText(errorMsg);
-                        Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
     }
 
     private void jumpToGithub(View root) {

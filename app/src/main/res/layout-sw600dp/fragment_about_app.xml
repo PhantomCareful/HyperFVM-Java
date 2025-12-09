@@ -129,17 +129,18 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/about_app_thanks_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/thanks"
+                            android:text="@string/many_n"
+                            android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimary"
-                            android:textSize="20sp"/>
+                            android:padding="10dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
 
                     </LinearLayout>
 
@@ -188,7 +189,7 @@
                             android:id="@+id/about_app_current_update_log"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="null"
+                            android:text="@string/many_n"
                             android:textSize="20sp"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             android:padding="10dp"

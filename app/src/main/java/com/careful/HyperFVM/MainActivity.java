@@ -5,9 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.careful.HyperFVM.Service.PersistentService;
@@ -24,12 +26,20 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.careful.HyperFVM.databinding.ActivityMainBinding;
 import com.google.android.material.navigationrail.NavigationRailView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import eightbitlab.com.blurview.BlurTarget;
+import eightbitlab.com.blurview.BlurView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
     private DashboardNotificationManager dashboardNotificationManager;
     private DBHelper dbHelper;
+
+    private List<Integer> menuOrder;// 存储菜单item的ID，顺序与bottom_nav_menu一致
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +123,65 @@ public class MainActivity extends AppCompatActivity {
 
             // 配置ToolBar
             setupToolBar();
+
+            // 配置模糊材质
+            float radius = 20f;
+            View decorView = getWindow().getDecorView();
+            BlurTarget target = findViewById(R.id.target);
+            Drawable windowBackground = decorView.getBackground();
+
+            BlurView blurView = findViewById(R.id.blurViewTopAppBar);
+            blurView.setupWith(target)
+                    .setFrameClearDrawable(windowBackground)
+                    .setBlurRadius(radius);
+
+            blurView = findViewById(R.id.blurViewNavView);
+            blurView.setupWith(target)
+                    .setFrameClearDrawable(windowBackground)
+                    .setBlurRadius(radius);
+
+            // 配置切换动画
+            // 1. 初始化菜单顺序（务必与res/menu/bottom_nav_menu.xml中的item顺序一致）
+            menuOrder = new ArrayList<>();
+            menuOrder.add(R.id.navigation_overview);
+            menuOrder.add(R.id.navigation_data_station);
+            menuOrder.add(R.id.navigation_tools);
+            menuOrder.add(R.id.navigation_settings);
+            menuOrder.add(R.id.navigation_about_app);
+            // 2. 获取导航控制器和BottomNavigationView
+            BottomNavigationView navigationView = findViewById(R.id.nav_view);
+            // 3. 记录当前选中的菜单索引（初始为首页）
+            final int[] currentIndex = {menuOrder.indexOf(Objects.requireNonNull(navController.getCurrentDestination()).getId())};
+            // 4. 监听BottomNavigationView选中事件
+            navigationView.setOnItemSelectedListener(item -> {
+                int targetId = item.getItemId();
+                int targetIndex = menuOrder.indexOf(targetId);
+
+                // 5. 比较当前索引与目标索引，决定动画方向
+                NavOptions.Builder navOptions = new NavOptions.Builder();
+                if (targetIndex > currentIndex[0]) {
+                    // 目标在右侧：当前Fragment左滑出，目标Fragment右滑入
+                    navOptions.setEnterAnim(R.anim.slide_in_right)
+                            .setExitAnim(R.anim.slide_out_left)
+                            .setPopEnterAnim(R.anim.slide_in_left)
+                            .setPopExitAnim(R.anim.slide_out_right);
+                } else if (targetIndex < currentIndex[0]) {
+                    // 目标在左侧：当前Fragment右滑出，目标Fragment左滑入
+                    navOptions.setEnterAnim(R.anim.slide_in_left)
+                            .setExitAnim(R.anim.slide_out_right)
+                            .setPopEnterAnim(R.anim.slide_in_right)
+                            .setPopExitAnim(R.anim.slide_out_left);
+                } else {
+                    // 索引相同则不处理（重复点击同一菜单）
+                    return true;
+                }
+                // 6. 执行导航并应用动画
+                navController.navigate(targetId, null, navOptions.build());
+                // 7. 更新当前索引
+                currentIndex[0] = targetIndex;
+                return true;
+            });
+
         } catch (Exception ignored) {
         }
     }

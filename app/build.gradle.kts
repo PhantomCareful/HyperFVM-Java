@@ -80,4 +80,7 @@ dependencies {
     implementation(libs.core)
     implementation(libs.ext.tables)
     implementation(libs.ext.strikethrough)
+
+    //Blur
+    implementation(libs.blurview)
 }

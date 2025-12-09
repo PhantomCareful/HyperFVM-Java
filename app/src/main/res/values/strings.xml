@@ -196,7 +196,6 @@
     <string name="developer_name">QQ空间1–8服\nPhantom_Careful😈</string>
     <string name="label_running_environment">支持的运行环境</string>
     <string name="label_thanks">特别感谢(排名不分先后)</string>
-    <string name="thanks">So陌路の(数据图作者)🥰\n夏夜浅酌(美食数据站站长)🥰\n右撇三叶(部分高清素材)🥰\n就喝百事(查黑系统站长)🥰\n美食妙妙屋全体同学(提出建议、帮助测试、日常使用)🥰</string>
     <string name="label_update_log_current">当前版本更新日志</string>
     <string name="label_update_log_history">全部更新日志📕</string>
     <string name="label_version_0">1.0.0以前的版本</string>
@@ -208,4 +207,5 @@
     <string name="label_about_app_get_update_123pan">去123网盘获取新版</string>
     <string name="url_get_new_version">https://www.123912.com/s/NRCdjv-xk2mH</string>
     <string name="label_about_app_see_update_log_history">查看历史版本更新日志</string>
+    <string name="many_n">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
 </resources>
