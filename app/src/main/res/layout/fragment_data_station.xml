@@ -6,15 +6,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/Tab_Layout"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/ToggleButtonGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="scrollable"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:singleSelection="true"
+        app:selectionRequired="true">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/View_Page2"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ToggleButton_CardDataIndex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/card_data_index" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ToggleButton_CardDataAuxiliaryList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/card_data_auxiliary_list" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ToggleButton_DataImagesIndex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/data_images_index" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <!-- Fragment 容器：用于展示切换的 Fragment -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>

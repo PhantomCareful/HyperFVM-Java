@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
 
     //动态取色用的
-    implementation(libs.material.v1110)
+    implementation(libs.material.v1120)
 
     //做卡片布局用的
     implementation(libs.androidx.cardview)
