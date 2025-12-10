@@ -5,8 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.careful.HyperFVM.Service.PersistentService;
+import com.careful.HyperFVM.ui.DataStation.DataStationFragment;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -23,14 +25,17 @@ import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCal
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigationrail.NavigationRailView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -38,9 +43,6 @@ import com.careful.HyperFVM.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import eightbitlab.com.blurview.BlurTarget;
-import eightbitlab.com.blurview.BlurView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         // 布局初始化
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SharedPreferences preferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE);
+        preferences.edit().putInt("current_fragment_dex", 0).apply();
 
         // 挖孔屏/刘海屏适配
         WindowManager.LayoutParams params = getWindow().getAttributes();
@@ -124,6 +128,25 @@ public class MainActivity extends AppCompatActivity {
         // 确保视图加载完成后初始化导航（避免空指针）
         binding.getRoot().post(this::setupNavigation);
 
+        ExtendedFloatingActionButton floatButton = findViewById(R.id.FloatButton);
+        if (floatButton != null) {
+            floatButton.setOnClickListener(v -> {
+                // 1. 获取导航宿主Fragment
+                NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.nav_host_fragment_activity_main);
+                if (navHost == null) return;
+
+                // 2. 获取当前导航显示的主Fragment（即DataStationFragment）
+                // 导航宿主中当前显示的Fragment就是DataStationFragment（当处于该页面时）
+                Fragment currentMainFragment = navHost.getChildFragmentManager().getPrimaryNavigationFragment();
+
+                // 3. 判断是否为DataStationFragment，是的话调用切换方法
+                if (currentMainFragment instanceof DataStationFragment) {
+                    ((DataStationFragment) currentMainFragment).switchToNextFragment();
+                }
+            });
+        }
+
         // 初始化常驻通知
         initPersistentNotification();
     }
@@ -138,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 初始化导航逻辑（核心修复点）
+     * 初始化导航逻辑
      */
     private void setupNavigation() {
         try {
@@ -179,6 +202,10 @@ public class MainActivity extends AppCompatActivity {
         // 计算动画方向（根据菜单顺序）
         int currentIndex = menuOrder.indexOf(currentNavId);
         int targetIndex = menuOrder.indexOf(targetId);
+
+        // 小插曲：如果targetIndex指向数据站，那么显示翻页按钮，否则隐藏
+        findViewById(R.id.FloatButton).setVisibility(targetIndex == 1 ? View.VISIBLE : View.GONE);
+
         NavOptions.Builder navOptions = new NavOptions.Builder();
 
         if (targetIndex > currentIndex) {
@@ -245,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 配置顶部ToolBar（原有逻辑保留）
+     * 配置顶部ToolBar
      */
     private void setupToolBar() {
         MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
@@ -258,25 +285,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 配置模糊效果（原有逻辑保留）
+     * 配置模糊效果
      */
     private void setupBlurEffect() {
-        float radius = 20f;
-        View decorView = getWindow().getDecorView();
-        BlurTarget target = findViewById(R.id.target);
-        Drawable windowBackground = decorView.getBackground();
-
-        // 顶部AppBar模糊
-        BlurView blurView = findViewById(R.id.blurViewTopAppBar);
-        blurView.setupWith(target)
-                .setFrameClearDrawable(windowBackground)
-                .setBlurRadius(radius);
-
-        // 底部导航栏模糊
-        blurView = findViewById(R.id.blurViewNavView);
-        blurView.setupWith(target)
-                .setFrameClearDrawable(windowBackground)
-                .setBlurRadius(radius);
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
+        blurUtil.setBlur(findViewById(R.id.blurViewNavView));
+        blurUtil.setBlur(findViewById(R.id.blurViewButton));
     }
 
     /**
@@ -292,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 初始化常驻通知（原有逻辑保留）
+     * 初始化常驻通知
      */
     private void initPersistentNotification() {
         if (dbHelper.getSettingValue("通知-美食悬赏") || dbHelper.getSettingValue("通知-施肥活动") ||
@@ -324,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 发送常驻通知（原有逻辑保留）
+     * 发送常驻通知
      */
     @SuppressLint("MissingPermission")
     private void sendPersistentNotification() {

@@ -1,5 +1,8 @@
 package com.careful.HyperFVM.Activities;
 
+import static com.careful.HyperFVM.utils.ForDesign.DeviceType.DeviceTypeUtil.isTabletByPhysicalScreen;
+import static com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil.getSmallestWidthDp;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -7,6 +10,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +22,8 @@ import androidx.cardview.widget.CardView;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -81,8 +87,35 @@ public class MeishiWechatActivity extends AppCompatActivity {
         accountCountText = findViewById(R.id.TextView_AccountSaved);
         accountListContainer = findViewById(R.id.LinearLayout_AccountList);
 
-        // 添加按钮点击事件
-        findViewById(R.id.fab).setOnClickListener(v -> showAddLinkDialog());
+        // 无论是PAD还是手机，都要给顶栏添加模糊
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
+
+        if (isTabletByPhysicalScreen()) {
+            //PAD
+            if (getSmallestWidthDp() < 600) {
+                //PAD开小窗：用手机端布局
+                com.google.android.material.floatingactionbutton.FloatingActionButton button = findViewById(R.id.FloatButton_PAD);
+                button.setVisibility(View.VISIBLE);
+                ImageButton imageButton = findViewById(R.id.FloatButton);
+                imageButton.setVisibility(View.GONE);
+            }
+            // 添加按钮点击事件
+            findViewById(R.id.FloatButton_PAD).setOnClickListener(v -> showAddLinkDialog());
+        } else {
+            // 手机
+            com.google.android.material.floatingactionbutton.FloatingActionButton button = findViewById(R.id.FloatButton_PAD);
+            button.setVisibility(View.GONE);
+
+            // 添加模糊
+            blurUtil.setBlur(findViewById(R.id.blurViewButton));
+            // 添加按钮点击事件
+            findViewById(R.id.FloatButton).setOnClickListener(v -> showAddLinkDialog());
+        }
+
+        // 获取Markdown文本
+        MarkdownUtil.getContent(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
+        MarkdownUtil.getContent(this, findViewById(R.id.TextMeishiWechatGiftContent), "MeishiWechatGiftContent.txt");
     }
 
     private void showAddLinkDialog() {

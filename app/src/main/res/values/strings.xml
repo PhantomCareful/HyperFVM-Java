@@ -146,10 +146,7 @@
     <string name="label_tools_meishi_wechat">温馨礼包</string>
     <string name="label_tools_meishi_wechat_account_saved">已保存的账号</string>
     <string name="label_tools_meishi_wechat_rules_title">使用说明</string>
-    <string name="label_tools_meishi_wechat_rules">1.点击右下角的按钮，输入您从微信公众号-美食中心复制过来的链接；\n2.添加成功后，您可以在当前界面检查显示的区服和角色ID是否有误；\n3.若要删除账号信息，只需长按对应的卡片即可；\n4.自动领取时机：每天只会在第一次打开App的时候会执行领取操作，但是如果第一次领取失败(指锑食服务器发癫)，则下次打开App会继续尝试领取，直到领取成功；\n5.请妥善保管好您的openid，不要泄露给他人。⚠️</string>
     <string name="label_tools_meishi_wechat_gift_title">温馨礼包包含</string>
-    <string name="label_tools_meishi_wechat_gift">2小时道具双爆卡×2、强化水晶×5\n上等香料×10、秘制香料×5\n极品香料×5、1级四叶草×5\n2级四叶草×3、3级四叶草×1</string>
-    <string name="label_tools_meishi_wechat_gift_pad">2小时道具双爆卡×2、强化水晶×5、上等香料×10、秘制香料×5、极品香料×5、1级四叶草×5、2级四叶草×3、3级四叶草×1</string>
     <string name="label_tools_prestige_calculator_button">📝威望计算器📝</string>
     <string name="label_tools_prestige_calculator">威望计算器</string>
     <string name="label_tools_icu_button">🚫查黑系统🚫</string>

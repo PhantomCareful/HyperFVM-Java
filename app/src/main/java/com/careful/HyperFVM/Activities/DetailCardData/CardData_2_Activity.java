@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -33,6 +34,10 @@ public class CardData_2_Activity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_card_data_2);
         setTopAppBarTitle("防御卡数据查询");
+
+        // 设置顶栏模糊
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
 
         // 初始化数据库工具
         dbHelper = new DBHelper(this);

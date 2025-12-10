@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -25,21 +25,30 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataStationFragment extends Fragment {
     private FragmentDataStationBinding binding;
     private MaterialButtonToggleGroup toggleGroup;
-    private FragmentManager childFragmentManager;
     private DBHelper dbHelper;
+    private SharedPreferences preferences;
     private static final String PREFS_NAME = "app_preferences";
     private static final String FIRST_RUN_KEY = "first_run";
+    private static final String CURRENT_FRAGMENT_INDEX_KEY = "current_fragment_dex";
+
+    private int currentFragmentIndex = 0; // 0: CardDataIndex, 1: Auxiliary, 2: Images
+    private final List<Fragment> fragments = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDataStationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
         // 初始化视图和工具类
-        initViews(root, savedInstanceState);
+        initViews();
         dbHelper = new DBHelper(requireContext());
 
         return root;
@@ -56,37 +65,51 @@ public class DataStationFragment extends Fragment {
         }
     }
 
-    private void initViews(View root, Bundle savedInstanceState) {
-        setTopAppBarTitle(getString(R.string.label_data_station));
+    private void initViews() {
 
-        // 初始化 ToggleGroup
-        MaterialButtonToggleGroup toggleGroup = root.findViewById(R.id.ToggleButtonGroup);
-        // 默认选中第一个按钮，并显示对应的 Fragment
-        if (savedInstanceState == null) { // 避免重建时重复加载
-            toggleGroup.check(R.id.ToggleButton_CardDataIndex);
-            replaceChildFragment(new CardDataIndexFragment());
+        // 初始化Fragment列表
+        fragments.add(new CardDataIndexFragment());
+        fragments.add(new CardDataAuxiliaryListFragment());
+        fragments.add(new DataImagesIndexFragment());
+
+        // 恢复保存的索引：优先从savedInstanceState获取，否则默认0
+        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        currentFragmentIndex = preferences.getInt(CURRENT_FRAGMENT_INDEX_KEY, 0);
+        switch (currentFragmentIndex) {
+            case 0:
+                setTopAppBarTitle("防御卡目录\uD83E\uDD0F");
+                break;
+            case 1:
+                setTopAppBarTitle("增幅卡名单\uD83E\uDD0F");
+                break;
+            case 2:
+                setTopAppBarTitle("数据图合集\uD83E\uDD0F");
+                break;
         }
 
-        // 监听ToggleGroup的选中事件
-        toggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
-            if (isChecked) { // 只处理“选中”状态（过滤取消选中的回调）
-                Fragment targetFragment;
-                // 根据选中的按钮ID匹配子Fragment
-                if (checkedId == R.id.ToggleButton_CardDataIndex) {
-                    targetFragment = new CardDataIndexFragment();
-                } else if (checkedId == R.id.ToggleButton_CardDataAuxiliaryList) {
-                    targetFragment = new CardDataAuxiliaryListFragment();
-                } else if (checkedId == R.id.ToggleButton_DataImagesIndex) {
-                    targetFragment = new DataImagesIndexFragment();
-                } else {
-                    targetFragment = null;
-                }
-                // 切换子Fragment
-                if (targetFragment != null) {
-                    replaceChildFragment(targetFragment);
-                }
-            }
-        });
+        // 显示对应的子Fragment（无论是否是首次加载，都根据当前索引显示）
+        replaceChildFragment(fragments.get(currentFragmentIndex));
+
+    }
+
+    // 添加切换到下一个Fragment的方法
+    public void switchToNextFragment() {
+        currentFragmentIndex = (currentFragmentIndex + 1) % fragments.size();
+        Log.d("currentFragmentIndex", String.valueOf(currentFragmentIndex));
+        switch (currentFragmentIndex) {
+            case 0:
+                setTopAppBarTitle("防御卡目录\uD83E\uDD0F");
+                break;
+            case 1:
+                setTopAppBarTitle("增幅卡名单\uD83E\uDD0F");
+                break;
+            case 2:
+                setTopAppBarTitle("数据图合集\uD83E\uDD0F");
+                break;
+        }
+        // 保存当前页面序号
+        preferences.edit().putInt(CURRENT_FRAGMENT_INDEX_KEY, currentFragmentIndex).apply();
+        replaceChildFragment(fragments.get(currentFragmentIndex));
     }
 
     /**
@@ -94,18 +117,23 @@ public class DataStationFragment extends Fragment {
      * 注意：在Fragment中管理子Fragment必须用getChildFragmentManager()
      */
     private void replaceChildFragment(Fragment childFragment) {
-        // 获取父Fragment的子Fragment管理器（必须用getChildFragmentManager，而非getSupportFragmentManager）
-        childFragmentManager = getChildFragmentManager();
-        FragmentTransaction transaction = childFragmentManager.beginTransaction();
-        // 替换容器中的子Fragment（容器ID为fragment_container）
+        // 获取子Fragment管理器（因为是在DataStationFragment内部切换子Fragment）
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+
+        // 设置动画：参数1=新Fragment进入动画，参数2=旧Fragment退出动画
+        transaction.setCustomAnimations(
+                R.anim.slide_in_right,  // 你的进入动画（例如slide_in_right）
+                R.anim.slide_out_left    // 你的退出动画（例如slide_out_left）
+        );
+
+        // 执行替换操作（容器ID替换为你实际的子Fragment容器ID）
         transaction.replace(R.id.fragment_container, childFragment);
-        // 可选：添加到回退栈，支持返回键返回上一个子Fragment
-        // transaction.addToBackStack(null);
+
+        // 提交事务
         transaction.commit();
     }
 
     private void checkFirstRun() {
-        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         if (preferences.getBoolean(FIRST_RUN_KEY, true)) {
             showWelcomeDialog();
             preferences.edit().putBoolean(FIRST_RUN_KEY, false).apply();
@@ -133,6 +161,7 @@ public class DataStationFragment extends Fragment {
     }
 
     private void setTopAppBarTitle(String title) {
+        Log.d("currentFragmentIndex", title);
         Activity activity = getActivity();
         if (activity != null) {
             MaterialToolbar toolbar = activity.findViewById(R.id.Top_AppBar);
@@ -148,7 +177,6 @@ public class DataStationFragment extends Fragment {
             toggleGroup.removeOnButtonCheckedListener(null);
             toggleGroup = null;
         }
-        childFragmentManager = null;
         binding = null;
     }
 }

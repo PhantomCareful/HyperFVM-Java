@@ -50,8 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".Activities.MeishiWechatActivity"
-            android:exported="false"
-            android:theme="@style/Theme.HyperFVMJava" />
+            android:exported="false" />
         <activity
             android:name=".Activities.UpdateLogHistory.UpdateLogHistoryActivity"
             android:exported="false" />
@@ -66,7 +65,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

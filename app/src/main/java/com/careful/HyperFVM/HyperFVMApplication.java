@@ -12,6 +12,7 @@ import androidx.work.WorkManager;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.AutoTask.AutoTaskWorker;
+import com.careful.HyperFVM.utils.ForDesign.DeviceType.DeviceTypeUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.google.android.material.color.DynamicColors;
 
@@ -28,6 +29,7 @@ public class HyperFVMApplication extends Application {
     public void onCreate() {
         super.onCreate();
         DynamicColors.applyToActivitiesIfAvailable(this);
+        DeviceTypeUtil.init(this);
         SmallestWidthUtil.init(this);
 
         dbHelper = new DBHelper(getApplicationContext());
