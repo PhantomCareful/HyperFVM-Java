@@ -8,7 +8,9 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -72,6 +74,18 @@ public class PrestigeCalculatorActivity extends AppCompatActivity {
 
         // 初始化结果显示
         tvTotal = findViewById(R.id.tv_total);
+
+        // 顶栏模糊材质
+        setupBlurEffect();
+    }
+
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
+        blurUtil.setBlur(findViewById(R.id.blurViewTextTotal));
     }
 
     // 给所有输入框设置文本变化监听器（实时计算）
@@ -125,7 +139,7 @@ public class PrestigeCalculatorActivity extends AppCompatActivity {
         }
 
         // 更新结果显示
-        tvTotal.setText("您的威望储备：" + total);
+        tvTotal.setText("总储备：" + total);
     }
 
     // 设置顶栏标题和返回按钮

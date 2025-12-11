@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.TabLayoutFragmentStateAdapter;
@@ -47,6 +48,9 @@ public class UpdateLogHistoryActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) ->
                 tab.setText(adapter.getPageTitle(position))
         ).attach();
+
+        // 添加模糊材质
+        setupBlurEffect();
     }
 
     private void setTopAppBarTitle(String title) {
@@ -60,9 +64,16 @@ public class UpdateLogHistoryActivity extends AppCompatActivity {
         }
 
         //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> {
-            this.finish();
-        });
+        toolbar.setNavigationOnClickListener(v -> this.finish());
+    }
+
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopTabLayout));
     }
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
