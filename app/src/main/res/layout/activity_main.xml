@@ -15,7 +15,7 @@
         <eightbitlab.com.blurview.BlurTarget
             android:id="@+id/target"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:ignore="MissingConstraints">
 
             <!-- 1. 中间内容：移到最前面，约束到父布局四边（延伸到顶栏/底栏后方） -->

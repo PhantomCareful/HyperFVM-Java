@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 主容器：左侧导航 + 右侧内容（含ToolBar和Fragment） -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -26,34 +26,89 @@
         android:layout_height="match_parent"
         android:layout_marginStart="80dp">
 
-        <!-- 2.1 顶部ToolBar（提升层级） -->
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/right_app_bar"
+        <eightbitlab.com.blurview.BlurTarget
+            android:id="@+id/target"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorSurface"
-            android:fitsSystemWindows="true"
-            android:gravity="center_horizontal"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/Top_AppBar"
+            <!-- Fragment容器（贴在ToolBar下方） -->
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/nav_host_fragment_activity_main"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:titleTextColor="?attr/colorOnSurface"
-                app:titleTextAppearance="@style/ToolBarTitleStyle" />
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/mobile_navigation"/>
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </eightbitlab.com.blurview.BlurTarget>
 
-        <!-- 2.2 Fragment容器（贴在ToolBar下方） -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/nav_host_fragment_activity_main"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewTopAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/mobile_navigation"/>
+            app:blurOverlayColor="@color/blur_overlay_color"
+            tools:ignore="MissingConstraints">
+
+            <!-- 2.1 顶部ToolBar（提升层级） -->
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/right_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fitsSystemWindows="true"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/Top_AppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:titleTextColor="?attr/colorOnSurface"
+                    app:titleTextAppearance="@style/ToolBarTitleStyle" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </eightbitlab.com.blurview.BlurView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Card_FloatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="parent">
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipToOutline="true"
+                app:blurOverlayColor="@android:color/transparent"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/FloatButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="翻页"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:stateListAnimator="@null"
+                    app:icon="@drawable/ic_arrow_right"
+                    app:elevation="0dp"
+                    app:pressedTranslationZ="0dp"
+                    app:rippleColor="@android:color/transparent" />
+
+            </eightbitlab.com.blurview.BlurView>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

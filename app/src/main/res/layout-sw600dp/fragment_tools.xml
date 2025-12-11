@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="10dp">
+                android:paddingTop="100dp">
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -430,7 +430,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="50dp"
                 android:orientation="vertical"
-                android:paddingTop="10dp">
+                android:paddingTop="100dp">
 
                 <TextView
                     android:layout_width="match_parent"

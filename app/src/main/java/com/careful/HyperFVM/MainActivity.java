@@ -1,12 +1,15 @@
 package com.careful.HyperFVM;
 
+import static com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil.getSmallestWidthDp;
+
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +34,7 @@ import com.google.android.material.navigationrail.NavigationRailView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -71,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> menuOrder; // 导航菜单顺序（与bottom_nav_menu.xml一致）
     private BootReceiver bootReceiver;
     private BottomNavigationView navView;
+    private NavigationRailView leftNavView;
+    private ObjectAnimator floatButtonAnimator;// 跟踪当前运行的浮动按钮动画
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +116,9 @@ public class MainActivity extends AppCompatActivity {
         // 布局初始化
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        SharedPreferences preferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE);
-        preferences.edit().putInt("current_fragment_dex", 0).apply();
+        preferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE);
+        preferences.edit().putInt("current_fragment_index", 0).apply();
+        preferences.edit().putBoolean("exit_animation_permission", true).apply();
 
         // 挖孔屏/刘海屏适配
         WindowManager.LayoutParams params = getWindow().getAttributes();
@@ -127,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
         // 确保视图加载完成后初始化导航（避免空指针）
         binding.getRoot().post(this::setupNavigation);
+
+        // 配置模糊效果
+        setupBlurEffect();
 
         ExtendedFloatingActionButton floatButton = findViewById(R.id.FloatButton);
         if (floatButton != null) {
@@ -152,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 保存导航状态，防止布局切换（小窗/全屏）时丢失
+     * 保存导航状态，防止布局切换时丢失
      */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -168,22 +179,12 @@ public class MainActivity extends AppCompatActivity {
             // 获取导航控制器
             navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
             navView = findViewById(R.id.nav_view);
+            leftNavView = findViewById(R.id.left_nav_view);
 
             // 配置导航栏（PAD/手机双端）
             setupNavView();
             // 配置顶部ToolBar
             setupToolBar();
-
-            // 手机端：底部导航 + 模糊效果 + 自定义导航监听
-            if (navView != null) {
-                // 配置模糊效果（原有逻辑保留）
-                setupBlurEffect();
-
-                // 关键：自定义选中监听器（移除与setupWithNavController的冲突）
-                navView.setOnItemSelectedListener(item -> handleNavItemSelection(item.getItemId()));
-                // 强制同步UI选中状态
-                navView.setSelectedItemId(currentNavId);
-            }
 
         } catch (Exception e) {
             Log.e("NavigationError", "导航初始化失败", e);
@@ -191,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 统一处理导航项选中逻辑（核心：避免冲突和循环调用）
+     * 统一处理导航项选中逻辑
      */
     private boolean handleNavItemSelection(int targetId) {
         // 点击当前已选中项：直接返回，避免重复处理
@@ -204,22 +205,96 @@ public class MainActivity extends AppCompatActivity {
         int targetIndex = menuOrder.indexOf(targetId);
 
         // 小插曲：如果targetIndex指向数据站，那么显示翻页按钮，否则隐藏
-        findViewById(R.id.FloatButton).setVisibility(targetIndex == 1 ? View.VISIBLE : View.GONE);
+        if (preferences.getBoolean("exit_animation_permission", true) || targetIndex == 1) {
+            // 清理旧动画（取消并移除监听器）
+            if (floatButtonAnimator != null && floatButtonAnimator.isRunning()) {
+                floatButtonAnimator.removeAllListeners(); // 移除旧监听器，避免干扰
+                floatButtonAnimator.cancel();
+            }
+        }
+
+        if (targetId == R.id.navigation_data_station) {
+            findViewById(R.id.FloatButton).setVisibility(View.VISIBLE);
+
+            // 顺便添加一个位移动画
+            CardView cardView = findViewById(R.id.Card_FloatButton);
+            floatButtonAnimator = ObjectAnimator.ofFloat(
+                    cardView,
+                    View.TRANSLATION_X,
+                    550f, 0f
+            );
+            floatButtonAnimator.setDuration(800);
+            floatButtonAnimator.start();
+            preferences.edit().putBoolean("exit_animation_permission", true).apply();
+        } else if (preferences.getBoolean("exit_animation_permission", true)) {
+            // 顺便添加一个位移动画
+            CardView cardView = findViewById(R.id.Card_FloatButton);
+            floatButtonAnimator = ObjectAnimator.ofFloat(
+                    cardView,
+                    View.TRANSLATION_X,
+                    0f, 550f
+            );
+            floatButtonAnimator.setDuration(800);
+            floatButtonAnimator.start();
+
+            // 添加动画监听器，监听动画结束事件
+            floatButtonAnimator.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    // 动画开始时的操作（可选）
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    // 动画执行完毕后，隐藏按钮
+                    findViewById(R.id.FloatButton).setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    // 动画被取消时的操作（可选，如需要可在这里也隐藏按钮）
+                    findViewById(R.id.FloatButton).setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+                    // 动画重复时的操作（当前动画不重复，留空即可）
+                    findViewById(R.id.FloatButton).setVisibility(View.GONE);
+                }
+            });
+            preferences.edit().putBoolean("exit_animation_permission", false).apply();
+        }
 
         NavOptions.Builder navOptions = new NavOptions.Builder();
 
         if (targetIndex > currentIndex) {
-            // 目标在右侧：右滑入 + 左滑出
-            navOptions.setEnterAnim(R.anim.slide_in_right)
-                    .setExitAnim(R.anim.slide_out_left)
-                    .setPopEnterAnim(R.anim.slide_in_left)
-                    .setPopExitAnim(R.anim.slide_out_right);
+            if (getSmallestWidthDp() < 600) {
+                // 目标在右侧：右滑入 + 左滑出
+                navOptions.setEnterAnim(R.anim.slide_in_right)
+                        .setExitAnim(R.anim.slide_out_left)
+                        .setPopEnterAnim(R.anim.slide_in_left)
+                        .setPopExitAnim(R.anim.slide_out_right);
+            } else {
+                // 目标在下方：下滑入 + 上滑出
+                navOptions.setEnterAnim(R.anim.slide_in_bottom)
+                        .setExitAnim(R.anim.slide_out_top)
+                        .setPopEnterAnim(R.anim.slide_in_top)
+                        .setPopExitAnim(R.anim.slide_out_bottom);
+            }
         } else if (targetIndex < currentIndex) {
-            // 目标在左侧：左滑入 + 右滑出
-            navOptions.setEnterAnim(R.anim.slide_in_left)
-                    .setExitAnim(R.anim.slide_out_right)
-                    .setPopEnterAnim(R.anim.slide_in_right)
-                    .setPopExitAnim(R.anim.slide_out_left);
+            if (getSmallestWidthDp() < 600) {
+                // 目标在左侧：左滑入 + 右滑出
+                navOptions.setEnterAnim(R.anim.slide_in_left)
+                        .setExitAnim(R.anim.slide_out_right)
+                        .setPopEnterAnim(R.anim.slide_in_right)
+                        .setPopExitAnim(R.anim.slide_out_left);
+            } else {
+                // 目标在上方：上滑入 + 下滑出
+                navOptions.setEnterAnim(R.anim.slide_in_top)
+                        .setExitAnim(R.anim.slide_out_bottom)
+                        .setPopEnterAnim(R.anim.slide_in_bottom)
+                        .setPopExitAnim(R.anim.slide_out_top);
+            }
         }
 
         navController.navigate(targetId, null, navOptions.build());
@@ -241,33 +316,52 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_about_app
         ).build();
 
-        // PAD端：左侧导航栏（手动监听器，避免自动同步冲突）
-        NavigationRailView leftNavView = findViewById(R.id.left_nav_view);
+        // PAD端：左侧导航栏
         if (leftNavView != null) {
-            leftNavView.setOnItemSelectedListener(item -> {
-                int targetId = item.getItemId();
-                if (targetId == currentNavId) {
-                    return true;
-                }
-                navController.navigate(targetId);
-                currentNavId = targetId; // 同步状态
-                return true;
-            });
-            leftNavView.setSelectedItemId(currentNavId); // 强制同步UI
+            // 自定义选中监听器
+            leftNavView.setOnItemSelectedListener(item -> handleNavItemSelection(item.getItemId()));
+            // 强制同步UI选中状态
+            leftNavView.setSelectedItemId(currentNavId);
 
-            // ToolBar联动（保留原有逻辑）
+            // ToolBar联动
             if (getSupportActionBar() != null) {
                 NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
             }
             return;
         }
 
-        // 手机端：底部导航（仅配置ToolBar联动，移除setupWithNavController避免冲突）
+        // 手机端：底部导航
         if (navView != null) {
-            navView.setLabelVisibilityMode(BottomNavigationView.LABEL_VISIBILITY_SELECTED);
+            // 自定义选中监听器
+            navView.setOnItemSelectedListener(item -> handleNavItemSelection(item.getItemId()));
+            // 强制同步UI选中状态
+            navView.setSelectedItemId(currentNavId);
+
+            // ToolBar联动
             if (getSupportActionBar() != null) {
                 NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
             }
+        }
+
+        // 小插曲：如果targetIndex指向数据站，那么显示翻页按钮，否则隐藏
+        // 清理旧动画（取消并移除监听器）
+        if (floatButtonAnimator != null && floatButtonAnimator.isRunning()) {
+            floatButtonAnimator.removeAllListeners(); // 移除旧监听器，避免干扰
+            floatButtonAnimator.cancel();
+        }
+
+        if (currentNavId == R.id.navigation_data_station) {
+            findViewById(R.id.FloatButton).setVisibility(View.VISIBLE);
+
+            // 顺便添加一个位移动画
+            CardView cardView = findViewById(R.id.Card_FloatButton);
+            floatButtonAnimator = ObjectAnimator.ofFloat(
+                    cardView,
+                    View.TRANSLATION_X,
+                    550f, 0f
+            );
+            floatButtonAnimator.setDuration(800);
+            floatButtonAnimator.start();
         }
     }
 
@@ -290,20 +384,20 @@ public class MainActivity extends AppCompatActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewNavView));
-        blurUtil.setBlur(findViewById(R.id.blurViewButton));
-    }
-
-    /**
-     * 监听配置变化（小窗/全屏、PAD/手机切换）
-     */
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // 同步导航状态：修复布局切换后索引不一致
-        if (navController != null && navView != null) {
-            navView.setSelectedItemId(currentNavId);
+        if (getSmallestWidthDp() < 600) {
+            blurUtil.setBlur(findViewById(R.id.blurViewNavView));
         }
+        blurUtil.setBlur(findViewById(R.id.blurViewButton));
+
+        // 顺便添加一个位移动画
+        CardView cardView = findViewById(R.id.Card_FloatButton);
+        floatButtonAnimator = ObjectAnimator.ofFloat(
+                cardView,
+                View.TRANSLATION_X,
+                550f, 0f // 从1000px移动到0px
+        );
+        floatButtonAnimator.setDuration(800);
+        floatButtonAnimator.start();
     }
 
     /**

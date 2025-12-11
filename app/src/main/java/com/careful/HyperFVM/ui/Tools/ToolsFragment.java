@@ -5,10 +5,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +55,8 @@ public class ToolsFragment extends Fragment {
 
     private IcuHelper icuHelper;
 
+    private TransitionSet transition;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentToolsBinding.inflate(inflater, container, false);
         root = binding.getRoot();
@@ -71,6 +78,12 @@ public class ToolsFragment extends Fragment {
 
         icuHelper = new IcuHelper(requireContext()); // 初始化查黑工具
 
+        // 初始化动画效果
+        transition = new TransitionSet();
+        transition.addTransition(new Fade()); // 淡入淡出
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.setDuration(800); // 动画时长300ms
+
         // 读取数据库结果并显示
         loadResultsFromDatabase();
 
@@ -81,6 +94,12 @@ public class ToolsFragment extends Fragment {
         buttonRefreshDashboard.setOnClickListener(v -> {
             // 1. 主线程先更新UI：禁用按钮、显示“请等待”
             buttonRefreshDashboard.setEnabled(false);
+
+            // 过渡动画 - 大的LinearLayout
+            LinearLayout dashboard_Container = root.findViewById(R.id.dashboard_Container);
+            TransitionManager.beginDelayedTransition(dashboard_Container, transition);
+
+
             dashboardMeishiWechat.setText("请等待...");
             dashboardDoubleExplosionRate.setText("请等待...");
             dashboardFertilizationTask.setText("请等待...");
@@ -337,6 +356,10 @@ public class ToolsFragment extends Fragment {
     // 从数据库读取结果并显示
     @SuppressLint("SetTextI18n")
     private void loadResultsFromDatabase() {
+        // 过渡动画 - 大的LinearLayout
+        LinearLayout dashboard_Container = root.findViewById(R.id.dashboard_Container);
+        TransitionManager.beginDelayedTransition(dashboard_Container, transition);
+
         // 读取礼包领取结果
         String giftResult = dbHelper.getDashboardContent("meishi_wechat_result_text");
         dashboardMeishiWechat.setText((giftResult.isEmpty() ? "null" : giftResult));
@@ -365,8 +388,10 @@ public class ToolsFragment extends Fragment {
         } else {
             card_dashboard_WednesdayAndThursday.setVisibility(View.GONE);
         }
+
         // （2）处理每日签到提示（根据1-25号/26号-月底区分显示）
         dashboardEveryday.setText(everyMonthAndEveryWeek.dailyNotifications());
+
         // （3）处理月末提示
         CardView card_dashboard_LastDayOfMonth = root.findViewById(R.id.card_dashboard_LastDayOfMonth);
         if (everyMonthAndEveryWeek.isLastDayOfMonth()) {
@@ -375,15 +400,15 @@ public class ToolsFragment extends Fragment {
         } else {
             card_dashboard_LastDayOfMonth.setVisibility(View.GONE);
         }
+
         // （4）处理8月公会周年庆提示
+        CardView MMW = binding.cardDashboardMiaomiaowu;
         if (everyMonthAndEveryWeek.isAugust() && everyMonthAndEveryWeek.getCurrentYear() >= 2024) {
             TextView MMW_TEXT = binding.dashboardMiaomiaowu;
             MMW_TEXT.setText("🎉🎉🎉美食妙妙屋" + (everyMonthAndEveryWeek.getCurrentYear() - 2023) + "周年🎉🎉🎉\n" +
                              "2023.8.25 - " + everyMonthAndEveryWeek.getCurrentYear() + ".8.25");
-            CardView MMW = binding.cardDashboardMiaomiaowu;
             MMW.setVisibility(View.VISIBLE);
         } else {
-            CardView MMW = binding.cardDashboardMiaomiaowu;
             MMW.setVisibility(View.GONE);
         }
     }

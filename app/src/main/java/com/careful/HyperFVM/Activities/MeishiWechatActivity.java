@@ -1,8 +1,6 @@
 package com.careful.HyperFVM.Activities;
 
-import static com.careful.HyperFVM.utils.ForDesign.DeviceType.DeviceTypeUtil.isTabletByPhysicalScreen;
-import static com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil.getSmallestWidthDp;
-
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,7 +8,6 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,31 +84,11 @@ public class MeishiWechatActivity extends AppCompatActivity {
         accountCountText = findViewById(R.id.TextView_AccountSaved);
         accountListContainer = findViewById(R.id.LinearLayout_AccountList);
 
-        // 无论是PAD还是手机，都要给顶栏添加模糊
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
+        // 配置模糊效果
+        setupBlurEffect();
 
-        if (isTabletByPhysicalScreen()) {
-            //PAD
-            if (getSmallestWidthDp() < 600) {
-                //PAD开小窗：用手机端布局
-                com.google.android.material.floatingactionbutton.FloatingActionButton button = findViewById(R.id.FloatButton_PAD);
-                button.setVisibility(View.VISIBLE);
-                ImageButton imageButton = findViewById(R.id.FloatButton);
-                imageButton.setVisibility(View.GONE);
-            }
-            // 添加按钮点击事件
-            findViewById(R.id.FloatButton_PAD).setOnClickListener(v -> showAddLinkDialog());
-        } else {
-            // 手机
-            com.google.android.material.floatingactionbutton.FloatingActionButton button = findViewById(R.id.FloatButton_PAD);
-            button.setVisibility(View.GONE);
-
-            // 添加模糊
-            blurUtil.setBlur(findViewById(R.id.blurViewButton));
-            // 添加按钮点击事件
-            findViewById(R.id.FloatButton).setOnClickListener(v -> showAddLinkDialog());
-        }
+        // 添加按钮点击事件
+        findViewById(R.id.FloatButton).setOnClickListener(v -> showAddLinkDialog());
 
         // 获取Markdown文本
         MarkdownUtil.getContent(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
@@ -144,6 +121,25 @@ public class MeishiWechatActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("取消", null)
                 .show();
+    }
+
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
+        blurUtil.setBlur(findViewById(R.id.blurViewButton));
+
+        // 顺便添加一个位移动画
+        CardView cardView = findViewById(R.id.Card_FloatButton);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(
+                cardView,
+                View.TRANSLATION_X,
+                550f, 0f // 从1000px移动到0px
+        );
+        animator.setDuration(800);
+        animator.start();
     }
 
     // 处理链接：提取openid并触发网络请求获取玩家信息

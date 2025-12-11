@@ -41,6 +41,46 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
      */
     private ScaleGestureDetector mScaleGestureDetector;
 
+    /**
+     * 顶部被遮挡的高度（用于 AppBar 遮挡的情况）
+     */
+    private int mTopOffset = 0;
+
+    // 添加设置顶部偏移的方法
+    public void setTopOffset(int topOffset) {
+        this.mTopOffset = topOffset;
+        // 重新检查边界
+        if (getDrawable() != null) {
+            checkBorderAndCenterWhenScale();
+            setImageMatrix(mScaleMatrix);
+        }
+    }
+
+    /**
+     * 底部被遮挡的高度（用于导航栏遮挡的情况）
+     */
+    private int mBottomOffset = 0;
+
+    // 添加设置底部偏移的方法
+    public void setBottomOffset(int bottomOffset) {
+        this.mBottomOffset = bottomOffset;
+        // 重新检查边界
+        if (getDrawable() != null) {
+            checkBorderAndCenterWhenScale();
+            setImageMatrix(mScaleMatrix);
+        }
+    }
+
+    // 同时设置两个偏移量
+    public void setOffsets(int topOffset, int bottomOffset) {
+        this.mTopOffset = topOffset;
+        this.mBottomOffset = bottomOffset;
+        if (getDrawable() != null) {
+            checkBorderAndCenterWhenScale();
+            setImageMatrix(mScaleMatrix);
+        }
+    }
+
     // **********自由移动的变量***********
     /**
      * 记录上一次多点触控的数量
@@ -173,6 +213,9 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             int width = getWidth();
             int height = getHeight();
 
+            // 实际可用高度要减去顶部和底部偏移量
+            int availableHeight = height - mTopOffset - mBottomOffset;
+
             // 得到我们的图片，以及宽和高
             Drawable drawable = getDrawable();
             if (drawable == null) {
@@ -184,23 +227,23 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             float scale = 1.0f;
 
             // 图片的宽度大于控件的宽度，图片的高度小于空间的高度，我们将其缩小
-            if (dw > width && dh < height) {
+            if (dw > width && dh < availableHeight) {
                 scale = width * 1.0f / dw;
             }
 
             // 图片的宽度小于控件的宽度，图片的高度大于空间的高度，我们将其缩小
-            if (dh > height && dw < width) {
-                scale = height * 1.0f / dh;
+            if (dh > availableHeight && dw < width) {
+                scale = availableHeight * 1.0f / dh;
             }
 
             // 缩小值
-            if (dw > width && dh > height) {
-                scale = Math.min(width * 1.0f / dw, height * 1.0f / dh);
+            if (dw > width && dh > availableHeight) {
+                scale = Math.min(width * 1.0f / dw, availableHeight * 1.0f / dh);
             }
 
             // 放大值
-            if (dw < width && dh < height) {
-                scale = Math.min(width * 1.0f / dw, height * 1.0f / dh);
+            if (dw < width && dh < availableHeight) {
+                scale = Math.min(width * 1.0f / dw, availableHeight * 1.0f / dh);
             }
 
             /**
@@ -210,13 +253,13 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             mMaxScale = mInitScale * 8;
             mMidScale = mInitScale * 4;
 
-            // 将图片移动至控件的中间
-            int dx = getWidth() / 2 - dw / 2;
-            int dy = getHeight() / 2 - dh / 2;
+            // 将图片移动至控件的中间（垂直居中要考虑顶部和底部偏移）
+            int dx = width / 2 - dw / 2;
+            int dy = (height - mTopOffset - mBottomOffset) / 2 + mTopOffset - dh / 2;
 
             mScaleMatrix.postTranslate(dx, dy);
             mScaleMatrix.postScale(mInitScale, mInitScale, width / 2,
-                    height / 2);
+                    (height - mTopOffset - mBottomOffset) / 2 + mTopOffset);  // 缩放中心也要调整
             setImageMatrix(mScaleMatrix);
 
             mOnce = true;
@@ -313,6 +356,9 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
         int width = getWidth();
         int height = getHeight();
 
+        // 实际可用高度要减去顶部和底部偏移量
+        int availableHeight = height - mTopOffset - mBottomOffset;
+
         // 缩放时进行边界检测，防止出现白边
         if (rectF.width() >= width) {
             if (rectF.left > 0) {
@@ -323,12 +369,12 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             }
         }
 
-        if (rectF.height() >= height) {
-            if (rectF.top > 0) {
-                deltaY = -rectF.top;
+        if (rectF.height() >= availableHeight) {
+            if (rectF.top > mTopOffset) {  // 上边界要考虑偏移
+                deltaY = -rectF.top + mTopOffset;
             }
-            if (rectF.bottom < height) {
-                deltaY = height - rectF.bottom;
+            if (rectF.bottom < (height - mBottomOffset)) {  // 下边界要考虑偏移
+                deltaY = (height - mBottomOffset) - rectF.bottom;
             }
         }
 
@@ -339,8 +385,9 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             deltaX = width / 2f - rectF.right + rectF.width() / 2f;
         }
 
-        if (rectF.height() < height) {
-            deltaY = height / 2f - rectF.bottom + rectF.height() / 2f;
+        if (rectF.height() < availableHeight) {
+            // 垂直居中时要考虑顶部和底部偏移
+            deltaY = (height - mTopOffset - mBottomOffset) / 2f + mTopOffset - rectF.bottom + rectF.height() / 2f;
         }
 
         mScaleMatrix.postTranslate(deltaX, deltaY);
@@ -414,8 +461,8 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
                             isCheckLeftAndRight = false;
                             dx = 0;
                         }
-                        // 如果高度小于控件高度，不允许纵向移动
-                        if (rectF.height() < getHeight()) {
+                        // 如果高度小于控件可用高度，不允许纵向移动
+                        if (rectF.height() < (getHeight() - mTopOffset - mBottomOffset)) {
                             isCheckTopAndBottom = false;
                             dy = 0;
                         }
@@ -450,13 +497,13 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
         float deltaY = 0;
 
         int width = getWidth();
-        int heigth = getHeight();
+        int height = getHeight();
 
-        if (rectF.top > 0 && isCheckTopAndBottom) {
-            deltaY = -rectF.top;
+        if (rectF.top > mTopOffset && isCheckTopAndBottom) {
+            deltaY = -rectF.top + mTopOffset;
         }
-        if (rectF.bottom < heigth && isCheckTopAndBottom) {
-            deltaY = heigth - rectF.bottom;
+        if (rectF.bottom < (height - mBottomOffset) && isCheckTopAndBottom) {
+            deltaY = (height - mBottomOffset) - rectF.bottom;
         }
         if (rectF.left > 0 && isCheckLeftAndRight) {
             deltaX = -rectF.left;
@@ -465,7 +512,6 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             deltaX = width - rectF.right;
         }
         mScaleMatrix.postTranslate(deltaX, deltaY);
-
     }
 
     /**

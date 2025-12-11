@@ -22,7 +22,6 @@ import com.careful.HyperFVM.databinding.FragmentDataStationBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
@@ -30,12 +29,11 @@ import java.util.List;
 
 public class DataStationFragment extends Fragment {
     private FragmentDataStationBinding binding;
-    private MaterialButtonToggleGroup toggleGroup;
     private DBHelper dbHelper;
     private SharedPreferences preferences;
     private static final String PREFS_NAME = "app_preferences";
     private static final String FIRST_RUN_KEY = "first_run";
-    private static final String CURRENT_FRAGMENT_INDEX_KEY = "current_fragment_dex";
+    private static final String CURRENT_FRAGMENT_INDEX_KEY = "current_fragment_index";
 
     private int currentFragmentIndex = 0; // 0: CardDataIndex, 1: Auxiliary, 2: Images
     private final List<Fragment> fragments = new ArrayList<>();
@@ -172,11 +170,6 @@ public class DataStationFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // 移除监听器，避免内存泄漏（Fragment视图销毁时清理）
-        if (toggleGroup != null) {
-            toggleGroup.removeOnButtonCheckedListener(null);
-            toggleGroup = null;
-        }
         binding = null;
     }
 }

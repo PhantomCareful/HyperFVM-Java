@@ -14,7 +14,7 @@
         <eightbitlab.com.blurview.BlurTarget
             android:id="@+id/target"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:ignore="MissingConstraints">
 
             <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
@@ -75,7 +75,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
-                                android:text=""
+                                android:text="@string/many_n"
                                 android:textSize="20sp"
                                 android:textColor="?attr/colorOnPrimaryContainer"
                                 android:clickable="true"
@@ -177,7 +177,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
-                                android:text=""
+                                android:text="@string/many_n"
                                 android:textSize="20sp"
                                 android:textColor="?attr/colorOnPrimaryContainer"
                                 android:clickable="true"
@@ -218,46 +218,44 @@
 
         </eightbitlab.com.blurview.BlurView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/Card_FloatButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:cardBackgroundColor="@android:color/transparent">
-
-        <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurViewButton"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Card_FloatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clipToOutline="true"
-            app:blurOverlayColor="@android:color/transparent"
-            tools:ignore="MissingConstraints">
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
-            <ImageButton
-                android:id="@+id/FloatButton"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@drawable/ic_plus"
-                tools:ignore="ContentDescription" />
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipToOutline="true"
+                app:blurOverlayColor="@android:color/transparent"
+                tools:ignore="MissingConstraints">
 
-        </eightbitlab.com.blurview.BlurView>
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/FloatButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="添加链接"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:stateListAnimator="@null"
+                    app:icon="@drawable/ic_plus"
+                    app:elevation="0dp"
+                    app:pressedTranslationZ="0dp"
+                    app:rippleColor="@android:color/transparent" />
 
-    </androidx.cardview.widget.CardView>
+            </eightbitlab.com.blurview.BlurView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/FloatButton_PAD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_plus" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
