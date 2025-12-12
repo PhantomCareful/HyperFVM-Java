@@ -250,17 +250,6 @@ public class ToolsFragment extends Fragment {
                 .setNegativeButton("取消", null) // 取消则不执行操作
                 .show());
 
-        //美食换装模拟器
-        root.findViewById(R.id.Img_ToolsNuannuanButton).setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext())
-                .setTitle("二次确认防误触")
-                .setMessage("即将前往：" + getResources().getString(R.string.label_tools_nuannuan)) // 显示链接预览
-                .setPositiveButton("确定", (dialog, which) -> {
-                    // 确认后执行跳转
-                    visitUrl(getResources().getString(R.string.label_tools_nuannuan_url));
-                })
-                .setNegativeButton("取消", null) // 取消则不执行操作
-                .show());
-
         return root;
     }
 
