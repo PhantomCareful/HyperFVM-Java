@@ -11,8 +11,8 @@ android {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
         targetSdk = 36
-        versionCode = 41
-        versionName = "2.1.5"
+        versionCode = 42
+        versionName = "2.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
