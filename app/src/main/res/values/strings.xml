@@ -169,8 +169,6 @@
     <string name="label_tools_molu_url">https://www.kdocs.cn/l/cmk63gHnvUdi</string>
     <string name="label_tools_faa">️FAA米苏物流</string>
     <string name="label_tools_faa_url">https://faa.msdzls.cn</string>
-    <string name="label_tools_nuannuan">️美食换装模拟器</string>
-    <string name="label_tools_nuannuan_url">https://app.msdzls.cn/nuannuan</string>
     <string name="label_tools_card_calculator">️卡片强化计算器</string>
     <string name="label_tools_card_calculator_long">️强卡最优路径计算器</string>
     <string name="label_tools_card_calculator_url">https://app.msdzls.cn/card_op</string>
