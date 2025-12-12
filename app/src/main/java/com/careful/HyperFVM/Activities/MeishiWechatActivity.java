@@ -91,8 +91,8 @@ public class MeishiWechatActivity extends AppCompatActivity {
         findViewById(R.id.FloatButton).setOnClickListener(v -> showAddLinkDialog());
 
         // 获取Markdown文本
-        MarkdownUtil.getContent(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
-        MarkdownUtil.getContent(this, findViewById(R.id.TextMeishiWechatGiftContent), "MeishiWechatGiftContent.txt");
+        MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
+        MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatGiftContent), "MeishiWechatGiftContent.txt");
     }
 
     private void showAddLinkDialog() {

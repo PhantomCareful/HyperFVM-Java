@@ -11,7 +11,15 @@ import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 
 public class MarkdownUtil {
 
-    public static void getContent(Context context, TextView textView, String filename) {
+    public static void getContent(Context context, TextView textView, String content) {
+        // 读取成功，展示到TextView
+        Markwon markwon = Markwon.builder(context)
+                .usePlugin(StrikethroughPlugin.create())// 启用删除线支持
+                .build();
+        markwon.setMarkdown(textView, content);
+    }
+
+    public static void getContentFromAssets(Context context, TextView textView, String filename) {
         // 调用工具类异步读取
         UpdateLogReader.readAssetsTxtAsync(
                 context,
@@ -20,10 +28,7 @@ public class MarkdownUtil {
                     @Override
                     public void onReadSuccess(String content) {
                         // 读取成功，展示到TextView
-                        Markwon markwon = Markwon.builder(context)
-                                .usePlugin(StrikethroughPlugin.create())// 启用删除线支持
-                                .build();
-                        markwon.setMarkdown(textView, content);
+                        getContent(context, textView, content);
                     }
 
                     @Override

@@ -1,6 +1,6 @@
 package com.careful.HyperFVM.ui.AboutApp;
 
-import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
+import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.careful.HyperFVM.Activities.CheckUpdateActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
@@ -42,9 +43,12 @@ public class AboutAppFragment extends Fragment {
         //从build.gradle中获取版本号
         getVersion(root);
 
+        //跳转检查更新的Activity
+        clickToNewActivity(root.findViewById(R.id.label_check_update), CheckUpdateActivity.class);
+
         //显示致谢名单和当前版本更新日志
-        getContent(requireContext(), root.findViewById(R.id.about_app_thanks_list), "ThanksList.txt");
-        getContent(requireContext(), root.findViewById(R.id.about_app_current_update_log), "CurrentUpdateLog.txt");
+        getContentFromAssets(requireContext(), root.findViewById(R.id.about_app_thanks_list), "ThanksList.txt");
+        getContentFromAssets(requireContext(), root.findViewById(R.id.about_app_current_update_log), "CurrentUpdateLog.txt");
 
         //跳转浏览器，前往App的Github主页
         jumpToGithub(root);
@@ -53,7 +57,8 @@ public class AboutAppFragment extends Fragment {
         getNewVersion(root);
 
         //查看历史更新日志
-        seeUpdateLogHistory(root);
+        //seeUpdateLogHistory(root);
+        clickToNewActivity(root.findViewById(R.id.text_about_app_see_update_log_history), UpdateLogHistoryActivity.class);
 
         return root;
     }
@@ -157,9 +162,9 @@ public class AboutAppFragment extends Fragment {
         }
     }
 
-    private void seeUpdateLogHistory(View root) {
-        root.findViewById(R.id.text_about_app_see_update_log_history).setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), UpdateLogHistoryActivity.class);
+    private void clickToNewActivity(View view, Class activity) {
+        view.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), activity);
             startActivity(intent);
         });
     }

@@ -13,7 +13,7 @@
     <string name="label_about_app_navigation">关于</string>
     <string name="label_data_img_viewer">数据图查看器👀</string>
     <string name="card_data_index">防御卡目录</string>
-    <string name="card_data_search_tips">⭐数据库日期：2025.11.27\n⭐前排提醒：卡片冷却默认7秒，体力默认50，如有不同会单独标出</string>
+    <string name="card_data_search_tips">⭐数据库日期：20251127\n⭐前排提醒：卡片冷却默认7秒，体力默认50，如有不同会单独标出</string>
     <string name="card_data_auxiliary_list">增幅卡名单</string>
     <string name="data_images_index">数据图合集</string>
     <string name="label_data_images_index_card">防御卡数据图(By So陌路の)</string>
@@ -192,11 +192,16 @@
     <string name="label_settings_switch_auto_end_of_month">月末23:50，提醒清空积分</string>
     <string name="label_version_info">版本号</string>
     <string name="version_info">0</string>
+    <string name="label_check_update">检查更新</string>
+    <string name="label_check_update_status_checking">⏳正在检查更新⏳</string>
+    <string name="label_check_update_status_current">✅已经是最新版本✅</string>
+    <string name="label_check_update_status_new">👆发现新版本，去下载👆</string>
     <string name="label_developer">开发者</string>
     <string name="developer_name">QQ空间1–8服\nPhantom_Careful😈</string>
     <string name="label_running_environment">支持的运行环境</string>
     <string name="label_thanks">特别感谢(排名不分先后)</string>
-    <string name="label_update_log_current">当前版本更新日志</string>
+    <string name="title_update_log_current">当前版本更新日志</string>
+    <string name="title_update_log_new">新版本特性</string>
     <string name="label_update_log_history">全部更新日志📕</string>
     <string name="label_version_0">1.0.0以前的版本</string>
     <string name="label_version_1">1.X.X版本</string>

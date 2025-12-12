@@ -1,6 +1,6 @@
 package com.careful.HyperFVM.ui.Overview;
 
-import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
+import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -33,12 +33,12 @@ public class OverviewFragment extends Fragment {
         TextView overview4 = root.findViewById(R.id.overview4);
         TextView overview5 = root.findViewById(R.id.overview5);
 
-        getContent(requireContext(), overview_top, "QATop.txt");
-        getContent(requireContext(), overview1, "QA1.txt");
-        getContent(requireContext(), overview2, "QA2.txt");
-        getContent(requireContext(), overview3, "QA3.txt");
-        getContent(requireContext(), overview4, "QA4.txt");
-        getContent(requireContext(), overview5, "QA5.txt");
+        getContentFromAssets(requireContext(), overview_top, "QATop.txt");
+        getContentFromAssets(requireContext(), overview1, "QA1.txt");
+        getContentFromAssets(requireContext(), overview2, "QA2.txt");
+        getContentFromAssets(requireContext(), overview3, "QA3.txt");
+        getContentFromAssets(requireContext(), overview4, "QA4.txt");
+        getContentFromAssets(requireContext(), overview5, "QA5.txt");
 
         return root;
     }

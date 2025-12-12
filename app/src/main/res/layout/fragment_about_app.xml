@@ -45,6 +45,15 @@
                 android:layout_gravity="center"/>
 
             <TextView
+                android:id="@+id/label_check_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_check_update"
+                android:textSize="20sp"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_gravity="center"/>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -117,7 +126,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimary">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/many_n"
                         android:textSize="20sp"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorOnPrimaryContainer"
                         android:padding="10dp"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground"/>
@@ -144,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/label_update_log_current"
+                android:text="@string/title_update_log_current"
                 android:textSize="20sp"
                 android:textColor="?attr/colorOnSurface"/>
 
