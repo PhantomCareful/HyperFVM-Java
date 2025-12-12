@@ -8,7 +8,10 @@ Make FVM Great Again🎉🎉🎉
 作者是个学习Android开发不到2周半的小萌新，很多地方都是各种东拼西凑+AI驱动完成的，因此代码如有写得不好看的地方请见谅😊  
 
 # 软件截图
-![IMG_20251209_170451](https://github.com/user-attachments/assets/083120df-3c5d-4e36-9453-dd9c62a9bf14)
+### 手机端
+![IMG_20251212_130502](https://github.com/user-attachments/assets/543475d6-9525-4c73-a07e-c6ae5b583c65)
+### PAD端
+![IMG_20251212_130417](https://github.com/user-attachments/assets/1cb457f0-2220-4a78-8b9f-b7e56a523907)
 
 # 功能列表
 ### 已实现的功能
@@ -52,9 +55,9 @@ Make FVM Great Again🎉🎉🎉
 
 # 一些小细节
 - 使用Material You组件构建UI界面，支持Monet主题
-- 部分界面顶栏和底栏实现模糊处理
-- 完美适配底部小横条沉浸，不要像一些国民级App那样做得稀烂
-- 支持预见式返回动画，在原生Android14+和ColorOS16上能体验到非常丝滑的过渡动画
+- 所有界面的顶栏、底栏和悬浮按钮实现模糊处理
+- 完美适配底部小横条沉浸，不要像一些国民级App那样做得稀烂🙄
+- 支持预见式返回动画，在原生Android14+、OneUI和ColorOS16等系统上能体验到非常丝滑的过渡动画
 
 # 安装
 ### 支持的系统环境
@@ -80,4 +83,5 @@ Make FVM Great Again🎉🎉🎉
 - 美食妙妙屋公会全体同学：提出建议、帮助测试
 ### App相关
 - Dimezis/BlurView(模糊材质)：[BlurView](https://github.com/Dimezis/BlurView)
+- Gloomyer/ZoomImageView(数据图查看器)：[ZoomImageView](https://github.com/Gloomyer/ZoomImageView)
 - 子林Android(触顶/触底反馈动画)：[一个支持上下拉回弹的自定义ScrollView](https://mp.weixin.qq.com/s/Treavz1FDs0ptYp_J3saRw)
