@@ -32,6 +32,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.navigationrail.NavigationRailView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -157,6 +158,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        // 注册返回键回调，主界面返回直接退出App
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
 
         // 初始化常驻通知
         initPersistentNotification();

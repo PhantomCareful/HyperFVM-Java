@@ -6,4 +6,5 @@
 - 美食妙妙屋全体同学(提出建议、帮助测试、日常使用)🥰
 ## App相关
 - Dimezis/BlurView(模糊材质)👍
+- Gloomyer/ZoomImageView(数据图查看器)👍
 - 子林Android(触顶/触底反馈动画)👍

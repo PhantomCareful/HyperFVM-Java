@@ -698,7 +698,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="10dp"
-                        android:text="@string/auxiliary_list_4_4"
+                        android:text="@string/auxiliary_list_4_1"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnPrimaryContainer"/>
 
@@ -779,9 +779,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:layout_marginEnd="10dp"
+                                android:layout_marginEnd="15dp"
                                 android:layout_marginTop="5dp"
-                                android:text="@string/auxiliary_list_4_5"
+                                android:text="@string/auxiliary_list_4_2"
                                 android:textSize="11sp"
                                 android:textColor="?attr/colorOnPrimaryContainer"/>
 
@@ -975,6 +975,13 @@
                         android:scaleType="fitStart"
                         android:src="@drawable/card_data_index_4_2_7_2"/>
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/card_data_index_4_2_8_3"/>
+
                 </LinearLayout>
 
             </HorizontalScrollView>
@@ -1065,6 +1072,285 @@
 
                     </HorizontalScrollView>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/auxiliary_list_6_1"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_3_2_1_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_11_2_6_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_3_2_5_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_3_2_6_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_3_2_7_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_1_1_7_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_1_1_8_2"/>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/auxiliary_list_7"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="20sp"/>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/card_data_index_4_2_9_2"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/card_data_index_4_2_10_2"/>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                card_view:cardCornerRadius="20dp"
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/auxiliary_list_7_1"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/auxiliary_list_7_2"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_1_1_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_1_2_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_1_3_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_1_4_3"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_10_1_1_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_10_1_2_2"/>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/auxiliary_list_7_3"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_2_1_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_2_2_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_2_3_3"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_2_4_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_2_5_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_2_6_2"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_8_2_7_2"/>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -1083,7 +1369,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/auxiliary_list_7"
+                    android:text="@string/auxiliary_list_8"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="20sp"
                     android:layout_gravity="center_vertical"/>

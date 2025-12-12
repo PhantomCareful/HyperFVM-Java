@@ -31,15 +31,23 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/label_data_images_index_card"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_card_cover"/>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -366,14 +374,23 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="@string/label_data_images_index_decompose_and_get"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_decompose_and_get_cover"/>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -555,15 +572,23 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/label_data_images_index_weapon_and_gem"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_weapon_and_gem_cover"/>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -667,14 +692,23 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="20dp"
-                        android:text="@string/label_data_images_index_mouse_hp"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_mouse_hp_cover"/>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"

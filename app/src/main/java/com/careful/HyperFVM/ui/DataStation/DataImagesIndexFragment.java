@@ -311,6 +311,12 @@ public class DataImagesIndexFragment extends Fragment {
             intent.putExtra("imgName", R.drawable.data_image_mouse_hp_8);
             startActivity(intent);
         });
+        tv = root.findViewById(R.id.text_data_images_index_mouse_hp_9);
+        tv.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), ImageViewerActivity.class);
+            intent.putExtra("imgName", R.drawable.data_image_mouse_hp_9);
+            startActivity(intent);
+        });
         tv = root.findViewById(R.id.text_data_images_index_mouse_hp_10);
         tv.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), ImageViewerActivity.class);

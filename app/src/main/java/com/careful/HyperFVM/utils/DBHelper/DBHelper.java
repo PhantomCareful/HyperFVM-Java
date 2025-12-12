@@ -142,9 +142,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "name TEXT PRIMARY KEY, " +
                 "image_id TEXT, " +
                 "base_info TEXT, " +
-                "is_animal_card TEXT, " +
-                "is_constellation_card TEXT, " +
-                "is_golden_card TEXT, " +
                 "category TEXT, " +
                 "price_0 TEXT, " +
                 "sub_card TEXT, " +
@@ -296,13 +293,13 @@ public class DBHelper extends SQLiteOpenHelper {
                         // Insert row into database
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_1 (" +
-                                            "name, image_id, base_info, is_animal_card, is_constellation_card, is_golden_card, " +
+                                            "name, image_id, base_info, " +
                                             "category, price_0, sub_card, star, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
                                             "skill, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
                                             "transfer_change, additional_info) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -311,8 +308,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[20], rowData[21], rowData[22], rowData[23], rowData[24],
                                             rowData[25], rowData[26], rowData[27], rowData[28], rowData[29],
                                             rowData[30], rowData[31], rowData[32], rowData[33], rowData[34],
-                                            rowData[35], rowData[36], rowData[37], rowData[38], rowData[39],
-                                            rowData[40]
+                                            rowData[35], rowData[36], rowData[37]
                                     });
                             importedCount++;
                         } catch (Exception e) {
