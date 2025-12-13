@@ -1,1 +1,7 @@
 /build
+app/src/main/java/com/careful/HyperFVM/ui/Tools/ToolsFragment.java
+app/src/main/res/layout/fragment_tools.xml
+app/src/main/res/layout-sw600dp/fragment_tools.xml
+app/src/main/res/values/strings.xml
+app/src/main/res/drawable/tools_mmw_full_contribution_button_img.webp
+app/src/main/res/drawable/tools_mmw_helper_button_img.webp

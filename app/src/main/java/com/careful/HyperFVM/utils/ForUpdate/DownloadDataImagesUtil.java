@@ -151,22 +151,24 @@ public class DownloadDataImagesUtil {
 
     // ========== 新增：取消下载的核心方法 ==========
     public void cancelDownload() {
-        // 标记为已取消
         isDownloadCancelled = true;
 
-        // 1. 终止当前下载回调（如果HttpUtil有主动取消下载的方法，需在此补充，例如：
-        // httpUtil.cancelCurrentDownload();
-        // 需根据HttpUtil的实际实现调整，以下是通用兜底逻辑）
-        if (currentDownloadCallback != null) {
-            mainHandler.post(() -> currentDownloadCallback.onFailure("下载已取消"));
+        // 用局部变量捕获当前回调，避免后续置空导致的空指针
+        HttpUtil.OnDownloadCallback callback = currentDownloadCallback;
+        // 增加空指针判断，避免回调为null时调用
+        if (callback != null) {
+            mainHandler.post(() -> {
+                // 再次检查回调是否为null（防止多线程竞争导致的问题）
+                callback.onFailure("下载已取消");
+            });
         }
 
-        // 2. 删除已下载的临时压缩包
+        // 删除已下载的临时压缩包
         if (currentZipFilePath != null) {
             deleteFile(new File(currentZipFilePath));
         }
 
-        // 3. 重置状态
+        // 重置状态
         currentDownloadCallback = null;
         currentZipFilePath = null;
     }
