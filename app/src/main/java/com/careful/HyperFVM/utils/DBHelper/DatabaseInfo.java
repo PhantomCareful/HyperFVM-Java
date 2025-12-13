@@ -37,6 +37,8 @@ public class DatabaseInfo {
      * 装入全部金卡分解兑换数据
      * DB_VERSION = 19
      * 修复管线类-枪塔类部分卡片配图错误
+     * DB_VERSION = 20
+     * 新增data_station表
      */
-    public static final int DB_VERSION = 19;
+    public static final int DB_VERSION = 20;
 }

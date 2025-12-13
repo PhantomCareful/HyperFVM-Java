@@ -23,7 +23,7 @@
                 android:orientation="vertical">
 
                 <com.careful.HyperFVM.utils.OtherUtils.ZoomImageView
-                    android:id="@+id/Gif_Image_View"
+                    android:id="@+id/ZoomImageViewer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true" />

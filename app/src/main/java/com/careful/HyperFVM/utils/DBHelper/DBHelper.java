@@ -32,6 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_MEISHI_WECHAT = "meishi_wechat";
     public static final String TABLE_DASHBOARD = "dashboard";
     public static final String TABLE_SETTINGS = "settings";
+    public static final String TABLE_DATA_STATION = "data_station";
 
     // 构造方法
     public DBHelper(Context context) {
@@ -72,19 +73,6 @@ public class DBHelper extends SQLiteOpenHelper {
     // 数据库首次创建时调用
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // 创建meishi_wechat表
-        String createMeishi = "CREATE TABLE IF NOT EXISTS " + TABLE_MEISHI_WECHAT + " (" +
-                "openid TEXT PRIMARY KEY," +
-                "server_name TEXT," +
-                "player_id TEXT)";
-        db.execSQL(createMeishi);
-
-        // 创建dashboard表
-        String createDashboard = "CREATE TABLE IF NOT EXISTS " + TABLE_DASHBOARD + " (" +
-                "id TEXT PRIMARY KEY," +
-                "content TEXT)";
-        db.execSQL(createDashboard);
-
         // 升级到版本5以后添加防御卡数据表
         createCardTables(db);
         // 升级到版本16以后添加融合卡数据表
@@ -93,15 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
         createGoldenCardFusionTables(db);
         // 从5开始，后续版本都需要清空表并重新导入CSV
         clearAndImportCardData(db);
-
-        // 创建表"settings"，用于记录设置内容
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SETTINGS + " (" +
-                "content TEXT PRIMARY KEY," +
-                "value TEXT)");
     }
-
-    @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
     // 数据库版本升级时调用（核心：处理表结构变更）
     @Override
@@ -125,6 +105,16 @@ public class DBHelper extends SQLiteOpenHelper {
                     "('double_explosion_rate_notification', 'null')," +
                     "('fertilization_task_notification', 'null')," +
                     "('new_year_notification', 'null')");
+        }
+
+        // 版本20：新增data_station表，管理数据图版本号
+        if (oldVersion < 20) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_DATA_STATION + "(" +
+                    "content TEXT PRIMARY KEY," +
+                    "value TEXT)");
+            //版本号初始为0
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
+                    "VALUES ('DataImagesVersionCode', '0')");
         }
     }
 
@@ -441,6 +431,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
+
     // 将字符串数组转换为可读字符串的辅助方法
     private String arrayToString(String[] array) {
         if (array == null) return "null";
@@ -448,7 +439,34 @@ public class DBHelper extends SQLiteOpenHelper {
         for (String s : array) {
             sb.append("'").append(s).append("', ");
         }
-        return sb.length() > 0 ? sb.substring(0, sb.length() - 2) : "";
+        return !sb.isEmpty() ? sb.substring(0, sb.length() - 2) : "";
+    }
+
+    // ====================== 以下为data_station表的操作方法 ======================
+    public String getDataStationValue(String content) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(
+                TABLE_DATA_STATION,
+                new String[]{"value"},
+                "content = ?",
+                new String[]{content},
+                null, null, null
+        );
+        String value = "";
+        if (cursor.moveToFirst()) {
+            value = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return value;
+    }
+
+    public void updateDataStationValue(String content, String value) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("value", value);
+        db.update(TABLE_DATA_STATION, values, "content = ?", new String[]{content});
+        db.close();
     }
 
     // ====================== 以下为settings表的操作方法 ======================

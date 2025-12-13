@@ -82,7 +82,7 @@ public class ToolsFragment extends Fragment {
         transition = new TransitionSet();
         transition.addTransition(new Fade()); // 淡入淡出
         transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
-        transition.setDuration(800); // 动画时长300ms
+        transition.setDuration(800); // 动画时长800ms
 
         // 读取数据库结果并显示
         loadResultsFromDatabase();

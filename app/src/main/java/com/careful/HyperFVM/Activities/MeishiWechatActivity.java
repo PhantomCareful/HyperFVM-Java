@@ -4,6 +4,9 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.transition.ChangeBounds;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -30,6 +33,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,6 +46,9 @@ public class MeishiWechatActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private LinearLayout accountListContainer;
     private TextView accountCountText;
+
+    private LinearLayout MeishiWechatContainer;
+    private TransitionSet transition;
 
     // 在Activity中定义主线程Handler
     private Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -93,6 +100,12 @@ public class MeishiWechatActivity extends AppCompatActivity {
         // 获取Markdown文本
         MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
         MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatGiftContent), "MeishiWechatGiftContent.txt");
+
+        // 初始化动画效果
+        MeishiWechatContainer = findViewById(R.id.MeishiWechatContainer);
+        transition = new TransitionSet();
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.setDuration(400); // 动画时长400ms
     }
 
     private void showAddLinkDialog() {
@@ -111,7 +124,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
                 .setPositiveButton("确定", (dialog, which) -> {
                     // 4. 处理输入内容（与原来逻辑一致）
                     if (editText != null) {
-                        String link = editText.getText().toString().trim();
+                        String link = Objects.requireNonNull(editText.getText()).toString().trim();
                         if (!link.isEmpty()) {
                             handleLinkInput(link);
                         } else {
@@ -198,6 +211,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
             return true;
         });
 
+        TransitionManager.beginDelayedTransition(MeishiWechatContainer, transition);
         accountListContainer.addView(cardView);
     }
 
@@ -236,7 +250,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
             Matcher matcher = pattern.matcher(html);
 
             if (matcher.find()) {
-                String title = matcher.group(1).trim();
+                String title = Objects.requireNonNull(matcher.group(1)).trim();
                 String[] parts = title.split(" - ");
 
                 if (parts.length == 2) {

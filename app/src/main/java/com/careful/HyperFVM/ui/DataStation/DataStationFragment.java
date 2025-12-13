@@ -17,6 +17,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
+import com.careful.HyperFVM.MainActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataStationBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -151,11 +152,17 @@ public class DataStationFragment extends Fragment {
     private void navigateToOverview() {
         NavOptions navOptions = new NavOptions.Builder()
                 .setPopUpTo(R.id.navigation_data_station, true)
-                .setEnterAnim(android.R.anim.fade_in)
-                .setExitAnim(android.R.anim.fade_out)
+                .setEnterAnim(R.anim.slide_in_left)
+                .setExitAnim(R.anim.slide_out_right)
                 .build();
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         navController.navigate(R.id.navigation_overview, null, navOptions);
+
+        // 关键：跳转后同步更新底部导航栏选中状态
+        if (getActivity() instanceof MainActivity) {
+            // 传入overview对应的导航ID，强制更新选中状态
+            ((MainActivity) getActivity()).updateNavigationSelection(R.id.navigation_overview);
+        }
     }
 
     private void setTopAppBarTitle(String title) {

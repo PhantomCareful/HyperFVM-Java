@@ -249,24 +249,24 @@ public class MainActivity extends AppCompatActivity {
             // 添加动画监听器，监听动画结束事件
             floatButtonAnimator.addListener(new Animator.AnimatorListener() {
                 @Override
-                public void onAnimationStart(Animator animation) {
+                public void onAnimationStart(@NonNull Animator animation) {
                     // 动画开始时的操作（可选）
                 }
 
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(@NonNull Animator animation) {
                     // 动画执行完毕后，隐藏按钮
                     findViewById(R.id.FloatButton).setVisibility(View.GONE);
                 }
 
                 @Override
-                public void onAnimationCancel(Animator animation) {
+                public void onAnimationCancel(@NonNull Animator animation) {
                     // 动画被取消时的操作（可选，如需要可在这里也隐藏按钮）
                     findViewById(R.id.FloatButton).setVisibility(View.GONE);
                 }
 
                 @Override
-                public void onAnimationRepeat(Animator animation) {
+                public void onAnimationRepeat(@NonNull Animator animation) {
                     // 动画重复时的操作（当前动画不重复，留空即可）
                     findViewById(R.id.FloatButton).setVisibility(View.GONE);
                 }
@@ -311,6 +311,17 @@ public class MainActivity extends AppCompatActivity {
         // 更新全局导航状态
         currentNavId = targetId;
         return true;
+    }
+
+    // 公开方法，方便DataStation调用
+    public void updateNavigationSelection(int targetNavId) {
+        // 直接用现有的导航选中逻辑，确保currentNavId并同步UI
+        handleNavItemSelection(targetNavId);
+        if (navView != null) {
+            navView.setSelectedItemId(currentNavId);
+        } else if (leftNavView != null) {
+            leftNavView.setSelectedItemId(currentNavId);
+        }
     }
 
     /**

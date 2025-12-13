@@ -46,9 +46,8 @@ public class AboutAppFragment extends Fragment {
         //跳转检查更新的Activity
         clickToNewActivity(root.findViewById(R.id.label_check_update), CheckUpdateActivity.class);
 
-        //显示致谢名单和当前版本更新日志
+        //显示致谢名单
         getContentFromAssets(requireContext(), root.findViewById(R.id.about_app_thanks_list), "ThanksList.txt");
-        getContentFromAssets(requireContext(), root.findViewById(R.id.about_app_current_update_log), "CurrentUpdateLog.txt");
 
         //跳转浏览器，前往App的Github主页
         jumpToGithub(root);

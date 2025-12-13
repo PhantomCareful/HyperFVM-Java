@@ -7,6 +7,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +36,13 @@ public class CheckUpdateActivity extends AppCompatActivity {
     private String downloadUrl;
 
     private TextView update_action;
-    private TextView title_update_log;
-    private TextView check_update_update_log;
+    private TextView title_log_new;
+    private CardView container_log_new;
+    private TextView log_new;
+    private TextView log_current;
+
+    private LinearLayout check_update_container;
+    private TransitionSet transition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +62,18 @@ public class CheckUpdateActivity extends AppCompatActivity {
         updaterUtil = UpdaterUtil.getInstance();
 
         // 初始化视图
-        title_update_log = findViewById(R.id.title_update_log);
-        title_update_log.setText(getResources().getString(R.string.title_update_log_current));
-        check_update_update_log = findViewById(R.id.check_update_update_log);
-        getContentFromAssets(this, check_update_update_log, "CurrentUpdateLog.txt");
+        title_log_new = findViewById(R.id.title_log_new);
+        container_log_new = findViewById(R.id.container_log_new);
+        log_new = findViewById(R.id.log_new);
+        log_current = findViewById(R.id.log_current);
+        getContentFromAssets(this, log_current, "CurrentUpdateLog.txt");
+
+        // 初始化动画效果
+        check_update_container = findViewById(R.id.check_update_container);
+        transition = new TransitionSet();
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.addTransition(new Fade());
+        transition.setDuration(400); // 动画时长400ms
 
         update_action = findViewById(R.id.update_action);
         update_action.setOnClickListener(v -> {
@@ -165,9 +184,10 @@ public class CheckUpdateActivity extends AppCompatActivity {
                     @Override
                     public void onNoUpdate() {
                         // 无更新：更新UI
+                        TransitionManager.beginDelayedTransition(check_update_container, transition);
+                        title_log_new.setVisibility(View.GONE);
+                        hideViewWithAnimation(container_log_new);
                         update_action.setText(getResources().getString(R.string.label_check_update_status_current));
-                        title_update_log.setText(getResources().getString(R.string.title_update_log_current));
-                        getContentFromAssets(CheckUpdateActivity.this, check_update_update_log, "CurrentUpdateLog.txt");
                         // 清空下载链接
                         downloadUrl = null;
                     }
@@ -176,40 +196,55 @@ public class CheckUpdateActivity extends AppCompatActivity {
                     public void onHasUpdate(String updateLog, String url) {
                         // 有更新：保存下载链接并更新UI
                         downloadUrl = url;
+                        // 先设置内容
+                        getContent(CheckUpdateActivity.this, log_new, updateLog);
 
-                        CardView checkUpdateContainer = findViewById(R.id.check_update_container);
-                        checkUpdateContainer.animate()
-                                .alpha(0f)
-                                .scaleX(0.95f)
-                                .scaleY(0.95f)
-                                .setDuration(400)
-                                .withEndAction(() -> {
-                                    update_action.setText(getResources().getString(R.string.label_check_update_status_new));
-                                    title_update_log.setText(getResources().getString(R.string.title_update_log_new));
-                                    getContent(CheckUpdateActivity.this, check_update_update_log, updateLog);
-
-                                    checkUpdateContainer.animate()
-                                            .alpha(1f)
-                                            .scaleX(1f)
-                                            .scaleY(1f)
-                                            .setDuration(400)
-                                            .start();
-                                })
-                                .start();
+                        // 开始过渡动画
+                        TransitionManager.beginDelayedTransition(check_update_container, transition);
+                        // 显示视图（会触发淡入动画）
+                        title_log_new.setVisibility(View.VISIBLE);
+                        showViewWithAnimation(container_log_new);
+                        // 更新按钮文本
+                        update_action.setText(getResources().getString(R.string.label_check_update_status_new));
                     }
 
                     @Override
                     public void onError(String errorMsg) {
                         // 错误处理：更新UI并提示
+                        TransitionManager.beginDelayedTransition(check_update_container, transition);
+                        title_log_new.setVisibility(View.GONE);
+                        hideViewWithAnimation(container_log_new);
                         update_action.setText(errorMsg);
-                        title_update_log.setText(getResources().getString(R.string.title_update_log_current));
-                        getContentFromAssets(CheckUpdateActivity.this, check_update_update_log, "CurrentUpdateLog.txt");
-                        Toast.makeText(CheckUpdateActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
                         // 清空下载链接
                         downloadUrl = null;
                     }
                 }
         );
+    }
+
+    private void showViewWithAnimation(View view) {
+        if (view.getVisibility() == View.VISIBLE) return;
+        view.setVisibility(View.VISIBLE);
+        view.setAlpha(0f);
+        view.setScaleX(0.8f);
+        view.setScaleY(0.8f);
+        view.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(400)
+                .start();
+    }
+
+    private void hideViewWithAnimation(View view) {
+        if (view.getVisibility() == View.GONE) return;
+        view.animate()
+                .alpha(0f)
+                .scaleX(0.8f)
+                .scaleY(0.8f)
+                .setDuration(400)
+                .withEndAction(() -> view.setVisibility(View.GONE))
+                .start();
     }
 
     @Override
