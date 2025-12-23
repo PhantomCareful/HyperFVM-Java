@@ -1,0 +1,33 @@
+<!--这是温馨礼包录入链接的弹窗样式文件-->
+<!-- 外层容器：用于控制与标题的间距 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/dialog_input_margin"
+    android:paddingStart="@dimen/dialog_input_margin"
+    android:paddingEnd="@dimen/dialog_input_margin">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeWidth="2dp"
+        app:boxCornerRadiusTopStart="@dimen/dialog_input_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/dialog_input_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/dialog_input_corner_radius"
+        app:boxCornerRadiusBottomEnd="@dimen/dialog_input_corner_radius"
+        app:backgroundTint="@android:color/transparent"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dialog_input_padding"
+            android:hint="请输入链接，形如：\nhttp://meishi.wechat.123u.com/meishi/index?openid=XXXXX"
+            android:singleLine="false"
+            android:inputType="textMultiLine"
+            android:maxLines="5"/>
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>

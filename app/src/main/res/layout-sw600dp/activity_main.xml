@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主容器：左侧导航 + 右侧内容（含ToolBar和Fragment） -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/right_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Fragment容器（最底层，其他组件悬浮在它上方） -->
+        <eightbitlab.com.blurview.BlurTarget
+            android:id="@+id/target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/nav_host_fragment_activity_main"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/mobile_navigation"/>
+
+        </eightbitlab.com.blurview.BlurTarget>
+
+        <!-- 左侧导航栏（固定在左侧，悬浮在Fragment上方） -->
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewNavView"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            app:blurOverlayColor="@color/blur_overlay_color"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.navigationrail.NavigationRailView
+                android:id="@+id/left_nav_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                app:itemIconSize="30dp"
+                app:itemIconTint="@color/nav_icon_tint"
+                app:itemTextAppearance="@style/NavItemTextStyle"
+                app:itemTextColor="@color/nav_text_tint"
+                app:menu="@menu/bottom_nav_menu"/>
+
+        </eightbitlab.com.blurview.BlurView>
+
+        <!-- 顶部ToolBar（在导航栏右侧，悬浮在Fragment上方） -->
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewTopAppBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:blurOverlayColor="@color/blur_overlay_color"
+            app:layout_constraintLeft_toRightOf="@+id/blurViewNavView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/right_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fitsSystemWindows="true"
+                android:gravity="center_horizontal">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/Top_AppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:titleTextColor="?attr/colorOnSurface"
+                    app:titleTextAppearance="@style/ToolBarTitleStyle" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </eightbitlab.com.blurview.BlurView>
+
+        <!-- TabLayout（在ToolBar下方+导航栏右侧，悬浮在Fragment上方） -->
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewTopTabLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:blurOverlayColor="@color/blur_overlay_color"
+            app:layout_constraintLeft_toRightOf="@+id/blurViewNavView"
+            app:layout_constraintTop_toBottomOf="@+id/blurViewTopAppBar"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/Tab_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:tabMode="scrollable" />
+
+        </eightbitlab.com.blurview.BlurView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

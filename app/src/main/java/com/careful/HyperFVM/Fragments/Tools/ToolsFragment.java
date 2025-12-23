@@ -1,0 +1,397 @@
+package com.careful.HyperFVM.Fragments.Tools;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
+import com.careful.HyperFVM.Activities.TiramisuImageActivity;
+import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
+import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
+import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
+import com.careful.HyperFVM.Activities.MeishiWechatActivity;
+import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
+import com.careful.HyperFVM.Activities.TodayLuckyActivity;
+import com.careful.HyperFVM.databinding.FragmentToolsBinding;
+import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Objects;
+
+public class ToolsFragment extends Fragment {
+    private FragmentToolsBinding binding;
+    private View root;
+
+    private Button buttonRefreshDashboard;
+
+    private LinearLayout dashboard_Container;
+
+    private TextView dashboardMeishiWechat;
+    private TextView dashboardDoubleExplosionRate;
+    private TextView dashboardFertilizationTask;
+    private TextView dashboardNewYear;
+    private DBHelper dbHelper; //读取dashboard表
+
+    private TextView dashboardBilibiliFVM;
+    private BilibiliFVMUtil bilibiliFVMUtil;
+    private String latestBilibiliFVMUrl;
+
+    private TextView dashboardEveryday;
+    private TextView dashboardLastDayOfMonth;
+    private EveryMonthAndEveryWeek everyMonthAndEveryWeek;
+
+    private IcuHelper icuHelper;
+
+    private TransitionSet transition;
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentToolsBinding.inflate(inflater, container, false);
+        root = binding.getRoot();
+        setTopAppBarTitle(getResources().getString(R.string.label_tools));
+
+        // 初始化控件
+        buttonRefreshDashboard = root.findViewById(R.id.ButtonRefreshDashboard);
+
+        dashboard_Container = root.findViewById(R.id.dashboard_Container);
+
+        dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
+        dashboardDoubleExplosionRate = root.findViewById(R.id.dashboard_DoubleExplosionRate);
+        dashboardFertilizationTask = root.findViewById(R.id.dashboard_FertilizationTask);
+        dashboardNewYear = root.findViewById(R.id.dashboard_NewYear);
+        dbHelper = new DBHelper(requireContext()); // 初始化数据库工具
+
+        dashboardBilibiliFVM = root.findViewById(R.id.dashboard_BilibiliFVM);
+        dashboardBilibiliFVM.setEnabled(false);
+        bilibiliFVMUtil = BilibiliFVMUtil.getInstance();
+        latestBilibiliFVMUrl = null;
+
+        dashboardEveryday = root.findViewById(R.id.dashboard_Everyday);
+        dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
+        everyMonthAndEveryWeek = new EveryMonthAndEveryWeek();
+
+        icuHelper = new IcuHelper(requireContext()); // 初始化查黑工具
+
+        // 初始化动画效果
+        transition = new TransitionSet();
+        transition.addTransition(new Fade()); // 淡入淡出
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.setDuration(800); // 动画时长800ms
+
+        // 读取数据库结果并显示
+        loadResultsFromDatabase();
+
+        // 处理每周和每月逻辑
+        handleWeekAndMonthLogic();
+
+        // 从仓库获取B站官方的最新公告
+        getLatestBilibiliAnnouncement();
+
+        //刷新仪表盘按钮
+        buttonRefreshDashboard.setOnClickListener(v -> {
+            // 1. 主线程先更新UI：禁用按钮、显示“请等待”
+            buttonRefreshDashboard.setEnabled(false);
+
+            // 过渡动画 - 大的LinearLayout
+            TransitionManager.beginDelayedTransition(dashboard_Container, transition);
+
+            dashboardMeishiWechat.setText("请等待...");
+            dashboardDoubleExplosionRate.setText("请等待...");
+            dashboardFertilizationTask.setText("请等待...");
+            dashboardNewYear.setText("请等待...");
+            dashboardEveryday.setText("请等待...");
+            dashboardBilibiliFVM.setEnabled(false);
+
+            // 2. 子线程执行：sleep 1秒 + 执行任务 + 主线程更新结果
+            new Thread(() -> {
+                try {
+                    // 执行每日任务（耗时操作放子线程）
+                    ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
+                    executeDailyTasks.executeDailyTasksForRefreshDashboard();
+
+                    // 重新从仓库获取B站官方的最新公告
+                    getLatestBilibiliAnnouncement();
+
+                    // 手动延迟1秒（让用户感知到“正在处理”，避免以为没反应）
+                    Thread.sleep(1000);
+
+                    // 3. 切回主线程更新UI：读取数据 + 恢复按钮
+                    if (isAdded() && getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            loadResultsFromDatabase(); // 刷新仪表盘数据
+                            handleWeekAndMonthLogic(); // 更新每周/每月提示
+                            buttonRefreshDashboard.setEnabled(true); // 恢复按钮
+                            Toast.makeText(requireContext(), "刷新完成~", Toast.LENGTH_SHORT).show(); // 可选：提示刷新完成
+                        });
+                    }
+
+                } catch (InterruptedException e) {
+                    // 捕获sleep中断异常
+                    requireActivity().runOnUiThread(() -> {
+                        buttonRefreshDashboard.setEnabled(true);
+                        Toast.makeText(requireContext(), "刷新被中断", Toast.LENGTH_SHORT).show();
+                    });
+                } catch (Exception e) {
+                    // 捕获其他异常（如数据库/任务执行异常）
+                    requireActivity().runOnUiThread(() -> {
+                        buttonRefreshDashboard.setEnabled(true);
+                        Toast.makeText(requireContext(), "刷新失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }).start();
+        });
+
+        //温馨礼包
+        root.findViewById(R.id.dashboard_MeishiWechat_container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
+            startActivity(intent);
+        });
+
+        //B站最新更新公告
+        root.findViewById(R.id.dashboard_BilibiliFVM_container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl));
+
+        //米鼠的图
+        root.findViewById(R.id.dashboard_TiramisuImage_container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), TiramisuImageActivity.class);
+            startActivity(intent);
+        });
+
+        //提拉米鼠官网
+        root.findViewById(R.id.Tools_Tiramisu_Container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_tiramisu_dialog),
+                        getResources().getString(R.string.label_tools_tiramisu_url)));
+
+        //陌路の综合数据表
+        root.findViewById(R.id.Tools_Molu_Container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_molu_dialog),
+                        getResources().getString(R.string.label_tools_molu_url)));
+
+        //FAA米苏物流
+        root.findViewById(R.id.Tools_FAA_Container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_faa_dialog),
+                        getResources().getString(R.string.label_tools_faa_url)));
+
+        //卡片鼠军对策表
+        root.findViewById(R.id.Tools_Strategy_Container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_strategy_dialog),
+                        getResources().getString(R.string.label_tools_strategy_url)));
+
+        //FVM查黑系统
+        root.findViewById(R.id.Tools_Icu_Container).setOnClickListener(v -> showQQInputDialog());
+
+        //强卡最优路径计算器
+        root.findViewById(R.id.Tools_CardCalculator_Container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_card_calculator_dialog),
+                        getResources().getString(R.string.label_tools_card_calculator_url)));
+
+        //宝石最优路径计算器
+        root.findViewById(R.id.Tools_GemCalculator_Container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_gem_calculator_dialog),
+                        getResources().getString(R.string.label_tools_gem_calculator_url)));
+
+        //今日运势
+        root.findViewById(R.id.Tools_TodayLucky_Container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), TodayLuckyActivity.class);
+            startActivity(intent);
+        });
+
+        //威望计算器
+        root.findViewById(R.id.Tools_PrestigeCalculator_Container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), PrestigeCalculatorActivity.class);
+            startActivity(intent);
+        });
+
+        return root;
+    }
+
+    private void setTopAppBarTitle(String title) {
+        Activity activity = getActivity();
+        if (activity != null) {
+            MaterialToolbar toolbar = activity.findViewById(R.id.Top_AppBar);
+            toolbar.setTitle(title);
+        }
+    }
+
+    private void showDialogAndVisitUrl(String title, String url) {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("二次确认防误触")
+                .setMessage("即将前往：" + title) // 显示要前往哪个网站
+                .setPositiveButton("立即跳转\uD83E\uDD13", (dialog, which) -> {
+                    // 确认后执行跳转
+                    visitUrl(url);
+                })
+                .setNegativeButton("咱手滑了\uD83E\uDEE3", null) // 取消则不执行操作
+                .show();
+    }
+
+    private void visitUrl(String url) {
+        //创建打开浏览器的Intent
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+
+        //启动浏览器（添加try-catch处理没有浏览器的异常）
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(requireActivity(), "无法打开浏览器", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showQQInputDialog() {
+        // 加载自定义布局
+        LayoutInflater inflater = LayoutInflater.from(requireContext());
+        View dialogView = inflater.inflate(R.layout.item_dialog_input_layout_icu, null);
+        // 获取布局中的输入框
+        TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
+        TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
+
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("查黑系统")
+                .setView(dialogView)
+                .setPositiveButton("确定", (dialog, which) -> {
+                    if (etQQ != null) {
+                        String qqNumber = Objects.requireNonNull(etQQ.getText()).toString().trim();
+                        if (qqNumber.isEmpty()) {
+                            Toast.makeText(requireContext(), "请输入QQ号", Toast.LENGTH_SHORT).show();
+                        } else if (!qqNumber.matches("\\d+")) {
+                            Toast.makeText(requireContext(), "QQ号只能包含数字", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // 使用Icu类查询
+                            icuHelper.queryFraudInfo(qqNumber, new IcuHelper.QueryCallback() {
+                                @Override
+                                public void onSuccess(IcuHelper.FraudResult result) {
+                                    showResultDialog(result);
+                                }
+
+                                @Override
+                                public void onError(String message) {
+                                    new MaterialAlertDialogBuilder(requireContext())
+                                            .setTitle("查询失败")
+                                            .setMessage(message)
+                                            .setPositiveButton("确定", null)
+                                            .show();
+                                }
+                            });
+                        }
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .show();
+    }
+
+    // 显示查询结果弹窗（MaterialYou风格）
+    private void showResultDialog(IcuHelper.FraudResult result) {
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext());
+        dialogBuilder.setTitle(result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)");
+
+        StringBuilder content = new StringBuilder();
+        content.append("QQ号：").append(result.qq).append("\n\n");
+        content.append("昵称：").append(result.nickname).append("\n\n");
+        if (result.isFraud) {
+            content.append("备注：").append(result.remark).append("\n\n");
+            content.append("录入时间：").append(result.recordTime);
+        } else {
+            content.append("该QQ号暂未被标记为骗子。");
+        }
+
+        dialogBuilder.setMessage(content.toString())
+                .setPositiveButton("确定", null)
+                .show();
+    }
+
+    private void getLatestBilibiliAnnouncement() {
+        // 从仓库获取B站官方的最新公告
+        // 启动子线程执行网络请求，避免阻塞主线程
+        new Thread(() -> bilibiliFVMUtil.getLatestBilibiliFVMAnnouncement(new BilibiliFVMUtil.OnGetCallback() {
+            @Override
+            public void onSuccess(String content) {
+                if (isAdded() && getActivity() != null) {
+                    // 切换到主线程更新UI
+                    requireActivity().runOnUiThread(() -> {
+                        dashboardBilibiliFVM.setText("👉点击跳转B站美食大战老鼠官方的最新更新公告");
+                        dashboardBilibiliFVM.setEnabled(true);
+                        latestBilibiliFVMUrl = content;
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(String errorMsg) {
+                if (isAdded() && getActivity() != null) {
+                    // 切换到主线程更新UI
+                    requireActivity().runOnUiThread(() -> {
+                        dashboardBilibiliFVM.setText("❌获取失败，请检查网络或稍后再试");
+                        dashboardBilibiliFVM.setEnabled(false);
+                        latestBilibiliFVMUrl = null;
+                    });
+                }
+            }
+        })).start();
+    }
+
+    // 从数据库读取结果并显示
+    @SuppressLint("SetTextI18n")
+    private void loadResultsFromDatabase() {
+        // 过渡动画 - 大的LinearLayout
+        TransitionManager.beginDelayedTransition(dashboard_Container, transition);
+
+        // 读取礼包领取结果
+        String giftResult = dbHelper.getDashboardContent("meishi_wechat_result_text");
+        dashboardMeishiWechat.setText((giftResult.isEmpty() ? "null" : giftResult));
+        // 读取双倍双爆结果
+        String activityResult = dbHelper.getDashboardContent("double_explosion_rate");
+        dashboardDoubleExplosionRate.setText((activityResult.isEmpty() ? "null" : activityResult));
+        // 读取施肥活动结果
+        String fertilizationTaskResult = dbHelper.getDashboardContent("fertilization_task");
+        dashboardFertilizationTask.setText((fertilizationTaskResult.isEmpty() ? "null" : fertilizationTaskResult));
+        // 读取美食悬赏活动结果
+        String newYearResult = dbHelper.getDashboardContent("new_year");
+        dashboardNewYear.setText((newYearResult.isEmpty() ? "null" : newYearResult));
+    }
+
+    // 处理每日签到提示、月末提示逻辑
+    @SuppressLint("SetTextI18n")
+    private void handleWeekAndMonthLogic() {
+        // （1）处理每日签到提示（根据1-25号/26号-月底区分显示）
+        dashboardEveryday.setText(everyMonthAndEveryWeek.dailyNotifications());
+
+        // （2）处理月末提示
+        CardView card_dashboard_LastDayOfMonth = root.findViewById(R.id.card_dashboard_LastDayOfMonth);
+        if (everyMonthAndEveryWeek.isLastDayOfMonth()) {
+            card_dashboard_LastDayOfMonth.setVisibility(View.VISIBLE);
+            dashboardLastDayOfMonth.setText("月末了，请注意清空积分和金券⚠️");
+        } else {
+            card_dashboard_LastDayOfMonth.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (icuHelper != null) {
+            icuHelper.shutdown(); // 释放资源
+        }
+        binding = null;
+    }
+}

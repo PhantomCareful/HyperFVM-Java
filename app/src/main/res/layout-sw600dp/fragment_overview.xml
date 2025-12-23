@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:paddingTop="100dp"
+            android:paddingStart="80dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            tools:ignore="RtlSymmetry">
+
+            <LinearLayout
+                android:id="@+id/overview_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/overview_top_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimary"
+                        card_view:cardElevation="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/overview_top"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimary"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/overview1_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/overview1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/overview2_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/overview2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/overview3_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/overview3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/overview4_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/overview4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/overview_copyright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/copyright"
+                android:textSize="20sp"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                android:gravity="center"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/overview_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/many_n"
+                android:textSize="40sp"/>
+
+        </LinearLayout>
+
+    </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+</LinearLayout>

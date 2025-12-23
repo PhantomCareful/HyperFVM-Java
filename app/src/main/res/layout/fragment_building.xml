@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Root_Layout_Data_Station"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="?attr/actionBarSize"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/Image_View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxHeight="300dp"
+        android:src="@drawable/unhappy"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="施工ing"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="60sp"
+        android:gravity="center"/>
+
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/Button_NewCardDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/new_card_delivery"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_BothWayAndThreeShot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/both_way_and_three_shot"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_XPult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/x_pult"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_StarAndPVP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/star_and_pvp"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_Auxiliary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/auxiliary"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_EnergyFlower"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/energy_flower"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_JellyPuddingAndTray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/jelly_pudding_and_tray"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_AirForceI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/air_force_i"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_EightDirections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/eight_directions"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_Follow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/follow"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_Sundry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/sundry"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_StraightShot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/straight_shot"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_AshBomb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/ash_bomb"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_AshlessBomb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/ashless_bomb"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_CoolDownAndUpGradeAndDriveFogAndClearObstacleAndSpecialEffect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/cool_down_and_upgrade_and_drive_fog_and_clear_obstacle_and_special_effect"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/Button_BreadCommonAndBreadMiddleAndGuardProtector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/bread_common_and_bread_middle_and_guard_protector"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/copyright"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </ScrollView>-->
+
+</LinearLayout>
+
+    <!--
+    设置视图的间距，2种方式
+    1.采用layout_margin属性，它指定了当前视图与周围平级试图之间的距离；
+    2.采用padding属性，它指定了当前视图与内部下级视图之间的距离。
+
+    设置视图的对齐方式，2种方式
+    1.采用layout_gravity属性，它指定了当前视图相对于上级视图的对齐方式；
+    2.采用gravity属性，它指定了下级视图相对于当前视图的对齐方式。
+    start|end|top|bottom
+
+    线性布局LinearLayout
+    排列方式：orientation(horizontal|vertical)，默认horizontal
+    线性布局的权重：layout_weight，该属性不在LinearLayout节点设置，而是在线性布局的直接下级视图设置
+        layout_width=0dp时，layout_weight表示水平方向的宽度比例；
+        layout_height=0dp时，layout_weight表示垂直方向的高度比例。
+
+    相对布局RelativeLayout（略）
+
+    网格布局GridLayout（多行多列）
+        columnCount：网格的列数
+        rowCount：网格的行数
+
+    滚动视图ScrollView
+        ScrollView：垂直方向的滚动视图
+            layout_width="match_parent"
+            layout_height="wrap_content"
+        HorizontalScrollView：水平方向的滚动视图
+            layout_width="wrap_content"
+            layout_height="match_parent"
+    -->

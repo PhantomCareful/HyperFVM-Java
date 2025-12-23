@@ -1,0 +1,55 @@
+<!--这是防御卡数据按名查询的弹窗样式文件-->
+<!-- 外层容器：垂直布局，包含输入框和建议列表 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dialog_input_margin"
+    android:paddingStart="@dimen/dialog_input_margin"
+    android:paddingEnd="@dimen/dialog_input_margin"
+    android:paddingBottom="@dimen/dialog_input_margin">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/card_data_search_tips"
+        android:textSize="15sp"
+        android:textColor="?attr/colorOnSurfaceVariant"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeWidth="2dp"
+        app:boxCornerRadiusTopStart="@dimen/dialog_input_corner_radius"
+        app:boxCornerRadiusTopEnd="@dimen/dialog_input_corner_radius"
+        app:boxCornerRadiusBottomStart="@dimen/dialog_input_corner_radius"
+        app:boxCornerRadiusBottomEnd="@dimen/dialog_input_corner_radius"
+        app:backgroundTint="@android:color/transparent"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dialog_input_padding"
+            android:hint="请输入防御卡名称"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 建议列表（输入框下方） -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/suggestion_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</LinearLayout>

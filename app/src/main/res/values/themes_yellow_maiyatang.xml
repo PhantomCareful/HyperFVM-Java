@@ -1,0 +1,50 @@
+<resources>
+    <style name="AppTheme_Yellow_Maiyatang" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/md_yellow_maiyatang_primary</item>
+        <item name="colorOnPrimary">@color/md_yellow_maiyatang_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_yellow_maiyatang_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_yellow_maiyatang_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_yellow_maiyatang_secondary</item>
+        <item name="colorOnSecondary">@color/md_yellow_maiyatang_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_yellow_maiyatang_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_yellow_maiyatang_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_yellow_maiyatang_tertiary</item>
+        <item name="colorOnTertiary">@color/md_yellow_maiyatang_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_yellow_maiyatang_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_yellow_maiyatang_onTertiaryContainer</item>
+        <item name="colorError">@color/md_yellow_maiyatang_error</item>
+        <item name="colorOnError">@color/md_yellow_maiyatang_onError</item>
+        <item name="colorErrorContainer">@color/md_yellow_maiyatang_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_yellow_maiyatang_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_yellow_maiyatang_background</item>
+        <item name="colorOnBackground">@color/md_yellow_maiyatang_onBackground</item>
+        <item name="colorSurface">@color/md_yellow_maiyatang_surface</item>
+        <item name="colorOnSurface">@color/md_yellow_maiyatang_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_yellow_maiyatang_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_yellow_maiyatang_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_yellow_maiyatang_outline</item>
+        <item name="colorOutlineVariant">@color/md_yellow_maiyatang_outlineVariant</item>
+        <item name="colorSurfaceInverse">@color/md_yellow_maiyatang_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_yellow_maiyatang_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/md_yellow_maiyatang_inversePrimary</item>
+        <item name="colorPrimaryFixed">@color/md_yellow_maiyatang_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/md_yellow_maiyatang_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/md_yellow_maiyatang_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/md_yellow_maiyatang_onPrimaryFixedVariant</item>
+        <item name="colorSecondaryFixed">@color/md_yellow_maiyatang_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/md_yellow_maiyatang_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/md_yellow_maiyatang_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/md_yellow_maiyatang_onSecondaryFixedVariant</item>
+        <item name="colorTertiaryFixed">@color/md_yellow_maiyatang_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/md_yellow_maiyatang_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/md_yellow_maiyatang_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/md_yellow_maiyatang_onTertiaryFixedVariant</item>
+        <item name="colorSurfaceDim">@color/md_yellow_maiyatang_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_yellow_maiyatang_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/md_yellow_maiyatang_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/md_yellow_maiyatang_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/md_yellow_maiyatang_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/md_yellow_maiyatang_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/md_yellow_maiyatang_surfaceContainerHighest</item>
+    </style>
+</resources>

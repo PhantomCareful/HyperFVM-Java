@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题显示名称（对应界面上的选项文字） -->
+    <string-array name="theme_entries">
+        <item>宫墙</item>
+        <item>琥珀</item>
+        <item>麦芽糖</item>
+        <item>金橘</item>
+        <item>秋葵</item>
+        <item>青绿</item>
+        <item>绿宝石</item>
+        <item>天水碧</item>
+        <item>品蓝</item>
+        <item>孔雀蓝</item>
+        <item>凝夜紫</item>
+        <item>杏花</item>
+        <item>蜜桃</item>
+    </string-array>
+
+    <!--深色主题-->
+    <string-array name="dark_mode_entries">
+        <item>总是关闭🌝</item>
+        <item>总是开启🌚</item>
+        <item>跟随系统🌗</item>
+    </string-array>
+</resources>
