@@ -29,13 +29,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -105,7 +109,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -376,7 +381,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -493,7 +499,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -617,7 +624,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -852,7 +860,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -956,7 +965,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -1019,7 +1030,8 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="10dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1222,7 +1234,8 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="10dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1416,7 +1429,8 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="10dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
