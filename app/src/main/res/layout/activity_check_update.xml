@@ -30,7 +30,9 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:paddingTop="100dp"
-                    android:paddingBottom="100dp">
+                    android:paddingBottom="100dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
                     <ImageView
                         android:id="@+id/about_app_icon"
@@ -65,15 +67,14 @@
 
                     <Button
                         android:id="@+id/update_image_action"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:text="@string/label_check_update_status_checking"
                         android:textSize="25sp"
                         app:cornerRadius="20dp"
-                        app:strokeColor="?attr/colorOnPrimaryContainer"
-                        app:strokeWidth="2dp" />
+                        android:elevation="10dp"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/container_image_log_new"
@@ -84,7 +85,8 @@
                         android:layout_marginBottom="10dp"
                         card_view:cardCornerRadius="20dp"
                         card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                        android:visibility="gone" >
+                        android:visibility="gone"
+                        app:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -114,7 +116,8 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="10dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        app:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -144,15 +147,14 @@
 
                     <Button
                         android:id="@+id/update_app_action"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:text="@string/label_check_update_status_checking"
                         android:textSize="25sp"
                         app:cornerRadius="20dp"
-                        app:strokeColor="?attr/colorOnPrimaryContainer"
-                        app:strokeWidth="2dp" />
+                        android:elevation="10dp"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/container_app_log_new"
@@ -163,7 +165,8 @@
                         android:layout_marginBottom="10dp"
                         card_view:cardCornerRadius="20dp"
                         card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                        android:visibility="gone" >
+                        android:visibility="gone"
+                        app:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -193,7 +196,8 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="10dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        app:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
