@@ -29,24 +29,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="100dp">
+                    android:paddingTop="100dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="👀基础信息"
+                        android:text="@string/title_card_data_base_info"
                         android:textSize="30sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"/>
+                        android:layout_marginHorizontal="20dp"/>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="15dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -123,12 +125,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="👀数据信息"
+                        android:text="@string/title_card_data_data_info"
                         android:textSize="30sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"/>
+                        android:layout_marginHorizontal="20dp"/>
 
                     <TextView
                         android:id="@+id/star"
@@ -137,16 +137,16 @@
                         android:text="强化提升：攻击力"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"/>
+                        android:layout_marginHorizontal="20dp"/>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="15dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -532,17 +532,17 @@
                         android:text="品阶提升：攻击附加"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:layout_marginTop="10dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"/>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="15dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -928,18 +928,17 @@
                         android:text="技能提升：攻击间隔"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"/>
+                        android:layout_marginHorizontal="20dp"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/Card_Skill"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="15dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1151,21 +1150,20 @@
                         android:id="@+id/card_data_other_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="👀其他信息"
+                        android:text="@string/title_card_data_other_info"
                         android:textSize="30sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"/>
+                        android:layout_marginHorizontal="20dp"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/Card_Other"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="15dp"
                         card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1177,7 +1175,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
-                                android:text="🚫[子弹不可过火]\n\n🍮[反弹]子弹可被反弹\n\n😋[食神谱]奇境下午茶：攻击力提升15%"
+                                android:text=""
                                 android:textSize="20sp"
                                 android:textColor="?attr/colorOnPrimaryContainer"
                                 android:clickable="true"
@@ -1193,8 +1191,7 @@
                         android:text="@string/copyright_and_molu"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginVertical="20dp"
                         android:gravity="center"/>
 
                 </LinearLayout>
