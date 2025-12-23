@@ -19,16 +19,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="150dp"
-            android:paddingBottom="100dp">
+            android:paddingBottom="100dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <Button
                 android:id="@+id/update_image_action"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="检查更新"
+                android:text=""
                 android:textSize="20sp"
                 android:visibility="gone"/>
 
@@ -36,29 +37,30 @@
                 android:id="@+id/data_image_card_cover_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="fitStart"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/data_image_card_cover"/>
+                    android:src="@drawable/data_image_card_cover"
+                    tools:ignore="ContentDescription" />
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -725,11 +727,11 @@
                 android:id="@+id/data_image_weapon_and_gem_cover_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -743,11 +745,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -948,11 +950,11 @@
                 android:id="@+id/data_image_decompose_and_get_cover_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -966,11 +968,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1326,11 +1328,11 @@
                 android:id="@+id/data_image_mouse_hp_cover_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -1344,11 +1346,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1672,8 +1674,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginHorizontal="20dp"
                 android:text="@string/label_data_images_index_others"
                 android:textSize="20sp"
                 android:textColor="?attr/colorOnSurface"/>
@@ -1681,11 +1682,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
                 card_view:cardCornerRadius="20dp"
-                card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

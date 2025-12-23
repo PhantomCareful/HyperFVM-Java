@@ -30,7 +30,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <Button
                     android:id="@+id/update_image_action"
@@ -39,21 +41,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="检查更新"
+                    android:text=""
                     android:textSize="20sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/data_images_check_update_toast"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/data_images_check_update_toast"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:gravity="center"
                     android:visibility="gone" />
 
                 <androidx.cardview.widget.CardView
@@ -62,9 +51,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -80,9 +70,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -751,9 +742,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -769,9 +761,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1129,7 +1122,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/data_image_weapon_and_gem_cover_container"
@@ -1137,9 +1132,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -1155,9 +1151,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1360,9 +1357,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -1378,9 +1376,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1715,9 +1714,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer">
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1951,7 +1951,7 @@
                     android:text="@string/copyright"
                     android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginVertical="20dp"
                     android:gravity="center"/>
 
             </LinearLayout>
