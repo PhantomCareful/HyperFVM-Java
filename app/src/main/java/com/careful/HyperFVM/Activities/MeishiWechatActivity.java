@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.transition.ChangeBounds;
+import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.util.Log;
@@ -23,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.databinding.ActivityMeishiWechatBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
@@ -51,6 +53,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
 
     private LinearLayout MeishiWechatContainer;
     private TransitionSet transition;
+    private ActivityMeishiWechatBinding binding;
 
     // 在Activity中定义主线程Handler
     private Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -71,7 +74,9 @@ public class MeishiWechatActivity extends AppCompatActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
 
-        setContentView(R.layout.activity_meishi_wechat);
+        binding = ActivityMeishiWechatBinding.inflate(getLayoutInflater());
+        View root = binding.getRoot();
+        setContentView(root);
 
         // 初始化Handler（主线程的Looper）
         mainHandler = new Handler(Looper.getMainLooper());
@@ -83,6 +88,17 @@ public class MeishiWechatActivity extends AppCompatActivity {
         initViews();
         // 加载已保存的账号
         loadAccountList();
+
+        Runnable transitionRunnable = () -> {
+            TransitionManager.beginDelayedTransition(MeishiWechatContainer, transition);
+            binding.TitleMeishiWechatInstructions.setVisibility(View.VISIBLE);
+            binding.MeishiWechatInstructionsContainer.setVisibility(View.VISIBLE);
+            binding.TitleMeishiWechatGiftContent.setVisibility(View.VISIBLE);
+            binding.MeishiWechatGiftContentContainer.setVisibility(View.VISIBLE);
+        };
+
+        // 执行延迟任务
+        root.postDelayed(transitionRunnable, 300);
     }
 
     private void initViews() {
@@ -90,7 +106,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
         setTopAppBarTitle(getResources().getString(R.string.title_tools_meishi_wechat));
 
         // 账号数量文本和列表容器
-        accountCountText = findViewById(R.id.TextView_AccountSaved);
+        accountCountText = findViewById(R.id.TitleMeishiWechatSavedAccount);
         accountListContainer = findViewById(R.id.LinearLayout_AccountList);
 
         // 配置模糊效果
@@ -107,6 +123,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
         MeishiWechatContainer = findViewById(R.id.MeishiWechatContainer);
         transition = new TransitionSet();
         transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.addTransition(new Fade()); // 淡入淡出
         transition.setDuration(400); // 动画时长400ms
     }
 

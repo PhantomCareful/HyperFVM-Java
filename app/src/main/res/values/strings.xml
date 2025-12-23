@@ -152,8 +152,9 @@
     <string name="title_tools_double_explosion_rate">双爆信息</string>
     <string name="title_tools_meishi_wechat">温馨礼包</string>
     <string name="label_tools_meishi_wechat_account_saved">已保存的账号</string>
-    <string name="label_tools_meishi_wechat_rules_title">使用说明</string>
-    <string name="label_tools_meishi_wechat_gift_title">温馨礼包包含</string>
+    <string name="title_tools_meishi_wechat_rules">使用说明</string>
+    <string name="title_tools_meishi_wechat_gift">温馨礼包包含</string>
+    <string name="label_tools_meishi_wechat_add_url">添加链接</string>
     <string name="title_tools_everyday">每日签到</string>
     <string name="title_tools_fertilization_task">施肥活动</string>
     <string name="title_tools_bilibili_fvm">更新公告</string>
