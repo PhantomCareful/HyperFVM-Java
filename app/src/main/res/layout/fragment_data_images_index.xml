@@ -25,13 +25,16 @@
 
             <Button
                 android:id="@+id/update_image_action"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginBottom="5dp"
                 android:text=""
                 android:textSize="20sp"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:cornerRadius="20dp"
+                android:elevation="10dp"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/data_image_card_cover_container"
