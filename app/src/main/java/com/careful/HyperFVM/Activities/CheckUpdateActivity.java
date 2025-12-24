@@ -6,6 +6,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getCont
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -727,6 +729,13 @@ public class CheckUpdateActivity extends AppCompatActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // 重新构建布局
+        recreate();
     }
 
     @Override

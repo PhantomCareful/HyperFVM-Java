@@ -31,7 +31,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:scrollbars="none">
+                    android:scrollbars="none"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
                     <LinearLayout
                         android:id="@+id/MeishiWechatContainer"
@@ -68,7 +70,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scrollbars="none"
-                    tools:ignore="MissingConstraints">
+                    tools:ignore="MissingConstraints"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
                     <LinearLayout
                         android:layout_width="match_parent"
