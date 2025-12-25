@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -120,7 +122,7 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
         mGestureDetector = new GestureDetector(context,
                 new GestureDetector.SimpleOnGestureListener() {
                     @Override
-                    public boolean onDoubleTap(MotionEvent e) {
+                    public boolean onDoubleTap(@NonNull MotionEvent e) {
 
                         if (isAutoScale) {
                             return true;
@@ -161,11 +163,6 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
 
         private float tmpScale;
 
-        /**
-         * @param mTargetScale
-         * @param x
-         * @param y
-         */
         public AutoScaleRunnable(float mTargetScale, float x, float y) {
             this.mTargetScale = mTargetScale;
             this.x = x;
@@ -246,8 +243,8 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
                 scale = Math.min(width * 1.0f / dw, availableHeight * 1.0f / dh);
             }
 
-            /**
-             * 得到了初始化时缩放的比例
+            /*
+              得到了初始化时缩放的比例
              */
             mInitScale = scale;
             mMaxScale = mInitScale * 8;
@@ -258,8 +255,8 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             int dy = (height - mTopOffset - mBottomOffset) / 2 + mTopOffset - dh / 2;
 
             mScaleMatrix.postTranslate(dx, dy);
-            mScaleMatrix.postScale(mInitScale, mInitScale, width / 2,
-                    (height - mTopOffset - mBottomOffset) / 2 + mTopOffset);  // 缩放中心也要调整
+            mScaleMatrix.postScale(mInitScale, mInitScale, (float) width / 2,
+                    (float) (height - mTopOffset - mBottomOffset) / 2 + mTopOffset);  // 缩放中心也要调整
             setImageMatrix(mScaleMatrix);
 
             mOnce = true;
@@ -287,8 +284,6 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
 
     /**
      * 获取当前图片的缩放值
-     *
-     * @return
      */
     public float getScale() {
         float[] values = new float[9];
@@ -331,8 +326,6 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
 
     /**
      * 获得图片放大缩小以后的宽和高，以及left，right，top，bottom
-     *
-     * @return
      */
     private RectF getMatrixRectF() {
         Matrix matrix = mScaleMatrix;
@@ -378,8 +371,8 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             }
         }
 
-        /**
-         * 如果宽度或高度小于空间的宽或者高，则让其居中
+        /*
+          如果宽度或高度小于空间的宽或者高，则让其居中
          */
         if (rectF.width() < width) {
             deltaX = width / 2f - rectF.right + rectF.width() / 2f;
@@ -394,13 +387,13 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
     }
 
     @Override
-    public boolean onScaleBegin(ScaleGestureDetector detector) {
+    public boolean onScaleBegin(@NonNull ScaleGestureDetector detector) {
 
         return true;
     }
 
     @Override
-    public void onScaleEnd(ScaleGestureDetector detector) {
+    public void onScaleEnd(@NonNull ScaleGestureDetector detector) {
 
     }
 
@@ -516,10 +509,6 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
 
     /**
      * 判断是否是move
-     *
-     * @param dx
-     * @param dy
-     * @return
      */
     private boolean isMoveAction(float dx, float dy) {
         return Math.sqrt(dx * dx + dy * dy) > mTouchSlop;

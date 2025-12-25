@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities;
+package com.careful.HyperFVM.Activities.ImageViewerActivity;
 
 import static android.content.ContentValues.TAG;
 
@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.ZoomImageView;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -24,6 +25,7 @@ import java.io.File;
 public class ImageViewerActivity extends AppCompatActivity {
 
     private ZoomImageView zoomImageView;
+    private DataImagesUpdaterUtil imageUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class ImageViewerActivity extends AppCompatActivity {
         // 顶栏模糊
         setupBlurEffect();
 
+        // 初始化图片工具类、数据库工具类
+        imageUtil = DataImagesUpdaterUtil.getInstance();
+
         // 找到ZoomImageView并设置图片
         zoomImageView = findViewById(R.id.ZoomImageViewer);
         loadImageFromIntent();
@@ -53,8 +58,8 @@ public class ImageViewerActivity extends AppCompatActivity {
 
     private void loadImageFromIntent() {
         // 1. 获取Fragment传递的图片路径（key必须和Fragment中一致："imgPath"）
-        String imgPath = getIntent().getStringExtra("imgPath");
-        if (imgPath == null || imgPath.isEmpty()) {
+        String imgPath = getImagePath(getIntent().getStringExtra("imgPath"));
+        if (imgPath.isEmpty()) {
             Toast.makeText(this, "图片路径为空", Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -91,6 +96,17 @@ public class ImageViewerActivity extends AppCompatActivity {
             Log.e(TAG, errorMsg, e);
             finish();
         }
+    }
+
+    /**
+     * 拼接本地图片路径（Fragment内管理路径规则）
+     * @param imageName 图片名称（不含扩展名）
+     * @return 完整的本地图片路径
+     */
+    private String getImagePath(String imageName) {
+        // 从工具类获取解压根路径，拼接图片名称+扩展名（此处假设为png，可根据实际调整）
+        String unzipRootPath = imageUtil.getUnzipPath(this);
+        return unzipRootPath + File.separator + imageName + ".webp";
     }
 
     private void setTopAppBarTitle(String title) {

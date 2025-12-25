@@ -32,7 +32,10 @@
             android:name=".Activities.CheckUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ImageViewerActivity"
+            android:name=".Activities.ImageViewerActivity.ImageViewerDynamicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ImageViewerActivity.ImageViewerActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.DetailCardData.CardData_1_Activity"

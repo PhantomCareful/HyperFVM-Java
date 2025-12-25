@@ -16,13 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
-import com.careful.HyperFVM.Activities.ImageViewerActivity;
+import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
+import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerDynamicActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataImagesIndexBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
-
-import java.io.File;
 
 public class DataImagesIndexFragment extends Fragment {
 
@@ -106,70 +105,70 @@ public class DataImagesIndexFragment extends Fragment {
     // ========== UI逻辑 ==========
     private void initViews(View root) {
         // 防御卡数据图
-        setupContainer(root, R.id.data_images_index_card_0_1_container, "data_image_card_0_1");
-        setupContainer(root, R.id.data_images_index_card_0_2_container, "data_image_card_0_2");
-        setupContainer(root, R.id.data_images_index_card_0_3_container, "data_image_card_0_3");
-        setupContainer(root, R.id.data_images_index_card_1_container, "data_image_card_1");
-        setupContainer(root, R.id.data_images_index_card_2_container, "data_image_card_2");
-        setupContainer(root, R.id.data_images_index_card_3_container, "data_image_card_3");
-        setupContainer(root, R.id.data_images_index_card_4_container, "data_image_card_4");
-        setupContainer(root, R.id.data_images_index_card_5_container, "data_image_card_5");
-        setupContainer(root, R.id.data_images_index_card_6_container, "data_image_card_6");
-        setupContainer(root, R.id.data_images_index_card_7_container, "data_image_card_7");
-        setupContainer(root, R.id.data_images_index_card_8_container, "data_image_card_8");
-        setupContainer(root, R.id.data_images_index_card_9_container, "data_image_card_9");
-        setupContainer(root, R.id.data_images_index_card_10_container, "data_image_card_10");
-        setupContainer(root, R.id.data_images_index_card_11_container, "data_image_card_11");
-        setupContainer(root, R.id.data_images_index_card_12_container, "data_image_card_12");
-        setupContainer(root, R.id.data_images_index_card_13_container, "data_image_card_13");
-        setupContainer(root, R.id.data_images_index_card_14_container, "data_image_card_14");
-        setupContainer(root, R.id.data_images_index_card_15_container, "data_image_card_15");
-        setupContainer(root, R.id.data_images_index_card_16_container, "data_image_card_16");
-        setupContainer(root, R.id.data_images_index_card_17_container, "data_image_card_17");
-        setupContainer(root, R.id.data_images_index_card_18_container, "data_image_card_18");
-        setupContainer(root, R.id.data_images_index_card_19_container, "data_image_card_19");
+        setupContainer(root, R.id.data_images_index_card_0_1_container, "data_image_card_0_1", false);
+        setupContainer(root, R.id.data_images_index_card_0_2_container, "data_image_card_0_2", false);
+        setupContainer(root, R.id.data_images_index_card_0_3_container, "data_image_card_0_3", false);
+        setupContainer(root, R.id.data_images_index_card_1_container, "data_image_card_1", false);
+        setupContainer(root, R.id.data_images_index_card_2_container, "data_image_card_2", false);
+        setupContainer(root, R.id.data_images_index_card_3_container, "data_image_card_3", false);
+        setupContainer(root, R.id.data_images_index_card_4_container, "data_image_card_4", false);
+        setupContainer(root, R.id.data_images_index_card_5_container, "data_image_card_5", false);
+        setupContainer(root, R.id.data_images_index_card_6_container, "data_image_card_6", false);
+        setupContainer(root, R.id.data_images_index_card_7_container, "data_image_card_7", false);
+        setupContainer(root, R.id.data_images_index_card_8_container, "data_image_card_8", false);
+        setupContainer(root, R.id.data_images_index_card_9_container, "data_image_card_9", false);
+        setupContainer(root, R.id.data_images_index_card_10_container, "data_image_card_10", false);
+        setupContainer(root, R.id.data_images_index_card_11_container, "data_image_card_11", false);
+        setupContainer(root, R.id.data_images_index_card_12_container, "data_image_card_12", false);
+        setupContainer(root, R.id.data_images_index_card_13_container, "data_image_card_13", false);
+        setupContainer(root, R.id.data_images_index_card_14_container, "data_image_card_14", false);
+        setupContainer(root, R.id.data_images_index_card_15_container, "data_image_card_15", false);
+        setupContainer(root, R.id.data_images_index_card_16_container, "data_image_card_16", false);
+        setupContainer(root, R.id.data_images_index_card_17_container, "data_image_card_17", false);
+        setupContainer(root, R.id.data_images_index_card_18_container, "data_image_card_18", false);
+        setupContainer(root, R.id.data_images_index_card_19_container, "data_image_card_19", false);
 
         // 武器宝石数据图
-        setupContainer(root, R.id.data_images_index_weapon_and_gem_0_1_container, "data_image_weapon_and_gem_0_1");
-        setupContainer(root, R.id.data_images_index_weapon_and_gem_1_container, "data_image_weapon_and_gem_1");
-        setupContainer(root, R.id.data_images_index_weapon_and_gem_2_container, "data_image_weapon_and_gem_2");
-        setupContainer(root, R.id.data_images_index_weapon_and_gem_3_container, "data_image_weapon_and_gem_3");
-        setupContainer(root, R.id.data_images_index_weapon_and_gem_4_container, "data_image_weapon_and_gem_4");
-        setupContainer(root, R.id.data_images_index_weapon_and_gem_5_container, "data_image_weapon_and_gem_5");
+        setupContainer(root, R.id.data_images_index_weapon_and_gem_0_1_container, "data_image_weapon_and_gem_0_1", false);
+        setupContainer(root, R.id.data_images_index_weapon_and_gem_1_container, "data_image_weapon_and_gem_1", false);
+        setupContainer(root, R.id.data_images_index_weapon_and_gem_2_container, "data_image_weapon_and_gem_2", false);
+        setupContainer(root, R.id.data_images_index_weapon_and_gem_3_container, "data_image_weapon_and_gem_3", false);
+        setupContainer(root, R.id.data_images_index_weapon_and_gem_4_container, "data_image_weapon_and_gem_4", false);
+        setupContainer(root, R.id.data_images_index_weapon_and_gem_5_container, "data_image_weapon_and_gem_5", false);
 
         // 道具分解&兑换数据图
-        setupContainer(root, R.id.data_images_index_decompose_and_get_1_container, "data_image_decompose_and_get_1");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_2_container, "data_image_decompose_and_get_2");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_3_container, "data_image_decompose_and_get_3");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_4_container, "data_image_decompose_and_get_4");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_5_container, "data_image_decompose_and_get_5");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_6_container, "data_image_decompose_and_get_6");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_7_container, "data_image_decompose_and_get_7");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_8_container, "data_image_decompose_and_get_8");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_9_container, "data_image_decompose_and_get_9");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_10_container, "data_image_decompose_and_get_10");
-        setupContainer(root, R.id.data_images_index_decompose_and_get_11_container, "data_image_decompose_and_get_11");
+        setupContainer(root, R.id.data_images_index_decompose_and_get_1_container, "data_image_decompose_and_get_1", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_2_container, "data_image_decompose_and_get_2", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_3_container, "data_image_decompose_and_get_3", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_4_container, "data_image_decompose_and_get_4", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_5_container, "data_image_decompose_and_get_5", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_6_container, "data_image_decompose_and_get_6", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_7_container, "data_image_decompose_and_get_7", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_8_container, "data_image_decompose_and_get_8", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_9_container, "data_image_decompose_and_get_9", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_10_container, "data_image_decompose_and_get_10", false);
+        setupContainer(root, R.id.data_images_index_decompose_and_get_11_container, "data_image_decompose_and_get_11", false);
 
         // 老输血量数据图
-        setupContainer(root, R.id.data_images_index_mouse_hp_1_container, "data_image_mouse_hp_1");
-        setupContainer(root, R.id.data_images_index_mouse_hp_2_container, "data_image_mouse_hp_2");
-        setupContainer(root, R.id.data_images_index_mouse_hp_3_container, "data_image_mouse_hp_3");
-        setupContainer(root, R.id.data_images_index_mouse_hp_4_container, "data_image_mouse_hp_4");
-        setupContainer(root, R.id.data_images_index_mouse_hp_5_container, "data_image_mouse_hp_5");
-        setupContainer(root, R.id.data_images_index_mouse_hp_6_container, "data_image_mouse_hp_6");
-        setupContainer(root, R.id.data_images_index_mouse_hp_7_container, "data_image_mouse_hp_7");
-        setupContainer(root, R.id.data_images_index_mouse_hp_8_container, "data_image_mouse_hp_8");
-        setupContainer(root, R.id.data_images_index_mouse_hp_9_container, "data_image_mouse_hp_9");
-        setupContainer(root, R.id.data_images_index_mouse_hp_10_container, "data_image_mouse_hp_10");
+        setupContainer(root, R.id.data_images_index_mouse_hp_1_container, "data_image_mouse_hp_1", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_2_container, "data_image_mouse_hp_2", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_3_container, "data_image_mouse_hp_3", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_4_container, "data_image_mouse_hp_4", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_5_container, "data_image_mouse_hp_5", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_6_container, "data_image_mouse_hp_6", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_7_container, "data_image_mouse_hp_7", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_8_container, "data_image_mouse_hp_8", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_9_container, "data_image_mouse_hp_9", false);
+        setupContainer(root, R.id.data_images_index_mouse_hp_10_container, "data_image_mouse_hp_10", false);
 
         // 其他数据图
-        setupContainer(root, R.id.data_images_index_others_1_container, "data_image_others_1");
-        setupContainer(root, R.id.data_images_index_others_2_container, "data_image_others_2");
-        setupContainer(root, R.id.data_images_index_others_3_container, "data_image_others_3");
-        setupContainer(root, R.id.data_images_index_others_4_container, "data_image_others_4");
-        setupContainer(root, R.id.data_images_index_others_5_container, "data_image_others_5");
-        setupContainer(root, R.id.data_images_index_others_6_container, "data_image_others_6");
-        setupContainer(root, R.id.data_images_index_others_7_container, "data_image_others_7");
+        setupContainer(root, R.id.data_images_index_others_1_container, "data_image_others_1", true);
+        setupContainer(root, R.id.data_images_index_others_2_container, "data_image_others_2", true);
+        setupContainer(root, R.id.data_images_index_others_3_container, "data_image_others_3", true);
+        setupContainer(root, R.id.data_images_index_others_4_container, "data_image_others_4", false);
+        setupContainer(root, R.id.data_images_index_others_5_container, "data_image_others_5", true);
+        setupContainer(root, R.id.data_images_index_others_6_container, "data_image_others_6", false);
+        setupContainer(root, R.id.data_images_index_others_7_container, "data_image_others_7", true);
 
         // 初始化动画效果
         transition = new TransitionSet();
@@ -177,7 +176,7 @@ public class DataImagesIndexFragment extends Fragment {
         transition.setDuration(400); // 动画时长400ms
     }
 
-    private void setupContainer(View root, int viewId, String imageName) {
+    private void setupContainer(View root, int viewId, String imageName, boolean isDynamic) {
         LinearLayout container = root.findViewById(viewId);
         container.setTag(imageName);
         container.setOnClickListener(v -> {
@@ -186,22 +185,15 @@ public class DataImagesIndexFragment extends Fragment {
                 return;
             }
 
-            String imagePath = getImagePath((String) v.getTag());
-            Intent intent = new Intent(requireActivity(), ImageViewerActivity.class);
-            intent.putExtra("imgPath", imagePath);
+            Intent intent;
+            if (isDynamic) {
+                intent = new Intent(requireActivity(), ImageViewerDynamicActivity.class);
+            } else {
+                intent = new Intent(requireActivity(), ImageViewerActivity.class);
+            }
+            intent.putExtra("imgPath", imageName);
             startActivity(intent);
         });
-    }
-
-    /**
-     * 拼接本地图片路径（Fragment内管理路径规则）
-     * @param imageName 图片名称（不含扩展名）
-     * @return 完整的本地图片路径
-     */
-    private String getImagePath(String imageName) {
-        // 从工具类获取解压根路径，拼接图片名称+扩展名（此处假设为png，可根据实际调整）
-        String unzipRootPath = imageUtil.getUnzipPath(requireContext());
-        return unzipRootPath + File.separator + imageName + ".webp";
     }
 
     /**

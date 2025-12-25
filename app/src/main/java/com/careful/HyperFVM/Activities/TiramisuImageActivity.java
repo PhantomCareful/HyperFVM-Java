@@ -14,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -21,8 +22,6 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import java.io.File;
 
 public class TiramisuImageActivity extends AppCompatActivity {
 
@@ -91,22 +90,10 @@ public class TiramisuImageActivity extends AppCompatActivity {
                 return;
             }
 
-            String imagePath = getImagePath((String) v.getTag());
             Intent intent = new Intent(this, ImageViewerActivity.class);
-            intent.putExtra("imgPath", imagePath);
+            intent.putExtra("imgPath", imageName);
             startActivity(intent);
         });
-    }
-
-    /**
-     * 拼接本地图片路径（Fragment内管理路径规则）
-     * @param imageName 图片名称（不含扩展名）
-     * @return 完整的本地图片路径
-     */
-    private String getImagePath(String imageName) {
-        // 从工具类获取解压根路径，拼接图片名称+扩展名（此处假设为png，可根据实际调整）
-        String unzipRootPath = imageUtil.getUnzipPath(this);
-        return unzipRootPath + File.separator + imageName + ".webp";
     }
 
     private void checkVersion() {
