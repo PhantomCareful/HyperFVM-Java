@@ -105,8 +105,9 @@ public class NewYear {
         String endDateDisplay = dates[1];   // 如"7月17日"
 
         // 转换为带年份的完整日期（用于计算）
-        String startDateFull = completeDateWithYear(startDateDisplay);
-        String endDateFull = completeDateWithYear(endDateDisplay);
+        String[] fullDates = completeDateWithYear(startDateDisplay, endDateDisplay);
+        String startDateFull = fullDates[0];
+        String endDateFull = fullDates[1];
 
         // 计算当前在活动中的天数
         int dayOfEvent = calculateDayOfEvent(startDateFull, endDateFull);
@@ -165,20 +166,50 @@ public class NewYear {
     }
 
     // 为日期补全年份（用于计算，不影响显示）
-    private String completeDateWithYear(String monthDay) {
+    // 为日期补全年份（处理跨年情况）
+    private String[] completeDateWithYear(String startMonthDay, String endMonthDay) {
         try {
             SimpleDateFormat sdfInput = new SimpleDateFormat("MM月dd日", Locale.CHINA);
-            Date date = sdfInput.parse(monthDay);
-            if (date != null) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
-                return new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA).format(calendar.getTime());
+            SimpleDateFormat sdfOutput = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
+
+            Date startDate = sdfInput.parse(startMonthDay);
+            Date endDate = sdfInput.parse(endMonthDay);
+
+            if (startDate == null || endDate == null) {
+                return new String[]{startMonthDay, endMonthDay};
             }
+
+            Calendar startCal = Calendar.getInstance();
+            startCal.setTime(startDate);
+
+            Calendar endCal = Calendar.getInstance();
+            endCal.setTime(endDate);
+
+            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+            // 设置开始日期年份为当前年
+            startCal.set(Calendar.YEAR, currentYear);
+
+            // 设置结束日期年份
+            // 如果结束日期在开始日期之前（跨年），结束日期年份为当前年+1
+            Calendar tempStart = (Calendar) startCal.clone();
+            Calendar tempEnd = (Calendar) endCal.clone();
+            tempEnd.set(Calendar.YEAR, currentYear);
+
+            if (tempEnd.before(tempStart)) {
+                endCal.set(Calendar.YEAR, currentYear + 1);
+            } else {
+                endCal.set(Calendar.YEAR, currentYear);
+            }
+
+            return new String[]{
+                    sdfOutput.format(startCal.getTime()),
+                    sdfOutput.format(endCal.getTime())
+            };
         } catch (ParseException e) {
             Log.e(TAG, "日期补全失败：" + e.getMessage());
+            return new String[]{startMonthDay, endMonthDay};
         }
-        return monthDay;
     }
 
     // 计算当前日期在活动时间段中的天数
