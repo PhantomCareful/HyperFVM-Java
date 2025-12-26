@@ -237,7 +237,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <!-- 第一个选项：GitHub -->
+                        <!-- 第1个选项：GitHub -->
                         <LinearLayout
                             android:id="@+id/about_app_github_container"
                             android:layout_width="match_parent"
@@ -248,17 +248,30 @@
                             android:background="?attr/selectableItemBackground"
                             android:padding="10dp">
 
-                            <!-- 左侧文字 -->
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/label_about_app_github"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_github_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_github_2"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
 
                             <!-- 右侧箭头 -->
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -268,7 +281,7 @@
 
                         </LinearLayout>
 
-                        <!-- 第二个选项：123盘更新 -->
+                        <!-- 第2个选项：123盘更新 -->
                         <LinearLayout
                             android:id="@+id/about_app_get_update_123pan_container"
                             android:layout_width="match_parent"
@@ -282,13 +295,28 @@
                             android:paddingTop="5dp"
                             android:paddingBottom="5dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/label_about_app_get_update_123pan"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_get_update_123pan_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_get_update_123pan_2"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -299,7 +327,99 @@
 
                         </LinearLayout>
 
-                        <!-- 第三个选项：更新日志 -->
+                        <!-- 第3个选项：哔哩哔哩 -->
+                        <LinearLayout
+                            android:id="@+id/about_app_bilibili_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_bilibili_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_bilibili_2"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_bilibili"
+                                app:tint="?attr/colorOnPrimaryContainer"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <!-- 第4个选项：腾讯频道 -->
+                        <LinearLayout
+                            android:id="@+id/about_app_tencent_channel_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_tencent_channel_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_tencent_channel_2"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_qq"
+                                app:tint="?attr/colorOnPrimaryContainer"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <!-- 第5个选项：更新日志 -->
                         <LinearLayout
                             android:id="@+id/about_app_see_update_log_history"
                             android:layout_width="match_parent"
@@ -310,13 +430,28 @@
                             android:background="?attr/selectableItemBackground"
                             android:padding="10dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/label_about_app_see_update_log_history"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_see_update_log_history_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_about_app_see_update_log_history_2"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
 
                             <ImageView
                                 android:layout_width="wrap_content"

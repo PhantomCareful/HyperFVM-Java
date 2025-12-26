@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,20 +61,47 @@ public class AboutAppFragment extends Fragment {
         clickToNewActivity(root.findViewById(R.id.label_check_update), CheckUpdateActivity.class);
 
         //跳转浏览器，前往作者的Github主页
-        jumpToGithub(root.findViewById(R.id.about_app_developer_container),
-                getResources().getString(R.string.title_about_app_developer_name_dialog),
-                getResources().getString(R.string.label_about_app_developer_name_url));
+        root.findViewById(R.id.about_app_developer_container).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_about_app_developer_name_dialog),
+                        getResources().getString(R.string.label_about_app_developer_name_url)
+                )
+        );
 
         //显示致谢名单
         getContentFromAssets(requireContext(), root.findViewById(R.id.about_app_thanks_list), "ThanksList.txt");
 
         //跳转浏览器，前往App的Github主页
-        jumpToGithub(root.findViewById(R.id.about_app_github_container),
-                getResources().getString(R.string.title_about_app_github_dialog),
-                getResources().getString(R.string.label_about_app_github_url));
+        root.findViewById(R.id.about_app_github_container).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_about_app_github_dialog),
+                        getResources().getString(R.string.label_about_app_github_url)
+                )
+        );
 
         //跳转浏览器，获取软件更新
-        getNewVersion(root);
+        root.findViewById(R.id.about_app_get_update_123pan_container).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_about_app_get_update_123pan_dialog),
+                        getResources().getString(R.string.label_about_app_get_update_123pan_url)
+                )
+        );
+
+        //跳转浏览器，前往作者B站主页
+        root.findViewById(R.id.about_app_bilibili_container).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_about_app_bilibili_dialog),
+                        getResources().getString(R.string.label_about_app_bilibili_url)
+                )
+        );
+
+        //跳转浏览器，前往App腾讯频道
+        root.findViewById(R.id.about_app_tencent_channel_container).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_about_app_tencent_channel_dialog),
+                        getResources().getString(R.string.label_about_app_tencent_channel_url)
+                )
+        );
 
         //查看历史更新日志
         clickToNewActivity(root.findViewById(R.id.about_app_see_update_log_history), UpdateLogHistoryActivity.class);
@@ -159,17 +185,6 @@ public class AboutAppFragment extends Fragment {
         TextView version_info = root.findViewById(R.id.version_info);
         String versionInfo = versionName + "(" + versionCode + ")" + versionSuffix;
         version_info.setText(versionInfo);
-    }
-
-    private void jumpToGithub(View view, String title, String url) {
-        view.setOnClickListener(v -> showDialogAndVisitUrl(title, url));
-    }
-
-    private void getNewVersion(View root) {
-        LinearLayout container = root.findViewById(R.id.about_app_get_update_123pan_container);
-        container.setOnClickListener(v ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_about_app_get_update_123pan_dialog),
-                        getResources().getString(R.string.label_about_app_get_update_123pan_url)));
     }
 
     private void showDialogAndVisitUrl(String title, String url) {

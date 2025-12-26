@@ -251,12 +251,23 @@
     <string name="label_version_1">1.X.X版本</string>
     <string name="label_version_2">2.X.X版本</string>
     <string name="label_more">更多👀</string>
-    <string name="label_about_app_github">项目地址\n本项目基于GPL3.0协议开源</string>
+    <string name="label_about_app_github_1">项目地址</string>
+    <string name="label_about_app_github_2">本项目基于GPL3.0协议开源</string>
     <string name="title_about_app_github_dialog">项目的Github主页</string>
     <string name="label_about_app_github_url">https://github.com/PhantomCareful/HyperFVM-Java</string>
-    <string name="label_about_app_get_update_123pan">获取历史版本\n有需要的同学可以自行下载</string>
+    <string name="label_about_app_get_update_123pan_1">获取历史版本</string>
+    <string name="label_about_app_get_update_123pan_2">有需要的同学可以自行下载</string>
     <string name="title_about_app_get_update_123pan_dialog">123云盘</string>
     <string name="label_about_app_get_update_123pan_url">https://www.123912.com/s/NRCdjv-xk2mH</string>
-    <string name="label_about_app_see_update_log_history">历史版本更新日志\n一个无人在意的小角落</string>
+    <string name="label_about_app_bilibili_1">哔哩哔哩</string>
+    <string name="label_about_app_bilibili_2">获取App最新开发动态</string>
+    <string name="title_about_app_bilibili_dialog">作者的哔哩哔哩主页</string>
+    <string name="label_about_app_bilibili_url">https://space.bilibili.com/360191288</string>
+    <string name="label_about_app_tencent_channel_1">腾讯频道</string>
+    <string name="label_about_app_tencent_channel_2">反馈&amp;建议请戳这里</string>
+    <string name="title_about_app_tencent_channel_dialog">腾讯频道：HyperFVM交流社区</string>
+    <string name="label_about_app_tencent_channel_url">https://pd.qq.com/s/el8bp2qra</string>
+    <string name="label_about_app_see_update_log_history_1">历史版本更新日志</string>
+    <string name="label_about_app_see_update_log_history_2">一个无人在意的小角落</string>
     <string name="many_n">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
 </resources>
