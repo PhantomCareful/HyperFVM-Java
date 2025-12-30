@@ -246,9 +246,9 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             /*
               得到了初始化时缩放的比例
              */
-            mInitScale = scale;
-            mMaxScale = mInitScale * 8;
-            mMidScale = mInitScale * 4;
+            mInitScale = (float) (scale / 1.5);
+            mMaxScale = mInitScale * 16;
+            mMidScale = mInitScale * 8;
 
             // 将图片移动至控件的中间（垂直居中要考虑顶部和底部偏移）
             int dx = width / 2 - dw / 2;
