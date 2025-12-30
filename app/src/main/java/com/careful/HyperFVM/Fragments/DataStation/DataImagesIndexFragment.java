@@ -106,7 +106,8 @@ public class DataImagesIndexFragment extends Fragment {
     private void initViews(View root) {
         // 防御卡数据图
         setupContainer(root, R.id.data_images_index_card_0_1_container, "data_image_card_0_1", false);
-        setupContainer(root, R.id.data_images_index_card_0_2_container, "data_image_card_0_2", false);
+        setupContainer(root, R.id.data_images_index_card_0_2_1_container, "data_image_card_0_2_1", false);
+        setupContainer(root, R.id.data_images_index_card_0_2_2_container, "data_image_card_0_2_2", false);
         setupContainer(root, R.id.data_images_index_card_0_3_container, "data_image_card_0_3", false);
         setupContainer(root, R.id.data_images_index_card_1_container, "data_image_card_1", false);
         setupContainer(root, R.id.data_images_index_card_2_container, "data_image_card_2", false);

@@ -81,7 +81,7 @@ public class ImageViewerActivity extends AppCompatActivity {
                     .load(imgFile)
                     .dontTransform() // 不进行任何变换，保持原图
                     .diskCacheStrategy(DiskCacheStrategy.NONE) // 不缓存，避免占用磁盘空间
-                    .skipMemoryCache(false) // 不缓存到内存，避免OOM
+                    .skipMemoryCache(true) // 不缓存到内存，避免OOM
                     .into(zoomImageView);
 
             // 延迟一帧执行，确保图片已测量

@@ -52,6 +52,8 @@ public class DatabaseInfo {
      * settings表增加“自动任务-增强”
      * DB_VERSION = 26
      * 让融合卡、金卡数据支持Markdown显示
+     * DB_VERSION = 26
+     * 修复后裔图片显示错误的问题
      */
-    public static final int DB_VERSION = 26;
+    public static final int DB_VERSION = 27;
 }

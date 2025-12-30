@@ -20,7 +20,8 @@
     <string name="data_images_index">数据图合集</string>
     <string name="label_data_images_index_card">防御卡数据图(By So陌路の)</string>
     <string name="text_data_images_index_card_0_1">0–1.新卡速递</string>
-    <string name="text_data_images_index_card_0_2">0–2.防御卡名称</string>
+    <string name="text_data_images_index_card_0_2_1">0–2.防御卡名称(Part1)</string>
+    <string name="text_data_images_index_card_0_2_2">0–2.防御卡名称(Part2)</string>
     <string name="text_data_images_index_card_0_3">0–3.神级进化</string>
     <string name="text_data_images_index_card_1">1.管线类</string>
     <string name="text_data_images_index_card_2">2.投掷类</string>
