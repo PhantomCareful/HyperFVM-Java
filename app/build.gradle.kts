@@ -98,6 +98,7 @@ dependencies {
     //做卡片布局用的
     implementation(libs.androidx.cardview)
 
+    //Glide库，用来加载图片
     implementation(libs.glide)
 
     //解析Http网页用的

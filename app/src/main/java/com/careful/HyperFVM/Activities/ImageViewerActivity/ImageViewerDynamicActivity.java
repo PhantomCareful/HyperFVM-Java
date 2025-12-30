@@ -3,8 +3,6 @@ package com.careful.HyperFVM.Activities.ImageViewerActivity;
 import static android.content.ContentValues.TAG;
 
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,6 +11,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -82,16 +82,13 @@ public class ImageViewerDynamicActivity extends AppCompatActivity {
 
         // 3. 直接加载图片（尺寸小，无需采样）
         try {
-            Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
-            if (bitmap == null) {
-                throw new Exception("图片解码失败（格式不支持/文件损坏）");
-            }
+            Glide.with(this)
+                    .load(imgFile)
+                    .dontTransform() // 不进行任何变换，保持原图
+                    .diskCacheStrategy(DiskCacheStrategy.NONE) // 不缓存，避免占用磁盘空间
+                    .skipMemoryCache(false) // 不缓存到内存，避免OOM
+                    .into(zoomImageView);
 
-            // 核心：给ZoomImageView设置图片（必须用setImageBitmap）
-            zoomImageView.setImageBitmap(bitmap);
-
-            // 设置顶部和底部偏移量
-            zoomImageView.setImageBitmap(bitmap);
             // 延迟一帧执行，确保图片已测量
             zoomImageView.post(() -> zoomImageView.setOffsets(500, 500));
 

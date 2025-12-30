@@ -246,7 +246,7 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
             /*
               得到了初始化时缩放的比例
              */
-            mInitScale = (float) (scale / 1.5);
+            mInitScale = scale / 2;
             mMaxScale = mInitScale * 16;
             mMidScale = mInitScale * 8;
 
