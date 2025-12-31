@@ -185,20 +185,31 @@ public class NewYear {
             Calendar endCal = Calendar.getInstance();
             endCal.setTime(endDate);
 
-            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            Calendar currentCal = Calendar.getInstance();
+            int currentYear = currentCal.get(Calendar.YEAR);
 
-            // 设置开始日期年份为当前年
-            startCal.set(Calendar.YEAR, currentYear);
+            // 判断是否是跨年活动（开始月份大于结束月份）
+            boolean isCrossYear = startCal.get(Calendar.MONTH) > endCal.get(Calendar.MONTH);
 
-            // 设置结束日期年份
-            // 如果结束日期在开始日期之前（跨年），结束日期年份为当前年+1
-            Calendar tempStart = (Calendar) startCal.clone();
-            Calendar tempEnd = (Calendar) endCal.clone();
-            tempEnd.set(Calendar.YEAR, currentYear);
+            if (isCrossYear) {
+                // 跨年活动
+                // 当前月份小于等于结束月份，说明还在新年（比如1月1日 - 1月8日期间）
+                // 那么开始日期应该是去年，结束日期是今年
+                int currentMonth = currentCal.get(Calendar.MONTH);
+                int endMonth = endCal.get(Calendar.MONTH);
 
-            if (tempEnd.before(tempStart)) {
-                endCal.set(Calendar.YEAR, currentYear + 1);
+                if (currentMonth <= endMonth) {
+                    // 当前在活动后半段（新年部分）
+                    startCal.set(Calendar.YEAR, currentYear - 1);
+                    endCal.set(Calendar.YEAR, currentYear);
+                } else {
+                    // 当前在活动前半段（年底部分）
+                    startCal.set(Calendar.YEAR, currentYear);
+                    endCal.set(Calendar.YEAR, currentYear + 1);
+                }
             } else {
+                // 非跨年活动，简单处理为同一年
+                startCal.set(Calendar.YEAR, currentYear);
                 endCal.set(Calendar.YEAR, currentYear);
             }
 
