@@ -15,7 +15,7 @@
     <!--数据站-->
     <string name="label_data_img_viewer">数据图查看器👀</string>
     <string name="card_data_index">防御卡目录</string>
-    <string name="card_data_search_tips">⭐数据库日期：20251218\n⭐前排提醒：卡片冷却默认7秒，体力默认50，如有不同会单独标出</string>
+    <string name="card_data_search_tips">⭐数据库日期：20260101\n⭐前排提醒：卡片冷却默认7秒，体力默认50，如有不同会单独标出</string>
     <string name="card_data_auxiliary_list">增幅卡名单</string>
     <string name="data_images_index">数据图合集</string>
     <string name="label_data_images_index_card">防御卡数据图(By So陌路の)</string>

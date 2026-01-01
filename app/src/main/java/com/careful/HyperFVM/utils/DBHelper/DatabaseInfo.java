@@ -52,8 +52,10 @@ public class DatabaseInfo {
      * settings表增加“自动任务-增强”
      * DB_VERSION = 26
      * 让融合卡、金卡数据支持Markdown显示
-     * DB_VERSION = 26
+     * DB_VERSION = 27
      * 修复后裔图片显示错误的问题
+     * DB_VERSION = 28
+     * 防御卡数据新增融合耗油双菇、至尊水神
      */
-    public static final int DB_VERSION = 27;
+    public static final int DB_VERSION = 28;
 }

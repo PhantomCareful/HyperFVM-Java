@@ -1269,7 +1269,7 @@
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
                                 android:scaleType="fitStart"
-                                android:src="@drawable/card_data_index_6_1_5_2"/>
+                                android:src="@drawable/card_data_index_6_1_5_3"/>
 
                         </LinearLayout>
 
