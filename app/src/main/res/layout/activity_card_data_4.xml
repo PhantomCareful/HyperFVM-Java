@@ -779,9 +779,9 @@
                                 android:scrollbars="none">
 
                                 <GridLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:columnCount="18">
+                                    android:columnCount="12">
 
                                     <ImageView
                                         android:id="@+id/decompose_image_id_card_1"
@@ -813,16 +813,6 @@
                                         android:scaleType="fitCenter"
                                         android:layout_gravity="center"
                                         android:src="@drawable/card_data_index_1_1_4_2"/>
-                                    <ImageView
-                                        android:id="@+id/decompose_image_id_card_4"
-                                        android:layout_width="40dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitCenter"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/card_data_index_1_1_4_3"/>
                                     <ImageView
                                         android:id="@+id/decompose_image_id_skill_1"
                                         android:layout_width="40dp"
@@ -884,16 +874,6 @@
                                         android:layout_gravity="center"
                                         android:src="@drawable/card_data_decompose_1_1_4_transfer_1_b"/>
                                     <ImageView
-                                        android:id="@+id/decompose_image_id_transfer_1_c"
-                                        android:layout_width="40dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitCenter"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/card_data_decompose_1_1_4_transfer_1_c"/>
-                                    <ImageView
                                         android:id="@+id/decompose_image_id_transfer_2_a"
                                         android:layout_width="40dp"
                                         android:layout_height="wrap_content"
@@ -923,46 +903,6 @@
                                         android:scaleType="fitCenter"
                                         android:layout_gravity="center"
                                         android:src="@drawable/card_data_decompose_1_1_4_transfer_2_c"/>
-                                    <ImageView
-                                        android:id="@+id/decompose_image_id_transfer_3_a"
-                                        android:layout_width="40dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitCenter"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/card_data_decompose_1_1_4_transfer_3_a"/>
-                                    <ImageView
-                                        android:id="@+id/decompose_image_id_transfer_3_b"
-                                        android:layout_width="40dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitCenter"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/card_data_decompose_1_1_4_transfer_3_b"/>
-                                    <ImageView
-                                        android:id="@+id/decompose_image_id_transfer_3_c"
-                                        android:layout_width="40dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitCenter"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/card_data_decompose_1_1_4_transfer_3_c"/>
-                                    <ImageView
-                                        android:id="@+id/decompose_image_id_compose"
-                                        android:layout_width="40dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitCenter"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/card_data_decompose_1_1_4_compose"/>
 
                                     <TextView
                                         android:id="@+id/get_card_1"
@@ -986,16 +926,6 @@
                                         android:gravity="center"/>
                                     <TextView
                                         android:id="@+id/get_card_3"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="🚫"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/get_card_4"
                                         android:layout_width="40dp"
                                         android:layout_height="50dp"
                                         android:layout_marginStart="5dp"
@@ -1065,16 +995,6 @@
                                         android:textColor="?attr/colorOnPrimaryContainer"
                                         android:gravity="center"/>
                                     <TextView
-                                        android:id="@+id/get_transfer_1_c"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="30"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
                                         android:id="@+id/get_transfer_2_a"
                                         android:layout_width="40dp"
                                         android:layout_height="50dp"
@@ -1101,46 +1021,6 @@
                                         android:layout_marginStart="5dp"
                                         android:layout_marginEnd="5dp"
                                         android:text="45"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/get_transfer_3_a"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="🚫"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/get_transfer_3_b"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="90"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/get_transfer_3_c"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="90"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/get_compose"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="30"
                                         android:textSize="20sp"
                                         android:textColor="?attr/colorOnPrimaryContainer"
                                         android:gravity="center"/>
@@ -1172,16 +1052,6 @@
                                         android:layout_marginStart="5dp"
                                         android:layout_marginEnd="5dp"
                                         android:text="55"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/decompose_card_4"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="🚫"
                                         android:textSize="20sp"
                                         android:textColor="?attr/colorOnPrimaryContainer"
                                         android:gravity="center"/>
@@ -1246,16 +1116,6 @@
                                         android:textColor="?attr/colorOnPrimaryContainer"
                                         android:gravity="center"/>
                                     <TextView
-                                        android:id="@+id/decompose_transfer_1_c"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="10"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
                                         android:id="@+id/decompose_transfer_2_a"
                                         android:layout_width="40dp"
                                         android:layout_height="50dp"
@@ -1282,46 +1142,6 @@
                                         android:layout_marginStart="5dp"
                                         android:layout_marginEnd="5dp"
                                         android:text="15"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/decompose_transfer_3_a"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="🚫"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/decompose_transfer_3_b"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="🚫"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/decompose_transfer_3_c"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="🚫"
-                                        android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"
-                                        android:gravity="center"/>
-                                    <TextView
-                                        android:id="@+id/decompose_compose"
-                                        android:layout_width="40dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:text="10"
                                         android:textSize="20sp"
                                         android:textColor="?attr/colorOnPrimaryContainer"
                                         android:gravity="center"/>

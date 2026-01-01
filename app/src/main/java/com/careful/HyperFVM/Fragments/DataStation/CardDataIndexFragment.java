@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
@@ -116,6 +117,8 @@ public class CardDataIndexFragment extends Fragment {
                                 new Intent(requireActivity(), CardData_2_Activity.class);
                         case "card_data_3" ->
                                 new Intent(requireActivity(), CardData_3_Activity.class);
+                        case "card_data_4" ->
+                                new Intent(requireActivity(), CardData_4_Activity.class);
                         default -> null;
                     };
                     if (intent != null) {

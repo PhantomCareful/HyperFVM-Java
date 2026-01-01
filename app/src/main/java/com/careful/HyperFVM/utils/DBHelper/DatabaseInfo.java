@@ -56,6 +56,8 @@ public class DatabaseInfo {
      * 修复后裔图片显示错误的问题
      * DB_VERSION = 28
      * 防御卡数据新增融合耗油双菇、至尊水神
+     * DB_VERSION = 29
+     * 让星座卡数据支持Markdown显示
      */
-    public static final int DB_VERSION = 28;
+    public static final int DB_VERSION = 29;
 }

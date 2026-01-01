@@ -22,7 +22,7 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class CardData_3_Activity extends AppCompatActivity {
+public class CardData_4_Activity extends AppCompatActivity {
     private DBHelper dbHelper;
 
     @Override
@@ -36,7 +36,7 @@ public class CardData_3_Activity extends AppCompatActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_card_data_3);
+        setContentView(R.layout.activity_card_data_4);
         setTopAppBarTitle("防御卡数据查询");
 
         // 设置顶栏模糊
@@ -132,7 +132,7 @@ public class CardData_3_Activity extends AppCompatActivity {
             setTextToView(R.id.skill_8, getStringFromCursor(cursor, "skill_8"));
 
             // 分解&兑换信息
-            setTextToView(R.id.decompose_and_get, "分解&兑换：神谕之石");
+            setTextToView(R.id.decompose_and_get, getStringFromCursor(cursor, "decompose_item"));
 
             imageView = findViewById(R.id.decompose_image_id_card_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1"));
@@ -154,15 +154,6 @@ public class CardData_3_Activity extends AppCompatActivity {
 
             imageView = findViewById(R.id.decompose_image_id_card_3);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3"));
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            imageView.setImageResource(imageResId);
-
-            imageView = findViewById(R.id.decompose_image_id_card_4);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_4"));
             imageResId = getResources().getIdentifier(
                     imageIdStr,
                     "drawable",
@@ -224,15 +215,6 @@ public class CardData_3_Activity extends AppCompatActivity {
             );
             imageView.setImageResource(imageResId);
 
-            imageView = findViewById(R.id.decompose_image_id_transfer_1_c);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_c"));
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            imageView.setImageResource(imageResId);
-
             imageView = findViewById(R.id.decompose_image_id_transfer_2_a);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a"));
             imageResId = getResources().getIdentifier(
@@ -260,78 +242,30 @@ public class CardData_3_Activity extends AppCompatActivity {
             );
             imageView.setImageResource(imageResId);
 
-            imageView = findViewById(R.id.decompose_image_id_transfer_3_a);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_a"));
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            imageView.setImageResource(imageResId);
-
-            imageView = findViewById(R.id.decompose_image_id_transfer_3_b);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_b"));
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            imageView.setImageResource(imageResId);
-
-            imageView = findViewById(R.id.decompose_image_id_transfer_3_c);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_c"));
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            imageView.setImageResource(imageResId);
-
-            imageView = findViewById(R.id.decompose_image_id_compose);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_compose"));
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            imageView.setImageResource(imageResId);
-
             setTextToView(R.id.decompose_card_1, getStringFromCursor(cursor, "decompose_card_1"));
             setTextToView(R.id.decompose_card_2, getStringFromCursor(cursor, "decompose_card_2"));
             setTextToView(R.id.decompose_card_3, getStringFromCursor(cursor, "decompose_card_3"));
-            setTextToView(R.id.decompose_card_4, getStringFromCursor(cursor, "decompose_card_4"));
             setTextToView(R.id.decompose_skill_1, getStringFromCursor(cursor, "decompose_skill_1"));
             setTextToView(R.id.decompose_skill_2, getStringFromCursor(cursor, "decompose_skill_2"));
             setTextToView(R.id.decompose_skill_3, getStringFromCursor(cursor, "decompose_skill_3"));
             setTextToView(R.id.decompose_skill_4, getStringFromCursor(cursor, "decompose_skill_4"));
             setTextToView(R.id.decompose_transfer_1_a, getStringFromCursor(cursor, "decompose_transfer_1_a"));
             setTextToView(R.id.decompose_transfer_1_b, getStringFromCursor(cursor, "decompose_transfer_1_b"));
-            setTextToView(R.id.decompose_transfer_1_c, getStringFromCursor(cursor, "decompose_transfer_1_c"));
             setTextToView(R.id.decompose_transfer_2_a, getStringFromCursor(cursor, "decompose_transfer_2_a"));
             setTextToView(R.id.decompose_transfer_2_b, getStringFromCursor(cursor, "decompose_transfer_2_b"));
             setTextToView(R.id.decompose_transfer_2_c, getStringFromCursor(cursor, "decompose_transfer_2_c"));
-            setTextToView(R.id.decompose_transfer_3_a, getStringFromCursor(cursor, "decompose_transfer_3_a"));
-            setTextToView(R.id.decompose_transfer_3_b, getStringFromCursor(cursor, "decompose_transfer_3_b"));
-            setTextToView(R.id.decompose_transfer_3_c, getStringFromCursor(cursor, "decompose_transfer_3_c"));
-            setTextToView(R.id.decompose_compose, getStringFromCursor(cursor, "decompose_compose"));
             setTextToView(R.id.get_card_1, getStringFromCursor(cursor, "get_card_1"));
             setTextToView(R.id.get_card_2, getStringFromCursor(cursor, "get_card_2"));
             setTextToView(R.id.get_card_3, getStringFromCursor(cursor, "get_card_3"));
-            setTextToView(R.id.get_card_4, getStringFromCursor(cursor, "get_card_4"));
             setTextToView(R.id.get_skill_1, getStringFromCursor(cursor, "get_skill_1"));
             setTextToView(R.id.get_skill_2, getStringFromCursor(cursor, "get_skill_2"));
             setTextToView(R.id.get_skill_3, getStringFromCursor(cursor, "get_skill_3"));
             setTextToView(R.id.get_skill_4, getStringFromCursor(cursor, "get_skill_4"));
             setTextToView(R.id.get_transfer_1_a, getStringFromCursor(cursor, "get_transfer_1_a"));
             setTextToView(R.id.get_transfer_1_b, getStringFromCursor(cursor, "get_transfer_1_b"));
-            setTextToView(R.id.get_transfer_1_c, getStringFromCursor(cursor, "get_transfer_1_c"));
             setTextToView(R.id.get_transfer_2_a, getStringFromCursor(cursor, "get_transfer_2_a"));
             setTextToView(R.id.get_transfer_2_b, getStringFromCursor(cursor, "get_transfer_2_b"));
             setTextToView(R.id.get_transfer_2_c, getStringFromCursor(cursor, "get_transfer_2_c"));
-            setTextToView(R.id.get_transfer_3_a, getStringFromCursor(cursor, "get_transfer_3_a"));
-            setTextToView(R.id.get_transfer_3_b, getStringFromCursor(cursor, "get_transfer_3_b"));
-            setTextToView(R.id.get_transfer_3_c, getStringFromCursor(cursor, "get_transfer_3_c"));
-            setTextToView(R.id.get_compose, getStringFromCursor(cursor, "get_compose"));
 
             // 其他信息
             if (getStringFromCursor(cursor, "additional_info").equals("无")) {
