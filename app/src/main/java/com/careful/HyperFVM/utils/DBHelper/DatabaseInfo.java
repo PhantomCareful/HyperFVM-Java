@@ -58,6 +58,8 @@ public class DatabaseInfo {
      * 防御卡数据新增融合耗油双菇、至尊水神
      * DB_VERSION = 29
      * 让星座卡数据支持Markdown显示
+     * DB_VERSION = 30
+     * 让鸡年生肖卡数据支持Markdown显示
      */
-    public static final int DB_VERSION = 29;
+    public static final int DB_VERSION = 30;
 }

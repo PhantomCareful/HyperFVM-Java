@@ -132,7 +132,7 @@ public class CardData_4_Activity extends AppCompatActivity {
             setTextToView(R.id.skill_8, getStringFromCursor(cursor, "skill_8"));
 
             // 分解&兑换信息
-            setTextToView(R.id.decompose_and_get, getStringFromCursor(cursor, "decompose_item"));
+            setTextToView(R.id.decompose_and_get, "分解&兑换：" + getStringFromCursor(cursor, "decompose_item"));
 
             imageView = findViewById(R.id.decompose_image_id_card_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1"));
