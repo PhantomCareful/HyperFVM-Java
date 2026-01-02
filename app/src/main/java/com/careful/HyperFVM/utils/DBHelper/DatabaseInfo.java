@@ -60,6 +60,8 @@ public class DatabaseInfo {
      * 让星座卡数据支持Markdown显示
      * DB_VERSION = 30
      * 让鸡年生肖卡数据支持Markdown显示
+     * DB_VERSION = 31
+     * 让蛇年生肖卡数据支持Markdown显示
      */
-    public static final int DB_VERSION = 30;
+    public static final int DB_VERSION = 31;
 }
