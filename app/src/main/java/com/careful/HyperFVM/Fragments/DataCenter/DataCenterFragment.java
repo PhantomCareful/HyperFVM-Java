@@ -25,6 +25,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.DataCenter.CardDataAuxiliaryListActivity;
+import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
@@ -122,6 +123,12 @@ public class DataCenterFragment extends Fragment {
 
         // 从仓库获取B站官方的最新公告
         getLatestBilibiliAnnouncement();
+
+        // 防御卡全能数据库
+        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
+            startActivity(intent);
+        });
 
         // 增幅卡名单
         root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> {

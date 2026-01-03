@@ -25,6 +25,10 @@
         android:theme="@style/Theme.HyperFVMJava"
         android:usesCleartextTraffic="true"
         tools:targetApi="upside_down_cake">
+
+        <activity
+            android:name=".Activities.DataCenter.CardDataIndexActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.DataCenter.CardDataAuxiliaryListActivity"
             android:exported="false" />
