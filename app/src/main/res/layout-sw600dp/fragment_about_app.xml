@@ -212,17 +212,17 @@
                 android:clipToPadding="false">
 
                 <TextView
-                    android:id="@+id/about_app_label_using_instruction"
+                    android:id="@+id/about_app_label_some_necessary_things"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@string/label_using_instruction"
+                    android:text="@string/label_some_necessary_things"
                     android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/about_app_using_instruction_container"
+                    android:id="@+id/about_app_some_necessary_things_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -239,7 +239,7 @@
 
                         <!-- 第1个选项：使用说明 -->
                         <LinearLayout
-                            android:id="@+id/about_app_see_using_instruction_container"
+                            android:id="@+id/about_app_using_instruction_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -258,14 +258,58 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/label_see_using_instruction_1"
+                                    android:text="@string/label_using_instruction_1"
                                     android:textSize="20sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"
                                     android:textStyle="bold"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/label_see_using_instruction_2"
+                                    android:text="@string/label_using_instruction_2"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <!-- 第2个选项：设置 -->
+                        <LinearLayout
+                            android:id="@+id/about_app_settings_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_settings_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_settings_2"
                                     android:textSize="15sp"
                                     android:textColor="?attr/colorOnPrimaryContainer"/>
 

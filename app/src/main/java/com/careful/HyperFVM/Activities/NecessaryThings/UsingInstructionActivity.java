@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities;
+package com.careful.HyperFVM.Activities.NecessaryThings;
 
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 

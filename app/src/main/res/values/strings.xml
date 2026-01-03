@@ -247,13 +247,13 @@
     <string name="title_about_app_developer_name_dialog">作者的Github主页</string>
     <string name="label_about_app_developer_name_url">https://github.com/PhantomCareful</string>
     <string name="label_thanks">特别感谢(排名不分先后)</string>
-    <string name="label_update_log_history">全部更新日志📕</string>
-    <string name="label_version_0">1.0.0以前的版本</string>
-    <string name="label_version_1">1.X.X版本</string>
-    <string name="label_version_2">2.X.X版本</string>
+    <string name="label_some_necessary_things">一些必要的东西🤔</string>
     <string name="label_using_instruction">使用说明🤔</string>
-    <string name="label_see_using_instruction_1">使用说明</string>
-    <string name="label_see_using_instruction_2">阅读以快速了解HyperFVM</string>
+    <string name="label_using_instruction_1">使用说明</string>
+    <string name="label_using_instruction_2">阅读以快速了解HyperFVM</string>
+    <string name="label_settings_new">App设置⚙</string>
+    <string name="label_settings_1">App设置</string>
+    <string name="label_settings_2">个性化您的HyperFVM</string>
     <string name="label_more">更多👀</string>
     <string name="label_about_app_github_1">项目地址</string>
     <string name="label_about_app_github_2">本项目基于GPL3.0协议开源</string>
@@ -273,5 +273,9 @@
     <string name="label_about_app_tencent_channel_url">https://pd.qq.com/s/el8bp2qra</string>
     <string name="label_about_app_see_update_log_history_1">历史版本更新日志</string>
     <string name="label_about_app_see_update_log_history_2">一个无人在意的小角落</string>
+    <string name="label_update_log_history">全部更新日志📕</string>
+    <string name="label_version_0">1.0.0以前的版本</string>
+    <string name="label_version_1">1.X.X版本</string>
+    <string name="label_version_2">2.X.X版本</string>
     <string name="many_n">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
 </resources>

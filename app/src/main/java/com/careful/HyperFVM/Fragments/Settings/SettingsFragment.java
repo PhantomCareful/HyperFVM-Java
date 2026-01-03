@@ -38,7 +38,7 @@ public class SettingsFragment extends Fragment {
     private DBHelper dbHelper;
     private AutoTaskNotificationManager autoTaskNotificationManager;
 
-    // 新增：提前注册通知权限请求器
+    // 提前注册通知权限请求器
     private ActivityResultLauncher<String> notificationPermissionLauncher;
 
     private static final String CONTENT_IS_DYNAMIC_COLOR = "主题-是否动态取色";
@@ -61,7 +61,7 @@ public class SettingsFragment extends Fragment {
 
         setTopAppBarTitle(getResources().getString(R.string.label_settings));
 
-        // 初始化数据库帮助类
+        // 初始化数据库类
         dbHelper = new DBHelper(requireContext());
 
         // 初始化权限授予状态
