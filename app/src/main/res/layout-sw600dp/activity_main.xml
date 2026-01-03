@@ -83,25 +83,6 @@
 
         </eightbitlab.com.blurview.BlurView>
 
-        <!-- TabLayout（在ToolBar下方+导航栏右侧，悬浮在Fragment上方） -->
-        <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurViewTopTabLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:blurOverlayColor="@color/blur_overlay_color"
-            app:layout_constraintLeft_toRightOf="@+id/blurViewNavView"
-            app:layout_constraintTop_toBottomOf="@+id/blurViewTopAppBar"
-            app:layout_constraintRight_toRightOf="parent">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/Tab_Layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:tabMode="scrollable" />
-
-        </eightbitlab.com.blurview.BlurView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

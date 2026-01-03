@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
 
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -202,9 +201,6 @@ public class MainActivity extends AppCompatActivity {
         int currentIndex = menuOrder.indexOf(currentNavId);
         int targetIndex = menuOrder.indexOf(targetId);
 
-        // 设置Tab栏是否可见
-        setTabLayoutVisibility(targetId);
-
         NavOptions.Builder navOptions = new NavOptions.Builder();
 
         if (targetIndex > currentIndex) {
@@ -244,46 +240,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setTabLayoutVisibility(int navId) {
-        // 获取TabLayout并添加淡入淡出动画
-        View tabLayout = findViewById(R.id.Tab_Layout);
-        View blurViewTopTabLayout = findViewById(R.id.blurViewTopTabLayout);
-        if (tabLayout != null) {
-            if (navId == R.id.navigation_data_station) {
-                // 淡入动画
-                tabLayout.setVisibility(View.VISIBLE);
-                tabLayout.animate()
-                        .alpha(1f)
-                        .setDuration(500)
-                        .start();
-                blurViewTopTabLayout.setVisibility(View.VISIBLE);
-                blurViewTopTabLayout.animate()
-                        .alpha(1f)
-                        .setDuration(500)
-                        .start();
-            } else {
-                // 淡出动画，结束后隐藏
-                tabLayout.animate()
-                        .alpha(0f)
-                        .setDuration(500)
-                        .withEndAction(() -> tabLayout.setVisibility(View.GONE))
-                        .start();
-                blurViewTopTabLayout.animate()
-                        .alpha(0f)
-                        .setDuration(500)
-                        .withEndAction(() -> blurViewTopTabLayout.setVisibility(View.GONE))
-                        .start();
-            }
-        }
-    }
-
     /**
      * 配置导航栏（适配PAD左侧/手机底部）
      */
     private void setupNavView() {
-        // 设置Tab栏是否可见
-        setTabLayoutVisibility(currentNavId);
-
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_data_station,
                 R.id.navigation_tools,
@@ -325,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
         blurUtil.setBlur(findViewById(R.id.blurViewNavView));
-        blurUtil.setBlur(findViewById(R.id.blurViewTopTabLayout));
     }
 
     /**

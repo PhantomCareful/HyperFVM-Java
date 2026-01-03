@@ -61,24 +61,6 @@
         </eightbitlab.com.blurview.BlurView>
 
         <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurViewTopTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/blurViewTopAppBar"
-            app:blurOverlayColor="@color/blur_overlay_color"
-            tools:ignore="MissingConstraints">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/Tab_Layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:tabMode="scrollable"
-                tools:ignore="MissingConstraints" />
-
-        </eightbitlab.com.blurview.BlurView>
-
-        <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewNavView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

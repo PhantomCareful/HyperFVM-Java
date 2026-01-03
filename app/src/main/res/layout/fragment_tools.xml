@@ -98,7 +98,6 @@
                     <include layout="@layout/card_meishi_wechat"/>
                     <include layout="@layout/card_fertilization_task"/>
                     <include layout="@layout/card_new_year"/>
-                    <include layout="@layout/card_tiramisu_image"/>
 
                 </LinearLayout>
 

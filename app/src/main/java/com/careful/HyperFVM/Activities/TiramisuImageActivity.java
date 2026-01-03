@@ -49,7 +49,7 @@ public class TiramisuImageActivity extends AppCompatActivity {
         }
 
         // 设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.title_tools_tiramisu_image));
+        setTopAppBarTitle(getResources().getString(R.string.title_data_center_tiramisu_image));
         // 添加顶栏模糊
         setupBlurEffect();
 

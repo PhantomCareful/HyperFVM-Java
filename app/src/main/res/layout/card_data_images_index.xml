@@ -14,7 +14,7 @@
         app:cardElevation="10dp">
 
         <LinearLayout
-            android:id="@+id/DataCenter_TiramisuImage_Container"
+            android:id="@+id/DataCenter_DataImagesIndex_Container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -33,7 +33,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/title_data_center_tiramisu_image"
+                    android:text="@string/title_data_center_data_images_index"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:textColor="?attr/colorOnPrimaryContainer"/>
@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/data_center_image_tiramisu"
+                    android:src="@drawable/data_center_image_data_images_index"
                     android:scaleType="fitXY"
                     tools:ignore="ContentDescription" />
 
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_data_center_tiramisu_image"
+                android:text="@string/label_data_center_data_images_index"
                 android:textSize="18sp"
                 android:textColor="?attr/colorOnPrimaryContainer"/>
 

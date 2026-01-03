@@ -45,7 +45,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/tools_image_tiramisu"
+                    android:src="@drawable/data_center_image_tiramisu"
                     android:scaleType="fitCenter"
                     tools:ignore="ContentDescription" />
 

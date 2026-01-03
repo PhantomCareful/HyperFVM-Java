@@ -6,7 +6,7 @@
     app:startDestination="@+id/navigation_data_station">
     <fragment
         android:id="@+id/navigation_data_station"
-        android:name="com.careful.HyperFVM.Fragments.DataStation.DataStationFragment"
+        android:name="com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment"
         android:label="@string/label_data_station"
         tools:layout="@layout/fragment_data_station" />
 

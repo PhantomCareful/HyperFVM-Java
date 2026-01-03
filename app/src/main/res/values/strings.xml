@@ -2,13 +2,22 @@
     <!--总体-->
     <string name="app_name">HyperFVM</string>
     <string name="hyper_fvm">HyperFVM</string>
-    <string name="label_data_station">数据站🤏</string>
-    <string name="label_data_station_navigation">数据站</string>
+    <string name="label_data_station">融合数据中心🤏</string>
+    <string name="label_data_station_navigation">融合数据中心</string>
     <string name="label_tools">工具箱🤟</string>
     <string name="label_tools_navigation">工具箱</string>
     <string name="label_about_app">关于软件🫴</string>
     <string name="label_about_app_navigation">关于</string>
     <!--数据站-->
+    <string name="title_data_center_about_data">数据相关👀</string>
+    <string name="title_data_center_card_data_index">防御卡全能数据库</string>
+    <string name="label_data_center_card_data_index">😈装入了陌路防御卡数据图的所有内容\n👉点击开始查询</string>
+    <string name="title_data_center_card_data_auxiliary_list">增幅卡名单</string>
+    <string name="label_data_center_card_data_auxiliary_list">😈快捷查看名单类增幅卡的增幅名单\n👉点击开始查询</string>
+    <string name="title_data_center_data_images_index">数据图合集</string>
+    <string name="label_data_center_data_images_index">😈目标是打造成最全面的数据图合集\n👉点击去查看</string>
+    <string name="title_data_center_tiramisu_image">米鼠的图</string>
+    <string name="label_data_center_tiramisu_image">😈人工收集提拉米鼠生成的部分图片\n👉点击去查看</string>
     <string name="label_data_img_viewer">数据图查看器👀</string>
     <string name="card_data_index">防御卡目录</string>
     <string name="card_data_search_tips">⭐数据库日期：20260101\n⭐前排提醒：卡片冷却默认7秒，体力默认50，如有不同会单独标出</string>
@@ -158,8 +167,6 @@
     <string name="label_tools_bilibili_fvm">👉点击跳转B站美食大战老鼠官方的最新更新公告</string>
     <string name="title_tools_bilibili_fvm_dialog">B站最新更新公告</string>
     <string name="title_tools_new_year">美食悬赏</string>
-    <string name="title_tools_tiramisu_image">米鼠的图</string>
-    <string name="label_tools_tiramisu_image">人工收集提拉米鼠生成的部分图片，周周更新😎😎\n👉点击查看</string>
     <string name="text_tools_tiramisu_image_1">周氪图(来自官方公告)</string>
     <string name="text_tools_tiramisu_image_2">日氪图</string>
     <string name="text_tools_tiramisu_image_3_1">消费图(0–100W)</string>
