@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         // 初始化菜单顺序（必须与bottom_nav_menu.xml的item顺序一致）
         menuOrder = new ArrayList<>();
         menuOrder.add(R.id.navigation_data_station);
-        menuOrder.add(R.id.navigation_tools);
         menuOrder.add(R.id.navigation_about_app);
 
         // 确保视图加载完成后初始化导航（避免空指针）
@@ -246,7 +245,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupNavView() {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_data_station,
-                R.id.navigation_tools,
                 R.id.navigation_about_app
         ).build();
 

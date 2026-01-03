@@ -7,12 +7,6 @@
         android:checked="true"/>
 
     <item
-        android:id="@+id/navigation_tools"
-        android:icon="@drawable/selector_tools"
-        android:title="@string/label_tools_navigation"
-        android:checked="false" />
-
-    <item
         android:id="@+id/navigation_about_app"
         android:icon="@drawable/selector_about_app"
         android:title="@string/label_about_app_navigation"

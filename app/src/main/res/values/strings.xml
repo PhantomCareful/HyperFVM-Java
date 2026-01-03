@@ -4,10 +4,8 @@
     <string name="hyper_fvm">HyperFVM</string>
     <string name="label_data_station">融合数据中心🤏</string>
     <string name="label_data_station_navigation">融合数据中心</string>
-    <string name="label_tools">工具箱🤟</string>
-    <string name="label_tools_navigation">工具箱</string>
     <string name="label_about_app">关于软件🫴</string>
-    <string name="label_about_app_navigation">关于</string>
+    <string name="label_about_app_navigation">关于软件</string>
     <!--数据站-->
     <string name="title_data_center_about_data">数据相关👀</string>
     <string name="title_data_center_card_data_index">防御卡全能数据库</string>
