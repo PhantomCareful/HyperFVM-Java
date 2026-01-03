@@ -2,14 +2,10 @@
     <!--总体-->
     <string name="app_name">HyperFVM</string>
     <string name="hyper_fvm">HyperFVM</string>
-    <string name="label_overview">概览🫰</string>
-    <string name="label_overview_navigation">概览</string>
     <string name="label_data_station">数据站🤏</string>
     <string name="label_data_station_navigation">数据站</string>
     <string name="label_tools">工具箱🤟</string>
     <string name="label_tools_navigation">工具箱</string>
-    <string name="label_settings">设置👉</string>
-    <string name="label_settings_navigation">设置</string>
     <string name="label_about_app">关于软件🫴</string>
     <string name="label_about_app_navigation">关于</string>
     <!--数据站-->
@@ -251,7 +247,7 @@
     <string name="label_using_instruction">使用说明🤔</string>
     <string name="label_using_instruction_1">使用说明</string>
     <string name="label_using_instruction_2">阅读以快速了解HyperFVM</string>
-    <string name="label_settings_new">App设置⚙</string>
+    <string name="label_settings">App设置⚙️</string>
     <string name="label_settings_1">App设置</string>
     <string name="label_settings_2">个性化您的HyperFVM</string>
     <string name="label_more">更多👀</string>
