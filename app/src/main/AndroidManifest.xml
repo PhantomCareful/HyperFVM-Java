@@ -32,6 +32,9 @@
             android:name=".Activities.CheckUpdateActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.UsingInstructionActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ImageViewerActivity.ImageViewerDynamicActivity"
             android:exported="false" />
         <activity

@@ -173,6 +173,82 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/about_app_label_using_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/label_using_instruction"
+                android:textSize="20sp"
+                android:textColor="?attr/colorOnSurface"
+                android:visibility="gone"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/about_app_using_instruction_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                card_view:cardCornerRadius="20dp"
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 第1个选项：GitHub -->
+                    <LinearLayout
+                        android:id="@+id/about_app_see_using_instruction_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_see_using_instruction_1"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_see_using_instruction_2"
+                                android:textSize="15sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                        <!-- 右侧箭头 -->
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="?attr/colorOnPrimaryContainer"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
                 android:id="@+id/about_app_placeholder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

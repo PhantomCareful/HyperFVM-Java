@@ -24,7 +24,7 @@
             tools:ignore="RtlSymmetry">
 
             <LinearLayout
-                android:id="@+id/overview_container"
+                android:id="@+id/using_instruction_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -41,7 +41,7 @@
                     android:clipToPadding="false">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/overview_top_container"
+                        android:id="@+id/using_instruction_top_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
@@ -53,7 +53,7 @@
                         android:visibility="gone">
 
                         <TextView
-                            android:id="@+id/overview_top"
+                            android:id="@+id/using_instruction_top"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -66,7 +66,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/overview1_container"
+                        android:id="@+id/using_instruction1_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
@@ -78,7 +78,7 @@
                         android:visibility="gone">
 
                         <TextView
-                            android:id="@+id/overview1"
+                            android:id="@+id/using_instruction1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -91,7 +91,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/overview2_container"
+                        android:id="@+id/using_instruction2_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
@@ -103,7 +103,7 @@
                         android:visibility="gone">
 
                         <TextView
-                            android:id="@+id/overview2"
+                            android:id="@+id/using_instruction2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -126,7 +126,7 @@
                     android:clipToPadding="false">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/overview3_container"
+                        android:id="@+id/using_instruction3_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
@@ -138,7 +138,7 @@
                         android:visibility="gone">
 
                         <TextView
-                            android:id="@+id/overview3"
+                            android:id="@+id/using_instruction3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -151,7 +151,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/overview4_container"
+                        android:id="@+id/using_instruction4_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
@@ -163,7 +163,7 @@
                         android:visibility="gone">
 
                         <TextView
-                            android:id="@+id/overview4"
+                            android:id="@+id/using_instruction4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
@@ -180,7 +180,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/overview_copyright"
+                android:id="@+id/using_instruction_copyright"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/copyright"

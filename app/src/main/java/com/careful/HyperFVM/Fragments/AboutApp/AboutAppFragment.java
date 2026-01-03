@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
+import com.careful.HyperFVM.Activities.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
@@ -71,6 +72,9 @@ public class AboutAppFragment extends Fragment {
         //显示致谢名单
         getContentFromAssets(requireContext(), root.findViewById(R.id.about_app_thanks_list), "ThanksList.txt");
 
+        //跳转使用说明的Activity
+        clickToNewActivity(root.findViewById(R.id.about_app_see_using_instruction_container), UsingInstructionActivity.class);
+
         //跳转浏览器，前往App的Github主页
         root.findViewById(R.id.about_app_github_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(
@@ -117,6 +121,8 @@ public class AboutAppFragment extends Fragment {
             Objects.requireNonNull(binding.aboutAppPlaceholder).setVisibility(View.GONE);
             Objects.requireNonNull(binding.aboutAppLabelThanks).setVisibility(View.VISIBLE);
             Objects.requireNonNull(binding.aboutAppThanksListContainer).setVisibility(View.VISIBLE);
+            Objects.requireNonNull(binding.aboutAppLabelUsingInstruction).setVisibility(View.VISIBLE);
+            Objects.requireNonNull(binding.aboutAppUsingInstructionContainer).setVisibility(View.VISIBLE);
             Objects.requireNonNull(binding.aboutAppLabelMore).setVisibility(View.VISIBLE);
             Objects.requireNonNull(binding.aboutAppMoreContainer).setVisibility(View.VISIBLE);
         };

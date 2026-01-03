@@ -251,6 +251,9 @@
     <string name="label_version_0">1.0.0以前的版本</string>
     <string name="label_version_1">1.X.X版本</string>
     <string name="label_version_2">2.X.X版本</string>
+    <string name="label_using_instruction">使用说明🤔</string>
+    <string name="label_see_using_instruction_1">使用说明</string>
+    <string name="label_see_using_instruction_2">阅读以快速了解HyperFVM</string>
     <string name="label_more">更多👀</string>
     <string name="label_about_app_github_1">项目地址</string>
     <string name="label_about_app_github_2">本项目基于GPL3.0协议开源</string>
