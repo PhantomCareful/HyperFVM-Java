@@ -245,17 +245,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // 公开方法，方便DataStation调用
-    public void updateNavigationSelection(int targetNavId) {
-        // 直接用现有的导航选中逻辑，确保currentNavId并同步UI
-        handleNavItemSelection(targetNavId);
-        if (navView != null) {
-            navView.setSelectedItemId(currentNavId);
-        } else if (leftNavView != null) {
-            leftNavView.setSelectedItemId(currentNavId);
-        }
-    }
-
     private void setTabLayoutVisibility(int navId) {
         // 获取TabLayout并添加淡入淡出动画
         View tabLayout = findViewById(R.id.Tab_Layout);
@@ -370,20 +359,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }
-    }
-
-    /**
-     * 导航返回键支持
-     */
-    @Override
-    public boolean onSupportNavigateUp() {
-        return NavigationUI.navigateUp(navController,
-                new AppBarConfiguration.Builder(
-                        R.id.navigation_data_station,
-                        R.id.navigation_tools,
-                        R.id.navigation_about_app
-                ).build())
-                || super.onSupportNavigateUp();
     }
 
     @Override
