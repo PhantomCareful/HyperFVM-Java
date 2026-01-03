@@ -13,12 +13,6 @@
         android:checked="false" />
 
     <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/selector_settings"
-        android:title="@string/label_settings_navigation"
-        android:checked="false" />
-
-    <item
         android:id="@+id/navigation_about_app"
         android:icon="@drawable/selector_about_app"
         android:title="@string/label_about_app_navigation"

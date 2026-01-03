@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
         menuOrder = new ArrayList<>();
         menuOrder.add(R.id.navigation_data_station);
         menuOrder.add(R.id.navigation_tools);
-        menuOrder.add(R.id.navigation_settings);
         menuOrder.add(R.id.navigation_about_app);
 
         // 确保视图加载完成后初始化导航（避免空指针）
@@ -288,7 +287,6 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_data_station,
                 R.id.navigation_tools,
-                R.id.navigation_settings,
                 R.id.navigation_about_app
         ).build();
 

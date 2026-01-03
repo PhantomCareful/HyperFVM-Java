@@ -17,12 +17,6 @@
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.careful.HyperFVM.Fragments.Settings.SettingsFragment"
-        android:label="@string/label_settings"
-        tools:layout="@layout/fragment_settings" />
-
-    <fragment
         android:id="@+id/navigation_about_app"
         android:name="com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment"
         android:label="@string/label_about_app"
