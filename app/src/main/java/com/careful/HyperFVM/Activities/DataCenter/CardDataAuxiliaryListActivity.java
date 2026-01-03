@@ -1,9 +1,6 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
-
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
