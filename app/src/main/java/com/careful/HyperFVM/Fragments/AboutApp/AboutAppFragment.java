@@ -45,7 +45,7 @@ public class AboutAppFragment extends Fragment {
         View root = binding.getRoot();
 
         //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.label_about_app));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_about_app));
 
         // 初始化动画效果
         transition = new TransitionSet();

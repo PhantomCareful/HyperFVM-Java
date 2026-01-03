@@ -1,0 +1,2030 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:id="@+id/data_images_index_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:paddingTop="150dp"
+                android:paddingBottom="20dp"
+                android:paddingStart="80dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                tools:ignore="RtlSymmetry">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <Button
+                        android:id="@+id/update_image_action"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text=""
+                        android:textSize="20sp"
+                        android:visibility="gone"
+                        app:cornerRadius="20dp"
+                        android:elevation="10dp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/data_image_card_cover_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_card_cover"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_0_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_0_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_0_2_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_0_2_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_0_2_2_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_0_2_2"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_0_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_0_3"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_2_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_2"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_3"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_card_4_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_card_4"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_5_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_5"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_6_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_6"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_7_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_7"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_8_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_8"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_9_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_9"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_10_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_10"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_11_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_11"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_12_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_12"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_13_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_13"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_14_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_14"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_15_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_15"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_16_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_16"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_17_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_17"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_18_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_18"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout><LinearLayout
+                            android:id="@+id/data_images_index_card_19_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_card_19"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/data_image_decompose_and_get_cover_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_decompose_and_get_cover"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_2_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_2"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_3"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_4_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_4"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_5_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_5"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_6_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_6"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_7_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_7"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_8_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_8"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_9_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_9"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_10_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_10"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_11_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_decompose_and_get_11"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/data_image_weapon_and_gem_cover_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_weapon_and_gem_cover"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_weapon_and_gem_0_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_weapon_and_gem_0_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_weapon_and_gem_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_weapon_and_gem_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_weapon_and_gem_2_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_weapon_and_gem_2"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_weapon_and_gem_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_weapon_and_gem_3"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_weapon_and_gem_4_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_weapon_and_gem_4"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_weapon_and_gem_5_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_weapon_and_gem_5"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/data_image_mouse_hp_cover_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitStart"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_image_mouse_hp_cover"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_2_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_2"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_3"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_4_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_4"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_5_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_5"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_6_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_6"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_7_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_7"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_8_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_8"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_9_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_9"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_mouse_hp_10_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_mouse_hp_10"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/label_data_images_index_others"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="15dp"
+                        card_view:cardCornerRadius="20dp"
+                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                        card_view:cardElevation="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_others_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_others_1"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_others_2_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_others_2"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_others_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_others_3"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_others_4_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_others_4"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_others_5_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_others_5"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_others_6_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_others_6"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_images_index_others_7_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/text_data_images_index_others_7"
+                                    android:textSize="20sp"
+                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnPrimaryContainer"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyright"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginVertical="20dp"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewTopAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:blurOverlayColor="@color/blur_overlay_color"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/Top_AppBar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:titleTextColor="?attr/colorOnSurface"
+                app:titleTextAppearance="@style/ToolBarTitleStyle" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,10 +24,11 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
-import com.careful.HyperFVM.Activities.TiramisuImageActivity;
+import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataStationBinding;
@@ -81,7 +82,7 @@ public class DataCenterFragment extends Fragment {
 
         preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
-        setTopAppBarTitle(getResources().getString(R.string.label_data_station));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_station));
 
         // 初始化数据库类
         dbHelper = new DBHelper(requireContext());
@@ -120,6 +121,12 @@ public class DataCenterFragment extends Fragment {
 
         // 从仓库获取B站官方的最新公告
         getLatestBilibiliAnnouncement();
+
+        // 数据图合集
+        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), DataImagesIndexActivity.class);
+            startActivity(intent);
+        });
 
         // 米鼠的图
         root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnClickListener(v -> {

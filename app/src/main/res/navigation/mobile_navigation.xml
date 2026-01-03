@@ -7,12 +7,12 @@
     <fragment
         android:id="@+id/navigation_data_station"
         android:name="com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment"
-        android:label="@string/label_data_station"
+        android:label="@string/top_bar_data_station"
         tools:layout="@layout/fragment_data_station" />
 
     <fragment
         android:id="@+id/navigation_about_app"
         android:name="com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment"
-        android:label="@string/label_about_app"
+        android:label="@string/top_bar_about_app"
         tools:layout="@layout/fragment_about_app" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities;
+package com.careful.HyperFVM.Activities.DataCenter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.careful.HyperFVM.Activities.CheckUpdateActivity;
 import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -49,7 +50,7 @@ public class TiramisuImageActivity extends AppCompatActivity {
         }
 
         // 设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.title_data_center_tiramisu_image));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_tiramisu_image));
         // 添加顶栏模糊
         setupBlurEffect();
 

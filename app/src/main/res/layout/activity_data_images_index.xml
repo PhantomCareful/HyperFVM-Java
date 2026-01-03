@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        tools:ignore="UselessParent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:id="@+id/data_images_index_container"
+        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:paddingTop="100dp"
-            android:paddingBottom="20dp"
-            android:clipChildren="false"
-            android:clipToPadding="false">
+            android:scrollbars="none"
+            tools:ignore="UselessParent">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/data_images_index_container"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"
+                android:paddingTop="100dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -37,21 +33,19 @@
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="5dp"
                     android:text=""
                     android:textSize="20sp"
                     android:visibility="gone"
                     app:cornerRadius="20dp"
-                    android:elevation="10dp" />
+                    android:elevation="10dp"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/data_image_card_cover_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -62,15 +56,15 @@
                         android:layout_height="wrap_content"
                         android:scaleType="fitStart"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/data_image_card_cover"/>
+                        android:src="@drawable/data_image_card_cover"
+                        tools:ignore="ContentDescription" />
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -769,11 +763,233 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/data_image_weapon_and_gem_cover_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitStart"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/data_image_weapon_and_gem_cover"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/data_images_index_weapon_and_gem_0_1_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_weapon_and_gem_0_1"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/data_images_index_weapon_and_gem_1_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_weapon_and_gem_1"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/data_images_index_weapon_and_gem_2_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_weapon_and_gem_2"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/data_images_index_weapon_and_gem_3_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_weapon_and_gem_3"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/data_images_index_weapon_and_gem_4_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_weapon_and_gem_4"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/data_images_index_weapon_and_gem_5_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/text_data_images_index_weapon_and_gem_5"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/colorOnPrimaryContainer"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/data_image_decompose_and_get_cover_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -791,8 +1007,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -1148,247 +1363,11 @@
 
                 </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:clipChildren="false"
-                android:clipToPadding="false">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/data_image_weapon_and_gem_cover_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="15dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    card_view:cardElevation="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitStart"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_image_weapon_and_gem_cover"/>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="15dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    card_view:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_0_1_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
-
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_0_1"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_1_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
-
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_1"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_2_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
-
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_2"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_3_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
-
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_3"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_4_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
-
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_4"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_5_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
-
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_5"
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/data_image_mouse_hp_cover_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -1406,8 +1385,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -1735,8 +1713,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginHorizontal="20dp"
                     android:text="@string/label_data_images_index_others"
                     android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"/>
@@ -1744,8 +1721,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -1988,7 +1964,33 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
 
-    </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
-</LinearLayout>
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewTopAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:blurOverlayColor="@color/blur_overlay_color"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/Top_AppBar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:titleTextColor="?attr/colorOnSurface"
+                app:titleTextAppearance="@style/ToolBarTitleStyle" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
