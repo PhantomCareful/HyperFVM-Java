@@ -8,7 +8,7 @@
         android:id="@+id/navigation_data_station"
         android:name="com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment"
         android:label="@string/top_bar_data_station"
-        tools:layout="@layout/fragment_data_station" />
+        tools:layout="@layout/fragment_data_center" />
 
     <fragment
         android:id="@+id/navigation_about_app"

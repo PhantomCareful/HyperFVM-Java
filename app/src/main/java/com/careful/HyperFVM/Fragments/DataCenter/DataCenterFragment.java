@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.careful.HyperFVM.Activities.DataCenter.CardDataAuxiliaryListActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
@@ -31,7 +32,7 @@ import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
 import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.databinding.FragmentDataStationBinding;
+import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
@@ -45,7 +46,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Objects;
 
 public class DataCenterFragment extends Fragment {
-    private FragmentDataStationBinding binding;
+    private FragmentDataCenterBinding binding;
     private DBHelper dbHelper;
     private SharedPreferences preferences;
     private static final String PREFS_NAME = "app_preferences";
@@ -77,7 +78,7 @@ public class DataCenterFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentDataStationBinding.inflate(inflater, container, false);
+        binding = FragmentDataCenterBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
         preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -121,6 +122,12 @@ public class DataCenterFragment extends Fragment {
 
         // 从仓库获取B站官方的最新公告
         getLatestBilibiliAnnouncement();
+
+        // 增幅卡名单
+        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), CardDataAuxiliaryListActivity.class);
+            startActivity(intent);
+        });
 
         // 数据图合集
         root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> {
