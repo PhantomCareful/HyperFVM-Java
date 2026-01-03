@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:id="@+id/navigation_overview"
-        android:icon="@drawable/selector_overview"
-        android:title="@string/label_overview_navigation"
-        android:checked="false" />
-
     <item
         android:id="@+id/navigation_data_station"
         android:icon="@drawable/selector_data_station"

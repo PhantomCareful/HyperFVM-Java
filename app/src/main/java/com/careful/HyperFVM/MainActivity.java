@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
         // 初始化菜单顺序（必须与bottom_nav_menu.xml的item顺序一致）
         menuOrder = new ArrayList<>();
-        menuOrder.add(R.id.navigation_overview);
         menuOrder.add(R.id.navigation_data_station);
         menuOrder.add(R.id.navigation_tools);
         menuOrder.add(R.id.navigation_settings);
@@ -298,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
         setTabLayoutVisibility(currentNavId);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_overview,
                 R.id.navigation_data_station,
                 R.id.navigation_tools,
                 R.id.navigation_settings,
@@ -381,7 +379,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController,
                 new AppBarConfiguration.Builder(
-                        R.id.navigation_overview,
                         R.id.navigation_data_station,
                         R.id.navigation_tools,
                         R.id.navigation_about_app

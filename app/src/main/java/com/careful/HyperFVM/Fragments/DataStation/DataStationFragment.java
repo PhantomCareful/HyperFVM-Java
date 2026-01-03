@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Fragments.DataStation;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +12,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
-import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.careful.HyperFVM.Activities.UsingInstructionActivity;
 import com.careful.HyperFVM.MainActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataStationBinding;
@@ -101,27 +100,14 @@ public class DataStationFragment extends Fragment {
     private void showWelcomeDialog() {
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle("欢迎使用 HyperFVM")
-                .setMessage("请先阅读概览页面上的内容，以便更好地使用本应用。")
-                .setPositiveButton("去阅读", (dialog, which) -> navigateToOverview())
-                .setNegativeButton("稍后再说", null)
+                .setMessage("如果您是第一次使用，建议您先阅读使用说明，以快速了解本App。")
+                .setPositiveButton("去阅读👉", (dialog, which) -> {
+                    Intent intent = new Intent(requireActivity(), UsingInstructionActivity.class);
+                    startActivity(intent);
+                })
+                .setNegativeButton("我是老手\uD83D\uDE0E", null)
                 .setCancelable(false)
                 .show();
-    }
-
-    private void navigateToOverview() {
-        NavOptions navOptions = new NavOptions.Builder()
-                .setPopUpTo(R.id.navigation_data_station, true)
-                .setEnterAnim(R.anim.slide_in_left)
-                .setExitAnim(R.anim.slide_out_right)
-                .build();
-        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-        navController.navigate(R.id.navigation_overview, null, navOptions);
-
-        // 关键：跳转后同步更新底部导航栏选中状态
-        if (getActivity() instanceof MainActivity) {
-            // 传入overview对应的导航ID，强制更新选中状态
-            ((MainActivity) getActivity()).updateNavigationSelection(R.id.navigation_overview);
-        }
     }
 
     private void setTopAppBarTitle(String title) {

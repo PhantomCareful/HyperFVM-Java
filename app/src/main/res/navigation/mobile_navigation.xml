@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
     app:startDestination="@+id/navigation_data_station">
-
-    <fragment
-        android:id="@+id/navigation_overview"
-        android:name="com.careful.HyperFVM.Fragments.Overview.OverviewFragment"
-        android:label="@string/label_overview"
-        tools:layout="@layout/fragment_overview" />
-
     <fragment
         android:id="@+id/navigation_data_station"
         android:name="com.careful.HyperFVM.Fragments.DataStation.DataStationFragment"
