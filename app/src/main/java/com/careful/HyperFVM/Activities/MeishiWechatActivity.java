@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -192,6 +193,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
     }
 
     // 加载玩家信息列表
+    @SuppressLint("SetTextI18n")
     private void loadAccountList() {
         accountListContainer.removeAllViews();
         List<DBHelper.PlayerInfo> infos = dbHelper.getAllMeishiWechat();
@@ -203,6 +205,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
     }
 
     // 添加包含区服、角色ID和openid的卡片
+    @SuppressLint("SetTextI18n")
     private void addAccountCard(DBHelper.PlayerInfo info) {
         CardView cardView = (CardView) LayoutInflater.from(this)
                 .inflate(R.layout.item_account_card, accountListContainer, false);
