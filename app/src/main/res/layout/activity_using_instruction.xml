@@ -143,6 +143,75 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/using_instruction5_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardElevation="10dp">
+
+                    <TextView
+                        android:id="@+id/using_instruction5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:padding="10dp"
+                        android:text=""
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        android:textSize="20sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/using_instruction6_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardElevation="10dp">
+
+                    <TextView
+                        android:id="@+id/using_instruction6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:padding="10dp"
+                        android:text=""
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        android:textSize="20sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/using_instruction7_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardElevation="10dp">
+
+                    <TextView
+                        android:id="@+id/using_instruction7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:padding="10dp"
+                        android:text=""
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        android:textSize="20sp" />
+
+                </androidx.cardview.widget.CardView>
+
                 <TextView
                     android:id="@+id/using_instruction_copyright"
                     android:layout_width="match_parent"
