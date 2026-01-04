@@ -45,6 +45,7 @@ public class UpdateLogHistoryActivity extends AppCompatActivity {
 
         viewPager2.setAdapter(adapter);
         viewPager2.setUserInputEnabled(false);
+        viewPager2.setOffscreenPageLimit(2);
 
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) ->
                 tab.setText(adapter.getPageTitle(position))
