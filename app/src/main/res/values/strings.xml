@@ -14,7 +14,7 @@
     <string name="float_button_data_center_card_data_index">目录</string>
     <string name="float_button_data_center_card_data_search">搜索</string>
     <string name="title_data_center_card_data_auxiliary_list">增幅卡名单</string>
-    <string name="label_data_center_card_data_auxiliary_list">😈快捷查看名单类增幅卡的增幅名单\n👉点击开始查询</string>
+    <string name="label_data_center_card_data_auxiliary_list">😈快捷查看部分增幅卡的增幅名单\n👉点击开始查询</string>
     <string name="top_bar_data_center_card_data_auxiliary_list">增幅卡名单📃</string>
     <string name="title_data_center_data_images_index">数据图合集</string>
     <string name="label_data_center_data_images_index">😈目标是打造成最全面的数据图合集\n👉点击去查看</string>
