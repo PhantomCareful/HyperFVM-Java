@@ -11,189 +11,227 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
-            android:id="@+id/ScrollViewDataStationCardDataIndex"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:orientation="horizontal"
+            android:paddingStart="80dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            tools:ignore="RtlSymmetry">
 
-            <LinearLayout
-                android:id="@+id/DataCenter_Container"
-                android:layout_width="match_parent"
+            <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="100dp"
-                android:paddingBottom="100dp"
-                android:paddingStart="80dp"
-                android:clipChildren="false"
-                android:clipToPadding="false">
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/DataCenter_Container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="100dp"
+                    android:paddingStart="10dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:gravity="center_vertical"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="20dp"
+                            android:text="@string/label_tools_dashboard"
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnSurface"/>
+
+                        <Button
+                            android:id="@+id/ButtonRefreshDashboard"
+                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:text="@string/label_tools_button_refresh_dashboard"
+                            android:textSize="20sp"
+                            app:cornerRadius="20dp"
+                            android:elevation="10dp"/>
+
+                    </LinearLayout>
+
+                    <!-- 仪表盘卡片（两列布局） -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <!-- 左列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_last_day_of_month"/>
+                            <include layout="@layout/card_double_explosion_rate"/>
+                            <include layout="@layout/card_everyday"/>
+                            <include layout="@layout/card_bilibili_fvm"/>
+
+                        </LinearLayout>
+
+                        <!-- 右列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_meishi_wechat"/>
+                            <include layout="@layout/card_fertilization_task"/>
+                            <include layout="@layout/card_new_year"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/label_tools_made_by_xiaye"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <!-- 左列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_tiramisu"/>
+                            <include layout="@layout/card_faa"/>
+                            <include layout="@layout/card_icu"/>
+                            <include layout="@layout/card_card_calculator"/>
+
+                        </LinearLayout>
+
+                        <!-- 右列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_molu"/>
+                            <include layout="@layout/card_strategy"/>
+                            <include layout="@layout/card_gem_calculator"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyright"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginVertical="20dp"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+            <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="5dp"
-                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingTop="100dp"
+                    android:paddingEnd="10dp"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="20dp"
-                        android:text="@string/label_tools_dashboard"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/title_data_center_about_data"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"/>
 
-                    <Button
-                        android:id="@+id/ButtonRefreshDashboard"
-                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                        android:layout_width="wrap_content"
+                    <include layout="@layout/card_card_data_index"/>
+                    <include layout="@layout/card_card_data_auxiliary_list"/>
+                    <include layout="@layout/card_data_images_index"/>
+                    <include layout="@layout/card_tiramisu_image"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/label_tools_button_refresh_dashboard"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/label_tools_made_by_phantom_careful"
                         android:textSize="20sp"
-                        app:cornerRadius="20dp"
-                        android:elevation="10dp"/>
+                        android:textColor="?attr/colorOnSurface"/>
+
+                    <include layout="@layout/card_today_lucky"/>
+                    <include layout="@layout/card_prestige_calculator"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyright"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginVertical="20dp"
+                        android:gravity="center"/>
 
                 </LinearLayout>
 
-                <!-- 仪表盘卡片（两列布局） -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:paddingBottom="5dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+            </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
 
-                    <!-- 左列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <include layout="@layout/card_last_day_of_month"/>
-                        <include layout="@layout/card_double_explosion_rate"/>
-                        <include layout="@layout/card_everyday"/>
-                        <include layout="@layout/card_bilibili_fvm"/>
-
-                    </LinearLayout>
-
-                    <!-- 右列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <include layout="@layout/card_meishi_wechat"/>
-                        <include layout="@layout/card_fertilization_task"/>
-                        <include layout="@layout/card_new_year"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/title_data_center_about_data"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"/>
-
-                <include layout="@layout/card_card_data_index"/>
-                <include layout="@layout/card_card_data_auxiliary_list"/>
-                <include layout="@layout/card_data_images_index"/>
-                <include layout="@layout/card_tiramisu_image"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/label_tools_made_by_xiaye"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:paddingBottom="5dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-
-                    <!-- 左列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <include layout="@layout/card_tiramisu"/>
-                        <include layout="@layout/card_faa"/>
-                        <include layout="@layout/card_icu"/>
-                        <include layout="@layout/card_card_calculator"/>
-
-                    </LinearLayout>
-
-                    <!-- 右列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <include layout="@layout/card_molu"/>
-                        <include layout="@layout/card_strategy"/>
-                        <include layout="@layout/card_gem_calculator"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/label_tools_made_by_phantom_careful"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"/>
-
-                <include layout="@layout/card_today_lucky"/>
-                <include layout="@layout/card_prestige_calculator"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/copyright"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="center"/>
-
-            </LinearLayout>
-
-        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+        </LinearLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 

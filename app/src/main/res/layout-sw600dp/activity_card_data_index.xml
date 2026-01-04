@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            android:id="@+id/CardDataIndex_Container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:paddingTop="100dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    tools:ignore="RtlSymmetry">
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_1_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_1_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_1_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_1_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_1_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_1_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_1_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_1_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_1_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_2_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_2_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_2_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_2_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_2_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_2_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_2_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_2_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_2_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_3_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_3_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_3_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_3_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_3_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_3_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_3_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_3_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_3_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_4_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_4_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_4_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_4_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_4_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_4_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_4_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_4_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_4_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_5_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_5_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_5_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_5_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_5_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_5_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_6_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_6_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_6_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_6_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_6_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_6_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_7_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_7_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_7_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_7_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_7_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_7_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_8_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_8_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_8_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_8_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_8_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_8_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_9_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_9_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_9_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_9_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_9_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_9_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_9_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_9_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_9_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_9_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_9_4"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_9_4"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_10_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_10_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_10_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_10_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_10_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_10_2"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:paddingEnd="10dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    tools:ignore="RtlSymmetry">
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_10_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_10_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_10_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_10_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_10_4"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_10_4"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_11_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_11_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_11_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_11_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_11_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_11_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_11_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_11_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_11_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_12_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_12_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_12_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_12_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_12_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_12_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_12_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_12_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_12_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_13_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_13_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_13_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_13_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_13_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_13_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_13_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_13_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_13_3"
+                        tools:ignore="TooManyViews" />
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_13_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_13_4"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_13_4"
+                        tools:ignore="TooManyViews" />
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_14_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_14_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_14_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_14_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_14_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_14_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_14_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_14_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_14_3"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_14_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_14_4"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_14_4"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_15_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_15_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_15_1"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_15_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_15_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_15_2"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_index_16_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_index_16_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include layout="@layout/card_card_data_index_16_1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyright"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginVertical="20dp"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewTopAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:blurOverlayColor="@color/blur_overlay_color"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/Top_AppBar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:titleTextColor="?attr/colorOnSurface"
+                app:titleTextAppearance="@style/ToolBarTitleStyle" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Card_FloatButton_CardDataIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/Card_FloatButton_CardDataSearch"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewButtonIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipToOutline="true"
+            app:blurOverlayColor="@android:color/transparent"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/FloatButton_CardDataIndex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/float_button_data_center_card_data_index"
+                android:textSize="25sp"
+                android:backgroundTint="@android:color/transparent"
+                android:stateListAnimator="@null"
+                app:icon="@drawable/ic_index"
+                app:elevation="0dp"
+                app:pressedTranslationZ="0dp"
+                app:rippleColor="@android:color/transparent" />
+
+        </eightbitlab.com.blurview.BlurView>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Card_FloatButton_CardDataSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewButtonSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipToOutline="true"
+            app:blurOverlayColor="@android:color/transparent"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/FloatButton_CardDataSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/float_button_data_center_card_data_search"
+                android:textSize="25sp"
+                android:backgroundTint="@android:color/transparent"
+                android:stateListAnimator="@null"
+                app:icon="@drawable/ic_search"
+                app:elevation="0dp"
+                app:pressedTranslationZ="0dp"
+                app:rippleColor="@android:color/transparent" />
+
+        </eightbitlab.com.blurview.BlurView>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
