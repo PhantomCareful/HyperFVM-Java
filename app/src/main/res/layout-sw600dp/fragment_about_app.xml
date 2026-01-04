@@ -34,6 +34,8 @@
                 android:orientation="vertical"
                 android:paddingTop="100dp"
                 android:paddingBottom="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -208,6 +210,8 @@
                 android:orientation="vertical"
                 android:paddingTop="100dp"
                 android:paddingBottom="20dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="10dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 

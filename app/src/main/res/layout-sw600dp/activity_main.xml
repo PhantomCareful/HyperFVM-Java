@@ -46,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
+                app:menuGravity="center"
                 app:itemIconSize="30dp"
                 app:itemIconTint="@color/nav_icon_tint"
                 app:itemTextAppearance="@style/NavItemTextStyle"
