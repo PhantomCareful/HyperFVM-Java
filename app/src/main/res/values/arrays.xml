@@ -23,4 +23,53 @@
         <item>总是开启🌚</item>
         <item>跟随系统🌗</item>
     </string-array>
+
+    <!--防御卡目录-->
+    <string-array name="card_data_index_titles">
+        <item>@string/title_card_data_index_1_1</item>
+        <item>@string/title_card_data_index_1_2</item>
+        <item>@string/title_card_data_index_1_3</item>
+        <item>@string/title_card_data_index_2_1</item>
+        <item>@string/title_card_data_index_2_2</item>
+        <item>@string/title_card_data_index_2_3</item>
+        <item>@string/title_card_data_index_3_1</item>
+        <item>@string/title_card_data_index_3_2</item>
+        <item>@string/title_card_data_index_3_3</item>
+        <item>@string/title_card_data_index_4_1</item>
+        <item>@string/title_card_data_index_4_2</item>
+        <item>@string/title_card_data_index_4_3</item>
+        <item>@string/title_card_data_index_5_1</item>
+        <item>@string/title_card_data_index_5_2</item>
+        <item>@string/title_card_data_index_6_1</item>
+        <item>@string/title_card_data_index_6_2</item>
+        <item>@string/title_card_data_index_7_1</item>
+        <item>@string/title_card_data_index_7_2</item>
+        <item>@string/title_card_data_index_8_1</item>
+        <item>@string/title_card_data_index_8_2</item>
+        <item>@string/title_card_data_index_9_1</item>
+        <item>@string/title_card_data_index_9_2</item>
+        <item>@string/title_card_data_index_9_3</item>
+        <item>@string/title_card_data_index_9_4</item>
+        <item>@string/title_card_data_index_10_1</item>
+        <item>@string/title_card_data_index_10_2</item>
+        <item>@string/title_card_data_index_10_3</item>
+        <item>@string/title_card_data_index_10_4</item>
+        <item>@string/title_card_data_index_11_1</item>
+        <item>@string/title_card_data_index_11_2</item>
+        <item>@string/title_card_data_index_11_3</item>
+        <item>@string/title_card_data_index_12_1</item>
+        <item>@string/title_card_data_index_12_2</item>
+        <item>@string/title_card_data_index_12_3</item>
+        <item>@string/title_card_data_index_13_1</item>
+        <item>@string/title_card_data_index_13_2</item>
+        <item>@string/title_card_data_index_13_3</item>
+        <item>@string/title_card_data_index_13_4</item>
+        <item>@string/title_card_data_index_14_1</item>
+        <item>@string/title_card_data_index_14_2</item>
+        <item>@string/title_card_data_index_14_3</item>
+        <item>@string/title_card_data_index_14_4</item>
+        <item>@string/title_card_data_index_15_1</item>
+        <item>@string/title_card_data_index_15_2</item>
+        <item>@string/title_card_data_index_16_1</item>
+    </string-array>
 </resources>

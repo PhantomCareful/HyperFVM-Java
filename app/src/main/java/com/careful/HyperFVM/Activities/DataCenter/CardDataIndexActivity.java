@@ -1,12 +1,14 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +24,7 @@ import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -36,6 +39,7 @@ import java.util.Objects;
 
 public class CardDataIndexActivity extends AppCompatActivity {
     private DBHelper dbHelper;
+    private SpringBackScrollView CardDataIndexContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +65,115 @@ public class CardDataIndexActivity extends AppCompatActivity {
         // 初始化数据库
         dbHelper = new DBHelper(this);
 
+        // 防御卡目录按钮
+        CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);
+        findViewById(R.id.FloatButton_CardDataIndex).setOnClickListener(v -> showTitleNavigationDialog());
+
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataIndex).setOnClickListener(v -> showCardQueryDialog());
+        findViewById(R.id.FloatButton_CardDataSearch).setOnClickListener(v -> showCardQueryDialog());
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
         initCardImages();
+    }
+
+    /**
+     * 弹出标题导航弹窗
+     */
+    private void showTitleNavigationDialog() {
+        // 获取标题数组
+        String[] titleEntries = getResources().getStringArray(R.array.card_data_index_titles);
+
+        // 构建单选列表弹窗（参考深色模式弹窗样式）
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("导航到指定卡片类别") // 弹窗标题
+                .setSingleChoiceItems(titleEntries, -1, (dialog, which) -> {
+                    // 点击列表项时：滚动到对应标题位置
+                    if (which >= 0 && CardDataIndexContainer != null) {
+                        // 根据索引获取对应标题View的ID
+                        int targetViewId = getTitleViewIdByIndex(which);
+                        View targetView = findViewById(targetViewId);
+                        if (targetView != null) {
+                            // 计算滚动位置（减去顶部100dp的padding，让标题显示更友好）
+                            int scrollTop = targetView.getTop() - 400;
+                            // 目标滚动位置（保留你原有的顶部间距、边界保护逻辑）
+                            int targetScrollY = Math.max(scrollTop, 0);
+                            // 当前滚动位置
+                            int currentScrollY = CardDataIndexContainer.getScrollY();
+                            // 初始化值动画：实现从当前位置 → 目标位置的渐变滚动
+                            ValueAnimator scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
+                            // 滚动时长（核心：控制顺滑度，300-500ms是安卓舒适区间，值越大越慢越丝滑）
+                            scrollAnimator.setDuration(400);
+                            // 核心插值器（决定滚动的速度变化规律，这是平滑的关键！）
+                            // DecelerateInterpolator：减速插值器 → 滚动由快到慢，符合人眼视觉习惯，最推荐
+                            scrollAnimator.setInterpolator(new DecelerateInterpolator(1.5f));
+                            // 逐帧更新滚动位置
+                            scrollAnimator.addUpdateListener(animation -> {
+                                int animatedValue = (int) animation.getAnimatedValue();
+                                CardDataIndexContainer.scrollTo(0, animatedValue);
+                            });
+                            // 启动动画（加入防重复点击：先取消之前的滚动动画，再启动新的）
+                            scrollAnimator.cancel();
+                            scrollAnimator.start();
+                        }
+                    }
+                    dialog.dismiss(); // 选择后关闭弹窗
+                })
+                .setNegativeButton("取消", null) // 取消按钮
+                .show();
+    }
+
+    /**
+     * 映射列表索引到标题View的ID（需和字符串数组顺序完全一致）
+     */
+    private int getTitleViewIdByIndex(int index) {
+        return switch (index) {
+            case 0 -> R.id.title_card_data_index_1_1;
+            case 1 -> R.id.title_card_data_index_1_2;
+            case 2 -> R.id.title_card_data_index_1_3;
+            case 3 -> R.id.title_card_data_index_2_1;
+            case 4 -> R.id.title_card_data_index_2_2;
+            case 5 -> R.id.title_card_data_index_2_3;
+            case 6 -> R.id.title_card_data_index_3_1;
+            case 7 -> R.id.title_card_data_index_3_2;
+            case 8 -> R.id.title_card_data_index_3_3;
+            case 9 -> R.id.title_card_data_index_4_1;
+            case 10 -> R.id.title_card_data_index_4_2;
+            case 11 -> R.id.title_card_data_index_4_3;
+            case 12 -> R.id.title_card_data_index_5_1;
+            case 13 -> R.id.title_card_data_index_5_2;
+            case 14 -> R.id.title_card_data_index_6_1;
+            case 15 -> R.id.title_card_data_index_6_2;
+            case 16 -> R.id.title_card_data_index_7_1;
+            case 17 -> R.id.title_card_data_index_7_2;
+            case 18 -> R.id.title_card_data_index_8_1;
+            case 19 -> R.id.title_card_data_index_8_2;
+            case 20 -> R.id.title_card_data_index_9_1;
+            case 21 -> R.id.title_card_data_index_9_2;
+            case 22 -> R.id.title_card_data_index_9_3;
+            case 23 -> R.id.title_card_data_index_9_4;
+            case 24 -> R.id.title_card_data_index_10_1;
+            case 25 -> R.id.title_card_data_index_10_2;
+            case 26 -> R.id.title_card_data_index_10_3;
+            case 27 -> R.id.title_card_data_index_10_4;
+            case 28 -> R.id.title_card_data_index_11_1;
+            case 29 -> R.id.title_card_data_index_11_2;
+            case 30 -> R.id.title_card_data_index_11_3;
+            case 31 -> R.id.title_card_data_index_12_1;
+            case 32 -> R.id.title_card_data_index_12_2;
+            case 33 -> R.id.title_card_data_index_12_3;
+            case 34 -> R.id.title_card_data_index_13_1;
+            case 35 -> R.id.title_card_data_index_13_2;
+            case 36 -> R.id.title_card_data_index_13_3;
+            case 37 -> R.id.title_card_data_index_13_4;
+            case 38 -> R.id.title_card_data_index_14_1;
+            case 39 -> R.id.title_card_data_index_14_2;
+            case 40 -> R.id.title_card_data_index_14_3;
+            case 41 -> R.id.title_card_data_index_14_4;
+            case 42 -> R.id.title_card_data_index_15_1;
+            case 43 -> R.id.title_card_data_index_15_2;
+            case 44 -> R.id.title_card_data_index_16_1;
+            default -> -1;
+        };
     }
 
     /**
@@ -1074,11 +1182,22 @@ public class CardDataIndexActivity extends AppCompatActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewButton));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
 
         // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.Card_FloatButton);
+        CardView cardView = findViewById(R.id.Card_FloatButton_CardDataIndex);
         ObjectAnimator animator = ObjectAnimator.ofFloat(
+                cardView,
+                View.TRANSLATION_X,
+                550f, 0f // 从1000px移动到0px
+        );
+        animator.setDuration(1200);
+        animator.start();
+
+        // 顺便添加一个位移动画
+        cardView = findViewById(R.id.Card_FloatButton_CardDataSearch);
+        animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,
                 550f, 0f // 从1000px移动到0px

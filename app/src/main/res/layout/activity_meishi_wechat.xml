@@ -224,7 +224,7 @@
         </eightbitlab.com.blurview.BlurView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/Card_FloatButton"
+            android:id="@+id/Card_FloatButton_CardDataSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -237,7 +237,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <eightbitlab.com.blurview.BlurView
-                android:id="@+id/blurViewButton"
+                android:id="@+id/blurViewButtonSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clipToOutline="true"
