@@ -33,6 +33,8 @@ public class ImageViewerDynamicActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+
         // 设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
 

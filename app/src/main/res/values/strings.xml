@@ -225,11 +225,6 @@
     <!--设置-->
     <string name="label_settings_title_permission">授权检查</string>
     <string name="label_settings_permission_notification">通知权限</string>
-    <string name="label_settings_title_notifications">常驻通知</string>
-    <string name="label_settings_switch_meishi_wechat">温馨礼包</string>
-    <string name="label_settings_switch_activity">双爆信息</string>
-    <string name="label_settings_switch_fertilization_task">施肥活动</string>
-    <string name="label_settings_switch_new_year">美食悬赏</string>
     <string name="label_settings_title_theme">主题设置</string>
     <string name="label_settings_switch_is_dynamic_color">动态取色(和壁纸同色)</string>
     <string name="label_settings_option_themed_color">自定义主题色</string>
