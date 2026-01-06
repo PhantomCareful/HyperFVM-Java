@@ -72,4 +72,16 @@
         <item>@string/title_card_data_index_15_2</item>
         <item>@string/title_card_data_index_16_1</item>
     </string-array>
+
+    <!--增幅卡名单目录-->
+    <string-array name="card_data_auxiliary_list_titles">
+        <item>@string/title_card_data_auxiliary_list_1</item>
+        <item>@string/title_card_data_auxiliary_list_2</item>
+        <item>@string/title_card_data_auxiliary_list_3</item>
+        <item>@string/title_card_data_auxiliary_list_4</item>
+        <item>@string/title_card_data_auxiliary_list_5</item>
+        <item>@string/title_card_data_auxiliary_list_6</item>
+        <item>@string/title_card_data_auxiliary_list_7</item>
+        <item>@string/title_card_data_auxiliary_list_8</item>
+    </string-array>
 </resources>

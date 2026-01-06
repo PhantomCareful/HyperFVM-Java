@@ -1,9 +1,11 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,10 +20,12 @@ import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityCardDataAuxiliaryListBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
 
@@ -29,6 +33,7 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
 
     private DBHelper dbHelper;
     private ActivityCardDataAuxiliaryListBinding binding;
+    private SpringBackScrollView CardDataAuxiliaryListContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +43,17 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         ThemeManager.applyTheme(this);
 
         super.onCreate(savedInstanceState);
+
+        // 初始化ViewBinding
+        binding = ActivityCardDataAuxiliaryListBinding.inflate(getLayoutInflater());
+        View root = binding.getRoot();
+        setContentView(root);
+
         // 小白条沉浸
         EdgeToEdge.enable(this);
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        // 初始化ViewBinding
-        binding = ActivityCardDataAuxiliaryListBinding.inflate(getLayoutInflater());
-        View root = binding.getRoot();
-        setContentView(root);
 
         // 初始化数据库
         dbHelper = new DBHelper(this);
@@ -57,8 +64,75 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         // 添加模糊材质
         setupBlurEffect();
 
+        // 目录按钮
+        CardDataAuxiliaryListContainer = findViewById(R.id.CardDataAuxiliaryList_Container);
+        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex).setOnClickListener(v -> showTitleNavigationDialog());
+
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
         initCardImages();
+    }
+
+    /**
+     * 弹出标题导航弹窗
+     */
+    private void showTitleNavigationDialog() {
+        // 获取标题数组
+        String[] titleEntries = getResources().getStringArray(R.array.card_data_auxiliary_list_titles);
+
+        // 构建单选列表弹窗（参考深色模式弹窗样式）
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("导航到指定卡片类别") // 弹窗标题
+                .setSingleChoiceItems(titleEntries, -1, (dialog, which) -> {
+                    // 点击列表项时：滚动到对应标题位置
+                    if (which >= 0 && CardDataAuxiliaryListContainer != null) {
+                        // 根据索引获取对应标题View的ID
+                        int targetViewId = getTitleViewIdByIndex(which);
+                        View targetView = findViewById(targetViewId);
+                        if (targetView != null) {
+                            // 计算滚动位置（减去顶部100dp的padding，让标题显示更友好）
+                            int scrollTop = targetView.getTop() - 400;
+                            // 目标滚动位置（保留你原有的顶部间距、边界保护逻辑）
+                            int targetScrollY = Math.max(scrollTop, 0);
+                            // 当前滚动位置
+                            int currentScrollY = CardDataAuxiliaryListContainer.getScrollY();
+                            // 初始化值动画：实现从当前位置 → 目标位置的渐变滚动
+                            ValueAnimator scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
+                            // 滚动时长（核心：控制顺滑度，300-500ms是安卓舒适区间，值越大越慢越丝滑）
+                            scrollAnimator.setDuration(400);
+                            // 核心插值器（决定滚动的速度变化规律，这是平滑的关键！）
+                            // DecelerateInterpolator：减速插值器 → 滚动由快到慢，符合人眼视觉习惯，最推荐
+                            scrollAnimator.setInterpolator(new DecelerateInterpolator(1.5f));
+                            // 逐帧更新滚动位置
+                            scrollAnimator.addUpdateListener(animation -> {
+                                int animatedValue = (int) animation.getAnimatedValue();
+                                CardDataAuxiliaryListContainer.scrollTo(0, animatedValue);
+                            });
+                            // 启动动画（加入防重复点击：先取消之前的滚动动画，再启动新的）
+                            scrollAnimator.cancel();
+                            scrollAnimator.start();
+                        }
+                    }
+                    dialog.dismiss(); // 选择后关闭弹窗
+                })
+                .setNegativeButton("取消", null) // 取消按钮
+                .show();
+    }
+
+    /**
+     * 映射列表索引到标题View的ID（需和字符串数组顺序完全一致）
+     */
+    private int getTitleViewIdByIndex(int index) {
+        return switch (index) {
+            case 0 -> R.id.title_card_data_auxiliary_list_1;
+            case 1 -> R.id.title_card_data_auxiliary_list_2;
+            case 2 -> R.id.title_card_data_auxiliary_list_3;
+            case 3 -> R.id.title_card_data_auxiliary_list_4;
+            case 4 -> R.id.title_card_data_auxiliary_list_5;
+            case 5 -> R.id.title_card_data_auxiliary_list_6;
+            case 6 -> R.id.title_card_data_auxiliary_list_7;
+            case 7 -> R.id.title_card_data_auxiliary_list_8;
+            default -> -1;
+        };
     }
 
     private void initCardImages() {

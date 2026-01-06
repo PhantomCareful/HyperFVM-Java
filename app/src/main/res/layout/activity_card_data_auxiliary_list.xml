@@ -12,7 +12,7 @@
         tools:ignore="MissingConstraints">
 
         <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
-            android:id="@+id/ScrollViewDataStationCardDataAuxiliaryList"
+            android:id="@+id/CardDataAuxiliaryList_Container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none">
@@ -297,7 +297,7 @@
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/FloatButton_CardDataIndex"
+                android:id="@+id/FloatButton_CardDataAuxiliaryListIndex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/float_button_data_center_card_data_index"
