@@ -1,266 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginBottom="15dp"
+    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+    card_view:cardCornerRadius="20dp"
+    card_view:cardElevation="10dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="15dp"
-        card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-        card_view:cardElevation="10dp">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <include layout="@layout/card_card_data_index_13_3_1" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                android:padding="10dp">
+        <include layout="@layout/card_card_data_index_13_3_2" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+        <include layout="@layout/card_card_data_index_13_3_3" />
 
-                    <!-- 左侧文字 -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_1_0"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_1_1"
-                        android:textSize="11sp"
-                        android:textColor="?attr/colorOnPrimaryContainer" />
-                </LinearLayout>
+        <include layout="@layout/card_card_data_index_13_3_4" />
 
-                <!-- 右侧卡片 -->
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_1_0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_1_0"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_1_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_1_1"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_1_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_1_2"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
+        <include layout="@layout/card_card_data_index_13_3_5" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                android:padding="10dp">
+    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <!-- 左侧文字 -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_2_0"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_2_1"
-                        android:textSize="11sp"
-                        android:textColor="?attr/colorOnPrimaryContainer" />
-                </LinearLayout>
-
-                <!-- 右侧卡片 -->
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_2_0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_2_0"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_2_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_2_1"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_2_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_2_2"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <!-- 左侧文字 -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_3_0"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <!-- 右侧卡片 -->
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_3_0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_3_0"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <!-- 左侧文字 -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_4_0"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_4_1"
-                        android:textSize="11sp"
-                        android:textColor="?attr/colorOnPrimaryContainer" />
-                </LinearLayout>
-
-                <!-- 右侧卡片 -->
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_4_0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_4_0"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_4_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_4_1"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_4_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_4_2"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <!-- 左侧文字 -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_5_0"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_card_data_index_13_3_5_1"
-                        android:textSize="11sp"
-                        android:textColor="?attr/colorOnPrimaryContainer" />
-                </LinearLayout>
-
-                <!-- 右侧卡片 -->
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_5_0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_5_0"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_5_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_5_1"
-                    tools:ignore="ContentDescription" />
-                <ImageView
-                    android:id="@+id/card_data_index_13_3_5_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/card_data_index_13_3_5_2"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</merge>
+</androidx.cardview.widget.CardView>

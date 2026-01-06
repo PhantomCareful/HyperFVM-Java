@@ -17,6 +17,10 @@
         <item name="android:textSize">30sp</item>
     </style>
 
+    <style name="CardDataAuxiliaryListStyle" parent="Base.Theme.HyperFVMJava">
+        <item name="colorOnPrimaryContainer">?attr/colorOnPrimary</item>
+    </style>
+
     <style name="NavItemTextStyle" parent="Base.Theme.HyperFVMJava">
         <item name="android:textSize">30sp</item>
     </style>
