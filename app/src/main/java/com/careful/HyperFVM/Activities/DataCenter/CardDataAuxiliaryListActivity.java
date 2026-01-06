@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
@@ -37,7 +39,7 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "⏳正在加载卡片，请稍候⏳", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
 
         // 设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
@@ -69,7 +71,7 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex).setOnClickListener(v -> showTitleNavigationDialog());
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
-        initCardImages();
+        new Handler(Looper.getMainLooper()).postDelayed(this::initCardImages, 50);
     }
 
     /**

@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -43,7 +45,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "⏳正在加载卡片，请稍候⏳", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
 
         //设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
@@ -73,7 +75,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
         findViewById(R.id.FloatButton_CardDataSearch).setOnClickListener(v -> showCardQueryDialog());
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
-        initCardImages();
+        new Handler(Looper.getMainLooper()).postDelayed(this::initCardImages, 50);
     }
 
     /**

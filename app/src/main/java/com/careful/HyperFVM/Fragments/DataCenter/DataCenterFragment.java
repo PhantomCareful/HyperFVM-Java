@@ -125,16 +125,16 @@ public class DataCenterFragment extends Fragment {
         getLatestBilibiliAnnouncement();
 
         // 防御卡全能数据库
-        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> {
+        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
             startActivity(intent);
-        });
+        }, 150));
 
         // 增幅卡名单
-        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> {
+        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), CardDataAuxiliaryListActivity.class);
             startActivity(intent);
-        });
+        }, 150));
 
         // 数据图合集
         root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> {
