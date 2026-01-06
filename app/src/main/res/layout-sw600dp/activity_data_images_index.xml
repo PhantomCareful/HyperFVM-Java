@@ -26,7 +26,6 @@
                 android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:paddingTop="100dp"
-                android:paddingBottom="20dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 tools:ignore="RtlSymmetry">
@@ -35,6 +34,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="5dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false">
@@ -1161,6 +1162,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false">

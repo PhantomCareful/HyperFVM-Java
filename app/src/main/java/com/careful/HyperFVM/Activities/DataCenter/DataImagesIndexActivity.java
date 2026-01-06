@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -270,4 +272,10 @@ public class DataImagesIndexActivity extends AppCompatActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // 重新构建布局
+        recreate();
+    }
 }
