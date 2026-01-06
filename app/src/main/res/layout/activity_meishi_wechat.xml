@@ -241,7 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clipToOutline="true"
-                app:blurOverlayColor="@android:color/transparent"
+                app:blurOverlayColor="@color/blur_overlay_color"
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
