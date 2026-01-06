@@ -283,6 +283,7 @@
     <string name="label_version_0">1.0.0以前的版本</string>
     <string name="label_version_1">1.X.X版本</string>
     <string name="label_version_2">2.X.X版本</string>
+    <string name="label_version_3">3.X.X版本</string>
     <string name="many_n">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
 
     <!--卡片名字写最后，方便查找-->

@@ -45,7 +45,7 @@ public class UpdateLogHistoryActivity extends AppCompatActivity {
 
         viewPager2.setAdapter(adapter);
         viewPager2.setUserInputEnabled(false);
-        viewPager2.setOffscreenPageLimit(2);
+        viewPager2.setOffscreenPageLimit(3);
 
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) ->
                 tab.setText(adapter.getPageTitle(position))
@@ -80,6 +80,7 @@ public class UpdateLogHistoryActivity extends AppCompatActivity {
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
         //添加Fragment和对应的标题，按标签顺序
+        adapter.addFragment(new Version3UpdateLogFragment(), getResources().getString(R.string.label_version_3));
         adapter.addFragment(new Version2UpdateLogFragment(), getResources().getString(R.string.label_version_2));
         adapter.addFragment(new Version1UpdateLogFragment(), getResources().getString(R.string.label_version_1));
         adapter.addFragment(new Version0UpdateLogFragment(), getResources().getString(R.string.label_version_0));
