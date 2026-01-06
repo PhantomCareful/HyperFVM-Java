@@ -28,12 +28,20 @@ public class ImageViewerDynamicActivity extends AppCompatActivity {
 
     private ZoomImageView zoomImageView;
     private DataImagesUpdaterUtil imageUtil;
+
     private DBHelper dbHelper;
     public static final String KEY_DARK_MODE = "主题-深色主题";
+    private static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+        // 初始化图片工具类、数据库工具类
+        imageUtil = DataImagesUpdaterUtil.getInstance();
+        dbHelper = new DBHelper(this);
+
+        if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
+            Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+        }
 
         // 设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
@@ -50,10 +58,6 @@ public class ImageViewerDynamicActivity extends AppCompatActivity {
 
         // 顶栏模糊
         setupBlurEffect();
-
-        // 初始化图片工具类、数据库工具类
-        imageUtil = DataImagesUpdaterUtil.getInstance();
-        dbHelper = new DBHelper(this);
 
         // 找到ZoomImageView并设置图片
         zoomImageView = findViewById(R.id.ZoomImageViewer);

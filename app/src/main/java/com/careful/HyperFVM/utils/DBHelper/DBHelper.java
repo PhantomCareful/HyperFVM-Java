@@ -147,6 +147,14 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
                     "VALUES ('自动任务-增强', 'false')");
         }
+
+        // 版本34：settings表增加“提示语显示”3个设置
+        if (oldVersion < 34) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('提示语显示-防御卡全能数据库', 'true')," +
+                    "('提示语显示-增幅卡名单', 'true')," +
+                    "('提示语显示-数据图查看器', 'true')");
+        }
     }
 
     @Override

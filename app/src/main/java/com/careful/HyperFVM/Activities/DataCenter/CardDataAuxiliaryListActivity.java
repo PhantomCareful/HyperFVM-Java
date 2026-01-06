@@ -37,9 +37,16 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
     private ActivityCardDataAuxiliaryListBinding binding;
     private SpringBackScrollView CardDataAuxiliaryListContainer;
 
+    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+        // 初始化数据库
+        dbHelper = new DBHelper(this);
+
+        if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST)) {
+            Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+        }
 
         // 设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
@@ -56,9 +63,6 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-
-        // 初始化数据库
-        dbHelper = new DBHelper(this);
 
         // 设置顶栏标题
         setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_auxiliary_list));

@@ -223,13 +223,17 @@
     <string name="title_tools_prestige_calculator">威望储备计算器</string>
     <string name="label_tools_prestige_calculator">😈威望币留着没开的同学很适合这个功能\n👉点击开始使用</string>
     <!--设置-->
-    <string name="label_settings_title_permission">授权检查</string>
+    <string name="title_settings_permission">授权检查</string>
     <string name="label_settings_permission_notification">通知权限</string>
-    <string name="label_settings_title_theme">主题设置</string>
+    <string name="title_settings_theme">主题设置</string>
     <string name="label_settings_switch_is_dynamic_color">动态取色(和壁纸同色)</string>
     <string name="label_settings_option_themed_color">自定义主题色</string>
     <string name="label_settings_option_dark_mode">深色模式</string>
-    <string name="label_settings_auto_task">自动任务</string>
+    <string name="title_settings_toast">提示语显示设置</string>
+    <string name="label_settings_switch_card_data_index">防御卡全能数据库</string>
+    <string name="label_settings_switch_card_data_auxiliary_list">增幅卡名单</string>
+    <string name="label_settings_switch_data_image_viewer">数据图查看器</string>
+    <string name="title_settings_auto_task">自动任务</string>
     <string name="label_settings_switch_auto_task">启用自动任务</string>
     <string name="label_settings_auto_task_description">⭐开启后，App将会在合适的时机自动领取温馨礼包、更新仪表盘信息，并向您推送执行结果通知。\n⭐此功能需要App常驻后台和推送通知，因此需要您授予App通知权限和自启动权限，并在多任务界面锁定App的后台，在系统的省电策略中不要对App采取任何限制措施。\n⭐请注意：各家定制系统可能会采取不同的措施限制App常驻后台，因此可能仍无法100%保证App不被系统杀死，若您发现保护通知消失，则需要手动重启App以重新激活自动任务。\n\n⭐若关闭，App则会在您每次打开的时候执行这些任务。\n\n⭐无论是否使用自动任务，温馨礼包每天第一次领取成功后便不再领取，若后续又添加了新的链接，请手动刷新一次仪表盘。</string>
     <string name="label_settings_switch_auto_task_enhanced">启用增强模式</string>

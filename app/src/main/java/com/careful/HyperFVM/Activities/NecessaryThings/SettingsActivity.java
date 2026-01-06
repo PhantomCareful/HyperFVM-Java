@@ -53,6 +53,10 @@ public class SettingsActivity extends AppCompatActivity {
     private static final String CONTENT_AUTO_TASK = "自动任务";
     private static final String CONTENT_AUTO_TASK_ENHANCED = "自动任务-增强";
 
+    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
+    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
+    private static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -279,6 +283,16 @@ public class SettingsActivity extends AppCompatActivity {
         boolean isDoAutoTaskEnhanced = dbHelper.getSettingValue(CONTENT_AUTO_TASK_ENHANCED);
         MaterialSwitch switchAutoTaskEnhanced = findViewById(R.id.Switch_AutoTask_Enhanced);
         switchAutoTaskEnhanced.setChecked(isDoAutoTaskEnhanced);
+        // Toast显示设置开关
+        boolean toastIsVisibleCardDataIndex = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
+        boolean toastIsVisibleCardDataAuxiliaryList = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST);
+        boolean toastIsVisibleDataImageViewer = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER);
+        MaterialSwitch toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataIndex);
+        toastIsVisible.setChecked(toastIsVisibleCardDataIndex);
+        toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
+        toastIsVisible.setChecked(toastIsVisibleCardDataAuxiliaryList);
+        toastIsVisible = findViewById(R.id.Switch_isVisible_DataImageViewer);
+        toastIsVisible.setChecked(toastIsVisibleDataImageViewer);
     }
 
     /**
@@ -321,6 +335,16 @@ public class SettingsActivity extends AppCompatActivity {
                 appTasks.get(0).setExcludeFromRecents(isChecked);//设置activity是否隐藏
             }
         });
+        // Toast显示设置开关
+        MaterialSwitch toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataIndex);
+        toastIsVisible.setOnCheckedChangeListener((buttonView, isChecked) ->
+                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX, isChecked ? "true" : "false"));
+        toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
+        toastIsVisible.setOnCheckedChangeListener((buttonView, isChecked) ->
+                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST, isChecked ? "true" : "false"));
+        toastIsVisible = findViewById(R.id.Switch_isVisible_DataImageViewer);
+        toastIsVisible.setOnCheckedChangeListener((buttonView, isChecked) ->
+                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER, isChecked ? "true" : "false"));
     }
 
     /**

@@ -43,9 +43,16 @@ public class CardDataIndexActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private SpringBackScrollView CardDataIndexContainer;
 
+    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+        // 初始化数据库
+        dbHelper = new DBHelper(this);
+
+        if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX)) {
+            Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+        }
 
         //设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
@@ -63,9 +70,6 @@ public class CardDataIndexActivity extends AppCompatActivity {
 
         // 添加模糊材质
         setupBlurEffect();
-
-        // 初始化数据库
-        dbHelper = new DBHelper(this);
 
         // 防御卡目录按钮
         CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);

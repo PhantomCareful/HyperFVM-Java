@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
@@ -27,9 +28,16 @@ public class ImageViewerActivity extends AppCompatActivity {
     private ZoomImageView zoomImageView;
     private DataImagesUpdaterUtil imageUtil;
 
+    private static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+        // 初始化数据库
+        try (DBHelper dbHelper = new DBHelper(this)) {
+            if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
+                Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+            }
+        }
 
         // 设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);

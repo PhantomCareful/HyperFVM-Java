@@ -66,6 +66,8 @@ public class DatabaseInfo {
      * 修复防御卡数据库几个错误
      * DB_VERSION = 33
      * 修复防御卡数据库几个描述不准确的问题
+     * DB_VERSION = 34
+     * settings表增加“提示语显示”3个设置
      */
-    public static final int DB_VERSION = 33;
+    public static final int DB_VERSION = 34;
 }
