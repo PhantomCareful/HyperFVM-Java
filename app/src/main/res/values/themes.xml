@@ -15,6 +15,7 @@
 
     <style name="ToolBarTitleStyle" parent="Base.Theme.HyperFVMJava">
         <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="CardDataAuxiliaryListStyle" parent="Base.Theme.HyperFVMJava">

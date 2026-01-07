@@ -1,145 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false">
+        tools:ignore="MissingConstraints">
 
-        <eightbitlab.com.blurview.BlurTarget
-            android:id="@+id/target"
+        <!-- 1. 中间内容：移到最前面，约束到父布局四边（延伸到顶栏/底栏后方） -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment_activity_main"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="MissingConstraints">
-
-            <!-- 1. 中间内容：移到最前面，约束到父布局四边（延伸到顶栏/底栏后方） -->
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/nav_host_fragment_activity_main"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:defaultNavHost="true"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:navGraph="@navigation/mobile_navigation" />
-
-        </eightbitlab.com.blurview.BlurTarget>
-
-        <!-- 新增：状态栏渐变遮罩层 -->
-        <View
-            android:id="@+id/status_bar_gradient"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/status_bar_gradient"
+            app:defaultNavHost="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:navGraph="@navigation/mobile_navigation" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintTop_toTopOf="parent">
+    </eightbitlab.com.blurview.BlurTarget>
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="10dp"
-                app:strokeWidth="2dp"
-                app:strokeColor="@color/bottom_navigation_view_stroke_color"
-                app:cardPreventCornerOverlap="false"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="40dp"
-                app:cardBackgroundColor="@android:color/transparent">
+    <!-- 状态栏渐变遮罩层 -->
+    <View
+        android:id="@+id/status_bar_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/status_bar_gradient"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                <eightbitlab.com.blurview.BlurView
-                    android:id="@+id/blurViewTopAppBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:blurOverlayColor="@color/blur_overlay_color">
+    <!-- 顶栏：移到中间内容之后（层级更高），设透明背景 -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent">
 
-                    <!-- 顶栏：移到中间内容之后（层级更高），设透明背景 -->
-                    <com.google.android.material.appbar.AppBarLayout
-                        android:id="@+id/app_bar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/Top_AppBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:titleTextColor="?attr/colorOnSurface"
+            app:titleTextAppearance="@style/ToolBarTitleStyle" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-                        <com.google.android.material.appbar.MaterialToolbar
-                            android:id="@+id/Top_AppBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/transparent"
-                            app:titleTextColor="?attr/colorOnSurface"
-                            app:titleTextAppearance="@style/ToolBarTitleStyle" />
-                    </com.google.android.material.appbar.AppBarLayout>
-
-                </eightbitlab.com.blurview.BlurView>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                app:strokeWidth="2dp"
-                app:strokeColor="@color/bottom_navigation_view_stroke_color"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="10dp"
-                app:cardBackgroundColor="@android:color/transparent">
-
-                <eightbitlab.com.blurview.BlurView
-                    android:id="@+id/blurViewButtonSearch"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToOutline="true"
-                    app:blurOverlayColor="@color/blur_overlay_color">
-
-                    <ImageButton
-                        android:id="@+id/FloatButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@android:color/transparent"
-                        android:src="@drawable/ic_search"
-                        android:stateListAnimator="@null"
-                        app:elevation="0dp"
-                        app:pressedTranslationZ="0dp"
-                        app:rippleColor="@android:color/transparent" />
-
-                </eightbitlab.com.blurview.BlurView>
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
             app:strokeWidth="2dp"
             app:strokeColor="@color/bottom_navigation_view_stroke_color"
             app:cardPreventCornerOverlap="false"
             app:cardElevation="10dp"
             app:cardCornerRadius="40dp"
-            android:layout_marginHorizontal="100dp"
-            android:layout_marginBottom="60dp"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            app:cardBackgroundColor="@android:color/transparent">
 
             <eightbitlab.com.blurview.BlurView
                 android:id="@+id/blurViewNavView"
@@ -153,7 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@android:color/transparent"
-                    app:itemIconSize="30dp"
+                    app:itemIconSize="40dp"
                     app:itemIconTint="@null"
                     app:itemActiveIndicatorStyle="@null"
                     app:itemRippleColor="@android:color/transparent"
@@ -165,6 +104,37 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/bottom_navigation_view_stroke_color"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@android:color/transparent">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewButtonSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToOutline="true"
+                app:blurOverlayColor="@color/blur_overlay_color">
+
+                <ImageButton
+                    android:id="@+id/FloatButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_search"
+                    android:stateListAnimator="@null"
+                    app:elevation="0dp"
+                    app:pressedTranslationZ="0dp"
+                    app:rippleColor="@android:color/transparent" />
+
+            </eightbitlab.com.blurview.BlurView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

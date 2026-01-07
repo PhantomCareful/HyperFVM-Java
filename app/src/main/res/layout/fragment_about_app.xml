@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="120dp"
-            android:paddingBottom="120dp"
+            android:paddingTop="150dp"
+            android:paddingBottom="150dp"
             android:clipChildren="false"
             android:clipToPadding="false">
 
@@ -83,47 +83,40 @@
                     android:id="@+id/about_app_developer_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:padding="10dp"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground">
 
-                    <GridLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/Image_View_Phantom_Careful"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:columnCount="3">
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/phantom_careful"
+                        android:layout_gravity="start|center_vertical"
+                        tools:ignore="ContentDescription" />
 
-                        <ImageView
-                            android:id="@+id/Image_View_Phantom_Careful"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/phantom_careful"
-                            android:layout_gravity="start|center_vertical"
-                            tools:ignore="ContentDescription" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_about_app_developer_name"
+                        android:textSize="25sp"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:textStyle="bold"
+                        android:layout_marginStart="10dp"
+                        android:gravity="start|center_vertical"
+                        android:layout_gravity="center_vertical" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_about_app_developer_name"
-                            android:textSize="25sp"
-                            android:textColor="?attr/colorOnPrimary"
-                            android:textStyle="bold"
-                            android:layout_marginStart="10dp"
-                            android:gravity="start|center_vertical"
-                            android:layout_gravity="center_vertical" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorOnPrimary"
-                            android:gravity="start|center_vertical"
-                            android:layout_gravity="end|center_vertical"
-                            tools:ignore="ContentDescription" />
-
-                    </GridLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnPrimary"
+                        android:layout_gravity="center_vertical"
+                        tools:ignore="ContentDescription" />
 
                 </LinearLayout>
 

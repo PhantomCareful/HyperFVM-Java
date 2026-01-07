@@ -1,7 +1,5 @@
 package com.careful.HyperFVM;
 
-import static com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil.getSmallestWidthDp;
-
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,7 +23,6 @@ import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCal
 import com.careful.HyperFVM.utils.OtherUtils.SignatureChecker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.navigationrail.NavigationRailView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -69,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> menuOrder; // 导航菜单顺序（与bottom_nav_menu.xml一致）
     private BootReceiver bootReceiver;
     private BottomNavigationView navView;
-    private NavigationRailView leftNavView;
 
     private Handler mainHandler;
 
@@ -177,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
             // 获取导航控制器
             navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
             navView = findViewById(R.id.nav_view);
-            leftNavView = findViewById(R.id.left_nav_view);
 
             // 配置导航栏（PAD/手机双端）
             setupNavView();
@@ -203,33 +198,17 @@ public class MainActivity extends AppCompatActivity {
         NavOptions.Builder navOptions = new NavOptions.Builder();
 
         if (targetIndex > currentIndex) {
-            if (getSmallestWidthDp() < 600) {
-                // 目标在右侧：右滑入 + 左滑出
-                navOptions.setEnterAnim(R.anim.slide_in_right)
-                        .setExitAnim(R.anim.slide_out_left)
-                        .setPopEnterAnim(R.anim.slide_in_left)
-                        .setPopExitAnim(R.anim.slide_out_right);
-            } else {
-                // 目标在下方：下滑入 + 上滑出
-                navOptions.setEnterAnim(R.anim.slide_in_bottom)
-                        .setExitAnim(R.anim.slide_out_top)
-                        .setPopEnterAnim(R.anim.slide_in_top)
-                        .setPopExitAnim(R.anim.slide_out_bottom);
-            }
+            // 目标在右侧：右滑入 + 左滑出
+            navOptions.setEnterAnim(R.anim.slide_in_right)
+                    .setExitAnim(R.anim.slide_out_left)
+                    .setPopEnterAnim(R.anim.slide_in_left)
+                    .setPopExitAnim(R.anim.slide_out_right);
         } else if (targetIndex < currentIndex) {
-            if (getSmallestWidthDp() < 600) {
-                // 目标在左侧：左滑入 + 右滑出
-                navOptions.setEnterAnim(R.anim.slide_in_left)
-                        .setExitAnim(R.anim.slide_out_right)
-                        .setPopEnterAnim(R.anim.slide_in_right)
-                        .setPopExitAnim(R.anim.slide_out_left);
-            } else {
-                // 目标在上方：上滑入 + 下滑出
-                navOptions.setEnterAnim(R.anim.slide_in_top)
-                        .setExitAnim(R.anim.slide_out_bottom)
-                        .setPopEnterAnim(R.anim.slide_in_bottom)
-                        .setPopExitAnim(R.anim.slide_out_top);
-            }
+            // 目标在左侧：左滑入 + 右滑出
+            navOptions.setEnterAnim(R.anim.slide_in_left)
+                    .setExitAnim(R.anim.slide_out_right)
+                    .setPopEnterAnim(R.anim.slide_in_right)
+                    .setPopExitAnim(R.anim.slide_out_left);
         }
 
         navController.navigate(targetId, null, navOptions.build());
@@ -248,21 +227,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_about_app
         ).build();
 
-        // PAD端：左侧导航栏
-        if (leftNavView != null) {
-            // 自定义选中监听器
-            leftNavView.setOnItemSelectedListener(item -> handleNavItemSelection(item.getItemId()));
-            // 强制同步UI选中状态
-            leftNavView.setSelectedItemId(currentNavId);
-
-            // ToolBar联动
-            if (getSupportActionBar() != null) {
-                NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-            }
-            return;
-        }
-
-        // 手机端：底部导航
+        // 手机端PAD端都是底部导航
         if (navView != null) {
             // 自定义选中监听器
             navView.setOnItemSelectedListener(item -> handleNavItemSelection(item.getItemId()));
@@ -281,7 +246,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
         blurUtil.setBlur(findViewById(R.id.blurViewNavView));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
     }
