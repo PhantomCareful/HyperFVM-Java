@@ -119,7 +119,7 @@
                 app:blurOverlayColor="@color/blur_overlay_color">
 
                 <ImageButton
-                    android:id="@+id/FloatButton"
+                    android:id="@+id/FloatButton_CardDataSearch"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@android:color/transparent"
