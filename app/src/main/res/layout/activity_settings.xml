@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
                     card_view:cardElevation="10dp">
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
                     card_view:cardElevation="10dp">
@@ -178,7 +178,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
                     card_view:cardElevation="10dp">
@@ -231,7 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     card_view:cardCornerRadius="20dp"
                     card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
                     card_view:cardElevation="10dp">

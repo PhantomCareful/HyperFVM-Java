@@ -1,266 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activities.MeishiWechatActivity">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
 
-        <eightbitlab.com.blurview.BlurTarget
-            android:id="@+id/target"
+        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
             tools:ignore="MissingConstraints">
 
-            <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            <LinearLayout
+                android:id="@+id/MeishiWechatContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none"
-                tools:ignore="MissingConstraints">
+                android:orientation="vertical"
+                android:paddingTop="100dp"
+                android:paddingBottom="120dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
-                <LinearLayout
-                    android:id="@+id/MeishiWechatContainer"
+                <TextView
+                    android:id="@+id/TitleMeishiWechatSavedAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="100dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/label_tools_meishi_wechat_account_saved"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
-                    <TextView
-                        android:id="@+id/TitleMeishiWechatSavedAccount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:text="@string/label_tools_meishi_wechat_account_saved"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                <!--账号列表容器，用于动态添加卡片-->
+                <LinearLayout
+                    android:id="@+id/LinearLayout_AccountList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
 
-                    <!--账号列表容器，用于动态添加卡片-->
+                <TextView
+                    android:id="@+id/TitleMeishiWechatInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="@string/title_tools_meishi_wechat_rules"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:visibility="gone"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/MeishiWechatInstructionsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp"
+                    android:visibility="gone">
+
                     <LinearLayout
-                        android:id="@+id/LinearLayout_AccountList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/TitleMeishiWechatInstructions"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:text="@string/title_tools_meishi_wechat_rules"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"
-                        android:visibility="gone"/>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/MeishiWechatInstructionsContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="15dp"
-                        card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                        card_view:cardElevation="10dp"
-                        android:visibility="gone">
-
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/TextMeishiWechatInstructions"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/TextMeishiWechatInstructions"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="10dp"
-                                android:text=""
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"
-                                android:clickable="true"
-                                android:background="?attr/selectableItemBackground"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/TitleMeishiWechatGiftContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="@string/title_tools_meishi_wechat_gift"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:visibility="gone"/>
 
-                    <TextView
-                        android:id="@+id/TitleMeishiWechatGiftContent"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/MeishiWechatGiftContentContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="15dp"
+                    card_view:cardCornerRadius="20dp"
+                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    card_view:cardElevation="10dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:text="@string/title_tools_meishi_wechat_gift"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"
-                        android:visibility="gone"/>
+                        android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/MeishiWechatGiftContentContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="150dp"
-                        card_view:cardCornerRadius="20dp"
-                        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                        card_view:cardElevation="10dp"
-                        android:visibility="gone">
-
-                        <LinearLayout
+                        <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:scrollbars="none">
 
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:scrollbars="none">
+                                android:orientation="horizontal"
+                                android:padding="10dp">
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
+                                <ImageView
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="10dp">
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_2h_double_item"
+                                    tools:ignore="ContentDescription" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_crystal"
+                                    tools:ignore="ContentDescription" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_spice_2"
+                                    tools:ignore="ContentDescription" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_spice_3"
+                                    tools:ignore="ContentDescription" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_spice_4"
+                                    tools:ignore="ContentDescription" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_four_leaf_clover_1"
+                                    tools:ignore="ContentDescription" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_four_leaf_clover_2"
+                                    tools:ignore="ContentDescription" />
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/item_four_leaf_clover_3"
+                                    tools:ignore="ContentDescription" />
 
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_2h_double_item"/>
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_crystal"/>
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_spice_2"/>
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_spice_3"/>
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_spice_4"/>
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_four_leaf_clover_1"/>
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_four_leaf_clover_2"/>
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_four_leaf_clover_3"/>
+                            </LinearLayout>
 
-                                </LinearLayout>
+                        </HorizontalScrollView>
 
-                            </HorizontalScrollView>
+                        <TextView
+                            android:id="@+id/TextMeishiWechatGiftContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/TextMeishiWechatGiftContent"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="10dp"
-                                android:text=""
-                                android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"
-                                android:clickable="true"
-                                android:background="?attr/selectableItemBackground"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-                </LinearLayout>
+        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
 
-            </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+    </eightbitlab.com.blurview.BlurTarget>
 
-        </eightbitlab.com.blurview.BlurTarget>
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewTopAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToOutline="true"
+        app:blurOverlayColor="@color/blur_overlay_color"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/Top_AppBar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                app:titleTextColor="?attr/colorOnSurface"
+                app:titleTextAppearance="@style/ToolBarTitleStyle" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Card_FloatButton_Container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurViewTopAppBar"
-            android:layout_width="match_parent"
+            android:id="@+id/blurViewButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipToOutline="true"
             app:blurOverlayColor="@color/blur_overlay_color"
             tools:ignore="MissingConstraints">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
-                android:layout_width="match_parent"
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/FloatButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fitsSystemWindows="true"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/Top_AppBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    app:titleTextColor="?attr/colorOnSurface"
-                    app:titleTextAppearance="@style/ToolBarTitleStyle" />
-            </com.google.android.material.appbar.AppBarLayout>
+                android:text="@string/label_tools_meishi_wechat_add_url"
+                android:textSize="20sp"
+                android:backgroundTint="@android:color/transparent"
+                android:stateListAnimator="@null"
+                app:icon="@drawable/ic_plus"
+                app:elevation="0dp"
+                app:pressedTranslationZ="0dp"
+                app:rippleColor="@android:color/transparent" />
 
         </eightbitlab.com.blurview.BlurView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Card_FloatButton_Container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+    </androidx.cardview.widget.CardView>
 
-            <eightbitlab.com.blurview.BlurView
-                android:id="@+id/blurViewButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clipToOutline="true"
-                app:blurOverlayColor="@color/blur_overlay_color"
-                tools:ignore="MissingConstraints">
-
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/FloatButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_tools_meishi_wechat_add_url"
-                    android:textSize="20sp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:stateListAnimator="@null"
-                    app:icon="@drawable/ic_plus"
-                    app:elevation="0dp"
-                    app:pressedTranslationZ="0dp"
-                    app:rippleColor="@android:color/transparent" />
-
-            </eightbitlab.com.blurview.BlurView>
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
