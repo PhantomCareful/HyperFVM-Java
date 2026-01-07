@@ -8,6 +8,9 @@
     <!--Blur叠加色-->
     <color name="blur_overlay_color">#40ffffff</color>
 
+    <!--底栏描边颜色-->
+    <color name="bottom_navigation_view_stroke_color">#40ffffff</color>
+
     <!--宫墙-->
     <color name="md_red_gongqiang_primary">#904B3C</color>
     <color name="md_red_gongqiang_onPrimary">#FFFFFF</color>

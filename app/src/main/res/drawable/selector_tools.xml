@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 选中状态图标 -->
-    <item android:drawable="@drawable/ic_tools_selected" android:state_checked="true"/>
-    <!-- 未选中状态图标 -->
-    <item android:drawable="@drawable/ic_tools_normal" android:state_checked="false"/>
-</selector>

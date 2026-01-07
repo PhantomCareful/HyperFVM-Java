@@ -162,10 +162,10 @@ public class MeishiWechatActivity extends AppCompatActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
+        blurUtil.setBlur(findViewById(R.id.blurViewButton));
 
         // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.Card_FloatButton_CardDataSearch);
+        CardView cardView = findViewById(R.id.Card_FloatButton_Container);
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 选中状态背景 -->
-    <item android:drawable="@color/material_dynamic_primary80" android:state_checked="true"/>
-    <!-- 未选中状态背景 -->
-    <item android:drawable="@android:color/transparent" android:state_checked="false"/>
-</selector>

@@ -283,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
         blurUtil.setBlur(findViewById(R.id.blurViewNavView));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
     }
 
     /**

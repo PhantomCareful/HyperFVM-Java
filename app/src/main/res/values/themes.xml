@@ -25,6 +25,17 @@
         <item name="android:textSize">30sp</item>
     </style>
 
+    <!-- 自定义CardView圆角样式：仅左上+右上圆角，左下+右下直角 -->
+    <style name="CustomCardCornerStyle" parent="Base.Theme.HyperFVMJava">
+        <!-- 圆角类型：rounded（圆角）/cut（切角） -->
+        <item name="cornerFamily">rounded</item>
+        <!-- 分别设置四个角的圆角大小（单位dp） -->
+        <item name="cornerSizeTopLeft">40dp</item>    <!-- 左上圆角 -->
+        <item name="cornerSizeTopRight">40dp</item>   <!-- 右上圆角 -->
+        <item name="cornerSizeBottomLeft">0dp</item>  <!-- 左下直角 -->
+        <item name="cornerSizeBottomRight">0dp</item> <!-- 右下直角 -->
+    </style>
+
     <style name="Theme.HyperFVMJava" parent="Base.Theme.HyperFVMJava" />
 
 </resources>
