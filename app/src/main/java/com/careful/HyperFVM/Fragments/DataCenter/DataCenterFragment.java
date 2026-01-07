@@ -122,12 +122,16 @@ public class DataCenterFragment extends Fragment {
 
         // 防御卡全能数据库
         root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
+            TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
+            DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index_loading));
             Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
             startActivity(intent);
         }, 150));
 
         // 增幅卡名单
         root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> v.postDelayed(() -> {
+            TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
+            DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list_loading));
             Intent intent = new Intent(requireActivity(), CardDataAuxiliaryListActivity.class);
             startActivity(intent);
         }, 150));
@@ -458,6 +462,15 @@ public class DataCenterFragment extends Fragment {
                 .setNegativeButton("我是老手\uD83D\uDE0E", null)
                 .setCancelable(false)
                 .show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
+        DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
+        TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
+        DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list));
     }
 
     @Override

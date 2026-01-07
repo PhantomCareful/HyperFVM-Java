@@ -49,13 +49,6 @@ public class CardDataIndexActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // 初始化数据库
-        dbHelper = new DBHelper(this);
-
-        if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX)) {
-            Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
-        }
-
         //设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
 
@@ -73,6 +66,9 @@ public class CardDataIndexActivity extends AppCompatActivity {
         // 添加模糊材质
         setupBlurEffect();
 
+        // 初始化数据库
+        dbHelper = new DBHelper(this);
+
         // 防御卡目录按钮
         CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);
         findViewById(R.id.FloatButton_CardDataIndex).setOnClickListener(v -> showTitleNavigationDialog());
@@ -81,7 +77,11 @@ public class CardDataIndexActivity extends AppCompatActivity {
         findViewById(R.id.FloatButton_CardDataSearch).setOnClickListener(v -> showCardQueryDialog());
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
-        new Handler(Looper.getMainLooper()).postDelayed(this::initCardImages, 50);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            initCardImages();
+            if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX)) {
+                Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
+            }}, 50);
     }
 
     /**

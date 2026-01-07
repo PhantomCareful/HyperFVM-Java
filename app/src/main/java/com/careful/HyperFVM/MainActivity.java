@@ -239,6 +239,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * 设置Toolbar标题
+     */
     private void setTopAppBarTitle(String title) {
         //设置顶栏标题
         MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);

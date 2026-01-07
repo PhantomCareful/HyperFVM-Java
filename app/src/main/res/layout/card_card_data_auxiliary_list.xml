@@ -49,6 +49,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/DataCenter_CardDataAuxiliaryList_Content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_data_center_card_data_auxiliary_list"
