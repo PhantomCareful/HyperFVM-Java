@@ -2,7 +2,6 @@ package com.careful.HyperFVM.Fragments.AboutApp;
 
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -27,7 +26,6 @@ import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
@@ -43,9 +41,6 @@ public class AboutAppFragment extends Fragment {
         //初始化binding
         binding = FragmentAboutAppBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_about_app));
 
         // 初始化动画效果
         transition = new TransitionSet();
@@ -135,15 +130,6 @@ public class AboutAppFragment extends Fragment {
         root.postDelayed(transitionRunnable, 300);
 
         return root;
-    }
-
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题
-        Activity activity = getActivity();
-        if (activity != null) {
-            MaterialToolbar toolbar = activity.findViewById(R.id.Top_AppBar);
-            toolbar.setTitle(title);
-        }
     }
 
     private void setEasterEgg(View root) {

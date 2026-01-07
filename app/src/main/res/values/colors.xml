@@ -8,7 +8,7 @@
     <!--Blur叠加色-->
     <color name="blur_overlay_color">#40ffffff</color>
 
-    <!--底栏描边颜色-->
+    <!--底栏和按钮描边颜色-->
     <color name="bottom_navigation_view_stroke_color">#40ffffff</color>
 
     <!--宫墙-->

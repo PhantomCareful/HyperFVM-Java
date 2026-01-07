@@ -233,7 +233,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
 
         // 显示弹窗（保持原有逻辑）
         new MaterialAlertDialogBuilder(this)
-                .setTitle("防御卡数据查询")
+                .setTitle(getResources().getString(R.string.card_data_search_title))
                 .setView(dialogView)
                 .setPositiveButton("查询", (dialog, which) -> {
                     String cardName = Objects.requireNonNull(etCardName.getText()).toString().trim();

@@ -3,7 +3,7 @@
     <item
         android:id="@+id/navigation_data_station"
         android:icon="@drawable/selector_data_center"
-        android:title="@string/label_data_station_navigation"
+        android:title="@string/label_data_center_navigation"
         android:checked="true"/>
 
     <item

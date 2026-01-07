@@ -21,6 +21,8 @@ import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
+import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
+import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
@@ -31,6 +33,7 @@ import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
 import com.careful.HyperFVM.utils.OtherUtils.SignatureChecker;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -38,15 +41,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.careful.HyperFVM.databinding.ActivityMainBinding;
+import com.careful.HyperFVM.utils.OtherUtils.TabLayoutFragmentStateAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -71,15 +71,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // 核心：全局跟踪当前导航ID，解决状态同步问题
-    private int currentNavId = R.id.navigation_data_station; // 与menu默认选中项一致
     private ActivityMainBinding binding;
-    private NavController navController;
     private AutoTaskNotificationManager autoTaskNotificationManager;
     private DBHelper dbHelper;
-    private List<Integer> menuOrder; // 导航菜单顺序（与bottom_nav_menu.xml一致）
+    private List<Integer> menuOrder; // 导航菜单顺序
     private BootReceiver bootReceiver;
     private BottomNavigationView navView;
+
+    // 新增：ViewPager2相关
+    private ViewPager2 viewPager;
+    private TabLayoutFragmentStateAdapter viewPagerAdapter;
 
     private Handler mainHandler;
 
@@ -121,11 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        // 恢复导航状态（布局切换/重建时）
-        if (savedInstanceState != null) {
-            currentNavId = savedInstanceState.getInt("currentNavId", R.id.navigation_data_station);
-        }
-
         // 启动自动任务服务 & 注册重启广播
         if (dbHelper.getSettingValue("自动任务")) {
             Intent serviceIntent = new Intent(this, PersistentService.class);
@@ -152,8 +148,9 @@ public class MainActivity extends AppCompatActivity {
         menuOrder.add(R.id.navigation_data_station);
         menuOrder.add(R.id.navigation_about_app);
 
-        // 确保视图加载完成后初始化导航（避免空指针）
-        binding.getRoot().post(this::setupNavigation);
+        // 确保视图加载完成后初始化ViewPager（避免空指针）
+        setupViewPager();
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center));
 
         // 配置模糊效果
         setupBlurEffect();
@@ -174,88 +171,78 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 保存导航状态，防止布局切换时丢失
+     * 初始化ViewPager2
      */
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("currentNavId", currentNavId);
-    }
-
-    /**
-     * 初始化导航逻辑
-     */
-    private void setupNavigation() {
+    private void setupViewPager() {
         try {
-            // 获取导航控制器
-            navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+            viewPager = findViewById(R.id.viewPager);
             navView = findViewById(R.id.nav_view);
 
-            // 配置导航栏（PAD/手机双端）
-            setupNavView();
+            // 初始化适配器
+            viewPagerAdapter = new TabLayoutFragmentStateAdapter(this);
+
+            // 添加Fragment
+            viewPagerAdapter.addFragment(new DataCenterFragment(), getResources().getString(R.string.top_bar_data_center));
+            viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));
+
+            viewPager.setAdapter(viewPagerAdapter);
+
+            // 禁用预加载相邻页面（可选，减少内存使用）
+            viewPager.setOffscreenPageLimit(1);
+
+            // 禁用ViewPager2的滚动动画（如果需要）
+            viewPager.setUserInputEnabled(false); // 如果不想让用户滑动
+
+            // 设置ViewPager2页面变化监听
+            viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                    // 同步底部导航栏状态
+                    int selectedId = menuOrder.get(position);
+                    navView.setSelectedItemId(selectedId);
+
+                    // 更新Toolbar标题
+                    updateToolbarTitle(position);
+                }
+            });
+
+            // 设置底部导航栏点击监听
+            navView.setOnItemSelectedListener(item -> {
+                int itemId = item.getItemId();
+                int targetPosition = menuOrder.indexOf(itemId);
+
+                if (targetPosition != -1 && targetPosition != viewPager.getCurrentItem()) {
+                    // 添加平滑滚动动画
+                    viewPager.setCurrentItem(targetPosition, true);
+                    return true;
+                }
+                return false;
+            });
+
+            // 设置默认选中项
+            navView.setSelectedItemId(R.id.navigation_data_station);
 
         } catch (Exception e) {
-            Log.e("NavigationError", "导航初始化失败", e);
+            Log.e("ViewPagerSetup", "ViewPager初始化失败", e);
         }
     }
 
     /**
-     * 统一处理导航项选中逻辑
+     * 更新Toolbar标题
      */
-    private boolean handleNavItemSelection(int targetId) {
-        // 点击当前已选中项：直接返回，避免重复处理
-        if (targetId == currentNavId) {
-            return true;
-        }
-
-        // 计算动画方向（根据菜单顺序）
-        int currentIndex = menuOrder.indexOf(currentNavId);
-        int targetIndex = menuOrder.indexOf(targetId);
-
-        NavOptions.Builder navOptions = new NavOptions.Builder();
-
-        if (targetIndex > currentIndex) {
-            // 目标在右侧：右滑入 + 左滑出
-            navOptions.setEnterAnim(R.anim.slide_in_right)
-                    .setExitAnim(R.anim.slide_out_left)
-                    .setPopEnterAnim(R.anim.slide_in_left)
-                    .setPopExitAnim(R.anim.slide_out_right);
-        } else if (targetIndex < currentIndex) {
-            // 目标在左侧：左滑入 + 右滑出
-            navOptions.setEnterAnim(R.anim.slide_in_left)
-                    .setExitAnim(R.anim.slide_out_right)
-                    .setPopEnterAnim(R.anim.slide_in_right)
-                    .setPopExitAnim(R.anim.slide_out_left);
-        }
-
-        navController.navigate(targetId, null, navOptions.build());
-
-        // 更新全局导航状态
-        currentNavId = targetId;
-        return true;
-    }
-
-    /**
-     * 配置导航栏（适配PAD左侧/手机底部）
-     */
-    private void setupNavView() {
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_data_station,
-                R.id.navigation_about_app
-        ).build();
-
-        // 手机端PAD端都是底部导航
-        if (navView != null) {
-            // 自定义选中监听器
-            navView.setOnItemSelectedListener(item -> handleNavItemSelection(item.getItemId()));
-            // 强制同步UI选中状态
-            navView.setSelectedItemId(currentNavId);
-
-            // ToolBar联动
-            if (getSupportActionBar() != null) {
-                NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+    private void updateToolbarTitle(int position) {
+        if (position >= 0 && position < viewPagerAdapter.getItemCount()) {
+            CharSequence title = viewPagerAdapter.getPageTitle(position);
+            if (title != null) {
+                binding.TopAppBar.setTitle(title);
             }
         }
+    }
+    private void setTopAppBarTitle(String title) {
+        //设置顶栏标题
+        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
+        toolbar.setTitle(title);
     }
 
     /**
@@ -347,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 显示弹窗（保持原有逻辑）
         new MaterialAlertDialogBuilder(this)
-                .setTitle("防御卡数据查询")
+                .setTitle(getResources().getString(R.string.card_data_search_title))
                 .setView(dialogView)
                 .setPositiveButton("查询", (dialog, which) -> {
                     String cardName = Objects.requireNonNull(etCardName.getText()).toString().trim();

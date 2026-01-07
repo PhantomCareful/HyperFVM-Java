@@ -2,8 +2,8 @@
     <!--总体-->
     <string name="app_name">HyperFVM</string>
     <string name="hyper_fvm">HyperFVM</string>
-    <string name="top_bar_data_station">融合数据中心🤏</string>
-    <string name="label_data_station_navigation">融合数据中心</string>
+    <string name="top_bar_data_center">融合数据中心🤏</string>
+    <string name="label_data_center_navigation">融合数据中心</string>
     <string name="top_bar_about_app">关于软件🫴</string>
     <string name="label_about_app_navigation">关于软件</string>
     <!--融合数据中心-->
@@ -23,8 +23,8 @@
     <string name="label_data_center_tiramisu_image">😈人工收集提拉米鼠生成的部分图片\n👉点击去查看</string>
     <string name="top_bar_data_center_tiramisu_image">米鼠的图📊</string>
     <string name="label_data_img_viewer">数据图查看器👀</string>
-    <string name="card_data_index">防御卡目录</string>
-    <string name="card_data_search_tips">⭐数据库日期：20260101\n⭐前排提醒：卡片冷却默认7秒，体力默认50，如有不同会单独标出</string>
+    <string name="card_data_search_title">🔍防御卡数据查询</string>
+    <string name="card_data_search_tips">数据库日期【20260101】\n卡片冷却默认7秒，体力默认50，如有不同会单独标出。</string>
     <string name="label_data_images_index_card">防御卡数据图(By So陌路の)</string>
     <string name="text_data_images_index_card_0_1">0–1.新卡速递</string>
     <string name="text_data_images_index_card_0_2_1">0–2.防御卡名称(Part1)</string>

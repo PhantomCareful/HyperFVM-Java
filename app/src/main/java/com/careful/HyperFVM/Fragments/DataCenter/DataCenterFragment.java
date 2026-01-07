@@ -1,7 +1,6 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,7 +38,6 @@ import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonth
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -83,8 +81,6 @@ public class DataCenterFragment extends Fragment {
         root = binding.getRoot();
 
         preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_station));
 
         // 初始化数据库类
         dbHelper = new DBHelper(requireContext());
@@ -462,15 +458,6 @@ public class DataCenterFragment extends Fragment {
                 .setNegativeButton("我是老手\uD83D\uDE0E", null)
                 .setCancelable(false)
                 .show();
-    }
-
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题
-        Activity activity = getActivity();
-        if (activity != null) {
-            MaterialToolbar toolbar = activity.findViewById(R.id.Top_AppBar);
-            toolbar.setTitle(title);
-        }
     }
 
     @Override
