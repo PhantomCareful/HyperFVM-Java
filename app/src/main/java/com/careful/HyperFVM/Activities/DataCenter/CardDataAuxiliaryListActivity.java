@@ -639,7 +639,7 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
 
         // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.Card_FloatButton_CardDataIndex);
+        CardView cardView = findViewById(R.id.FloatButton_CardDataIndex_Container);
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,

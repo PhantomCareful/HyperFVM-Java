@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -71,10 +73,12 @@ public class CardDataIndexActivity extends AppCompatActivity {
 
         // 防御卡目录按钮
         CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);
-        findViewById(R.id.FloatButton_CardDataIndex).setOnClickListener(v -> showTitleNavigationDialog());
+        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
+        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnClickListener(v -> showTitleNavigationDialog());
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch).setOnClickListener(v -> showCardQueryDialog());
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener(this::setPressAnimation);
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> showCardQueryDialog());
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -82,6 +86,32 @@ public class CardDataIndexActivity extends AppCompatActivity {
             if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX)) {
                 Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
             }}, 50);
+    }
+
+    /**
+     * 给按钮和卡片添加按压反馈动画
+     * @return 是否拦截触摸事件
+     */
+    private boolean setPressAnimation(View v, MotionEvent event) {
+        //setPress
+        switch (event.getAction()) {
+            // 按下：执行缩小动画（从当前大小开始）
+            case MotionEvent.ACTION_DOWN:
+                ViewAnimationUtils.playPressScaleAnimation(v, true);
+                break;
+
+            // 松开：执行恢复动画（从当前缩小的大小开始）
+            case MotionEvent.ACTION_UP:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+
+            // 取消（比如滑动离开View）：强制恢复动画
+            case MotionEvent.ACTION_CANCEL:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+        }
+
+        return false;
     }
 
     /**
@@ -1189,12 +1219,11 @@ public class CardDataIndexActivity extends AppCompatActivity {
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
 
         // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.Card_FloatButton_CardDataIndex);
+        CardView cardView = findViewById(R.id.FloatButton_CardDataIndex_Container);
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,
@@ -1204,7 +1233,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
         animator.start();
 
         // 顺便添加一个位移动画
-        cardView = findViewById(R.id.Card_FloatButton_CardDataSearch);
+        cardView = findViewById(R.id.FloatButton_CardDataSearch_Container);
         animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,

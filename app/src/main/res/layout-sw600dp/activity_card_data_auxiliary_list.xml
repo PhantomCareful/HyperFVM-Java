@@ -310,7 +310,7 @@
     </eightbitlab.com.blurview.BlurView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/Card_FloatButton_CardDataIndex"
+        android:id="@+id/FloatButton_CardDataIndex_Container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
