@@ -4,11 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_new_year_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="15dp"
+        android:clickable="true"
         card_view:cardCornerRadius="20dp"
         card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
         app:cardElevation="10dp">
@@ -17,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:clickable="true"
             android:background="?attr/selectableItemBackground">
 
             <TextView

@@ -36,8 +36,8 @@ public class ViewAnimationUtils {
         AnimatorSet animSet = new AnimatorSet();
         animSet.playTogether(scaleX, scaleY);
         animSet.setDuration(ANIM_DURATION);
-        // 按压时减速（更贴近物理按压感），恢复时加速（更轻快）
-        animSet.setInterpolator(isPressed ? new DecelerateInterpolator(1.2f) : new AccelerateInterpolator(1.2f));
+        // 按压时加速（更贴近物理按压感），恢复时减速
+        animSet.setInterpolator(isPressed ? new AccelerateInterpolator(0.3f) : new DecelerateInterpolator(0.3f));
 
         // 6. 启动动画
         animSet.start();

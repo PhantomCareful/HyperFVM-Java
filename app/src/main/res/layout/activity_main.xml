@@ -44,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/Top_AppBar"
@@ -103,6 +104,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/FloatButton_CardDataSearch_Container"
             android:layout_width="60dp"
             android:layout_height="60dp"
             app:strokeWidth="2dp"
@@ -115,7 +117,6 @@
                 android:id="@+id/blurViewButtonSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToOutline="true"
                 app:blurOverlayColor="@color/blur_overlay_color">
 
                 <ImageButton
@@ -125,9 +126,11 @@
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/ic_search"
                     android:stateListAnimator="@null"
+                    android:clickable="false"
                     app:elevation="0dp"
                     app:pressedTranslationZ="0dp"
-                    app:rippleColor="@android:color/transparent" />
+                    app:rippleColor="@android:color/transparent"
+                    tools:ignore="ContentDescription" />
 
             </eightbitlab.com.blurview.BlurView>
 

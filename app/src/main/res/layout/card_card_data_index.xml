@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/DataCenter_CardDataIndex_Container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -14,11 +15,10 @@
         app:cardElevation="10dp">
 
         <LinearLayout
-            android:id="@+id/DataCenter_CardDataIndex_Container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:clickable="true"
+            android:clickable="false"
             android:background="?attr/selectableItemBackground"
             android:padding="10dp">
 

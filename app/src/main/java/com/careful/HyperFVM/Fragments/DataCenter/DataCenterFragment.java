@@ -122,34 +122,6 @@ public class DataCenterFragment extends Fragment {
         // 从仓库获取B站官方的最新公告
         getLatestBilibiliAnnouncement();
 
-        // 防御卡全能数据库
-        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
-            TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
-            DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index_loading));
-            Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
-            startActivity(intent);
-        }, 150));
-
-        // 增幅卡名单
-        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> v.postDelayed(() -> {
-            TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
-            DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list_loading));
-            Intent intent = new Intent(requireActivity(), CardDataAuxiliaryListActivity.class);
-            startActivity(intent);
-        }, 150));
-
-        // 数据图合集
-        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), DataImagesIndexActivity.class);
-            startActivity(intent);
-        });
-
-        // 米鼠的图
-        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), TiramisuImageActivity.class);
-            startActivity(intent);
-        });
-
         // 刷新仪表盘按钮
         buttonRefreshDashboard.setOnClickListener(v -> {
             // 1. 主线程先更新UI：禁用按钮、显示“请等待”
@@ -204,83 +176,112 @@ public class DataCenterFragment extends Fragment {
             }).start();
         });
 
-        root.findViewById(R.id.card_double_explosion_rate_container).setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                // 按下：执行缩小动画（从当前大小开始）
-                case MotionEvent.ACTION_DOWN:
-                    ViewAnimationUtils.playPressScaleAnimation(v, true);
-                    break;
+        // ------------------------------这一部分统一设置按压反馈动画 ------------------------------
+        root.findViewById(R.id.ButtonRefreshDashboard).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_last_day_of_month_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_double_explosion_rate_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_everyday_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_bilibili_fvm_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_meishi_wechat_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_fertilization_task_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_new_year_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_tiramisu_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_faa_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_icu_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_card_calculator_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_molu_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_strategy_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_gem_calculator_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_today_lucky_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_prestige_calculator_container).setOnTouchListener(this::setPressAnimation);
 
-                // 松开：执行恢复动画（从当前缩小的大小开始）
-                case MotionEvent.ACTION_UP:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    // 触发原有点击事件（如果需要）
-                    v.performClick();
-                    break;
-
-                // 取消（比如滑动离开View）：强制恢复动画
-                case MotionEvent.ACTION_CANCEL:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-            }
-            // 返回true：拦截触摸事件，确保动画逻辑优先
-            return true;
-        });
-
+        // ------------------------------这一部分统一设置点击事件------------------------------
         // 温馨礼包
-        root.findViewById(R.id.dashboard_MeishiWechat_container).setOnClickListener(v -> {
+        root.findViewById(R.id.card_meishi_wechat_container).setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
             startActivity(intent);
         });
 
         // B站最新更新公告
-        root.findViewById(R.id.dashboard_BilibiliFVM_container).setOnClickListener(v ->
+        root.findViewById(R.id.card_bilibili_fvm_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl));
 
+        // 防御卡全能数据库
+        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
+            TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
+            DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index_loading));
+            Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
+            startActivity(intent);
+        }, 350));
+
+        // 增幅卡名单
+        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> v.postDelayed(() -> {
+            TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
+            DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list_loading));
+            Intent intent = new Intent(requireActivity(), CardDataAuxiliaryListActivity.class);
+            startActivity(intent);
+        }, 350));
+
+        // 数据图合集
+        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
+            Intent intent = new Intent(requireActivity(), DataImagesIndexActivity.class);
+            startActivity(intent);
+        }, 350));
+
+        // 米鼠的图
+        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnClickListener(v -> v.postDelayed(() -> {
+            Intent intent = new Intent(requireActivity(), TiramisuImageActivity.class);
+            startActivity(intent);
+        }, 350));
+
         // 提拉米鼠官网
-        root.findViewById(R.id.Tools_Tiramisu_Container).setOnClickListener(v ->
+        root.findViewById(R.id.card_tiramisu_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_tiramisu_dialog),
                         getResources().getString(R.string.label_tools_tiramisu_url)));
 
         // 陌路の综合数据表
-        root.findViewById(R.id.Tools_Molu_Container).setOnClickListener(v ->
+        root.findViewById(R.id.card_molu_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_molu_dialog),
                         getResources().getString(R.string.label_tools_molu_url)));
 
         // FAA米苏物流
-        root.findViewById(R.id.Tools_FAA_Container).setOnClickListener(v ->
+        root.findViewById(R.id.card_faa_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_faa_dialog),
                         getResources().getString(R.string.label_tools_faa_url)));
 
         // 卡片鼠军对策表
-        root.findViewById(R.id.Tools_Strategy_Container).setOnClickListener(v ->
+        root.findViewById(R.id.card_strategy_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_strategy_dialog),
                         getResources().getString(R.string.label_tools_strategy_url)));
 
         // FVM查黑系统
-        root.findViewById(R.id.Tools_Icu_Container).setOnClickListener(v -> showQQInputDialog());
+        root.findViewById(R.id.card_icu_container).setOnClickListener(v -> showQQInputDialog());
 
         // 强卡最优路径计算器
-        root.findViewById(R.id.Tools_CardCalculator_Container).setOnClickListener(v ->
+        root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_card_calculator_dialog),
                         getResources().getString(R.string.label_tools_card_calculator_url)));
 
         // 宝石最优路径计算器
-        root.findViewById(R.id.Tools_GemCalculator_Container).setOnClickListener(v ->
+        root.findViewById(R.id.card_gem_calculator_container).setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_gem_calculator_dialog),
                         getResources().getString(R.string.label_tools_gem_calculator_url)));
 
         // 今日运势
-        root.findViewById(R.id.Tools_TodayLucky_Container).setOnClickListener(v -> {
+        root.findViewById(R.id.card_today_lucky_container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), TodayLuckyActivity.class);
             startActivity(intent);
-        });
+        }, 350));
 
         // 威望计算器
-        root.findViewById(R.id.Tools_PrestigeCalculator_Container).setOnClickListener(v -> {
+        root.findViewById(R.id.card_prestige_calculator_container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), PrestigeCalculatorActivity.class);
             startActivity(intent);
-        });
+        }, 350));
 
         return root;
     }
@@ -294,6 +295,32 @@ public class DataCenterFragment extends Fragment {
             ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
             executeDailyTasks.executeDailyTasks();
         }
+    }
+
+    /**
+     * 给按钮和卡片添加按压反馈动画
+     * @return 是否拦截触摸事件
+     */
+    private boolean setPressAnimation(View v, MotionEvent event) {
+        //setPress
+        switch (event.getAction()) {
+            // 按下：执行缩小动画（从当前大小开始）
+            case MotionEvent.ACTION_DOWN:
+                ViewAnimationUtils.playPressScaleAnimation(v, true);
+                break;
+
+            // 松开：执行恢复动画（从当前缩小的大小开始）
+            case MotionEvent.ACTION_UP:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+
+            // 取消（比如滑动离开View）：强制恢复动画
+            case MotionEvent.ACTION_CANCEL:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+        }
+
+        return false;
     }
 
     /**
@@ -327,7 +354,7 @@ public class DataCenterFragment extends Fragment {
         dashboardEveryday.setText(everyMonthAndEveryWeek.dailyNotifications());
 
         // （2）处理月末提示
-        CardView card_dashboard_LastDayOfMonth = root.findViewById(R.id.card_dashboard_LastDayOfMonth);
+        CardView card_dashboard_LastDayOfMonth = root.findViewById(R.id.card_last_day_of_month_container);
         if (everyMonthAndEveryWeek.isLastDayOfMonth()) {
             card_dashboard_LastDayOfMonth.setVisibility(View.VISIBLE);
             dashboardLastDayOfMonth.setText("月末了，请注意清空积分和金券⚠️");

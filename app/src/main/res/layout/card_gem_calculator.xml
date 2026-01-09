@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_gem_calculator_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -15,11 +16,10 @@
         app:cardElevation="10dp">
 
         <LinearLayout
-            android:id="@+id/Tools_GemCalculator_Container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:clickable="true"
+            android:clickable="false"
             android:background="?attr/selectableItemBackground"
             android:padding="10dp">
 

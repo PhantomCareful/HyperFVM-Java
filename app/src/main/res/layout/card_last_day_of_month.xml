@@ -4,12 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_dashboard_LastDayOfMonth"
+        android:id="@+id/card_last_day_of_month_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="15dp"
+        android:clickable="true"
         card_view:cardCornerRadius="20dp"
         card_view:cardBackgroundColor="?attr/colorPrimary"
         app:cardElevation="10dp">
@@ -23,7 +24,6 @@
             android:textSize="20sp"
             android:textColor="?attr/colorOnPrimary"
             android:textStyle="bold"
-            android:clickable="true"
             android:background="?attr/selectableItemBackground"/>
 
     </androidx.cardview.widget.CardView>
