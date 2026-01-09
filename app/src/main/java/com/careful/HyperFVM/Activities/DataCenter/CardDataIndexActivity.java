@@ -19,7 +19,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +35,7 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -1223,7 +1223,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
 
         // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.FloatButton_CardDataIndex_Container);
+        MaterialCardView cardView = findViewById(R.id.FloatButton_CardDataIndex_Container);
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,

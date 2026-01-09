@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
@@ -15,7 +16,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
@@ -25,10 +25,12 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityCardDataAuxiliaryListBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
@@ -70,7 +72,8 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
 
         // 目录按钮
         CardDataAuxiliaryListContainer = findViewById(R.id.CardDataAuxiliaryList_Container);
-        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex).setOnClickListener(v -> showTitleNavigationDialog());
+        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container).setOnTouchListener(this::setPressAnimation);
+        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container).setOnClickListener(v -> showTitleNavigationDialog());
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -78,6 +81,32 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
             if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST)) {
                 Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
             }}, 50);
+    }
+
+    /**
+     * 给按钮和卡片添加按压反馈动画
+     * @return 是否拦截触摸事件
+     */
+    private boolean setPressAnimation(View v, MotionEvent event) {
+        //setPress
+        switch (event.getAction()) {
+            // 按下：执行缩小动画（从当前大小开始）
+            case MotionEvent.ACTION_DOWN:
+                ViewAnimationUtils.playPressScaleAnimation(v, true);
+                break;
+
+            // 松开：执行恢复动画（从当前缩小的大小开始）
+            case MotionEvent.ACTION_UP:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+
+            // 取消（比如滑动离开View）：强制恢复动画
+            case MotionEvent.ACTION_CANCEL:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+        }
+
+        return false;
     }
 
     /**
@@ -635,11 +664,10 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
 
         // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.FloatButton_CardDataIndex_Container);
+        MaterialCardView cardView = findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container);
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,
