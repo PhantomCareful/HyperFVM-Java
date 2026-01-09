@@ -21,260 +21,250 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:paddingTop="100dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:orientation="vertical"
                     android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:clipToPadding="false"
+                    tools:ignore="RtlSymmetry">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingStart="10dp"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        tools:ignore="RtlSymmetry">
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_1"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_1"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_1"
+                        layout="@layout/card_card_data_auxiliary_list_1"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_1"
-                            layout="@layout/card_card_data_auxiliary_list_1"/>
-
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
-
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_1"
-                            layout="@layout/card_card_data_auxiliary_list_content_1"/>
-
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_2"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
-
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_2"
-                            layout="@layout/card_card_data_auxiliary_list_2"/>
-
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
-
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_2"
-                            layout="@layout/card_card_data_auxiliary_list_content_2"/>
-
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_3"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
-
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_3"
-                            layout="@layout/card_card_data_auxiliary_list_3"/>
-
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
-
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_3"
-                            layout="@layout/card_card_data_auxiliary_list_content_3"/>
-
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_4"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
-
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_4"
-                            layout="@layout/card_card_data_auxiliary_list_4"/>
-
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
-
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_4"
-                            layout="@layout/card_card_data_auxiliary_list_content_4"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingEnd="10dp"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        tools:ignore="RtlSymmetry">
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_5"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_1"
+                        layout="@layout/card_card_data_auxiliary_list_content_1"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_5"
-                            layout="@layout/card_card_data_auxiliary_list_5"/>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_2"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_2"
+                        layout="@layout/card_card_data_auxiliary_list_2"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_5"
-                            layout="@layout/card_card_data_auxiliary_list_content_5"/>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_6"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_2"
+                        layout="@layout/card_card_data_auxiliary_list_content_2"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_6"
-                            layout="@layout/card_card_data_auxiliary_list_6"/>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_3"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_3"
+                        layout="@layout/card_card_data_auxiliary_list_3"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_6"
-                            layout="@layout/card_card_data_auxiliary_list_content_6"/>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_7"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_7"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_3"
+                        layout="@layout/card_card_data_auxiliary_list_content_3"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_7"
-                            layout="@layout/card_card_data_auxiliary_list_7"/>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_4"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_7"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_4"
+                        layout="@layout/card_card_data_auxiliary_list_4"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_7"
-                            layout="@layout/card_card_data_auxiliary_list_content_7"/>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_8"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_8"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_4"
+                        layout="@layout/card_card_data_auxiliary_list_content_4"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_8"
-                            layout="@layout/card_card_data_auxiliary_list_8"/>
+                </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/title_card_data_auxiliary_list_content_8"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="20dp"
-                            android:text="@string/title_card_data_auxiliary_list_content"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingEnd="10dp"
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    tools:ignore="RtlSymmetry">
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list_content_8"
-                            layout="@layout/card_card_data_auxiliary_list_content_8"/>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_5"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/copyright"
-                            android:textSize="20sp"
-                            android:textColor="?attr/colorOnSurface"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="25dp"
-                            android:gravity="center"/>
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_5"
+                        layout="@layout/card_card_data_auxiliary_list_5"/>
 
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_5"
+                        layout="@layout/card_card_data_auxiliary_list_content_5"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_6"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_6"
+                        layout="@layout/card_card_data_auxiliary_list_6"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_6"
+                        layout="@layout/card_card_data_auxiliary_list_content_6"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_7"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_7"
+                        layout="@layout/card_card_data_auxiliary_list_7"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_7"
+                        layout="@layout/card_card_data_auxiliary_list_content_7"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_8"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_8"
+                        layout="@layout/card_card_data_auxiliary_list_8"/>
+
+                    <TextView
+                        android:id="@+id/title_card_data_auxiliary_list_content_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/title_card_data_auxiliary_list_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp"/>
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list_content_8"
+                        layout="@layout/card_card_data_auxiliary_list_content_8"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyright"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="25dp"
+                        android:gravity="center"/>
 
                 </LinearLayout>
 
