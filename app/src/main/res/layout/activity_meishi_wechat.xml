@@ -202,40 +202,44 @@
 
     </eightbitlab.com.blurview.BlurTarget>
 
-    <eightbitlab.com.blurview.BlurView
-        android:id="@+id/blurViewTopAppBar"
+    <!-- 状态栏渐变遮罩层 -->
+    <View
+        android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/status_bar_gradient"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 顶栏：移到中间内容之后（层级更高），设透明背景 -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clipToOutline="true"
-        app:blurOverlayColor="@color/blur_overlay_color"
+        android:layout_marginTop="25dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/Top_AppBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:fitsSystemWindows="true"
-            app:layout_constraintTop_toTopOf="parent">
+            app:titleTextColor="?attr/colorOnSurface"
+            app:titleTextAppearance="@style/ToolBarTitleStyle" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/Top_AppBar"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@android:color/transparent"
-                app:titleTextColor="?attr/colorOnSurface"
-                app:titleTextAppearance="@style/ToolBarTitleStyle" />
-        </com.google.android.material.appbar.AppBarLayout>
-
-    </eightbitlab.com.blurview.BlurView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/Card_FloatButton_Container"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/FloatButton_MeishiWechat_Container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/bottom_navigation_view_stroke_color"
         app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="@android:color/transparent"
@@ -258,6 +262,7 @@
                 android:textSize="20sp"
                 android:backgroundTint="@android:color/transparent"
                 android:stateListAnimator="@null"
+                android:clickable="false"
                 app:icon="@drawable/ic_plus"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
@@ -265,6 +270,6 @@
 
         </eightbitlab.com.blurview.BlurView>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.transition.TransitionSet;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import androidx.cardview.widget.CardView;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityMeishiWechatBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -114,7 +116,8 @@ public class MeishiWechatActivity extends AppCompatActivity {
         setupBlurEffect();
 
         // 添加按钮点击事件
-        findViewById(R.id.FloatButton).setOnClickListener(v -> showAddLinkDialog());
+        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnTouchListener(this::setPressAnimation);
+        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnClickListener(v -> showAddLinkDialog());
 
         // 获取Markdown文本
         MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
@@ -126,6 +129,32 @@ public class MeishiWechatActivity extends AppCompatActivity {
         transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
         transition.addTransition(new Fade()); // 淡入淡出
         transition.setDuration(400); // 动画时长400ms
+    }
+
+    /**
+     * 给按钮和卡片添加按压反馈动画
+     * @return 是否拦截触摸事件
+     */
+    private boolean setPressAnimation(View v, MotionEvent event) {
+        //setPress
+        switch (event.getAction()) {
+            // 按下：执行缩小动画（从当前大小开始）
+            case MotionEvent.ACTION_DOWN:
+                ViewAnimationUtils.playPressScaleAnimation(v, true);
+                break;
+
+            // 松开：执行恢复动画（从当前缩小的大小开始）
+            case MotionEvent.ACTION_UP:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+
+            // 取消（比如滑动离开View）：强制恢复动画
+            case MotionEvent.ACTION_CANCEL:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+        }
+
+        return false;
     }
 
     private void showAddLinkDialog() {
@@ -161,11 +190,10 @@ public class MeishiWechatActivity extends AppCompatActivity {
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButton));
 
         // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.Card_FloatButton_Container);
+        CardView cardView = findViewById(R.id.FloatButton_MeishiWechat_Container);
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 cardView,
                 View.TRANSLATION_X,

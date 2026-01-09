@@ -201,10 +201,10 @@ public class DataCenterFragment extends Fragment {
 
         // ------------------------------这一部分统一设置点击事件------------------------------
         // 温馨礼包
-        root.findViewById(R.id.card_meishi_wechat_container).setOnClickListener(v -> {
+        root.findViewById(R.id.card_meishi_wechat_container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
             startActivity(intent);
-        });
+        }, 350));
 
         // B站最新更新公告
         root.findViewById(R.id.card_bilibili_fvm_container).setOnClickListener(v ->
