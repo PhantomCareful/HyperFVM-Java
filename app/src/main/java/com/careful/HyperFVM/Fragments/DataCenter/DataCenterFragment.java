@@ -11,6 +11,7 @@ import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -36,6 +37,7 @@ import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -200,6 +202,29 @@ public class DataCenterFragment extends Fragment {
                     });
                 }
             }).start();
+        });
+
+        root.findViewById(R.id.card_double_explosion_rate_container).setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                // 按下：执行缩小动画（从当前大小开始）
+                case MotionEvent.ACTION_DOWN:
+                    ViewAnimationUtils.playPressScaleAnimation(v, true);
+                    break;
+
+                // 松开：执行恢复动画（从当前缩小的大小开始）
+                case MotionEvent.ACTION_UP:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    // 触发原有点击事件（如果需要）
+                    v.performClick();
+                    break;
+
+                // 取消（比如滑动离开View）：强制恢复动画
+                case MotionEvent.ACTION_CANCEL:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+            }
+            // 返回true：拦截触摸事件，确保动画逻辑优先
+            return true;
         });
 
         // 温馨礼包
