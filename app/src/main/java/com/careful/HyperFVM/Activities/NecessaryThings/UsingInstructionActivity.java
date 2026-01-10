@@ -10,7 +10,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -50,9 +49,6 @@ public class UsingInstructionActivity extends AppCompatActivity {
         getContentFromAssets(this, overview5, "QA5.txt");
         getContentFromAssets(this, overview6, "QA6.txt");
         getContentFromAssets(this, overview7, "QA7.txt");
-
-        // 添加模糊材质
-        setupBlurEffect();
     }
 
     private void setTopAppBarTitle(String title) {
@@ -68,13 +64,4 @@ public class UsingInstructionActivity extends AppCompatActivity {
         //设置返回按钮点击事件
         toolbar.setNavigationOnClickListener(v -> this.finish());
     }
-
-    /**
-     * 添加模糊效果
-     */
-    private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
-    }
-
 }

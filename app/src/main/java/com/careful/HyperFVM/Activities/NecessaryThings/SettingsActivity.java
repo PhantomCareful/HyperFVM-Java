@@ -23,7 +23,6 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
-import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -72,9 +71,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         //设置顶栏标题
         setTopAppBarTitle(getResources().getString(R.string.label_settings) + " ");
-
-        // 添加模糊材质
-        setupBlurEffect();
 
         // 初始化数据库
         dbHelper = new DBHelper(this);
@@ -376,14 +372,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         //设置返回按钮点击事件
         toolbar.setNavigationOnClickListener(v -> this.finish());
-    }
-
-    /**
-     * 添加模糊效果
-     */
-    private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
     }
 
     @Override

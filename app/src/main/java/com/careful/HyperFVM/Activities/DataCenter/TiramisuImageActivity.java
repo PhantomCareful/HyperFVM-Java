@@ -18,7 +18,6 @@ import com.careful.HyperFVM.Activities.CheckUpdateActivity;
 import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -51,8 +50,6 @@ public class TiramisuImageActivity extends AppCompatActivity {
 
         // 设置顶栏标题
         setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_tiramisu_image) + " ");
-        // 添加顶栏模糊
-        setupBlurEffect();
 
         dbHelper = new DBHelper(this);
         imageUtil = DataImagesUpdaterUtil.getInstance();
@@ -189,11 +186,6 @@ public class TiramisuImageActivity extends AppCompatActivity {
 
         // 设置返回按钮点击事件
         toolbar.setNavigationOnClickListener(v -> this.finish());
-    }
-
-    private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
     }
 
     @Override
