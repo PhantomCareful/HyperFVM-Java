@@ -63,7 +63,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card_data_index);
 
         //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_index));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_index) + " ");
 
         // 添加模糊材质
         setupBlurEffect();

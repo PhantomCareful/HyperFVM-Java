@@ -52,7 +52,7 @@ public class DataImagesIndexActivity extends AppCompatActivity {
         setContentView(R.layout.activity_data_images_index);
 
         // 设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_data_images_index));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_data_images_index) + " ");
 
         // 添加模糊材质
         setupBlurEffect();

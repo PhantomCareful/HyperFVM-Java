@@ -71,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.label_settings));
+        setTopAppBarTitle(getResources().getString(R.string.label_settings) + " ");
 
         // 添加模糊材质
         setupBlurEffect();

@@ -106,7 +106,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
 
     private void initViews() {
         // 设置顶栏标题和返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.title_tools_meishi_wechat));
+        setTopAppBarTitle(getResources().getString(R.string.title_tools_meishi_wechat) + " ");
 
         // 账号数量文本和列表容器
         accountCountText = findViewById(R.id.TitleMeishiWechatSavedAccount);

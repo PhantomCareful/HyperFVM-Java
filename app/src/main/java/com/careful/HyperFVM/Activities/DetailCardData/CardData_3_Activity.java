@@ -48,7 +48,7 @@ public class CardData_3_Activity extends AppCompatActivity {
             return;
         }
 
-        setTopAppBarTitle(cardName);
+        setTopAppBarTitle(cardName + " ");
 
         // 设置顶栏模糊
         BlurUtil blurUtil = new BlurUtil(this);

@@ -31,7 +31,7 @@ public class UsingInstructionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_using_instruction);
 
         //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.label_using_instruction));
+        setTopAppBarTitle(getResources().getString(R.string.label_using_instruction) + " ");
 
         TextView overview_top = findViewById(R.id.using_instruction_top);
         TextView overview1 = findViewById(R.id.using_instruction1);

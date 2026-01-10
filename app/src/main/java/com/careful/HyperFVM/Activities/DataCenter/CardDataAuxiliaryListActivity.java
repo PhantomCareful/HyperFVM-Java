@@ -62,7 +62,7 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         }
 
         // 设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_auxiliary_list));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_auxiliary_list) + " ");
 
         // 添加模糊材质
         setupBlurEffect();

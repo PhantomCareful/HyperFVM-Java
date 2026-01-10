@@ -63,7 +63,7 @@ public class ImageViewerActivity extends AppCompatActivity {
         loadImageFromIntent();
 
         //设置顶栏标题、启用返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.label_data_img_viewer));
+        setTopAppBarTitle(getResources().getString(R.string.label_data_img_viewer) + " ");
     }
 
     private void loadImageFromIntent() {

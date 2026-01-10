@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         if (position >= 0 && position < viewPagerAdapter.getItemCount()) {
             CharSequence title = viewPagerAdapter.getPageTitle(position);
             if (title != null) {
-                binding.TopAppBar.setTitle(title);
+                binding.TopAppBar.setTitle(title + " ");
             }
         }
     }
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
     private void setTopAppBarTitle(String title) {
         //设置顶栏标题
         MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        toolbar.setTitle(title);
+        toolbar.setTitle(title + " ");
     }
 
     /**
