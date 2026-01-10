@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 确保视图加载完成后初始化ViewPager（避免空指针）
         setupViewPager();
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center) + " ");
 
         // 配置模糊效果
         setupBlurEffect();

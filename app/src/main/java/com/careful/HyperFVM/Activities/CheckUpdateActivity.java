@@ -29,7 +29,6 @@ import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
@@ -106,11 +105,8 @@ public class CheckUpdateActivity extends AppCompatActivity {
         initViewsForImage();
         initViewsForApp();
 
-        // 顶栏模糊
-        setupBlurEffect();
-
         // 设置顶栏标题、启用返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.label_check_update));
+        setTopAppBarTitle(getResources().getString(R.string.label_check_update) + " ");
 
         getImageLocalVersion();
         getAppLocalVersion();
@@ -589,16 +585,14 @@ public class CheckUpdateActivity extends AppCompatActivity {
     /**
      * 安装APK文件
      */
+    @SuppressLint("QueryPermissionsNeeded")
     private void installApk() {
         try {
-            // Android 8.0及以上需要请求安装未知应用权限
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                // 检查是否有安装未知应用的权限
-                if (!getPackageManager().canRequestPackageInstalls()) {
-                    // 引导用户开启安装权限
-                    showInstallPermissionGuide();
-                    return;
-                }
+            // 检查是否有安装未知应用的权限
+            if (!getPackageManager().canRequestPackageInstalls()) {
+                // 引导用户开启安装权限
+                showInstallPermissionGuide();
+                return;
             }
 
             File apkFile = new File(downloadAppUrl);
@@ -635,6 +629,7 @@ public class CheckUpdateActivity extends AppCompatActivity {
     /**
      * 显示安装权限引导
      */
+    @SuppressLint("QueryPermissionsNeeded")
     private void showInstallPermissionGuide() {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("需要安装权限")
@@ -724,11 +719,6 @@ public class CheckUpdateActivity extends AppCompatActivity {
 
         // 设置返回按钮点击事件
         toolbar.setNavigationOnClickListener(v -> this.finish());
-    }
-
-    private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
     }
 
     @Override
