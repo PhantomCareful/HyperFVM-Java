@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:paddingTop="100dp"
+                android:paddingTop="120dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 

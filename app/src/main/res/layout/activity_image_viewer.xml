@@ -2,61 +2,57 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        tools:ignore="MissingConstraints">
 
-        <eightbitlab.com.blurview.BlurTarget
-            android:id="@+id/target"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="MissingConstraints">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <com.careful.HyperFVM.utils.OtherUtils.ZoomImageView
+                android:id="@+id/ZoomImageViewer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:adjustViewBounds="true" />
 
-                <com.careful.HyperFVM.utils.OtherUtils.ZoomImageView
-                    android:id="@+id/ZoomImageViewer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true" />
+        </LinearLayout>
 
-            </LinearLayout>
+    </eightbitlab.com.blurview.BlurTarget>
 
-        </eightbitlab.com.blurview.BlurTarget>
+    <!-- 状态栏渐变遮罩层 -->
+    <View
+        android:id="@+id/status_bar_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/status_bar_gradient"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurViewTopAppBar"
-            android:layout_width="match_parent"
+    <!-- 顶栏：移到中间内容之后（层级更高），设透明背景 -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/Top_AppBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:blurOverlayColor="@color/blur_overlay_color"
-            tools:ignore="MissingConstraints">
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fitsSystemWindows="true"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/Top_AppBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    app:titleTextColor="?attr/colorOnSurface"
-                    app:titleTextAppearance="@style/ToolBarTitleStyle" />
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-        </eightbitlab.com.blurview.BlurView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:background="@android:color/transparent"
+            app:titleTextColor="?attr/colorOnSurface"
+            app:titleTextAppearance="@style/ToolBarTitleStyle" />
+    </com.google.android.material.appbar.AppBarLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

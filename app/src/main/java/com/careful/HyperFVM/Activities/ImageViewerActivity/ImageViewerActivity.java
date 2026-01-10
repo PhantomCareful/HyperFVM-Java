@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -51,9 +50,6 @@ public class ImageViewerActivity extends AppCompatActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-
-        // 顶栏模糊
-        setupBlurEffect();
 
         // 初始化图片工具类、数据库工具类
         imageUtil = DataImagesUpdaterUtil.getInstance();
@@ -128,10 +124,5 @@ public class ImageViewerActivity extends AppCompatActivity {
 
         // 设置返回按钮点击事件
         toolbar.setNavigationOnClickListener(v -> this.finish());
-    }
-
-    private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
     }
 }
