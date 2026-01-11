@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -9,11 +8,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
-        card_view:cardCornerRadius="20dp"
-        card_view:cardBackgroundColor="?attr/colorPrimary"
-        app:cardElevation="10dp">
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="?attr/colorTertiaryContainer"
+        app:cardElevation="0dp">
 
         <TextView
             android:id="@+id/dashboard_LastDayOfMonth"
@@ -22,7 +21,7 @@
             android:padding="10dp"
             android:text="@string/label_tools_last_day_of_month"
             android:textSize="20sp"
-            android:textColor="?attr/colorOnPrimary"
+            android:textColor="?attr/colorOnTertiaryContainer"
             android:textStyle="bold"
             android:background="?attr/selectableItemBackground"/>
 

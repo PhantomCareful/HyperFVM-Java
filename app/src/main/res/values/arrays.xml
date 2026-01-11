@@ -24,6 +24,12 @@
         <item>跟随系统🌗</item>
     </string-array>
 
+    <!--界面风格-->
+    <string-array name="interface_style_entries">
+        <item>鲜艳-立体</item>
+        <item>素雅-扁平</item>
+    </string-array>
+
     <!--防御卡目录-->
     <string-array name="card_data_index_titles">
         <item>@string/title_card_data_index_1_1</item>

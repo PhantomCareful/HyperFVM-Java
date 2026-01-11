@@ -193,7 +193,7 @@
     <string name="title_tools_tiramisu_dialog">提拉米鼠使用指南</string>
     <string name="label_tools_tiramisu_url">https://msdzls.cn/docs</string>
     <string name="title_tools_molu">综合数据表\n作者：So陌路の</string>
-    <string name="label_tools_molu">🥰顾名思义，App里的数据图都是从这里拿的\n👉点击跳转共享文档</string>
+    <string name="label_tools_molu">🥰顾名思义，App里的好多数据图都是从这里拿的\n👉点击跳转共享文档</string>
     <string name="title_tools_molu_dialog">陌路の综合数据表</string>
     <string name="label_tools_molu_url">https://www.kdocs.cn/l/cmk63gHnvUdi</string>
     <string name="title_tools_faa">FAA米苏物流\n作者：夏夜浅酌</string>
@@ -231,6 +231,7 @@
     <string name="label_settings_switch_is_dynamic_color">动态取色(和壁纸同色)</string>
     <string name="label_settings_option_themed_color">自定义主题色</string>
     <string name="label_settings_option_dark_mode">深色模式</string>
+    <string name="label_settings_option_interface_style">界面风格</string>
     <string name="title_settings_toast">提示语显示设置</string>
     <string name="label_settings_switch_card_data_index">防御卡全能数据库</string>
     <string name="label_settings_switch_card_data_auxiliary_list">增幅卡名单</string>

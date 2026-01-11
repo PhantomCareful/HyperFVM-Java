@@ -49,6 +49,10 @@ public class SettingsActivity extends AppCompatActivity {
     private String currentDarkMode;
     private TextView darkModeCurrentSelection;
 
+    public static final String CONTENT_INTERFACE_STYLE = "界面风格";
+    private String currentInterfaceStyle;
+    private TextView interfaceStyleCurrentSelection;
+
     private static final String CONTENT_AUTO_TASK = "自动任务";
     private static final String CONTENT_AUTO_TASK_ENHANCED = "自动任务-增强";
 
@@ -153,41 +157,35 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initThemeSelector() {
-        // 获取视图引用
         themeCurrentSelection = findViewById(R.id.theme_current_selection);
         themeSelectorContainer = findViewById(R.id.theme_selector_container);
         darkModeCurrentSelection = findViewById(R.id.dark_mode_current_selection);
         View darkModeSelectorContainer = findViewById(R.id.dark_mode_selector_container);
+        interfaceStyleCurrentSelection = findViewById(R.id.interface_style_current_selection);
+        View interfaceStyleSelectorContainer = findViewById(R.id.interface_style_selector_container);
 
-        // 从数据库读取当前主题设置
-        getCurrentThemeValue();
-        themeCurrentSelection.setText(currentTheme);
-        darkModeCurrentSelection.setText(currentDarkMode);
-
-        // 设置点击事件
-        boolean isDynamicColor = dbHelper.getSettingValue(CONTENT_IS_DYNAMIC_COLOR);
-        updateThemeClickable(isDynamicColor);
-        // 设置深色模式点击事件
-        darkModeSelectorContainer.setOnClickListener(v -> showDarkModeSelectionDialog());
-    }
-
-    private void getCurrentThemeValue() {
         // 从数据库获取当前主题值
         currentTheme = dbHelper.getSettingValueString(CONTENT_APP_THEME);
-        currentTheme = (currentTheme != null && !currentTheme.isEmpty()) ? currentTheme : "宫墙";
+        themeCurrentSelection.setText(currentTheme);
         // 从数据库获取深色模式
         currentDarkMode = dbHelper.getSettingValueString(CONTENT_DARK_MODE);
-        currentDarkMode = (currentDarkMode != null && !currentDarkMode.isEmpty()) ? currentDarkMode : "跟随系统\uD83C\uDF17";
-    }
+        darkModeCurrentSelection.setText(currentDarkMode);
+        // 从数据库获取界面风格
+        currentInterfaceStyle = dbHelper.getSettingValueString(CONTENT_INTERFACE_STYLE);
+        interfaceStyleCurrentSelection.setText(currentInterfaceStyle);
 
-    private void updateThemeClickable(boolean isDynamicColor) {
-        if (!isDynamicColor) {
+        // 设置点击事件
+        if (!dbHelper.getSettingValue(CONTENT_IS_DYNAMIC_COLOR)) {
             // 动态取色关闭：允许点击
             themeSelectorContainer.setOnClickListener(v -> showThemeSelectionDialog());
         } else {
             // 动态取色开启：禁用点击
             themeSelectorContainer.setOnClickListener(null);
         }
+        // 设置深色模式点击事件
+        darkModeSelectorContainer.setOnClickListener(v -> showDarkModeSelectionDialog());
+        // 设置界面风格点击事件
+        interfaceStyleSelectorContainer.setOnClickListener(v -> showInterfaceStyleSelectionDialog());
     }
 
     private void showThemeSelectionDialog() {
@@ -237,6 +235,34 @@ public class SettingsActivity extends AppCompatActivity {
                     dbHelper.updateSettingValue(CONTENT_DARK_MODE, selectedEntries);
 
                     darkModeCurrentSelection.setText(selectedEntries);
+                    dialog.dismiss();
+                    Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
+                    // 重启App
+                    restartApp();
+                })
+                .setNegativeButton("取消", null)
+                .show();
+    }
+
+    private void showInterfaceStyleSelectionDialog() {
+        String[] interfaceStyleEntries = getResources().getStringArray(R.array.interface_style_entries);
+
+        int selectedIndex = 0;
+        for (int i = 0; i < interfaceStyleEntries.length; i++) {
+            if (interfaceStyleEntries[i].equals(currentInterfaceStyle)) {
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("界面风格")
+                .setSingleChoiceItems(interfaceStyleEntries, selectedIndex, (dialog, which) -> {
+                    String selectedEntries = interfaceStyleEntries[which];
+
+                    dbHelper.updateSettingValue(CONTENT_INTERFACE_STYLE, selectedEntries);
+
+                    interfaceStyleCurrentSelection.setText(selectedEntries);
                     dialog.dismiss();
                     Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
                     // 重启App
@@ -299,7 +325,13 @@ public class SettingsActivity extends AppCompatActivity {
         MaterialSwitch switchIsDynamicColor = findViewById(R.id.Switch_isDynamicColor);
         switchIsDynamicColor.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, isChecked ? "true" : "false");
-            updateThemeClickable(isChecked);
+            if (isChecked) {
+                // 动态取色关闭：允许点击
+                themeSelectorContainer.setOnClickListener(v -> showThemeSelectionDialog());
+            } else {
+                // 动态取色开启：禁用点击
+                themeSelectorContainer.setOnClickListener(null);
+            }
             Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
             // 重启App
             restartApp();

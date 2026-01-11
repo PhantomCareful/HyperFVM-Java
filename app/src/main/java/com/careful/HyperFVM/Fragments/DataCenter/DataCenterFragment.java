@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +36,7 @@ import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
+import com.careful.HyperFVM.databinding.FragmentDataCenterShadowBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
@@ -47,7 +50,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Objects;
 
 public class DataCenterFragment extends Fragment {
-    private FragmentDataCenterBinding binding;
     private DBHelper dbHelper;
     private SharedPreferences preferences;
     private static final String PREFS_NAME = "app_preferences";
@@ -79,13 +81,23 @@ public class DataCenterFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentDataCenterBinding.inflate(inflater, container, false);
-        root = binding.getRoot();
-
-        preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        FragmentDataCenterBinding binding = FragmentDataCenterBinding.inflate(inflater, container, false);
+        FragmentDataCenterShadowBinding binding_shadow = FragmentDataCenterShadowBinding.inflate(inflater, container, false);
 
         // 初始化数据库类
         dbHelper = new DBHelper(requireContext());
+
+        String currentInterfaceStyle = dbHelper.getSettingValueString(CONTENT_INTERFACE_STYLE);
+        switch (currentInterfaceStyle) {
+            case "鲜艳-立体":
+                root = binding_shadow.getRoot();
+                break;
+            case "素雅-扁平":
+                root = binding.getRoot();
+                break;
+        }
+
+        preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         // 初始化仪表盘组件
         buttonRefreshDashboard = root.findViewById(R.id.ButtonRefreshDashboard);
@@ -523,11 +535,5 @@ public class DataCenterFragment extends Fragment {
         DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
         TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
         DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list));
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

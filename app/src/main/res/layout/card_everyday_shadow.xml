@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_everyday_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="15dp"
+        android:clickable="true"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="?attr/colorPrimaryContainer"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/dashboard_Everyday_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="@string/title_tools_everyday"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/dashboard_Everyday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text=""
+                android:textSize="20sp"
+                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</merge>

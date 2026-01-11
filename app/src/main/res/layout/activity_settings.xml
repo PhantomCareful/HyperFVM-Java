@@ -127,7 +127,6 @@
                                 android:id="@+id/theme_current_selection"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="5dp"
                                 android:text=""
                                 android:textSize="20sp"
                                 android:textColor="?attr/colorOnPrimaryContainer" />
@@ -154,6 +153,34 @@
 
                             <TextView
                                 android:id="@+id/dark_mode_current_selection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/interface_style_selector_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/label_settings_option_interface_style"
+                                android:textSize="20sp"
+                                android:textColor="?attr/colorOnPrimaryContainer" />
+
+                            <TextView
+                                android:id="@+id/interface_style_current_selection"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""

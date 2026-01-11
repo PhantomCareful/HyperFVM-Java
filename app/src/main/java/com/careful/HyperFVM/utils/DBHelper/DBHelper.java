@@ -155,6 +155,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     "('提示语显示-增幅卡名单', 'true')," +
                     "('提示语显示-数据图查看器', 'true')");
         }
+
+        // 版本35：settings表增加“界面风格”设置
+        if (oldVersion < 35) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('界面风格', '鲜艳-立体')");
+        }
     }
 
     @Override

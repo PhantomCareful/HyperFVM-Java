@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/DataCenter_TiramisuImage_Container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="15dp"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+        app:cardElevation="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/data_center_image_tiramisu"
+            android:scaleType="fitXY"
+            android:layout_gravity="end|bottom"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="false"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_data_center_tiramisu_image"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_data_center_tiramisu_image"
+                android:textSize="18sp"
+                android:textColor="?attr/colorOnPrimaryContainer"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</merge>
