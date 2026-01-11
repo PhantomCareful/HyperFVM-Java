@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -79,10 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorTertiaryContainer"
-                app:cardElevation="0dp">
+                android:layout_marginBottom="15dp"
+                card_view:cardCornerRadius="20dp"
+                card_view:cardBackgroundColor="?attr/colorPrimary"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:id="@+id/about_app_developer_container"
@@ -116,7 +117,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/label_about_app_developer_name_1"
                             android:textSize="25sp"
-                            android:textColor="?attr/colorOnTertiaryContainer"
+                            android:textColor="?attr/colorOnPrimary"
                             android:textStyle="bold"
                             android:layout_marginStart="10dp" />
 
@@ -125,7 +126,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/label_about_app_developer_name_2"
                             android:textSize="15sp"
-                            android:textColor="?attr/colorOnTertiaryContainer"
+                            android:textColor="?attr/colorOnPrimary"
                             android:layout_marginStart="10dp" />
 
                     </LinearLayout>
@@ -136,7 +137,7 @@
                         android:layout_weight="1"
                         android:src="@drawable/ic_chevron_right"
                         android:layout_gravity="end|center_vertical"
-                        app:tint="?attr/colorOnTertiaryContainer"
+                        app:tint="?attr/colorOnPrimary"
                         tools:ignore="ContentDescription" />
 
                 </LinearLayout>
@@ -159,10 +160,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:cardElevation="0dp"
+                android:layout_marginBottom="15dp"
+                card_view:cardCornerRadius="20dp"
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -176,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textSize="20sp"
-                        android:textColor="?attr/colorPrimary"
+                        android:textColor="?attr/colorOnPrimaryContainer"
                         android:padding="10dp"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground"/>
@@ -231,10 +232,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:cardElevation="0dp">
+                android:layout_marginBottom="15dp"
+                card_view:cardCornerRadius="20dp"
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -264,14 +265,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_using_instruction_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_using_instruction_2"
                                 android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </LinearLayout>
 
@@ -280,7 +281,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorPrimary"
+                            app:tint="?attr/colorOnPrimaryContainer"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -308,14 +309,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_settings_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_settings_2"
                                 android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </LinearLayout>
 
@@ -324,7 +325,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorPrimary"
+                            app:tint="?attr/colorOnPrimaryContainer"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -349,10 +350,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:cardElevation="0dp">
+                android:layout_marginBottom="15dp"
+                card_view:cardCornerRadius="20dp"
+                card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
+                card_view:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -382,14 +383,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_github_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_github_2"
                                 android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </LinearLayout>
 
@@ -398,7 +399,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_github"
-                            app:tint="?attr/colorPrimary"
+                            app:tint="?attr/colorOnPrimaryContainer"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -429,14 +430,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_get_update_123pan_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_get_update_123pan_2"
                                 android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </LinearLayout>
 
@@ -444,7 +445,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_cloud_download"
-                            app:tint="?attr/colorPrimary"
+                            app:tint="?attr/colorOnPrimaryContainer"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -475,14 +476,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_bilibili_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_bilibili_2"
                                 android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </LinearLayout>
 
@@ -490,7 +491,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_bilibili"
-                            app:tint="?attr/colorPrimary"
+                            app:tint="?attr/colorOnPrimaryContainer"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -521,14 +522,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_tencent_channel_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_tencent_channel_2"
                                 android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </LinearLayout>
 
@@ -536,7 +537,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_qq"
-                            app:tint="?attr/colorPrimary"
+                            app:tint="?attr/colorOnPrimaryContainer"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -564,14 +565,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_see_update_log_history_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
+                                android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_see_update_log_history_2"
                                 android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textColor="?attr/colorOnPrimaryContainer"/>
 
                         </LinearLayout>
 
@@ -579,7 +580,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorPrimary"
+                            app:tint="?attr/colorOnPrimaryContainer"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>

@@ -51,7 +51,7 @@
                     android:text="@string/label_tools_button_refresh_dashboard"
                     android:textSize="20sp"
                     app:cornerRadius="20dp"
-                    android:elevation="10dp"/>
+                    android:elevation="0dp"/>
 
             </LinearLayout>
 
@@ -73,10 +73,10 @@
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <include layout="@layout/card_last_day_of_month_shadow"/>
-                    <include layout="@layout/card_double_explosion_rate_shadow"/>
-                    <include layout="@layout/card_everyday_shadow"/>
-                    <include layout="@layout/card_bilibili_fvm_shadow"/>
+                    <include layout="@layout/card_last_day_of_month"/>
+                    <include layout="@layout/card_double_explosion_rate"/>
+                    <include layout="@layout/card_everyday"/>
+                    <include layout="@layout/card_bilibili_fvm"/>
 
                 </LinearLayout>
 
@@ -89,9 +89,9 @@
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <include layout="@layout/card_meishi_wechat_shadow"/>
-                    <include layout="@layout/card_fertilization_task_shadow"/>
-                    <include layout="@layout/card_new_year_shadow"/>
+                    <include layout="@layout/card_meishi_wechat"/>
+                    <include layout="@layout/card_fertilization_task"/>
+                    <include layout="@layout/card_new_year"/>
 
                 </LinearLayout>
 
@@ -124,10 +124,10 @@
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <include layout="@layout/card_tiramisu_shadow"/>
-                    <include layout="@layout/card_faa_shadow"/>
-                    <include layout="@layout/card_icu_shadow"/>
-                    <include layout="@layout/card_card_calculator_shadow"/>
+                    <include layout="@layout/card_tiramisu"/>
+                    <include layout="@layout/card_faa"/>
+                    <include layout="@layout/card_icu"/>
+                    <include layout="@layout/card_card_calculator"/>
 
                 </LinearLayout>
 
@@ -140,9 +140,9 @@
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <include layout="@layout/card_molu_shadow"/>
-                    <include layout="@layout/card_strategy_shadow"/>
-                    <include layout="@layout/card_gem_calculator_shadow"/>
+                    <include layout="@layout/card_molu"/>
+                    <include layout="@layout/card_strategy"/>
+                    <include layout="@layout/card_gem_calculator"/>
 
                 </LinearLayout>
 
@@ -187,10 +187,10 @@
                 android:textSize="20sp"
                 android:textColor="?attr/colorOnSurface"/>
 
-            <include layout="@layout/card_card_data_index_shadow"/>
-            <include layout="@layout/card_card_data_auxiliary_list_shadow"/>
-            <include layout="@layout/card_data_images_index_shadow"/>
-            <include layout="@layout/card_tiramisu_image_shadow"/>
+            <include layout="@layout/card_card_data_index"/>
+            <include layout="@layout/card_card_data_auxiliary_list"/>
+            <include layout="@layout/card_data_images_index"/>
+            <include layout="@layout/card_tiramisu_image"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -202,8 +202,8 @@
                 android:textSize="20sp"
                 android:textColor="?attr/colorOnSurface"/>
 
-            <include layout="@layout/card_today_lucky_shadow"/>
-            <include layout="@layout/card_prestige_calculator_shadow"/>
+            <include layout="@layout/card_today_lucky"/>
+            <include layout="@layout/card_prestige_calculator"/>
 
             <TextView
                 android:layout_width="match_parent"

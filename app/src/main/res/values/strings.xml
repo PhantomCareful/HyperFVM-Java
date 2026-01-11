@@ -252,7 +252,8 @@
     <string name="label_check_update_status_downloaded_past">📦已下载，点击安装📦</string>
     <string name="label_check_update_status_need_install_permission">❌需要权限，点击重试❌</string>
     <string name="title_about_app_developer_name">开发者</string>
-    <string name="label_about_app_developer_name">QQ空间1–8服\nPhantom_Careful😈</string>
+    <string name="label_about_app_developer_name_1">Phantom_Careful😈</string>
+    <string name="label_about_app_developer_name_2">QQ空间1–8服·美食妙妙屋</string>
     <string name="title_about_app_developer_name_dialog">作者的Github主页</string>
     <string name="label_about_app_developer_name_url">https://github.com/PhantomCareful</string>
     <string name="label_thanks">特别感谢(排名不分先后)</string>

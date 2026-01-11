@@ -81,7 +81,7 @@ public class DataCenterFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentDataCenterBinding binding = FragmentDataCenterBinding.inflate(inflater, container, false);
+        FragmentDataCenterBinding binding_no_shadow = FragmentDataCenterBinding.inflate(inflater, container, false);
         FragmentDataCenterShadowBinding binding_shadow = FragmentDataCenterShadowBinding.inflate(inflater, container, false);
 
         // 初始化数据库类
@@ -93,7 +93,7 @@ public class DataCenterFragment extends Fragment {
                 root = binding_shadow.getRoot();
                 break;
             case "素雅-扁平":
-                root = binding.getRoot();
+                root = binding_no_shadow.getRoot();
                 break;
         }
 
