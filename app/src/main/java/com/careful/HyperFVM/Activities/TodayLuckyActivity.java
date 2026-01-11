@@ -5,6 +5,7 @@ import android.graphics.Outline;
 import android.graphics.drawable.AnimatedImageDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -51,6 +53,9 @@ public class TodayLuckyActivity extends AppCompatActivity {
         this.button = findViewById(R.id.Button_ControlGif);
         isPlaying = true;
 
+        //添加按压动画
+        findViewById(R.id.Button_ControlGif).setOnTouchListener(this::setPressAnimation);
+
         //设置顶栏标题、启用返回按钮
         setTopAppBarTitle(getResources().getString(R.string.title_tools_today_lucky));
 
@@ -63,6 +68,32 @@ public class TodayLuckyActivity extends AppCompatActivity {
         //加载控制Gif的按钮
         setupButtonControlGif();
 
+    }
+
+    /**
+     * 给按钮和卡片添加按压反馈动画
+     * @return 是否拦截触摸事件
+     */
+    private boolean setPressAnimation(View v, MotionEvent event) {
+        //setPress
+        switch (event.getAction()) {
+            // 按下：执行缩小动画（从当前大小开始）
+            case MotionEvent.ACTION_DOWN:
+                ViewAnimationUtils.playPressScaleAnimation(v, true);
+                break;
+
+            // 松开：执行恢复动画（从当前缩小的大小开始）
+            case MotionEvent.ACTION_UP:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+
+            // 取消（比如滑动离开View）：强制恢复动画
+            case MotionEvent.ACTION_CANCEL:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+        }
+
+        return false;
     }
 
     private void setTopAppBarTitle(String title) {
