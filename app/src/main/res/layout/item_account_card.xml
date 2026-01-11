@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="10dp"
         android:background="?attr/selectableItemBackground">
 
         <!-- 区服名称 -->
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="5dp" />
 
         <!-- openid（可设为较小字体或隐藏） -->
         <TextView
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="5dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

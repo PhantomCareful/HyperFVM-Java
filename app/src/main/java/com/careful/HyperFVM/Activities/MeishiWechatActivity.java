@@ -261,6 +261,8 @@ public class MeishiWechatActivity extends AppCompatActivity {
             return true;
         });
 
+        cardView.setOnTouchListener(this::setPressAnimation);
+
         TransitionManager.beginDelayedTransition(MeishiWechatContainer, transition);
         accountListContainer.addView(cardView);
     }
