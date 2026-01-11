@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ import com.careful.HyperFVM.Activities.CheckUpdateActivity;
 import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -60,6 +62,9 @@ public class TiramisuImageActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        // 添加按压动画
+        findViewById(R.id.update_image_action).setOnTouchListener(this::setPressAnimation);
+
         setupContainer(R.id.text_tools_tiramisu_image_1_container, "tiramisu_image_1");
         setupContainer(R.id.text_tools_tiramisu_image_2_container, "tiramisu_image_2");
         setupContainer(R.id.text_tools_tiramisu_image_3_1_container, "tiramisu_image_3_1");
@@ -92,6 +97,32 @@ public class TiramisuImageActivity extends AppCompatActivity {
             intent.putExtra("imgPath", imageName);
             startActivity(intent);
         });
+    }
+
+    /**
+     * 给按钮和卡片添加按压反馈动画
+     * @return 是否拦截触摸事件
+     */
+    private boolean setPressAnimation(View v, MotionEvent event) {
+        //setPress
+        switch (event.getAction()) {
+            // 按下：执行缩小动画（从当前大小开始）
+            case MotionEvent.ACTION_DOWN:
+                ViewAnimationUtils.playPressScaleAnimation(v, true);
+                break;
+
+            // 松开：执行恢复动画（从当前缩小的大小开始）
+            case MotionEvent.ACTION_UP:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+
+            // 取消（比如滑动离开View）：强制恢复动画
+            case MotionEvent.ACTION_CANCEL:
+                ViewAnimationUtils.playPressScaleAnimation(v, false);
+                break;
+        }
+
+        return false;
     }
 
     private void checkVersion() {
