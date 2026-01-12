@@ -79,27 +79,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorTertiaryContainer"
-                app:cardElevation="0dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
-                    android:id="@+id/about_app_developer_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="10dp"
-                    android:clickable="true"
                     android:background="?attr/selectableItemBackground">
 
                     <ImageView
                         android:id="@+id/Image_View_Phantom_Careful"
-                        android:layout_width="0dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitStart"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/phantom_careful"
                         android:layout_gravity="start|center_vertical"
                         tools:ignore="ContentDescription" />
@@ -107,7 +101,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="12"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center_vertical">
 
@@ -116,7 +110,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/label_about_app_developer_name_1"
                             android:textSize="25sp"
-                            android:textColor="?attr/colorOnTertiaryContainer"
                             android:textStyle="bold"
                             android:layout_marginStart="10dp" />
 
@@ -125,18 +118,15 @@
                             android:layout_height="wrap_content"
                             android:text="@string/label_about_app_developer_name_2"
                             android:textSize="15sp"
-                            android:textColor="?attr/colorOnTertiaryContainer"
                             android:layout_marginStart="10dp" />
 
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:src="@drawable/ic_chevron_right"
                         android:layout_gravity="end|center_vertical"
-                        app:tint="?attr/colorOnTertiaryContainer"
                         tools:ignore="ContentDescription" />
 
                 </LinearLayout>
@@ -159,29 +149,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:cardElevation="0dp"
                 android:visibility="gone">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/about_app_thanks_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/about_app_thanks_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorPrimary"
-                        android:padding="10dp"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground"/>
-
-                </LinearLayout>
+                    android:text=""
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -231,10 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:cardElevation="0dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -264,14 +240,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_using_instruction_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_using_instruction_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textSize="15sp"/>
 
                         </LinearLayout>
 
@@ -280,7 +254,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -308,14 +281,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_settings_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_settings_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textSize="15sp"/>
 
                         </LinearLayout>
 
@@ -324,7 +295,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -349,10 +319,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:cardElevation="0dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -382,14 +349,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_github_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_github_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textSize="15sp"/>
 
                         </LinearLayout>
 
@@ -398,7 +363,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_github"
-                            app:tint="?attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -429,14 +393,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_get_update_123pan_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_get_update_123pan_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textSize="15sp"/>
 
                         </LinearLayout>
 
@@ -444,7 +406,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_cloud_download"
-                            app:tint="?attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -475,14 +436,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_bilibili_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_bilibili_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textSize="15sp"/>
 
                         </LinearLayout>
 
@@ -490,7 +449,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_bilibili"
-                            app:tint="?attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -521,14 +479,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_tencent_channel_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_tencent_channel_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textSize="15sp"/>
 
                         </LinearLayout>
 
@@ -536,7 +492,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_qq"
-                            app:tint="?attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -564,14 +519,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_see_update_log_history_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_see_update_log_history_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorPrimary"/>
+                                android:textSize="15sp"/>
 
                         </LinearLayout>
 
@@ -579,7 +532,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>

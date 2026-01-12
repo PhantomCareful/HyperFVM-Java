@@ -11,19 +11,74 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Base.Theme.HyperFVMJava.Shadow" parent="Base.Theme.HyperFVMJava">
+        <!--Button的默认样式-->
+        <item name="materialButtonStyle">@style/Button.Shadow</item>
+
+        <!--CardView的默认样式-->
+        <item name="cardViewStyle">@style/CardView.Shadow</item>
+        <!--卡片下间距-->
+        <item name="CardViewMarginBottom">15dp</item>
+
+        <!--一般CardView-->
+        <!--卡片颜色-->
+        <item name="GeneralCardViewBackground">?attr/colorPrimaryContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
+
+        <!--重要CardView-->
+        <!--卡片颜色-->
+        <item name="ImportantCardViewBackground">?attr/colorPrimary</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnImportantCardView">?attr/colorOnPrimary</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="Base.Theme.HyperFVMJava.NoShadow" parent="Base.Theme.HyperFVMJava">
+        <!--Button的默认样式-->
+        <item name="materialButtonStyle">@style/Button.NoShadow</item>
+
+        <!--CardView的默认样式-->
+        <item name="cardViewStyle">@style/CardView.NoShadow</item>
+        <!--卡片下间距-->
+        <item name="CardViewMarginBottom">10dp</item>
+
+        <!--一般CardView-->
+        <!--卡片颜色-->
+        <item name="GeneralCardViewBackground">?attr/colorSurfaceContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnGeneralCardView">?attr/colorPrimary</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorPrimary</item>
+
+        <!--重要CardView-->
+        <!--卡片颜色-->
+        <item name="ImportantCardViewBackground">?attr/colorTertiaryContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
+    </style>
+
+    <style name="GeneralTextViewInImportantCardViewStyle" parent="Base.Theme.HyperFVMJava">
+        <item name="TextViewColorOnGeneralCardView">?attr/TextViewColorOnImportantCardView</item>
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/VectorGraphicColorOnImportantCardView</item>
+    </style>
+
     <style name="ToolBarTitleStyle" parent="Base.Theme.HyperFVMJava">
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="CardDataAuxiliaryListStyle" parent="Base.Theme.HyperFVMJava">
+    <style name="CardDataAuxiliaryListShadowStyle" parent="Base.Theme.HyperFVMJava">
         <item name="colorOnPrimaryContainer">?attr/colorOnPrimary</item>
     </style>
 
     <style name="NavItemTextStyle" parent="Base.Theme.HyperFVMJava">
         <item name="android:textSize">30sp</item>
     </style>
-
-    <style name="Theme.HyperFVMJava" parent="Base.Theme.HyperFVMJava" />
 
 </resources>

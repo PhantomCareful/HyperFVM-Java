@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 这里存放的是自定义属性 -->
+
+    <!--CardView下边距-->
+    <attr name="CardViewMarginBottom" format="dimension" />
+    
+    <!--一般CardView-->
+    <!--卡片颜色-->
+    <attr name="GeneralCardViewBackground" format="color" />
+    <!--文字颜色-->
+    <attr name="TextViewColorOnGeneralCardView" format="color" />
+    <!--矢量图颜色-->
+    <attr name="VectorGraphicColorOnGeneralCardView" format="color" />
+
+    <!--重要CardView-->
+    <!--卡片颜色-->
+    <attr name="ImportantCardViewBackground" format="color" />
+    <!--文字颜色-->
+    <attr name="TextViewColorOnImportantCardView" format="color" />
+    <!--矢量图颜色-->
+    <attr name="VectorGraphicColorOnImportantCardView" format="color" />
+</resources>

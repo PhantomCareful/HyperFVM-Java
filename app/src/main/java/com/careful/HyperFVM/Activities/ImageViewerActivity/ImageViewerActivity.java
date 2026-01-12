@@ -2,6 +2,8 @@ package com.careful.HyperFVM.Activities.ImageViewerActivity;
 
 import static android.content.ContentValues.TAG;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,8 +28,6 @@ public class ImageViewerActivity extends AppCompatActivity {
 
     private ZoomImageView zoomImageView;
     private DataImagesUpdaterUtil imageUtil;
-
-    private static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

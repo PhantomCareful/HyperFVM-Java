@@ -1,0 +1,74 @@
+<resources>
+    <style name="Monet.Blue.Pinlan.NoShadow" parent="Theme.Material3.Light.NoActionBar">
+        <!--Button的默认样式-->
+        <item name="materialButtonStyle">@style/Button.NoShadow</item>
+
+        <!--CardView的默认样式-->
+        <item name="cardViewStyle">@style/CardView.NoShadow</item>
+        <!--卡片下间距-->
+        <item name="CardViewMarginBottom">10dp</item>
+
+        <!--一般CardView-->
+        <!--卡片颜色-->
+        <item name="GeneralCardViewBackground">?attr/colorSurfaceContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnGeneralCardView">?attr/colorPrimary</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorPrimary</item>
+
+        <!--重要CardView-->
+        <!--卡片颜色-->
+        <item name="ImportantCardViewBackground">?attr/colorTertiaryContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
+
+        <item name="colorPrimary">@color/md_blue_pinlan_primary</item>
+        <item name="colorOnPrimary">@color/md_blue_pinlan_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_blue_pinlan_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_blue_pinlan_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_blue_pinlan_secondary</item>
+        <item name="colorOnSecondary">@color/md_blue_pinlan_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_blue_pinlan_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_blue_pinlan_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_blue_pinlan_tertiary</item>
+        <item name="colorOnTertiary">@color/md_blue_pinlan_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_blue_pinlan_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_blue_pinlan_onTertiaryContainer</item>
+        <item name="colorError">@color/md_blue_pinlan_error</item>
+        <item name="colorOnError">@color/md_blue_pinlan_onError</item>
+        <item name="colorErrorContainer">@color/md_blue_pinlan_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_blue_pinlan_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_blue_pinlan_background</item>
+        <item name="colorOnBackground">@color/md_blue_pinlan_onBackground</item>
+        <item name="colorSurface">@color/md_blue_pinlan_surface</item>
+        <item name="colorOnSurface">@color/md_blue_pinlan_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_blue_pinlan_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_blue_pinlan_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_blue_pinlan_outline</item>
+        <item name="colorOutlineVariant">@color/md_blue_pinlan_outlineVariant</item>
+        <item name="colorSurfaceInverse">@color/md_blue_pinlan_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_blue_pinlan_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/md_blue_pinlan_inversePrimary</item>
+        <item name="colorPrimaryFixed">@color/md_blue_pinlan_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/md_blue_pinlan_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/md_blue_pinlan_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/md_blue_pinlan_onPrimaryFixedVariant</item>
+        <item name="colorSecondaryFixed">@color/md_blue_pinlan_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/md_blue_pinlan_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/md_blue_pinlan_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/md_blue_pinlan_onSecondaryFixedVariant</item>
+        <item name="colorTertiaryFixed">@color/md_blue_pinlan_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/md_blue_pinlan_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/md_blue_pinlan_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/md_blue_pinlan_onTertiaryFixedVariant</item>
+        <item name="colorSurfaceDim">@color/md_blue_pinlan_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_blue_pinlan_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/md_blue_pinlan_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/md_blue_pinlan_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/md_blue_pinlan_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/md_blue_pinlan_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/md_blue_pinlan_surfaceContainerHighest</item>
+    </style>
+</resources>

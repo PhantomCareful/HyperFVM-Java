@@ -1,0 +1,74 @@
+<resources>
+    <style name="Monet.Pink.Xinghua.Shadow" parent="Theme.Material3.Light.NoActionBar">
+        <!--Button的默认样式-->
+        <item name="materialButtonStyle">@style/Button.Shadow</item>
+
+        <!--CardView的默认样式-->
+        <item name="cardViewStyle">@style/CardView.Shadow</item>
+        <!--卡片下间距-->
+        <item name="CardViewMarginBottom">15dp</item>
+
+        <!--一般CardView-->
+        <!--卡片颜色-->
+        <item name="GeneralCardViewBackground">?attr/colorPrimaryContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
+
+        <!--重要CardView-->
+        <!--卡片颜色-->
+        <item name="ImportantCardViewBackground">?attr/colorPrimary</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnImportantCardView">?attr/colorOnPrimary</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnPrimary</item>
+
+        <item name="colorPrimary">@color/md_pink_xinghua_primary</item>
+        <item name="colorOnPrimary">@color/md_pink_xinghua_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_pink_xinghua_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_pink_xinghua_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_pink_xinghua_secondary</item>
+        <item name="colorOnSecondary">@color/md_pink_xinghua_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_pink_xinghua_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_pink_xinghua_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_pink_xinghua_tertiary</item>
+        <item name="colorOnTertiary">@color/md_pink_xinghua_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_pink_xinghua_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_pink_xinghua_onTertiaryContainer</item>
+        <item name="colorError">@color/md_pink_xinghua_error</item>
+        <item name="colorOnError">@color/md_pink_xinghua_onError</item>
+        <item name="colorErrorContainer">@color/md_pink_xinghua_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_pink_xinghua_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_pink_xinghua_background</item>
+        <item name="colorOnBackground">@color/md_pink_xinghua_onBackground</item>
+        <item name="colorSurface">@color/md_pink_xinghua_surface</item>
+        <item name="colorOnSurface">@color/md_pink_xinghua_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_pink_xinghua_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_pink_xinghua_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_pink_xinghua_outline</item>
+        <item name="colorOutlineVariant">@color/md_pink_xinghua_outlineVariant</item>
+        <item name="colorSurfaceInverse">@color/md_pink_xinghua_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_pink_xinghua_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/md_pink_xinghua_inversePrimary</item>
+        <item name="colorPrimaryFixed">@color/md_pink_xinghua_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/md_pink_xinghua_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/md_pink_xinghua_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/md_pink_xinghua_onPrimaryFixedVariant</item>
+        <item name="colorSecondaryFixed">@color/md_pink_xinghua_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/md_pink_xinghua_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/md_pink_xinghua_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/md_pink_xinghua_onSecondaryFixedVariant</item>
+        <item name="colorTertiaryFixed">@color/md_pink_xinghua_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/md_pink_xinghua_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/md_pink_xinghua_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/md_pink_xinghua_onTertiaryFixedVariant</item>
+        <item name="colorSurfaceDim">@color/md_pink_xinghua_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_pink_xinghua_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/md_pink_xinghua_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/md_pink_xinghua_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/md_pink_xinghua_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/md_pink_xinghua_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/md_pink_xinghua_surfaceContainerHighest</item>
+    </style>
+</resources>

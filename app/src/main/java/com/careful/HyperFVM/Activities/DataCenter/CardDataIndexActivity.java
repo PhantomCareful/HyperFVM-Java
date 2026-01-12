@@ -1,5 +1,8 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX;
+
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -47,8 +50,6 @@ public class CardDataIndexActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private SpringBackScrollView CardDataIndexContainer;
 
-    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -60,16 +61,27 @@ public class CardDataIndexActivity extends AppCompatActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
+
         setContentView(R.layout.activity_card_data_index);
+
+        // 初始化数据库
+        dbHelper = new DBHelper(this);
+
+        String currentInterfaceStyle = dbHelper.getSettingValueString(CONTENT_INTERFACE_STYLE);
+        switch (currentInterfaceStyle) {
+            case "鲜艳-立体":
+
+                break;
+            case "素雅-扁平":
+
+                break;
+        }
 
         //设置顶栏标题
         setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_index) + " ");
 
         // 添加模糊材质
         setupBlurEffect();
-
-        // 初始化数据库
-        dbHelper = new DBHelper(this);
 
         // 防御卡目录按钮
         CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);

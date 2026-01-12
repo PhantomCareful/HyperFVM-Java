@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name_card_data_index_15_1_3_0"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="20sp"
-            android:textColor="?attr/colorOnPrimaryContainer"
             android:textStyle="bold" />
     </LinearLayout>
 

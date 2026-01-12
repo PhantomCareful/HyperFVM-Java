@@ -2,6 +2,9 @@ package com.careful.HyperFVM.Activities.ImageViewerActivity;
 
 import static android.content.ContentValues.TAG;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_DARK_MODE;
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER;
+
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,9 +32,6 @@ public class ImageViewerDynamicActivity extends AppCompatActivity {
     private DataImagesUpdaterUtil imageUtil;
 
     private DBHelper dbHelper;
-    public static final String KEY_DARK_MODE = "主题-深色主题";
-    private static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 初始化图片工具类、数据库工具类
@@ -112,7 +112,7 @@ public class ImageViewerDynamicActivity extends AppCompatActivity {
         String unzipRootPath = imageUtil.getUnzipPath(this);
         // 根据深色模式动态加载对应的图片
         int currentNightMode;
-        String darkMode = dbHelper.getSettingValueString(KEY_DARK_MODE);
+        String darkMode = dbHelper.getSettingValueString(CONTENT_DARK_MODE);
         currentNightMode = switch (darkMode) {
             case "总是开启\uD83C\uDF1A" -> Configuration.UI_MODE_NIGHT_YES;
             case "总是关闭\uD83C\uDF1D" -> Configuration.UI_MODE_NIGHT_NO;

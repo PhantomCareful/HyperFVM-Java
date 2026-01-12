@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--素雅、扁平-->
+    <!--卡片本身的样式-->
+    <style name="CardView.NoShadow" parent="Base.Theme.HyperFVMJava">
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <!--鲜艳、立体-->
+    <!--卡片本身的样式-->
+    <style name="CardView.Shadow" parent="Base.Theme.HyperFVMJava">
+        <item name="cardElevation">10dp</item>
+    </style>
+
+</resources>

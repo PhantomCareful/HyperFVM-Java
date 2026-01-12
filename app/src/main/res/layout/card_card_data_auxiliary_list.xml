@@ -8,10 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="10dp"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="?attr/colorSurfaceContainer"
-        app:cardElevation="0dp">
+        android:layout_marginBottom="?attr/CardViewMarginBottom"
+        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+        app:cardCornerRadius="20dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -34,9 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title_data_center_card_data_auxiliary_list"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorPrimary"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -44,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_data_center_card_data_auxiliary_list"
-                android:textSize="18sp"
-                android:textColor="?attr/colorPrimary"/>
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textSize="18sp"/>
 
         </LinearLayout>
 

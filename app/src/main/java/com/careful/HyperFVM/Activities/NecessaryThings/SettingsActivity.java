@@ -45,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
     private View themeSelectorContainer;
     private TextView themeCurrentSelection;
 
-    private static final String CONTENT_DARK_MODE = "主题-深色主题";
+    public static final String CONTENT_DARK_MODE = "主题-深色主题";
     private String currentDarkMode;
     private TextView darkModeCurrentSelection;
 
@@ -56,9 +56,9 @@ public class SettingsActivity extends AppCompatActivity {
     private static final String CONTENT_AUTO_TASK = "自动任务";
     private static final String CONTENT_AUTO_TASK_ENHANCED = "自动任务-增强";
 
-    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
-    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
-    private static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
+    public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
+    public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
+    public static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

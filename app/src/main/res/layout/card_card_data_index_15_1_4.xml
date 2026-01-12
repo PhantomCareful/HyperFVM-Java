@@ -20,15 +20,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name_card_data_index_15_1_4_0"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="20sp"
-            android:textColor="?attr/colorOnPrimaryContainer"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name_card_data_index_15_1_4_1"
-            android:textSize="11sp"
-            android:textColor="?attr/colorOnPrimaryContainer" />
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="11sp" />
     </LinearLayout>
 
     <!-- 右侧卡片 -->

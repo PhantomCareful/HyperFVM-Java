@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST;
+
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -40,8 +42,6 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private ActivityCardDataAuxiliaryListBinding binding;
     private SpringBackScrollView CardDataAuxiliaryListContainer;
-
-    private static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

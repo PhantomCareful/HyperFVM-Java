@@ -27,21 +27,20 @@ import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
-import com.careful.HyperFVM.databinding.FragmentAboutAppShadowBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
 
 public class AboutAppFragment extends Fragment {
-    private FragmentAboutAppBinding binding_no_shadow;
-    private FragmentAboutAppShadowBinding binding_shadow;
-
-    private View root;
+    private FragmentAboutAppBinding binding;
 
     private TransitionSet transition;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentAboutAppBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
         // 初始化数据库类
         String currentInterfaceStyle;
         try (DBHelper dbHelper = new DBHelper(requireContext())) {
@@ -51,12 +50,10 @@ public class AboutAppFragment extends Fragment {
         //初始化binding
         switch (currentInterfaceStyle) {
             case "鲜艳-立体":
-                binding_shadow = FragmentAboutAppShadowBinding.inflate(inflater, container, false);
-                root = binding_shadow.getRoot();
+
                 break;
             case "素雅-扁平":
-                binding_no_shadow = FragmentAboutAppBinding.inflate(inflater, container, false);
-                root = binding_no_shadow.getRoot();
+
                 break;
         }
 
@@ -131,24 +128,15 @@ public class AboutAppFragment extends Fragment {
         // 执行前检查binding是否已销毁
         Runnable transitionRunnable = () -> {
             // 执行前检查binding是否已销毁
-            if (binding_no_shadow != null) {
-                TransitionManager.beginDelayedTransition(binding_no_shadow.aboutAppContainer, transition);
-                Objects.requireNonNull(binding_no_shadow.aboutAppPlaceholder).setVisibility(View.GONE);
-                Objects.requireNonNull(binding_no_shadow.aboutAppLabelThanks).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_no_shadow.aboutAppThanksListContainer).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_no_shadow.aboutAppLabelSomeNecessaryThings).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_no_shadow.aboutAppSomeNecessaryThingsContainer).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_no_shadow.aboutAppLabelMore).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_no_shadow.aboutAppMoreContainer).setVisibility(View.VISIBLE);
-            } else if (binding_shadow != null) {
-                TransitionManager.beginDelayedTransition(binding_shadow.aboutAppContainer, transition);
-                Objects.requireNonNull(binding_shadow.aboutAppPlaceholder).setVisibility(View.GONE);
-                Objects.requireNonNull(binding_shadow.aboutAppLabelThanks).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_shadow.aboutAppThanksListContainer).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_shadow.aboutAppLabelSomeNecessaryThings).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_shadow.aboutAppSomeNecessaryThingsContainer).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_shadow.aboutAppLabelMore).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding_shadow.aboutAppMoreContainer).setVisibility(View.VISIBLE);
+            if (binding != null) {
+                TransitionManager.beginDelayedTransition(binding.aboutAppContainer, transition);
+                Objects.requireNonNull(binding.aboutAppPlaceholder).setVisibility(View.GONE);
+                Objects.requireNonNull(binding.aboutAppLabelThanks).setVisibility(View.VISIBLE);
+                Objects.requireNonNull(binding.aboutAppThanksListContainer).setVisibility(View.VISIBLE);
+                Objects.requireNonNull(binding.aboutAppLabelSomeNecessaryThings).setVisibility(View.VISIBLE);
+                Objects.requireNonNull(binding.aboutAppSomeNecessaryThingsContainer).setVisibility(View.VISIBLE);
+                Objects.requireNonNull(binding.aboutAppLabelMore).setVisibility(View.VISIBLE);
+                Objects.requireNonNull(binding.aboutAppMoreContainer).setVisibility(View.VISIBLE);
             }
         };
 

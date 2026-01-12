@@ -1,7 +1,5 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -36,7 +34,6 @@ import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
-import com.careful.HyperFVM.databinding.FragmentDataCenterShadowBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
@@ -81,21 +78,11 @@ public class DataCenterFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentDataCenterBinding binding_no_shadow = FragmentDataCenterBinding.inflate(inflater, container, false);
-        FragmentDataCenterShadowBinding binding_shadow = FragmentDataCenterShadowBinding.inflate(inflater, container, false);
+        FragmentDataCenterBinding binding = FragmentDataCenterBinding.inflate(inflater, container, false);
+        root = binding.getRoot();
 
         // 初始化数据库类
         dbHelper = new DBHelper(requireContext());
-
-        String currentInterfaceStyle = dbHelper.getSettingValueString(CONTENT_INTERFACE_STYLE);
-        switch (currentInterfaceStyle) {
-            case "鲜艳-立体":
-                root = binding_shadow.getRoot();
-                break;
-            case "素雅-扁平":
-                root = binding_no_shadow.getRoot();
-                break;
-        }
 
         preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 

@@ -1,0 +1,74 @@
+<resources>
+    <style name="Monet.Orange.Hupo.Shadow" parent="Base.Theme.HyperFVMJava">
+        <!--Button的默认样式-->
+        <item name="materialButtonStyle">@style/Button.Shadow</item>
+
+        <!--CardView的默认样式-->
+        <item name="cardViewStyle">@style/CardView.Shadow</item>
+        <!--卡片下间距-->
+        <item name="CardViewMarginBottom">15dp</item>
+
+        <!--一般CardView-->
+        <!--卡片颜色-->
+        <item name="GeneralCardViewBackground">?attr/colorPrimaryContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
+
+        <!--重要CardView-->
+        <!--卡片颜色-->
+        <item name="ImportantCardViewBackground">?attr/colorPrimary</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnImportantCardView">?attr/colorOnPrimary</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnPrimary</item>
+
+        <item name="colorPrimary">@color/md_orange_hupo_primary</item>
+        <item name="colorOnPrimary">@color/md_orange_hupo_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_orange_hupo_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_orange_hupo_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_orange_hupo_secondary</item>
+        <item name="colorOnSecondary">@color/md_orange_hupo_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_orange_hupo_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_orange_hupo_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_orange_hupo_tertiary</item>
+        <item name="colorOnTertiary">@color/md_orange_hupo_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_orange_hupo_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_orange_hupo_onTertiaryContainer</item>
+        <item name="colorError">@color/md_orange_hupo_error</item>
+        <item name="colorOnError">@color/md_orange_hupo_onError</item>
+        <item name="colorErrorContainer">@color/md_orange_hupo_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_orange_hupo_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_orange_hupo_background</item>
+        <item name="colorOnBackground">@color/md_orange_hupo_onBackground</item>
+        <item name="colorSurface">@color/md_orange_hupo_surface</item>
+        <item name="colorOnSurface">@color/md_orange_hupo_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_orange_hupo_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_orange_hupo_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_orange_hupo_outline</item>
+        <item name="colorOutlineVariant">@color/md_orange_hupo_outlineVariant</item>
+        <item name="colorSurfaceInverse">@color/md_orange_hupo_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_orange_hupo_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/md_orange_hupo_inversePrimary</item>
+        <item name="colorPrimaryFixed">@color/md_orange_hupo_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/md_orange_hupo_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/md_orange_hupo_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/md_orange_hupo_onPrimaryFixedVariant</item>
+        <item name="colorSecondaryFixed">@color/md_orange_hupo_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/md_orange_hupo_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/md_orange_hupo_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/md_orange_hupo_onSecondaryFixedVariant</item>
+        <item name="colorTertiaryFixed">@color/md_orange_hupo_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/md_orange_hupo_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/md_orange_hupo_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/md_orange_hupo_onTertiaryFixedVariant</item>
+        <item name="colorSurfaceDim">@color/md_orange_hupo_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_orange_hupo_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/md_orange_hupo_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/md_orange_hupo_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/md_orange_hupo_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/md_orange_hupo_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/md_orange_hupo_surfaceContainerHighest</item>
+    </style>
+</resources>
