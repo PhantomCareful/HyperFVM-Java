@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
+import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -400,7 +402,7 @@ public class DataCenterFragment extends Fragment {
      * @param url 网址链接
      */
     private void showDialogAndVisitUrl(String title, String url) {
-        new MaterialAlertDialogBuilder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("二次确认防误触")
                 .setMessage("即将前往：" + title) // 显示要前往哪个网站
                 .setPositiveButton("立即跳转\uD83E\uDD13", (dialog, which) -> {
@@ -435,7 +437,7 @@ public class DataCenterFragment extends Fragment {
         TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
         TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
 
-        new MaterialAlertDialogBuilder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("查黑系统")
                 .setView(dialogView)
                 .setPositiveButton("确定", (dialog, which) -> {
@@ -455,7 +457,7 @@ public class DataCenterFragment extends Fragment {
 
                                 @Override
                                 public void onError(String message) {
-                                    new MaterialAlertDialogBuilder(requireContext())
+                                    new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                                             .setTitle("查询失败")
                                             .setMessage(message)
                                             .setPositiveButton("确定", null)
@@ -474,7 +476,7 @@ public class DataCenterFragment extends Fragment {
      * @param result 把查询到的结果显示到弹窗上
      */
     private void showResultDialog(IcuHelper.FraudResult result) {
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext());
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId);
         dialogBuilder.setTitle(result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)");
 
         StringBuilder content = new StringBuilder();
@@ -503,7 +505,7 @@ public class DataCenterFragment extends Fragment {
     }
 
     private void showWelcomeDialog() {
-        new MaterialAlertDialogBuilder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("欢迎使用 HyperFVM")
                 .setMessage("如果您是第一次使用，建议您先阅读使用说明，以快速了解本App。")
                 .setPositiveButton("去阅读👉", (dialog, which) -> {
