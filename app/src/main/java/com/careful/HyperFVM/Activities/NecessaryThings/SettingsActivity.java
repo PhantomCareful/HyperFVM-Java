@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.NecessaryThings;
 
+import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -94,7 +96,7 @@ public class SettingsActivity extends AppCompatActivity {
                         MaterialSwitch switchAutoTask = findViewById(R.id.Switch_AutoTask);
                         switchAutoTask.setChecked(false);
                         dbHelper.updateSettingValue(CONTENT_AUTO_TASK, "false");
-                        new MaterialAlertDialogBuilder(this)
+                        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                                 .setTitle("权限申请")
                                 .setMessage("为了向通知中心推送消息，需要您授予通知权限哦~")
                                 .setCancelable(false)
@@ -199,7 +201,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
 
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("选择主题")
                 .setSingleChoiceItems(themeEntries, selectedIndex, (dialog, which) -> {
                     String selectedEntries = themeEntries[which];
@@ -227,7 +229,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
 
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("深色模式\uD83C\uDF1D\uD83C\uDF1A")
                 .setSingleChoiceItems(darkModeEntries, selectedIndex, (dialog, which) -> {
                     String selectedEntries = darkModeEntries[which];
@@ -255,7 +257,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
 
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("界面风格")
                 .setSingleChoiceItems(interfaceStyleEntries, selectedIndex, (dialog, which) -> {
                     String selectedEntries = interfaceStyleEntries[which];

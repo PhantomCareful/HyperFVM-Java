@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
         suggestionList.setLayoutManager(new LinearLayoutManager(this));
         suggestionList.setAdapter(adapter);
 
-        // 配置建议列表的布局：第一张卡片顶部距离增加10dp，最后一张卡片底部距离增加10dp
+        // 配置建议列表的布局：第一张卡片顶部距离增加20dp，最后一张卡片底部距离增加20dp
         CardItemDecoration itemDecoration = new CardItemDecoration(suggestionList, 20, 20);
         suggestionList.addItemDecoration(itemDecoration);
 

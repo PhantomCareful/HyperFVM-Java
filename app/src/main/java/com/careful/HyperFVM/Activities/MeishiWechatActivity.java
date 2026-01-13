@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities;
 
+import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
@@ -167,7 +169,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
         TextInputEditText editText = (TextInputEditText) inputLayout.getEditText(); // 获取内部输入框
 
         // 3. 构建弹窗并设置自定义布局
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("添加链接")
                 .setView(dialogView) // 替换原来的setView(input)，使用自定义布局
                 .setPositiveButton("确定", (dialog, which) -> {
@@ -249,7 +251,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
 
         // 长按删除逻辑
         cardView.setOnLongClickListener(v -> {
-            new MaterialAlertDialogBuilder(this)
+            new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                     .setTitle("删除账号")
                     .setMessage("确定删除 " + (info.playerId != null ? info.playerId : info.openid) + " 吗？")
                     .setPositiveButton("确定", (dialog, which) -> {

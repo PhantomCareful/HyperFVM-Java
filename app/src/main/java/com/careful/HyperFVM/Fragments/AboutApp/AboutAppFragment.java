@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Fragments.AboutApp;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
+import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
 import android.content.Intent;
@@ -198,7 +199,7 @@ public class AboutAppFragment extends Fragment {
     }
 
     private void showDialogAndVisitUrl(String title, String url) {
-        new MaterialAlertDialogBuilder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("二次确认防误触")
                 .setMessage("即将前往：" + title) // 显示要前往哪个网站
                 .setPositiveButton("立即跳转\uD83E\uDD13", (dialog, which) -> {

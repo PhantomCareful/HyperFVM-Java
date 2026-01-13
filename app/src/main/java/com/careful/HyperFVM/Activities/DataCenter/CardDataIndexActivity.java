@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Activities.DataCenter;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX;
+import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -34,6 +35,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.CardItemDecoration;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
@@ -134,7 +136,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
         String[] titleEntries = getResources().getStringArray(R.array.card_data_index_titles);
 
         // 构建单选列表弹窗（参考深色模式弹窗样式）
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("导航到指定卡片类别") // 弹窗标题
                 .setSingleChoiceItems(titleEntries, -1, (dialog, which) -> {
                     // 点击列表项时：滚动到对应标题位置
@@ -248,6 +250,10 @@ public class CardDataIndexActivity extends AppCompatActivity {
         suggestionList.setLayoutManager(new LinearLayoutManager(this));
         suggestionList.setAdapter(adapter);
 
+        // 配置建议列表的布局：第一张卡片顶部距离增加20dp，最后一张卡片底部距离增加20dp
+        CardItemDecoration itemDecoration = new CardItemDecoration(suggestionList, 20, 20);
+        suggestionList.addItemDecoration(itemDecoration);
+
         // 实时模糊查询
         etCardName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -274,7 +280,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
         });
 
         // 显示弹窗（保持原有逻辑）
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle(getResources().getString(R.string.card_data_search_title))
                 .setView(dialogView)
                 .setPositiveButton("查询", (dialog, which) -> {

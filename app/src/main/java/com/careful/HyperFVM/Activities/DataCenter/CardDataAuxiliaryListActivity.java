@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST;
+import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -117,7 +118,7 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         String[] titleEntries = getResources().getStringArray(R.array.card_data_auxiliary_list_titles);
 
         // 构建单选列表弹窗（参考深色模式弹窗样式）
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("导航到指定卡片类别") // 弹窗标题
                 .setSingleChoiceItems(titleEntries, -1, (dialog, which) -> {
                     // 点击列表项时：滚动到对应标题位置
