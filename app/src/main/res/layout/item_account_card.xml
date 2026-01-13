@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--这是温馨礼包展示账号信息卡片的样式文件-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginBottom="15dp"
-    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-    card_view:cardCornerRadius="20dp"
-    card_view:cardElevation="10dp">
+    android:layout_marginBottom="?attr/CardViewMarginBottom"
+    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+    app:cardCornerRadius="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="?attr/colorOnPrimaryContainer" />
+            android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
         <!-- 角色ID -->
         <TextView
@@ -31,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:layout_marginTop="5dp" />
 
         <!-- openid（可设为较小字体或隐藏） -->
@@ -40,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:layout_marginTop="5dp" />
 
     </LinearLayout>

@@ -51,13 +51,11 @@
 
             <Button
                 android:id="@+id/Button_ControlGif"
-                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textSize="40sp"
-                app:cornerRadius="25dp"
-                android:elevation="10dp"/>
+                app:cornerRadius="25dp"/>
 
         </LinearLayout>
 

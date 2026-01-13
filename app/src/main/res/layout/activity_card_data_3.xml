@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -38,10 +37,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="15dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    card_view:cardElevation="10dp">
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -65,7 +63,7 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textSize="20sp"
-                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                             android:padding="10dp"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"/>
@@ -95,10 +93,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="15dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    card_view:cardElevation="10dp">
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -120,7 +117,7 @@
                                 android:layout_columnWeight="1"
                                 android:text="星级"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
                             <TextView
                                 android:id="@+id/star_detail"
                                 android:layout_width="wrap_content"
@@ -128,7 +125,7 @@
                                 android:layout_columnWeight="1"
                                 android:text="数据"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                         </GridLayout>
 
@@ -150,7 +147,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="0"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -158,7 +155,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -166,7 +163,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="2"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -174,7 +171,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="3"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -182,7 +179,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="4"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -190,7 +187,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="5"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -198,7 +195,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="6"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -206,7 +203,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="7"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -214,7 +211,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="8"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -222,7 +219,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="9"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -230,7 +227,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="10"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -238,7 +235,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="11"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -246,7 +243,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="12"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -254,7 +251,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="13"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -262,7 +259,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="14"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -270,7 +267,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="15"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -278,7 +275,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="16"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -286,14 +283,14 @@
                                     android:layout_columnWeight="1"
                                     android:text="Max"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
                                     android:text="Ultra"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp"
                                     android:gravity="center"/>
 
@@ -304,7 +301,7 @@
                                     android:layout_columnWeight="2"
                                     android:text="10"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_1"
@@ -491,10 +488,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="15dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    card_view:cardElevation="10dp">
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -516,7 +512,7 @@
                                 android:layout_columnWeight="1"
                                 android:text="等级"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
                             <TextView
                                 android:id="@+id/skill_detail"
                                 android:layout_width="wrap_content"
@@ -524,7 +520,7 @@
                                 android:layout_columnWeight="1"
                                 android:text="数据"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                         </GridLayout>
 
@@ -545,7 +541,7 @@
                                     android:layout_columnWeight="3"
                                     android:text="0"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -553,7 +549,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -561,7 +557,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="2"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -569,7 +565,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="3"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -577,7 +573,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="4"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -585,7 +581,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="5"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -593,7 +589,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="6"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -601,7 +597,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="7"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:layout_width="60dp"
@@ -609,7 +605,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="8"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
 
                                 <TextView
@@ -619,7 +615,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1.3"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_1"
@@ -628,7 +624,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1.25"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_2"
@@ -637,7 +633,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1.2"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_3"
@@ -646,7 +642,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1.15"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_4"
@@ -655,7 +651,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1.1"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_5"
@@ -664,7 +660,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1.05"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_6"
@@ -673,7 +669,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="1"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_7"
@@ -682,7 +678,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="0.95"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_8"
@@ -691,7 +687,7 @@
                                     android:layout_columnWeight="1"
                                     android:text="0.9"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
 
                             </GridLayout>
@@ -716,10 +712,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="15dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    card_view:cardElevation="10dp">
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -744,7 +739,7 @@
                                 android:layout_columnWeight="1"
                                 android:text="物品"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:gravity="center"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -752,7 +747,7 @@
                                 android:layout_columnWeight="1"
                                 android:text="兑换"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:gravity="center"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -760,7 +755,7 @@
                                 android:layout_columnWeight="1"
                                 android:text="分解"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:gravity="center"/>
 
                         </GridLayout>
@@ -965,7 +960,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_card_2"
@@ -975,7 +970,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_card_3"
@@ -985,7 +980,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_card_4"
@@ -995,7 +990,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_skill_1"
@@ -1005,7 +1000,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="9"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_skill_2"
@@ -1015,7 +1010,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="18"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_skill_3"
@@ -1025,7 +1020,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="36"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_skill_4"
@@ -1035,7 +1030,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="72"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_1_a"
@@ -1045,7 +1040,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="30"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_1_b"
@@ -1055,7 +1050,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="30"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_1_c"
@@ -1065,7 +1060,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="30"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_2_a"
@@ -1075,7 +1070,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="45"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_2_b"
@@ -1085,7 +1080,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="45"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_2_c"
@@ -1095,7 +1090,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="45"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_3_a"
@@ -1105,7 +1100,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_3_b"
@@ -1115,7 +1110,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="90"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_transfer_3_c"
@@ -1125,7 +1120,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="90"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/get_compose"
@@ -1135,7 +1130,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="30"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
 
                                 <TextView
@@ -1146,7 +1141,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="10"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_card_2"
@@ -1156,7 +1151,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="40"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_card_3"
@@ -1166,7 +1161,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="55"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_card_4"
@@ -1176,7 +1171,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_skill_1"
@@ -1186,7 +1181,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="3"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_skill_2"
@@ -1196,7 +1191,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="6"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_skill_3"
@@ -1206,7 +1201,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="12"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_skill_4"
@@ -1216,7 +1211,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="24"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_1_a"
@@ -1226,7 +1221,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="10"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_1_b"
@@ -1236,7 +1231,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="10"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_1_c"
@@ -1246,7 +1241,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="10"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_2_a"
@@ -1256,7 +1251,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="15"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_2_b"
@@ -1266,7 +1261,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="15"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_2_c"
@@ -1276,7 +1271,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="15"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_3_a"
@@ -1286,7 +1281,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_3_b"
@@ -1296,7 +1291,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_transfer_3_c"
@@ -1306,7 +1301,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="🚫"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/decompose_compose"
@@ -1316,7 +1311,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:text="10"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
 
                             </GridLayout>
@@ -1341,10 +1336,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="15dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    card_view:cardElevation="10dp">
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1357,7 +1351,7 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textSize="20sp"
-                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                             android:padding="10dp"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"/>

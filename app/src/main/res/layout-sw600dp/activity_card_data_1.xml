@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -57,10 +56,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="15dp"
-                            card_view:cardCornerRadius="20dp"
-                            card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                            card_view:cardElevation="10dp">
+                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -84,7 +82,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="卡片名称：合金水管"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:layout_marginTop="15dp"
                                     android:layout_marginBottom="15dp"/>
 
@@ -94,7 +92,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="所属分类：管线类/水管类"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:layout_marginBottom="15dp"/>
 
                                 <TextView
@@ -103,7 +101,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="耗能：125"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:layout_marginBottom="15dp"/>
 
                                 <TextView
@@ -112,7 +110,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="不转：双向水管\n能力：对前后方都可以攻击\n\n一转：控温双向水管\n能力：前方多出一发子弹\n\n二转：合金水管\n能力：前后各再多出一发子弹"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:layout_marginBottom="15dp"/>
 
                                 <TextView
@@ -121,7 +119,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="子弹数(后+前)：2+1/2+2/3+3"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:layout_marginBottom="15dp"/>
 
                                 <TextView
@@ -130,7 +128,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="作为副卡：好卡😀"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -170,10 +168,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="15dp"
-                            card_view:cardCornerRadius="20dp"
-                            card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                            card_view:cardElevation="10dp">
+                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -195,14 +192,14 @@
                                         android:layout_columnWeight="1"
                                         android:text="星级"
                                         android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"/>
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"/>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_columnWeight="1"
                                         android:text="数据"
                                         android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"/>
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                                 </GridLayout>
 
@@ -224,7 +221,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="0"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -232,7 +229,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -240,7 +237,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="2"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -248,7 +245,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="3"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -256,7 +253,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="4"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -264,7 +261,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="5"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -272,7 +269,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="6"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -280,7 +277,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="7"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -288,7 +285,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="8"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -296,7 +293,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="9"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -304,7 +301,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="10"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -312,7 +309,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="11"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -320,7 +317,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="12"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -328,7 +325,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="13"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -336,7 +333,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="14"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -344,7 +341,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="15"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -352,7 +349,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="16"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -360,14 +357,14 @@
                                             android:layout_columnWeight="1"
                                             android:text="Max"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:layout_columnWeight="1"
                                             android:text="Ultra"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:textSize="20sp"
                                             android:gravity="center"/>
 
@@ -378,7 +375,7 @@
                                             android:layout_columnWeight="2"
                                             android:text="10"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/star_1"
@@ -567,10 +564,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="15dp"
-                            card_view:cardCornerRadius="20dp"
-                            card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                            card_view:cardElevation="10dp">
+                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -592,14 +588,14 @@
                                         android:layout_columnWeight="1"
                                         android:text="等级"
                                         android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"/>
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"/>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_columnWeight="1"
                                         android:text="数据"
                                         android:textSize="20sp"
-                                        android:textColor="?attr/colorOnPrimaryContainer"/>
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                                 </GridLayout>
 
@@ -620,7 +616,7 @@
                                             android:layout_columnWeight="3"
                                             android:text="0"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -628,7 +624,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -636,7 +632,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="2"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -644,7 +640,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="3"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -652,7 +648,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="4"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -660,7 +656,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="5"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -668,7 +664,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="6"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -676,7 +672,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="7"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:layout_width="60dp"
@@ -684,7 +680,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="8"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
 
                                         <TextView
@@ -694,7 +690,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1.3"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_1"
@@ -703,7 +699,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1.25"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_2"
@@ -712,7 +708,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1.2"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_3"
@@ -721,7 +717,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1.15"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_4"
@@ -730,7 +726,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1.1"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_5"
@@ -739,7 +735,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1.05"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_6"
@@ -748,7 +744,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="1"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_7"
@@ -757,7 +753,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="0.95"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
                                         <TextView
                                             android:id="@+id/skill_8"
@@ -766,7 +762,7 @@
                                             android:layout_columnWeight="1"
                                             android:text="0.9"
                                             android:textSize="20sp"
-                                            android:textColor="?attr/colorOnPrimaryContainer"
+                                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                                             android:gravity="center"/>
 
                                     </GridLayout>
@@ -791,13 +787,11 @@
                             android:id="@+id/Card_Other"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="10dp"
-                            android:paddingBottom="15dp"
-                            card_view:cardCornerRadius="20dp"
-                            card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                            card_view:cardElevation="10dp">
+                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -813,7 +807,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="[食神谱]水煮鱼：攻击力+10%"
                                     android:textSize="20sp"
-                                    android:textColor="?attr/colorOnPrimaryContainer"/>
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             </LinearLayout>
 

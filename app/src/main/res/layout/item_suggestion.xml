@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--这是防御卡数据按名查询的搜索结果预览的样式文件-->
-<com.google.android.material.card.MaterialCardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/suggestion_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="2dp"
-    android:layout_marginVertical="1dp"
+    android:layout_marginBottom="5dp"
+    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
     app:cardCornerRadius="@dimen/dialog_input_corner_radius"
-    app:cardBackgroundColor="?attr/colorPrimaryContainer"
     app:cardElevation="0dp"
     app:strokeWidth="0dp">
 
@@ -19,8 +18,9 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dialog_input_padding"
         android:textSize="20sp"
-        android:textColor="?attr/colorOnPrimaryContainer"
+        android:textColor="?attr/TextViewColorOnGeneralCardView"
         android:ellipsize="end"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:background="?attr/selectableItemBackground"/>
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

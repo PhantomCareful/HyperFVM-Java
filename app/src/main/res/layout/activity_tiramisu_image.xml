@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -50,10 +49,11 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    card_view:cardCornerRadius="20dp"
-                    card_view:cardBackgroundColor="?attr/colorPrimaryContainer"
-                    app:cardElevation="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -80,14 +80,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -112,14 +112,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_2"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -144,14 +144,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_3_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -176,14 +176,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_3_2"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -208,14 +208,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_3_3"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -240,14 +240,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_4"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -272,14 +272,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_5"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -304,14 +304,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_6"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -336,14 +336,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_7_1"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -368,14 +368,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_7_2"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -400,14 +400,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_7_3"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -432,14 +432,14 @@
                                 android:layout_weight="1"
                                 android:text="@string/text_tools_tiramisu_image_7_4"
                                 android:textSize="20sp"
-                                android:textColor="?attr/colorOnPrimaryContainer"/>
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnPrimaryContainer"
+                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>

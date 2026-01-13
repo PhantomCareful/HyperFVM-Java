@@ -44,7 +44,7 @@ public class TodayLuckyActivity extends AppCompatActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_tools_today_lucky);
+        setContentView(R.layout.activity_today_lucky);
 
         // 将dp值转换为像素
         cornerRadiusPx = (int) (CORNER_RADIUS_DP * getResources().getDisplayMetrics().density);
