@@ -112,7 +112,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -143,7 +143,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -174,7 +174,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -205,7 +205,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -236,7 +236,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -267,7 +267,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -298,7 +298,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -329,7 +329,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_5_container"
@@ -358,7 +358,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_6_container"
@@ -387,7 +387,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_7_container"
@@ -416,7 +416,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_8_container"
@@ -445,7 +445,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_9_container"
@@ -474,7 +474,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_10_container"
@@ -503,7 +503,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_11_container"
@@ -532,7 +532,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_12_container"
@@ -561,7 +561,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_13_container"
@@ -590,7 +590,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_14_container"
@@ -619,7 +619,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_15_container"
@@ -648,7 +648,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_16_container"
@@ -677,7 +677,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_17_container"
@@ -706,7 +706,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_18_container"
@@ -735,7 +735,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout><LinearLayout
                             android:id="@+id/data_images_index_card_19_container"
@@ -764,7 +764,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -832,7 +832,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -863,7 +863,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -894,7 +894,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -925,7 +925,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -956,7 +956,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -987,7 +987,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1018,7 +1018,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1049,7 +1049,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1080,7 +1080,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1111,7 +1111,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1142,7 +1142,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1222,7 +1222,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1253,7 +1253,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1284,7 +1284,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1315,7 +1315,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1346,7 +1346,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1377,7 +1377,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1445,7 +1445,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1476,7 +1476,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1507,7 +1507,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1538,7 +1538,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1569,7 +1569,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1600,7 +1600,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1631,7 +1631,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1662,7 +1662,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1693,7 +1693,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1724,7 +1724,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1782,7 +1782,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1813,7 +1813,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1844,7 +1844,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1875,7 +1875,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1906,7 +1906,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1937,7 +1937,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
@@ -1968,7 +1968,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_chevron_right"
-                                    android:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"/>
 
                             </LinearLayout>
 

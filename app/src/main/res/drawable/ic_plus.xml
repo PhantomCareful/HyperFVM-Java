@@ -1,10 +1,10 @@
-<vector
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:width="60dp"
-	android:height="60dp"
-	android:viewportHeight="24"
-	android:viewportWidth="24"
-	android:tint="?attr/colorOnPrimaryContainer">
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:width="60dp"
+    android:height="60dp"
+    android:viewportHeight="24"
+    android:viewportWidth="24"
+    app:tint="?attr/colorOnPrimaryContainer">
 
 		<path
 			android:fillColor="?attr/colorOnPrimaryContainer"

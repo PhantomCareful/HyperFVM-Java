@@ -88,7 +88,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -120,7 +120,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -152,7 +152,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -184,7 +184,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -216,7 +216,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -248,7 +248,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -280,7 +280,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -312,7 +312,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -344,7 +344,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -376,7 +376,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -408,7 +408,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -440,7 +440,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                android:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
