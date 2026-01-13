@@ -3,6 +3,14 @@ package com.careful.HyperFVM.Activities.NecessaryThings;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -49,6 +57,27 @@ public class UsingInstructionActivity extends AppCompatActivity {
         getContentFromAssets(this, overview5, "QA5.txt");
         getContentFromAssets(this, overview6, "QA6.txt");
         getContentFromAssets(this, overview7, "QA7.txt");
+
+        // 初始化动画效果
+        TransitionSet transition = new TransitionSet();
+        transition.addTransition(new Fade()); // 淡入淡出
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.setDuration(300); // 动画时长300ms
+
+        LinearLayout using_instruction_container = findViewById(R.id.using_instruction_container);
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            TransitionManager.beginDelayedTransition(using_instruction_container, transition);
+            findViewById(R.id.using_instruction_top_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction1_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction2_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction3_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction4_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction5_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction6_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction7_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.using_instruction_placeholder).setVisibility(View.GONE);
+        }, 300);
     }
 
     private void setTopAppBarTitle(String title) {

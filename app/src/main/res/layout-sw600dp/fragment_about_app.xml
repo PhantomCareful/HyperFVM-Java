@@ -75,10 +75,13 @@
                 android:textColor="?attr/colorOnSurface"/>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/about_app_developer_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout
@@ -109,6 +112,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_about_app_developer_name_1"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
                             android:textSize="25sp"
                             android:textStyle="bold"
                             android:layout_marginStart="10dp" />
@@ -117,6 +121,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_about_app_developer_name_2"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
                             android:textSize="15sp"
                             android:layout_marginStart="10dp" />
 
@@ -127,6 +132,7 @@
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_chevron_right"
                         android:layout_gravity="end|center_vertical"
+                        app:tint="?attr/VectorGraphicColorOnImportantCardView"
                         tools:ignore="ContentDescription" />
 
                 </LinearLayout>
@@ -149,6 +155,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                 app:cardCornerRadius="20dp"
                 android:visibility="gone">
 
@@ -157,6 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:textColor="?attr/TextViewColorOnGeneralCardView"
                     android:textSize="20sp"
                     android:padding="10dp"
                     android:clickable="true"
@@ -210,6 +219,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout
@@ -239,12 +250,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_using_instruction_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_using_instruction_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
                         </LinearLayout>
@@ -254,6 +267,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -280,12 +294,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_settings_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_settings_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
                         </LinearLayout>
@@ -295,6 +311,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -319,6 +336,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout
@@ -348,12 +367,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_github_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_github_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
                         </LinearLayout>
@@ -363,6 +384,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_github"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -392,12 +414,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_get_update_123pan_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_get_update_123pan_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
                         </LinearLayout>
@@ -406,6 +430,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_cloud_download"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -435,12 +460,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_bilibili_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_bilibili_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
                         </LinearLayout>
@@ -449,6 +476,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_bilibili"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -478,12 +506,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_tencent_channel_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_tencent_channel_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
                         </LinearLayout>
@@ -492,6 +522,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_qq"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -518,12 +549,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_see_update_log_history_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_about_app_see_update_log_history_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
                         </LinearLayout>
@@ -532,6 +565,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_chevron_right"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
