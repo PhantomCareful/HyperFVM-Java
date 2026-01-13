@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--素雅、扁平-->
+    <style name="MaterialAlertDialog.NoShadow" parent="MaterialAlertDialog.Material3">
+        <item name="buttonBarPositiveButtonStyle">@style/ButtonBarPositiveButtonStyle.NoShadow</item>
+        <item name="buttonBarNegativeButtonStyle">@style/buttonBarNegativeButtonStyle.NoShadow</item>
+
+        <!-- 关闭阴影裁剪 -->
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <!--鲜艳、立体-->
+    <style name="MaterialAlertDialog.Shadow" parent="MaterialAlertDialog.Material3">
+        <item name="buttonBarPositiveButtonStyle">@style/ButtonBarPositiveButtonStyle.Shadow</item>
+        <item name="buttonBarNegativeButtonStyle">@style/buttonBarNegativeButtonStyle.Shadow</item>
+
+        <!-- 关闭阴影裁剪 -->
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+</resources>

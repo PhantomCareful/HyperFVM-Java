@@ -2,13 +2,13 @@
 <resources>
     <!--素雅、扁平-->
     <!--卡片本身的样式-->
-    <style name="CardView.NoShadow" parent="Base.Theme.HyperFVMJava">
+    <style name="CardView.NoShadow" parent="Base.Theme.HyperFVMJava.NoShadow">
         <item name="cardElevation">0dp</item>
     </style>
 
     <!--鲜艳、立体-->
     <!--卡片本身的样式-->
-    <style name="CardView.Shadow" parent="Base.Theme.HyperFVMJava">
+    <style name="CardView.Shadow" parent="Base.Theme.HyperFVMJava.Shadow">
         <item name="cardElevation">10dp</item>
     </style>
 

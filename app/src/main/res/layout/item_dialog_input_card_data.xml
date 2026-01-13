@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="@dimen/dialog_input_margin"
-    android:paddingStart="@dimen/dialog_input_margin"
-    android:paddingEnd="@dimen/dialog_input_margin"
-    android:paddingBottom="@dimen/dialog_input_margin">
+    android:paddingVertical="@dimen/dialog_input_margin">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="26dp"
         android:text="@string/card_data_search_tips"
         android:textSize="15sp"
         android:textColor="?attr/colorOnSurfaceVariant"/>
@@ -22,11 +20,13 @@
         android:id="@+id/inputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="5dp"
         app:boxStrokeWidth="2dp"
-        app:boxCornerRadiusTopStart="@dimen/dialog_input_corner_radius"
-        app:boxCornerRadiusTopEnd="@dimen/dialog_input_corner_radius"
-        app:boxCornerRadiusBottomStart="@dimen/dialog_input_corner_radius"
-        app:boxCornerRadiusBottomEnd="@dimen/dialog_input_corner_radius"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusBottomEnd="20dp"
         app:backgroundTint="@android:color/transparent"
         app:hintEnabled="false">
 
@@ -41,13 +41,33 @@
             android:singleLine="true"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- 建议列表（输入框下方） -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/suggestion_list"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <!-- 建议列表（输入框下方） -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/suggestion_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <!-- 顶部渐变层：覆盖RecyclerView顶部，高度30dp（可调整） -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="top"
+            android:background="@drawable/recycler_top_gradient"/>
+
+        <!-- 底部渐变层：覆盖RecyclerView底部，高度30dp（可调整） -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/recycler_bottom_gradient"/>
+
+    </FrameLayout>
 
 </LinearLayout>

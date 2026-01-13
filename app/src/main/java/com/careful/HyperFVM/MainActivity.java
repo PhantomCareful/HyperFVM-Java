@@ -1,5 +1,7 @@
 package com.careful.HyperFVM;
 
+import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,6 +31,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.CardItemDecoration;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -90,11 +93,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         mainHandler = new Handler(Looper.getMainLooper()); // 初始化主线程 Handler
 
+        // 初始化通知管理和数据库
+        autoTaskNotificationManager = new AutoTaskNotificationManager(this);
+        dbHelper = new DBHelper(this);
+
         // 启动时进行签名校验
         new Thread(() -> {
             if (!SignatureChecker.verifyAppSignature(this)) {
                 // 在主线程中显示对话框提示
-                mainHandler.post(() -> new MaterialAlertDialogBuilder(this)
+                mainHandler.post(() -> new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                         .setTitle("签名校验失败")
                         .setMessage("同学，您使用的HyperFVM非官方版本，应用将关闭。\n请从官方通道下载安装，非常感谢~")
                         .setCancelable(false)
@@ -106,10 +113,6 @@ public class MainActivity extends AppCompatActivity {
                         .show());
             }
         }).start();
-
-        // 初始化通知管理和数据库
-        autoTaskNotificationManager = new AutoTaskNotificationManager(this);
-        dbHelper = new DBHelper(this);
 
         // 应用主题（必须在super.onCreate前）
         DarkModeManager.applyDarkMode(this);
@@ -275,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onPermissionDenied() {
-                        new MaterialAlertDialogBuilder(MainActivity.this)
+                        new MaterialAlertDialogBuilder(MainActivity.this, materialAlertDialogThemeStyleId)
                                 .setTitle("权限申请")
                                 .setMessage("为了向通知中心推送消息，需要您授予通知权限哦~")
                                 .setCancelable(false)
@@ -340,6 +343,10 @@ public class MainActivity extends AppCompatActivity {
         suggestionList.setLayoutManager(new LinearLayoutManager(this));
         suggestionList.setAdapter(adapter);
 
+        // 配置建议列表的布局：第一张卡片顶部距离增加10dp，最后一张卡片底部距离增加10dp
+        CardItemDecoration itemDecoration = new CardItemDecoration(suggestionList, 20, 20);
+        suggestionList.addItemDecoration(itemDecoration);
+
         // 实时模糊查询
         etCardName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -366,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 显示弹窗（保持原有逻辑）
-        new MaterialAlertDialogBuilder(this)
+        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle(getResources().getString(R.string.card_data_search_title))
                 .setView(dialogView)
                 .setPositiveButton("查询", (dialog, which) -> {

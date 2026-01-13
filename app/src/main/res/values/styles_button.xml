@@ -6,10 +6,36 @@
         <item name="android:elevation">0dp</item>
     </style>
 
+    <!--弹窗确定按钮-->
+    <style name="ButtonBarPositiveButtonStyle.NoShadow" parent="Widget.Material3.Button">
+        <item name="elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!--弹窗取消按钮-->
+    <style name="buttonBarNegativeButtonStyle.NoShadow" parent="Widget.Material3.Button.TonalButton">
+        <item name="elevation">0dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
     <!--鲜艳、立体-->
 
     <style name="Button.Shadow" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:elevation">10dp</item>
+    </style>
+
+    <!--弹窗确定按钮-->
+    <style name="ButtonBarPositiveButtonStyle.Shadow" parent="Widget.Material3.Button">
+        <item name="elevation">10dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!--弹窗取消按钮-->
+    <style name="buttonBarNegativeButtonStyle.Shadow" parent="Widget.Material3.Button.TonalButton">
+        <item name="elevation">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
 
 </resources>

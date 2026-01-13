@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.utils.DBHelper;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
 import static com.careful.HyperFVM.utils.DBHelper.DatabaseInfo.DB_VERSION;
 
 import android.content.ContentValues;
@@ -9,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.careful.HyperFVM.R;
 import com.opencsv.CSVReader;
 
 import java.io.File;
@@ -663,6 +665,18 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return value;
+    }
+
+    public int getCurrentMaterialAlertDialogThemeStyle() {
+        String currentStyle = getSettingValueString(CONTENT_INTERFACE_STYLE);
+        // 界面风格ID
+        int themeStyleId;
+        if ("鲜艳-立体".equals(currentStyle)) {
+            themeStyleId = R.style.MaterialAlertDialog_Shadow; // 鲜艳主题
+        } else {
+            themeStyleId = R.style.MaterialAlertDialog_NoShadow; // 素雅主题
+        }
+        return themeStyleId;
     }
 
     public void updateSettingValue(String content, String value) {
