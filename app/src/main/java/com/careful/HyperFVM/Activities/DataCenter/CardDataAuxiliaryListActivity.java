@@ -10,14 +10,18 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
@@ -117,43 +121,60 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
         // 获取标题数组
         String[] titleEntries = getResources().getStringArray(R.array.card_data_auxiliary_list_titles);
 
-        // 构建单选列表弹窗（参考深色模式弹窗样式）
-        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle("导航到指定卡片类别") // 弹窗标题
-                .setSingleChoiceItems(titleEntries, -1, (dialog, which) -> {
-                    // 点击列表项时：滚动到对应标题位置
-                    if (which >= 0 && CardDataAuxiliaryListContainer != null) {
-                        // 根据索引获取对应标题View的ID
-                        int targetViewId = getTitleViewIdByIndex(which);
-                        View targetView = findViewById(targetViewId);
-                        if (targetView != null) {
-                            // 计算滚动位置（减去顶部100dp的padding，让标题显示更友好）
-                            int scrollTop = targetView.getTop() - 400;
-                            // 目标滚动位置（保留你原有的顶部间距、边界保护逻辑）
-                            int targetScrollY = Math.max(scrollTop, 0);
-                            // 当前滚动位置
-                            int currentScrollY = CardDataAuxiliaryListContainer.getScrollY();
-                            // 初始化值动画：实现从当前位置 → 目标位置的渐变滚动
-                            ValueAnimator scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
-                            // 滚动时长（核心：控制顺滑度，300-500ms是安卓舒适区间，值越大越慢越丝滑）
-                            scrollAnimator.setDuration(400);
-                            // 核心插值器（决定滚动的速度变化规律，这是平滑的关键！）
-                            // DecelerateInterpolator：减速插值器 → 滚动由快到慢，符合人眼视觉习惯，最推荐
-                            scrollAnimator.setInterpolator(new DecelerateInterpolator(1.5f));
-                            // 逐帧更新滚动位置
-                            scrollAnimator.addUpdateListener(animation -> {
-                                int animatedValue = (int) animation.getAnimatedValue();
-                                CardDataAuxiliaryListContainer.scrollTo(0, animatedValue);
-                            });
-                            // 启动动画（加入防重复点击：先取消之前的滚动动画，再启动新的）
-                            scrollAnimator.cancel();
-                            scrollAnimator.start();
-                        }
-                    }
-                    dialog.dismiss(); // 选择后关闭弹窗
-                })
-                .setNegativeButton("取消", null) // 取消按钮
-                .show();
+        // 加载自定义布局
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.item_dialog_selection, null);
+        ListView listView = dialogView.findViewById(R.id.dialog_list);
+        dialogView.findViewById(R.id.dialog_list_top_gradient).setVisibility(View.GONE);
+        dialogView.findViewById(R.id.dialog_list_bottom_gradient).setVisibility(View.GONE);
+
+        // 设置列表
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                R.layout.item_index_selection, titleEntries);
+        listView.setAdapter(adapter);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+        // 构建目录列表弹窗
+        AlertDialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
+                .setTitle("🛰增幅卡导航") // 弹窗标题
+                .setView(dialogView) // 弹窗主题
+                .setNegativeButton("关闭", null) // 取消按钮
+                .create();
+
+        // 列表点击事件
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            // 点击列表项时：滚动到对应标题位置
+            if (position >= 0 && CardDataAuxiliaryListContainer != null) {
+                // 根据索引获取对应标题View的ID
+                int targetViewId = getTitleViewIdByIndex(position);
+                View targetView = findViewById(targetViewId);
+                if (targetView != null) {
+                    // 计算滚动位置（减去顶部100dp的padding，让标题显示更友好）
+                    int scrollTop = targetView.getTop() - 400;
+                    // 目标滚动位置（保留你原有的顶部间距、边界保护逻辑）
+                    int targetScrollY = Math.max(scrollTop, 0);
+                    // 当前滚动位置
+                    int currentScrollY = CardDataAuxiliaryListContainer.getScrollY();
+                    // 初始化值动画：实现从当前位置 → 目标位置的渐变滚动
+                    ValueAnimator scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
+                    // 滚动时长（核心：控制顺滑度，300-500ms是安卓舒适区间，值越大越慢越丝滑）
+                    scrollAnimator.setDuration(500);
+                    // 核心插值器（决定滚动的速度变化规律，这是平滑的关键！）
+                    // DecelerateInterpolator：减速插值器 → 滚动由快到慢，符合人眼视觉习惯，最推荐
+                    scrollAnimator.setInterpolator(new DecelerateInterpolator(1.0f));
+                    // 逐帧更新滚动位置
+                    scrollAnimator.addUpdateListener(animation -> {
+                        int animatedValue = (int) animation.getAnimatedValue();
+                        CardDataAuxiliaryListContainer.scrollTo(0, animatedValue);
+                    });
+                    // 启动动画（加入防重复点击：先取消之前的滚动动画，再启动新的）
+                    scrollAnimator.cancel();
+                    scrollAnimator.start();
+                }
+            }
+            dialog.dismiss(); // 选择后关闭弹窗
+        });
+
+        dialog.show();
     }
 
     /**
