@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.Activities;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.animation.ObjectAnimator;
@@ -118,7 +119,6 @@ public class MeishiWechatActivity extends AppCompatActivity {
         setupBlurEffect();
 
         // 添加按钮点击事件
-        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnTouchListener(this::setPressAnimation);
         findViewById(R.id.FloatButton_MeishiWechat_Container).setOnClickListener(v -> showAddLinkDialog());
 
         // 获取Markdown文本
@@ -138,24 +138,25 @@ public class MeishiWechatActivity extends AppCompatActivity {
      * @return 是否拦截触摸事件
      */
     private boolean setPressAnimation(View v, MotionEvent event) {
-        //setPress
-        switch (event.getAction()) {
-            // 按下：执行缩小动画（从当前大小开始）
-            case MotionEvent.ACTION_DOWN:
-                ViewAnimationUtils.playPressScaleAnimation(v, true);
-                break;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            //setPress
+            switch (event.getAction()) {
+                // 按下：执行缩小动画（从当前大小开始）
+                case MotionEvent.ACTION_DOWN:
+                    ViewAnimationUtils.playPressScaleAnimation(v, true);
+                    break;
 
-            // 松开：执行恢复动画（从当前缩小的大小开始）
-            case MotionEvent.ACTION_UP:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 松开：执行恢复动画（从当前缩小的大小开始）
+                case MotionEvent.ACTION_UP:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
 
-            // 取消（比如滑动离开View）：强制恢复动画
-            case MotionEvent.ACTION_CANCEL:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 取消（比如滑动离开View）：强制恢复动画
+                case MotionEvent.ACTION_CANCEL:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+            }
         }
-
         return false;
     }
 
@@ -235,7 +236,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
     }
 
     // 添加包含区服、角色ID和openid的卡片
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     private void addAccountCard(DBHelper.PlayerInfo info) {
         CardView cardView = (CardView) LayoutInflater.from(this)
                 .inflate(R.layout.item_account_card, accountListContainer, false);
@@ -263,6 +264,11 @@ public class MeishiWechatActivity extends AppCompatActivity {
             return true;
         });
 
+        /*
+          可能的Bug：
+          因为这里是动态添加的按压动画，所以无法放到onResume阶段，可能调整设置后不生效。
+          但是目前调整设置的话，这个活动一定是不会启动的，所以规避了这个Bug。
+         */
         cardView.setOnTouchListener(this::setPressAnimation);
 
         TransitionManager.beginDelayedTransition(MeishiWechatContainer, transition);
@@ -352,6 +358,15 @@ public class MeishiWechatActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnTouchListener(this::setPressAnimation);
     }
 
     @Override

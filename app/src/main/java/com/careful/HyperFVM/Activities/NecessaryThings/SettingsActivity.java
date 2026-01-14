@@ -66,6 +66,8 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
     public static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
 
+    public static final String CONTENT_IS_PRESS_FEEDBACK_ANIMATION = "按压反馈动画";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -276,37 +278,43 @@ public class SettingsActivity extends AppCompatActivity {
      * 从数据库读取状态并初始化开关
      */
     private void initSwitches() {
+        MaterialSwitch materialSwitch;
         // 动态取色开关
         boolean isDynamicColor = dbHelper.getSettingValue(CONTENT_IS_DYNAMIC_COLOR);
-        MaterialSwitch switchIsDynamicColor = findViewById(R.id.Switch_isDynamicColor);
-        switchIsDynamicColor.setChecked(isDynamicColor);
+        materialSwitch = findViewById(R.id.Switch_isDynamicColor);
+        materialSwitch.setChecked(isDynamicColor);
         // 自动任务开关
         boolean isDoAutoTask = dbHelper.getSettingValue(CONTENT_AUTO_TASK);
-        MaterialSwitch switchAutoTask = findViewById(R.id.Switch_AutoTask);
-        switchAutoTask.setChecked(isDoAutoTask);
+        materialSwitch = findViewById(R.id.Switch_AutoTask);
+        materialSwitch.setChecked(isDoAutoTask);
         // 自动任务增强模式开关
         boolean isDoAutoTaskEnhanced = dbHelper.getSettingValue(CONTENT_AUTO_TASK_ENHANCED);
-        MaterialSwitch switchAutoTaskEnhanced = findViewById(R.id.Switch_AutoTask_Enhanced);
-        switchAutoTaskEnhanced.setChecked(isDoAutoTaskEnhanced);
+        materialSwitch = findViewById(R.id.Switch_AutoTask_Enhanced);
+        materialSwitch.setChecked(isDoAutoTaskEnhanced);
         // Toast显示设置开关
         boolean toastIsVisibleCardDataIndex = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
         boolean toastIsVisibleCardDataAuxiliaryList = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST);
         boolean toastIsVisibleDataImageViewer = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER);
-        MaterialSwitch toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataIndex);
-        toastIsVisible.setChecked(toastIsVisibleCardDataIndex);
-        toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
-        toastIsVisible.setChecked(toastIsVisibleCardDataAuxiliaryList);
-        toastIsVisible = findViewById(R.id.Switch_isVisible_DataImageViewer);
-        toastIsVisible.setChecked(toastIsVisibleDataImageViewer);
+        materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);
+        materialSwitch.setChecked(toastIsVisibleCardDataIndex);
+        materialSwitch = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
+        materialSwitch.setChecked(toastIsVisibleCardDataAuxiliaryList);
+        materialSwitch = findViewById(R.id.Switch_isVisible_DataImageViewer);
+        materialSwitch.setChecked(toastIsVisibleDataImageViewer);
+        // 按压反馈动画开关
+        boolean isPressFeedbackAnimation = dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION);
+        materialSwitch = findViewById(R.id.Switch_isPressFeedbackAnimation);
+        materialSwitch.setChecked(isPressFeedbackAnimation);
     }
 
     /**
      * 设置开关状态变化监听，同步更新数据库
      */
     private void setupSwitchListeners() {
+        MaterialSwitch materialSwitch;
         // 动态取色开关
-        MaterialSwitch switchIsDynamicColor = findViewById(R.id.Switch_isDynamicColor);
-        switchIsDynamicColor.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        materialSwitch = findViewById(R.id.Switch_isDynamicColor);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, isChecked ? "true" : "false");
             if (isChecked) {
                 // 动态取色关闭：允许点击
@@ -320,8 +328,8 @@ public class SettingsActivity extends AppCompatActivity {
             restartApp();
         });
         // 自动任务开关
-        MaterialSwitch switchAutoTask = findViewById(R.id.Switch_AutoTask);
-        switchAutoTask.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        materialSwitch = findViewById(R.id.Switch_AutoTask);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_AUTO_TASK, isChecked ? "true" : "false");
             if (!isChecked) {
                 // 取消所有已调度的自动任务
@@ -337,8 +345,8 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
         // 自动任务增强模式开关
-        MaterialSwitch switchAutoTaskEnhanced = findViewById(R.id.Switch_AutoTask_Enhanced);
-        switchAutoTaskEnhanced.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        materialSwitch = findViewById(R.id.Switch_AutoTask_Enhanced);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_AUTO_TASK_ENHANCED, isChecked ? "true" : "false");
             ActivityManager systemService = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
             List<ActivityManager.AppTask> appTasks = systemService.getAppTasks();
@@ -347,15 +355,19 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
         // Toast显示设置开关
-        MaterialSwitch toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataIndex);
-        toastIsVisible.setOnCheckedChangeListener((buttonView, isChecked) ->
+        materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX, isChecked ? "true" : "false"));
-        toastIsVisible = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
-        toastIsVisible.setOnCheckedChangeListener((buttonView, isChecked) ->
+        materialSwitch = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST, isChecked ? "true" : "false"));
-        toastIsVisible = findViewById(R.id.Switch_isVisible_DataImageViewer);
-        toastIsVisible.setOnCheckedChangeListener((buttonView, isChecked) ->
+        materialSwitch = findViewById(R.id.Switch_isVisible_DataImageViewer);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER, isChecked ? "true" : "false"));
+        // 按压反馈动画开关
+        materialSwitch = findViewById(R.id.Switch_isPressFeedbackAnimation);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
+                dbHelper.updateSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION, isChecked ? "true" : "false"));
     }
 
     /**

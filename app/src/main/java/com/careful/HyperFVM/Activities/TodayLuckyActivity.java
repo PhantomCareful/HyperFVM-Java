@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
+
 import android.graphics.ImageDecoder;
 import android.graphics.Outline;
 import android.graphics.drawable.AnimatedImageDrawable;
@@ -16,6 +18,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -53,9 +56,6 @@ public class TodayLuckyActivity extends AppCompatActivity {
         this.button = findViewById(R.id.Button_ControlGif);
         isPlaying = true;
 
-        //添加按压动画
-        findViewById(R.id.Button_ControlGif).setOnTouchListener(this::setPressAnimation);
-
         //设置顶栏标题、启用返回按钮
         setTopAppBarTitle(getResources().getString(R.string.title_tools_today_lucky));
 
@@ -75,24 +75,27 @@ public class TodayLuckyActivity extends AppCompatActivity {
      * @return 是否拦截触摸事件
      */
     private boolean setPressAnimation(View v, MotionEvent event) {
-        //setPress
-        switch (event.getAction()) {
-            // 按下：执行缩小动画（从当前大小开始）
-            case MotionEvent.ACTION_DOWN:
-                ViewAnimationUtils.playPressScaleAnimation(v, true);
-                break;
+        try (DBHelper dbHelper = new DBHelper(this)) {
+            if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+                //setPress
+                switch (event.getAction()) {
+                    // 按下：执行缩小动画（从当前大小开始）
+                    case MotionEvent.ACTION_DOWN:
+                        ViewAnimationUtils.playPressScaleAnimation(v, true);
+                        break;
 
-            // 松开：执行恢复动画（从当前缩小的大小开始）
-            case MotionEvent.ACTION_UP:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                    // 松开：执行恢复动画（从当前缩小的大小开始）
+                    case MotionEvent.ACTION_UP:
+                        ViewAnimationUtils.playPressScaleAnimation(v, false);
+                        break;
 
-            // 取消（比如滑动离开View）：强制恢复动画
-            case MotionEvent.ACTION_CANCEL:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                    // 取消（比如滑动离开View）：强制恢复动画
+                    case MotionEvent.ACTION_CANCEL:
+                        ViewAnimationUtils.playPressScaleAnimation(v, false);
+                        break;
+                }
+            }
         }
-
         return false;
     }
 
@@ -191,6 +194,16 @@ public class TodayLuckyActivity extends AppCompatActivity {
         if (animatedDrawable != null) {
             animatedDrawable.stop();
         }
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //添加按压动画
+        findViewById(R.id.Button_ControlGif).setOnTouchListener(this::setPressAnimation);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.Activities;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
@@ -107,10 +108,6 @@ public class CheckUpdateActivity extends AppCompatActivity {
         initViewsForImage();
         initViewsForApp();
 
-        // 添加按压动画
-        findViewById(R.id.update_image_action).setOnTouchListener(this::setPressAnimation);
-        findViewById(R.id.update_app_action).setOnTouchListener(this::setPressAnimation);
-
         // 设置顶栏标题、启用返回按钮
         setTopAppBarTitle(getResources().getString(R.string.label_check_update) + " ");
 
@@ -118,32 +115,6 @@ public class CheckUpdateActivity extends AppCompatActivity {
         getAppLocalVersion();
         getImageServerVersionAndCheckImageUpdate();
         getAppServerVersionAndCheckAppUpdate();
-    }
-
-    /**
-     * 给按钮和卡片添加按压反馈动画
-     * @return 是否拦截触摸事件
-     */
-    private boolean setPressAnimation(View v, MotionEvent event) {
-        //setPress
-        switch (event.getAction()) {
-            // 按下：执行缩小动画（从当前大小开始）
-            case MotionEvent.ACTION_DOWN:
-                ViewAnimationUtils.playPressScaleAnimation(v, true);
-                break;
-
-            // 松开：执行恢复动画（从当前缩小的大小开始）
-            case MotionEvent.ACTION_UP:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
-
-            // 取消（比如滑动离开View）：强制恢复动画
-            case MotionEvent.ACTION_CANCEL:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
-        }
-
-        return false;
     }
 
     // =========================== 以下是图片资源部分 ===========================
@@ -739,6 +710,33 @@ public class CheckUpdateActivity extends AppCompatActivity {
                 .start();
     }
 
+    /**
+     * 给按钮和卡片添加按压反馈动画
+     * @return 是否拦截触摸事件
+     */
+    private boolean setPressAnimation(View v, MotionEvent event) {
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            //setPress
+            switch (event.getAction()) {
+                // 按下：执行缩小动画（从当前大小开始）
+                case MotionEvent.ACTION_DOWN:
+                    ViewAnimationUtils.playPressScaleAnimation(v, true);
+                    break;
+
+                // 松开：执行恢复动画（从当前缩小的大小开始）
+                case MotionEvent.ACTION_UP:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+
+                // 取消（比如滑动离开View）：强制恢复动画
+                case MotionEvent.ACTION_CANCEL:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+            }
+        }
+        return false;
+    }
+
     private void setTopAppBarTitle(String title) {
         //设置顶栏标题、启用返回按钮
         MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
@@ -758,6 +756,17 @@ public class CheckUpdateActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 添加按压动画
+        findViewById(R.id.update_image_action).setOnTouchListener(this::setPressAnimation);
+        findViewById(R.id.update_app_action).setOnTouchListener(this::setPressAnimation);
     }
 
     @Override

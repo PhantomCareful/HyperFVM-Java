@@ -163,6 +163,12 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
                     "VALUES ('界面风格', '鲜艳-立体')");
         }
+
+        // 版本36：settings表增加“按压反馈动画”开关
+        if (oldVersion < 36) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('按压反馈动画', 'true')");
+        }
     }
 
     @Override

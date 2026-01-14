@@ -1,5 +1,6 @@
 package com.careful.HyperFVM;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.app.ActivityManager;
@@ -172,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
         initPersistentNotification();
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener(this::setPressAnimation);
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> showCardQueryDialog());
     }
 
@@ -300,24 +300,25 @@ public class MainActivity extends AppCompatActivity {
      * @return 是否拦截触摸事件
      */
     private boolean setPressAnimation(View v, MotionEvent event) {
-        //setPress
-        switch (event.getAction()) {
-            // 按下：执行缩小动画（从当前大小开始）
-            case MotionEvent.ACTION_DOWN:
-                ViewAnimationUtils.playPressScaleAnimation(v, true);
-                break;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            //setPress
+            switch (event.getAction()) {
+                // 按下：执行缩小动画（从当前大小开始）
+                case MotionEvent.ACTION_DOWN:
+                    ViewAnimationUtils.playPressScaleAnimation(v, true);
+                    break;
 
-            // 松开：执行恢复动画（从当前缩小的大小开始）
-            case MotionEvent.ACTION_UP:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 松开：执行恢复动画（从当前缩小的大小开始）
+                case MotionEvent.ACTION_UP:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
 
-            // 取消（比如滑动离开View）：强制恢复动画
-            case MotionEvent.ACTION_CANCEL:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 取消（比如滑动离开View）：强制恢复动画
+                case MotionEvent.ACTION_CANCEL:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+            }
         }
-
         return false;
     }
 
@@ -419,6 +420,15 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener(this::setPressAnimation);
     }
 
     /**

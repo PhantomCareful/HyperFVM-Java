@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
@@ -90,11 +91,9 @@ public class CardDataIndexActivity extends AppCompatActivity {
 
         // 防御卡目录按钮
         CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);
-        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
         findViewById(R.id.FloatButton_CardDataIndex_Container).setOnClickListener(v -> showTitleNavigationDialog());
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener(this::setPressAnimation);
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> showCardQueryDialog());
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
@@ -110,24 +109,25 @@ public class CardDataIndexActivity extends AppCompatActivity {
      * @return 是否拦截触摸事件
      */
     private boolean setPressAnimation(View v, MotionEvent event) {
-        //setPress
-        switch (event.getAction()) {
-            // 按下：执行缩小动画（从当前大小开始）
-            case MotionEvent.ACTION_DOWN:
-                ViewAnimationUtils.playPressScaleAnimation(v, true);
-                break;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            //setPress
+            switch (event.getAction()) {
+                // 按下：执行缩小动画（从当前大小开始）
+                case MotionEvent.ACTION_DOWN:
+                    ViewAnimationUtils.playPressScaleAnimation(v, true);
+                    break;
 
-            // 松开：执行恢复动画（从当前缩小的大小开始）
-            case MotionEvent.ACTION_UP:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 松开：执行恢复动画（从当前缩小的大小开始）
+                case MotionEvent.ACTION_UP:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
 
-            // 取消（比如滑动离开View）：强制恢复动画
-            case MotionEvent.ACTION_CANCEL:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 取消（比如滑动离开View）：强制恢复动画
+                case MotionEvent.ACTION_CANCEL:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+            }
         }
-
         return false;
     }
 
@@ -1277,6 +1277,16 @@ public class CardDataIndexActivity extends AppCompatActivity {
         );
         animator.setDuration(1200);
         animator.start();
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener(this::setPressAnimation);
     }
 
     @Override

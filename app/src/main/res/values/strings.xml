@@ -236,6 +236,8 @@
     <string name="label_settings_switch_card_data_index">防御卡全能数据库</string>
     <string name="label_settings_switch_card_data_auxiliary_list">增幅卡名单</string>
     <string name="label_settings_switch_data_image_viewer">数据图查看器</string>
+    <string name="title_settings_animation">动画相关设置</string>
+    <string name="label_settings_switch_is_press_feedback_animation">按压反馈动画</string>
     <string name="title_settings_auto_task">自动任务</string>
     <string name="label_settings_switch_auto_task">启用自动任务</string>
     <string name="label_settings_auto_task_description">⭐开启后，App将会在合适的时机自动领取温馨礼包、更新仪表盘信息，并向您推送执行结果通知。\n⭐此功能需要App常驻后台和推送通知，因此需要您授予App通知权限和自启动权限，并在多任务界面锁定App的后台，在系统的省电策略中不要对App采取任何限制措施。\n⭐请注意：各家定制系统可能会采取不同的措施限制App常驻后台，因此可能仍无法100%保证App不被系统杀死，若您发现保护通知消失，则需要手动重启App以重新激活自动任务。\n\n⭐若关闭，App则会在您每次打开的时候执行这些任务。\n\n⭐无论是否使用自动任务，温馨礼包每天第一次领取成功后便不再领取，若后续又添加了新的链接，请手动刷新一次仪表盘。</string>

@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.annotation.SuppressLint;
@@ -77,6 +78,7 @@ public class DataCenterFragment extends Fragment {
     // 动画部分
     private TransitionSet transition;
     private LinearLayout dataCenterContainer;
+    private int pressFeedbackAnimationDelay;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -177,35 +179,12 @@ public class DataCenterFragment extends Fragment {
             }).start();
         });
 
-        // ------------------------------这一部分统一设置按压反馈动画 ------------------------------
-        root.findViewById(R.id.ButtonRefreshDashboard).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_last_day_of_month_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_double_explosion_rate_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_everyday_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_bilibili_fvm_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_meishi_wechat_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_fertilization_task_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_new_year_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_tiramisu_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_faa_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_icu_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_card_calculator_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_molu_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_strategy_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_gem_calculator_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_today_lucky_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_prestige_calculator_container).setOnTouchListener(this::setPressAnimation);
-
         // ------------------------------这一部分统一设置点击事件------------------------------
         // 温馨礼包
         root.findViewById(R.id.card_meishi_wechat_container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
             startActivity(intent);
-        }, 350));
+        }, pressFeedbackAnimationDelay));
 
         // B站最新更新公告
         root.findViewById(R.id.card_bilibili_fvm_container).setOnClickListener(v ->
@@ -217,7 +196,7 @@ public class DataCenterFragment extends Fragment {
             DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index_loading));
             Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
             startActivity(intent);
-        }, 350));
+        }, pressFeedbackAnimationDelay));
 
         // 增幅卡名单
         root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> v.postDelayed(() -> {
@@ -225,19 +204,19 @@ public class DataCenterFragment extends Fragment {
             DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list_loading));
             Intent intent = new Intent(requireActivity(), CardDataAuxiliaryListActivity.class);
             startActivity(intent);
-        }, 350));
+        }, pressFeedbackAnimationDelay));
 
         // 数据图合集
         root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), DataImagesIndexActivity.class);
             startActivity(intent);
-        }, 350));
+        }, pressFeedbackAnimationDelay));
 
         // 米鼠的图
         root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), TiramisuImageActivity.class);
             startActivity(intent);
-        }, 350));
+        }, pressFeedbackAnimationDelay));
 
         // 提拉米鼠官网
         root.findViewById(R.id.card_tiramisu_container).setOnClickListener(v ->
@@ -276,13 +255,13 @@ public class DataCenterFragment extends Fragment {
         root.findViewById(R.id.card_today_lucky_container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), TodayLuckyActivity.class);
             startActivity(intent);
-        }, 350));
+        }, pressFeedbackAnimationDelay));
 
         // 威望计算器
         root.findViewById(R.id.card_prestige_calculator_container).setOnClickListener(v -> v.postDelayed(() -> {
             Intent intent = new Intent(requireActivity(), PrestigeCalculatorActivity.class);
             startActivity(intent);
-        }, 350));
+        }, pressFeedbackAnimationDelay));
 
         return root;
     }
@@ -303,24 +282,28 @@ public class DataCenterFragment extends Fragment {
      * @return 是否拦截触摸事件
      */
     private boolean setPressAnimation(View v, MotionEvent event) {
-        //setPress
-        switch (event.getAction()) {
-            // 按下：执行缩小动画（从当前大小开始）
-            case MotionEvent.ACTION_DOWN:
-                ViewAnimationUtils.playPressScaleAnimation(v, true);
-                break;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 350;
+            //setPress
+            switch (event.getAction()) {
+                // 按下：执行缩小动画（从当前大小开始）
+                case MotionEvent.ACTION_DOWN:
+                    ViewAnimationUtils.playPressScaleAnimation(v, true);
+                    break;
 
-            // 松开：执行恢复动画（从当前缩小的大小开始）
-            case MotionEvent.ACTION_UP:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 松开：执行恢复动画（从当前缩小的大小开始）
+                case MotionEvent.ACTION_UP:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
 
-            // 取消（比如滑动离开View）：强制恢复动画
-            case MotionEvent.ACTION_CANCEL:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 取消（比如滑动离开View）：强制恢复动画
+                case MotionEvent.ACTION_CANCEL:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+            }
+        } else {
+            pressFeedbackAnimationDelay = 0;
         }
-
         return false;
     }
 
@@ -517,12 +500,40 @@ public class DataCenterFragment extends Fragment {
                 .show();
     }
 
+    /**
+     * 在onResume阶段：
+     * 1. 还原卡片状态
+     * 2. 设置按压反馈动画
+     */
     @Override
     public void onResume() {
         super.onResume();
+        // 还原卡片状态
         TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
         DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
         TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
         DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list));
+        // ------------------------------这一部分统一设置按压反馈动画 ------------------------------
+        root.findViewById(R.id.ButtonRefreshDashboard).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_last_day_of_month_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_double_explosion_rate_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_everyday_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_bilibili_fvm_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_meishi_wechat_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_fertilization_task_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_new_year_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_tiramisu_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_faa_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_icu_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_card_calculator_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_molu_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_strategy_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_gem_calculator_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_today_lucky_container).setOnTouchListener(this::setPressAnimation);
+        root.findViewById(R.id.card_prestige_calculator_container).setOnTouchListener(this::setPressAnimation);
     }
 }

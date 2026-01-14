@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -64,19 +66,7 @@ public class DataImagesIndexActivity extends AppCompatActivity {
         initViews();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        // 获取本地版本号
-        checkVersion();
-        // 检查图片资源是否有更新
-        getImageServerVersionAndCheckImageUpdate();
-    }
-
     private void initViews() {
-        // 添加按压动画
-        findViewById(R.id.update_image_action).setOnTouchListener(this::setPressAnimation);
-
         // 防御卡数据图
         setupContainer(R.id.data_images_index_card_0_1_container, "data_image_card_0_1", false);
         setupContainer(R.id.data_images_index_card_0_2_1_container, "data_image_card_0_2_1", false);
@@ -175,24 +165,25 @@ public class DataImagesIndexActivity extends AppCompatActivity {
      * @return 是否拦截触摸事件
      */
     private boolean setPressAnimation(View v, MotionEvent event) {
-        //setPress
-        switch (event.getAction()) {
-            // 按下：执行缩小动画（从当前大小开始）
-            case MotionEvent.ACTION_DOWN:
-                ViewAnimationUtils.playPressScaleAnimation(v, true);
-                break;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            //setPress
+            switch (event.getAction()) {
+                // 按下：执行缩小动画（从当前大小开始）
+                case MotionEvent.ACTION_DOWN:
+                    ViewAnimationUtils.playPressScaleAnimation(v, true);
+                    break;
 
-            // 松开：执行恢复动画（从当前缩小的大小开始）
-            case MotionEvent.ACTION_UP:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 松开：执行恢复动画（从当前缩小的大小开始）
+                case MotionEvent.ACTION_UP:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
 
-            // 取消（比如滑动离开View）：强制恢复动画
-            case MotionEvent.ACTION_CANCEL:
-                ViewAnimationUtils.playPressScaleAnimation(v, false);
-                break;
+                // 取消（比如滑动离开View）：强制恢复动画
+                case MotionEvent.ACTION_CANCEL:
+                    ViewAnimationUtils.playPressScaleAnimation(v, false);
+                    break;
+            }
         }
-
         return false;
     }
 
@@ -296,5 +287,21 @@ public class DataImagesIndexActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
+    }
+
+    /**
+     * 在onResume阶段：
+     * 1. 检查图片资源更新
+     * 2. 设置按压反馈动画
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 获取本地版本号
+        checkVersion();
+        // 检查图片资源是否有更新
+        getImageServerVersionAndCheckImageUpdate();
+        // 添加按压动画
+        findViewById(R.id.update_image_action).setOnTouchListener(this::setPressAnimation);
     }
 }

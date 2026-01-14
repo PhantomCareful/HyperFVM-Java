@@ -70,6 +70,8 @@ public class DatabaseInfo {
      * settings表增加“提示语显示”3个设置
      * DB_VERSION = 35
      * settings表增加“界面风格”设置
+     * DB_VERSION = 36
+     * settings表增加“按压反馈动画”开关
      */
-    public static final int DB_VERSION = 35;
+    public static final int DB_VERSION = 36;
 }
