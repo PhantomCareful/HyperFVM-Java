@@ -9,7 +9,10 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.work.WorkManager;
@@ -191,87 +195,64 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void showThemeSelectionDialog() {
-        String[] themeEntries = getResources().getStringArray(R.array.theme_entries);
-
-        int selectedIndex = 0;
-        for (int i = 0; i < themeEntries.length; i++) {
-            if (themeEntries[i].equals(currentTheme)) {
-                selectedIndex = i;
-                break;
-            }
-        }
-
-        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle("选择主题")
-                .setSingleChoiceItems(themeEntries, selectedIndex, (dialog, which) -> {
-                    String selectedEntries = themeEntries[which];
-
-                    dbHelper.updateSettingValue(CONTENT_APP_THEME, selectedEntries);
-
-                    themeCurrentSelection.setText(selectedEntries);
-                    dialog.dismiss();
-                    Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
-                    // 重启App
-                    restartApp();
-                })
-                .setNegativeButton("取消", null)
-                .show();
+        showSelectionDialog(R.array.theme_entries, currentTheme, "🎨设置主题", CONTENT_APP_THEME, themeCurrentSelection);
     }
 
     private void showDarkModeSelectionDialog() {
-        String[] darkModeEntries = getResources().getStringArray(R.array.dark_mode_entries);
-
-        int selectedIndex = 0;
-        for (int i = 0; i < darkModeEntries.length; i++) {
-            if (darkModeEntries[i].equals(currentDarkMode)) {
-                selectedIndex = i;
-                break;
-            }
-        }
-
-        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle("深色模式\uD83C\uDF1D\uD83C\uDF1A")
-                .setSingleChoiceItems(darkModeEntries, selectedIndex, (dialog, which) -> {
-                    String selectedEntries = darkModeEntries[which];
-
-                    dbHelper.updateSettingValue(CONTENT_DARK_MODE, selectedEntries);
-
-                    darkModeCurrentSelection.setText(selectedEntries);
-                    dialog.dismiss();
-                    Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
-                    // 重启App
-                    restartApp();
-                })
-                .setNegativeButton("取消", null)
-                .show();
+        showSelectionDialog(R.array.dark_mode_entries, currentDarkMode, "\uD83C\uDF1D\uD83C\uDF1A设置深色模式", CONTENT_DARK_MODE, darkModeCurrentSelection);
     }
 
     private void showInterfaceStyleSelectionDialog() {
-        String[] interfaceStyleEntries = getResources().getStringArray(R.array.interface_style_entries);
+        showSelectionDialog(R.array.interface_style_entries, currentInterfaceStyle, "🥕设置界面风格", CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection);
+    }
 
+    /**
+     * 通用的列表弹窗的构建方法
+     */
+    private void showSelectionDialog(int arrayId, String currentContent, String dialogTitle, String dbHelperUpdateContent, TextView currentSelection) {
+        String[] entries = getResources().getStringArray(arrayId);
         int selectedIndex = 0;
-        for (int i = 0; i < interfaceStyleEntries.length; i++) {
-            if (interfaceStyleEntries[i].equals(currentInterfaceStyle)) {
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i].equals(currentContent)) {
                 selectedIndex = i;
                 break;
             }
         }
 
-        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle("界面风格")
-                .setSingleChoiceItems(interfaceStyleEntries, selectedIndex, (dialog, which) -> {
-                    String selectedEntries = interfaceStyleEntries[which];
+        // 加载自定义布局
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.item_dialog_selection, null);
+        ListView listView = dialogView.findViewById(R.id.dialog_list);
+        if (entries.length <= 10) {
+            dialogView.findViewById(R.id.dialog_list_top_gradient).setVisibility(View.GONE);
+            dialogView.findViewById(R.id.dialog_list_bottom_gradient).setVisibility(View.GONE);
+        }
 
-                    dbHelper.updateSettingValue(CONTENT_INTERFACE_STYLE, selectedEntries);
+        // 设置列表
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_single_choice, entries);
+        listView.setAdapter(adapter);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setItemChecked(selectedIndex, true);
 
-                    interfaceStyleCurrentSelection.setText(selectedEntries);
-                    dialog.dismiss();
-                    Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
-                    // 重启App
-                    restartApp();
-                })
-                .setNegativeButton("取消", null)
-                .show();
+        // 构建Dialog
+        AlertDialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
+                .setTitle(dialogTitle)
+                .setView(dialogView)
+                .setNegativeButton("关闭", null)
+                .create();
+
+        // 列表点击事件
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedEntries = entries[position];
+            dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
+            currentSelection.setText(selectedEntries);
+            dialog.dismiss();
+            Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
+            restartApp();
+        });
+
+        listView.setTag(dialog); // 传递Dialog引用
+        dialog.show();
     }
 
     /**

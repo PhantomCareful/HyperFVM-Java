@@ -59,14 +59,14 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="top"
-            android:background="@drawable/recycler_top_gradient"/>
+            android:background="@drawable/scrollview_top_gradient"/>
 
         <!-- 底部渐变层：覆盖RecyclerView底部，高度30dp（可调整） -->
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="bottom"
-            android:background="@drawable/recycler_bottom_gradient"/>
+            android:background="@drawable/scrollview_bottom_gradient"/>
 
     </FrameLayout>
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="20dp">
+
+    <!-- 列表区（裁剪） -->
+    <ListView
+        android:id="@+id/dialog_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"/>
+
+    <!-- 顶部渐变层：覆盖RecyclerView顶部，高度30dp（可调整） -->
+    <View
+        android:id="@+id/dialog_list_top_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_gravity="top"
+        android:background="@drawable/scrollview_top_gradient"/>
+
+    <!-- 底部渐变层：覆盖RecyclerView底部，高度30dp（可调整） -->
+    <View
+        android:id="@+id/dialog_list_bottom_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/scrollview_bottom_gradient"/>
+
+</FrameLayout>
