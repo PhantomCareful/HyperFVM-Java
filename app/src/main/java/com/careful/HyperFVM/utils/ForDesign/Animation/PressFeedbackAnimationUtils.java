@@ -210,9 +210,4 @@ public class PressFeedbackAnimationUtils {
         // 强制终止View的所有属性动画
         v.animate().cancel();
     }
-
-    // 保留原方法兼容旧调用（可选）
-    public static void playPressScaleAnimation(View view, boolean isPressed) {
-        playPressFeedbackAnimation(view, null, isPressed, PressFeedbackType.SINK);
-    }
 }
