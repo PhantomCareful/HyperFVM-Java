@@ -1,17 +1,11 @@
 package com.careful.HyperFVM.Fragments.AboutApp;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
-import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,41 +22,13 @@ import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
-import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.util.Objects;
-
 public class AboutAppFragment extends Fragment {
-    private FragmentAboutAppBinding binding;
-
-    private TransitionSet transition;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentAboutAppBinding.inflate(inflater, container, false);
+        FragmentAboutAppBinding binding = FragmentAboutAppBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        // 初始化数据库类
-        String currentInterfaceStyle;
-        try (DBHelper dbHelper = new DBHelper(requireContext())) {
-            currentInterfaceStyle = dbHelper.getSettingValueString(CONTENT_INTERFACE_STYLE);
-        }
-
-        //初始化binding
-        switch (currentInterfaceStyle) {
-            case "鲜艳-立体":
-
-                break;
-            case "素雅-扁平":
-
-                break;
-        }
-
-        // 初始化动画效果
-        transition = new TransitionSet();
-        transition.addTransition(new Fade()); // 淡入淡出
-        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
-        transition.setDuration(300); // 动画时长300ms
 
         //一个小彩蛋🥚
         setEasterEgg(root);
@@ -80,9 +46,6 @@ public class AboutAppFragment extends Fragment {
                         getResources().getString(R.string.label_about_app_developer_name_url)
                 )
         );
-
-        //显示致谢名单
-        getContentFromAssets(requireContext(), root.findViewById(R.id.about_app_thanks_list), "ThanksList.txt");
 
         //跳转使用说明的Activity
         clickToNewActivity(root.findViewById(R.id.about_app_using_instruction_container), UsingInstructionActivity.class);
@@ -124,25 +87,6 @@ public class AboutAppFragment extends Fragment {
 
         //查看历史更新日志
         clickToNewActivity(root.findViewById(R.id.about_app_see_update_log_history), UpdateLogHistoryActivity.class);
-
-        // 初始化延迟任务，添加binding非空检查
-        // 执行前检查binding是否已销毁
-        Runnable transitionRunnable = () -> {
-            // 执行前检查binding是否已销毁
-            if (binding != null) {
-                TransitionManager.beginDelayedTransition(binding.aboutAppContainer, transition);
-                Objects.requireNonNull(binding.aboutAppPlaceholder).setVisibility(View.GONE);
-                Objects.requireNonNull(binding.aboutAppLabelThanks).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding.aboutAppThanksListContainer).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding.aboutAppLabelSomeNecessaryThings).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding.aboutAppSomeNecessaryThingsContainer).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding.aboutAppLabelMore).setVisibility(View.VISIBLE);
-                Objects.requireNonNull(binding.aboutAppMoreContainer).setVisibility(View.VISIBLE);
-            }
-        };
-
-        // 执行延迟任务
-        root.postDelayed(transitionRunnable, 300);
 
         return root;
     }
