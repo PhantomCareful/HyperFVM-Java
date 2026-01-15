@@ -3,16 +3,17 @@ package com.careful.HyperFVM.Activities.DataCenter;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
@@ -33,7 +34,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityCardDataAuxiliaryListBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
-import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -48,6 +49,8 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private ActivityCardDataAuxiliaryListBinding binding;
     private SpringBackScrollView CardDataAuxiliaryListContainer;
+
+    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,8 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
 
         // 目录按钮
         CardDataAuxiliaryListContainer = findViewById(R.id.CardDataAuxiliaryList_Container);
-        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container).setOnClickListener(v -> showTitleNavigationDialog());
+        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container).setOnClickListener(v ->
+                v.postDelayed(this::showTitleNavigationDialog, pressFeedbackAnimationDelay));
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -86,33 +90,6 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
             if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST)) {
                 Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
             }}, 50);
-    }
-
-    /**
-     * 给按钮和卡片添加按压反馈动画
-     * @return 是否拦截触摸事件
-     */
-    private boolean setPressAnimation(View v, MotionEvent event) {
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            //setPress
-            switch (event.getAction()) {
-                // 按下：执行缩小动画（从当前大小开始）
-                case MotionEvent.ACTION_DOWN:
-                    ViewAnimationUtils.playPressScaleAnimation(v, true);
-                    break;
-
-                // 松开：执行恢复动画（从当前缩小的大小开始）
-                case MotionEvent.ACTION_UP:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-
-                // 取消（比如滑动离开View）：强制恢复动画
-                case MotionEvent.ACTION_CANCEL:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-            }
-        }
-        return false;
     }
 
     /**
@@ -703,10 +680,21 @@ public class CardDataAuxiliaryListActivity extends AppCompatActivity {
     /**
      * 在onResume阶段设置按压反馈动画
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onResume() {
         super.onResume();
-        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container).setOnTouchListener(this::setPressAnimation);
+        // 添加按压动画
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
+        }
+        findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 
     @Override

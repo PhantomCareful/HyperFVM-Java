@@ -1,12 +1,13 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
@@ -37,7 +37,7 @@ import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
-import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.CardItemDecoration;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -56,6 +56,8 @@ public class CardDataIndexActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private SpringBackScrollView CardDataIndexContainer;
 
+    private int pressFeedbackAnimationDelay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -73,16 +75,6 @@ public class CardDataIndexActivity extends AppCompatActivity {
         // 初始化数据库
         dbHelper = new DBHelper(this);
 
-        String currentInterfaceStyle = dbHelper.getSettingValueString(CONTENT_INTERFACE_STYLE);
-        switch (currentInterfaceStyle) {
-            case "鲜艳-立体":
-
-                break;
-            case "素雅-扁平":
-
-                break;
-        }
-
         //设置顶栏标题
         setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_index) + " ");
 
@@ -91,10 +83,12 @@ public class CardDataIndexActivity extends AppCompatActivity {
 
         // 防御卡目录按钮
         CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);
-        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnClickListener(v -> showTitleNavigationDialog());
+        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnClickListener(v ->
+                v.postDelayed(this::showTitleNavigationDialog, pressFeedbackAnimationDelay));
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> showCardQueryDialog());
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v ->
+                v.postDelayed(this::showCardQueryDialog, pressFeedbackAnimationDelay));
 
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -102,33 +96,6 @@ public class CardDataIndexActivity extends AppCompatActivity {
             if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX)) {
                 Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
             }}, 50);
-    }
-
-    /**
-     * 给按钮和卡片添加按压反馈动画
-     * @return 是否拦截触摸事件
-     */
-    private boolean setPressAnimation(View v, MotionEvent event) {
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            //setPress
-            switch (event.getAction()) {
-                // 按下：执行缩小动画（从当前大小开始）
-                case MotionEvent.ACTION_DOWN:
-                    ViewAnimationUtils.playPressScaleAnimation(v, true);
-                    break;
-
-                // 松开：执行恢复动画（从当前缩小的大小开始）
-                case MotionEvent.ACTION_UP:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-
-                // 取消（比如滑动离开View）：强制恢复动画
-                case MotionEvent.ACTION_CANCEL:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-            }
-        }
-        return false;
     }
 
     /**
@@ -1279,20 +1246,32 @@ public class CardDataIndexActivity extends AppCompatActivity {
         animator.start();
     }
 
-    /**
-     * 在onResume阶段设置按压反馈动画
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener(this::setPressAnimation);
-    }
-
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 添加按压动画
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
+        }
+        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }

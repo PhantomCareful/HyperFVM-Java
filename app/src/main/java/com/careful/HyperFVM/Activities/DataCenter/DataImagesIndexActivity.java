@@ -1,14 +1,15 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -24,7 +25,7 @@ import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerDynamicActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -40,6 +41,8 @@ public class DataImagesIndexActivity extends AppCompatActivity {
     private long localVersionCode;
 
     private TransitionSet transition;
+
+    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +146,7 @@ public class DataImagesIndexActivity extends AppCompatActivity {
     private void setupContainer(int viewId, String imageName, boolean isDynamic) {
         LinearLayout container = findViewById(viewId);
         container.setTag(imageName);
-        container.setOnClickListener(v -> {
+        container.setOnClickListener(v -> v.postDelayed(() -> {
             if (!isResourcesReady) {
                 Toast.makeText(this, "还没有图片资源哦，请先更新", Toast.LENGTH_SHORT).show();
                 return;
@@ -157,34 +160,7 @@ public class DataImagesIndexActivity extends AppCompatActivity {
             }
             intent.putExtra("imgPath", imageName);
             startActivity(intent);
-        });
-    }
-
-    /**
-     * 给按钮和卡片添加按压反馈动画
-     * @return 是否拦截触摸事件
-     */
-    private boolean setPressAnimation(View v, MotionEvent event) {
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            //setPress
-            switch (event.getAction()) {
-                // 按下：执行缩小动画（从当前大小开始）
-                case MotionEvent.ACTION_DOWN:
-                    ViewAnimationUtils.playPressScaleAnimation(v, true);
-                    break;
-
-                // 松开：执行恢复动画（从当前缩小的大小开始）
-                case MotionEvent.ACTION_UP:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-
-                // 取消（比如滑动离开View）：强制恢复动画
-                case MotionEvent.ACTION_CANCEL:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-            }
-        }
-        return false;
+        }, pressFeedbackAnimationDelay));
     }
 
     private void checkVersion() {
@@ -210,10 +186,10 @@ public class DataImagesIndexActivity extends AppCompatActivity {
                     try {
                         if (serverVersion > localVersionCode) {
                             update_image_action.setText(getResources().getString(R.string.label_check_update_status_new));
-                            update_image_action.setOnClickListener(v -> {
+                            update_image_action.setOnClickListener(v -> v.postDelayed(() -> {
                                 Intent intent = new Intent(DataImagesIndexActivity.this, CheckUpdateActivity.class);
                                 startActivity(intent);
-                            });
+                            }, pressFeedbackAnimationDelay));
                             showViewWithAnimation(update_image_action);
                         } else {
                             // 已是最新版本
@@ -294,6 +270,7 @@ public class DataImagesIndexActivity extends AppCompatActivity {
      * 1. 检查图片资源更新
      * 2. 设置按压反馈动画
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onResume() {
         super.onResume();
@@ -302,6 +279,15 @@ public class DataImagesIndexActivity extends AppCompatActivity {
         // 检查图片资源是否有更新
         getImageServerVersionAndCheckImageUpdate();
         // 添加按压动画
-        findViewById(R.id.update_image_action).setOnTouchListener(this::setPressAnimation);
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
+        }
+        findViewById(R.id.update_image_action).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }

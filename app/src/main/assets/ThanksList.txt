@@ -5,6 +5,7 @@
 - 就喝百事(查黑系统作者)🥰
 - QQ空间1-8服·美食妙妙屋全体同学(提出建议、帮助测试)🥰
 ## App相关
+- YuKongA/miuix-kotlin-multiplatform(借鉴卡片按压动画)👍
 - Dimezis/BlurView(模糊材质)👍
 - Gloomyer/ZoomImageView(数据图查看器)👍
 - 子林Android(ScrollView触顶/触底反馈动画)👍

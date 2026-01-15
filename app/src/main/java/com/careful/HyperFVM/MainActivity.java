@@ -2,6 +2,7 @@ package com.careful.HyperFVM;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
@@ -17,7 +18,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,7 +30,7 @@ import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
-import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.CardItemDecoration;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayoutFragmentStateAdapter viewPagerAdapter;
 
     private Handler mainHandler;
+
+    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
         initPersistentNotification();
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> showCardQueryDialog());
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> v.postDelayed(
+                this::showCardQueryDialog, pressFeedbackAnimationDelay));
     }
 
     /**
@@ -296,33 +299,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 给按钮和卡片添加按压反馈动画
-     * @return 是否拦截触摸事件
-     */
-    private boolean setPressAnimation(View v, MotionEvent event) {
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            //setPress
-            switch (event.getAction()) {
-                // 按下：执行缩小动画（从当前大小开始）
-                case MotionEvent.ACTION_DOWN:
-                    ViewAnimationUtils.playPressScaleAnimation(v, true);
-                    break;
-
-                // 松开：执行恢复动画（从当前缩小的大小开始）
-                case MotionEvent.ACTION_UP:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-
-                // 取消（比如滑动离开View）：强制恢复动画
-                case MotionEvent.ACTION_CANCEL:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-            }
-        }
-        return false;
-    }
-
-    /**
      * 显示卡片查询弹窗
      */
     private void showCardQueryDialog() {
@@ -428,7 +404,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener(this::setPressAnimation);
+        // 添加按压动画
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
+        }
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 
     /**

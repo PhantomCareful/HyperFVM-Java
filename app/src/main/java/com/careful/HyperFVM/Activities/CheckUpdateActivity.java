@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
@@ -15,7 +16,6 @@ import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,7 +31,7 @@ import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
@@ -72,6 +72,8 @@ public class CheckUpdateActivity extends AppCompatActivity {
 
     private LinearLayout check_update_container;
     private TransitionSet transition;
+
+    private int pressFeedbackAnimationDelay;
 
     private boolean hasImageResult = false; // 图片检查是否完成
     private boolean hasAppResult = false; // App检查是否完成
@@ -131,7 +133,7 @@ public class CheckUpdateActivity extends AppCompatActivity {
         getContent(this, image_log_current, dbHelper.getDataStationValue("CurrentUpdateLogImage"));
 
         // 设置图片资源更新按钮点击监听
-        update_image_action.setOnClickListener(v -> {
+        update_image_action.setOnClickListener(v -> v.postDelayed(() -> {
             if (update_image_action.getText().toString().equals(getResources().getString(R.string.label_check_update_status_new))) {
                 // 有新版本，开始下载
                 if (!isImageDownloading) {
@@ -141,7 +143,7 @@ public class CheckUpdateActivity extends AppCompatActivity {
                 // 检查更新
                 getImageServerVersionAndCheckImageUpdate();
             }
-        });
+        }, pressFeedbackAnimationDelay));
     }
 
     /**
@@ -308,7 +310,7 @@ public class CheckUpdateActivity extends AppCompatActivity {
         getContentFromAssets(this, app_log_current, "CurrentUpdateLog.txt");
 
         // 设置App更新按钮点击监听
-        update_app_action.setOnClickListener(v -> {
+        update_app_action.setOnClickListener(v -> v.postDelayed(() -> {
             String buttonText = update_app_action.getText().toString();
             if (buttonText.equals(getResources().getString(R.string.label_check_update_status_new))) {
                 // 有新版本，检查是否存在已下载的APK
@@ -326,7 +328,7 @@ public class CheckUpdateActivity extends AppCompatActivity {
                 // 检查更新
                 getAppServerVersionAndCheckAppUpdate();
             }
-        });
+        }, pressFeedbackAnimationDelay));
     }
 
     /**
@@ -710,33 +712,6 @@ public class CheckUpdateActivity extends AppCompatActivity {
                 .start();
     }
 
-    /**
-     * 给按钮和卡片添加按压反馈动画
-     * @return 是否拦截触摸事件
-     */
-    private boolean setPressAnimation(View v, MotionEvent event) {
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            //setPress
-            switch (event.getAction()) {
-                // 按下：执行缩小动画（从当前大小开始）
-                case MotionEvent.ACTION_DOWN:
-                    ViewAnimationUtils.playPressScaleAnimation(v, true);
-                    break;
-
-                // 松开：执行恢复动画（从当前缩小的大小开始）
-                case MotionEvent.ACTION_UP:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-
-                // 取消（比如滑动离开View）：强制恢复动画
-                case MotionEvent.ACTION_CANCEL:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-            }
-        }
-        return false;
-    }
-
     private void setTopAppBarTitle(String title) {
         //设置顶栏标题、启用返回按钮
         MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
@@ -761,12 +736,23 @@ public class CheckUpdateActivity extends AppCompatActivity {
     /**
      * 在onResume阶段设置按压反馈动画
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onResume() {
         super.onResume();
         // 添加按压动画
-        findViewById(R.id.update_image_action).setOnTouchListener(this::setPressAnimation);
-        findViewById(R.id.update_app_action).setOnTouchListener(this::setPressAnimation);
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
+        }
+        findViewById(R.id.update_image_action).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        findViewById(R.id.update_app_action).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 
     @Override

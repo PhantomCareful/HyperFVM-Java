@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Fragments.DataCenter;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,7 +15,6 @@ import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -40,7 +40,7 @@ import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
-import com.careful.HyperFVM.utils.ForDesign.Animation.ViewAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -187,8 +187,8 @@ public class DataCenterFragment extends Fragment {
         }, pressFeedbackAnimationDelay));
 
         // B站最新更新公告
-        root.findViewById(R.id.card_bilibili_fvm_container).setOnClickListener(v ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl));
+        root.findViewById(R.id.card_bilibili_fvm_container).setOnClickListener(v -> v.postDelayed(() ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl), pressFeedbackAnimationDelay));
 
         // 防御卡全能数据库
         root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
@@ -219,37 +219,37 @@ public class DataCenterFragment extends Fragment {
         }, pressFeedbackAnimationDelay));
 
         // 提拉米鼠官网
-        root.findViewById(R.id.card_tiramisu_container).setOnClickListener(v ->
+        root.findViewById(R.id.card_tiramisu_container).setOnClickListener(v -> v.postDelayed(() ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_tiramisu_dialog),
-                        getResources().getString(R.string.label_tools_tiramisu_url)));
+                getResources().getString(R.string.label_tools_tiramisu_url)), pressFeedbackAnimationDelay));
 
         // 陌路の综合数据表
-        root.findViewById(R.id.card_molu_container).setOnClickListener(v ->
+        root.findViewById(R.id.card_molu_container).setOnClickListener(v -> v.postDelayed(() ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_molu_dialog),
-                        getResources().getString(R.string.label_tools_molu_url)));
+                        getResources().getString(R.string.label_tools_molu_url)), pressFeedbackAnimationDelay));
 
         // FAA米苏物流
-        root.findViewById(R.id.card_faa_container).setOnClickListener(v ->
+        root.findViewById(R.id.card_faa_container).setOnClickListener(v -> v.postDelayed(() ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_faa_dialog),
-                        getResources().getString(R.string.label_tools_faa_url)));
+                        getResources().getString(R.string.label_tools_faa_url)), pressFeedbackAnimationDelay));
 
         // 卡片鼠军对策表
-        root.findViewById(R.id.card_strategy_container).setOnClickListener(v ->
+        root.findViewById(R.id.card_strategy_container).setOnClickListener(v -> v.postDelayed(() ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_strategy_dialog),
-                        getResources().getString(R.string.label_tools_strategy_url)));
+                        getResources().getString(R.string.label_tools_strategy_url)), pressFeedbackAnimationDelay));
 
         // FVM查黑系统
-        root.findViewById(R.id.card_icu_container).setOnClickListener(v -> showQQInputDialog());
+        root.findViewById(R.id.card_icu_container).setOnClickListener(v -> v.postDelayed(this::showQQInputDialog, pressFeedbackAnimationDelay));
 
         // 强卡最优路径计算器
-        root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v ->
+        root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v -> v.postDelayed(() ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_card_calculator_dialog),
-                        getResources().getString(R.string.label_tools_card_calculator_url)));
+                        getResources().getString(R.string.label_tools_card_calculator_url)), pressFeedbackAnimationDelay));
 
         // 宝石最优路径计算器
-        root.findViewById(R.id.card_gem_calculator_container).setOnClickListener(v ->
+        root.findViewById(R.id.card_gem_calculator_container).setOnClickListener(v -> v.postDelayed(() ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_gem_calculator_dialog),
-                        getResources().getString(R.string.label_tools_gem_calculator_url)));
+                        getResources().getString(R.string.label_tools_gem_calculator_url)), pressFeedbackAnimationDelay));
 
         // 今日运势
         root.findViewById(R.id.card_today_lucky_container).setOnClickListener(v -> v.postDelayed(() -> {
@@ -275,36 +275,6 @@ public class DataCenterFragment extends Fragment {
             ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
             executeDailyTasks.executeDailyTasks();
         }
-    }
-
-    /**
-     * 给按钮和卡片添加按压反馈动画
-     * @return 是否拦截触摸事件
-     */
-    private boolean setPressAnimation(View v, MotionEvent event) {
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            pressFeedbackAnimationDelay = 350;
-            //setPress
-            switch (event.getAction()) {
-                // 按下：执行缩小动画（从当前大小开始）
-                case MotionEvent.ACTION_DOWN:
-                    ViewAnimationUtils.playPressScaleAnimation(v, true);
-                    break;
-
-                // 松开：执行恢复动画（从当前缩小的大小开始）
-                case MotionEvent.ACTION_UP:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-
-                // 取消（比如滑动离开View）：强制恢复动画
-                case MotionEvent.ACTION_CANCEL:
-                    ViewAnimationUtils.playPressScaleAnimation(v, false);
-                    break;
-            }
-        } else {
-            pressFeedbackAnimationDelay = 0;
-        }
-        return false;
     }
 
     /**
@@ -505,6 +475,7 @@ public class DataCenterFragment extends Fragment {
      * 1. 还原卡片状态
      * 2. 设置按压反馈动画
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onResume() {
         super.onResume();
@@ -513,27 +484,57 @@ public class DataCenterFragment extends Fragment {
         DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
         TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
         DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list));
+
         // ------------------------------这一部分统一设置按压反馈动画 ------------------------------
-        root.findViewById(R.id.ButtonRefreshDashboard).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_last_day_of_month_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_double_explosion_rate_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_everyday_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_bilibili_fvm_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_meishi_wechat_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_fertilization_task_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_new_year_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_tiramisu_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_faa_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_icu_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_card_calculator_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_molu_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_strategy_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_gem_calculator_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_today_lucky_container).setOnTouchListener(this::setPressAnimation);
-        root.findViewById(R.id.card_prestige_calculator_container).setOnTouchListener(this::setPressAnimation);
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
+        }
+        root.findViewById(R.id.ButtonRefreshDashboard).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_last_day_of_month_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_double_explosion_rate_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_everyday_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_bilibili_fvm_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_meishi_wechat_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_fertilization_task_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_new_year_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_tiramisu_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_faa_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_icu_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_card_calculator_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_molu_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_strategy_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_gem_calculator_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_today_lucky_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_prestige_calculator_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }
