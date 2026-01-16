@@ -44,6 +44,7 @@
                     android:layout_marginTop="10dp"
                     android:text=""
                     android:textSize="20sp"
+                    app:cornerRadius="20dp"
                     android:visibility="gone"/>
 
                 <androidx.cardview.widget.CardView
