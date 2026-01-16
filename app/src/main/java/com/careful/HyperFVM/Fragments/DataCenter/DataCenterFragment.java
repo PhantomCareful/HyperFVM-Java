@@ -357,7 +357,7 @@ public class DataCenterFragment extends Fragment {
     private void showDialogAndVisitUrl(String title, String url) {
         new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("二次确认防误触")
-                .setMessage("即将前往：" + title) // 显示要前往哪个网站
+                .setMessage("即将前往：\n" + title) // 显示要前往哪个网站
                 .setPositiveButton("立即跳转\uD83E\uDD13", (dialog, which) -> {
                     // 确认后执行跳转
                     visitUrl(url);

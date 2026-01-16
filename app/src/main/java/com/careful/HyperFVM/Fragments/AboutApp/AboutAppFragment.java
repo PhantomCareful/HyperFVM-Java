@@ -47,6 +47,70 @@ public class AboutAppFragment extends Fragment {
                 )
         );
 
+        //跳转浏览器，前往陌路的哔哩哔哩主页
+        root.findViewById(R.id.about_app_thanks_list_container_fvm_1).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_fvm_1_dialog),
+                        getResources().getString(R.string.label_thanks_list_fvm_1_url)
+                )
+        );
+
+        //跳转浏览器，前往夏夜的哔哩哔哩主页
+        root.findViewById(R.id.about_app_thanks_list_container_fvm_2).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_fvm_2_dialog),
+                        getResources().getString(R.string.label_thanks_list_fvm_2_url)
+                )
+        );
+
+        //跳转浏览器，前往高清图楼帖子
+        root.findViewById(R.id.about_app_thanks_list_container_fvm_3).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_fvm_3_dialog),
+                        getResources().getString(R.string.label_thanks_list_fvm_3_url)
+                )
+        );
+
+        //跳转浏览器，前往查黑系统网站
+        root.findViewById(R.id.about_app_thanks_list_container_fvm_4).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_fvm_4_dialog),
+                        getResources().getString(R.string.label_thanks_list_fvm_4_url)
+                )
+        );
+
+        //跳转浏览器，前往miuix仓库
+        root.findViewById(R.id.about_app_thanks_list_container_app_1).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_app_1_dialog),
+                        getResources().getString(R.string.label_thanks_list_app_1_url)
+                )
+        );
+
+        //跳转浏览器，前往BlurView仓库
+        root.findViewById(R.id.about_app_thanks_list_container_app_2).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_app_2_dialog),
+                        getResources().getString(R.string.label_thanks_list_app_2_url)
+                )
+        );
+
+        //跳转浏览器，前往ZoomImageView仓库
+        root.findViewById(R.id.about_app_thanks_list_container_app_3).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_app_3_dialog),
+                        getResources().getString(R.string.label_thanks_list_app_3_url)
+                )
+        );
+
+        //跳转浏览器，前往SpringBackScrollView文章
+        root.findViewById(R.id.about_app_thanks_list_container_app_4).setOnClickListener(v ->
+                showDialogAndVisitUrl(
+                        getResources().getString(R.string.title_thanks_list_app_4_dialog),
+                        getResources().getString(R.string.label_thanks_list_app_4_url)
+                )
+        );
+
         //跳转使用说明的Activity
         clickToNewActivity(root.findViewById(R.id.about_app_using_instruction_container), UsingInstructionActivity.class);
 
@@ -145,7 +209,7 @@ public class AboutAppFragment extends Fragment {
     private void showDialogAndVisitUrl(String title, String url) {
         new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("二次确认防误触")
-                .setMessage("即将前往：" + title) // 显示要前往哪个网站
+                .setMessage("即将前往：\n" + title) // 显示要前往哪个网站
                 .setPositiveButton("立即跳转\uD83E\uDD13", (dialog, which) -> {
                     // 确认后执行跳转
                     visitUrl(url);
