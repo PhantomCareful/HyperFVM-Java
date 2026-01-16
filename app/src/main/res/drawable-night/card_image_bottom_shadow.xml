@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 底层：底部椭圆阴影（模拟顶光） -->
+    <item>
+        <shape android:shape="oval">
+            <!-- 渐变：从透明到半黑，模拟顶部打光的底部阴影 -->
+            <gradient
+                android:startColor="#33ffffff"
+                android:endColor="?attr/colorOnSurface"
+                android:angle="90"/>
+            <!-- 阴影大小：宽度匹配图片，高度仅底部显示 -->
+            <size
+                android:width="100dp"
+                android:height="40dp"/>
+        </shape>
+    </item>
+    <!-- 上层：图片层（留出底部阴影空间） -->
+    <item
+        android:bottom="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+</layer-list>
