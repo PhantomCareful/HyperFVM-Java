@@ -152,9 +152,9 @@
     <string name="auxiliary_list_7_3">⭐旋转喷壶类</string>
     <string name="title_card_data_auxiliary_list_8">8.炎焱兔</string>
     <!--防御卡数据库-->
-    <string name="title_card_data_base_info">👀基础信息</string>
-    <string name="title_card_data_data_info">👀数据信息</string>
-    <string name="title_card_data_other_info">👀其他信息</string>
+    <string name="title_card_data_base_info">基础信息</string>
+    <string name="title_card_data_data_info">数据信息</string>
+    <string name="title_card_data_other_info">其他信息</string>
     <string name="title_card_data_decompose_and_get_info_golden">⭐分解&amp;兑换：神谕之石</string>
     <!--工具箱-->
     <!--仪表盘-->

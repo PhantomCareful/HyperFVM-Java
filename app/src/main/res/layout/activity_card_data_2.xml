@@ -49,7 +49,8 @@
                         android:src="@drawable/card_data_index_16_1_3_1_big"
                         android:visibility="invisible"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"/>
+                        app:layout_constraintRight_toRightOf="parent"
+                        tools:ignore="ContentDescription" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,8 +70,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_card_data_base_info"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
+                    android:textStyle="bold"
                     android:layout_marginHorizontal="20dp"/>
 
                 <androidx.cardview.widget.CardView
@@ -157,8 +159,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_card_data_data_info"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
+                    android:textStyle="bold"
                     android:layout_marginHorizontal="20dp"/>
 
                 <TextView
@@ -1179,8 +1182,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_card_data_other_info"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
+                    android:textStyle="bold"
                     android:layout_marginHorizontal="20dp"/>
 
                 <androidx.cardview.widget.CardView

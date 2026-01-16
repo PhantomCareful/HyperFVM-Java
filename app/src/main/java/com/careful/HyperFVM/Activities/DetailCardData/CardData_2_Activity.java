@@ -134,9 +134,9 @@ public class CardData_2_Activity extends AppCompatActivity {
             //全新的Markdown样式
             String contentBaseInfo = "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
                     "- 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
-                    "## ⭐主卡信息" + "\n" + getStringFromCursor(cursor, "base_info") + "\n" +
-                    "## ⭐融合信息" + "\n" + getStringFromCursor(cursor, "fusion_info") + "\n" +
-                    "## ⭐人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n\n\n" +
+                    "## 👉主卡信息" + "\n" + getStringFromCursor(cursor, "base_info") + "\n" +
+                    "## 👉融合信息" + "\n" + getStringFromCursor(cursor, "fusion_info") + "\n" +
+                    "## 👉人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n\n\n" +
                     "### 作为副卡：" + getStringFromCursor(cursor, "sub_card");
             getContent(this, findViewById(R.id.base_info), contentBaseInfo);
 
