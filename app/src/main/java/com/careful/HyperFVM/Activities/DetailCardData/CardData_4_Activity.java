@@ -6,8 +6,14 @@ import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +30,9 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class CardData_4_Activity extends AppCompatActivity {
     private DBHelper dbHelper;
 
+    private TransitionSet transition;
+    private LinearLayout container;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -37,6 +46,12 @@ public class CardData_4_Activity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_card_data_4);
 
+        // 初始化动画效果
+        transition = new TransitionSet();
+        transition.addTransition(new Fade()); // 淡入淡出
+        transition.setDuration(300); // 动画时长300ms
+        container = findViewById(R.id.card_data_container);
+
         // 获取传入的参数
         String cardName = getIntent().getStringExtra("name");
         String tableName = getIntent().getStringExtra("table");
@@ -47,7 +62,7 @@ public class CardData_4_Activity extends AppCompatActivity {
             return;
         }
 
-        setTopAppBarTitle(cardName + " ");
+        setTopAppBarTitle("");
 
         // 初始化数据库工具
         dbHelper = new DBHelper(this);
@@ -68,23 +83,28 @@ public class CardData_4_Activity extends AppCompatActivity {
             }
 
             // 逐个绑定控件（确保控件ID与表列名完全一致）
-            // 基础信息区域
-            ImageView imageView = findViewById(R.id.Image_View);
-            String imageIdStr = cursor.getString(cursor.getColumnIndex("image_id"));
+            // 大图片区域
+            ImageView ImageViewCardFusionBig = findViewById(R.id.Image_View_Card_Big);
+            String imageIdStr = cursor.getString(cursor.getColumnIndex("image_id")) + "_big";
             // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
             int imageResId = getResources().getIdentifier(
                     imageIdStr,
                     "drawable",
                     getPackageName()
             );
-            imageView.setImageResource(imageResId);
+            ImageViewCardFusionBig.setImageResource(imageResId);
+            setTextToView(R.id.card_name, getStringFromCursor(cursor, "name"));
+
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                TransitionManager.beginDelayedTransition(container, transition);
+                findViewById(R.id.Image_View_Card_Big).setVisibility(View.VISIBLE);
+            }, 500);
 
             //全新的Markdown样式
-            String contentBaseInfo = "## 👀" + getStringFromCursor(cursor, "name") + "\n" +
-                    "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
+            String contentBaseInfo = "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
                     "- 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
                     getStringFromCursor(cursor, "base_info") + "\n" +
-                    "## ⭐人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n\n\n" +
+                    "## 👉人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n\n\n" +
                     "### 作为副卡：" + getStringFromCursor(cursor, "sub_card");
             getContent(this, findViewById(R.id.base_info), contentBaseInfo);
 
@@ -130,7 +150,7 @@ public class CardData_4_Activity extends AppCompatActivity {
             // 分解&兑换信息
             setTextToView(R.id.decompose_and_get, "\uD83C\uDF1F分解&兑换：" + getStringFromCursor(cursor, "decompose_item"));
 
-            imageView = findViewById(R.id.decompose_image_id_card_1);
+            ImageView imageView = findViewById(R.id.decompose_image_id_card_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1"));
             imageResId = getResources().getIdentifier(
                     imageIdStr,
