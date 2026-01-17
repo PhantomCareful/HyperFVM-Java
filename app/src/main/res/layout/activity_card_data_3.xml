@@ -18,6 +18,7 @@
             tools:ignore="MissingConstraints">
 
             <LinearLayout
+                android:id="@+id/card_data_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -25,12 +26,53 @@
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <!-- 底部椭圆阴影View -->
+                    <View
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/card_image_bottom_shadow"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/Image_View_Card_Big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/card_data_index_16_1_3_1_big"
+                        android:visibility="invisible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/card_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_card_data_base_info"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
+                    android:textStyle="bold"
                     android:layout_marginHorizontal="20dp"/>
 
                 <androidx.cardview.widget.CardView
@@ -47,15 +89,6 @@
                         android:orientation="vertical"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
-
-                        <ImageView
-                            android:id="@+id/Image_View"
-                            android:layout_width="80dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/card_data_index_1_1_1_2"/>
 
                         <TextView
                             android:id="@+id/base_info"
@@ -76,8 +109,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_card_data_data_info"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
+                    android:textStyle="bold"
                     android:layout_marginHorizontal="20dp"/>
 
                 <TextView
@@ -1326,9 +1360,10 @@
                     android:id="@+id/card_data_other_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="👀其他信息"
-                    android:textSize="30sp"
+                    android:text="其他信息"
+                    android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
+                    android:textStyle="bold"
                     android:layout_marginHorizontal="20dp"/>
 
                 <androidx.cardview.widget.CardView

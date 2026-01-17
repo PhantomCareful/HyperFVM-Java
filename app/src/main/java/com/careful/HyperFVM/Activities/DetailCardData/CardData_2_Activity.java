@@ -84,7 +84,7 @@ public class CardData_2_Activity extends AppCompatActivity {
 
             // 逐个绑定控件（确保控件ID与表列名完全一致）
             // 大图片区域
-            ImageView ImageViewCardFusionBig = findViewById(R.id.Image_View_Card_Fusion_Big);
+            ImageView ImageViewCardFusionBig = findViewById(R.id.Image_View_Card_Big);
             String imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id")) + "_big";
             // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
             int imageResId = getResources().getIdentifier(
@@ -97,7 +97,7 @@ public class CardData_2_Activity extends AppCompatActivity {
 
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 TransitionManager.beginDelayedTransition(container, transition);
-                findViewById(R.id.Image_View_Card_Fusion_Big).setVisibility(View.VISIBLE);
+                findViewById(R.id.Image_View_Card_Big).setVisibility(View.VISIBLE);
             }, 500);
 
             // 基础信息区域
