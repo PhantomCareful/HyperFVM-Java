@@ -1180,7 +1180,7 @@
                     android:id="@+id/card_data_other_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="👀其他信息"
+                    android:text="其他信息"
                     android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
                     android:textStyle="bold"

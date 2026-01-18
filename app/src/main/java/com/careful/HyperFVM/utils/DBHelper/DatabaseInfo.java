@@ -72,6 +72,8 @@ public class DatabaseInfo {
      * settings表增加“界面风格”设置
      * DB_VERSION = 36
      * settings表增加“按压反馈动画”开关
+     * DB_VERSION = 37
+     * 让狗年、龙年生肖卡数据支持Markdown显示
      */
-    public static final int DB_VERSION = 36;
+    public static final int DB_VERSION = 37;
 }
