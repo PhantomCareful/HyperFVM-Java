@@ -341,6 +341,7 @@ public class MeishiWechatActivity extends AppCompatActivity {
     /**
      * 在onResume阶段设置按压反馈动画
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onResume() {
         super.onResume();

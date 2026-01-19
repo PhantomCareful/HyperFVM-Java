@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.DetailCardData;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
 
 import android.annotation.SuppressLint;
@@ -18,20 +20,22 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 
 public class CardData_2_Activity extends AppCompatActivity {
     private DBHelper dbHelper;
 
     private TransitionSet transition;
     private LinearLayout container;
+
+    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,7 @@ public class CardData_2_Activity extends AppCompatActivity {
             return;
         }
 
-        setTopAppBarTitle("");
+        setupBlurEffect();
 
         // 初始化数据库工具
         dbHelper = new DBHelper(this);
@@ -234,16 +238,35 @@ public class CardData_2_Activity extends AppCompatActivity {
         return (value == null || value.isEmpty()) ? "无" : value;
     }
 
-    // 顶栏设置
-    private void setTopAppBarTitle(String title) {
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 添加按压动画
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
         }
-        toolbar.setNavigationOnClickListener(v -> finish());
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 
     @Override

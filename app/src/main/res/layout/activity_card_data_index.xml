@@ -543,7 +543,7 @@
         android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/status_bar_gradient"
+        android:background="@drawable/status_bar_gradient_general"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
