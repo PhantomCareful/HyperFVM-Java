@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
+import com.careful.HyperFVM.Activities.NecessaryThings.CoContributorTeamActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
@@ -46,6 +47,9 @@ public class AboutAppFragment extends Fragment {
                         getResources().getString(R.string.label_about_app_developer_name_url)
                 )
         );
+
+        //跳转共建团的Activity
+        clickToNewActivity(root.findViewById(R.id.about_app_co_construction_team_container), CoContributorTeamActivity.class);
 
         //跳转浏览器，前往陌路的哔哩哔哩主页
         root.findViewById(R.id.about_app_thanks_list_container_fvm_1).setOnClickListener(v ->

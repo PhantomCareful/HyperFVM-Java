@@ -69,7 +69,6 @@
                 android:textColor="?attr/colorOnSurface"/>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/about_app_developer_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -81,52 +80,102 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:id="@+id/Image_View_Phantom_Careful"
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/phantom_careful"
-                        android:layout_gravity="start|center_vertical"
-                        tools:ignore="ContentDescription" />
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:gravity="center_vertical">
+                        android:id="@+id/about_app_developer_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:background="?attr/selectableItemBackground">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_about_app_developer_name_1"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
+                        <ImageView
+                            android:id="@+id/Image_View_Phantom_Careful"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/phantom_careful"
+                            android:layout_gravity="start|center_vertical"
+                            tools:ignore="ContentDescription" />
 
-                        <TextView
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_about_app_developer_name_1"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_about_app_developer_name_2"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_about_app_developer_name_2"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="15sp" />
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_github"
+                            android:layout_gravity="end|center_vertical"
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_github"
-                        android:layout_gravity="end|center_vertical"
-                        app:tint="?attr/VectorGraphicColorOnImportantCardView"
-                        tools:ignore="ContentDescription" />
+                    <LinearLayout
+                        android:id="@+id/about_app_co_construction_team_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_about_app_co_construction_team_1"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_about_app_co_construction_team_2"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_chevron_right"
+                            android:layout_gravity="end|center_vertical"
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
