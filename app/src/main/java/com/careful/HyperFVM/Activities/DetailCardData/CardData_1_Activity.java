@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.DetailCardData;
 
+import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
+
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -60,7 +62,7 @@ public class CardData_1_Activity extends AppCompatActivity {
             // 从指定表中查询卡片数据
             if (cursor == null || !cursor.moveToFirst()) {
                 // 无数据时提示
-                ((TextView) findViewById(R.id.name)).setText("未找到卡片数据");
+                ((TextView) findViewById(R.id.base_info)).setText("未找到卡片数据");
                 return;
             }
 
@@ -76,15 +78,18 @@ public class CardData_1_Activity extends AppCompatActivity {
             );
             imageView.setImageResource(imageResId);
 
-            setTextToView(R.id.name, "👀卡片名称：" + getStringFromCursor(cursor, "name"));
-            setTextToView(R.id.category, "\uD83D\uDFE2所属分类：" + getStringFromCursor(cursor, "category"));
-            setTextToView(R.id.price, "\uD83D\uDD25耗能：" + getStringFromCursor(cursor, "price_0"));
-            setTextToView(R.id.base_info, getStringFromCursor(cursor, "base_info"));
-            setTextToView(R.id.transfer_change, getStringFromCursor(cursor, "transfer_change"));
-            setTextToView(R.id.sub_card, "\uD83D\uDD35作为副卡：" + getStringFromCursor(cursor, "sub_card"));
+            //全新的Markdown样式
+            String contentBaseInfo = "## 👉" + getStringFromCursor(cursor, "name") + "\n" +
+                    "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
+                    "- 耗能：" + getStringFromCursor(cursor, "price_0") + "\n" +
+                    getStringFromCursor(cursor, "base_info") + "\n" +
+                    "## 👉人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n\n\n" +
+                    "### 作为副卡：" + getStringFromCursor(cursor, "sub_card");
+            getContent(this, findViewById(R.id.base_info), contentBaseInfo);
 
             // 数据信息区域（星级）
             setTextToView(R.id.star, "\uD83C\uDF1F强化提升：" + getStringFromCursor(cursor, "star"));
+            setTextToView(R.id.star_detail, getStringFromCursor(cursor, "star_detail"));
             setTextToView(R.id.star_0, getStringFromCursor(cursor, "star_0"));
             setTextToView(R.id.star_1, getStringFromCursor(cursor, "star_1"));
             setTextToView(R.id.star_2, getStringFromCursor(cursor, "star_2"));
@@ -110,6 +115,7 @@ public class CardData_1_Activity extends AppCompatActivity {
                 findViewById(R.id.Card_Skill).setVisibility(View.GONE);
             }
             setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
+            setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill_detail"));
             setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
             setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
             setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));
@@ -125,10 +131,11 @@ public class CardData_1_Activity extends AppCompatActivity {
                 findViewById(R.id.card_data_other_title).setVisibility(View.GONE);
                 findViewById(R.id.Card_Other).setVisibility(View.GONE);
             }
-            setTextToView(R.id.additional_info, getStringFromCursor(cursor, "additional_info"));
+            //全新的Markdown样式
+            getContent(this, findViewById(R.id.additional_info), getStringFromCursor(cursor, "additional_info"));
 
         } catch (Exception e) {
-            ((TextView) findViewById(R.id.name)).setText("数据加载失败");
+            ((TextView) findViewById(R.id.base_info)).setText("数据加载失败");
         }
         // 关闭游标，避免内存泄漏
     }

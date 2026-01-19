@@ -204,12 +204,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 "category TEXT, " +
                 "price_0 TEXT, " +
                 "sub_card TEXT, " +
-                "star TEXT, " +
+                "star TEXT, star_detail TEXT, " +
                 "star_0 TEXT, star_1 TEXT, star_2 TEXT, star_3 TEXT, star_4 TEXT, " +
                 "star_5 TEXT, star_6 TEXT, star_7 TEXT, star_8 TEXT, star_9 TEXT, " +
                 "star_10 TEXT, star_11 TEXT, star_12 TEXT, star_13 TEXT, star_14 TEXT, " +
                 "star_15 TEXT, star_16 TEXT, star_M TEXT, star_U TEXT, " +
-                "skill TEXT, " +
+                "skill TEXT, skill_detail TEXT, " +
                 "skill_0 TEXT, skill_1 TEXT, skill_2 TEXT, skill_3 TEXT, skill_4 TEXT, " +
                 "skill_5 TEXT, skill_6 TEXT, skill_7 TEXT, skill_8 TEXT, " +
                 "transfer_change TEXT, " +
@@ -373,13 +373,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 // Handle card_data_index table
                 switch (tableName) {
                     case "card_data_index":
-                        // Validate column count (expected at least 2 columns)
-                        if (rowData.length < 2) {
-                            Log.e("DBHelper", "Insufficient columns for card_data_index. Expected at least 2, got " + rowData.length +
-                                    ". Row data: " + arrayToString(rowData));
-                            continue;
-                        }
-                        // Insert row into database
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_index (name, table_name) VALUES (?, ?)",
                                     new String[]{rowData[0].trim(), rowData[1].trim()});
@@ -391,16 +384,15 @@ public class DBHelper extends SQLiteOpenHelper {
                         break;
                     // Handle card_data_1 table
                     case "card_data_1":
-                        // Insert row into database
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_1 (" +
                                             "name, image_id, base_info, " +
-                                            "category, price_0, sub_card, star, " +
+                                            "category, price_0, sub_card, star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
-                                            "skill, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
+                                            "skill, skill_detail, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
                                             "transfer_change, additional_info) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -409,7 +401,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[20], rowData[21], rowData[22], rowData[23], rowData[24],
                                             rowData[25], rowData[26], rowData[27], rowData[28], rowData[29],
                                             rowData[30], rowData[31], rowData[32], rowData[33], rowData[34],
-                                            rowData[35], rowData[36], rowData[37]
+                                            rowData[35], rowData[36], rowData[37], rowData[38], rowData[39]
                                     });
                             importedCount++;
                         } catch (Exception e) {
@@ -419,7 +411,6 @@ public class DBHelper extends SQLiteOpenHelper {
                         break;
                     // Handle card_data_2 table
                     case "card_data_2":
-                        // Insert row into database
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_2 (" +
                                             "name, image_1_id, image_2_id, image_result_id, base_info, fusion_info, " +
@@ -456,11 +447,6 @@ public class DBHelper extends SQLiteOpenHelper {
                         break;
                     // Handle card_data_3 table
                     case "card_data_3":
-                        if (rowData.length != 95) {
-                            Log.e("DBHelper", "card_data_3 CSV row column count mismatch. Expected 95, got " + rowData.length +
-                                    ". Row data: " + arrayToString(rowData));
-                            continue;
-                        }
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_3 (" +
                                             "name, image_id, base_info, category, price, sub_card, " +
@@ -523,11 +509,6 @@ public class DBHelper extends SQLiteOpenHelper {
                         break;
                     // Handle card_data_4 table
                     case "card_data_4":
-                        if (rowData.length != 77) {
-                            Log.e("DBHelper", "card_data_4 CSV row column count mismatch. Expected 77, got " + rowData.length +
-                                    ". Row data: " + arrayToString(rowData));
-                            continue;
-                        }
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_4 (" +
                                             "name, image_id, base_info, category, price, sub_card, " +

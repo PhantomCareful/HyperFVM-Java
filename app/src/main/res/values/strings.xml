@@ -1082,7 +1082,7 @@
     <string name="name_card_data_index_12_3_6_0">芥末牛</string>
     <string name="name_card_data_index_12_3_6_1">微辣芥末牛–辛辣芥末牛</string>
 
-    <string name="title_card_data_index_13_1">(13–1) 非灰烬类–秒杀型</string>
+    <string name="title_card_data_index_13_1">(12\'–1) 非灰烬类–秒杀型</string>
 
     <string name="name_card_data_index_13_1_1_0">钢丝球</string>
 
@@ -1115,7 +1115,7 @@
     <string name="name_card_data_index_13_1_12_0">灵鱼摩蹉神使</string>
     <string name="name_card_data_index_13_1_12_1">灵鱼摩蹉圣神–救世神·灵鱼摩蹉–至尊救世神</string>
 
-    <string name="title_card_data_index_13_2">(13–2) 非灰烬类–时效型</string>
+    <string name="title_card_data_index_13_2">(12\'–2) 非灰烬类–时效型</string>
 
     <string name="name_card_data_index_13_2_1_0">榴莲</string>
     <string name="name_card_data_index_13_2_1_1">雪山榴莲–冰河世纪榴莲</string>
@@ -1140,7 +1140,7 @@
     <string name="name_card_data_index_13_2_8_0">巴德尔神使</string>
     <string name="name_card_data_index_13_2_8_1">巴德尔圣神–光明神·巴德尔</string>
 
-    <string name="title_card_data_index_13_3">(13–3) 非灰烬类–控制型</string>
+    <string name="title_card_data_index_13_3">(12\'–3) 非灰烬类–控制型</string>
 
     <string name="name_card_data_index_13_3_1_0">冰桶炸弹</string>
     <string name="name_card_data_index_13_3_1_1">酸橙冰桶炸弹–杂果冰桶炸弹</string>
@@ -1156,12 +1156,12 @@
     <string name="name_card_data_index_13_3_5_0">逆转牛</string>
     <string name="name_card_data_index_13_3_5_1">匀速逆转牛–光速逆转牛</string>
 
-    <string name="title_card_data_index_13_4">(13–4) 非灰烬类–触发型</string>
+    <string name="title_card_data_index_13_4">(12\'–4) 非灰烬类–触发型</string>
 
     <string name="name_card_data_index_13_4_1_0">蛋蛋兔</string>
     <string name="name_card_data_index_13_4_1_1">智能蛋蛋兔–外星蛋蛋兔</string>
 
-    <string name="title_card_data_index_14_1">(14–1) “强力”辅助类–冷却&amp;复制&amp;变星</string>
+    <string name="title_card_data_index_14_1">(13–1) “强力”辅助类–冷却&amp;复制&amp;变星</string>
 
     <string name="name_card_data_index_14_1_1_0">冰激凌</string>
     <string name="name_card_data_index_14_1_1_1">果蔬冰淇淋–极寒冰沙</string>
@@ -1205,7 +1205,7 @@
     <string name="name_card_data_index_14_1_14_0">百变蛇</string>
     <string name="name_card_data_index_14_1_14_1">孪生百变蛇–双子百变蛇</string>
 
-    <string name="title_card_data_index_14_2">(14–2) “强力”辅助类–清除场地事件</string>
+    <string name="title_card_data_index_14_2">(13–2) “强力”辅助类–清除场地事件</string>
 
     <string name="name_card_data_index_14_2_1_0">油灯</string>
     <string name="name_card_data_index_14_2_1_1">高亮油灯</string>
@@ -1248,7 +1248,7 @@
     <string name="name_card_data_index_14_2_15_0">碎冰喵</string>
     <string name="name_card_data_index_14_2_15_1">闹钟碎冰喵–发条碎冰喵</string>
 
-    <string name="title_card_data_index_14_3">(14–3) “强力”辅助类–特殊增益</string>
+    <string name="title_card_data_index_14_3">(13–3) “强力”辅助类–特殊增益</string>
 
     <string name="name_card_data_index_14_3_1_0">木塞子</string>
 
@@ -1266,7 +1266,7 @@
     <string name="name_card_data_index_14_3_6_0">咖啡粉</string>
     <string name="name_card_data_index_14_3_6_1">名贵咖啡粉–皇族咖啡粉</string>
 
-    <string name="title_card_data_index_14_4">(14–4) “强力”辅助类–变道聚怪</string>
+    <string name="title_card_data_index_14_4">(13–4) “强力”辅助类–变道聚怪</string>
 
     <string name="name_card_data_index_14_4_1_0">猫猫盒</string>
 
@@ -1280,7 +1280,7 @@
     <string name="name_card_data_index_14_4_5_0">大福虎</string>
     <string name="name_card_data_index_14_4_5_1">草莓大福虎–可可大福虎</string>
 
-    <string name="title_card_data_index_15_1">(15–1) 防御类–面包类</string>
+    <string name="title_card_data_index_15_1">(14–1) 防御类–面包类</string>
 
     <string name="name_card_data_index_15_1_1_0">土司面包</string>
 
@@ -1301,7 +1301,7 @@
 
     <string name="name_card_data_index_15_1_8_0">榴莲千层饼</string>
 
-    <string name="title_card_data_index_15_2">(15–2) 防御类–护罩类</string>
+    <string name="title_card_data_index_15_2">(14–2) 防御类–护罩类</string>
 
     <string name="name_card_data_index_15_2_1_0">瓜皮护罩</string>
     <string name="name_card_data_index_15_2_1_1">尖刺瓜皮护罩–锋芒瓜皮护罩</string>
@@ -1329,7 +1329,7 @@
     <string name="name_card_data_index_15_2_9_0">彩虹蛇</string>
     <string name="name_card_data_index_15_2_9_1">溏心彩虹蛇–缤纷彩虹蛇</string>
 
-    <string name="title_card_data_index_16_1">(16–1) 融合卡</string>
+    <string name="title_card_data_index_16_1">(15–1) 融合卡</string>
 
     <string name="name_card_data_index_16_1_1_0">火炉菠萝面包</string>
     <string name="name_card_data_index_16_1_1_1">火龙果菠萝包–机枪菠萝面包</string>
