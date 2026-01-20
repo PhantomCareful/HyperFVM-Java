@@ -216,7 +216,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/using_instruction_placeholder"
+                    android:id="@+id/placeholder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/many_n"

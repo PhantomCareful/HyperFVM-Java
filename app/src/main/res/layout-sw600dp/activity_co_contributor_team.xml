@@ -23,6 +23,7 @@
             tools:ignore="UselessParent">
 
             <LinearLayout
+                android:id="@+id/CoContributorTeam_Container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -32,60 +33,59 @@
                 android:clipToPadding="false">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/CoContributorTeam_Top_Container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="?attr/CardViewMarginBottom"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/CoContributorTeam_Top_Content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:padding="10dp"
-                        android:text="@string/label_about_app_co_construction_team_top"
+                        android:text=""
                         android:textColor="?attr/TextViewColorOnImportantCardView"
-                        android:textSize="20sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/CoContributorTeam_Content_Container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="?attr/CardViewMarginBottom"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/CoContributorTeam_Content_Content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
                         android:padding="10dp"
-                        android:gravity="center_vertical"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_about_app_co_construction_team_member_1_1"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_about_app_co_construction_team_member_1_2"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView"
-                            android:textSize="15sp"/>
-
-                    </LinearLayout>
+                        android:text=""
+                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                        android:textSize="18sp"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground"/>
 
                 </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/placeholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/many_n"
+                    android:textSize="40sp"
+                    android:visibility="visible"/>
 
             </LinearLayout>
 

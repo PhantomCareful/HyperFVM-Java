@@ -76,7 +76,7 @@ public class UsingInstructionActivity extends AppCompatActivity {
             findViewById(R.id.using_instruction5_container).setVisibility(View.VISIBLE);
             findViewById(R.id.using_instruction6_container).setVisibility(View.VISIBLE);
             findViewById(R.id.using_instruction7_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction_placeholder).setVisibility(View.GONE);
+            findViewById(R.id.placeholder).setVisibility(View.GONE);
         }, 300);
     }
 
