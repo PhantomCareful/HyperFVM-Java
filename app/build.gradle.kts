@@ -1,10 +1,12 @@
 import java.util.Properties
+import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     alias(libs.plugins.android.application)
 }
 
-android {
+// 使用新的 ApplicationExtension 替代旧的 android 扩展
+configure<ApplicationExtension> {
     namespace = "com.careful.HyperFVM"
     compileSdk = 36
 
@@ -12,8 +14,8 @@ android {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
         targetSdk = 36
-        versionCode = 70
-        versionName = "3.0.4"
+        versionCode = 71
+        versionName = "3.0.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
