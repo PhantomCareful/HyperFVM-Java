@@ -78,6 +78,8 @@ public class DatabaseInfo {
      * 让猪年、鼠年、牛年、虎年、兔年生肖卡数据支持Markdown显示
      * DB_VERSION = 39
      * 让普通卡数据支持Markdown显示
+     * DB_VERSION = 40
+     * 修复几个显示问题
      */
-    public static final int DB_VERSION = 39;
+    public static final int DB_VERSION = 40;
 }
