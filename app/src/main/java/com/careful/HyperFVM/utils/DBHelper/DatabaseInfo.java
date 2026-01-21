@@ -80,6 +80,8 @@ public class DatabaseInfo {
      * 让普通卡数据支持Markdown显示
      * DB_VERSION = 40 - 42
      * 修复几个显示问题
+     * DB_VERSION = 43
+     * 修复几个显示问题
      */
-    public static final int DB_VERSION = 42;
+    public static final int DB_VERSION = 43;
 }
