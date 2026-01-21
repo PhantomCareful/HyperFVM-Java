@@ -154,6 +154,7 @@
     <!--防御卡数据库-->
     <string name="title_card_data_base_info">基础信息</string>
     <string name="title_card_data_corresponding_info">相关卡片</string>
+    <string name="title_card_data_corresponding_info_demo">可用于金卡合成</string>
     <string name="title_card_data_data_info">数据信息</string>
     <string name="title_card_data_other_info">其他信息</string>
     <string name="title_card_data_decompose_and_get_info_golden">⭐分解&amp;兑换：神谕之石</string>

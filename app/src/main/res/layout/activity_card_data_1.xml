@@ -122,6 +122,7 @@
 
                     <!--在这里显示相关的卡片，点击每一项可以跳转-->
                     <LinearLayout
+                        android:id="@+id/Card_Corresponding_Container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"

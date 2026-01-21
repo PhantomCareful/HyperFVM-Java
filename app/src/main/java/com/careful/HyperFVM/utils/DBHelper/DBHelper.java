@@ -35,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_DASHBOARD = "dashboard";
     public static final String TABLE_SETTINGS = "settings";
     public static final String TABLE_DATA_STATION = "data_station";
+    public static final String TABLE_CARD_DATA_INDEX = "card_data_index";
 
     // 构造方法
     public DBHelper(Context context) {
@@ -193,12 +194,20 @@ public class DBHelper extends SQLiteOpenHelper {
         // 创建card_data_index表
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_index (" +
                 "name TEXT PRIMARY KEY, " +
+                "base_name TEXT, " +
                 "table_name TEXT NOT NULL)");
 
-        db.execSQL("DROP TABLE card_data_1");
+        db.execSQL("DROP TABLE IF EXISTS card_data_1");
         // 创建card_data_1表（字段与CSV对应）
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_1 (" +
                 "name TEXT PRIMARY KEY, " +
+                "image_id_0 TEXT, " +
+                "image_id_1 TEXT, " +
+                "image_id_2 TEXT, " +
+                "corresponding_golden_card_name TEXT, " +
+                "corresponding_golden_card_image_id TEXT, " +
+                "corresponding_fusion_card_name TEXT, " +
+                "corresponding_fusion_card_image_id TEXT, " +
                 "image_id TEXT, " +
                 "base_info TEXT, " +
                 "category TEXT, " +
@@ -294,7 +303,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // 升级到版本29+时，为星座卡、生肖卡装入分解&兑换数据，因此星座卡、生肖卡数据表需要单独分离出来，操作为：如果表存在，则清空内容，再将csv的数据导入到表中。
     private void createConstellationCardAndAnimalCardTables(SQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS card_data_4");
-        // 创建card_data_3表（字段与CSV对应）
+        // 创建card_data_4表（字段与CSV对应）
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_4 (" +
                 "name TEXT PRIMARY KEY, " +
                 "image_id TEXT, " +
@@ -374,8 +383,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 switch (tableName) {
                     case "card_data_index":
                         try {
-                            db.execSQL("INSERT OR IGNORE INTO card_data_index (name, table_name) VALUES (?, ?)",
-                                    new String[]{rowData[0].trim(), rowData[1].trim()});
+                            db.execSQL("INSERT OR IGNORE INTO card_data_index (name, base_name, table_name) VALUES (?, ?, ?)",
+                                    new String[]{rowData[0], rowData[1], rowData[2]});
                             importedCount++;
                         } catch (Exception e) {
                             Log.e("DBHelper", "Failed to insert row into card_data_index. Error: " + e.getMessage() +
@@ -386,13 +395,15 @@ public class DBHelper extends SQLiteOpenHelper {
                     case "card_data_1":
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_1 (" +
-                                            "name, image_id, base_info, " +
-                                            "category, price_0, sub_card, star, star_detail, " +
+                                            "name, image_id_0, image_id_1, image_id_2, " +
+                                            "corresponding_golden_card_name, corresponding_golden_card_image_id, " +
+                                            "corresponding_fusion_card_name, corresponding_fusion_card_image_id, " +
+                                            "base_info, category, price_0, sub_card, star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
                                             "skill, skill_detail, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
                                             "transfer_change, additional_info) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -401,7 +412,9 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[20], rowData[21], rowData[22], rowData[23], rowData[24],
                                             rowData[25], rowData[26], rowData[27], rowData[28], rowData[29],
                                             rowData[30], rowData[31], rowData[32], rowData[33], rowData[34],
-                                            rowData[35], rowData[36], rowData[37], rowData[38], rowData[39]
+                                            rowData[35], rowData[36], rowData[37], rowData[38], rowData[39],
+                                            rowData[40], rowData[41], rowData[42], rowData[43], rowData[44],
+                                            rowData[45]
                                     });
                             importedCount++;
                         } catch (Exception e) {
@@ -777,9 +790,24 @@ public class DBHelper extends SQLiteOpenHelper {
                 "SELECT table_name FROM card_data_index WHERE name = ?",
                 new String[]{cardName});
         if (cursor.moveToFirst()) {
-            String table = cursor.getString(0);
+            String tableName = cursor.getString(0);
             cursor.close();
-            return table;
+            return tableName;
+        }
+        cursor.close();
+        return null;
+    }
+
+    // 获取卡片对应的表名
+    public String getCardBaseName(String cardName) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT base_name FROM card_data_index WHERE name = ?",
+                new String[]{cardName});
+        if (cursor.moveToFirst()) {
+            String baseName = cursor.getString(0);
+            cursor.close();
+            return baseName;
         }
         cursor.close();
         return null;
@@ -788,11 +816,15 @@ public class DBHelper extends SQLiteOpenHelper {
     // 查询指定表中的卡片数据
     public Cursor getCardData(String tableName, String name) {
         SQLiteDatabase db = getReadableDatabase();
+
+        Log.d("CardData", "tableName = " + tableName);
+        Log.d("CardData", "cardName = " + name);
+
         // 注意：表名和列名需与实际创建的一致，避免SQL语法错误
         return db.query(
-                tableName,       // 表名
-                null,            // 查询所有列
-                "name = ?",      // 条件：按名称查询
+                tableName,          // 表名
+                null,               // 查询所有列
+                "name = ?",         // 条件：按名称查询
                 new String[]{name}, // 参数
                 null, null, null
         );
