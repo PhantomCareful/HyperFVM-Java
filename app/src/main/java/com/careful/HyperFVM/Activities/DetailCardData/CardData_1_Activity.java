@@ -82,7 +82,7 @@ public class CardData_1_Activity extends AppCompatActivity {
             );
             imageView.setImageResource(imageResId);
 
-            //全新的Markdown样式
+            // 全新的Markdown样式
             String contentBaseInfo = "## 👉" + getStringFromCursor(cursor, "name") + "\n" +
                     "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
                     "- 耗能：" + getStringFromCursor(cursor, "price_0") + "\n" +
