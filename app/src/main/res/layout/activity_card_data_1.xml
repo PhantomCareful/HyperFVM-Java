@@ -57,7 +57,25 @@
                             android:background="?attr/selectableItemBackground">
 
                             <ImageView
-                                android:id="@+id/Image_View"
+                                android:id="@+id/Image_View_0"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_1_1_1_0"
+                                android:transitionName="shared_image"
+                                tools:ignore="ContentDescription" />
+                            <ImageView
+                                android:id="@+id/Image_View_1"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/card_data_index_1_1_1_1"
+                                android:transitionName="shared_image"
+                                tools:ignore="ContentDescription" />
+                            <ImageView
+                                android:id="@+id/Image_View_2"
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -80,6 +98,34 @@
                             android:background="?attr/selectableItemBackground"/>
 
                     </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/title_card_data_corresponding_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_card_data_corresponding_info"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="20dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/Card_Corresponding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <!--在这里显示相关的卡片，点击每一项可以跳转-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:ignore="UselessLeaf" />
 
                 </androidx.cardview.widget.CardView>
 
