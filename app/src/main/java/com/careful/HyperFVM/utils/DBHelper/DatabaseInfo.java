@@ -80,8 +80,10 @@ public class DatabaseInfo {
      * 让普通卡数据支持Markdown显示
      * DB_VERSION = 40 - 42
      * 修复几个显示问题
-     * DB_VERSION = 43 -
+     * DB_VERSION = 43
+     * 修复几个显示问题，更新防御卡数据
+     * DB_VERSION = 44 -
      * 测试：防御卡数据合并
      */
-    public static final int DB_VERSION = 43;
+    public static final int DB_VERSION = 44;
 }
