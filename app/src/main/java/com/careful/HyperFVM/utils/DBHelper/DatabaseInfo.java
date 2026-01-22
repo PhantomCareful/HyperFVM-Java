@@ -81,7 +81,7 @@ public class DatabaseInfo {
      * DB_VERSION = 40 - 42
      * 修复几个显示问题
      * DB_VERSION = 43
-     * 修复几个显示问题
+     * 修复几个显示问题，更新防御卡数据
      */
     public static final int DB_VERSION = 43;
 }
