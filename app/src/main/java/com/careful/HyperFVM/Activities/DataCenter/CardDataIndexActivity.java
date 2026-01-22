@@ -332,12 +332,12 @@ public class CardDataIndexActivity extends AppCompatActivity {
         findViewById(R.id.card_data_index_3_2_5).setOnClickListener(v -> selectCardDataByName("怪味鱿鱼"));
         findViewById(R.id.card_data_index_3_2_6).setOnClickListener(v -> selectCardDataByName("烟花虎"));
         findViewById(R.id.card_data_index_3_2_7).setOnClickListener(v -> selectCardDataByName("风车龙"));
-        /*findViewById(R.id.card_data_index_3_3_1).setOnClickListener(v -> selectCardDataByName("鲈鱼"));
+        findViewById(R.id.card_data_index_3_3_1).setOnClickListener(v -> selectCardDataByName("鲈鱼"));
         findViewById(R.id.card_data_index_3_3_2).setOnClickListener(v -> selectCardDataByName("便便汪"));
         findViewById(R.id.card_data_index_3_3_3).setOnClickListener(v -> selectCardDataByName("烧鸡"));
         findViewById(R.id.card_data_index_3_3_4).setOnClickListener(v -> selectCardDataByName("饼干汪"));
-        findViewById(R.id.card_data_index_3_3_6).setOnClickListener(v -> selectCardDataByName("牛角面包"));
-        findViewById(R.id.card_data_index_3_3_7).setOnClickListener(v -> selectCardDataByName("盾盾汪"));
+        findViewById(R.id.card_data_index_3_3_5).setOnClickListener(v -> selectCardDataByName("牛角面包"));
+        findViewById(R.id.card_data_index_3_3_6).setOnClickListener(v -> selectCardDataByName("盾盾汪"));
         findViewById(R.id.card_data_index_4_1_1).setOnClickListener(v -> selectCardDataByName("火盆"));
         findViewById(R.id.card_data_index_4_1_2).setOnClickListener(v -> selectCardDataByName("金牛座精灵"));
         findViewById(R.id.card_data_index_4_1_3).setOnClickListener(v -> selectCardDataByName("洛基神使"));
@@ -605,7 +605,7 @@ public class CardDataIndexActivity extends AppCompatActivity {
         findViewById(R.id.card_data_index_16_1_2).setOnClickListener(v -> selectCardDataByName("雪芭煮蛋器"));
         findViewById(R.id.card_data_index_16_1_3).setOnClickListener(v -> selectCardDataByName("火影怪味鱿鱼"));
         findViewById(R.id.card_data_index_16_1_4).setOnClickListener(v -> selectCardDataByName("酱香锅烤栗子"));
-        findViewById(R.id.card_data_index_16_1_5).setOnClickListener(v -> selectCardDataByName("热狗耗油双菇"));*/
+        findViewById(R.id.card_data_index_16_1_5).setOnClickListener(v -> selectCardDataByName("热狗耗油双菇"));
     }
 
     private void selectCardDataByName(String cardName) {
