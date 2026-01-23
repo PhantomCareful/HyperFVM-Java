@@ -122,8 +122,13 @@ public class CardData_1_Activity extends AppCompatActivity {
             //全新的Markdown样式
             String contentBaseInfo = getStringFromCursor(cursor, "base_info") + "\n" +
                     "### 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
-                    "### 耗能：" + getStringFromCursor(cursor, "price_0") + "\n" +
-                    "## 👉人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n" +
+                    "### 耗能：" + getStringFromCursor(cursor, "price_0") + "\n";
+            String contentTransferChange = getStringFromCursor(cursor, "transfer_change");
+            if (!contentTransferChange.equals("无")) {
+                contentBaseInfo = contentBaseInfo +
+                        "## 👉人话解释" + "\n" + contentTransferChange + "\n";
+            }
+            contentBaseInfo = contentBaseInfo +
                     "### 作为副卡：" + getStringFromCursor(cursor, "sub_card");
             getContent(this, findViewById(R.id.base_info), contentBaseInfo);
 

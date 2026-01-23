@@ -69,7 +69,6 @@ public class CardDataIndexActivity extends AppCompatActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-
         setContentView(R.layout.activity_card_data_index);
 
         // 初始化数据库

@@ -4,6 +4,7 @@ import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.C
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -402,6 +403,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 在onResume阶段设置按压反馈动画
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onResume() {
         super.onResume();
