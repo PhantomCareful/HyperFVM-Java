@@ -82,8 +82,8 @@ public class DatabaseInfo {
      * 修复几个显示问题
      * DB_VERSION = 43
      * 修复几个显示问题，更新防御卡数据
-     * DB_VERSION = 44 - 45
+     * DB_VERSION = 44 - 46
      * 测试：防御卡数据合并
      */
-    public static final int DB_VERSION = 44;
+    public static final int DB_VERSION = 46;
 }

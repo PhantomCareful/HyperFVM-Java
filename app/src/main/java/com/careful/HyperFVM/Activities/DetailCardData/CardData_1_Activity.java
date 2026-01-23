@@ -253,28 +253,30 @@ public class CardData_1_Activity extends AppCompatActivity {
             setTextToView(R.id.star_U, getStringFromCursor(cursor, "star_U"));
 
             // 技能信息
+            setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
             if (getStringFromCursor(cursor, "skill").equals("该防御卡不支持技能")) {
                 findViewById(R.id.Card_Skill).setVisibility(View.GONE);
+            } else {
+                setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill_detail"));
+                setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
+                setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
+                setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));
+                setTextToView(R.id.skill_3, getStringFromCursor(cursor, "skill_3"));
+                setTextToView(R.id.skill_4, getStringFromCursor(cursor, "skill_4"));
+                setTextToView(R.id.skill_5, getStringFromCursor(cursor, "skill_5"));
+                setTextToView(R.id.skill_6, getStringFromCursor(cursor, "skill_6"));
+                setTextToView(R.id.skill_7, getStringFromCursor(cursor, "skill_7"));
+                setTextToView(R.id.skill_8, getStringFromCursor(cursor, "skill_8"));
             }
-            setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
-            setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill_detail"));
-            setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
-            setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
-            setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));
-            setTextToView(R.id.skill_3, getStringFromCursor(cursor, "skill_3"));
-            setTextToView(R.id.skill_4, getStringFromCursor(cursor, "skill_4"));
-            setTextToView(R.id.skill_5, getStringFromCursor(cursor, "skill_5"));
-            setTextToView(R.id.skill_6, getStringFromCursor(cursor, "skill_6"));
-            setTextToView(R.id.skill_7, getStringFromCursor(cursor, "skill_7"));
-            setTextToView(R.id.skill_8, getStringFromCursor(cursor, "skill_8"));
 
             // 其他信息
             if (getStringFromCursor(cursor, "additional_info").equals("无")) {
                 findViewById(R.id.card_data_other_title).setVisibility(View.GONE);
                 findViewById(R.id.Card_Other).setVisibility(View.GONE);
+            } else {
+                // 全新的Markdown样式
+                getContent(this, findViewById(R.id.additional_info), getStringFromCursor(cursor, "additional_info"));
             }
-            //全新的Markdown样式
-            getContent(this, findViewById(R.id.additional_info), getStringFromCursor(cursor, "additional_info"));
 
         } catch (Exception e) {
             ((TextView) findViewById(R.id.base_info)).setText("数据加载失败");

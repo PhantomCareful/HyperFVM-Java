@@ -105,7 +105,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="-20dp">
 
                     <!-- 底部椭圆阴影View -->
@@ -187,7 +187,7 @@
                             android:background="?attr/selectableItemBackground">
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_1_1"
+                                android:id="@+id/Image_View_Card_1_1"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -203,7 +203,7 @@
                                 android:layout_marginHorizontal="10dp"/>
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_1_2"
+                                android:id="@+id/Image_View_Card_1_2"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -219,7 +219,7 @@
                                 android:layout_marginHorizontal="10dp"/>
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_Result_1"
+                                android:id="@+id/Image_View_Card_Result_1"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -238,7 +238,7 @@
                             android:background="?attr/selectableItemBackground">
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_2_1"
+                                android:id="@+id/Image_View_Card_2_1"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -254,7 +254,7 @@
                                 android:layout_marginHorizontal="10dp"/>
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_2_2"
+                                android:id="@+id/Image_View_Card_2_2"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -270,7 +270,7 @@
                                 android:layout_marginHorizontal="10dp"/>
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_Result_2"
+                                android:id="@+id/Image_View_Card_Result_2"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -289,7 +289,7 @@
                             android:background="?attr/selectableItemBackground">
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_3_1"
+                                android:id="@+id/Image_View_Card_3_1"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -305,7 +305,7 @@
                                 android:layout_marginHorizontal="10dp"/>
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_3_2"
+                                android:id="@+id/Image_View_Card_3_2"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
@@ -321,7 +321,7 @@
                                 android:layout_marginHorizontal="10dp"/>
 
                             <ImageView
-                                android:id="@+id/Image_View_Card_Fusion_Result_3"
+                                android:id="@+id/Image_View_Card_Result_3"
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"

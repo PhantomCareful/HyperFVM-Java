@@ -90,7 +90,7 @@ public class CardData_2_Activity extends AppCompatActivity {
 
             // 逐个绑定控件（确保控件ID与表列名完全一致）
             // 大图片区域
-            ImageView ImageViewCardFusionBig = findViewById(R.id.Image_View_Card_Big_1);
+            ImageView ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_1);
             String imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_1")) + "_big";
             // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
             int imageResId = getResources().getIdentifier(
@@ -98,10 +98,10 @@ public class CardData_2_Activity extends AppCompatActivity {
                     "drawable",
                     getPackageName()
             );
-            ImageViewCardFusionBig.setImageResource(imageResId);
+            ImageViewCardBig.setImageResource(imageResId);
             setTextToView(R.id.card_name_1, getStringFromCursor(cursor, "name"));
 
-            ImageViewCardFusionBig = findViewById(R.id.Image_View_Card_Big_2);
+            ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2")) + "_big";
             // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
             imageResId = getResources().getIdentifier(
@@ -109,10 +109,10 @@ public class CardData_2_Activity extends AppCompatActivity {
                     "drawable",
                     getPackageName()
             );
-            ImageViewCardFusionBig.setImageResource(imageResId);
+            ImageViewCardBig.setImageResource(imageResId);
             setTextToView(R.id.card_name_2, getStringFromCursor(cursor, "name_2"));
 
-            ImageViewCardFusionBig = findViewById(R.id.Image_View_Card_Big_3);
+            ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_3);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_3")) + "_big";
             // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
             imageResId = getResources().getIdentifier(
@@ -120,7 +120,7 @@ public class CardData_2_Activity extends AppCompatActivity {
                     "drawable",
                     getPackageName()
             );
-            ImageViewCardFusionBig.setImageResource(imageResId);
+            ImageViewCardBig.setImageResource(imageResId);
             setTextToView(R.id.card_name_3, getStringFromCursor(cursor, "name_3"));
 
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -131,97 +131,7 @@ public class CardData_2_Activity extends AppCompatActivity {
             }, 500);
 
             // 基础信息区域
-            ImageView ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_1_1);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_1"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_1_2);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_2"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_Result_1);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_1"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_2_1);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_1"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_2_2);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_2_2"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_Result_2);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_3_1);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_3_2);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_3_2"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            ImageViewCardFusion = findViewById(R.id.Image_View_Card_Fusion_Result_3);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_3"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            ImageViewCardFusion.setImageResource(imageResId);
-
-            //全新的Markdown样式
+            // 全新的Markdown样式
             String contentBaseInfo = "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
                     "- 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
                     "## 👉主卡信息" + "\n" + getStringFromCursor(cursor, "base_info") + "\n" +
@@ -229,16 +139,106 @@ public class CardData_2_Activity extends AppCompatActivity {
                     "### 相关卡片" + "\n" + "- 点击材料卡的图片可跳转该卡片数据";
             getContent(this, findViewById(R.id.base_info_1), contentBaseInfo);
 
-            //给相关卡片设置跳转查询的点击事件
+            ImageView ImageViewCard = findViewById(R.id.Image_View_Card_1_1);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_1"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_1_2);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_2"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_Result_1);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_1"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_2_1);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_1"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_2_2);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_2_2"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_Result_2);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_3_1);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_3_2);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_3_2"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            ImageViewCard = findViewById(R.id.Image_View_Card_Result_3);
+            imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_3"));
+            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+            imageResId = getResources().getIdentifier(
+                    imageIdStr,
+                    "drawable",
+                    getPackageName()
+            );
+            ImageViewCard.setImageResource(imageResId);
+
+            // 给相关卡片设置跳转查询的点击事件
             // 缓存点击事件需要用到的字段值
             String name1_1 = getStringFromCursor(cursor, "name_1_1");
             String name1_2 = getStringFromCursor(cursor, "name_1_2");
             String name2_2 = getStringFromCursor(cursor, "name_2_2");
             String name3_2 = getStringFromCursor(cursor, "name_3_2");
-            findViewById(R.id.Image_View_Card_Fusion_1_1).setOnClickListener(v -> selectCardDataByName(name1_1));
-            findViewById(R.id.Image_View_Card_Fusion_1_2).setOnClickListener(v -> selectCardDataByName(name1_2));
-            findViewById(R.id.Image_View_Card_Fusion_2_2).setOnClickListener(v -> selectCardDataByName(name2_2));
-            findViewById(R.id.Image_View_Card_Fusion_3_2).setOnClickListener(v -> selectCardDataByName(name3_2));
+            findViewById(R.id.Image_View_Card_1_1).setOnClickListener(v -> selectCardDataByName(name1_1));
+            findViewById(R.id.Image_View_Card_1_2).setOnClickListener(v -> selectCardDataByName(name1_2));
+            findViewById(R.id.Image_View_Card_2_2).setOnClickListener(v -> selectCardDataByName(name2_2));
+            findViewById(R.id.Image_View_Card_3_2).setOnClickListener(v -> selectCardDataByName(name3_2));
 
             contentBaseInfo = "## 👉人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n" +
                     "### 作为副卡：" + getStringFromCursor(cursor, "sub_card");
@@ -291,28 +291,30 @@ public class CardData_2_Activity extends AppCompatActivity {
             setTextToView(R.id.star_fusion_U, getStringFromCursor(cursor, "star_fusion_U"));
 
             // 技能信息
+            setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
             if (getStringFromCursor(cursor, "skill").equals("该防御卡不支持技能")) {
                 findViewById(R.id.Card_Skill).setVisibility(View.GONE);
+            } else {
+                setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill_detail"));
+                setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
+                setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
+                setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));
+                setTextToView(R.id.skill_3, getStringFromCursor(cursor, "skill_3"));
+                setTextToView(R.id.skill_4, getStringFromCursor(cursor, "skill_4"));
+                setTextToView(R.id.skill_5, getStringFromCursor(cursor, "skill_5"));
+                setTextToView(R.id.skill_6, getStringFromCursor(cursor, "skill_6"));
+                setTextToView(R.id.skill_7, getStringFromCursor(cursor, "skill_7"));
+                setTextToView(R.id.skill_8, getStringFromCursor(cursor, "skill_8"));
             }
-            setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
-            setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill_detail"));
-            setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
-            setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
-            setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));
-            setTextToView(R.id.skill_3, getStringFromCursor(cursor, "skill_3"));
-            setTextToView(R.id.skill_4, getStringFromCursor(cursor, "skill_4"));
-            setTextToView(R.id.skill_5, getStringFromCursor(cursor, "skill_5"));
-            setTextToView(R.id.skill_6, getStringFromCursor(cursor, "skill_6"));
-            setTextToView(R.id.skill_7, getStringFromCursor(cursor, "skill_7"));
-            setTextToView(R.id.skill_8, getStringFromCursor(cursor, "skill_8"));
 
             // 其他信息
             if (getStringFromCursor(cursor, "additional_info").equals("无")) {
                 findViewById(R.id.card_data_other_title).setVisibility(View.GONE);
                 findViewById(R.id.Card_Other).setVisibility(View.GONE);
+            } else {
+                // 全新的Markdown样式
+                getContent(this, findViewById(R.id.additional_info), getStringFromCursor(cursor, "additional_info"));
             }
-            //全新的Markdown样式
-            getContent(this, findViewById(R.id.additional_info), getStringFromCursor(cursor, "additional_info"));
 
         } catch (Exception e) {
             ((TextView) findViewById(R.id.base_info)).setText("数据加载失败");

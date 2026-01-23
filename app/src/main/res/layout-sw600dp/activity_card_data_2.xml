@@ -121,7 +121,7 @@
                                     android:background="?attr/selectableItemBackground">
 
                                     <ImageView
-                                        android:id="@+id/Image_View_Card_Fusion_1_1"
+                                        android:id="@+id/Image_View_Card_1_1"
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:adjustViewBounds="true"
@@ -138,7 +138,7 @@
                                         android:layout_marginEnd="5dp"/>
 
                                     <ImageView
-                                        android:id="@+id/Image_View_Card_Fusion_1_2"
+                                        android:id="@+id/Image_View_Card_1_2"
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:adjustViewBounds="true"
@@ -155,7 +155,7 @@
                                         android:layout_marginEnd="5dp"/>
 
                                     <ImageView
-                                        android:id="@+id/Image_View_Card_Fusion_Result_1"
+                                        android:id="@+id/Image_View_Card_Result_1"
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:adjustViewBounds="true"
