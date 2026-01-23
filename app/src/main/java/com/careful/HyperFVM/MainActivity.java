@@ -367,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         String tableName = dbHelper.getCardTable(cardName);
+        String baseName = dbHelper.getCardBaseName(cardName);
         if (tableName == null) {
             Toast.makeText(this, "未找到该卡片", Toast.LENGTH_SHORT).show();
             return;
@@ -385,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
             default -> null;
         };
         if (intent != null) {
-            intent.putExtra("name", cardName);
+            intent.putExtra("name", baseName);
             intent.putExtra("table", tableName);
             startActivity(intent);
         }

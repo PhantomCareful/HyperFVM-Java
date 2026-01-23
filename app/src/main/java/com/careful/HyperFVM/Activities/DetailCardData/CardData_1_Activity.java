@@ -138,7 +138,7 @@ public class CardData_1_Activity extends AppCompatActivity {
                 TextView correspondingCardContent = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_content);
                 ImageView correspondingCardImageId = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_image);
                 correspondingCardName.setText(correspondingGoldenCardName);
-                correspondingCardContent.setText("本卡片二转后可参与合成此金卡");
+                correspondingCardContent.setText("本卡片是合成此金卡的必要素材");
                 imageIdStr = cursor.getString(cursor.getColumnIndex("corresponding_golden_card_image_id"));
                 if (!imageIdStr.equals("无")) {
                     // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
@@ -200,13 +200,13 @@ public class CardData_1_Activity extends AppCompatActivity {
                     correspondingCardName.setText(singleCardName);
                     switch (lastNum) {
                         case 1:
-                            correspondingCardContent.setText("本卡片二转后可参与初级融合为此卡片");
+                            correspondingCardContent.setText("本卡片是初级融合此卡片的必要素材");
                             break;
                         case 2:
-                            correspondingCardContent.setText("本卡片二转后可参与深度融合为此卡片");
+                            correspondingCardContent.setText("本卡片是深度融合此卡片的必要素材");
                             break;
                         case 3:
-                            correspondingCardContent.setText("本卡片二转后可参与灵魂融合为此卡片");
+                            correspondingCardContent.setText("本卡片是灵魂融合此卡片的必要素材");
                             break;
                     }
 
