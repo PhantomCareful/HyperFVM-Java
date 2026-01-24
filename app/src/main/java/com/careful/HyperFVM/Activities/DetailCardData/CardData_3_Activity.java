@@ -129,7 +129,7 @@ public class CardData_3_Activity extends BaseActivity {
                 findViewById(R.id.Image_View_Card_Big_3_2_Container).setVisibility(View.GONE);
                 findViewById(R.id.Text_View_Card_Big_3_2_Container).setVisibility(View.GONE);
             } else { // 有终转
-                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_3_2);
+                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_3);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_2")) + "_big";
                 // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
                 imageResId = getResources().getIdentifier(
@@ -138,7 +138,7 @@ public class CardData_3_Activity extends BaseActivity {
                         getPackageName()
                 );
                 ImageViewCardBig.setImageResource(imageResId);
-                setTextToView(R.id.card_name_3_2, getStringFromCursor(cursor, "name_2"));
+                setTextToView(R.id.card_name_3, getStringFromCursor(cursor, "name_2"));
 
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_4);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_3")) + "_big";
@@ -161,7 +161,7 @@ public class CardData_3_Activity extends BaseActivity {
                 findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
                 findViewById(R.id.Image_View_Card_Big_2).setVisibility(View.VISIBLE);
                 findViewById(R.id.Image_View_Card_Big_3_1).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_3_2).setVisibility(View.VISIBLE);
+                findViewById(R.id.Image_View_Card_Big_3).setVisibility(View.VISIBLE);
                 findViewById(R.id.Image_View_Card_Big_4).setVisibility(View.VISIBLE);
             }, 500);
 

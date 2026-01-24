@@ -122,7 +122,7 @@ public class CardData_1_Activity extends BaseActivity {
             //全新的Markdown样式
             String contentBaseInfo = getStringFromCursor(cursor, "base_info") + "\n" +
                     "### 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
-                    "### 耗能：" + getStringFromCursor(cursor, "price_0") + "\n";
+                    "### 耗能：" + getStringFromCursor(cursor, "price") + "\n";
             String contentTransferChange = getStringFromCursor(cursor, "transfer_change");
             if (!contentTransferChange.equals("无")) {
                 contentBaseInfo = contentBaseInfo +

@@ -217,7 +217,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "image_id TEXT, " +
                 "base_info TEXT, " +
                 "category TEXT, " +
-                "price_0 TEXT, " +
+                "price TEXT, " +
                 "sub_card TEXT, " +
                 "star TEXT, star_detail TEXT, " +
                 "star_0 TEXT, star_1 TEXT, star_2 TEXT, star_3 TEXT, star_4 TEXT, " +
@@ -334,7 +334,15 @@ public class DBHelper extends SQLiteOpenHelper {
         // 创建card_data_4表（字段与CSV对应）
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_4 (" +
                 "name TEXT PRIMARY KEY, " +
-                "image_id TEXT, " +
+                "name_1 TEXT, " +
+                "name_2 TEXT, " +
+                "image_id_0 TEXT, " +
+                "image_id_1 TEXT, " +
+                "image_id_2 TEXT, " +
+                "corresponding_golden_card_name TEXT, " +
+                "corresponding_golden_card_image_id TEXT, " +
+                "corresponding_fusion_card_name TEXT, " +
+                "corresponding_fusion_card_image_id TEXT, " +
                 "base_info TEXT, " +
                 "category TEXT, " +
                 "price TEXT, " +
@@ -426,7 +434,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "name, image_id_0, image_id_1, image_id_2, " +
                                             "corresponding_golden_card_name, corresponding_golden_card_image_id, " +
                                             "corresponding_fusion_card_name, corresponding_fusion_card_image_id, " +
-                                            "base_info, category, price_0, sub_card, star, star_detail, " +
+                                            "base_info, category, price, sub_card, star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
                                             "skill, skill_detail, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
@@ -560,7 +568,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     case "card_data_4":
                         try {
                             db.execSQL("INSERT OR IGNORE INTO card_data_4 (" +
-                                            "name, image_id, base_info, category, price, sub_card, " +
+                                            "name, name_1, name_2, image_id_0, image_id_1, image_id_2, " +
+                                            "corresponding_golden_card_name, corresponding_golden_card_image_id, " +
+                                            "corresponding_fusion_card_name, corresponding_fusion_card_image_id, " +
+                                            "base_info, category, price, sub_card, " +
                                             "star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
@@ -579,27 +590,23 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "decompose_image_id_skill_1, decompose_image_id_skill_2, decompose_image_id_skill_3, decompose_image_id_skill_4, " +
                                             "decompose_image_id_transfer_1_a, decompose_image_id_transfer_1_b, " +
                                             "decompose_image_id_transfer_2_a, decompose_image_id_transfer_2_b, decompose_image_id_transfer_2_c)" +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4], rowData[5],
-                                            rowData[6], rowData[7],
-                                            rowData[8], rowData[9], rowData[10], rowData[11], rowData[12], rowData[13], rowData[14], rowData[15], rowData[16], rowData[17],
-                                            rowData[18], rowData[19], rowData[20], rowData[21], rowData[22], rowData[23], rowData[24], rowData[25], rowData[26],
-                                            rowData[27], rowData[28],
-                                            rowData[29], rowData[30], rowData[31], rowData[32], rowData[33], rowData[34], rowData[35], rowData[36], rowData[37],
-                                            rowData[38], rowData[39], rowData[40],
-                                            rowData[41], rowData[42], rowData[43],
-                                            rowData[44], rowData[45], rowData[46], rowData[47],
-                                            rowData[48], rowData[49],
-                                            rowData[50], rowData[51], rowData[52],
-                                            rowData[53], rowData[54], rowData[55],
-                                            rowData[56], rowData[57], rowData[58], rowData[59],
-                                            rowData[60], rowData[61],
-                                            rowData[62], rowData[63], rowData[64],
-                                            rowData[65], rowData[66], rowData[67],
-                                            rowData[68], rowData[69], rowData[70], rowData[71],
-                                            rowData[72], rowData[73],
-                                            rowData[74], rowData[75], rowData[76]
+                                            rowData[6], rowData[7], rowData[8], rowData[9], rowData[10], rowData[11],
+                                            rowData[12], rowData[13], rowData[14], rowData[15], rowData[16], rowData[17],
+                                            rowData[18], rowData[19], rowData[20], rowData[21], rowData[22], rowData[23],
+                                            rowData[24], rowData[25], rowData[26], rowData[27], rowData[28], rowData[29],
+                                            rowData[30], rowData[31], rowData[32], rowData[33], rowData[34], rowData[35],
+                                            rowData[36], rowData[37], rowData[38], rowData[39], rowData[40], rowData[41],
+                                            rowData[42], rowData[43], rowData[44], rowData[45], rowData[46], rowData[47],
+                                            rowData[48], rowData[49], rowData[50], rowData[51], rowData[52], rowData[53],
+                                            rowData[54], rowData[55], rowData[56], rowData[57], rowData[58], rowData[59],
+                                            rowData[60], rowData[61], rowData[62], rowData[63], rowData[64], rowData[65],
+                                            rowData[66], rowData[67], rowData[68], rowData[69], rowData[70], rowData[71],
+                                            rowData[72], rowData[73], rowData[74], rowData[75], rowData[76], rowData[77],
+                                            rowData[78], rowData[79], rowData[80], rowData[81], rowData[82], rowData[83],
+                                            rowData[84]
                                     });
                             importedCount++;
                         } catch (Exception e) {
