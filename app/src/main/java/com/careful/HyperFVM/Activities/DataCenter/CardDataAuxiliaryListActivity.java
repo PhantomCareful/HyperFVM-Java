@@ -24,12 +24,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityCardDataAuxiliaryListBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -44,7 +44,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
 
-public class CardDataAuxiliaryListActivity extends AppCompatActivity {
+public class CardDataAuxiliaryListActivity extends BaseActivity {
 
     private DBHelper dbHelper;
     private ActivityCardDataAuxiliaryListBinding binding;

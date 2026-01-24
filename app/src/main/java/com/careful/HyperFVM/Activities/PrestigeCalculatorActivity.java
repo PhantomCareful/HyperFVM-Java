@@ -7,8 +7,8 @@ import android.text.TextWatcher;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PrestigeCalculatorActivity extends AppCompatActivity {
+public class PrestigeCalculatorActivity extends BaseActivity {
 
     // 存储所有输入框和对应币值（顺序需与输入框一一对应）
     private List<TextInputEditText> inputEditTexts = new ArrayList<>();

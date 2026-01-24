@@ -15,8 +15,8 @@ import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
@@ -26,7 +26,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
 
-public class TodayLuckyActivity extends AppCompatActivity {
+public class TodayLuckyActivity extends BaseActivity {
     //圆角半径，单位：像素
     private static final float CORNER_RADIUS_DP = 50f;
     private int cornerRadiusPx;//转换后的像素值

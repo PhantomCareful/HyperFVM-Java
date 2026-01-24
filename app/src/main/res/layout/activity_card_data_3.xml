@@ -397,153 +397,172 @@
                                 android:rowCount="2">
 
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="0"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="2"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="3"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="4"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="5"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="6"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="7"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="8"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="9"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="10"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="11"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="12"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="13"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="14"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="15"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="16"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="Max"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="Ultra"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp"
@@ -560,81 +579,90 @@
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_1"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="12"
                                     android:textSize="20sp"
                                     android:textColor="#bf4f14"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_2"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="14"
                                     android:textSize="20sp"
                                     android:textColor="#bf4f14"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_3"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="16"
                                     android:textSize="20sp"
                                     android:textColor="#bf4f14"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_4"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="18"
                                     android:textSize="20sp"
                                     android:textColor="#a5a5a5"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_5"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="20"
                                     android:textSize="20sp"
                                     android:textColor="#a5a5a5"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_6"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="22"
                                     android:textSize="20sp"
                                     android:textColor="#a5a5a5"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_7"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="26"
                                     android:textSize="20sp"
                                     android:textColor="#ffc000"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_8"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="32"
                                     android:textSize="20sp"
                                     android:textColor="#ffc000"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_9"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="40"
                                     android:textSize="20sp"
                                     android:textColor="#ffc000"
@@ -650,72 +678,80 @@
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_11"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="70"
                                     android:textSize="20sp"
                                     android:textColor="#45b0e1"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_12"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="85"
                                     android:textSize="20sp"
                                     android:textColor="#ffff00ff"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_13"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="100"
                                     android:textSize="20sp"
                                     android:textColor="#ff0000"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_14"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="115"
                                     android:textSize="20sp"
                                     android:textColor="#7030a0"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_15"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="130"
                                     android:textSize="20sp"
                                     android:textColor="#e97132"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_16"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="145"
                                     android:textSize="20sp"
                                     android:textColor="#ffc00000"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_M"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="null"
                                     android:textSize="20sp"
                                     android:textColor="#ffc00000"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/star_U"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="null"
                                     android:textSize="20sp"
                                     android:textColor="#ffc00000"
@@ -848,65 +884,73 @@
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="2"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="3"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="4"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="5"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="6"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="7"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="8"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
@@ -914,81 +958,90 @@
 
                                 <TextView
                                     android:id="@+id/skill_0"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1.3"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_1"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1.25"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_2"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1.2"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_3"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1.15"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_4"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1.1"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_5"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1.05"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_6"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="1"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_7"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="0.95"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/skill_8"
-                                    android:layout_width="60dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_columnWeight="1"
+                                    android:minWidth="60dp"
                                     android:text="0.9"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"

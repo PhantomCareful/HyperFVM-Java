@@ -22,8 +22,8 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
@@ -31,7 +31,7 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
-public class CardData_3_Activity extends AppCompatActivity {
+public class CardData_3_Activity extends BaseActivity {
     private DBHelper dbHelper;
 
     private TransitionSet transition;
@@ -169,10 +169,9 @@ public class CardData_3_Activity extends AppCompatActivity {
             // 全新的Markdown样式
             String contentBaseInfo = "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
                     "- 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
-                    getStringFromCursor(cursor, "base_info");
+                    getStringFromCursor(cursor, "base_info") + "\n";
             if (!getStringFromCursor(cursor, "name_1_1").equals("无")) {
-                contentBaseInfo = contentBaseInfo + "### 相关卡片" + "\n" +
-                        "### 相关卡片" + "\n" + "- 点击材料卡的图片可跳转该卡片数据";
+                contentBaseInfo = contentBaseInfo + "### 相关卡片" + "\n" + "- 点击材料卡的图片可跳转该卡片数据";
                 ImageView ImageViewCard = findViewById(R.id.Image_View_Card_1_1);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_1"));
                 // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
@@ -215,7 +214,12 @@ public class CardData_3_Activity extends AppCompatActivity {
             getContent(this, findViewById(R.id.base_info_1), contentBaseInfo);
 
             // 全新的Markdown样式
-            contentBaseInfo = "## 👉人话解释" + "\n" + getStringFromCursor(cursor, "transfer_change") + "\n" +
+            String contentTransferChange = getStringFromCursor(cursor, "transfer_change");
+            contentBaseInfo = "";
+            if (!contentTransferChange.equals("无")) {
+                contentBaseInfo = "## 👉人话解释" + "\n" + contentTransferChange + "\n";
+            }
+            contentBaseInfo = contentBaseInfo +
                     "### 作为副卡：" + getStringFromCursor(cursor, "sub_card");
             getContent(this, findViewById(R.id.base_info_2), contentBaseInfo);
 

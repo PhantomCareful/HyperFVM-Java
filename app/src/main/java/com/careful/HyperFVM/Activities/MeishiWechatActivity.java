@@ -25,9 +25,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityMeishiWechatBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -51,7 +51,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request; // 正确导入OkHttp的Request
 import okhttp3.Response;
 
-public class MeishiWechatActivity extends AppCompatActivity {
+public class MeishiWechatActivity extends BaseActivity {
     private ActivityMeishiWechatBinding binding;
 
     private DBHelper dbHelper;

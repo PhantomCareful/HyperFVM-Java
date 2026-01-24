@@ -3,12 +3,11 @@ package com.careful.HyperFVM;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
-public class BuildingActivity extends AppCompatActivity {
+public class BuildingActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

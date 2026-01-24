@@ -234,6 +234,8 @@
     <string name="label_settings_option_themed_color">自定义主题色</string>
     <string name="label_settings_option_dark_mode">深色模式</string>
     <string name="label_settings_option_interface_style">界面风格</string>
+    <string name="label_settings_is_fixed_font_scale">启用布局优化</string>
+    <string name="label_settings_is_fixed_font_scale_description">⭐开启后，App将不跟随系统的字号设置，始终保持标准大小，以获得最佳的界面排版。\n⭐若您确实需要显示大字体，关闭本开关即可。</string>
     <string name="title_settings_toast">提示语显示设置</string>
     <string name="label_settings_switch_card_data_index">防御卡全能数据库</string>
     <string name="label_settings_switch_card_data_auxiliary_list">增幅卡名单</string>

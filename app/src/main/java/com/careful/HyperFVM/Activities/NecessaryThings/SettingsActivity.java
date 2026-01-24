@@ -21,10 +21,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.work.WorkManager;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -37,7 +37,7 @@ import com.google.android.material.materialswitch.MaterialSwitch;
 
 import java.util.List;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     private DBHelper dbHelper;
     private AutoTaskNotificationManager autoTaskNotificationManager;
@@ -58,6 +58,8 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String CONTENT_INTERFACE_STYLE = "界面风格";
     private String currentInterfaceStyle;
     private TextView interfaceStyleCurrentSelection;
+
+    public static final String CONTENT_IS_FIXED_FONT_SCALE = "界面布局优化";
 
     private static final String CONTENT_AUTO_TASK = "自动任务";
     private static final String CONTENT_AUTO_TASK_ENHANCED = "自动任务-增强";
@@ -283,6 +285,10 @@ public class SettingsActivity extends AppCompatActivity {
         boolean isDynamicColor = dbHelper.getSettingValue(CONTENT_IS_DYNAMIC_COLOR);
         materialSwitch = findViewById(R.id.Switch_isDynamicColor);
         materialSwitch.setChecked(isDynamicColor);
+        // 界面布局优化开关
+        boolean isFixedFontScale = dbHelper.getSettingValue(CONTENT_IS_FIXED_FONT_SCALE);
+        materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
+        materialSwitch.setChecked(isFixedFontScale);
         // 自动任务开关
         boolean isDoAutoTask = dbHelper.getSettingValue(CONTENT_AUTO_TASK);
         materialSwitch = findViewById(R.id.Switch_AutoTask);
@@ -323,6 +329,14 @@ public class SettingsActivity extends AppCompatActivity {
                 // 动态取色开启：禁用点击
                 themeSelectorContainer.setOnClickListener(null);
             }
+            Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
+            // 重启App
+            restartApp();
+        });
+        // 界面布局优化开关
+        materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            dbHelper.updateSettingValue(CONTENT_IS_FIXED_FONT_SCALE, isChecked ? "true" : "false");
             Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
             // 重启App
             restartApp();

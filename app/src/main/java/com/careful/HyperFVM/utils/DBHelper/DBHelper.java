@@ -170,6 +170,12 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
                     "VALUES ('按压反馈动画', 'true')");
         }
+
+        // 版本46：settings表增加“界面布局优化”开关
+        if (oldVersion < 46) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('界面布局优化', 'true')");
+        }
     }
 
     @Override
