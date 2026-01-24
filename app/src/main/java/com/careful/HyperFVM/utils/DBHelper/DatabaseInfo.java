@@ -86,5 +86,5 @@ public class DatabaseInfo {
      * 测试：防御卡数据合并
      * settings表增加“界面布局优化”设置
      */
-    public static final int DB_VERSION = 46;
+    public static final int DB_VERSION = 47;
 }

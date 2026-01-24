@@ -3,6 +3,7 @@ package com.careful.HyperFVM.Activities;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
+import android.annotation.SuppressLint;
 import android.graphics.ImageDecoder;
 import android.graphics.Outline;
 import android.graphics.drawable.AnimatedImageDrawable;
@@ -170,6 +171,7 @@ public class TodayLuckyActivity extends BaseActivity {
     /**
      * 在onResume阶段设置按压反馈动画
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onResume() {
         super.onResume();
