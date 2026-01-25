@@ -156,19 +156,10 @@ public class CardData_3_Activity extends BaseActivity {
                 findViewById(R.id.card_name_3_1).setVisibility(View.GONE);
             }
 
-            new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                TransitionManager.beginDelayedTransition(container, transition);
-                findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_2).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_3_1).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_3).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_4).setVisibility(View.VISIBLE);
-            }, 500);
-
             // 基础信息区域
             // 全新的Markdown样式
-            String contentBaseInfo = "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
-                    "- 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
+            String contentBaseInfo = "### 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
+                    "### 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
                     getStringFromCursor(cursor, "base_info") + "\n";
             if (!getStringFromCursor(cursor, "name_1_1").equals("无")) {
                 contentBaseInfo = contentBaseInfo + "### 相关卡片" + "\n" + "- 点击材料卡的图片可跳转该卡片数据";
@@ -488,7 +479,16 @@ public class CardData_3_Activity extends BaseActivity {
         } catch (Exception e) {
             ((TextView) findViewById(R.id.base_info)).setText("数据加载失败");
         }
-        // 关闭游标，避免内存泄漏
+
+        // 所有任务完成后，显示大图片
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            TransitionManager.beginDelayedTransition(container, transition);
+            findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_2).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_3_1).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_3).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_4).setVisibility(View.VISIBLE);
+        }, 500);
     }
 
     // 辅助方法：设置文本到控件，避免重复代码

@@ -162,14 +162,6 @@ public class CardData_4_Activity extends BaseActivity {
                 }
             }
 
-            new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                TransitionManager.beginDelayedTransition(container, transition);
-                findViewById(R.id.Image_View_Card_Big_1_1).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_2).setVisibility(View.VISIBLE);
-                findViewById(R.id.Image_View_Card_Big_3).setVisibility(View.VISIBLE);
-            }, 500);
-
             //全新的Markdown样式
             String contentBaseInfo = getStringFromCursor(cursor, "base_info") + "\n" +
                     "### 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
@@ -466,7 +458,15 @@ public class CardData_4_Activity extends BaseActivity {
         } catch (Exception e) {
             ((TextView) findViewById(R.id.base_info)).setText("数据加载失败");
         }
-        // 关闭游标，避免内存泄漏
+
+        // 所有任务完成后，显示大图片
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            TransitionManager.beginDelayedTransition(container, transition);
+            findViewById(R.id.Image_View_Card_Big_1_1).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_2).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_3).setVisibility(View.VISIBLE);
+        }, 500);
     }
 
     // 辅助方法：设置文本到控件，避免重复代码
