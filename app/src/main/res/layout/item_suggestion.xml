@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--这是防御卡数据按名查询的搜索结果预览的样式文件-->
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/suggestion_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,15 +12,35 @@
     app:cardCornerRadius="20dp"
     app:strokeWidth="0dp">
 
-    <TextView
-        android:id="@+id/suggestion_text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dialog_input_padding"
-        android:textSize="20sp"
-        android:textColor="?attr/TextViewColorOnGeneralCardView"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:background="?attr/selectableItemBackground"/>
+        android:orientation="horizontal"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/suggestion_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/dialog_input_padding"
+            android:textSize="20sp"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:singleLine="true"/>
+
+        <ImageView
+            android:id="@+id/suggestion_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:layout_marginEnd="16dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/card_data_index_1_1_1_2"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

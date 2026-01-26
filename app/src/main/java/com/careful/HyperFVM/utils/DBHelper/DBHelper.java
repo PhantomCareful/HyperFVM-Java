@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
 import com.opencsv.CSVReader;
 
 import java.io.File;
@@ -201,7 +202,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS card_data_index (" +
                 "name TEXT PRIMARY KEY, " +
                 "base_name TEXT, " +
-                "table_name TEXT NOT NULL)");
+                "table_name TEXT, " +
+                "image_id TEXT)");
 
         db.execSQL("DROP TABLE IF EXISTS card_data_1");
         // 创建card_data_1表（字段与CSV对应）
@@ -419,8 +421,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 switch (tableName) {
                     case "card_data_index":
                         try {
-                            db.execSQL("INSERT OR IGNORE INTO card_data_index (name, base_name, table_name) VALUES (?, ?, ?)",
-                                    new String[]{rowData[0], rowData[1], rowData[2]});
+                            db.execSQL("INSERT OR IGNORE INTO card_data_index (name, base_name, table_name, image_id) VALUES (?, ?, ?, ?)",
+                                    new String[]{rowData[0], rowData[1], rowData[2], rowData[3]});
                             importedCount++;
                         } catch (Exception e) {
                             Log.e("DBHelper", "Failed to insert row into card_data_index. Error: " + e.getMessage() +
@@ -810,27 +812,34 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // ====================== 以下为防御卡数据表的操作方法 ======================
-    // 模糊查询卡片名称
-    public List<String> searchCardNames(String keyword) {
-        List<String> names = new ArrayList<>();
+    // 模糊查询卡片名称和对应图片ID
+    public List<CardSuggestion> searchCards(String keyword) {
+        List<CardSuggestion> suggestions = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
+        // 同时查询name和image_id两列
         Cursor cursor = db.rawQuery(
-                "SELECT name FROM card_data_index WHERE name LIKE ?",
+                "SELECT name, image_id FROM " + TABLE_CARD_DATA_INDEX + " WHERE name LIKE ?",
                 new String[]{"%" + keyword + "%"});
+
         if (cursor.moveToFirst()) {
             do {
-                names.add(cursor.getString(0));
+                String name = cursor.getString(0);
+                String imageId = cursor.getString(1); // 获取图片ID
+                // 过滤空名称或空图片ID（可选，根据业务需求调整）
+                if (name != null && !name.isEmpty()) {
+                    suggestions.add(new CardSuggestion(name, imageId));
+                }
             } while (cursor.moveToNext());
         }
         cursor.close();
-        return names;
+        return suggestions;
     }
 
     // 获取卡片对应的表名
     public String getCardTable(String cardName) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT table_name FROM card_data_index WHERE name = ?",
+                "SELECT table_name FROM " + TABLE_CARD_DATA_INDEX + " WHERE name = ?",
                 new String[]{cardName});
         if (cursor.moveToFirst()) {
             String tableName = cursor.getString(0);

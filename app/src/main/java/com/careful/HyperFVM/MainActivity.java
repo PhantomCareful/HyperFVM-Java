@@ -36,6 +36,7 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.CardItemDecoration;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
 import com.careful.HyperFVM.utils.OtherUtils.SignatureChecker;
@@ -304,39 +305,33 @@ public class MainActivity extends BaseActivity {
     private void showCardQueryDialog() {
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.item_dialog_input_card_data, null);
-
-        // 获取控件（替换为RecyclerView）
         TextInputEditText etCardName = dialogView.findViewById(R.id.textInputEditText);
         RecyclerView suggestionList = dialogView.findViewById(R.id.suggestion_list);
 
-        // 初始化适配器（使用自定义Material风格适配器）
-        SuggestionAdapter adapter = new SuggestionAdapter(new ArrayList<>(), selected -> {
-            // 点击项自动填充输入框并隐藏列表
-            etCardName.setText(selected);
+        // 初始化适配器（传入上下文、空数据、点击监听）
+        SuggestionAdapter adapter = new SuggestionAdapter(this, new ArrayList<>(), suggestion -> {
+            // 点击项：填充名称到输入框，隐藏列表
+            etCardName.setText(suggestion.getName());
             suggestionList.setVisibility(View.GONE);
         });
 
-        // 配置RecyclerView
+        // 配置RecyclerView（保持原有逻辑）
         suggestionList.setLayoutManager(new LinearLayoutManager(this));
         suggestionList.setAdapter(adapter);
-
-        // 配置建议列表的布局：第一张卡片顶部距离增加20dp，最后一张卡片底部距离增加20dp
         CardItemDecoration itemDecoration = new CardItemDecoration(suggestionList, 20, 20);
         suggestionList.addItemDecoration(itemDecoration);
 
-        // 实时模糊查询
+        // 实时模糊查询（修改核心：适配新的数据模型）
         etCardName.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
                 String keyword = s.toString().trim();
                 if (!keyword.isEmpty()) {
-                    // 从数据库获取匹配结果
-                    List<String> suggestions = dbHelper.searchCardNames(keyword);
-                    // 更新适配器数据
+                    // 从数据库获取：包含name和image_id的搜索结果
+                    List<CardSuggestion> suggestions = dbHelper.searchCards(keyword);
                     adapter.updateData(suggestions);
                     suggestionList.setVisibility(View.VISIBLE);
                 } else {
-                    // 清空数据并隐藏列表
                     adapter.updateData(new ArrayList<>());
                     suggestionList.setVisibility(View.GONE);
                 }
