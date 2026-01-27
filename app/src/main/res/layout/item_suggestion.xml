@@ -16,26 +16,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="10dp"
         android:background="?attr/selectableItemBackground">
 
-        <TextView
-            android:id="@+id/suggestion_text"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="@dimen/dialog_input_padding"
-            android:textSize="20sp"
-            android:textColor="?attr/TextViewColorOnGeneralCardView"
-            android:gravity="center_vertical"
-            android:ellipsize="end"
-            android:singleLine="true"/>
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <!-- 左侧文字 -->
+            <TextView
+                android:id="@+id/suggestion_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/suggestion_transfer_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/suggestion_image"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginVertical="10dp"
-            android:layout_marginEnd="16dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/card_data_index_1_1_1_2"

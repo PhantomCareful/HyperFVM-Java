@@ -818,16 +818,42 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         // 同时查询name和image_id两列
         Cursor cursor = db.rawQuery(
-                "SELECT name, image_id FROM " + TABLE_CARD_DATA_INDEX + " WHERE name LIKE ?",
+                "SELECT name, image_id, table_name FROM " + TABLE_CARD_DATA_INDEX + " WHERE name LIKE ?",
                 new String[]{"%" + keyword + "%"});
 
         if (cursor.moveToFirst()) {
             do {
                 String name = cursor.getString(0);
-                String imageId = cursor.getString(1); // 获取图片ID
+                String imageId = cursor.getString(1);
+                String tableName = cursor.getString(2);
                 // 过滤空名称或空图片ID（可选，根据业务需求调整）
                 if (name != null && !name.isEmpty()) {
-                    suggestions.add(new CardSuggestion(name, imageId));
+                    int lastNum = Character.getNumericValue(imageId.charAt(imageId.length() - 1));
+                    int tableNameNum = Character.getNumericValue(tableName.charAt(tableName.length() - 1));
+                    String transferCategory = null;
+                    switch (lastNum) {
+                        case 0:
+                            transferCategory = "不转形态";
+                            break;
+                        case 1:
+                            if (tableNameNum == 3) {
+                                transferCategory = "三转形态";
+                            } else {
+                                transferCategory = "一转形态";
+                            }
+                            break;
+                        case 2:
+                            if (tableNameNum == 3) {
+                                transferCategory = "四转形态";
+                            } else {
+                                transferCategory = "二转形态";
+                            }
+                            break;
+                        case 3:
+                            transferCategory = "终转形态";
+                            break;
+                    };
+                    suggestions.add(new CardSuggestion(name, transferCategory, imageId));
                 }
             } while (cursor.moveToNext());
         }

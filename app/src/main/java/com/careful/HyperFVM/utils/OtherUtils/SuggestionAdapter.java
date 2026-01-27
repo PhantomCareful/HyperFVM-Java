@@ -48,9 +48,11 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CardSuggestion suggestion = mData.get(position);
         // 设置卡片名称
-        holder.tvName.setText(suggestion.getName());
+        holder.name.setText(suggestion.getName());
+        // 设置卡片转职类型
+        holder.transferCategory.setText(suggestion.getTransferCategory());
         // 加载卡片图片
-        loadImage(suggestion.getImageId(), holder.ivImage);
+        loadImage(suggestion.getImageId(), holder.image);
         // 点击事件：返回完整的CardSuggestion对象
         holder.itemView.setOnClickListener(v -> mListener.onItemClick(suggestion));
     }
@@ -81,13 +83,15 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
 
     // ViewHolder：绑定文字和图片控件
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName;
-        ImageView ivImage;
+        TextView name;
+        TextView transferCategory;
+        ImageView image;
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.suggestion_text);
-            ivImage = itemView.findViewById(R.id.suggestion_image);
+            name = itemView.findViewById(R.id.suggestion_name);
+            transferCategory = itemView.findViewById(R.id.suggestion_transfer_category);
+            image = itemView.findViewById(R.id.suggestion_image);
         }
     }
 }
