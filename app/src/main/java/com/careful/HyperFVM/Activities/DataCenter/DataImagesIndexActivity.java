@@ -136,6 +136,8 @@ public class DataImagesIndexActivity extends BaseActivity {
         setupContainer(R.id.data_images_index_others_5_container, "data_image_others_5", true);
         setupContainer(R.id.data_images_index_others_6_container, "data_image_others_6", false);
         setupContainer(R.id.data_images_index_others_7_container, "data_image_others_7", true);
+        setupContainer(R.id.data_images_index_others_8_container, "data_image_others_8", true);
+        setupContainer(R.id.data_images_index_others_9_container, "data_image_others_9", true);
 
         // 初始化动画效果
         transition = new TransitionSet();
