@@ -480,7 +480,7 @@ public class CardData_3_Activity extends BaseActivity {
             }
 
         } catch (Exception e) {
-            ((TextView) findViewById(R.id.base_info_1)).setText("数据加载失败" + e.getMessage());
+            ((TextView) findViewById(R.id.base_info_1)).setText("数据加载失败");
         }
 
         // 所有任务完成后，显示大图片
