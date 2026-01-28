@@ -244,6 +244,9 @@ public class CardData_3_Activity extends BaseActivity {
                 findViewById(R.id.Card_Support).setVisibility(View.GONE);
             } else {
                 //全新的Markdown样式
+                /*
+                  TODO:Markdown渲染的表格在PAD端上有点问题，最右边可能会多出来一截或少掉一截，目前尚不清楚是什么原因。
+                 */
                 getContent(this, findViewById(R.id.support_info_1), getStringFromCursor(cursor, "support_1"));
                 getContent(this, findViewById(R.id.support_info_2), getStringFromCursor(cursor, "support_2"));
             }
@@ -477,7 +480,7 @@ public class CardData_3_Activity extends BaseActivity {
             }
 
         } catch (Exception e) {
-            ((TextView) findViewById(R.id.base_info)).setText("数据加载失败");
+            ((TextView) findViewById(R.id.base_info_1)).setText("数据加载失败" + e.getMessage());
         }
 
         // 所有任务完成后，显示大图片

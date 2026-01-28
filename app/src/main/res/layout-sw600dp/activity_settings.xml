@@ -191,6 +191,32 @@
 
                         </LinearLayout>
 
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/Switch_isFixedFontScale"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="10dp"
+                            android:text="@string/label_settings_is_fixed_font_scale"
+                            android:textSize="20sp"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_settings_is_fixed_font_scale_description"
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>

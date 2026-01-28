@@ -96,7 +96,7 @@
     <string name="text_data_images_index_others_6_2">By So陌路の</string>
     <string name="text_data_images_index_others_7_1">7.世界BOSS段位数据</string>
     <string name="text_data_images_index_others_7_2">By Phantom_Careful</string>
-    <string name="copyright_and_molu">数据来自：So陌路の\n\nHyperFVM\nMade By Phantom Careful 😈</string>
+    <string name="copyright_and_molu">数据来自：So陌路の\n数据为人工录入，若发现问题可向开发者反馈🫰\n\nHyperFVM\nMade By Phantom Careful 😈</string>
     <string name="copyright">HyperFVM\nMade By Phantom Careful 😈</string>
     <string name="card_data_index_1_1">①水管类</string>
     <string name="card_data_index_1_2">②三线类</string>
@@ -210,9 +210,13 @@
     <string name="title_tools_faa_dialog">FAA米苏物流</string>
     <string name="label_tools_faa_url">https://faa.msdzls.cn</string>
     <string name="title_tools_strategy">卡片鼠军对策表\n作者：繁华洛尽、布鲁、陌路、式祈</string>
-    <string name="label_tools_strategy">🥰非常全面的游戏伤害机制详点说法；此外还能快捷跳转大赛和营地任务顺序表、巅峰对决和魔塔机制解析\n👉点击跳转共享文档</string>
+    <string name="label_tools_strategy">🥰非常全面的游戏伤害机制详点说法，一定有你不知道的\n👉点击跳转共享文档</string>
     <string name="title_tools_strategy_dialog">卡片鼠军对策表</string>
     <string name="label_tools_strategy_url">https://www.kdocs.cn/l/cku3hMogOycM</string>
+    <string name="title_tools_strategy_world_boss">巅峰对决部分机制解析\n作者：式祈</string>
+    <string name="label_tools_strategy_world_boss">🥰段位数据、BOSS技能、BUFF机制，全部都有\n👉点击跳转共享文档</string>
+    <string name="title_tools_strategy_world_boss_dialog">巅峰对决部分机制解析</string>
+    <string name="label_tools_strategy_world_boss_url">https://www.kdocs.cn/l/cll09ugqnrwG</string>
     <string name="title_tools_icu">FVM查黑系统\n作者：就喝百事</string>
     <string name="image_tools_icu">🚫</string>
     <string name="label_tools_icu">🥰查询某个QQ号是否存在行骗记录\n👉点击开始查询</string>

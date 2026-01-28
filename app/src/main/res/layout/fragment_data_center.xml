@@ -158,6 +158,7 @@
 
                         <include layout="@layout/card_molu"/>
                         <include layout="@layout/card_strategy"/>
+                        <include layout="@layout/card_strategy_world_boss"/>
                         <include layout="@layout/card_gem_calculator"/>
 
                     </LinearLayout>

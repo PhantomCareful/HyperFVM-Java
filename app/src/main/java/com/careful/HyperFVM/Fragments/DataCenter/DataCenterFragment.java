@@ -238,6 +238,11 @@ public class DataCenterFragment extends Fragment {
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_strategy_dialog),
                         getResources().getString(R.string.label_tools_strategy_url)), pressFeedbackAnimationDelay));
 
+        // 巅峰对决部分机制解析
+        root.findViewById(R.id.card_strategy_world_boss_container).setOnClickListener(v -> v.postDelayed(() ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_strategy_world_boss_dialog),
+                        getResources().getString(R.string.label_tools_strategy_world_boss_url)), pressFeedbackAnimationDelay));
+
         // FVM查黑系统
         root.findViewById(R.id.card_icu_container).setOnClickListener(v -> v.postDelayed(this::showQQInputDialog, pressFeedbackAnimationDelay));
 
@@ -529,6 +534,8 @@ public class DataCenterFragment extends Fragment {
         root.findViewById(R.id.card_molu_container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         root.findViewById(R.id.card_strategy_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_strategy_world_boss_container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         root.findViewById(R.id.card_gem_calculator_container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
