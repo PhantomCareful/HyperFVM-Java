@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_BIOMETRIC_AUTH;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
@@ -41,6 +42,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -182,8 +184,19 @@ public class DataCenterFragment extends Fragment {
         // ------------------------------这一部分统一设置点击事件------------------------------
         // 温馨礼包
         root.findViewById(R.id.card_meishi_wechat_container).setOnClickListener(v -> v.postDelayed(() -> {
-            Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
-            startActivity(intent);
+            if (dbHelper.getSettingValue(CONTENT_IS_BIOMETRIC_AUTH)) {
+                // 指纹验证(如果开启的话)
+                BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
+                        getResources().getString(R.string.biometric_auth_sub_title), () -> {
+                            // 验证成功后执行的操作
+                            Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
+                            startActivity(intent);
+                        });
+            } else {
+                // 直接进入
+                Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
+                startActivity(intent);
+            }
         }, pressFeedbackAnimationDelay));
 
         // B站最新更新公告

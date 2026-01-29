@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Activities.NecessaryThings;
 
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,7 @@ import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -69,6 +71,10 @@ public class SettingsActivity extends BaseActivity {
     public static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
 
     public static final String CONTENT_IS_PRESS_FEEDBACK_ANIMATION = "按压反馈动画";
+
+    public static final String CONTENT_IS_BIOMETRIC_AUTH = "安全-生物认证";
+    // 使用标志位来防止循环调用
+    private boolean isPermitSwitchChanging = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,6 +285,7 @@ public class SettingsActivity extends BaseActivity {
     /**
      * 从数据库读取状态并初始化开关
      */
+    @SuppressLint("SetTextI18n")
     private void initSwitches() {
         MaterialSwitch materialSwitch;
         // 动态取色开关
@@ -311,6 +318,20 @@ public class SettingsActivity extends BaseActivity {
         boolean isPressFeedbackAnimation = dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION);
         materialSwitch = findViewById(R.id.Switch_isPressFeedbackAnimation);
         materialSwitch.setChecked(isPressFeedbackAnimation);
+        // 生物认证开关
+        materialSwitch = findViewById(R.id.Switch_BiometricAuth);
+        if (BiometricAuthHelper.isBiometricAvailable(this)) {
+            // 设备支持生物认证
+            boolean isBiometricAuth = dbHelper.getSettingValue(CONTENT_IS_BIOMETRIC_AUTH);
+            materialSwitch.setChecked(isBiometricAuth);
+        } else {
+            // 设备不支持生物认证
+            materialSwitch.setChecked(false);
+            materialSwitch.setEnabled(false);
+            TextView BiometricAuthDescription = findViewById(R.id.TextView_BiometricAuth_Description);
+            BiometricAuthDescription.setText(getResources().getString(R.string.label_settings_biometric_auth_description_not_support) + "\n" +
+                    getResources().getString(R.string.label_settings_biometric_auth_description));
+        }
     }
 
     /**
@@ -382,6 +403,26 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_isPressFeedbackAnimation);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION, isChecked ? "true" : "false"));
+        // 生物认证开关
+        materialSwitch = findViewById(R.id.Switch_BiometricAuth);
+        MaterialSwitch finalMaterialSwitch = materialSwitch;
+        materialSwitch.setOnClickListener(v -> {
+            boolean isChecked = finalMaterialSwitch.isChecked();
+            BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
+                    getResources().getString(R.string.biometric_auth_sub_title), () -> {
+                        // 验证成功
+                        dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, !isChecked ? "true" : "false");
+                        isPermitSwitchChanging = true;
+                        finalMaterialSwitch.setChecked(!isChecked);
+            });
+        });
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isPermitSwitchChanging) {
+                isPermitSwitchChanging = false;
+            } else {
+                finalMaterialSwitch.setChecked(!isChecked);
+            }
+        });
     }
 
     /**

@@ -262,6 +262,12 @@
     <string name="label_settings_auto_task_description">⭐开启后，App将会在合适的时机自动领取温馨礼包、更新仪表盘信息，并向您推送执行结果通知。\n⭐此功能需要App常驻后台和推送通知，因此需要您授予App通知权限和自启动权限，并在多任务界面锁定App的后台，在系统的省电策略中不要对App采取任何限制措施。\n⭐请注意：各家定制系统可能会采取不同的措施限制App常驻后台，因此可能仍无法100%保证App不被系统杀死，若您发现保护通知消失，则需要手动重启App以重新激活自动任务。\n\n⭐若关闭，App则会在您每次打开的时候执行这些任务。\n\n⭐无论是否使用自动任务，温馨礼包每天第一次领取成功后便不再领取，若后续又添加了新的链接，请手动刷新一次仪表盘。</string>
     <string name="label_settings_switch_auto_task_enhanced">启用增强模式</string>
     <string name="label_settings_switch_auto_task_enhanced_description">⭐开启后，App将在设备的最近任务界面中隐藏。\n⭐此操作可以最大程度保证App常驻后台，但是可能会影响使用体验，请根据实际需求酌情启用。</string>
+    <string name="title_settings_safety">安全</string>
+    <string name="label_settings_switch_biometric_auth">启用设备生物认证</string>
+    <string name="label_settings_biometric_auth_description">⭐开启后，进入温馨礼包链接管理界面前需要进行指纹认证。</string>
+    <string name="label_settings_biometric_auth_description_not_support">❌当前设备不支持生物认证，请检查设备是否支持指纹解锁或是否已录入指纹。</string>
+    <string name="biometric_auth_title">👀确保那是你👀</string>
+    <string name="biometric_auth_sub_title">验证您的指纹以继续操作🫰</string>
     <!--关于软件-->
     <string name="label_version_info">版本号</string>
     <string name="version_info">0</string>

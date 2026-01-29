@@ -39,7 +39,7 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
-import com.careful.HyperFVM.utils.OtherUtils.SignatureChecker;
+import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

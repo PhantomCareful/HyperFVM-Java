@@ -177,6 +177,13 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
                     "VALUES ('界面布局优化', 'true')");
         }
+
+        // 版本52：settings表增加“生物认证”开关
+        if (oldVersion < 52) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('安全-生物认证', 'false')");
+        }
+
     }
 
     @Override
