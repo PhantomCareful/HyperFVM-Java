@@ -34,9 +34,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/title_settings_permission"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.cardview.widget.CardView
@@ -51,16 +52,24 @@
                         android:id="@+id/permission_notification_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:padding="16dp"
                         android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:background="?attr/selectableItemBackground">
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_bell"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                            tools:ignore="ContentDescription" />
+
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:layout_marginStart="16dp"
                             android:text="@string/label_settings_permission_notification"
                             android:textSize="20sp"
                             android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -80,9 +89,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/title_settings_theme"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.cardview.widget.CardView
@@ -98,29 +108,56 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_isDynamicColor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_switch_is_dynamic_color"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
                         <LinearLayout
-                            android:id="@+id/theme_selector_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
                             android:orientation="horizontal"
                             android:clickable="true"
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground">
 
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_palette"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_isDynamicColor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_switch_is_dynamic_color"
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/theme_selector_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_format_color"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_marginStart="16dp"
                                 android:text="@string/label_settings_option_themed_color"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -139,16 +176,24 @@
                             android:id="@+id/dark_mode_selector_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:padding="16dp"
                             android:orientation="horizontal"
                             android:clickable="true"
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground">
 
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_invert_colors"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_marginStart="16dp"
                                 android:text="@string/label_settings_option_dark_mode"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -167,16 +212,24 @@
                             android:id="@+id/interface_style_selector_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:padding="16dp"
                             android:orientation="horizontal"
                             android:clickable="true"
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground">
 
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_palette_swatch"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_marginStart="16dp"
                                 android:text="@string/label_settings_option_interface_style"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -191,30 +244,152 @@
 
                         </LinearLayout>
 
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_isFixedFontScale"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_is_fixed_font_scale"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
                             android:orientation="horizontal"
                             android:clickable="true"
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground">
 
-                            <TextView
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_view_sequential"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_isFixedFontScale"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_settings_is_fixed_font_scale_description"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_is_fixed_font_scale"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_settings_is_fixed_font_scale_description"
+                            android:textSize="18sp"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="16dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/title_settings_toast"
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_eye"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_isVisible_CardDataIndex"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_switch_card_data_index"
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_eye"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_isVisible_CardDataAuxiliaryList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_switch_card_data_auxiliary_list"
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_eye"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_isVisible_DataImageViewer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_switch_data_image_viewer"
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
                         </LinearLayout>
 
                     </LinearLayout>
@@ -224,61 +399,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:text="@string/title_settings_toast"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_isVisible_CardDataIndex"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_switch_card_data_index"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_isVisible_CardDataAuxiliaryList"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_switch_card_data_auxiliary_list"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_isVisible_DataImageViewer"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_switch_data_image_viewer"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/title_settings_animation"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.cardview.widget.CardView
@@ -292,13 +416,25 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_animation"
+                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                            tools:ignore="ContentDescription" />
 
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/Switch_isPressFeedbackAnimation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
+                            android:layout_marginStart="16dp"
                             android:text="@string/label_settings_switch_is_press_feedback_animation"
                             android:textSize="20sp"
                             android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -310,9 +446,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/title_settings_auto_task"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.cardview.widget.CardView
@@ -328,57 +465,81 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_AutoTask"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_switch_auto_task"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
                             android:orientation="horizontal"
                             android:clickable="true"
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground">
 
-                            <TextView
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_calendar_check"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_AutoTask"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_settings_auto_task_description"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_switch_auto_task"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
                         </LinearLayout>
 
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_AutoTask_Enhanced"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_switch_auto_task_enhanced"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                            android:text="@string/label_settings_auto_task_description"
+                            android:textSize="18sp"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="16dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
                             android:orientation="horizontal"
                             android:clickable="true"
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground">
 
-                            <TextView
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_calendar_check"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_AutoTask_Enhanced"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_settings_switch_auto_task_enhanced_description"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_switch_auto_task_enhanced"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
                         </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_settings_switch_auto_task_enhanced_description"
+                            android:textSize="18sp"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="16dp" />
 
                     </LinearLayout>
 
@@ -387,9 +548,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="26dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/title_settings_safety"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.cardview.widget.CardView
@@ -405,32 +567,44 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/Switch_BiometricAuth"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/label_settings_switch_biometric_auth"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
                             android:orientation="horizontal"
                             android:clickable="true"
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground">
 
-                            <TextView
-                                android:id="@+id/TextView_BiometricAuth_Description"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_shield_lock"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/Switch_BiometricAuth"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_settings_biometric_auth_description"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_switch_biometric_auth"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
                         </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/TextView_BiometricAuth_Description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_settings_biometric_auth_description"
+                            android:textSize="18sp"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="16dp" />
 
                     </LinearLayout>
 
