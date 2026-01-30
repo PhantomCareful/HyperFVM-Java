@@ -51,8 +51,11 @@ public class GiftFetcher {
                 giftHelper.fetchAllGifts(context, openids, new GiftFetchHelper.GiftFetchCallback() {
                     @Override
                     public void onResult(int successCount) {
-                        String text = "✅" + successCount + "个账号已完成领取😎😎\n👉点击管理链接";
+                        //String text = "✅" + successCount + "个账号已完成领取😎😎\n👉点击管理链接";
+                        String text = successCount + "个";
+                        String emoji = "✅";
                         dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", successCount + "个✅");
+                        dbHelper.updateDashboardContent("meishi_wechat_result_emoji", emoji);
                         saveResult(text, "成功");
                         mainHandler.post(() -> listener.onResult(text));
                     }
@@ -80,8 +83,4 @@ public class GiftFetcher {
         dbHelper.updateDashboardContent("meishi_wechat_result", resultState);
     }
 
-    // 关闭数据库连接
-    public void close() {
-        dbHelper.close();
-    }
 }

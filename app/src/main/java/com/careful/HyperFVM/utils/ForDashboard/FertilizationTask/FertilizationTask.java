@@ -84,12 +84,10 @@ public class FertilizationTask {
 
             mainHandler.post(() -> {
                 String content;
-                if (dayOfTask == -1) {
-                    content = "本轮施肥活动已结束，请等待新的活动开始⏳";
+                if (dayOfTask == -1 || dayOfTask == 0) {
+                    content = "暂无";
                     dbHelper.updateDashboardContent("fertilization_task_notification", "暂无⏳");
-                } else if (dayOfTask == 0) {
-                    content = "活动尚未开始，请耐心等待⏳";
-                    dbHelper.updateDashboardContent("fertilization_task_notification", "暂无⏳");
+                    dbHelper.updateDashboardContent("fertilization_task_emoji", "⏳");
                 } else {
                     content = String.format("开始：%s\n结束：%s\n进度：(%d/21)✊", startDate, endDate, dayOfTask);
                     dbHelper.updateDashboardContent("fertilization_task_notification", "(" + dayOfTask + "/21)✊");

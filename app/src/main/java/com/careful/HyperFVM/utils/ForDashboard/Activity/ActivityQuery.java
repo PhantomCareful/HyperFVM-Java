@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class ActivityQuery {
@@ -59,8 +60,9 @@ public class ActivityQuery {
             switch (msg.what) {
                 case PARSE_SUCCESS:
                     // 解析成功后生成显示文本
-                    String doubleExplosionText = generateActivityText();
-                    dbHelper.updateDashboardContent("double_explosion_rate", doubleExplosionText);
+                    // String doubleExplosionText = generateActivityText();
+                    generateActivityText();
+                    // dbHelper.updateDashboardContent("double_explosion_rate", doubleExplosionText);
                     break;
                 case PARSE_FAILED:
                     dbHelper.updateDashboardContent("double_explosion_rate", "查询双倍双爆失败❌");
@@ -235,7 +237,7 @@ public class ActivityQuery {
     }
 
     // 生成活动显示文本
-    private String generateActivityText() {
+    private void generateActivityText() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.CHINA);
         String today = dateFormat.format(new Date());
         ActivityItem todayItem = findActivityByDate(today);
@@ -244,20 +246,28 @@ public class ActivityQuery {
         Log.d("ActivityQuery", "今日日期：" + today + "，匹配到活动：" + (todayItem != null ? todayItem.type : "null"));
 
         if (todayItem == null) {
-            return "未找到今日双倍双爆活动❌";
+            //return "未找到今日双倍双爆活动❌";
+            return;
         }
 
         // 处理未知活动类型（新增容错）
         if (todayItem.type == -1) {
-            return "今日活动格式异常，无法识别❌";
+            //return "今日活动格式异常，无法识别❌";
+            return;
         }
 
         String message;
+        String emoji;
         if (todayItem.type == TYPE_FULL_DAY) {
             int consecutiveDays = getConsecutiveDays(today);
             String endDate = getEndDate(today, consecutiveDays);
-            message = "✅全天双倍双爆\n并将持续到" + endDate + "\n共" + consecutiveDays + "天😊😊😊";
+            //message = "✅全天双倍双爆\n并将持续到" + endDate + "\n共" + consecutiveDays + "天😊😊😊";
+            message = "全天双爆";
+            emoji = "✅";
             dbHelper.updateDashboardContent("double_explosion_rate_notification", "全天✅");
+            dbHelper.updateDashboardContent("double_explosion_rate", message);
+            dbHelper.updateDashboardContent("double_explosion_rate_emoji", emoji);
+            Log.d("dashboard", "activityEmoji in DBHelper: " + emoji);
         } else {
             dbHelper.updateDashboardContent("double_explosion_rate_notification", "限时⏳");
             String nextFullDay = findNextFullDay(today);
@@ -275,7 +285,6 @@ public class ActivityQuery {
                 message = contentText + "\n⏳今年无更多全天双倍双爆活动";
             }
         }
-        return message;
     }
 
     // 根据日期查找活动
@@ -350,7 +359,7 @@ public class ActivityQuery {
     private String getEndDate(String startDate, int days) {
         Calendar calendar = Calendar.getInstance();
         try {
-            calendar.setTime(new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).parse(startDate));
+            calendar.setTime(Objects.requireNonNull(new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).parse(startDate)));
             calendar.add(Calendar.DAY_OF_MONTH, days - 1);
             return new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(calendar.getTime());
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -22,87 +23,374 @@
             android:paddingBottom="150dp"
             android:paddingStart="10dp"
             android:clipChildren="false"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            tools:ignore="RtlSymmetry">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:gravity="center_vertical"
-                android:clipChildren="false"
-                android:clipToPadding="false">
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginBottom="5dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginStart="20dp"
                     android:text="@string/label_tools_dashboard"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="bottom"/>
 
-                <Button
+                <ImageView
                     android:id="@+id/ButtonRefreshDashboard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="@string/label_tools_button_refresh_dashboard"
-                    android:textSize="20sp"
-                    app:cornerRadius="20dp"/>
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_refresh"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
-            <!-- 仪表盘卡片（两列布局） -->
-            <LinearLayout
+            <include layout="@layout/card_last_day_of_month"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_double_explosion_rate_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:clipChildren="false"
-                android:clipToPadding="false">
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                app:cardCornerRadius="20dp">
 
-                <!-- 左列卡片 -->
-                <LinearLayout
-                    android:layout_width="0dp"
+                <GridLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:rowCount="3"
+                    android:columnCount="5">
 
-                    <include layout="@layout/card_last_day_of_month"/>
-                    <include layout="@layout/card_double_explosion_rate"/>
-                    <include layout="@layout/card_everyday"/>
-                    <include layout="@layout/card_bilibili_fvm"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/dashboard_DoubleExplosionRate_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:text="@string/title_tools_double_explosion_rate"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
 
-                <!-- 右列卡片 -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <TextView
+                            android:id="@+id/dashboard_DoubleExplosionRate_Emoji"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:gravity="center"/>
 
-                    <include layout="@layout/card_meishi_wechat"/>
-                    <include layout="@layout/card_fertilization_task"/>
-                    <include layout="@layout/card_new_year"/>
+                        <TextView
+                            android:id="@+id/dashboard_DoubleExplosionRate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
 
-                </LinearLayout>
+                    </LinearLayout>
 
-            </LinearLayout>
+                    <!-- 垂直线段 -->
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_rowWeight="1"
+                        android:layout_marginTop="5dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:id="@+id/dashboard_MeishiWechat_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:text="@string/title_tools_meishi_wechat"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_MeishiWechat_Emoji"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_MeishiWechat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- 垂直线段 -->
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_rowWeight="1"
+                        android:layout_marginTop="5dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:id="@+id/dashboard_BilibiliFVM_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:text="@string/title_tools_bilibili_fvm"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_BilibiliFVM_Emoji"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_BilibiliFVM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- 水平线段 -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="5dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <!-- 水平线段 -->
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="2dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <!-- 水平线段 -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_columnWeight="1"
+                        android:background="?attr/colorSurface"/>
+
+                    <!-- 水平线段 -->
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="2dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <!-- 水平线段 -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginEnd="5dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:id="@+id/dashboard_Everyday_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:text="@string/title_tools_everyday"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_Everyday_Emoji"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_Everyday"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- 垂直线段 -->
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_rowWeight="1"
+                        android:layout_marginBottom="5dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:id="@+id/dashboard_FertilizationTask_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:text="@string/title_tools_fertilization_task"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_FertilizationTask_Emoji"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_FertilizationTask"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- 垂直线段 -->
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_rowWeight="1"
+                        android:layout_marginBottom="5dp"
+                        android:background="?attr/colorSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:id="@+id/dashboard_NewYear_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:text="@string/title_tools_new_year"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_NewYear_Emoji"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dashboard_NewYear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:textColor="?attr/TextViewColorOnImportantCardView"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                </GridLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="21dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/label_tools_made_by_xiaye"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
             <LinearLayout
@@ -174,16 +462,17 @@
             android:paddingBottom="150dp"
             android:paddingEnd="10dp"
             android:clipChildren="false"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            tools:ignore="RtlSymmetry">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="26dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/title_data_center_about_data"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
             <include layout="@layout/card_card_data_index"/>
@@ -194,11 +483,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="26dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/label_tools_made_by_phantom_careful"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
             <include layout="@layout/card_today_lucky"/>

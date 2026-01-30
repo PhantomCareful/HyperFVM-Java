@@ -20,6 +20,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
@@ -41,7 +42,6 @@ import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
 import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -245,7 +245,7 @@ public class MainActivity extends BaseActivity {
         if (position >= 0 && position < viewPagerAdapter.getItemCount()) {
             CharSequence title = viewPagerAdapter.getPageTitle(position);
             if (title != null) {
-                binding.TopAppBar.setTitle(title + " ");
+                setTopAppBarTitle(String.valueOf(title));
             }
         }
     }
@@ -255,8 +255,8 @@ public class MainActivity extends BaseActivity {
      */
     private void setTopAppBarTitle(String title) {
         //设置顶栏标题
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        toolbar.setTitle(title + " ");
+        TextView topAppBar = findViewById(R.id.Top_AppBar);
+        topAppBar.setText(title);
     }
 
     /**

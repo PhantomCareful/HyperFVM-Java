@@ -127,8 +127,10 @@ public class NewYear {
             content = String.format("开始：%s\n结束：%s\n日期计算异常❌", startDateDisplay, endDateDisplay);
             dbHelper.updateDashboardContent("new_year_notification", "日期错误❌");
         } else {
-            content = String.format("开始：%s\n结束：%s\n进度：(%d/" + "%d)✊",startDateDisplay, endDateDisplay, dayOfEvent, lengthOfEvent);
+            //content = String.format("开始：%s\n结束：%s\n进度：(%d/" + "%d)✊",startDateDisplay, endDateDisplay, dayOfEvent, lengthOfEvent);
+            content = String.format("%d/%d", dayOfEvent, lengthOfEvent);
             dbHelper.updateDashboardContent("new_year_notification", "(" + dayOfEvent + "/" + lengthOfEvent + ")✊");
+            dbHelper.updateDashboardContent("new_year_emoji", "✊");
         }
 
         mainHandler.post(() -> dbHelper.updateDashboardContent("new_year", content));

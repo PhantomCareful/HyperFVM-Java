@@ -184,6 +184,15 @@ public class DBHelper extends SQLiteOpenHelper {
                     "VALUES ('安全-生物认证', 'false')");
         }
 
+        // 版本53：重构仪表盘界面
+        if (oldVersion < 53) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
+                    "VALUES ('meishi_wechat_result_text_notification', 'null')," +
+                    "('double_explosion_rate_emoji', 'null')," +
+                    "('fertilization_task_emoji', 'null')," +
+                    "('new_year_emoji', 'null')");
+        }
+
     }
 
     @Override

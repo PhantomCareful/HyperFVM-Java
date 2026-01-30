@@ -21,9 +21,9 @@ public class EveryMonthAndEveryWeek {
     public String dailyNotifications() {
         int currentDayOfMonth = getCurrentDayOfMonth();
         if (currentDayOfMonth >= 1 && currentDayOfMonth <= 24) {
-            return "记得每天都要签到\n本月进度\n(" + currentDayOfMonth + "/25)✊✊✊";
+            return currentDayOfMonth + "/25";
         } else {
-            return "记得每天都要签到\n本月签到礼包可以领取了哦🍾🍾🍾";
+            return "可领取";
         }
     }
 
