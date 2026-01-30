@@ -190,7 +190,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     "VALUES ('meishi_wechat_result_text_notification', 'null')," +
                     "('double_explosion_rate_emoji', 'null')," +
                     "('fertilization_task_emoji', 'null')," +
-                    "('new_year_emoji', 'null')");
+                    "('new_year_emoji', 'null')," +
+                    "('meishi_wechat_result_text_detail', 'null')," +
+                    "('double_explosion_rate_detail', 'null')," +
+                    "('meishi_wechat_result_detail', 'null')," +
+                    "('fertilization_task_detail', 'null')," +
+                    "('new_year_detail', 'null')");
         }
 
     }

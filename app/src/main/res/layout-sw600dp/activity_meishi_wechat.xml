@@ -49,7 +49,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginBottom="5dp"
-                        android:text="@string/label_tools_meishi_wechat_account_saved"
+                        android:text="@string/title_meishi_wechat_account_saved"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"/>
 
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="20dp"
-                        android:text="@string/title_tools_meishi_wechat_rules"
+                        android:text="@string/title_meishi_wechat_rules"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"/>
 
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="20dp"
-                        android:text="@string/title_tools_meishi_wechat_gift"
+                        android:text="@string/title_meishi_wechat_gift"
                         android:textSize="20sp"
                         android:textColor="?attr/colorOnSurface"/>
 
@@ -300,7 +300,7 @@
                 android:id="@+id/FloatButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_tools_meishi_wechat_add_url"
+                android:text="@string/text_meishi_wechat_button_add_url"
                 android:textSize="20sp"
                 android:backgroundTint="@android:color/transparent"
                 android:stateListAnimator="@null"

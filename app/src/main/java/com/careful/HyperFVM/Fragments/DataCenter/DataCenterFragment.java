@@ -71,6 +71,7 @@ public class DataCenterFragment extends Fragment {
 
     private TextView dashboardDoubleExplosionRate;
     private TextView dashboardDoubleExplosionRateEmoji;
+    private LinearLayout dashboardDoubleExplosionRateContainer;
 
     private TextView dashboardFertilizationTask;
     private TextView dashboardFertilizationTaskEmoji;
@@ -116,6 +117,7 @@ public class DataCenterFragment extends Fragment {
 
         dashboardDoubleExplosionRate = root.findViewById(R.id.dashboard_DoubleExplosionRate);
         dashboardDoubleExplosionRateEmoji = root.findViewById(R.id.dashboard_DoubleExplosionRate_Emoji);
+        dashboardDoubleExplosionRateContainer = root.findViewById(R.id.dashboard_DoubleExplosionRate_Container);
 
         dashboardFertilizationTask = root.findViewById(R.id.dashboard_FertilizationTask);
         dashboardFertilizationTaskEmoji = root.findViewById(R.id.dashboard_FertilizationTask_Emoji);
@@ -341,9 +343,23 @@ public class DataCenterFragment extends Fragment {
         // 读取双倍双爆结果
         String activityResult = dbHelper.getDashboardContent("double_explosion_rate");
         String activityEmoji = dbHelper.getDashboardContent("double_explosion_rate_emoji");
-        Log.d("dashboard", "activityEmoji: " + activityEmoji);
         dashboardDoubleExplosionRate.setText(activityResult.isEmpty() ? "null" : activityResult);
         dashboardDoubleExplosionRateEmoji.setText(activityEmoji.isEmpty() ? "❌" : activityEmoji);
+        dashboardDoubleExplosionRateContainer.setOnClickListener(v -> {
+            LayoutInflater inflater = LayoutInflater.from(requireContext());
+            View dialogView = inflater.inflate(R.layout.item_dialog_dashboard, null);
+
+            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+            TextView contentTextView = dialogView.findViewById(R.id.content);
+            emojiTextView.setText(activityEmoji);  // 设置表情符号
+            contentTextView.setText(dbHelper.getDashboardContent("double_explosion_rate_detail"));  // 设置内容文本
+
+            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                    .setTitle(getResources().getString(R.string.title_dashboard_double_explosion_rate))
+                    .setView(dialogView)
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
         // 读取施肥活动结果
         String fertilizationTaskResult = dbHelper.getDashboardContent("fertilization_task");
         String fertilizationTaskEmoji = dbHelper.getDashboardContent("fertilization_task_emoji");

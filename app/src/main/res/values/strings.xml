@@ -171,21 +171,21 @@
     <string name="title_card_data_decompose_and_get_info_golden">⭐分解&amp;兑换：神谕之石</string>
     <!--工具箱-->
     <!--仪表盘-->
-    <string name="label_tools_dashboard">仪表盘🧐</string>
-    <string name="label_tools_button_refresh_dashboard">刷新内容</string>
-    <string name="label_tools_last_day_of_month">月末了，请注意清空积分和金券⚠️</string>
-    <string name="title_tools_double_explosion_rate">双爆信息</string>
-    <string name="title_tools_meishi_wechat">温馨礼包</string>
-    <string name="label_tools_meishi_wechat_account_saved">已保存的账号</string>
-    <string name="title_tools_meishi_wechat_rules">使用说明</string>
-    <string name="title_tools_meishi_wechat_gift">温馨礼包包含</string>
-    <string name="label_tools_meishi_wechat_add_url">添加链接</string>
-    <string name="title_tools_everyday">每日签到</string>
-    <string name="title_tools_fertilization_task">施肥活动</string>
-    <string name="title_tools_bilibili_fvm">更新公告</string>
-    <string name="label_tools_bilibili_fvm">👉点击跳转B站美食大战老鼠官方的最新更新公告</string>
+    <string name="title_dashboard">仪表盘🧐</string>
+    <string name="text_button_refresh_dashboard">刷新内容</string>
+    <string name="text_dashboard_last_day_of_month">月末了，请注意清空积分和金券⚠️</string>
+    <string name="title_dashboard_double_explosion_rate">双爆信息</string>
+    <string name="title_dashboard_meishi_wechat">温馨礼包</string>
+    <string name="title_meishi_wechat_account_saved">已保存的账号</string>
+    <string name="title_meishi_wechat_rules">使用说明</string>
+    <string name="title_meishi_wechat_gift">温馨礼包包含</string>
+    <string name="text_meishi_wechat_button_add_url">添加链接</string>
+    <string name="title_dashboard_everyday">每日签到</string>
+    <string name="title_dashboard_fertilization_task">施肥活动</string>
+    <string name="title_dashboard_bilibili_fvm">更新公告</string>
+    <string name="text_dashboard_bilibili_fvm">👉点击跳转B站美食大战老鼠官方的最新更新公告</string>
     <string name="title_tools_bilibili_fvm_dialog">B站最新更新公告</string>
-    <string name="title_tools_new_year">美食悬赏</string>
+    <string name="title_dashboard_new_year">美食悬赏</string>
     <string name="text_tools_tiramisu_image_1">周氪图(来自官方公告)</string>
     <string name="text_tools_tiramisu_image_2">日氪图</string>
     <string name="text_tools_tiramisu_image_3_1">消费图(0–100W)</string>

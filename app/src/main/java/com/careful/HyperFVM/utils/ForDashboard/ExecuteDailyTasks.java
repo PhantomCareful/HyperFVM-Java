@@ -3,7 +3,7 @@ package com.careful.HyperFVM.utils.ForDashboard;
 import android.content.Context;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDashboard.Activity.ActivityQuery;
+import com.careful.HyperFVM.utils.ForDashboard.Activity.ActivityCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.FertilizationTask.FertilizationTask;
 import com.careful.HyperFVM.utils.ForDashboard.MeishiWechat.GiftFetcher;
 import com.careful.HyperFVM.utils.ForDashboard.NewYear.NewYear;
@@ -16,7 +16,7 @@ public class ExecuteDailyTasks {
 
     private final DBHelper dbHelper;
     private final GiftFetcher giftFetcher;
-    private final ActivityQuery activityQuery;
+    private final ActivityCatcher activityCatcher;
     private final FertilizationTask fertilizationTask;
     private final NewYear newYear;
 
@@ -25,7 +25,7 @@ public class ExecuteDailyTasks {
     public ExecuteDailyTasks(Context context) {
         dbHelper = new DBHelper(context);
         giftFetcher = new GiftFetcher(context);
-        activityQuery = new ActivityQuery(context);
+        activityCatcher = new ActivityCatcher(context);
         fertilizationTask = new FertilizationTask(context);
         newYear = new NewYear(context);
     }
@@ -38,7 +38,7 @@ public class ExecuteDailyTasks {
         if (needExecute) {
             giftFetcher.fetchAndSaveGift(resultText -> dbHelper.updateDashboardContent("last_date", today));
         }
-        activityQuery.queryAndSaveActivity(result -> {});
+        activityCatcher.parseTodayActivityContent();
         fertilizationTask.execute();
         newYear.execute();
     }
@@ -46,7 +46,7 @@ public class ExecuteDailyTasks {
     public void executeDailyTasksForRefreshDashboard() {
         String today = getCurrentDate();
         giftFetcher.fetchAndSaveGift(resultText -> dbHelper.updateDashboardContent("last_date", today));
-        activityQuery.queryAndSaveActivity(result -> {});
+        activityCatcher.parseTodayActivityContent();
         fertilizationTask.execute();
         newYear.execute();
     }
