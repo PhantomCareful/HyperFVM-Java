@@ -133,7 +133,7 @@ public class ActivityCatcher {
                     }
 
                     // 生成结果文本
-                    result = "今天是" + todayDate + "\n今天已开启全天双倍双爆，并将持续到" + endDayKeepFullDoubleDay + "，共" + numDaysKeepFullDoubleDay + "天。";
+                    result = "今天是" + todayDate + "\n今天已开启全天双倍双爆\n将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
                     dbHelper.updateDashboardContent("double_explosion_rate", "全天双爆");
                     dbHelper.updateDashboardContent("double_explosion_rate_emoji", "🎉");
                     dbHelper.updateDashboardContent("double_explosion_rate_detail", result);
@@ -142,7 +142,7 @@ public class ActivityCatcher {
                     // 查找下一个全天双倍双爆日期
                     nextFullDoubleDay = findNextFullDoubleDay(dateContentMap, todayDate);
                     if (nextFullDoubleDay == null) {
-                        result = "今天是" + todayDate + "，今天" + targetContent + "今年已经没有全天双倍双爆了。";
+                        result = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n今年已经没有全天双倍双爆了。";
                         dbHelper.updateDashboardContent("double_explosion_rate", "限时双爆");
                         dbHelper.updateDashboardContent("double_explosion_rate_emoji", "⏳");
                         dbHelper.updateDashboardContent("double_explosion_rate_detail", result);
@@ -171,7 +171,7 @@ public class ActivityCatcher {
                     }
 
                     // 生成结果文本
-                    result = "今天是" + todayDate + "，今天" + targetContent + "下一个全天双倍双爆日期为" + nextFullDoubleDay + "，还有" + numDaysToNextFullDoubleDay + "天。" + "该全天双倍双爆将持续到" + endDayKeepFullDoubleDay + "，共" + numDaysKeepFullDoubleDay + "天。";
+                    result = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
                     dbHelper.updateDashboardContent("double_explosion_rate", "限时双爆");
                     dbHelper.updateDashboardContent("double_explosion_rate_emoji", "⏳");
                     dbHelper.updateDashboardContent("double_explosion_rate_detail", result);

@@ -192,7 +192,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     "('fertilization_task_emoji', 'null')," +
                     "('new_year_emoji', 'null')," +
                     "('double_explosion_rate_detail', 'null')," +
-                    "('meishi_wechat_result_detail', 'null')," +
                     "('fertilization_task_detail', 'null')," +
                     "('new_year_detail', 'null')");
         }
@@ -872,7 +871,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         case 3:
                             transferCategory = "终转形态";
                             break;
-                    };
+                    }
                     suggestions.add(new CardSuggestion(name, transferCategory, imageId));
                 }
             } while (cursor.moveToNext());
