@@ -15,15 +15,18 @@
             android:id="@+id/ScrollViewDataStationCardDataIndex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/DataCenter_Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
                 android:paddingBottom="150dp"
+                android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -31,8 +34,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginHorizontal="26dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     tools:ignore="UseCompoundDrawables">
 
                     <TextView
@@ -61,8 +64,7 @@
                     android:id="@+id/card_double_explosion_rate_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -122,6 +124,7 @@
                             android:background="?attr/colorSurface"/>
 
                         <LinearLayout
+                            android:id="@+id/dashboard_MeishiWechat_Container"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
@@ -170,6 +173,7 @@
                             android:background="?attr/colorSurface"/>
 
                         <LinearLayout
+                            android:id="@+id/dashboard_BilibiliFVM_Container"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
@@ -193,19 +197,23 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="6dp"
+                                android:text="⏳"
                                 android:textColor="?attr/TextViewColorOnImportantCardView"
                                 android:textSize="25sp"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                tools:ignore="HardcodedText" />
 
                             <TextView
                                 android:id="@+id/dashboard_BilibiliFVM"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="6dp"
+                                android:text="正在获取"
                                 android:textColor="?attr/TextViewColorOnImportantCardView"
                                 android:textSize="25sp"
                                 android:textStyle="bold"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                tools:ignore="HardcodedText" />
 
                         </LinearLayout>
 
@@ -387,8 +395,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="26dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/title_data_center_about_data"
                     android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface"/>
@@ -401,8 +409,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="26dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/label_tools_made_by_xiaye"
                     android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface"/>
@@ -420,6 +428,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
                         android:orientation="vertical"
                         android:clipChildren="false"
                         android:clipToPadding="false">
@@ -436,6 +445,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginStart="5dp"
                         android:orientation="vertical"
                         android:clipChildren="false"
                         android:clipToPadding="false">
@@ -452,8 +462,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="26dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/label_tools_made_by_phantom_careful"
                     android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface"/>

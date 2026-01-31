@@ -187,11 +187,10 @@ public class DBHelper extends SQLiteOpenHelper {
         // 版本53：重构仪表盘界面
         if (oldVersion < 53) {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
-                    "VALUES ('meishi_wechat_result_text_notification', 'null')," +
+                    "VALUES ('meishi_wechat_result_emoji', 'null')," +
                     "('double_explosion_rate_emoji', 'null')," +
                     "('fertilization_task_emoji', 'null')," +
                     "('new_year_emoji', 'null')," +
-                    "('meishi_wechat_result_text_detail', 'null')," +
                     "('double_explosion_rate_detail', 'null')," +
                     "('meishi_wechat_result_detail', 'null')," +
                     "('fertilization_task_detail', 'null')," +

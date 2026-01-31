@@ -11,15 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/about_app_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
             android:paddingTop="120dp"
             android:paddingBottom="150dp"
+            android:orientation="vertical"
             android:clipChildren="false"
             android:clipToPadding="false">
 
@@ -61,8 +64,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="26dp"
-                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="10dp"
                 android:text="@string/title_about_app_developer_name"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
@@ -70,9 +73,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                 app:cardCornerRadius="20dp">
 
@@ -190,8 +191,8 @@
                 android:id="@+id/about_app_label_thanks_fvm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="26dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/label_thanks_list_fvm"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
@@ -200,9 +201,7 @@
                 android:id="@+id/about_app_thanks_list_container_fvm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                 app:cardCornerRadius="20dp">
 
@@ -486,8 +485,8 @@
                 android:id="@+id/about_app_label_thanks_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="26dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/label_thanks_list_app"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
@@ -496,9 +495,7 @@
                 android:id="@+id/about_app_thanks_list_container_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                 app:cardCornerRadius="20dp">
 
@@ -709,7 +706,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_thanks_list_app_4_2"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                tools:ignore="TooManyViews" />
 
                         </LinearLayout>
 
@@ -731,8 +729,8 @@
                 android:id="@+id/about_app_label_some_necessary_things"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="26dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/label_some_necessary_things"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
@@ -741,9 +739,7 @@
                 android:id="@+id/about_app_some_necessary_things_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                 app:cardCornerRadius="20dp">
 
@@ -864,8 +860,8 @@
                 android:id="@+id/about_app_label_more"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="26dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/label_more"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
@@ -874,9 +870,7 @@
                 android:id="@+id/about_app_more_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="?attr/CardViewMarginBottom"
+                android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                 app:cardCornerRadius="20dp">
 

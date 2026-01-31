@@ -33,12 +33,12 @@
                 <LinearLayout
                     android:id="@+id/MeishiWechatContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
                     android:paddingTop="120dp"
                     android:paddingBottom="20dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
@@ -46,11 +46,10 @@
                         android:id="@+id/TitleMeishiWechatSavedAccount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_meishi_wechat_account_saved"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textColor="?attr/colorOnSurface"/>
 
                     <!--账号列表容器，用于动态添加卡片-->
@@ -76,11 +75,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
                     android:paddingTop="120dp"
                     android:paddingBottom="120dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
@@ -88,19 +87,17 @@
                         android:id="@+id/TitleMeishiWechatInstructions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_meishi_wechat_rules"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textColor="?attr/colorOnSurface"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/MeishiWechatInstructionsContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="?attr/CardViewMarginBottom"
+                        android:layout_marginBottom="25dp"
                         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                         app:cardCornerRadius="20dp">
 
@@ -113,8 +110,7 @@
                                 android:id="@+id/TextMeishiWechatInstructions"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="10dp"
-                                android:text=""
+                                android:padding="16dp"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:clickable="true"
@@ -127,19 +123,17 @@
                         android:id="@+id/TitleMeishiWechatGiftContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_meishi_wechat_gift"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textColor="?attr/colorOnSurface"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/MeishiWechatGiftContentContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="?attr/CardViewMarginBottom"
+                        android:layout_marginBottom="25dp"
                         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                         app:cardCornerRadius="20dp">
 
@@ -159,7 +153,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
-                                    android:padding="10dp">
+                                    android:padding="16dp">
 
                                     <ImageView
                                         android:layout_width="match_parent"
@@ -167,7 +161,7 @@
                                         android:adjustViewBounds="true"
                                         android:scaleType="fitStart"
                                         android:src="@drawable/item_2h_double_item"
-                                        tools:ignore="ContentDescription" />
+                                        tools:ignore="ContentDescription,TooDeepLayout" />
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -226,8 +220,7 @@
                                 android:id="@+id/TextMeishiWechatGiftContent"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="10dp"
-                                android:text=""
+                                android:padding="16dp"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:clickable="true"

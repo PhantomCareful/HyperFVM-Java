@@ -4,9 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipChildren="false"
-    android:clipToPadding="false">
+    android:layout_height="match_parent">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
@@ -26,8 +24,9 @@
                 android:id="@+id/using_instruction_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
+                android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -35,8 +34,7 @@
                     android:id="@+id/using_instruction_top_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -47,8 +45,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnImportantCardView"
                         android:textSize="20sp" />
 
@@ -58,8 +55,7 @@
                     android:id="@+id/using_instruction1_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -70,8 +66,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
                         android:textSize="20sp" />
 
@@ -81,8 +76,7 @@
                     android:id="@+id/using_instruction2_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -93,8 +87,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
                         android:textSize="20sp" />
 
@@ -104,8 +97,7 @@
                     android:id="@+id/using_instruction3_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -116,8 +108,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
                         android:textSize="20sp" />
 
@@ -127,8 +118,7 @@
                     android:id="@+id/using_instruction4_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -139,8 +129,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
                         android:textSize="20sp" />
 
@@ -150,8 +139,7 @@
                     android:id="@+id/using_instruction5_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -162,8 +150,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
                         android:textSize="20sp" />
 
@@ -173,8 +160,7 @@
                     android:id="@+id/using_instruction6_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -185,8 +171,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
                         android:textSize="20sp" />
 
@@ -196,8 +181,7 @@
                     android:id="@+id/using_instruction7_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -208,8 +192,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
                         android:textSize="20sp" />
 
@@ -227,8 +210,7 @@
                     android:id="@+id/using_instruction_copyright"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginVertical="20dp"
                     android:gravity="center"
                     android:text="@string/copyright"
                     android:textColor="?attr/colorOnSurface"

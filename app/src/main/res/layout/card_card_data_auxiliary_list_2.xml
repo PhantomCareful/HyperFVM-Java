@@ -4,8 +4,7 @@
     android:theme="@style/GeneralTextViewInImportantCardViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginBottom="?attr/CardViewMarginBottom"
+    android:layout_marginBottom="25dp"
     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
     app:cardCornerRadius="20dp">
 

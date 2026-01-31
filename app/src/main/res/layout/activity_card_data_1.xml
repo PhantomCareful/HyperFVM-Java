@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             tools:ignore="MissingConstraints">
 
             <LinearLayout
@@ -23,23 +25,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="120dp"
+                android:layout_marginHorizontal="10dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/title_card_data_base_info"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -52,7 +54,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:padding="10dp"
+                            android:padding="16dp"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground">
 
@@ -90,10 +92,9 @@
                             android:id="@+id/base_info"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text=""
                             android:textSize="20sp"
                             android:textColor="?attr/TextViewColorOnGeneralCardView"
-                            android:padding="10dp"
+                            android:padding="16dp"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"/>
 
@@ -105,18 +106,17 @@
                     android:id="@+id/title_card_data_corresponding_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/title_card_data_corresponding_info"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/Card_Corresponding"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -133,26 +133,26 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/title_card_data_data_info"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <TextView
                     android:id="@+id/star"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="强化提升：攻击力"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -160,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="10dp"
+                        android:padding="16dp"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
@@ -537,17 +537,17 @@
                     android:id="@+id/skill"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="技能提升：攻击间隔"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/Card_Skill"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -555,7 +555,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="10dp"
+                        android:padding="16dp"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
@@ -761,18 +761,17 @@
                     android:id="@+id/card_data_other_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/title_card_data_other_info"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/Card_Other"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -783,7 +782,7 @@
                         android:text="[食神谱]水煮鱼：攻击力+10%"
                         android:textSize="20sp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:padding="10dp"
+                        android:padding="16dp"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground"/>
 

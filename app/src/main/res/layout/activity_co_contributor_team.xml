@@ -26,8 +26,9 @@
                 android:id="@+id/CoContributorTeam_Container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
+                android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -35,8 +36,7 @@
                     android:id="@+id/CoContributorTeam_Top_Container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
@@ -47,10 +47,9 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnImportantCardView"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </androidx.cardview.widget.CardView>
@@ -59,20 +58,18 @@
                     android:id="@+id/CoContributorTeam_Content_Container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp"
                     android:visibility="gone">
 
                     <TextView
                         android:id="@+id/CoContributorTeam_Content_Content"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text=""
+                        android:padding="16dp"
                         android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground"/>
 

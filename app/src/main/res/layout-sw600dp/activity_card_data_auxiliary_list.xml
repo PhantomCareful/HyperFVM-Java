@@ -14,12 +14,12 @@
         <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
             android:id="@+id/CardDataAuxiliaryList_Container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:paddingTop="120dp"
@@ -29,9 +29,10 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingStart="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false"
@@ -41,7 +42,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_1"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -54,7 +56,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -67,7 +70,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_2"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -80,7 +84,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -93,7 +98,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_3"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -106,7 +112,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -119,7 +126,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_4"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -132,7 +140,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -145,19 +154,20 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
-                    android:clipToPadding="false"
-                    tools:ignore="RtlSymmetry">
+                    android:clipToPadding="false">
 
                     <TextView
                         android:id="@+id/title_card_data_auxiliary_list_5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_5"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -170,7 +180,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -183,7 +194,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_6"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -196,7 +208,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -209,7 +222,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_7"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -222,7 +236,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -235,7 +250,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_8"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>
@@ -248,7 +264,8 @@
                         android:id="@+id/title_card_data_auxiliary_list_content_8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="20sp"/>

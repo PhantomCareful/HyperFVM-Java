@@ -1,8 +1,7 @@
 package com.careful.HyperFVM.utils.ForDashboard.MeishiWechat;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
+import android.util.Log;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
@@ -12,30 +11,20 @@ import java.util.List;
 public class GiftFetcher {
     private final DBHelper dbHelper;
     private final GiftFetchHelper giftHelper;
-    private final Handler mainHandler;
-    private final Context context;
-
-    // 回调接口：通知领取结果
-    public interface GiftFetchListener {
-        void onResult(String resultText);
-    }
 
     public GiftFetcher(Context context) {
         this.dbHelper = new DBHelper(context);
         this.giftHelper = new GiftFetchHelper();
-        this.mainHandler = new Handler(Looper.getMainLooper());
-        this.context = context; // 初始化
     }
 
     // 执行自动领取并保存结果
-    public void fetchAndSaveGift(GiftFetchListener listener) {
+    public void fetchAndSaveGift() {
         List<DBHelper.PlayerInfo> playerInfos = dbHelper.getAllMeishiWechat();
 
         if (playerInfos.isEmpty()) {
-            String resultText = "✅暂无账号可领取\n👉点击管理链接";
-            dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", "暂无✅");
-            saveResult(resultText, "成功");
-            listener.onResult(resultText);
+            String resultSimple = "暂无";
+            String resultNotification = "暂无✅";
+            saveResult("✅", resultSimple, resultNotification, "成功");
             return;
         }
 
@@ -48,38 +37,35 @@ public class GiftFetcher {
         // 子线程执行网络请求
         new Thread(() -> {
             try {
-                giftHelper.fetchAllGifts(context, openids, new GiftFetchHelper.GiftFetchCallback() {
+                giftHelper.fetchAllGifts(openids, new GiftFetchHelper.GiftFetchCallback() {
                     @Override
                     public void onResult(int successCount) {
-                        //String text = "✅" + successCount + "个账号已完成领取😎😎\n👉点击管理链接";
-                        String text = successCount + "个";
-                        String emoji = "✅";
-                        dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", successCount + "个✅");
-                        dbHelper.updateDashboardContent("meishi_wechat_result_emoji", emoji);
-                        saveResult(text, "成功");
-                        mainHandler.post(() -> listener.onResult(text));
+                        String resultSimple = successCount + "个";
+                        String resultNotification = successCount + "个✅";
+                        saveResult("✅", resultSimple, resultNotification, "成功");
                     }
 
                     @Override
                     public void onError() {
-                        String text = "❌领取失败，锑食服务器又炸了\n将在适当的时间再次尝试领取\n👉点击管理链接";
-                        dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", "服务器❌");
-                        saveResult(text, "失败");
-                        mainHandler.post(() -> listener.onResult(text));
+                        String resultSimple = "失败";
+                        String resultNotification = "服务器❌";
+                        saveResult("❌", resultSimple, resultNotification, "失败");
                     }
                 });
             } catch (Exception e) {
-                String text = "❌领取异常\n将在适当的时间再次尝试领取\n👉点击管理链接";
-                dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", "失败❌");
-                saveResult(text, "失败");
-                mainHandler.post(() -> listener.onResult(text));
+                String resultSimple = "领取异常";
+                String resultNotification = "失败❌";
+                saveResult("❌", resultSimple, resultNotification, "失败");
             }
         }).start();
     }
 
     // 保存结果到数据库
-    private void saveResult(String resultText, String resultState) {
-        dbHelper.updateDashboardContent("meishi_wechat_result_text", resultText);
+    private void saveResult(String resultEmoji, String resultSimple, String resultNotification, String resultState) {
+        Log.d("meishi_wechat_result", "in util: resultEmoji: " + resultEmoji + ", resultSimple: " + resultSimple + ", resultNotification: " + resultNotification + ", resultState: " + resultState);
+        dbHelper.updateDashboardContent("meishi_wechat_result_emoji", resultEmoji);
+        dbHelper.updateDashboardContent("meishi_wechat_result_text", resultSimple);
+        dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", resultNotification);
         dbHelper.updateDashboardContent("meishi_wechat_result", resultState);
     }
 

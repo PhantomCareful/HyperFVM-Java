@@ -1,6 +1,5 @@
 package com.careful.HyperFVM.utils.ForDashboard.MeishiWechat;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -30,7 +29,7 @@ public class GiftFetchHelper {
     }
 
     // 批量领取礼包
-    public void fetchAllGifts(Context context, List<String> openids, GiftFetchCallback callback) {
+    public void fetchAllGifts(List<String> openids, GiftFetchCallback callback) {
         executor.execute(() -> {
             int successCount = 0;
             boolean isServerError = false;
@@ -57,7 +56,6 @@ public class GiftFetchHelper {
                         break;
                     }
                 } catch (IOException | JSONException e) {
-                    e.printStackTrace();
                     isServerError = true;
                     break;
                 }

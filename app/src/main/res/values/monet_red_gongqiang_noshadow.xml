@@ -6,8 +6,6 @@
 
         <!--CardView的默认样式-->
         <item name="cardViewStyle">@style/CardView.NoShadow</item>
-        <!--卡片下间距-->
-        <item name="CardViewMarginBottom">10dp</item>
 
         <!--一般CardView-->
         <!--卡片颜色-->

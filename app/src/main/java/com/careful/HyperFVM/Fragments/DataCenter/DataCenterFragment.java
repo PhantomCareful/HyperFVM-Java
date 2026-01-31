@@ -11,10 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +67,7 @@ public class DataCenterFragment extends Fragment {
 
     private TextView dashboardDoubleExplosionRate;
     private TextView dashboardDoubleExplosionRateEmoji;
-    private LinearLayout dashboardDoubleExplosionRateContainer;
+    private String activityEmoji;
 
     private TextView dashboardFertilizationTask;
     private TextView dashboardFertilizationTaskEmoji;
@@ -84,6 +80,7 @@ public class DataCenterFragment extends Fragment {
 
     private TextView dashboardBilibiliFVM;
     private TextView dashboardBilibiliFVMEmoji;
+    private LinearLayout dashboardBilibiliFVMContainer;
 
     // 仪表盘工具类
     private EveryMonthAndEveryWeek everyMonthAndEveryWeek;
@@ -93,9 +90,6 @@ public class DataCenterFragment extends Fragment {
     // 查黑系统工具类
     private IcuHelper icuHelper;
 
-    // 动画部分
-    private TransitionSet transition;
-    private LinearLayout dataCenterContainer;
     private int pressFeedbackAnimationDelay;
 
     @Override
@@ -117,7 +111,7 @@ public class DataCenterFragment extends Fragment {
 
         dashboardDoubleExplosionRate = root.findViewById(R.id.dashboard_DoubleExplosionRate);
         dashboardDoubleExplosionRateEmoji = root.findViewById(R.id.dashboard_DoubleExplosionRate_Emoji);
-        dashboardDoubleExplosionRateContainer = root.findViewById(R.id.dashboard_DoubleExplosionRate_Container);
+        LinearLayout dashboardDoubleExplosionRateContainer = root.findViewById(R.id.dashboard_DoubleExplosionRate_Container);
 
         dashboardFertilizationTask = root.findViewById(R.id.dashboard_FertilizationTask);
         dashboardFertilizationTaskEmoji = root.findViewById(R.id.dashboard_FertilizationTask_Emoji);
@@ -130,7 +124,8 @@ public class DataCenterFragment extends Fragment {
 
         dashboardBilibiliFVM = root.findViewById(R.id.dashboard_BilibiliFVM);
         dashboardBilibiliFVMEmoji = root.findViewById(R.id.dashboard_BilibiliFVM_Emoji);
-        dashboardBilibiliFVM.setEnabled(false);
+        dashboardBilibiliFVMContainer = root.findViewById(R.id.dashboard_BilibiliFVM_Container);
+        dashboardBilibiliFVMContainer.setEnabled(false);
 
         // 初始化仪表盘工具类
         everyMonthAndEveryWeek = new EveryMonthAndEveryWeek();
@@ -139,13 +134,6 @@ public class DataCenterFragment extends Fragment {
 
         // 初始化查黑工具类
         icuHelper = new IcuHelper(requireContext());
-
-        // 初始化动画效果
-        transition = new TransitionSet();
-        transition.addTransition(new Fade()); // 淡入淡出
-        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
-        transition.setDuration(800); // 动画时长800ms
-        dataCenterContainer = root.findViewById(R.id.DataCenter_Container);
 
         // 读取数据库结果并显示
         loadResultsFromDatabase();
@@ -164,15 +152,18 @@ public class DataCenterFragment extends Fragment {
             Animation rotateAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_360);
             buttonRefreshDashboard.startAnimation(rotateAnim);
 
-            // 过渡动画 - 大的LinearLayout
-            TransitionManager.beginDelayedTransition(dataCenterContainer, transition);
-
             dashboardMeishiWechat.setText("请等待...");
+            dashboardMeishiWechatEmoji.setText("⏳");
             dashboardDoubleExplosionRate.setText("请等待...");
+            dashboardDoubleExplosionRateEmoji.setText("⏳");
             dashboardFertilizationTask.setText("请等待...");
+            dashboardFertilizationTaskEmoji.setText("⏳");
             dashboardNewYear.setText("请等待...");
+            dashboardNewYearEmoji.setText("⏳");
             dashboardEveryday.setText("请等待...");
-            dashboardBilibiliFVM.setEnabled(false);
+            dashboardEverydayEmoji.setText("⏳");
+            dashboardBilibiliFVMEmoji.setText("⏳");
+            dashboardBilibiliFVMContainer.setEnabled(false);
 
             // 2. 子线程执行：sleep 1秒 + 执行任务 + 主线程更新结果
             new Thread(() -> {
@@ -181,11 +172,11 @@ public class DataCenterFragment extends Fragment {
                     ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
                     executeDailyTasks.executeDailyTasksForRefreshDashboard();
 
-                    // 重新从仓库获取B站官方的最新公告
-                    getLatestBilibiliAnnouncement();
-
                     // 手动延迟1秒（让用户感知到“正在处理”，避免以为没反应）
                     Thread.sleep(1000);
+
+                    // 重新从仓库获取B站官方的最新公告
+                    getLatestBilibiliAnnouncement();
 
                     // 3. 切回主线程更新UI：读取数据 + 恢复按钮
                     if (isAdded() && getActivity() != null) {
@@ -214,8 +205,24 @@ public class DataCenterFragment extends Fragment {
         });
 
         // ------------------------------这一部分统一设置点击事件------------------------------
-        /*// 温馨礼包
-        root.findViewById(R.id.card_meishi_wechat_container).setOnClickListener(v -> v.postDelayed(() -> {
+        dashboardDoubleExplosionRateContainer.setOnClickListener(v -> {
+            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+            TextView contentTextView = dialogView.findViewById(R.id.content);
+            emojiTextView.setText(activityEmoji);  // 设置表情符号
+            contentTextView.setText(dbHelper.getDashboardContent("double_explosion_rate_detail"));  // 设置内容文本
+
+            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                    .setTitle(getResources().getString(R.string.title_dashboard_double_explosion_rate))
+                    .setView(dialogView)
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
+
+        // 温馨礼包
+        root.findViewById(R.id.dashboard_MeishiWechat_Container).setOnClickListener(v -> {
             if (dbHelper.getSettingValue(CONTENT_IS_BIOMETRIC_AUTH)) {
                 // 指纹验证(如果开启的话)
                 BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
@@ -229,11 +236,11 @@ public class DataCenterFragment extends Fragment {
                 Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
                 startActivity(intent);
             }
-        }, pressFeedbackAnimationDelay));
+        });
 
         // B站最新更新公告
-        root.findViewById(R.id.card_bilibili_fvm_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl), pressFeedbackAnimationDelay));*/
+        root.findViewById(R.id.dashboard_BilibiliFVM_Container).setOnClickListener(v ->
+                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl));
 
         // 防御卡全能数据库
         root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
@@ -332,34 +339,18 @@ public class DataCenterFragment extends Fragment {
      */
     @SuppressLint("SetTextI18n")
     private void loadResultsFromDatabase() {
-        // 过渡动画 - 大的LinearLayout
-        TransitionManager.beginDelayedTransition(dataCenterContainer, transition);
-
         // 读取礼包领取结果
         String meishiWechatResult = dbHelper.getDashboardContent("meishi_wechat_result_text");
         String meishiWechatResultEmoji = dbHelper.getDashboardContent("meishi_wechat_result_emoji");
         dashboardMeishiWechat.setText(meishiWechatResult.isEmpty() ? "null" : meishiWechatResult);
         dashboardMeishiWechatEmoji.setText(meishiWechatResultEmoji.isEmpty() ? "❌" : meishiWechatResultEmoji);
+
+        Log.d("meishi_wechat_result", "in fragment: resultEmoji: " + meishiWechatResultEmoji + ", resultSimple: " + meishiWechatResult + ", resultNotification: " + dbHelper.getDashboardContent("meishi_wechat_result_text_notification") + ", resultState: " + dbHelper.getDashboardContent("meishi_wechat_result"));
         // 读取双倍双爆结果
         String activityResult = dbHelper.getDashboardContent("double_explosion_rate");
-        String activityEmoji = dbHelper.getDashboardContent("double_explosion_rate_emoji");
+        activityEmoji = dbHelper.getDashboardContent("double_explosion_rate_emoji");
         dashboardDoubleExplosionRate.setText(activityResult.isEmpty() ? "null" : activityResult);
         dashboardDoubleExplosionRateEmoji.setText(activityEmoji.isEmpty() ? "❌" : activityEmoji);
-        dashboardDoubleExplosionRateContainer.setOnClickListener(v -> {
-            LayoutInflater inflater = LayoutInflater.from(requireContext());
-            View dialogView = inflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(activityEmoji);  // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("double_explosion_rate_detail"));  // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_double_explosion_rate))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
-        });
         // 读取施肥活动结果
         String fertilizationTaskResult = dbHelper.getDashboardContent("fertilization_task");
         String fertilizationTaskEmoji = dbHelper.getDashboardContent("fertilization_task_emoji");
@@ -409,7 +400,7 @@ public class DataCenterFragment extends Fragment {
                     requireActivity().runOnUiThread(() -> {
                         dashboardBilibiliFVM.setText("点击跳转");
                         dashboardBilibiliFVMEmoji.setText("👉");
-                        dashboardBilibiliFVM.setEnabled(true);
+                        dashboardBilibiliFVMContainer.setEnabled(true);
                         latestBilibiliFVMUrl = content;
                     });
                 }

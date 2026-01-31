@@ -14,34 +14,34 @@
         <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:id="@+id/tools_tiramisu_image_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
+                android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
                 <ImageView
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:scaleType="fitStart"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
                     android:src="@drawable/tiramisu_binding_image"
-                    android:layout_gravity="center"
                     tools:ignore="ContentDescription" />
 
                 <Button
                     android:id="@+id/update_image_action"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="10dp"
                     android:text=""
                     android:textSize="20sp"
                     app:cornerRadius="20dp"
@@ -51,8 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="?attr/CardViewMarginBottom"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -69,10 +68,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -101,10 +97,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -133,10 +126,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -165,10 +155,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -197,10 +184,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -229,10 +213,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -261,10 +242,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -293,10 +271,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -325,10 +300,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -357,10 +329,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -389,10 +358,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -421,10 +387,7 @@
                             android:gravity="center_vertical"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:padding="16dp">
 
                             <!-- 左侧文字 -->
                             <TextView
@@ -455,8 +418,7 @@
                     android:text="@string/copyright_and_xiaye"
                     android:textSize="20sp"
                     android:textColor="?attr/colorOnSurface"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginVertical="20dp"
                     android:gravity="center"/>
 
             </LinearLayout>

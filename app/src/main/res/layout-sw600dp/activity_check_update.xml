@@ -61,18 +61,18 @@
                     android:id="@+id/using_instruction_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:baselineAligned="false"
                     android:orientation="horizontal"
                     android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:clipToPadding="false"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
                         android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
                         android:clipChildren="false"
                         android:clipToPadding="false">
 
@@ -80,16 +80,13 @@
                             android:id="@+id/title_image_log"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="20dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="15dp"/>
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginVertical="10dp"/>
 
                         <Button
                             android:id="@+id/update_image_action"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="5dp"
                             android:text="@string/label_check_update_status_checking"
                             android:textSize="25sp"
                             app:cornerRadius="20dp"/>
@@ -98,10 +95,7 @@
                             android:id="@+id/container_image_log_new"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            android:layout_marginBottom="10dp"
                             app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                             app:cardCornerRadius="20dp"
                             android:visibility="gone">
@@ -118,7 +112,7 @@
                                     android:text="@string/many_n"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnImportantCardView"
-                                    android:padding="10dp"
+                                    android:padding="16dp"
                                     android:clickable="true"
                                     android:background="?attr/selectableItemBackground"/>
 
@@ -130,10 +124,7 @@
                             android:id="@+id/container_image_log_current"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            android:layout_marginBottom="25dp"
                             app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                             app:cardCornerRadius="20dp">
 
@@ -149,7 +140,7 @@
                                     android:text="@string/many_n"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:padding="10dp"
+                                    android:padding="16dp"
                                     android:clickable="true"
                                     android:background="?attr/selectableItemBackground"/>
 
@@ -163,9 +154,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
                         android:orientation="vertical"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="10dp"
                         android:clipChildren="false"
                         android:clipToPadding="false">
 
@@ -173,16 +164,13 @@
                             android:id="@+id/title_app_log"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="20dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="20dp"/>
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginVertical="10dp"/>
 
                         <Button
                             android:id="@+id/update_app_action"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="10dp"
                             android:text="@string/label_check_update_status_checking"
                             android:textSize="25sp"
                             app:cornerRadius="20dp"/>
@@ -191,10 +179,7 @@
                             android:id="@+id/container_app_log_new"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            android:layout_marginBottom="10dp"
                             app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                             app:cardCornerRadius="20dp"
                             android:visibility="gone">
@@ -211,7 +196,7 @@
                                     android:text="@string/many_n"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnImportantCardView"
-                                    android:padding="10dp"
+                                    android:padding="16dp"
                                     android:clickable="true"
                                     android:background="?attr/selectableItemBackground"/>
 
@@ -223,10 +208,7 @@
                             android:id="@+id/container_app_log_current"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="?attr/CardViewMarginBottom"
+                            android:layout_marginBottom="25dp"
                             app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                             app:cardCornerRadius="20dp">
 
@@ -242,7 +224,7 @@
                                     android:text="@string/many_n"
                                     android:textSize="20sp"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:padding="10dp"
+                                    android:padding="16dp"
                                     android:clickable="true"
                                     android:background="?attr/selectableItemBackground"/>
 

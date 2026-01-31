@@ -2,9 +2,6 @@
 <resources>
     <!-- 这里存放的是自定义属性 -->
 
-    <!--CardView下边距-->
-    <attr name="CardViewMarginBottom" format="dimension" />
-    
     <!--一般CardView-->
     <!--卡片颜色-->
     <attr name="GeneralCardViewBackground" format="color" />
