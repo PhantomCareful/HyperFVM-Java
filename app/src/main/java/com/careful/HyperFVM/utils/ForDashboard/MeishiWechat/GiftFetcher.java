@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,9 @@ public class GiftFetcher {
         dbHelper.updateDashboardContent("meishi_wechat_result_text", resultSimple);
         dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", resultNotification);
         dbHelper.updateDashboardContent("meishi_wechat_result", resultState);
+        if (resultEmoji.equals("✅")) {
+            dbHelper.updateDashboardContent("last_date", TimeUtil.getCurrentDate());
+        }
     }
 
 }

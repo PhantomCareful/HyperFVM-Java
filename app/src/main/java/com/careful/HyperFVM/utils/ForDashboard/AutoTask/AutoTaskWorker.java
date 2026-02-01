@@ -1,7 +1,5 @@
 package com.careful.HyperFVM.utils.ForDashboard.AutoTask;
 
-import static com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks.getCurrentDate;
-
 import android.content.Context;
 import android.util.Log;
 
@@ -18,6 +16,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PersistentServiceNotificationManager;
+import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -45,7 +44,7 @@ public class AutoTaskWorker extends Worker {
 
         try {
             // 检查本次执行是否需要发送通知
-            String today = getCurrentDate();
+            String today = TimeUtil.getCurrentDate();
             String lastDate = dbHelper.getDashboardContent("last_date");
             boolean needExecute = !today.equals(lastDate)
                     || "失败".equals(dbHelper.getDashboardContent("meishi_wechat_result"));

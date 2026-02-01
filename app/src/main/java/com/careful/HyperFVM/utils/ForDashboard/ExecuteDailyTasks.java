@@ -7,10 +7,7 @@ import com.careful.HyperFVM.utils.ForDashboard.Activity.ActivityCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.FertilizationTask.FertilizationTaskCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.MeishiWechat.GiftFetcher;
 import com.careful.HyperFVM.utils.ForDashboard.NewYear.NewYear;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 public class ExecuteDailyTasks {
 
@@ -19,8 +16,6 @@ public class ExecuteDailyTasks {
     private final ActivityCatcher activityCatcher;
     private final FertilizationTaskCatcher fertilizationTaskCatcher;
     private final NewYear newYear;
-
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     public ExecuteDailyTasks(Context context) {
         dbHelper = new DBHelper(context);
@@ -31,7 +26,7 @@ public class ExecuteDailyTasks {
     }
 
     public void executeDailyTasks() {
-        String today = getCurrentDate();
+        String today = TimeUtil.getCurrentDate();
         String lastDate = dbHelper.getDashboardContent("last_date");
         boolean needExecute = !today.equals(lastDate)
                 || "失败".equals(dbHelper.getDashboardContent("meishi_wechat_result"));
@@ -48,9 +43,5 @@ public class ExecuteDailyTasks {
         activityCatcher.parseTodayActivityContent();
         fertilizationTaskCatcher.catchFertilizationTaskInfo();
         newYear.execute();
-    }
-
-    public static String getCurrentDate() {
-        return new SimpleDateFormat(DATE_FORMAT, Locale.CHINA).format(new Date());
     }
 }
