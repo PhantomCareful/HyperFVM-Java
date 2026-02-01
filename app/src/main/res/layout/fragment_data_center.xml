@@ -253,6 +253,7 @@
                             android:background="?attr/colorSurface"/>
 
                         <LinearLayout
+                            android:id="@+id/dashboard_Everyday_Container"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
@@ -301,6 +302,7 @@
                             android:background="?attr/colorSurface"/>
 
                         <LinearLayout
+                            android:id="@+id/dashboard_FertilizationTask_Container"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
@@ -349,6 +351,7 @@
                             android:background="?attr/colorSurface"/>
 
                         <LinearLayout
+                            android:id="@+id/dashboard_NewYear_Container"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"

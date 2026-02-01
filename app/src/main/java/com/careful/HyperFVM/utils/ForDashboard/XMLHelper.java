@@ -10,7 +10,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -53,6 +56,11 @@ public class XMLHelper {
             Log.e(TAG, "获取xml的url为空");
             return "获取xml的url为空";
         }
+
+        // 1.5 处理url链接，防止缓存
+        Random random = new Random();
+        int num = 1 + random.nextInt(1000000000);
+        url = url + "?" + num;
 
         // 2.构建OkHttp请求
         Request request = new Request.Builder()
@@ -122,7 +130,8 @@ public class XMLHelper {
     }
 
     /**
-     * 核心方法：从XML解析器中，按「层级路径+匹配属性」获取目标属性的值
+     * 从XML解析器中，按「层级路径+匹配属性」获取目标属性的值
+     * 如果XML内容是比较简单的话，可以用这个方法来获取内容
      * @param parser XmlPullParser实例（已绑定XML内容）
      * @param targetPath 目标元素的层级路径（如 "root/activitys/activity"）
      * @param matchAttrKey 匹配的属性名（如 "time"）
@@ -211,4 +220,26 @@ public class XMLHelper {
         Log.d(TAG, "getAttrValueByPathAndMatchAttr: 未找到符合条件的元素：路径=" + targetPath + "，匹配属性=" + matchAttrKey + "=" + matchAttrValue);
         return null;
     }
+
+    /**
+     * 从XML字符串中，通过给定的正则表达式获取需要的内容
+     * 如果XML的嵌套层级比较复杂的话，用这个方法获取内容更方便
+     */
+    public static Matcher getContentByRegularExpression(String xmlContent, String regularExpression) {
+        if (xmlContent == null || regularExpression == null) {
+            Log.e(TAG, "getContentByRegularExpression: xmlContent或regularExpression为null");
+            return null;
+        }
+
+        Pattern pattern = Pattern.compile(regularExpression, Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(xmlContent);
+
+        if (!matcher.find()) {
+            Log.e(TAG, "getContentByRegularExpression: 没有通过正则表达式找到指定的内容");
+            return null;
+        }
+
+        return matcher;
+    }
+
 }

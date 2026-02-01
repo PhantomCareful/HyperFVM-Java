@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,13 +66,16 @@ public class DataCenterFragment extends Fragment {
 
     private TextView dashboardDoubleExplosionRate;
     private TextView dashboardDoubleExplosionRateEmoji;
-    private String activityEmoji;
+    private String doubleExplosionRateEmoji;
 
     private TextView dashboardFertilizationTask;
     private TextView dashboardFertilizationTaskEmoji;
+    private String fertilizationTaskEmoji;
 
     private TextView dashboardEveryday;
     private TextView dashboardEverydayEmoji;
+    private String dashboardEverydayResult;
+    private String everydayEmoji;
 
     private TextView dashboardNewYear;
     private TextView dashboardNewYearEmoji;
@@ -108,6 +110,7 @@ public class DataCenterFragment extends Fragment {
 
         dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
         dashboardMeishiWechatEmoji = root.findViewById(R.id.dashboard_MeishiWechat_Emoji);
+        LinearLayout dashboardMeishiWechatContainer = root.findViewById(R.id.dashboard_MeishiWechat_Container);
 
         dashboardDoubleExplosionRate = root.findViewById(R.id.dashboard_DoubleExplosionRate);
         dashboardDoubleExplosionRateEmoji = root.findViewById(R.id.dashboard_DoubleExplosionRate_Emoji);
@@ -115,9 +118,11 @@ public class DataCenterFragment extends Fragment {
 
         dashboardFertilizationTask = root.findViewById(R.id.dashboard_FertilizationTask);
         dashboardFertilizationTaskEmoji = root.findViewById(R.id.dashboard_FertilizationTask_Emoji);
+        LinearLayout dashboardFertilizationTaskContainer = root.findViewById(R.id.dashboard_FertilizationTask_Container);
 
         dashboardEveryday = root.findViewById(R.id.dashboard_Everyday);
         dashboardEverydayEmoji = root.findViewById(R.id.dashboard_Everyday_Emoji);
+        LinearLayout dashboardEverydayContainer = root.findViewById(R.id.dashboard_Everyday_Container);
 
         dashboardNewYear = root.findViewById(R.id.dashboard_NewYear);
         dashboardNewYearEmoji = root.findViewById(R.id.dashboard_NewYear_Emoji);
@@ -211,8 +216,8 @@ public class DataCenterFragment extends Fragment {
 
             TextView emojiTextView = dialogView.findViewById(R.id.emoji);
             TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(activityEmoji);  // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("double_explosion_rate_detail"));  // 设置内容文本
+            emojiTextView.setText(doubleExplosionRateEmoji); // 设置表情符号
+            contentTextView.setText(dbHelper.getDashboardContent("double_explosion_rate_detail")); // 设置内容文本
 
             new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                     .setTitle(getResources().getString(R.string.title_dashboard_double_explosion_rate))
@@ -222,7 +227,7 @@ public class DataCenterFragment extends Fragment {
         });
 
         // 温馨礼包
-        root.findViewById(R.id.dashboard_MeishiWechat_Container).setOnClickListener(v -> {
+        dashboardMeishiWechatContainer.setOnClickListener(v -> {
             if (dbHelper.getSettingValue(CONTENT_IS_BIOMETRIC_AUTH)) {
                 // 指纹验证(如果开启的话)
                 BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
@@ -238,9 +243,51 @@ public class DataCenterFragment extends Fragment {
             }
         });
 
-        // B站最新更新公告
-        root.findViewById(R.id.dashboard_BilibiliFVM_Container).setOnClickListener(v ->
+        // 更新公告
+        dashboardBilibiliFVMContainer.setOnClickListener(v ->
                 showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl));
+
+        // 每日签到
+        dashboardEverydayContainer.setOnClickListener(v -> {
+            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+            TextView contentTextView = dialogView.findViewById(R.id.content);
+
+            emojiTextView.setText(everydayEmoji); // 设置表情符号
+
+            String everydayContentDetail;
+            if (dashboardEverydayResult.equals("可领取")) {
+                everydayContentDetail = "\uD83E\uDEF0记得每天都要签到\uD83E\uDEF0\n\n本月签到礼包可以领取啦\n若有漏签请及时补签哦";
+            } else {
+                everydayContentDetail = "\uD83E\uDEF0记得每天都要签到\uD83E\uDEF0\n\n当前进度：" + dashboardEverydayResult;
+            }
+            contentTextView.setText(everydayContentDetail); // 设置内容文本
+
+            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                    .setTitle(getResources().getString(R.string.title_dashboard_everyday))
+                    .setView(dialogView)
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
+
+        // 施肥活动
+        dashboardFertilizationTaskContainer.setOnClickListener(v -> {
+            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+            TextView contentTextView = dialogView.findViewById(R.id.content);
+            emojiTextView.setText(fertilizationTaskEmoji); // 设置表情符号
+            contentTextView.setText(dbHelper.getDashboardContent("fertilization_task_detail")); // 设置内容文本
+
+            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                    .setTitle(getResources().getString(R.string.title_dashboard_fertilization_task))
+                    .setView(dialogView)
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
 
         // 防御卡全能数据库
         root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
@@ -344,16 +391,14 @@ public class DataCenterFragment extends Fragment {
         String meishiWechatResultEmoji = dbHelper.getDashboardContent("meishi_wechat_result_emoji");
         dashboardMeishiWechat.setText(meishiWechatResult.isEmpty() ? "null" : meishiWechatResult);
         dashboardMeishiWechatEmoji.setText(meishiWechatResultEmoji.isEmpty() ? "❌" : meishiWechatResultEmoji);
-
-        Log.d("meishi_wechat_result", "in fragment: resultEmoji: " + meishiWechatResultEmoji + ", resultSimple: " + meishiWechatResult + ", resultNotification: " + dbHelper.getDashboardContent("meishi_wechat_result_text_notification") + ", resultState: " + dbHelper.getDashboardContent("meishi_wechat_result"));
         // 读取双倍双爆结果
         String activityResult = dbHelper.getDashboardContent("double_explosion_rate");
-        activityEmoji = dbHelper.getDashboardContent("double_explosion_rate_emoji");
+        doubleExplosionRateEmoji = dbHelper.getDashboardContent("double_explosion_rate_emoji");
         dashboardDoubleExplosionRate.setText(activityResult.isEmpty() ? "null" : activityResult);
-        dashboardDoubleExplosionRateEmoji.setText(activityEmoji.isEmpty() ? "❌" : activityEmoji);
+        dashboardDoubleExplosionRateEmoji.setText(doubleExplosionRateEmoji.isEmpty() ? "❌" : doubleExplosionRateEmoji);
         // 读取施肥活动结果
         String fertilizationTaskResult = dbHelper.getDashboardContent("fertilization_task");
-        String fertilizationTaskEmoji = dbHelper.getDashboardContent("fertilization_task_emoji");
+        fertilizationTaskEmoji = dbHelper.getDashboardContent("fertilization_task_emoji");
         dashboardFertilizationTask.setText(fertilizationTaskResult.isEmpty() ? "null" : fertilizationTaskResult);
         dashboardFertilizationTaskEmoji.setText(fertilizationTaskEmoji.isEmpty() ? "❌" : fertilizationTaskEmoji);
         // 读取美食悬赏活动结果
@@ -369,13 +414,14 @@ public class DataCenterFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void handleWeekAndMonthLogic() {
         // （1）处理每日签到提示（根据1-25号/26号-月底区分显示）
-        String dashboardEverydayResult = everyMonthAndEveryWeek.dailyNotifications();
+        dashboardEverydayResult = everyMonthAndEveryWeek.dailyNotifications();
         dashboardEveryday.setText(dashboardEverydayResult);
         if (dashboardEverydayResult.equals("可领取")) {
-            dashboardEverydayEmoji.setText("🍾");
+            everydayEmoji = "🍾";
         } else {
-            dashboardEverydayEmoji.setText("✊");
+            everydayEmoji = "✊";
         }
+        dashboardEverydayEmoji.setText(everydayEmoji);
 
         // （2）处理月末提示
         CardView card_dashboard_LastDayOfMonth = root.findViewById(R.id.card_last_day_of_month_container);

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.Activity.ActivityCatcher;
-import com.careful.HyperFVM.utils.ForDashboard.FertilizationTask.FertilizationTask;
+import com.careful.HyperFVM.utils.ForDashboard.FertilizationTask.FertilizationTaskCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.MeishiWechat.GiftFetcher;
 import com.careful.HyperFVM.utils.ForDashboard.NewYear.NewYear;
 
@@ -17,7 +17,7 @@ public class ExecuteDailyTasks {
     private final DBHelper dbHelper;
     private final GiftFetcher giftFetcher;
     private final ActivityCatcher activityCatcher;
-    private final FertilizationTask fertilizationTask;
+    private final FertilizationTaskCatcher fertilizationTaskCatcher;
     private final NewYear newYear;
 
     private static final String DATE_FORMAT = "yyyy-MM-dd";
@@ -26,7 +26,7 @@ public class ExecuteDailyTasks {
         dbHelper = new DBHelper(context);
         giftFetcher = new GiftFetcher(context);
         activityCatcher = new ActivityCatcher(context);
-        fertilizationTask = new FertilizationTask(context);
+        fertilizationTaskCatcher = new FertilizationTaskCatcher(context);
         newYear = new NewYear(context);
     }
 
@@ -39,15 +39,14 @@ public class ExecuteDailyTasks {
             giftFetcher.fetchAndSaveGift();
         }
         activityCatcher.parseTodayActivityContent();
-        fertilizationTask.execute();
+        fertilizationTaskCatcher.catchFertilizationTaskInfo();
         newYear.execute();
     }
 
     public void executeDailyTasksForRefreshDashboard() {
-        String today = getCurrentDate();
         giftFetcher.fetchAndSaveGift();
         activityCatcher.parseTodayActivityContent();
-        fertilizationTask.execute();
+        fertilizationTaskCatcher.catchFertilizationTaskInfo();
         newYear.execute();
     }
 
