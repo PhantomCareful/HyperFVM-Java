@@ -7,6 +7,7 @@ import com.careful.HyperFVM.utils.ForDashboard.FromGame.Activity.ActivityCatcher
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.FertilizationTask.FertilizationTaskCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.MeishiWechat.GiftFetcher;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.NewYear.NewYearCatcher;
+import com.careful.HyperFVM.utils.ForDashboard.FromGit.DashboardGitCatcher;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 public class ExecuteDailyTasks {
@@ -16,6 +17,7 @@ public class ExecuteDailyTasks {
     private final ActivityCatcher activityCatcher;
     private final FertilizationTaskCatcher fertilizationTaskCatcher;
     private final NewYearCatcher newYearCatcher;
+    private final DashboardGitCatcher dashboardGitCatcher;
 
     public ExecuteDailyTasks(Context context) {
         dbHelper = new DBHelper(context);
@@ -23,6 +25,7 @@ public class ExecuteDailyTasks {
         activityCatcher = new ActivityCatcher(context);
         fertilizationTaskCatcher = new FertilizationTaskCatcher(context);
         newYearCatcher = new NewYearCatcher(context);
+        dashboardGitCatcher = new DashboardGitCatcher(context);
     }
 
     public void executeDailyTasks() {
@@ -38,6 +41,7 @@ public class ExecuteDailyTasks {
         newYearCatcher.catchBountyInfo();
         newYearCatcher.catchMillionConsumptionInfo();
         newYearCatcher.catchLuckyConsumptionInfo();
+        dashboardGitCatcher.catchGitDashboardInfo();
     }
 
     public void executeDailyTasksForRefreshDashboard() {
@@ -47,5 +51,6 @@ public class ExecuteDailyTasks {
         newYearCatcher.catchBountyInfo();
         newYearCatcher.catchMillionConsumptionInfo();
         newYearCatcher.catchLuckyConsumptionInfo();
+        dashboardGitCatcher.catchGitDashboardInfo();
     }
 }

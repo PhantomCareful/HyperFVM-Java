@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -74,6 +75,13 @@ public class TimeUtil {
             Log.e(TAG, "transformStringToDate: 解析错误：" + "startDate = " + startDate + "，endDate = " + endDate);
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 获取现在几点(0-23)
+     */
+    public static int getCurrentHour() {
+        return LocalDateTime.now().getHour();
     }
 
     /**

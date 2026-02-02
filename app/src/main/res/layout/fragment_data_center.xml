@@ -371,7 +371,6 @@
 
                         </LinearLayout>
 
-
                         <!-- 水平线段 -->
                         <View
                             android:layout_width="0dp"
@@ -438,6 +437,351 @@
 
                             <TextView
                                 android:id="@+id/dashboard_NewYearMillionConsumption"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        </LinearLayout>
+
+                        <!-- 垂直线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:background="?attr/colorSurface"/>
+
+                        <LinearLayout
+                            android:id="@+id/dashboard_DailyRecharge_Container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/dashboard_DailyRecharge_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:text="@string/title_dashboard_daily_recharge"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_DailyRecharge_Emoji"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_DailyRecharge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        </LinearLayout>
+
+                        <!-- 垂直线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:background="?attr/colorSurface"/>
+
+                        <LinearLayout
+                            android:id="@+id/dashboard_HappyHoliday_Container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/dashboard_HappyHoliday_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:text="@string/title_dashboard_happy_holiday"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_HappyHoliday_Emoji"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_HappyHoliday"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        </LinearLayout>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_columnWeight="1"
+                            android:layout_marginStart="5dp"
+                            android:background="?attr/colorSurface"/>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="2dp"
+                            android:background="?attr/colorSurface"/>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_columnWeight="1"
+                            android:background="?attr/colorSurface"/>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="2dp"
+                            android:background="?attr/colorSurface"/>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_columnWeight="1"
+                            android:layout_marginEnd="5dp"
+                            android:background="?attr/colorSurface"/>
+
+                        <LinearLayout
+                            android:id="@+id/dashboard_FoodContest_Container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/dashboard_FoodContest_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:text="@string/title_dashboard_food_contest"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_FoodContest_Emoji"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_FoodContest"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        </LinearLayout>
+
+                        <!-- 垂直线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:background="?attr/colorSurface"/>
+
+                        <LinearLayout
+                            android:id="@+id/dashboard_ThreeIslands_Container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/dashboard_ThreeIslands_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:text="@string/title_dashboard_three_islands"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_ThreeIslands_Emoji"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_ThreeIslands"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        </LinearLayout>
+
+                        <!-- 垂直线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:background="?attr/colorSurface"/>
+
+                        <LinearLayout
+                            android:id="@+id/dashboard_CrossServerTeamUp_Container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/dashboard_CrossServerTeamUp_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:text="@string/title_dashboard_cross_server_team_up"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_CrossServerTeamUp_Emoji"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_CrossServerTeamUp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        </LinearLayout>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_columnWeight="1"
+                            android:layout_marginStart="5dp"
+                            android:background="?attr/colorSurface"
+                            tools:ignore="TooManyViews" />
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="2dp"
+                            android:background="?attr/colorSurface"/>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_columnWeight="1"
+                            android:background="?attr/colorSurface"/>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="2dp"
+                            android:background="?attr/colorSurface"/>
+
+                        <!-- 水平线段 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_columnWeight="1"
+                            android:layout_marginEnd="5dp"
+                            android:background="?attr/colorSurface"/>
+
+                        <LinearLayout
+                            android:id="@+id/dashboard_TransferDiscount_Container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:orientation="vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/dashboard_TransferDiscount_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:text="@string/title_dashboard_transfer_discount"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_TransferDiscount_Emoji"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="6dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="25sp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/dashboard_TransferDiscount"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="6dp"

@@ -187,6 +187,12 @@
     <string name="title_tools_bilibili_fvm_dialog">B站最新更新公告</string>
     <string name="title_dashboard_new_year_bounty">美食悬赏</string>
     <string name="title_dashboard_new_year_million_consumption">百万消费</string>
+    <string name="title_dashboard_daily_recharge">日氪</string>
+    <string name="title_dashboard_happy_holiday">欢乐假期</string>
+    <string name="title_dashboard_food_contest">美食大赛</string>
+    <string name="title_dashboard_three_islands">三岛福利</string>
+    <string name="title_dashboard_cross_server_team_up">跨服助人为乐</string>
+    <string name="title_dashboard_transfer_discount">二转打折</string>
     <string name="title_dashboard_new_year_lucky_money">抢红包</string>
     <string name="title_dashboard_refresh_dashboard_1">刷新仪表盘</string>
     <string name="title_dashboard_refresh_dashboard_2">点击执行</string>

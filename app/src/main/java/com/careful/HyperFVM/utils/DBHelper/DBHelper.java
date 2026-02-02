@@ -185,7 +185,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         // 版本53：重构仪表盘界面
-        if (oldVersion < 55) {
+        if (oldVersion < 56) {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
                     "VALUES ('meishi_wechat_result_emoji', 'null')," +
                     "('double_explosion_rate_emoji', 'null')," +
@@ -199,7 +199,25 @@ public class DBHelper extends SQLiteOpenHelper {
                     "('million_consumption_detail', 'null')," +
                     "('lucky_money', 'null')," +
                     "('lucky_money_emoji', 'null')," +
-                    "('lucky_money_detail', 'null')");
+                    "('lucky_money_detail', 'null')," +
+                    "('daily_recharge', 'null')," +
+                    "('daily_recharge_emoji', 'null')," +
+                    "('daily_recharge_detail', 'null')," +
+                    "('happy_holiday', 'null')," +
+                    "('happy_holiday_emoji', 'null')," +
+                    "('happy_holiday_detail', 'null')," +
+                    "('cross_server_team_up', 'null')," +
+                    "('cross_server_team_up_emoji', 'null')," +
+                    "('cross_server_team_up_detail', 'null')," +
+                    "('three_islands', 'null')," +
+                    "('three_islands_emoji', 'null')," +
+                    "('three_islands_detail', 'null')," +
+                    "('food_contest', 'null')," +
+                    "('food_contest_emoji', 'null')," +
+                    "('food_contest_detail', 'null')," +
+                    "('transfer_discount', 'null')," +
+                    "('transfer_discount_emoji', 'null')," +
+                    "('transfer_discount_detail', 'null')");
             db.execSQL("UPDATE " + TABLE_DASHBOARD + " SET id = 'bounty' WHERE id = 'new_year'");
             db.execSQL("UPDATE " + TABLE_DASHBOARD + " SET id = 'bounty_notification' WHERE id = 'new_year_notification'");
         }
