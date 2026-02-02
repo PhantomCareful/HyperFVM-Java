@@ -1,6 +1,5 @@
-package com.careful.HyperFVM.utils.ForDashboard.FertilizationTask;
+package com.careful.HyperFVM.utils.ForDashboard.FromGame.FertilizationTask;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -10,10 +9,8 @@ import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 
 /**
@@ -23,12 +20,9 @@ import java.util.regex.Matcher;
 public class FertilizationTaskCatcher {
     private static final String TAG = "FertilizationTaskCatcher";
     // XML数据源地址
-    private static final String TASK_XML_URL = "https://cdn-qq-ms.123u.com/cdn.qq.123u.com/config/newtask.xml";
+    private static final String XML_URL = "https://cdn-qq-ms.123u.com/cdn.qq.123u.com/config/newtask.xml";
     // 获取内容的正则表达式
     private static final String regularExpression = "<task id=\"39\".*?startTime=\"(\\d+)\".*?endTime=\"(\\d+)\".*?</task>";
-
-    // 日期格式化器（线程不安全，需局部创建）
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     private final DBHelper dbHelper;
 
@@ -42,7 +36,7 @@ public class FertilizationTaskCatcher {
     public void catchFertilizationTaskInfo() {
         try {
             // 步骤1：获取XML字符串
-            String xmlContent = XMLHelper.getXMLStringFromUrl(TASK_XML_URL);
+            String xmlContent = XMLHelper.getContentFromUrl(XML_URL);
 
             // 步骤2：通过正则表达式解析XML字符串
             Matcher matcher = XMLHelper.getContentByRegularExpression(xmlContent, regularExpression);
@@ -114,13 +108,11 @@ public class FertilizationTaskCatcher {
      * @throws ParseException 解析异常
      */
     private void checkActivityStatus(String todayDate, String startDate, String endDate, int duringCount) throws ParseException {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-        sdf.setTimeZone(TimeZone.getDefault()); // 保持和其他日期处理一致的时区
-        Date today = sdf.parse(todayDate);
-        Date start = sdf.parse(startDate);
-        Date end = sdf.parse(endDate);
+        Date today = TimeUtil.transformStringToDate(todayDate);
+        Date start = TimeUtil.transformStringToDate(startDate);
+        Date end = TimeUtil.transformStringToDate(endDate);
 
-        if (Objects.requireNonNull(today).before(start)) {
+        if (today.before(start)) {
             Log.d(TAG, "活动尚未开始");
             String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始\n趁现在多攒点肥料吧";
             sendResultToDB(
@@ -140,10 +132,10 @@ public class FertilizationTaskCatcher {
             );
         } else {
             Log.d(TAG, "活动正在进行中");
-            String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n进度：" + "(" + duringCount + "/21)";
+            String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n进度：" + duringCount + "/21";
             sendResultToDB(
-                    "(" + duringCount + "/21)",
-                    "(" + duringCount + "/21)✊",
+                    duringCount + "/21",
+                    duringCount + "/21✊",
                     "✊",
                     contentDetail
             );

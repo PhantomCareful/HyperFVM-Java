@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.utils.ForDashboard.MeishiWechat;
+package com.careful.HyperFVM.utils.ForDashboard.FromGame.MeishiWechat;
 
 import android.os.Handler;
 import android.os.Looper;

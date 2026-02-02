@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.utils.ForDashboard.NewYear;
+package com.careful.HyperFVM.utils.ForDashboard.FromGame.NewYear;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

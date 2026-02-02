@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.utils.ForDashboard.Activity;
+package com.careful.HyperFVM.utils.ForDashboard.FromGame.Activity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

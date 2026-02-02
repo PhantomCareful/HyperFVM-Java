@@ -185,15 +185,23 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         // 版本53：重构仪表盘界面
-        if (oldVersion < 53) {
+        if (oldVersion < 55) {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
                     "VALUES ('meishi_wechat_result_emoji', 'null')," +
                     "('double_explosion_rate_emoji', 'null')," +
                     "('fertilization_task_emoji', 'null')," +
-                    "('new_year_emoji', 'null')," +
+                    "('bounty_emoji', 'null')," +
                     "('double_explosion_rate_detail', 'null')," +
                     "('fertilization_task_detail', 'null')," +
-                    "('new_year_detail', 'null')");
+                    "('bounty_detail', 'null')," +
+                    "('million_consumption', 'null')," +
+                    "('million_consumption_emoji', 'null')," +
+                    "('million_consumption_detail', 'null')," +
+                    "('lucky_money', 'null')," +
+                    "('lucky_money_emoji', 'null')," +
+                    "('lucky_money_detail', 'null')");
+            db.execSQL("UPDATE " + TABLE_DASHBOARD + " SET id = 'bounty' WHERE id = 'new_year'");
+            db.execSQL("UPDATE " + TABLE_DASHBOARD + " SET id = 'bounty_notification' WHERE id = 'new_year_notification'");
         }
 
     }
@@ -682,7 +690,6 @@ public class DBHelper extends SQLiteOpenHelper {
             value = cursor.getString(0);
         }
         cursor.close();
-        db.close();
         return value;
     }
 
@@ -691,7 +698,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("value", value);
         db.update(TABLE_DATA_STATION, values, "content = ?", new String[]{content});
-        db.close();
     }
 
     // ====================== 以下为settings表的操作方法 ======================
@@ -709,7 +715,6 @@ public class DBHelper extends SQLiteOpenHelper {
             value = cursor.getString(0);
         }
         cursor.close();
-        db.close();
         return Objects.equals(value, "true");
     }
 
@@ -727,7 +732,6 @@ public class DBHelper extends SQLiteOpenHelper {
             value = cursor.getString(0);
         }
         cursor.close();
-        db.close();
         return value;
     }
 
@@ -748,7 +752,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("value", value);
         db.update(TABLE_SETTINGS, values, "content = ?", new String[]{content});
-        db.close();
     }
 
     // ====================== 以下为meishi_wechat表的操作方法 ======================
@@ -759,13 +762,11 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("server_name", serverName);
         values.put("player_id", playerId);
         db.insertWithOnConflict(TABLE_MEISHI_WECHAT, null, values, SQLiteDatabase.CONFLICT_IGNORE);
-        db.close();
     }
 
     public void deleteMeishiWechat(String openid) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_MEISHI_WECHAT, "openid = ?", new String[]{openid});
-        db.close();
     }
 
     public List<PlayerInfo> getAllMeishiWechat() {
@@ -786,7 +787,6 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
         return infos;
     }
 
@@ -818,7 +818,6 @@ public class DBHelper extends SQLiteOpenHelper {
             content = cursor.getString(0);
         }
         cursor.close();
-        db.close();
         return content;
     }
 
@@ -827,7 +826,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("content", content);
         db.update(TABLE_DASHBOARD, values, "id = ?", new String[]{id});
-        db.close();
     }
 
     // ====================== 以下为防御卡数据表的操作方法 ======================

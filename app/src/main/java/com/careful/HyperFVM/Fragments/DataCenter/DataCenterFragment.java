@@ -37,7 +37,7 @@ import com.careful.HyperFVM.Activities.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDashboard.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
+import com.careful.HyperFVM.utils.ForDashboard.FromGame.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
@@ -59,6 +59,7 @@ public class DataCenterFragment extends Fragment {
 
     // 仪表盘部分
     private ImageView buttonRefreshDashboard;
+
     private TextView dashboardLastDayOfMonth;
 
     private TextView dashboardMeishiWechat;
@@ -77,12 +78,21 @@ public class DataCenterFragment extends Fragment {
     private String dashboardEverydayResult;
     private String everydayEmoji;
 
-    private TextView dashboardNewYear;
-    private TextView dashboardNewYearEmoji;
+    private TextView dashboardBounty;
+    private TextView dashboardBountyEmoji;
+    private String bountyEmoji;
 
     private TextView dashboardBilibiliFVM;
     private TextView dashboardBilibiliFVMEmoji;
     private LinearLayout dashboardBilibiliFVMContainer;
+
+    private TextView dashboardMillionConsumption;
+    private TextView dashboardMillionConsumptionEmoji;
+    private String millionConsumptionEmoji;
+
+    private TextView dashboardLuckyMoney;
+    private TextView dashboardLuckyMoneyEmoji;
+    private String luckyMoneyEmoji;
 
     // 仪表盘工具类
     private EveryMonthAndEveryWeek everyMonthAndEveryWeek;
@@ -106,6 +116,8 @@ public class DataCenterFragment extends Fragment {
 
         // 初始化仪表盘组件
         buttonRefreshDashboard = root.findViewById(R.id.ButtonRefreshDashboard);
+        LinearLayout dashboardRefreshDashboardContainer = root.findViewById(R.id.dashboard_RefreshDashboard_Container);
+
         dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
 
         dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
@@ -124,8 +136,17 @@ public class DataCenterFragment extends Fragment {
         dashboardEverydayEmoji = root.findViewById(R.id.dashboard_Everyday_Emoji);
         LinearLayout dashboardEverydayContainer = root.findViewById(R.id.dashboard_Everyday_Container);
 
-        dashboardNewYear = root.findViewById(R.id.dashboard_NewYear);
-        dashboardNewYearEmoji = root.findViewById(R.id.dashboard_NewYear_Emoji);
+        dashboardBounty = root.findViewById(R.id.dashboard_NewYearBounty);
+        dashboardBountyEmoji = root.findViewById(R.id.dashboard_NewYearBounty_Emoji);
+        LinearLayout dashboardBountyContainer = root.findViewById(R.id.dashboard_NewYearBounty_Container);
+
+        dashboardMillionConsumption = root.findViewById(R.id.dashboard_NewYearMillionConsumption);
+        dashboardMillionConsumptionEmoji = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Emoji);
+        LinearLayout dashboardMillionConsumptionContainer = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Container);
+
+        dashboardLuckyMoney = root.findViewById(R.id.dashboard_NewYearLuckyMoney);
+        dashboardLuckyMoneyEmoji = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Emoji);
+        LinearLayout dashboardLuckyMoneyContainer = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Container);
 
         dashboardBilibiliFVM = root.findViewById(R.id.dashboard_BilibiliFVM);
         dashboardBilibiliFVMEmoji = root.findViewById(R.id.dashboard_BilibiliFVM_Emoji);
@@ -150,9 +171,9 @@ public class DataCenterFragment extends Fragment {
         getLatestBilibiliAnnouncement();
 
         // 刷新仪表盘按钮
-        buttonRefreshDashboard.setOnClickListener(v -> {
+        dashboardRefreshDashboardContainer.setOnClickListener(v -> {
             // 1. 主线程先更新UI：禁用按钮、显示“请等待”
-            buttonRefreshDashboard.setEnabled(false);
+            dashboardRefreshDashboardContainer.setEnabled(false);
 
             Animation rotateAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_360);
             buttonRefreshDashboard.startAnimation(rotateAnim);
@@ -163,8 +184,12 @@ public class DataCenterFragment extends Fragment {
             dashboardDoubleExplosionRateEmoji.setText("⏳");
             dashboardFertilizationTask.setText("请等待...");
             dashboardFertilizationTaskEmoji.setText("⏳");
-            dashboardNewYear.setText("请等待...");
-            dashboardNewYearEmoji.setText("⏳");
+            dashboardBounty.setText("请等待...");
+            dashboardBountyEmoji.setText("⏳");
+            dashboardMillionConsumption.setText("请等待...");
+            dashboardMillionConsumptionEmoji.setText("⏳");
+            dashboardLuckyMoney.setText("请等待...");
+            dashboardLuckyMoneyEmoji.setText("⏳");
             dashboardEveryday.setText("请等待...");
             dashboardEverydayEmoji.setText("⏳");
             dashboardBilibiliFVMEmoji.setText("⏳");
@@ -188,7 +213,7 @@ public class DataCenterFragment extends Fragment {
                         requireActivity().runOnUiThread(() -> {
                             loadResultsFromDatabase(); // 刷新仪表盘数据
                             handleWeekAndMonthLogic(); // 更新每周/每月提示
-                            buttonRefreshDashboard.setEnabled(true); // 恢复按钮
+                            dashboardRefreshDashboardContainer.setEnabled(true); // 恢复按钮
                             Toast.makeText(requireContext(), "刷新完成~", Toast.LENGTH_SHORT).show(); // 可选：提示刷新完成
                         });
                     }
@@ -196,13 +221,13 @@ public class DataCenterFragment extends Fragment {
                 } catch (InterruptedException e) {
                     // 捕获sleep中断异常
                     requireActivity().runOnUiThread(() -> {
-                        buttonRefreshDashboard.setEnabled(true);
+                        dashboardRefreshDashboardContainer.setEnabled(true);
                         Toast.makeText(requireContext(), "刷新被中断", Toast.LENGTH_SHORT).show();
                     });
                 } catch (Exception e) {
                     // 捕获其他异常（如数据库/任务执行异常）
                     requireActivity().runOnUiThread(() -> {
-                        buttonRefreshDashboard.setEnabled(true);
+                        dashboardRefreshDashboardContainer.setEnabled(true);
                         Toast.makeText(requireContext(), "刷新失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
                 }
@@ -284,6 +309,57 @@ public class DataCenterFragment extends Fragment {
 
             new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                     .setTitle(getResources().getString(R.string.title_dashboard_fertilization_task))
+                    .setView(dialogView)
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
+
+        // 美食悬赏
+        dashboardBountyContainer.setOnClickListener(v -> {
+            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+            TextView contentTextView = dialogView.findViewById(R.id.content);
+            emojiTextView.setText(bountyEmoji); // 设置表情符号
+            contentTextView.setText(dbHelper.getDashboardContent("bounty_detail")); // 设置内容文本
+
+            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                    .setTitle(getResources().getString(R.string.title_dashboard_new_year_bounty))
+                    .setView(dialogView)
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
+
+        // 百万消费
+        dashboardMillionConsumptionContainer.setOnClickListener(v -> {
+            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+            TextView contentTextView = dialogView.findViewById(R.id.content);
+            emojiTextView.setText(millionConsumptionEmoji); // 设置表情符号
+            contentTextView.setText(dbHelper.getDashboardContent("million_consumption_detail")); // 设置内容文本
+
+            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                    .setTitle(getResources().getString(R.string.title_dashboard_new_year_million_consumption))
+                    .setView(dialogView)
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
+
+        // 抢红包
+        dashboardLuckyMoneyContainer.setOnClickListener(v -> {
+            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+            TextView contentTextView = dialogView.findViewById(R.id.content);
+            emojiTextView.setText(luckyMoneyEmoji); // 设置表情符号
+            contentTextView.setText(dbHelper.getDashboardContent("lucky_money_detail")); // 设置内容文本
+
+            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                    .setTitle(getResources().getString(R.string.title_dashboard_new_year_lucky_money))
                     .setView(dialogView)
                     .setPositiveButton("好的", null)
                     .show();
@@ -402,10 +478,20 @@ public class DataCenterFragment extends Fragment {
         dashboardFertilizationTask.setText(fertilizationTaskResult.isEmpty() ? "null" : fertilizationTaskResult);
         dashboardFertilizationTaskEmoji.setText(fertilizationTaskEmoji.isEmpty() ? "❌" : fertilizationTaskEmoji);
         // 读取美食悬赏活动结果
-        String newYearResult = dbHelper.getDashboardContent("new_year");
-        String newYearEmoji = dbHelper.getDashboardContent("new_year_emoji");
-        dashboardNewYear.setText(newYearResult.isEmpty() ? "null" : newYearResult);
-        dashboardNewYearEmoji.setText(newYearEmoji.isEmpty() ? "null" : newYearEmoji);
+        String bountyResult = dbHelper.getDashboardContent("bounty");
+        bountyEmoji = dbHelper.getDashboardContent("bounty_emoji");
+        dashboardBounty.setText(bountyResult.isEmpty() ? "null" : bountyResult);
+        dashboardBountyEmoji.setText(bountyEmoji.isEmpty() ? "null" : bountyEmoji);
+        // 读取百万消费活动结果
+        String millionConsumptionResult = dbHelper.getDashboardContent("million_consumption");
+        millionConsumptionEmoji = dbHelper.getDashboardContent("million_consumption_emoji");
+        dashboardMillionConsumption.setText(millionConsumptionResult.isEmpty() ? "null" : millionConsumptionResult);
+        dashboardMillionConsumptionEmoji.setText(millionConsumptionEmoji.isEmpty() ? "null" : millionConsumptionEmoji);
+        // 读取抢红包活动结果
+        String luckyMoneyResult = dbHelper.getDashboardContent("lucky_money");
+        luckyMoneyEmoji = dbHelper.getDashboardContent("lucky_money_emoji");
+        dashboardLuckyMoney.setText(luckyMoneyResult.isEmpty() ? "null" : luckyMoneyResult);
+        dashboardLuckyMoneyEmoji.setText(luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji);
     }
 
     /**

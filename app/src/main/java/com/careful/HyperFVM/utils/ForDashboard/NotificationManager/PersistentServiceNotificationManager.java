@@ -44,7 +44,7 @@ public class PersistentServiceNotificationManager {
         String content = "温馨礼包：" + dbHelper.getDashboardContent("meishi_wechat_result_text_notification") + " " +
                 "双爆信息：" + dbHelper.getDashboardContent("double_explosion_rate_notification") + "\n" +
                 "施肥活动：" + dbHelper.getDashboardContent("fertilization_task_notification") + " " +
-                "美食悬赏：" + dbHelper.getDashboardContent("new_year_notification");
+                "美食悬赏：" + dbHelper.getDashboardContent("bounty_notification");
         return new NotificationCompat.Builder(context, "persistent_channel")
                 .setContentTitle("HyperFVM正在全力保护美味镇🛡")
                 .setContentText(content)

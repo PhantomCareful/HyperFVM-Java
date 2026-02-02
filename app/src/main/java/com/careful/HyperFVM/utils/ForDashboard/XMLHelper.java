@@ -50,7 +50,7 @@ public class XMLHelper {
      * @return XML字符串内容，获取失败返回null
      * @throws IOException 网络异常/IO异常（交给调用方处理）
      */
-    public static String getXMLStringFromUrl(String url) throws IOException {
+    public static String getContentFromUrl(String url) throws IOException {
         // 1. 参数校验
         if (url == null || url.trim().isEmpty()) {
             Log.e(TAG, "获取xml的url为空");
@@ -75,27 +75,27 @@ public class XMLHelper {
 
             // 4. 校验响应状态
             if (!response.isSuccessful()) {
-                Log.e(TAG, "获取XML失败，响应码：" + response.code());
+                Log.e(TAG, "getContentFromUrl: 获取失败，响应码：" + response.code());
                 return null;
             }
 
             // 5. 读取响应体
             ResponseBody responseBody = response.body();
             if (responseBody == null) {
-                Log.e(TAG, "XML响应体为空");
+                Log.e(TAG, "getContentFromUrl: 响应体为空");
                 return null;
             }
 
             // 6. 转换为字符串（指定UTF-8编码，避免乱码）
             String XMLContent = responseBody.string();
             if (XMLContent.trim().isEmpty()) {
-                Log.e(TAG, "XML内容为空");
+                Log.e(TAG, "getContentFromUrl: 内容为空");
                 return null;
             }
 
             return XMLContent;
         } catch (IOException e) {
-            Log.e(TAG, "捕获异常：" + e.getMessage(), e);
+            Log.e(TAG, "getContentFromUrl: 捕获异常：" + e.getMessage(), e);
             throw e;
         }
     }

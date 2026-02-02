@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.utils.ForDashboard.Activity;
+package com.careful.HyperFVM.utils.ForDashboard.FromGame.Activity;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,13 +15,11 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Random;
 
 /**
  * 活动捕获器：获取并解析每日双倍双爆活动信息
@@ -29,7 +27,7 @@ import java.util.Random;
 public class ActivityCatcher {
     private static final String TAG = "ActivityCatcher";
     // XML文件网络地址
-    private static String XML_ACTIVITY_URL = "https://cdn-qq-ms.123u.com/cdn.qq.123u.com/config/activity.xml";
+    private static final String XML_URL = "https://cdn-qq-ms.123u.com/cdn.qq.123u.com/config/activity.xml";
     // 目标XML层级路径
     private static final String TARGET_XML_PATH = "root/activitys/activity";
     // 匹配属性Key（日期）
@@ -53,70 +51,55 @@ public class ActivityCatcher {
 
     public ActivityCatcher(Context context) {
         this.dbHelper = new DBHelper(context);
-
-        Random random = new Random();
-        int num = 1 + random.nextInt(1000000000);
-
-        XML_ACTIVITY_URL = XML_ACTIVITY_URL + "?" + num;
-    }
-
-    /**
-     * 获取当前日期（格式：yyyy-MM-dd）
-     * @return 格式化后的当前日期字符串
-     */
-    private String getCurrentDate() {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.CHINA);
-        return sdf.format(calendar.getTime());
     }
 
     /**
      * 异步解析今日活动内容（核心方法）
      */
-    public void parseTodayActivityContent() {
+    public void catchTodayActivityInfo() {
         // 网络请求必须在子线程执行，避免阻塞主线程
         new Thread(() -> {
             String errorMsg;
             String contentDetail; // 最终生成的结果文本
             try {
                 // 步骤1：获取今日日期（匹配用）
-                todayDate = getCurrentDate();
-                Log.d(TAG, "parseTodayActivityContent: 今日日期：" + todayDate);
+                todayDate = TimeUtil.getCurrentDate();
+                Log.d(TAG, "catchTodayActivityInfo: 今日日期：" + todayDate);
 
                 // 步骤2：从网络获取XML字符串并缓存
-                cachedXmlContent = XMLHelper.getXMLStringFromUrl(XML_ACTIVITY_URL);
+                cachedXmlContent = XMLHelper.getContentFromUrl(XML_URL);
                 if (cachedXmlContent == null) {
-                    errorMsg = "内容获取失败，请联系开发者。";
-                    Log.e(TAG, "parseTodayActivityContent: " + errorMsg);
-                    updateDBWithError("获取失败", errorMsg);
+                    errorMsg = "内容获取失败，请联系开发者并提交此界面截图。";
+                    Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+                    sendResultToDB("获取失败", "失败❌", "❌", errorMsg);
                     return;
                 }
 
                 // 步骤3：获取今日活动原始Content
                 String rawContent = getTodayRawContent();
                 if (rawContent == null || rawContent.trim().isEmpty()) {
-                    errorMsg = "未找到今日(" + todayDate + ")的活动内容，请联系开发者";
-                    Log.e(TAG, "parseTodayActivityContent: " + errorMsg);
-                    updateDBWithError("获取失败", errorMsg);
+                    errorMsg = "未找到今日(" + todayDate + ")的活动内容，请联系开发者并提交此界面截图";
+                    Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+                    sendResultToDB("获取失败", "失败❌", "❌", errorMsg);
                     return;
                 }
-                Log.d(TAG, "parseTodayActivityContent: 原始Content内容：" + rawContent);
+                Log.d(TAG, "catchTodayActivityInfo: 原始Content内容：" + rawContent);
 
                 // 步骤4：提取第二部分内容（按<br>分割）
                 String targetContent = extractSecondPartContent(rawContent);
                 if (targetContent == null) {
-                    errorMsg = "活动内容格式解析失败，请联系开发者";
-                    Log.e(TAG, "parseTodayActivityContent: " + errorMsg);
-                    updateDBWithError("解析失败", errorMsg);
+                    errorMsg = "活动内容格式解析失败，请联系开发者并提交此界面截图";
+                    Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+                    sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
                     return;
                 }
 
                 // 步骤5：解析XML中所有活动日期和对应的content（使用缓存的XML内容，重新创建解析器）
                 Map<String, String> dateContentMap = getAllActivityDateContentMap();
                 if (dateContentMap.isEmpty()) {
-                    errorMsg = "未解析到任何活动日期数据，请联系开发者";
-                    Log.e(TAG, "parseTodayActivityContent: " + errorMsg);
-                    updateDBWithError("解析失败", errorMsg);
+                    errorMsg = "未解析到任何活动日期数据，请联系开发者并提交此界面截图";
+                    Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+                    sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
                     return;
                 }
 
@@ -128,32 +111,28 @@ public class ActivityCatcher {
                     endDayKeepFullDoubleDay = (String) continuousResult[1];
 
                     if (numDaysKeepFullDoubleDay <= 0 || endDayKeepFullDoubleDay == null) {
-                        errorMsg = "未找到连续的全天双倍双爆日期，请联系开发者";
-                        Log.e(TAG, "parseTodayActivityContent: " + errorMsg);
-                        updateDBWithError("解析失败", errorMsg);
+                        errorMsg = "未找到连续的全天双倍双爆日期，请联系开发者并提交此界面截图";
+                        Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+                        sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
                         return;
                     }
 
                     // 生成结果文本
                     contentDetail = "今天是" + todayDate + "\n今天已开启全天双倍双爆\n将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
-                    dbHelper.updateDashboardContent("double_explosion_rate", "全天双爆");
-                    dbHelper.updateDashboardContent("double_explosion_rate_emoji", "🎉");
-                    dbHelper.updateDashboardContent("double_explosion_rate_detail", contentDetail);
+                    sendResultToDB("全天双爆", "全天🎉", "🎉", contentDetail);
                 } else {
                     // 分支2：今日是限时双倍双爆
                     // 查找下一个全天双倍双爆日期，并计算距离下一个全天双倍双爆的天数
                     Pair<String, Integer> result = findNextFullDoubleDay(dateContentMap, todayDate);
                     if (result == null) {
-                        Log.e(TAG, "parseTodayActivityContent: result = null");
+                        Log.e(TAG, "catchTodayActivityInfo: result = null");
                         return;
                     }
                     nextFullDoubleDay = result.first;
                     numDaysToNextFullDoubleDay = result.second;
                     if (nextFullDoubleDay == null) {
                         contentDetail = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n今年已经没有全天双倍双爆了。";
-                        dbHelper.updateDashboardContent("double_explosion_rate", "限时双爆");
-                        dbHelper.updateDashboardContent("double_explosion_rate_emoji", "⏳");
-                        dbHelper.updateDashboardContent("double_explosion_rate_detail", contentDetail);
+                        sendResultToDB("限时双爆", "限时⏳", "⏳", contentDetail);
                         return;
                     }
 
@@ -163,36 +142,27 @@ public class ActivityCatcher {
                     endDayKeepFullDoubleDay = (String) continuousResult[1];
 
                     if (numDaysKeepFullDoubleDay <= 0 || endDayKeepFullDoubleDay == null) {
-                        errorMsg = "未找到" + nextFullDoubleDay + "之后连续的全天双倍双爆日期，请联系开发者。";
-                        Log.e(TAG, "parseTodayActivityContent: " + errorMsg);
-                        updateDBWithError("解析失败", errorMsg);
+                        errorMsg = "未找到" + nextFullDoubleDay + "之后连续的全天双倍双爆日期，请联系开发者并提交此界面截图。";
+                        Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+                        sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
                         return;
                     }
 
                     // 生成结果文本
                     contentDetail = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
-                    dbHelper.updateDashboardContent("double_explosion_rate", "限时双爆");
-                    dbHelper.updateDashboardContent("double_explosion_rate_emoji", "⏳");
-                    dbHelper.updateDashboardContent("double_explosion_rate_detail", contentDetail);
+                    sendResultToDB("限时双爆", "限时⏳", "⏳", contentDetail);
                 }
 
             } catch (IOException e) {
-                errorMsg = "网络/解析异常：" + e.getMessage();
-                Log.e(TAG, "parseTodayActivityContent: 解析活动内容异常：" + e.getMessage(), e);
-                updateDBWithError("解析失败", errorMsg);
+                errorMsg = "网络/解析异常，请联系开发者并提交此界面截图。\n" + e.getMessage();
+                Log.e(TAG, "catchTodayActivityInfo: 解析活动内容异常：" + e.getMessage(), e);
+                sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
             } catch (ParseException e) {
-                Log.e(TAG, "parseTodayActivityContent: 日期解析失败：" + e.getMessage(), e);
+                errorMsg = "日期解析失败，请联系开发者并提交此界面截图。\n" + e.getMessage();
+                Log.e(TAG, "catchTodayActivityInfo: 日期解析失败：" + e.getMessage(), e);
+                sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
             }
         }).start();
-    }
-
-    /**
-     * 辅助方法：更新数据库错误信息
-     */
-    private void updateDBWithError(String status, String detail) {
-        dbHelper.updateDashboardContent("double_explosion_rate", status);
-        dbHelper.updateDashboardContent("double_explosion_rate_emoji", "❌");
-        dbHelper.updateDashboardContent("double_explosion_rate_detail", detail);
     }
 
     /**
@@ -434,5 +404,19 @@ public class ActivityCatcher {
 
         Log.e(TAG, "findNextFullDoubleDay: 未找到" + startDate + "之后的全天双倍双爆日期");
         return new Pair<>(null, null);
+    }
+
+    /**
+     * 向数据库写入结果
+     * @param contentSimple 显示在主界面的简要信息
+     * @param contentNotification 显示在常驻通知的简要信息
+     * @param emoji 显示在主界面和弹窗上的表情
+     * @param contentDetail 显示在弹窗上的详细信息
+     */
+    private void sendResultToDB(String contentSimple, String contentNotification, String emoji, String contentDetail) {
+        dbHelper.updateDashboardContent("double_explosion_rate", contentSimple);
+        dbHelper.updateDashboardContent("double_explosion_rate_notification", contentNotification);
+        dbHelper.updateDashboardContent("double_explosion_rate_emoji", emoji);
+        dbHelper.updateDashboardContent("double_explosion_rate_detail", contentDetail);
     }
 }

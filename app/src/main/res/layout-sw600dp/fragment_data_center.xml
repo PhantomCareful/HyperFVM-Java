@@ -350,7 +350,7 @@
                         android:background="?attr/colorSurface"/>
 
                     <LinearLayout
-                        android:id="@+id/dashboard_NewYear_Container"
+                        android:id="@+id/dashboard_NewYearBounty_Container"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
@@ -359,18 +359,18 @@
                         android:background="?attr/selectableItemBackground">
 
                         <TextView
-                            android:id="@+id/dashboard_NewYear_title"
+                            android:id="@+id/dashboard_NewYearBounty_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="6dp"
-                            android:text="@string/title_dashboard_new_year"
+                            android:text="@string/title_dashboard_new_year_bounty"
                             android:textColor="?attr/TextViewColorOnImportantCardView"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             android:gravity="center"/>
 
                         <TextView
-                            android:id="@+id/dashboard_NewYear_Emoji"
+                            android:id="@+id/dashboard_NewYearBounty_Emoji"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="6dp"
@@ -379,7 +379,7 @@
                             android:gravity="center"/>
 
                         <TextView
-                            android:id="@+id/dashboard_NewYear"
+                            android:id="@+id/dashboard_NewYearBounty"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="6dp"
