@@ -87,8 +87,8 @@ public class DatabaseInfo {
      * settings表增加“界面布局优化”设置
      * DB_VERSION = 52
      * settings表增加“生物认证”设置
-     * DB_VERSION = 53 - 56
+     * DB_VERSION = 53 - 57
      * 重构仪表盘界面
      */
-    public static final int DB_VERSION = 56;
+    public static final int DB_VERSION = 57;
 }
