@@ -65,24 +65,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_1"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -94,24 +114,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_2"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -123,24 +163,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_3_1"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_3_1_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_3_1_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -152,24 +212,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_3_2"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_3_2_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_3_2_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -181,24 +261,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_3_3"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_3_3_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_3_3_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -210,24 +310,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_4"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_4_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_4_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -239,24 +359,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_5"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_layers_triple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_5_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_5_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -268,24 +408,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_6"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_sticker_emoji"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_6_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_6_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -297,24 +457,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_7_1"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_1_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_1_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -326,24 +506,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_7_2"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_2_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_2_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -355,24 +555,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_7_3"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_3_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_3_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
@@ -384,27 +604,47 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:padding="16dp">
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/text_tools_tiramisu_image_7_4"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView"
                                 tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_4_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_7_4_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
 
                         </LinearLayout>
 

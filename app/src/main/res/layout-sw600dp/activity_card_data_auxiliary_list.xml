@@ -46,7 +46,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_1"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_1"
@@ -60,7 +60,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_1"
@@ -74,7 +74,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_2"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_2"
@@ -88,7 +88,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_2"
@@ -102,7 +102,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_3"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_3"
@@ -116,7 +116,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_3"
@@ -130,7 +130,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_4"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_4"
@@ -144,7 +144,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_4"
@@ -170,7 +170,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_5"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_5"
@@ -184,7 +184,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_5"
@@ -198,7 +198,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_6"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_6"
@@ -212,7 +212,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_6"
@@ -226,7 +226,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_7"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_7"
@@ -240,7 +240,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_7"
@@ -254,7 +254,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_8"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_8"
@@ -268,7 +268,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"/>
+                        android:textSize="15sp"/>
 
                     <include
                         android:id="@+id/card_card_data_auxiliary_list_content_8"

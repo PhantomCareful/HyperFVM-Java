@@ -727,8 +727,7 @@
                     <View
                         android:layout_width="2dp"
                         android:layout_height="2dp"
-                        android:background="?attr/colorSurface"
-                        tools:ignore="TooManyViews" />
+                        android:background="?attr/colorSurface"/>
 
                     <!-- 水平线段 -->
                     <View
