@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.ActionBar;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
 import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
@@ -23,10 +22,10 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 
 public class TiramisuImageActivity extends BaseActivity {
 
@@ -55,9 +54,6 @@ public class TiramisuImageActivity extends BaseActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
 
-        // 设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_tiramisu_image) + " ");
-
         dbHelper = new DBHelper(this);
         imageUtil = DataImagesUpdaterUtil.getInstance();
         update_image_action = findViewById(R.id.update_image_action);
@@ -67,6 +63,9 @@ public class TiramisuImageActivity extends BaseActivity {
     }
 
     private void initViews() {
+        // 添加模糊材质
+        setupBlurEffect();
+
         setupContainer(R.id.tiramisu_image_1_container, "tiramisu_image_1");
         setupContainer(R.id.tiramisu_image_2_container, "tiramisu_image_2");
         setupContainer(R.id.tiramisu_image_3_1_container, "tiramisu_image_3_1");
@@ -180,21 +179,16 @@ public class TiramisuImageActivity extends BaseActivity {
                 .withEndAction(() -> view.setVisibility(View.GONE))
                 .start();
     }
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        // 设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
     }
-
     /**
      * 在onResume阶段：
      * 1. 检查图片资源更新
@@ -218,6 +212,8 @@ public class TiramisuImageActivity extends BaseActivity {
             isPressFeedbackAnimation = false;
         }
         findViewById(R.id.update_image_action).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }

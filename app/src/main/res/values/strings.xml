@@ -253,14 +253,16 @@
     <string name="title_tools_gem_calculator_dialog">宝石最优路径计算器</string>
     <string name="label_tools_gem_calculator_url">https://app.msdzls.cn/gem_co</string>
     <!--实用功能-->
+    <string name="label_tools_made_by_phantom_careful">实用功能😈</string>
     <string name="title_tools_today_lucky">今日运势</string>
     <string name="label_tools_today_lucky">😈一个快速播放不同星级海星的GIF动图\n👉点击开始使用</string>
-    <string name="label_tools_made_by_phantom_careful">实用功能😈</string>
+    <string name="top_bar_today_lucky">今日运势🔮</string>
     <string name="label_tools_today_lucky_choose_your_lucky">选取你的运势</string>
     <string name="label_tools_today_lucky_pause_gif">🙏求求好运🙏</string>
     <string name="label_tools_today_lucky_play_gif">🙏再来一次🙏</string>
     <string name="title_tools_prestige_calculator">威望储备计算器</string>
     <string name="label_tools_prestige_calculator">😈威望币留着没开的同学很适合这个功能\n👉点击开始使用</string>
+    <string name="top_bar_prestige_calculator">威望储备计算器📱</string>
     <!--设置-->
     <string name="title_settings_permission">授权检查</string>
     <string name="label_settings_permission_notification">通知权限</string>

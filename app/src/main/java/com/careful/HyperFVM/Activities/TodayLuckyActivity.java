@@ -15,15 +15,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.ActionBar;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.IOException;
 
@@ -36,6 +35,8 @@ public class TodayLuckyActivity extends BaseActivity {
     private AnimatedImageDrawable animatedDrawable;
     private Button button;
     private boolean isPlaying;
+
+    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +51,15 @@ public class TodayLuckyActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_today_lucky);
 
+        // 添加模糊材质
+        setupBlurEffect();
+
         // 将dp值转换为像素
         cornerRadiusPx = (int) (CORNER_RADIUS_DP * getResources().getDisplayMetrics().density);
 
         this.gifImageView = findViewById(R.id.Gif_Image_View);
         this.button = findViewById(R.id.Button_ControlGif);
         isPlaying = true;
-
-        //设置顶栏标题、启用返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.title_tools_today_lucky));
 
         //加载Gif动图
         loadAnimatedImage();
@@ -69,20 +70,6 @@ public class TodayLuckyActivity extends BaseActivity {
         //加载控制Gif的按钮
         setupButtonControlGif();
 
-    }
-
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
     }
 
     //加载Gif动图
@@ -150,6 +137,17 @@ public class TodayLuckyActivity extends BaseActivity {
                 getString(R.string.label_tools_today_lucky_play_gif));
     }
 
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -177,14 +175,19 @@ public class TodayLuckyActivity extends BaseActivity {
         super.onResume();
         // 添加按压动画
         try (DBHelper dbHelper = new DBHelper(this)) {
-            boolean isPressFeedbackAnimation = dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION);
+            // 添加按压动画
+            boolean isPressFeedbackAnimation;
+            if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+                pressFeedbackAnimationDelay = 200;
+                isPressFeedbackAnimation = true;
+            } else {
+                pressFeedbackAnimationDelay = 0;
+                isPressFeedbackAnimation = false;
+            }
             findViewById(R.id.Button_ControlGif).setOnTouchListener((v, event) ->
                     setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+            findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
+                    setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }
