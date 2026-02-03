@@ -97,9 +97,6 @@ public class SettingsActivity extends BaseActivity {
         // 初始化数据库
         dbHelper = new DBHelper(this);
 
-        // 初始化权限授予状态
-        checkPermissionStates();
-
         // 初始自动任务通知管理类
         autoTaskNotificationManager = new AutoTaskNotificationManager(this);
 
@@ -456,7 +453,9 @@ public class SettingsActivity extends BaseActivity {
     }
 
     /**
-     * 在onResume阶段：设置按压反馈动画
+     * 在onResume阶段：
+     * 1. 设置按压反馈动画
+     * 2. 检查通知权限并实时更新
      */
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -475,6 +474,9 @@ public class SettingsActivity extends BaseActivity {
         }
         findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+
+        // 检查通知权限授予状态
+        checkPermissionStates();
     }
 
     @Override
