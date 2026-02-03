@@ -6,6 +6,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimat
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.CardItemDecoration;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -345,15 +347,19 @@ public class MainActivity extends BaseActivity {
         });
 
         // 显示弹窗（保持原有逻辑）
-        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle(getResources().getString(R.string.card_data_search_title))
                 .setView(dialogView)
                 .setPositiveButton("查询", (dialog, which) -> {
                     String cardName = Objects.requireNonNull(etCardName.getText()).toString().trim();
                     selectCardDataByName(cardName);
                 })
-                .setNegativeButton("取消", null)
-                .show();
+                .setNegativeButton("取消", null);
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
     }
 
     private void selectCardDataByName(String cardName) {

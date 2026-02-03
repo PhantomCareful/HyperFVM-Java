@@ -6,6 +6,7 @@ import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeS
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,6 +41,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
@@ -297,21 +299,10 @@ public class DataCenterFragment extends Fragment {
 
         // ------------------------------这一部分统一设置点击事件------------------------------
         // 双爆信息
-        dashboardDoubleExplosionRateContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(doubleExplosionRateEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("double_explosion_rate_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_double_explosion_rate))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
-        });
+        dashboardDoubleExplosionRateContainer.setOnClickListener(v -> showDashboardDetailDialog(
+                getResources().getString(R.string.title_dashboard_double_explosion_rate),
+                doubleExplosionRateEmoji,
+                dbHelper.getDashboardContent("double_explosion_rate_detail")));
 
         // 温馨礼包
         dashboardMeishiWechatContainer.setOnClickListener(v -> {
@@ -336,213 +327,77 @@ public class DataCenterFragment extends Fragment {
 
         // 每日签到
         dashboardEverydayContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-
-            emojiTextView.setText(everydayEmoji); // 设置表情符号
-
             String everydayContentDetail;
             if (dashboardEverydayResult.equals("可领取")) {
                 everydayContentDetail = "\uD83E\uDEF0记得每天都要签到\uD83E\uDEF0\n\n本月签到礼包可以领取啦\n若有漏签请及时补签哦";
             } else {
                 everydayContentDetail = "\uD83E\uDEF0记得每天都要签到\uD83E\uDEF0\n\n当前进度：" + dashboardEverydayResult;
             }
-            contentTextView.setText(everydayContentDetail); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_everyday))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
+            showDashboardDetailDialog(
+                    getResources().getString(R.string.title_dashboard_everyday),
+                    everydayEmoji,
+                    everydayContentDetail);
         });
 
         // 施肥活动
-        dashboardFertilizationTaskContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(fertilizationTaskEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("fertilization_task_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_fertilization_task))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
-        });
+        dashboardFertilizationTaskContainer.setOnClickListener(v -> showDashboardDetailDialog(
+                getResources().getString(R.string.title_dashboard_fertilization_task),
+                fertilizationTaskEmoji,
+                dbHelper.getDashboardContent("fertilization_task_detail")));
 
         // 美食悬赏
-        dashboardBountyContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(bountyEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("bounty_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_new_year_bounty))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
-        });
+        dashboardBountyContainer.setOnClickListener(v -> showDashboardDetailDialog(
+                getResources().getString(R.string.title_dashboard_new_year_bounty),
+                bountyEmoji,
+                dbHelper.getDashboardContent("bounty_detail")));
 
         // 百万消费
-        dashboardMillionConsumptionContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(millionConsumptionEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("million_consumption_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_new_year_million_consumption))
-                    .setView(dialogView)
-                    .setPositiveButton("去查看米鼠的图", (dialog, which) -> {
-                        Intent intent = new Intent(requireContext(), TiramisuImageActivity.class);
-                        startActivity(intent);
-                    })
-                    .show();
-        });
+        dashboardMillionConsumptionContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+                getResources().getString(R.string.title_dashboard_new_year_million_consumption),
+                millionConsumptionEmoji,
+                dbHelper.getDashboardContent("million_consumption_detail")));
 
         // 日氪
-        dashboardDailyRechargeContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(dailyRechargeEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("daily_recharge_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_daily_recharge))
-                    .setView(dialogView)
-                    .setPositiveButton("去查看米鼠的图", (dialog, which) -> {
-                        Intent intent = new Intent(requireContext(), TiramisuImageActivity.class);
-                        startActivity(intent);
-                    })
-                    .show();
-        });
+        dashboardDailyRechargeContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+                getResources().getString(R.string.title_dashboard_daily_recharge),
+                dailyRechargeEmoji,
+                dbHelper.getDashboardContent("daily_recharge_detail")));
 
         // 欢乐假期
-        dashboardHappyHolidayContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(happyHolidayEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("happy_holiday_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_happy_holiday))
-                    .setView(dialogView)
-                    .setPositiveButton("去查看米鼠的图", (dialog, which) -> {
-                        Intent intent = new Intent(requireContext(), TiramisuImageActivity.class);
-                        startActivity(intent);
-                    })
-                    .show();
-        });
+        dashboardHappyHolidayContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+                getResources().getString(R.string.title_dashboard_happy_holiday),
+                happyHolidayEmoji,
+                dbHelper.getDashboardContent("happy_holiday_detail")));
 
         // 美食大赛
-        dashboardFoodContestContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(foodContestEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("food_contest_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_food_contest))
-                    .setView(dialogView)
-                    .setPositiveButton("去查看米鼠的图", (dialog, which) -> {
-                        Intent intent = new Intent(requireContext(), TiramisuImageActivity.class);
-                        startActivity(intent);
-                    })
-                    .show();
-        });
+        dashboardFoodContestContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+                getResources().getString(R.string.title_dashboard_food_contest),
+                foodContestEmoji,
+                dbHelper.getDashboardContent("food_contest_detail")));
 
         // 三岛福利
-        dashboardThreeIslandsContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(threeIslandsEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("three_islands_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_three_islands))
-                    .setView(dialogView)
-                    .setPositiveButton("去查看米鼠的图", (dialog, which) -> {
-                        Intent intent = new Intent(requireContext(), TiramisuImageActivity.class);
-                        startActivity(intent);
-                    })
-                    .show();
-        });
+        dashboardThreeIslandsContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+                getResources().getString(R.string.title_dashboard_three_islands),
+                threeIslandsEmoji,
+                dbHelper.getDashboardContent("three_islands_detail")));
 
         // 跨服助人为乐
-        dashboardCrossServerTeamUpContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(crossServerTeamUpEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("cross_server_team_up_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_cross_server_team_up))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
-        });
+        dashboardCrossServerTeamUpContainer.setOnClickListener(v -> showDashboardDetailDialog(
+                getResources().getString(R.string.title_dashboard_cross_server_team_up),
+                crossServerTeamUpEmoji,
+                dbHelper.getDashboardContent("cross_server_team_up_detail")));
 
         // 二转打折
-        dashboardTransferDiscountContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(transferDiscountEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("transfer_discount_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_transfer_discount))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
-        });
+        dashboardTransferDiscountContainer.setOnClickListener(v -> showDashboardDetailDialog(
+                getResources().getString(R.string.title_dashboard_transfer_discount),
+                transferDiscountEmoji,
+                dbHelper.getDashboardContent("transfer_discount_detail")));
 
         // 抢红包
-        dashboardLuckyMoneyContainer.setOnClickListener(v -> {
-            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-            View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-            TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-            TextView contentTextView = dialogView.findViewById(R.id.content);
-            emojiTextView.setText(luckyMoneyEmoji); // 设置表情符号
-            contentTextView.setText(dbHelper.getDashboardContent("lucky_money_detail")); // 设置内容文本
-
-            new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                    .setTitle(getResources().getString(R.string.title_dashboard_new_year_lucky_money))
-                    .setView(dialogView)
-                    .setPositiveButton("好的", null)
-                    .show();
-        });
+        dashboardLuckyMoneyContainer.setOnClickListener(v -> showDashboardDetailDialog(
+                getResources().getString(R.string.title_dashboard_new_year_lucky_money),
+                luckyMoneyEmoji,
+                dbHelper.getDashboardContent("lucky_money_detail")));
 
         // 防御卡全能数据库
         root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> v.postDelayed(() -> {
@@ -765,20 +620,79 @@ public class DataCenterFragment extends Fragment {
     }
 
     /**
+     * 仪表盘：展示详细信息的弹窗
+     * @param title 弹窗标题
+     * @param emoji 弹窗中的大表情
+     * @param detailContent 详细内容
+     */
+    private void showDashboardDetailDialog(String title, String emoji, String detailContent) {
+        LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentTextView = dialogView.findViewById(R.id.content);
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentTextView.setText(detailContent); // 设置内容文本
+
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                .setTitle(title)
+                .setView(dialogView)
+                .setPositiveButton("好的", null);
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
+     * @param title 弹窗标题
+     * @param emoji 弹窗中的大表情
+     * @param detailContent 详细内容
+     */
+    private void showDashboardDetailDialogAndJumpToTiramisuImage(String title, String emoji, String detailContent) {
+        LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentTextView = dialogView.findViewById(R.id.content);
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentTextView.setText(detailContent); // 设置内容文本
+
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                .setTitle(title)
+                .setView(dialogView)
+                .setPositiveButton("去查看米鼠的图", (dialog, which) -> {
+                    Intent intent = new Intent(requireContext(), TiramisuImageActivity.class);
+                    startActivity(intent);
+                });
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
      * 美食数据站：展示二次确认跳转弹窗
      * @param title 要前往的网站名字
      * @param url 网址链接
      */
     private void showDialogAndVisitUrl(String title, String url) {
-        new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("二次确认防误触")
                 .setMessage("即将前往：\n" + title) // 显示要前往哪个网站
                 .setPositiveButton("立即跳转\uD83E\uDD13", (dialog, which) -> {
                     // 确认后执行跳转
                     visitUrl(url);
                 })
-                .setNegativeButton("咱手滑了\uD83E\uDEE3", null) // 取消则不执行操作
-                .show();
+                .setNegativeButton("咱手滑了\uD83E\uDEE3", null);
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
     }
 
     private void visitUrl(String url) {
@@ -805,7 +719,7 @@ public class DataCenterFragment extends Fragment {
         TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
         TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
 
-        new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("查黑系统")
                 .setView(dialogView)
                 .setPositiveButton("确定", (dialog, which) -> {
@@ -825,18 +739,26 @@ public class DataCenterFragment extends Fragment {
 
                                 @Override
                                 public void onError(String message) {
-                                    new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+                                    MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                                             .setTitle("查询失败")
                                             .setMessage(message)
-                                            .setPositiveButton("确定", null)
-                                            .show();
+                                            .setPositiveButton("确定", null);
+                                    Dialog dialog = dialogBuilder.create();
+
+                                    // 添加背景模糊
+                                    DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+                                    dialog.show();
                                 }
                             });
                         }
                     }
                 })
-                .setNegativeButton("取消", null)
-                .show();
+                .setNegativeButton("取消", null);
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
     }
 
     /**
@@ -858,8 +780,12 @@ public class DataCenterFragment extends Fragment {
         }
 
         dialogBuilder.setMessage(content.toString())
-                .setPositiveButton("确定", null)
-                .show();
+                .setPositiveButton("确定", null);
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
     }
 
     /**
@@ -873,7 +799,7 @@ public class DataCenterFragment extends Fragment {
     }
 
     private void showWelcomeDialog() {
-        new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
                 .setTitle("欢迎使用 HyperFVM")
                 .setMessage("如果您是第一次使用，建议您先阅读使用说明，以快速了解本App。")
                 .setPositiveButton("去阅读👉", (dialog, which) -> {
@@ -881,8 +807,12 @@ public class DataCenterFragment extends Fragment {
                     startActivity(intent);
                 })
                 .setNegativeButton("我是老手\uD83D\uDE0E", null)
-                .setCancelable(false)
-                .show();
+                .setCancelable(false);
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
     }
 
     /**

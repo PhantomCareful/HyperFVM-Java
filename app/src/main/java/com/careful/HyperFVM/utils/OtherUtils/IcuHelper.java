@@ -1,11 +1,11 @@
 package com.careful.HyperFVM.utils.OtherUtils;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import androidx.appcompat.app.AlertDialog;
-
+import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.jsoup.Jsoup;
@@ -40,14 +40,18 @@ public class IcuHelper {
             return;
         }
 
-        final AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+        final MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(context)
                 .setTitle("查询中")
                 .setMessage("正在验证QQ号信息，请稍候...")
-                .setCancelable(false)
-                .show();
+                .setCancelable(false);
+        Dialog dialog = dialogBuilder.create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
 
         executor.execute(() -> {
-            FraudResult result = null;
+            FraudResult result;
             String mainUrl = BASE_URL + "/fraud/viewFraud?qq=" + qqNumber;
             try {
                 // --- 步骤 1: 请求主页面，获取基础信息 ---
@@ -104,10 +108,6 @@ public class IcuHelper {
                 callback.onSuccess(finalResult);
             });
         });
-    }
-
-    public void shutdown() {
-        executor.shutdown();
     }
 
     public interface QueryCallback {
