@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities.NecessaryThings;
 
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -20,7 +21,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.work.WorkManager;
@@ -30,10 +30,11 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
@@ -42,6 +43,7 @@ import java.util.List;
 public class SettingsActivity extends BaseActivity {
 
     private DBHelper dbHelper;
+    private int pressFeedbackAnimationDelay;
     private AutoTaskNotificationManager autoTaskNotificationManager;
 
     // 提前注册通知权限请求器
@@ -78,19 +80,19 @@ public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //设置主题（必须在super.onCreate前调用才有效）
+        // 设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
 
         super.onCreate(savedInstanceState);
-        //小白条沉浸
+        // 小白条沉浸
         EdgeToEdge.enable(this);
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
         setContentView(R.layout.activity_settings);
 
-        //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.label_settings) + " ");
+        // 添加模糊材质
+        setupBlurEffect();
 
         // 初始化数据库
         dbHelper = new DBHelper(this);
@@ -442,18 +444,37 @@ public class SettingsActivity extends BaseActivity {
         }
     }
 
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
-        //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+    }
+
+    /**
+     * 在onResume阶段：设置按压反馈动画
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public void onResume() {
+        super.onResume();
+        boolean isPressFeedbackAnimation;
+        try (DBHelper dbHelper = new DBHelper(this)) {
+            // 添加按压动画
+            if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+                pressFeedbackAnimationDelay = 200;
+                isPressFeedbackAnimation = true;
+            } else {
+                pressFeedbackAnimationDelay = 0;
+                isPressFeedbackAnimation = false;
+            }
+        }
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 
     @Override

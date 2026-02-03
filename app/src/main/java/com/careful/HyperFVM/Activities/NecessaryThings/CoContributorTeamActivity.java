@@ -79,9 +79,7 @@ public class CoContributorTeamActivity extends BaseActivity {
     }
 
     /**
-     * 在onResume阶段：
-     * 1. 检查图片资源更新
-     * 2. 设置按压反馈动画
+     * 在onResume阶段：设置按压反馈动画
      */
     @SuppressLint("ClickableViewAccessibility")
     @Override

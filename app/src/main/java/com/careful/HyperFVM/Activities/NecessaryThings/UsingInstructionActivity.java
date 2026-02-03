@@ -1,7 +1,10 @@
 package com.careful.HyperFVM.Activities.NecessaryThings;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,31 +17,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.ActionBar;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 
 public class UsingInstructionActivity extends BaseActivity {
+    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //设置主题（必须在super.onCreate前调用才有效）
+        // 设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
 
         super.onCreate(savedInstanceState);
-        //小白条沉浸
+        // 小白条沉浸
         EdgeToEdge.enable(this);
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
         setContentView(R.layout.activity_using_instruction);
 
-        //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.label_using_instruction) + " ");
+        // 添加模糊材质
+        setupBlurEffect();
 
         TextView overview_top = findViewById(R.id.using_instruction_top);
         TextView overview1 = findViewById(R.id.using_instruction1);
@@ -80,17 +85,37 @@ public class UsingInstructionActivity extends BaseActivity {
         }, 300);
     }
 
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
 
-        //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+    }
+
+    /**
+     * 在onResume阶段：设置按压反馈动画
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public void onResume() {
+        super.onResume();
+        boolean isPressFeedbackAnimation;
+        try (DBHelper dbHelper = new DBHelper(this)) {
+            // 添加按压动画
+            if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+                pressFeedbackAnimationDelay = 200;
+                isPressFeedbackAnimation = true;
+            } else {
+                pressFeedbackAnimationDelay = 0;
+                isPressFeedbackAnimation = false;
+            }
+        }
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }
