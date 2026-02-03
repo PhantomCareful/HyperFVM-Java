@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 
 import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
@@ -38,7 +37,6 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtil
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -69,9 +67,6 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-
-        // 设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_auxiliary_list) + " ");
 
         // 添加模糊材质
         setupBlurEffect();
@@ -366,26 +361,13 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
         }
     }
 
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
-    }
-
     /**
      * 添加模糊效果
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便添加一个位移动画
         MaterialCardView cardView = findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container);
@@ -396,6 +378,16 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
         );
         animator.setDuration(1200);
         animator.start();
+
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // 重新构建布局
+        recreate();
     }
 
     /**
@@ -416,12 +408,7 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
         }
         findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-    }
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // 重新构建布局
-        recreate();
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }
