@@ -67,18 +67,18 @@ public class TiramisuImageActivity extends BaseActivity {
     }
 
     private void initViews() {
-        setupContainer(R.id.text_tools_tiramisu_image_1_container, "tiramisu_image_1");
-        setupContainer(R.id.text_tools_tiramisu_image_2_container, "tiramisu_image_2");
-        setupContainer(R.id.text_tools_tiramisu_image_3_1_container, "tiramisu_image_3_1");
-        setupContainer(R.id.text_tools_tiramisu_image_3_2_container, "tiramisu_image_3_2");
-        setupContainer(R.id.text_tools_tiramisu_image_3_3_container, "tiramisu_image_3_3");
-        setupContainer(R.id.text_tools_tiramisu_image_4_container, "tiramisu_image_4");
-        setupContainer(R.id.text_tools_tiramisu_image_5_container, "tiramisu_image_5");
-        setupContainer(R.id.text_tools_tiramisu_image_6_container, "tiramisu_image_6");
-        setupContainer(R.id.text_tools_tiramisu_image_7_1_container, "tiramisu_image_7_1");
-        setupContainer(R.id.text_tools_tiramisu_image_7_2_container, "tiramisu_image_7_2");
-        setupContainer(R.id.text_tools_tiramisu_image_7_3_container, "tiramisu_image_7_3");
-        setupContainer(R.id.text_tools_tiramisu_image_7_4_container, "tiramisu_image_7_4");
+        setupContainer(R.id.tiramisu_image_1_container, "tiramisu_image_1");
+        setupContainer(R.id.tiramisu_image_2_container, "tiramisu_image_2");
+        setupContainer(R.id.tiramisu_image_3_1_container, "tiramisu_image_3_1");
+        setupContainer(R.id.tiramisu_image_3_2_container, "tiramisu_image_3_2");
+        setupContainer(R.id.tiramisu_image_3_3_container, "tiramisu_image_3_3");
+        setupContainer(R.id.tiramisu_image_4_container, "tiramisu_image_4");
+        setupContainer(R.id.tiramisu_image_5_container, "tiramisu_image_5");
+        setupContainer(R.id.tiramisu_image_6_container, "tiramisu_image_6");
+        setupContainer(R.id.tiramisu_image_7_1_container, "tiramisu_image_7_1");
+        setupContainer(R.id.tiramisu_image_7_2_container, "tiramisu_image_7_2");
+        setupContainer(R.id.tiramisu_image_7_3_container, "tiramisu_image_7_3");
+        setupContainer(R.id.tiramisu_image_7_4_container, "tiramisu_image_7_4");
 
         // 初始化动画效果
         transition = new TransitionSet();

@@ -430,7 +430,7 @@
 
                     </LinearLayout>
 
-                    <!-- 第5个选项：妙妙屋 -->
+                    <!-- 第5个选项：哪片花火 -->
                     <LinearLayout
                         android:id="@+id/about_app_thanks_list_container_fvm_5"
                         android:layout_width="match_parent"
@@ -470,6 +470,53 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_thanks_list_fvm_5_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- 第6个选项：妙妙屋 -->
+                    <LinearLayout
+                        android:id="@+id/about_app_thanks_list_container_fvm_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/about_app_thanks_list_image_fvm_6"
+                            android:layout_gravity="start|center_vertical"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp"
+                            android:gravity="center_vertical">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_thanks_list_fvm_6_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_thanks_list_fvm_6_2"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="15sp"/>
 
@@ -652,7 +699,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_thanks_list_app_3_2"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                tools:ignore="TooManyViews" />
 
                         </LinearLayout>
 
@@ -662,7 +710,7 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_chevron_right"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                            tools:ignore="ContentDescription" />
+                            tools:ignore="ContentDescription,TooManyViews" />
 
                     </LinearLayout>
 

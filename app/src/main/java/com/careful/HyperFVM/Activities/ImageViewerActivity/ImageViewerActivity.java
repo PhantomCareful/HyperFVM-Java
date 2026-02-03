@@ -2,29 +2,35 @@ package com.careful.HyperFVM.Activities.ImageViewerActivity;
 
 import static android.content.ContentValues.TAG;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.ActionBar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.ZoomImageView;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import java.io.File;
 
 public class ImageViewerActivity extends BaseActivity {
+    private DBHelper dbHelper;
+
+    private int pressFeedbackAnimationDelay;
 
     private ZoomImageView zoomImageView;
     private DataImagesUpdaterUtil imageUtil;
@@ -32,10 +38,9 @@ public class ImageViewerActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 初始化数据库
-        try (DBHelper dbHelper = new DBHelper(this)) {
-            if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
-                Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
-            }
+        dbHelper = new DBHelper(this);
+        if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
+            Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
         }
 
         // 设置主题（必须在super.onCreate前调用才有效）
@@ -51,15 +56,15 @@ public class ImageViewerActivity extends BaseActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
 
+        // 添加模糊材质
+        setupBlurEffect();
+
         // 初始化图片工具类、数据库工具类
         imageUtil = DataImagesUpdaterUtil.getInstance();
 
         // 找到ZoomImageView并设置图片
         zoomImageView = findViewById(R.id.ZoomImageViewer);
         loadImageFromIntent();
-
-        //设置顶栏标题、启用返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.label_data_img_viewer) + " ");
     }
 
     private void loadImageFromIntent() {
@@ -112,17 +117,34 @@ public class ImageViewerActivity extends BaseActivity {
         return unzipRootPath + File.separator + imageName + ".webp";
     }
 
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
-        // 设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+    }
+
+    /**
+     * 在onResume阶段设置按压反馈动画
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 添加按压动画
+        boolean isPressFeedbackAnimation;
+        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
+            pressFeedbackAnimationDelay = 200;
+            isPressFeedbackAnimation = true;
+        } else {
+            pressFeedbackAnimationDelay = 0;
+            isPressFeedbackAnimation = false;
+        }
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }

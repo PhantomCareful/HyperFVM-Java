@@ -61,7 +61,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_1_container"
+                            android:id="@+id/tiramisu_image_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -110,7 +110,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_2_container"
+                            android:id="@+id/tiramisu_image_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -159,7 +159,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_3_1_container"
+                            android:id="@+id/tiramisu_image_3_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -208,7 +208,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_3_2_container"
+                            android:id="@+id/tiramisu_image_3_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -257,7 +257,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_3_3_container"
+                            android:id="@+id/tiramisu_image_3_3_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -306,7 +306,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_4_container"
+                            android:id="@+id/tiramisu_image_4_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -355,7 +355,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_5_container"
+                            android:id="@+id/tiramisu_image_5_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -404,7 +404,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_6_container"
+                            android:id="@+id/tiramisu_image_6_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -453,7 +453,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_7_1_container"
+                            android:id="@+id/tiramisu_image_7_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -502,7 +502,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_7_2_container"
+                            android:id="@+id/tiramisu_image_7_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -551,7 +551,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_7_3_container"
+                            android:id="@+id/tiramisu_image_7_3_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -600,7 +600,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/text_tools_tiramisu_image_7_4_container"
+                            android:id="@+id/tiramisu_image_7_4_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"

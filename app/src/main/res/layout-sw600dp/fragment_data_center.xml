@@ -720,14 +720,14 @@
                         android:layout_height="2dp"
                         android:layout_columnWeight="1"
                         android:layout_marginStart="5dp"
-                        android:background="?attr/colorSurface"
-                        tools:ignore="TooManyViews" />
+                        android:background="?attr/colorSurface" />
 
                     <!-- 水平线段 -->
                     <View
                         android:layout_width="2dp"
                         android:layout_height="2dp"
-                        android:background="?attr/colorSurface"/>
+                        android:background="?attr/colorSurface"
+                        tools:ignore="TooManyViews" />
 
                     <!-- 水平线段 -->
                     <View
