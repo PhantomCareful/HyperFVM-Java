@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
 import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
@@ -26,10 +25,10 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 
 public class DataImagesIndexActivity extends BaseActivity {
     private DBHelper dbHelper;
@@ -57,9 +56,6 @@ public class DataImagesIndexActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_data_images_index);
 
-        // 设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_data_images_index) + " ");
-
         dbHelper = new DBHelper(this);
         imageUtil = DataImagesUpdaterUtil.getInstance();
         update_image_action = findViewById(R.id.update_image_action);
@@ -70,6 +66,9 @@ public class DataImagesIndexActivity extends BaseActivity {
     }
 
     private void initViews() {
+        // 添加模糊效果
+        setupBlurEffect();
+
         // 防御卡数据图
         setupContainer(R.id.data_images_index_card_0_1_container, "data_image_card_0_1", false);
         setupContainer(R.id.data_images_index_card_0_2_1_container, "data_image_card_0_2_1", false);
@@ -246,18 +245,15 @@ public class DataImagesIndexActivity extends BaseActivity {
                 .start();
     }
 
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
-        //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
     }
 
     @Override
@@ -290,6 +286,8 @@ public class DataImagesIndexActivity extends BaseActivity {
             isPressFeedbackAnimation = false;
         }
         findViewById(R.id.update_image_action).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }
