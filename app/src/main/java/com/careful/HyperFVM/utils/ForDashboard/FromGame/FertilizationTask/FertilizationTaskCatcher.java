@@ -34,70 +34,72 @@ public class FertilizationTaskCatcher {
      * 核心方法：执行施肥任务解析流程
      */
     public void catchFertilizationTaskInfo() {
-        try {
-            // 步骤1：获取XML字符串
-            String xmlContent = XMLHelper.getContentFromUrl(XML_URL);
+        new Thread(() -> {
+            try {
+                // 步骤1：获取XML字符串
+                String xmlContent = XMLHelper.getContentFromUrl(XML_URL);
 
-            // 步骤2：通过正则表达式解析XML字符串
-            Matcher matcher = XMLHelper.getContentByRegularExpression(xmlContent, regularExpression);
-            if (matcher == null) {
-                Log.e(TAG, "catchFertilizationTaskInfo: 获取XML内容失败");
+                // 步骤2：通过正则表达式解析XML字符串
+                Matcher matcher = XMLHelper.getContentByRegularExpression(xmlContent, regularExpression);
+                if (matcher == null) {
+                    Log.e(TAG, "catchFertilizationTaskInfo: 获取XML内容失败");
+                    sendResultToDB(
+                            "获取失败",
+                            "失败❌",
+                            "❌",
+                            "获取内容失败，请联系开发者并提交此界面截图。"
+                    );
+                    return;
+                }
+
+                // 步骤3：获取startTime和endTime
+                String startTimeStr = matcher.group(1);
+                String endTimeStr = matcher.group(2);
+
+                // 步骤4：转换时间戳为日期字符串
+                long startTimeStamp = Long.parseLong(Objects.requireNonNull(startTimeStr));
+                long endTimeStamp = Long.parseLong(Objects.requireNonNull(endTimeStr));
+                String startDate = TimeUtil.convertTimeStampToDate(startTimeStamp);
+                String endDate = TimeUtil.convertTimeStampToDate(endTimeStamp);
+                Log.d(TAG, "catchFertilizationTaskInfo: 活动开始日期：" + startDate + "，结束日期：" + endDate);
+
+                // 步骤5：获取当前日期
+                String todayDate = TimeUtil.getCurrentDate();
+                Log.d(TAG, "catchFertilizationTaskInfo: 当前日期：" + todayDate);
+
+                // 步骤6：计算天数差
+                int duringCount = TimeUtil.calculateDaysBetween(startDate, todayDate);
+                Log.d(TAG, "catchFertilizationTaskInfo: 从当前日期到活动开始日期的天数（包含首尾）：" + duringCount);
+
+                // 步骤7：判断活动状态
+                checkActivityStatus(todayDate, startDate, endDate, duringCount);
+
+            } catch (IOException e) {
+                Log.e(TAG, "catchFertilizationTaskInfo: 网络IO异常：" + e.getMessage(), e);
+                sendResultToDB(
+                        "网络异常",
+                        "网络❌",
+                        "❌",
+                        "网络异常\n请检查网络是否可用"
+                );
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "catchFertilizationTaskInfo: 时间戳转换异常：" + e.getMessage(), e);
                 sendResultToDB(
                         "获取失败",
                         "失败❌",
                         "❌",
-                        "获取内容失败，请联系开发者并提交此界面截图。"
+                        "时间戳转换异常，请联系开发者并提交此界面截图"
                 );
-                return;
+            } catch (ParseException e) {
+                Log.e(TAG, "catchFertilizationTaskInfo: 日期解析异常：" + e.getMessage(), e);
+                sendResultToDB(
+                        "获取失败",
+                        "失败❌",
+                        "❌",
+                        "日期解析异常，请联系开发者并提交此界面截图"
+                );
             }
-
-            // 步骤3：获取startTime和endTime
-            String startTimeStr = matcher.group(1);
-            String endTimeStr = matcher.group(2);
-
-            // 步骤4：转换时间戳为日期字符串
-            long startTimeStamp = Long.parseLong(Objects.requireNonNull(startTimeStr));
-            long endTimeStamp = Long.parseLong(Objects.requireNonNull(endTimeStr));
-            String startDate = TimeUtil.convertTimeStampToDate(startTimeStamp);
-            String endDate = TimeUtil.convertTimeStampToDate(endTimeStamp);
-            Log.d(TAG, "catchFertilizationTaskInfo: 活动开始日期：" + startDate + "，结束日期：" + endDate);
-
-            // 步骤5：获取当前日期
-            String todayDate = TimeUtil.getCurrentDate();
-            Log.d(TAG, "catchFertilizationTaskInfo: 当前日期：" + todayDate);
-
-            // 步骤6：计算天数差
-            int duringCount = TimeUtil.calculateDaysBetween(startDate, todayDate);
-            Log.d(TAG, "catchFertilizationTaskInfo: 从当前日期到活动开始日期的天数（包含首尾）：" + duringCount);
-
-            // 步骤7：判断活动状态
-            checkActivityStatus(todayDate, startDate, endDate, duringCount);
-
-        } catch (IOException e) {
-            Log.e(TAG, "catchFertilizationTaskInfo: 网络IO异常：" + e.getMessage(), e);
-            sendResultToDB(
-                    "网络异常",
-                    "网络❌",
-                    "❌",
-                    "网络异常\n请检查网络是否可用"
-            );
-        } catch (NumberFormatException e) {
-            Log.e(TAG, "catchFertilizationTaskInfo: 时间戳转换异常：" + e.getMessage(), e);
-            sendResultToDB(
-                    "获取失败",
-                    "失败❌",
-                    "❌",
-                    "时间戳转换异常，请联系开发者并提交此界面截图"
-            );
-        } catch (ParseException e) {
-            Log.e(TAG, "catchFertilizationTaskInfo: 日期解析异常：" + e.getMessage(), e);
-            sendResultToDB(
-                    "获取失败",
-                    "失败❌",
-                    "❌",
-                    "日期解析异常，请联系开发者并提交此界面截图"
-            );
-        }
+        }).start();
     }
 
     /**

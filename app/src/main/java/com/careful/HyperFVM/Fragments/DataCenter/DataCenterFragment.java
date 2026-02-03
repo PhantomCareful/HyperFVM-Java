@@ -631,8 +631,10 @@ public class DataCenterFragment extends Fragment {
         checkFirstRun();
         // 没有启用自动任务的话，才在这里执行每日任务
         if (!dbHelper.getSettingValue("自动任务")) {
-            ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
-            executeDailyTasks.executeDailyTasks();
+            new Thread(() -> {
+                ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(requireContext());
+                executeDailyTasks.executeDailyTasks();
+            }).start();
         }
     }
 

@@ -35,30 +35,32 @@ public class DashboardGitCatcher {
     }
 
     public void catchGitDashboardInfo() {
-        try {
-            // 第1步：先从给定链接获取JSON字符串
-            String JSONArrayStr = XMLHelper.getContentFromUrl(GIT_URL);
+        new Thread(() -> {
+            try {
+                // 第1步：先从给定链接获取JSON字符串
+                String JSONArrayStr = XMLHelper.getContentFromUrl(GIT_URL);
 
-            // 第2步：将JSON字符串转换成JSON数组
-            JSONArray jsonArray = new JSONArray(JSONArrayStr);
+                // 第2步：将JSON字符串转换成JSON数组
+                JSONArray jsonArray = new JSONArray(JSONArrayStr);
 
-            JSONObject itemObj;
+                JSONObject itemObj;
 
-            // 第3步：遍历数组中的每个JSON对象
-            for (int i = 0; i < jsonArray.length(); i++) {
-                // 提取单个JSON对象
-                itemObj = jsonArray.getJSONObject(i);
+                // 第3步：遍历数组中的每个JSON对象
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    // 提取单个JSON对象
+                    itemObj = jsonArray.getJSONObject(i);
 
-                // 默认把二转打折的内容放在最后一个位置，方便处理
-                if (i == jsonArray.length() - 1) {
-                    catchTransferDiscountInfo(itemObj);
-                } else {
-                    catchOtherActivityInfo(itemObj);
+                    // 默认把二转打折的内容放在最后一个位置，方便处理
+                    if (i == jsonArray.length() - 1) {
+                        catchTransferDiscountInfo(itemObj);
+                    } else {
+                        catchOtherActivityInfo(itemObj);
+                    }
                 }
+            } catch (IOException | JSONException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException | JSONException e) {
-            throw new RuntimeException(e);
-        }
+        }).start();
     }
 
     /**
