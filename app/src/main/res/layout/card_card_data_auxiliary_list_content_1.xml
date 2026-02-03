@@ -118,6 +118,10 @@
             layout="@layout/card_card_data_index_10_1_6" />
 
         <include
+            android:id="@+id/card_card_data_index_16_1_4"
+            layout="@layout/card_card_data_index_16_1_4" />
+
+        <include
             android:id="@+id/card_card_data_index_10_1_7"
             layout="@layout/card_card_data_index_10_1_7" />
 

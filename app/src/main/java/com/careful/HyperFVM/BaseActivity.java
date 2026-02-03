@@ -5,6 +5,7 @@ import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.C
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,5 +75,9 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
         return context;
+    }
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }
