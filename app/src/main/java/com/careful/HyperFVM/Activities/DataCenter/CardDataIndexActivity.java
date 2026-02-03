@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +43,6 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
@@ -74,9 +72,6 @@ public class CardDataIndexActivity extends BaseActivity {
 
         // 初始化数据库
         dbHelper = new DBHelper(this);
-
-        //设置顶栏标题
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center_card_data_index) + " ");
 
         // 添加模糊材质
         setupBlurEffect();
@@ -633,20 +628,6 @@ public class CardDataIndexActivity extends BaseActivity {
         }
     }
 
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        //设置返回按钮点击事件
-        toolbar.setNavigationOnClickListener(v -> this.finish());
-    }
-
     /**
      * 添加模糊效果
      */
@@ -654,6 +635,7 @@ public class CardDataIndexActivity extends BaseActivity {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便添加一个位移动画
         MaterialCardView cardView = findViewById(R.id.FloatButton_CardDataIndex_Container);
@@ -674,6 +656,9 @@ public class CardDataIndexActivity extends BaseActivity {
         );
         animator.setDuration(1200);
         animator.start();
+
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
     }
 
     @Override
@@ -702,6 +687,8 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.FloatButton_CardDataIndex_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }

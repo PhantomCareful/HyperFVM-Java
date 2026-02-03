@@ -158,28 +158,6 @@ public class MeishiWechatActivity extends BaseActivity {
                 .show();
     }
 
-    /**
-     * 添加模糊效果
-     */
-    private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButton));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
-
-        // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.FloatButton_MeishiWechat_Container);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(
-                cardView,
-                View.TRANSLATION_X,
-                550f, 0f // 从1000px移动到0px
-        );
-        animator.setDuration(800);
-        animator.start();
-
-        // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
-    }
-
     // 处理链接：提取openid并触发网络请求获取玩家信息
     private void handleLinkInput(String link) {
         if (!Patterns.WEB_URL.matcher(link).matches()) {
@@ -316,6 +294,28 @@ public class MeishiWechatActivity extends BaseActivity {
                     Toast.makeText(MeishiWechatActivity.this, "解析错误：" + e.getMessage(), Toast.LENGTH_SHORT).show()
             );
         }
+    }
+
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButton));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+
+        // 顺便添加一个位移动画
+        CardView cardView = findViewById(R.id.FloatButton_MeishiWechat_Container);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(
+                cardView,
+                View.TRANSLATION_X,
+                550f, 0f // 从1000px移动到0px
+        );
+        animator.setDuration(800);
+        animator.start();
+
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
     }
 
     @Override
