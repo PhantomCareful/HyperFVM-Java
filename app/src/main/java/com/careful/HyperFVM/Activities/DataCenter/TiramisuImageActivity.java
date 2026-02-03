@@ -179,6 +179,7 @@ public class TiramisuImageActivity extends BaseActivity {
                 .withEndAction(() -> view.setVisibility(View.GONE))
                 .start();
     }
+
     /**
      * 添加模糊效果
      */
@@ -189,6 +190,7 @@ public class TiramisuImageActivity extends BaseActivity {
         // 顺便设置返回按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
     }
+
     /**
      * 在onResume阶段：
      * 1. 检查图片资源更新
