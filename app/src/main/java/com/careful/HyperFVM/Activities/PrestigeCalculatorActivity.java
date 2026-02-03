@@ -22,7 +22,7 @@ import java.util.Objects;
 public class PrestigeCalculatorActivity extends BaseActivity {
 
     // 存储所有输入框和对应币值（顺序需与输入框一一对应）
-    private List<TextInputEditText> inputEditTexts = new ArrayList<>();
+    private final List<TextInputEditText> inputEditTexts = new ArrayList<>();
     private final long[] denominations = {1, 5, 10, 50, 100, 200, 500, 1000, 2000, 3000, 4000, 5000, 8000, 10000, 600, 500};
     private TextInputEditText etCoinChange; // 零钱输入框（单独处理，币值为1）
     private TextView tvTotal; // 结果显示
@@ -41,7 +41,7 @@ public class PrestigeCalculatorActivity extends BaseActivity {
         setContentView(R.layout.activity_prestige_calculator);
 
         // 设置顶栏标题和返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.title_tools_prestige_calculator));
+        setTopAppBarTitle(getResources().getString(R.string.top_bar_prestige_calculator));
 
         // 初始化视图
         initViews();
