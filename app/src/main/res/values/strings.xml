@@ -173,6 +173,7 @@
     <string name="text_dashboard_last_day_of_month">月末了，请注意清空积分和金券⚠️</string>
     <string name="title_dashboard_double_explosion_rate">双爆信息</string>
     <string name="title_dashboard_meishi_wechat">温馨礼包</string>
+    <string name="top_bar_meishi_wechat">温馨礼包🎁</string>
     <string name="title_meishi_wechat_account_saved">已保存的账号</string>
     <string name="title_meishi_wechat_rules">使用说明</string>
     <string name="title_meishi_wechat_gift">温馨礼包包含</string>

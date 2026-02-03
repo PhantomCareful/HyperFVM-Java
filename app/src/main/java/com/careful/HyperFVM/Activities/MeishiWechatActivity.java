@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.cardview.widget.CardView;
 
 import com.careful.HyperFVM.BaseActivity;
@@ -36,7 +35,6 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -110,9 +108,6 @@ public class MeishiWechatActivity extends BaseActivity {
     }
 
     private void initViews() {
-        // 设置顶栏标题和返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.title_dashboard_meishi_wechat) + " ");
-
         // 账号数量文本和列表容器
         accountCountText = findViewById(R.id.TitleMeishiWechatSavedAccount);
         accountListContainer = findViewById(R.id.LinearLayout_AccountList);
@@ -169,6 +164,7 @@ public class MeishiWechatActivity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButton));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便添加一个位移动画
         CardView cardView = findViewById(R.id.FloatButton_MeishiWechat_Container);
@@ -179,6 +175,9 @@ public class MeishiWechatActivity extends BaseActivity {
         );
         animator.setDuration(800);
         animator.start();
+
+        // 顺便设置返回按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
     }
 
     // 处理链接：提取openid并触发网络请求获取玩家信息
@@ -319,18 +318,6 @@ public class MeishiWechatActivity extends BaseActivity {
         }
     }
 
-    private void setTopAppBarTitle(String title) {
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        toolbar.setNavigationOnClickListener(v -> finish());
-    }
-
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -355,6 +342,8 @@ public class MeishiWechatActivity extends BaseActivity {
             isPressFeedbackAnimation = false;
         }
         findViewById(R.id.FloatButton_MeishiWechat_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 
