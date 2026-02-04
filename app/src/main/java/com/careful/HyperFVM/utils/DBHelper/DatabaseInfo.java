@@ -89,6 +89,8 @@ public class DatabaseInfo {
      * settings表增加“生物认证”设置
      * DB_VERSION = 53 - 57
      * 重构仪表盘界面
+     * DB_VERSION = 58
+     * 添加威望转职凭证数据
      */
     public static final int DB_VERSION = 57;
 }
