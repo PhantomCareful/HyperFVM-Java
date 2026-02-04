@@ -33,8 +33,13 @@ public class DialogBackgroundBlurUtil {
         @SuppressLint("Recycle") ValueAnimator animator = ValueAnimator.ofInt(0, blurRadius);
         animator.setDuration(300);
         animator.addUpdateListener(animation -> {
-            int currentRadius = (int) animation.getAnimatedValue();
+            float fraction = animation.getAnimatedFraction();
+
+            int currentRadius = (int) (blurRadius * fraction);
+            float currentDim = 0.5f * fraction;
+
             layoutParams.setBlurBehindRadius(currentRadius);
+            layoutParams.dimAmount = currentDim;
             window.setAttributes(layoutParams);
         });
         animator.start();
