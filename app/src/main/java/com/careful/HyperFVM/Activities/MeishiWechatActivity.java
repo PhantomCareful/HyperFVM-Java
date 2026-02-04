@@ -6,6 +6,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimat
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +33,7 @@ import com.careful.HyperFVM.databinding.ActivityMeishiWechatBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -130,6 +132,10 @@ public class MeishiWechatActivity extends BaseActivity {
         transition.setDuration(400); // 动画时长400ms
     }
 
+    /**
+     * 添加链接的弹窗
+     * 这个弹窗和当前Activity联系非常紧密，为了方便起见，不归到DialogBuilderManager中去
+     */
     private void showAddLinkDialog() {
         // 1. 加载自定义布局文件
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -140,10 +146,10 @@ public class MeishiWechatActivity extends BaseActivity {
         TextInputEditText editText = (TextInputEditText) inputLayout.getEditText(); // 获取内部输入框
 
         // 3. 构建弹窗并设置自定义布局
-        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
+        Dialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("添加链接")
                 .setView(dialogView) // 替换原来的setView(input)，使用自定义布局
-                .setPositiveButton("确定", (dialog, which) -> {
+                .setPositiveButton("确定", (dialogInterface, which) -> {
                     // 4. 处理输入内容（与原来逻辑一致）
                     if (editText != null) {
                         String link = Objects.requireNonNull(editText.getText()).toString().trim();
@@ -155,7 +161,11 @@ public class MeishiWechatActivity extends BaseActivity {
                     }
                 })
                 .setNegativeButton("取消", null)
-                .show();
+                .create();
+
+        // 4. 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
     }
 
     // 处理链接：提取openid并触发网络请求获取玩家信息
@@ -171,7 +181,7 @@ public class MeishiWechatActivity extends BaseActivity {
             // 关键：调用网络请求方法获取区服和角色ID
             fetchPlayerInfo(openid);
         } else {
-            Toast.makeText(this, "未找到openid，请检查链接", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "链接有误，请检查链接是否正确", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -204,15 +214,19 @@ public class MeishiWechatActivity extends BaseActivity {
 
         // 长按删除逻辑
         cardView.setOnLongClickListener(v -> {
-            new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
+            Dialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                     .setTitle("删除账号")
                     .setMessage("确定删除 " + (info.playerId != null ? info.playerId : info.openid) + " 吗？")
-                    .setPositiveButton("确定", (dialog, which) -> {
+                    .setPositiveButton("确定", (dialogInterface, which) -> {
                         dbHelper.deleteMeishiWechat(info.openid);
                         loadAccountList();
                     })
                     .setNegativeButton("取消", null)
-                    .show();
+                    .create();
+
+            // 添加背景模糊
+            DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+            dialog.show();
             return true;
         });
 

@@ -8,7 +8,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimat
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.app.Dialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,19 +22,16 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityCardDataAuxiliaryListBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
@@ -89,6 +86,7 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
 
     /**
      * 弹出标题导航弹窗
+     * 这个弹窗和当前Activity联系非常紧密，为了方便起见，不归到DialogBuilderManager中去
      */
     private void showTitleNavigationDialog() {
         // 获取标题数组
@@ -107,7 +105,7 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         // 构建目录列表弹窗
-        AlertDialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
+        Dialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
                 .setTitle("🛰增幅卡导航") // 弹窗标题
                 .setView(dialogView) // 弹窗主题
                 .setNegativeButton("关闭", null) // 取消按钮
@@ -147,6 +145,8 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
             dialog.dismiss(); // 选择后关闭弹窗
         });
 
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
         dialog.show();
     }
 
@@ -169,196 +169,165 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
 
     private void initCardImages() {
         // 1. 投手增幅卡
-        findViewById(R.id.card_data_index_4_1_5).setOnClickListener(v -> selectCardDataByName("能量喵"));
-        findViewById(R.id.card_data_index_4_1_7).setOnClickListener(v -> selectCardDataByName("猪猪加强器"));
-        findViewById(R.id.card_data_index_4_1_8).setOnClickListener(v -> selectCardDataByName("蓝莓信号塔塔"));
-        findViewById(R.id.card_data_index_4_1_9).setOnClickListener(v -> selectCardDataByName("美味水果塔"));
-        findViewById(R.id.card_data_index_4_1_10).setOnClickListener(v -> selectCardDataByName("欧若拉神使"));
+        findViewById(R.id.card_data_index_4_1_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "能量喵"));
+        findViewById(R.id.card_data_index_4_1_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "猪猪加强器"));
+        findViewById(R.id.card_data_index_4_1_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蓝莓信号塔塔"));
+        findViewById(R.id.card_data_index_4_1_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "美味水果塔"));
+        findViewById(R.id.card_data_index_4_1_10).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "欧若拉神使"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex211.cardDataIndex211.setOnClickListener(v -> selectCardDataByName("勺勺兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex212.cardDataIndex212.setOnClickListener(v -> selectCardDataByName("窃蛋龙"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex213.cardDataIndex213.setOnClickListener(v -> selectCardDataByName("尤弥尔神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex214.cardDataIndex214.setOnClickListener(v -> selectCardDataByName("幻影蛇"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex215.cardDataIndex215.setOnClickListener(v -> selectCardDataByName("全能糖球投手"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex221.cardDataIndex221.setOnClickListener(v -> selectCardDataByName("煮蛋器投手"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex222.cardDataIndex222.setOnClickListener(v -> selectCardDataByName("冰煮蛋器"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex223.cardDataIndex223.setOnClickListener(v -> selectCardDataByName("双鱼座精灵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex224.cardDataIndex224.setOnClickListener(v -> selectCardDataByName("弹弹鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex225.cardDataIndex225.setOnClickListener(v -> selectCardDataByName("索尔神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex226.cardDataIndex226.setOnClickListener(v -> selectCardDataByName("机械汪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex227.cardDataIndex227.setOnClickListener(v -> selectCardDataByName("投弹猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex228.cardDataIndex228.setOnClickListener(v -> selectCardDataByName("雪糕投手"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex229.cardDataIndex229.setOnClickListener(v -> selectCardDataByName("飞鱼喵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2210.cardDataIndex2210.setOnClickListener(v -> selectCardDataByName("壮壮牛"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2211.cardDataIndex2211.setOnClickListener(v -> selectCardDataByName("烤蜥蜴投手"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2212.cardDataIndex2212.setOnClickListener(v -> selectCardDataByName("投篮虎"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2213.cardDataIndex2213.setOnClickListener(v -> selectCardDataByName("钵钵鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex231.cardDataIndex231.setOnClickListener(v -> selectCardDataByName("色拉投手"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex232.cardDataIndex232.setOnClickListener(v -> selectCardDataByName("巧克力投手"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex233.cardDataIndex233.setOnClickListener(v -> selectCardDataByName("臭豆腐投手"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex234.cardDataIndex234.setOnClickListener(v -> selectCardDataByName("8周年蛋糕"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1013.cardDataIndex1013.setOnClickListener(v -> selectCardDataByName("生煎锅"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1014.cardDataIndex1014.setOnClickListener(v -> selectCardDataByName("铛铛虎"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1015.cardDataIndex1015.setOnClickListener(v -> selectCardDataByName("祝融神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1016.cardDataIndex1016.setOnClickListener(v -> selectCardDataByName("糖炒栗子"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1614.cardDataIndex1614.setOnClickListener(v -> selectCardDataByName("酱香锅烤栗子"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1017.cardDataIndex1017.setOnClickListener(v -> selectCardDataByName("霜霜蛇"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1041.cardDataIndex1041.setOnClickListener(v -> selectCardDataByName("蜂蜜史莱姆"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1214.cardDataIndex1214.setOnClickListener(v -> selectCardDataByName("导弹蛇"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1215.cardDataIndex1215.setOnClickListener(v -> selectCardDataByName("盖亚神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex211.cardDataIndex211.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "勺勺兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex212.cardDataIndex212.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "窃蛋龙"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex213.cardDataIndex213.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "尤弥尔神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex214.cardDataIndex214.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "幻影蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex215.cardDataIndex215.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "全能糖球投手"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex221.cardDataIndex221.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "煮蛋器投手"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex222.cardDataIndex222.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰煮蛋器"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex223.cardDataIndex223.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "双鱼座精灵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex224.cardDataIndex224.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弹弹鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex225.cardDataIndex225.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "索尔神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex226.cardDataIndex226.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "机械汪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex227.cardDataIndex227.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "投弹猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex228.cardDataIndex228.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雪糕投手"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex229.cardDataIndex229.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞鱼喵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2210.cardDataIndex2210.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "壮壮牛"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2211.cardDataIndex2211.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烤蜥蜴投手"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2212.cardDataIndex2212.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "投篮虎"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex2213.cardDataIndex2213.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "钵钵鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex231.cardDataIndex231.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "色拉投手"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex232.cardDataIndex232.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巧克力投手"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex233.cardDataIndex233.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "臭豆腐投手"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex234.cardDataIndex234.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "8周年蛋糕"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1013.cardDataIndex1013.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "生煎锅"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1014.cardDataIndex1014.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铛铛虎"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1015.cardDataIndex1015.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "祝融神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1016.cardDataIndex1016.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "糖炒栗子"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1614.cardDataIndex1614.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "酱香锅烤栗子"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1017.cardDataIndex1017.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霜霜蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1041.cardDataIndex1041.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蜂蜜史莱姆"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1214.cardDataIndex1214.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent1).cardCardDataIndex1215.cardDataIndex1215.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
 
         // 2. 莓果点心
-        findViewById(R.id.card_data_index_4_2_1).setOnClickListener(v -> selectCardDataByName("莓果点心"));
+        findViewById(R.id.card_data_index_4_2_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "莓果点心"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> selectCardDataByName("章鱼烧"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> selectCardDataByName("巨蟹座精灵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> selectCardDataByName("忍忍鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> selectCardDataByName("狄安娜神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> selectCardDataByName("飞盘汪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> selectCardDataByName("铁甲飞镖猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> selectCardDataByName("海盗兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> selectCardDataByName("冰块冷萃机"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "章鱼烧"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巨蟹座精灵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "忍忍鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狄安娜神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent2).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
 
         // 3. 香料虎
-        findViewById(R.id.card_data_index_4_2_2).setOnClickListener(v -> selectCardDataByName("香料虎"));
+        findViewById(R.id.card_data_index_4_2_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "香料虎"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> selectCardDataByName("章鱼烧"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> selectCardDataByName("巨蟹座精灵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> selectCardDataByName("忍忍鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> selectCardDataByName("狄安娜神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> selectCardDataByName("飞盘汪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> selectCardDataByName("铁甲飞镖猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> selectCardDataByName("海盗兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex923.cardDataIndex923.setOnClickListener(v -> selectCardDataByName("火箭猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex1215.cardDataIndex1215.setOnClickListener(v -> selectCardDataByName("盖亚神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "章鱼烧"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巨蟹座精灵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "忍忍鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狄安娜神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex923.cardDataIndex923.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火箭猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent3).cardCardDataIndex1215.cardDataIndex1215.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
         
         // 4. 塔利亚神使
-        findViewById(R.id.card_data_index_4_2_3).setOnClickListener(v -> selectCardDataByName("塔利亚神使"));
+        findViewById(R.id.card_data_index_4_2_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "塔利亚神使"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> selectCardDataByName("章鱼烧"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> selectCardDataByName("巨蟹座精灵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> selectCardDataByName("忍忍鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> selectCardDataByName("狄安娜神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> selectCardDataByName("飞盘汪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> selectCardDataByName("铁甲飞镖猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> selectCardDataByName("海盗兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex923.cardDataIndex923.setOnClickListener(v -> selectCardDataByName("火箭猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex1214.cardDataIndex1214.setOnClickListener(v -> selectCardDataByName("导弹蛇"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex1215.cardDataIndex1215.setOnClickListener(v -> selectCardDataByName("盖亚神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex922.cardDataIndex922.setOnClickListener(v -> selectCardDataByName("雅典娜守护"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex924.cardDataIndex924.setOnClickListener(v -> selectCardDataByName("宙斯神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex931.cardDataIndex931.setOnClickListener(v -> selectCardDataByName("魔法猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex932.cardDataIndex932.setOnClickListener(v -> selectCardDataByName("招财喵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex933.cardDataIndex933.setOnClickListener(v -> selectCardDataByName("雪球兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex934.cardDataIndex934.setOnClickListener(v -> selectCardDataByName("典伊神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex935.cardDataIndex935.setOnClickListener(v -> selectCardDataByName("冰晶龙"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> selectCardDataByName("冰块冷萃机"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex714Auxiliary.cardDataIndex714Auxiliary.setOnClickListener(v -> selectCardDataByName("至尊大力神"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex727.cardDataIndex727.setOnClickListener(v -> selectCardDataByName("埃罗斯神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "章鱼烧"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巨蟹座精灵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "忍忍鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狄安娜神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex923.cardDataIndex923.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火箭猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex1214.cardDataIndex1214.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex1215.cardDataIndex1215.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex922.cardDataIndex922.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雅典娜守护"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex924.cardDataIndex924.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "宙斯神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex931.cardDataIndex931.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "魔法猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex932.cardDataIndex932.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "招财喵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex933.cardDataIndex933.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雪球兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex934.cardDataIndex934.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "典伊神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex935.cardDataIndex935.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰晶龙"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex714Auxiliary.cardDataIndex714Auxiliary.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "至尊大力神"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent4).cardCardDataIndex727.cardDataIndex727.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "埃罗斯神使"));
 
         // 5. 精灵龙
-        findViewById(R.id.card_data_index_4_2_4).setOnClickListener(v -> selectCardDataByName("精灵龙"));
+        findViewById(R.id.card_data_index_4_2_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "精灵龙"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex922.cardDataIndex922.setOnClickListener(v -> selectCardDataByName("雅典娜守护"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex924.cardDataIndex924.setOnClickListener(v -> selectCardDataByName("宙斯神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex931.cardDataIndex931.setOnClickListener(v -> selectCardDataByName("魔法猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex932.cardDataIndex932.setOnClickListener(v -> selectCardDataByName("招财喵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex933.cardDataIndex933.setOnClickListener(v -> selectCardDataByName("雪球兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex934.cardDataIndex934.setOnClickListener(v -> selectCardDataByName("典伊神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex935.cardDataIndex935.setOnClickListener(v -> selectCardDataByName("冰晶龙"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> selectCardDataByName("冰块冷萃机"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex921.cardDataIndex921.setOnClickListener(v -> selectCardDataByName("咖喱龙虾炮"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex1214.cardDataIndex1214.setOnClickListener(v -> selectCardDataByName("导弹蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex922.cardDataIndex922.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雅典娜守护"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex924.cardDataIndex924.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "宙斯神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex931.cardDataIndex931.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "魔法猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex932.cardDataIndex932.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "招财喵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex933.cardDataIndex933.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雪球兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex934.cardDataIndex934.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "典伊神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex935.cardDataIndex935.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰晶龙"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex921.cardDataIndex921.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "咖喱龙虾炮"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent5).cardCardDataIndex1214.cardDataIndex1214.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
 
         // 6. 五向增幅卡
-        findViewById(R.id.card_data_index_4_2_5).setOnClickListener(v -> selectCardDataByName("龙须面"));
-        findViewById(R.id.card_data_index_4_2_6).setOnClickListener(v -> selectCardDataByName("五谷丰登"));
-        findViewById(R.id.card_data_index_4_2_7).setOnClickListener(v -> selectCardDataByName("五行蛇"));
-        findViewById(R.id.card_data_index_4_2_8).setOnClickListener(v -> selectCardDataByName("弗雷神使"));
+        findViewById(R.id.card_data_index_4_2_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "龙须面"));
+        findViewById(R.id.card_data_index_4_2_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "五谷丰登"));
+        findViewById(R.id.card_data_index_4_2_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "五行蛇"));
+        findViewById(R.id.card_data_index_4_2_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弗雷神使"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex311.cardDataIndex311.setOnClickListener(v -> selectCardDataByName("炭烧海星"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex312.cardDataIndex312.setOnClickListener(v -> selectCardDataByName("猪猪料理机"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex313.cardDataIndex313.setOnClickListener(v -> selectCardDataByName("陀螺喵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex314.cardDataIndex314.setOnClickListener(v -> selectCardDataByName("哈迪斯神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex315.cardDataIndex315.setOnClickListener(v -> selectCardDataByName("查克拉兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex322.cardDataIndex322.setOnClickListener(v -> selectCardDataByName("星星兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex323.cardDataIndex323.setOnClickListener(v -> selectCardDataByName("坚果爆炒机"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex324.cardDataIndex324.setOnClickListener(v -> selectCardDataByName("里格神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex321.cardDataIndex321.setOnClickListener(v -> selectCardDataByName("厨师虎"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex1126.cardDataIndex1126.setOnClickListener(v -> selectCardDataByName("大师兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex325.cardDataIndex325.setOnClickListener(v -> selectCardDataByName("怪味鱿鱼"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex1613.cardDataIndex1613.setOnClickListener(v -> selectCardDataByName("火影怪味鱿鱼"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex326.cardDataIndex326.setOnClickListener(v -> selectCardDataByName("烟花虎"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex327.cardDataIndex327.setOnClickListener(v -> selectCardDataByName("风车龙"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex117.cardDataIndex117.setOnClickListener(v -> selectCardDataByName("散弹牛"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex118.cardDataIndex118.setOnClickListener(v -> selectCardDataByName("威风虎"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex311.cardDataIndex311.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炭烧海星"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex312.cardDataIndex312.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "猪猪料理机"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex313.cardDataIndex313.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "陀螺喵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex314.cardDataIndex314.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "哈迪斯神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex315.cardDataIndex315.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "查克拉兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex322.cardDataIndex322.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "星星兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex323.cardDataIndex323.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "坚果爆炒机"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex324.cardDataIndex324.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "里格神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex321.cardDataIndex321.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "厨师虎"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex1126.cardDataIndex1126.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "大师兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex325.cardDataIndex325.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "怪味鱿鱼"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex1613.cardDataIndex1613.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火影怪味鱿鱼"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex326.cardDataIndex326.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烟花虎"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex327.cardDataIndex327.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "风车龙"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex117.cardDataIndex117.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "散弹牛"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent6).cardCardDataIndex118.cardDataIndex118.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "威风虎"));
 
         // 7. 喷壶增幅卡
-        findViewById(R.id.card_data_index_4_2_9).setOnClickListener(v -> selectCardDataByName("加速榨汁机"));
-        findViewById(R.id.card_data_index_4_2_10).setOnClickListener(v -> selectCardDataByName("魔杖蛇"));
+        findViewById(R.id.card_data_index_4_2_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "加速榨汁机"));
+        findViewById(R.id.card_data_index_4_2_10).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "魔杖蛇"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex821.cardDataIndex821.setOnClickListener(v -> selectCardDataByName("旋转咖啡喷壶"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex822.cardDataIndex822.setOnClickListener(v -> selectCardDataByName("狮子座精灵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex823.cardDataIndex823.setOnClickListener(v -> selectCardDataByName("波塞冬神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex824.cardDataIndex824.setOnClickListener(v -> selectCardDataByName("转转鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex825.cardDataIndex825.setOnClickListener(v -> selectCardDataByName("可乐汪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex826.cardDataIndex826.setOnClickListener(v -> selectCardDataByName("元气牛"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex827.cardDataIndex827.setOnClickListener(v -> selectCardDataByName("巫蛊蛇"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex811.cardDataIndex811.setOnClickListener(v -> selectCardDataByName("咖啡喷壶"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex812.cardDataIndex812.setOnClickListener(v -> selectCardDataByName("关东煮喷锅"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex813.cardDataIndex813.setOnClickListener(v -> selectCardDataByName("烈焰龙"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex814.cardDataIndex814.setOnClickListener(v -> selectCardDataByName("赫斯提亚神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex1011.cardDataIndex1011.setOnClickListener(v -> selectCardDataByName("肥牛火锅"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex1012.cardDataIndex1012.setOnClickListener(v -> selectCardDataByName("麻辣香锅"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex821.cardDataIndex821.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "旋转咖啡喷壶"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex822.cardDataIndex822.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狮子座精灵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex823.cardDataIndex823.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "波塞冬神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex824.cardDataIndex824.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "转转鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex825.cardDataIndex825.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "可乐汪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex826.cardDataIndex826.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元气牛"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex827.cardDataIndex827.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巫蛊蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex811.cardDataIndex811.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "咖啡喷壶"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex812.cardDataIndex812.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "关东煮喷锅"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex813.cardDataIndex813.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烈焰龙"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex814.cardDataIndex814.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赫斯提亚神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex1011.cardDataIndex1011.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "肥牛火锅"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent7).cardCardDataIndex1012.cardDataIndex1012.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "麻辣香锅"));
 
         // 8.炎焱兔
-        findViewById(R.id.card_data_index_4_2_11).setOnClickListener(v -> selectCardDataByName("炎焱兔"));
+        findViewById(R.id.card_data_index_4_2_11).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎焱兔"));
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex511.cardDataIndex511.setOnClickListener(v -> selectCardDataByName("小火炉"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex512.cardDataIndex512.setOnClickListener(v -> selectCardDataByName("大火炉"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex513.cardDataIndex513.setOnClickListener(v -> selectCardDataByName("酒杯灯"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex514.cardDataIndex514.setOnClickListener(v -> selectCardDataByName("双子座精灵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex515.cardDataIndex515.setOnClickListener(v -> selectCardDataByName("咕咕鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex516.cardDataIndex516.setOnClickListener(v -> selectCardDataByName("暖暖鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex517.cardDataIndex517.setOnClickListener(v -> selectCardDataByName("阿波罗神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex518.cardDataIndex518.setOnClickListener(v -> selectCardDataByName("7周年蜡烛"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex519.cardDataIndex519.setOnClickListener(v -> selectCardDataByName("火焰牛"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1525.cardDataIndex1525.setOnClickListener(v -> selectCardDataByName("守能汪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1526.cardDataIndex1526.setOnClickListener(v -> selectCardDataByName("生日帽"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1527.cardDataIndex1527.setOnClickListener(v -> selectCardDataByName("喵喵炉"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1528.cardDataIndex1528.setOnClickListener(v -> selectCardDataByName("扑克牌护罩"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex511.cardDataIndex511.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "小火炉"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex512.cardDataIndex512.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "大火炉"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex513.cardDataIndex513.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "酒杯灯"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex514.cardDataIndex514.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "双子座精灵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex515.cardDataIndex515.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "咕咕鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex516.cardDataIndex516.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "暖暖鸡"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex517.cardDataIndex517.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "阿波罗神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex518.cardDataIndex518.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "7周年蜡烛"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex519.cardDataIndex519.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火焰牛"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1525.cardDataIndex1525.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "守能汪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1526.cardDataIndex1526.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "生日帽"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1527.cardDataIndex1527.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "喵喵炉"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryListContent8).cardCardDataIndex1528.cardDataIndex1528.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "扑克牌护罩"));
 
-    }
-
-    private void selectCardDataByName(String cardName) {
-        if (cardName.isEmpty()) {
-            Toast.makeText(this, "请输入卡片名称", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String tableName = dbHelper.getCardTable(cardName);
-        String baseName = dbHelper.getCardBaseName(cardName);
-        if (tableName == null) {
-            Toast.makeText(this, "未找到该卡片", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // 跳转详情页
-        Intent intent = switch (tableName) {
-            case "card_data_1" ->
-                    new Intent(this, CardData_1_Activity.class);
-            case "card_data_2" ->
-                    new Intent(this, CardData_2_Activity.class);
-            case "card_data_3" ->
-                    new Intent(this, CardData_3_Activity.class);
-            case "card_data_4" ->
-                    new Intent(this, CardData_4_Activity.class);
-            default -> null;
-        };
-        if (intent != null) {
-            intent.putExtra("name", baseName);
-            intent.putExtra("table", tableName);
-            startActivity(intent);
-        }
     }
 
     /**

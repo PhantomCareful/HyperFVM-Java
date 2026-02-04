@@ -37,7 +37,9 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/dialog_input_padding"
             android:hint="请输入您要查询的QQ号"
-            android:textSize="20dp"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:textSize="20sp"
+            android:textColor="?attr/colorOnSurface"
             android:singleLine="false"
             android:inputType="textMultiLine"
             android:maxLines="5"/>

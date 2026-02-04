@@ -1,12 +1,10 @@
 package com.careful.HyperFVM;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
-import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,18 +14,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.Service.PersistentService;
@@ -35,32 +24,24 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
-import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
-import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.CardItemDecoration;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
 import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
-import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.careful.HyperFVM.databinding.ActivityMainBinding;
 import com.careful.HyperFVM.utils.OtherUtils.TabLayoutFragmentStateAdapter;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MainActivity extends BaseActivity {
 
@@ -107,16 +88,7 @@ public class MainActivity extends BaseActivity {
         new Thread(() -> {
             if (!SignatureChecker.verifyAppSignature(this)) {
                 // 在主线程中显示对话框提示
-                mainHandler.post(() -> new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                        .setTitle("签名校验失败")
-                        .setMessage("同学，您使用的HyperFVM非官方版本，应用将关闭。\n请从官方通道下载安装，非常感谢~")
-                        .setCancelable(false)
-                        .setPositiveButton("确定", (dialog, which) -> {
-                            // 退出应用
-                            android.os.Process.killProcess(android.os.Process.myPid());
-                            System.exit(0);
-                        })
-                        .show());
+                mainHandler.post(() -> DialogBuilderManager.showSignatureCheckerDialog(this));
             }
         }).start();
 
@@ -178,8 +150,8 @@ public class MainActivity extends BaseActivity {
         initPersistentNotification();
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> v.postDelayed(
-                this::showCardQueryDialog, pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> v.postDelayed(() ->
+                DialogBuilderManager.showCardQueryDialog(this), pressFeedbackAnimationDelay));
     }
 
     /**
@@ -284,112 +256,10 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     public void onPermissionDenied() {
-                        new MaterialAlertDialogBuilder(MainActivity.this, materialAlertDialogThemeStyleId)
-                                .setTitle("权限申请")
-                                .setMessage("为了向通知中心推送消息，需要您授予通知权限哦~")
-                                .setCancelable(false)
-                                .setPositiveButton("去开启", (dialog, which) -> {
-                                    Intent intent = new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                                            .putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, getPackageName());
-                                    startActivity(intent);
-                                })
-                                .setNegativeButton("取消", null)
-                                .show();
+                        DialogBuilderManager.showNotificationPermissionRequestDialog(MainActivity.this);
                     }
                 });
             }
-        }
-    }
-
-    /**
-     * 显示卡片查询弹窗
-     */
-    private void showCardQueryDialog() {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View dialogView = inflater.inflate(R.layout.item_dialog_input_card_data, null);
-        TextInputEditText etCardName = dialogView.findViewById(R.id.textInputEditText);
-        RecyclerView suggestionList = dialogView.findViewById(R.id.suggestion_list);
-
-        // 初始化适配器（传入上下文、空数据、点击监听）
-        SuggestionAdapter adapter = new SuggestionAdapter(this, new ArrayList<>(), suggestion -> {
-            // 点击项：填充名称到输入框，隐藏列表
-            etCardName.setText(suggestion.getName());
-            suggestionList.setVisibility(View.GONE);
-        });
-
-        // 配置RecyclerView（保持原有逻辑）
-        suggestionList.setLayoutManager(new LinearLayoutManager(this));
-        suggestionList.setAdapter(adapter);
-        CardItemDecoration itemDecoration = new CardItemDecoration(suggestionList, 20, 20);
-        suggestionList.addItemDecoration(itemDecoration);
-
-        // 实时模糊查询（修改核心：适配新的数据模型）
-        etCardName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                String keyword = s.toString().trim();
-                if (!keyword.isEmpty()) {
-                    // 从数据库获取：包含name和image_id的搜索结果
-                    List<CardSuggestion> suggestions = dbHelper.searchCards(keyword);
-                    adapter.updateData(suggestions);
-                    suggestionList.setVisibility(View.VISIBLE);
-                } else {
-                    adapter.updateData(new ArrayList<>());
-                    suggestionList.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-        });
-
-        // 显示弹窗（保持原有逻辑）
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle(getResources().getString(R.string.card_data_search_title))
-                .setView(dialogView)
-                .setPositiveButton("查询", (dialog, which) -> {
-                    String cardName = Objects.requireNonNull(etCardName.getText()).toString().trim();
-                    selectCardDataByName(cardName);
-                })
-                .setNegativeButton("取消", null);
-        Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    private void selectCardDataByName(String cardName) {
-        if (cardName.isEmpty()) {
-            Toast.makeText(this, "请输入卡片名称", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String tableName = dbHelper.getCardTable(cardName);
-        String baseName = dbHelper.getCardBaseName(cardName);
-        if (tableName == null) {
-            Toast.makeText(this, "未找到该卡片", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // 跳转详情页
-        Intent intent = switch (tableName) {
-            case "card_data_1" ->
-                    new Intent(this, CardData_1_Activity.class);
-            case "card_data_2" ->
-                    new Intent(this, CardData_2_Activity.class);
-            case "card_data_3" ->
-                    new Intent(this, CardData_3_Activity.class);
-            case "card_data_4" ->
-                    new Intent(this, CardData_4_Activity.class);
-            default -> null;
-        };
-        if (intent != null) {
-            intent.putExtra("name", baseName);
-            intent.putExtra("table", tableName);
-            startActivity(intent);
         }
     }
 

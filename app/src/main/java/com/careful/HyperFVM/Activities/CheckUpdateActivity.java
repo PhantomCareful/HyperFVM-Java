@@ -32,11 +32,11 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
 import java.util.Objects;
@@ -595,7 +595,7 @@ public class CheckUpdateActivity extends BaseActivity {
             // 检查是否有安装未知应用的权限
             if (!getPackageManager().canRequestPackageInstalls()) {
                 // 引导用户开启安装权限
-                showInstallPermissionGuide();
+                DialogBuilderManager.showPackageInstallPermissionDialog(this);
                 return;
             }
 
@@ -628,39 +628,6 @@ public class CheckUpdateActivity extends BaseActivity {
             Log.d("install", Objects.requireNonNull(e.getMessage()));
             Toast.makeText(this, "安装失败: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    /**
-     * 显示安装权限引导
-     */
-    @SuppressLint("QueryPermissionsNeeded")
-    private void showInstallPermissionGuide() {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle("需要安装权限")
-                .setMessage("应用需要\"安装未知应用\"权限才能安装更新。\n\n请点击\"去设置\"按钮，然后在设置中找到\"安装未知应用\"或\"特殊应用权限\"，为HyperFVM开启安装权限。")
-                .setPositiveButton("去设置", (dialog, which) -> {
-                    // 跳转到安装未知应用权限设置页面
-                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
-
-                    // 需要指定包名
-                    intent.setData(android.net.Uri.parse("package:" + getPackageName()));
-
-                    // 检查是否有可以处理此Intent的应用
-                    if (intent.resolveActivity(getPackageManager()) != null) {
-                        startActivity(intent);
-                    } else {
-                        // 如果无法跳转到精确设置页面，跳转到应用详情页
-                        Intent appDetailsIntent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        appDetailsIntent.setData(android.net.Uri.parse("package:" + getPackageName()));
-                        startActivity(appDetailsIntent);
-                    }
-                })
-                .setNegativeButton("取消", (dialog, which) -> {
-                    dialog.dismiss();
-                    update_app_action.setText(getResources().getString(R.string.label_check_update_status_need_install_permission));
-                })
-                .setCancelable(false)
-                .show();
     }
 
     // =========================== 以下是动画和界面部分 ===========================

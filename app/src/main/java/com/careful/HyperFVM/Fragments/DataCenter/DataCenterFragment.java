@@ -2,15 +2,12 @@ package com.careful.HyperFVM.Fragments.DataCenter;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_BIOMETRIC_AUTH;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
-import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +28,6 @@ import com.careful.HyperFVM.Activities.DataCenter.CardDataAuxiliaryListActivity;
 import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
-import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
 import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
@@ -41,15 +37,9 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
-import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
-import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Objects;
 
 public class DataCenterFragment extends Fragment {
     private DBHelper dbHelper;
@@ -124,9 +114,6 @@ public class DataCenterFragment extends Fragment {
     private EveryMonthAndEveryWeek everyMonthAndEveryWeek;
     private BilibiliFVMUtil bilibiliFVMUtil;
     private String latestBilibiliFVMUrl;
-
-    // 查黑系统工具类
-    private IcuHelper icuHelper;
 
     private int pressFeedbackAnimationDelay;
 
@@ -209,7 +196,6 @@ public class DataCenterFragment extends Fragment {
         latestBilibiliFVMUrl = null;
 
         // 初始化查黑工具类
-        icuHelper = new IcuHelper(requireContext());
 
         // 读取数据库结果并显示
         loadResultsFromDatabase();
@@ -299,7 +285,8 @@ public class DataCenterFragment extends Fragment {
 
         // ------------------------------这一部分统一设置点击事件------------------------------
         // 双爆信息
-        dashboardDoubleExplosionRateContainer.setOnClickListener(v -> showDashboardDetailDialog(
+        dashboardDoubleExplosionRateContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialog(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_double_explosion_rate),
                 doubleExplosionRateEmoji,
                 dbHelper.getDashboardContent("double_explosion_rate_detail")));
@@ -322,8 +309,10 @@ public class DataCenterFragment extends Fragment {
         });
 
         // 更新公告
-        dashboardBilibiliFVMContainer.setOnClickListener(v ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_bilibili_fvm_dialog), latestBilibiliFVMUrl));
+        dashboardBilibiliFVMContainer.setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_bilibili_fvm_dialog),
+                latestBilibiliFVMUrl));
 
         // 每日签到
         dashboardEverydayContainer.setOnClickListener(v -> {
@@ -333,68 +322,79 @@ public class DataCenterFragment extends Fragment {
             } else {
                 everydayContentDetail = "\uD83E\uDEF0记得每天都要签到\uD83E\uDEF0\n\n当前进度：" + dashboardEverydayResult;
             }
-            showDashboardDetailDialog(
+            DialogBuilderManager.showDashboardDetailDialog(
+                    requireContext(),
                     getResources().getString(R.string.title_dashboard_everyday),
                     everydayEmoji,
                     everydayContentDetail);
         });
 
         // 施肥活动
-        dashboardFertilizationTaskContainer.setOnClickListener(v -> showDashboardDetailDialog(
+        dashboardFertilizationTaskContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialog(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_fertilization_task),
                 fertilizationTaskEmoji,
                 dbHelper.getDashboardContent("fertilization_task_detail")));
 
         // 美食悬赏
-        dashboardBountyContainer.setOnClickListener(v -> showDashboardDetailDialog(
+        dashboardBountyContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialog(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_new_year_bounty),
                 bountyEmoji,
                 dbHelper.getDashboardContent("bounty_detail")));
 
         // 百万消费
-        dashboardMillionConsumptionContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+        dashboardMillionConsumptionContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_new_year_million_consumption),
                 millionConsumptionEmoji,
                 dbHelper.getDashboardContent("million_consumption_detail")));
 
         // 日氪
-        dashboardDailyRechargeContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+        dashboardDailyRechargeContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_daily_recharge),
                 dailyRechargeEmoji,
                 dbHelper.getDashboardContent("daily_recharge_detail")));
 
         // 欢乐假期
-        dashboardHappyHolidayContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+        dashboardHappyHolidayContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_happy_holiday),
                 happyHolidayEmoji,
                 dbHelper.getDashboardContent("happy_holiday_detail")));
 
         // 美食大赛
-        dashboardFoodContestContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+        dashboardFoodContestContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_food_contest),
                 foodContestEmoji,
                 dbHelper.getDashboardContent("food_contest_detail")));
 
         // 三岛福利
-        dashboardThreeIslandsContainer.setOnClickListener(v -> showDashboardDetailDialogAndJumpToTiramisuImage(
+        dashboardThreeIslandsContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_three_islands),
                 threeIslandsEmoji,
                 dbHelper.getDashboardContent("three_islands_detail")));
 
         // 跨服助人为乐
-        dashboardCrossServerTeamUpContainer.setOnClickListener(v -> showDashboardDetailDialog(
+        dashboardCrossServerTeamUpContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialog(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_cross_server_team_up),
                 crossServerTeamUpEmoji,
                 dbHelper.getDashboardContent("cross_server_team_up_detail")));
 
         // 二转打折
-        dashboardTransferDiscountContainer.setOnClickListener(v -> showDashboardDetailDialog(
+        dashboardTransferDiscountContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialog(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_transfer_discount),
                 transferDiscountEmoji,
                 dbHelper.getDashboardContent("transfer_discount_detail")));
 
         // 抢红包
-        dashboardLuckyMoneyContainer.setOnClickListener(v -> showDashboardDetailDialog(
+        dashboardLuckyMoneyContainer.setOnClickListener(v -> DialogBuilderManager.showDashboardDetailDialog(
+                requireContext(),
                 getResources().getString(R.string.title_dashboard_new_year_lucky_money),
                 luckyMoneyEmoji,
                 dbHelper.getDashboardContent("lucky_money_detail")));
@@ -428,42 +428,50 @@ public class DataCenterFragment extends Fragment {
         }, pressFeedbackAnimationDelay));
 
         // 提拉米鼠官网
-        root.findViewById(R.id.card_tiramisu_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_tiramisu_dialog),
+        root.findViewById(R.id.card_tiramisu_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_tiramisu_dialog),
                 getResources().getString(R.string.label_tools_tiramisu_url)), pressFeedbackAnimationDelay));
 
         // 陌路の综合数据表
-        root.findViewById(R.id.card_molu_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_molu_dialog),
-                        getResources().getString(R.string.label_tools_molu_url)), pressFeedbackAnimationDelay));
+        root.findViewById(R.id.card_molu_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_molu_dialog),
+                getResources().getString(R.string.label_tools_molu_url)), pressFeedbackAnimationDelay));
 
         // FAA米苏物流
-        root.findViewById(R.id.card_faa_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_faa_dialog),
-                        getResources().getString(R.string.label_tools_faa_url)), pressFeedbackAnimationDelay));
+        root.findViewById(R.id.card_faa_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_faa_dialog),
+                getResources().getString(R.string.label_tools_faa_url)), pressFeedbackAnimationDelay));
 
         // 卡片鼠军对策表
-        root.findViewById(R.id.card_strategy_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_strategy_dialog),
-                        getResources().getString(R.string.label_tools_strategy_url)), pressFeedbackAnimationDelay));
+        root.findViewById(R.id.card_strategy_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_strategy_dialog),
+                getResources().getString(R.string.label_tools_strategy_url)), pressFeedbackAnimationDelay));
 
         // 巅峰对决部分机制解析
-        root.findViewById(R.id.card_strategy_world_boss_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_strategy_world_boss_dialog),
-                        getResources().getString(R.string.label_tools_strategy_world_boss_url)), pressFeedbackAnimationDelay));
+        root.findViewById(R.id.card_strategy_world_boss_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_strategy_world_boss_dialog),
+                getResources().getString(R.string.label_tools_strategy_world_boss_url)), pressFeedbackAnimationDelay));
 
         // FVM查黑系统
-        root.findViewById(R.id.card_icu_container).setOnClickListener(v -> v.postDelayed(this::showQQInputDialog, pressFeedbackAnimationDelay));
+        root.findViewById(R.id.card_icu_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showQQInputDialog(requireContext()),
+                pressFeedbackAnimationDelay));
 
         // 强卡最优路径计算器
-        root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_card_calculator_dialog),
-                        getResources().getString(R.string.label_tools_card_calculator_url)), pressFeedbackAnimationDelay));
+        root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_card_calculator_dialog),
+                getResources().getString(R.string.label_tools_card_calculator_url)), pressFeedbackAnimationDelay));
 
         // 宝石最优路径计算器
-        root.findViewById(R.id.card_gem_calculator_container).setOnClickListener(v -> v.postDelayed(() ->
-                showDialogAndVisitUrl(getResources().getString(R.string.title_tools_gem_calculator_dialog),
-                        getResources().getString(R.string.label_tools_gem_calculator_url)), pressFeedbackAnimationDelay));
+        root.findViewById(R.id.card_gem_calculator_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_gem_calculator_dialog),
+                getResources().getString(R.string.label_tools_gem_calculator_url)), pressFeedbackAnimationDelay));
 
         // 今日运势
         root.findViewById(R.id.card_today_lucky_container).setOnClickListener(v -> v.postDelayed(() -> {
@@ -620,199 +628,13 @@ public class DataCenterFragment extends Fragment {
     }
 
     /**
-     * 仪表盘：展示详细信息的弹窗
-     * @param title 弹窗标题
-     * @param emoji 弹窗中的大表情
-     * @param detailContent 详细内容
-     */
-    private void showDashboardDetailDialog(String title, String emoji, String detailContent) {
-        LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-        TextView contentTextView = dialogView.findViewById(R.id.content);
-        emojiTextView.setText(emoji); // 设置表情符号
-        contentTextView.setText(detailContent); // 设置内容文本
-
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                .setTitle(title)
-                .setView(dialogView)
-                .setPositiveButton("好的", null);
-        Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    /**
-     * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
-     * @param title 弹窗标题
-     * @param emoji 弹窗中的大表情
-     * @param detailContent 详细内容
-     */
-    private void showDashboardDetailDialogAndJumpToTiramisuImage(String title, String emoji, String detailContent) {
-        LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
-
-        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-        TextView contentTextView = dialogView.findViewById(R.id.content);
-        emojiTextView.setText(emoji); // 设置表情符号
-        contentTextView.setText(detailContent); // 设置内容文本
-
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                .setTitle(title)
-                .setView(dialogView)
-                .setPositiveButton("去查看米鼠的图", (dialog, which) -> {
-                    Intent intent = new Intent(requireContext(), TiramisuImageActivity.class);
-                    startActivity(intent);
-                });
-        Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    /**
-     * 美食数据站：展示二次确认跳转弹窗
-     * @param title 要前往的网站名字
-     * @param url 网址链接
-     */
-    private void showDialogAndVisitUrl(String title, String url) {
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                .setTitle("二次确认防误触")
-                .setMessage("即将前往：\n" + title) // 显示要前往哪个网站
-                .setPositiveButton("立即跳转\uD83E\uDD13", (dialog, which) -> {
-                    // 确认后执行跳转
-                    visitUrl(url);
-                })
-                .setNegativeButton("咱手滑了\uD83E\uDEE3", null);
-        Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    private void visitUrl(String url) {
-        //创建打开浏览器的Intent
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-
-        //启动浏览器（添加try-catch处理没有浏览器的异常）
-        try {
-            startActivity(intent);
-        } catch (Exception e) {
-            Toast.makeText(requireActivity(), "无法打开浏览器", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
-     * 查黑系统：显示查询弹窗
-     */
-    private void showQQInputDialog() {
-        // 加载自定义布局
-        LayoutInflater inflater = LayoutInflater.from(requireContext());
-        View dialogView = inflater.inflate(R.layout.item_dialog_input_layout_icu, null);
-        // 获取布局中的输入框
-        TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
-        TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
-
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                .setTitle("查黑系统")
-                .setView(dialogView)
-                .setPositiveButton("确定", (dialog, which) -> {
-                    if (etQQ != null) {
-                        String qqNumber = Objects.requireNonNull(etQQ.getText()).toString().trim();
-                        if (qqNumber.isEmpty()) {
-                            Toast.makeText(requireContext(), "请输入QQ号", Toast.LENGTH_SHORT).show();
-                        } else if (!qqNumber.matches("\\d+")) {
-                            Toast.makeText(requireContext(), "QQ号只能包含数字", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // 使用Icu类查询
-                            icuHelper.queryFraudInfo(qqNumber, new IcuHelper.QueryCallback() {
-                                @Override
-                                public void onSuccess(IcuHelper.FraudResult result) {
-                                    showResultDialog(result);
-                                }
-
-                                @Override
-                                public void onError(String message) {
-                                    MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                                            .setTitle("查询失败")
-                                            .setMessage(message)
-                                            .setPositiveButton("确定", null);
-                                    Dialog dialog = dialogBuilder.create();
-
-                                    // 添加背景模糊
-                                    DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-                                    dialog.show();
-                                }
-                            });
-                        }
-                    }
-                })
-                .setNegativeButton("取消", null);
-        Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    /**
-     * 查黑系统：显示查询结果弹窗
-     * @param result 把查询到的结果显示到弹窗上
-     */
-    private void showResultDialog(IcuHelper.FraudResult result) {
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId);
-        dialogBuilder.setTitle(result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)");
-
-        StringBuilder content = new StringBuilder();
-        content.append("QQ号：").append(result.qq).append("\n\n");
-        content.append("昵称：").append(result.nickname).append("\n\n");
-        if (result.isFraud) {
-            content.append("备注：").append(result.remark).append("\n\n");
-            content.append("录入时间：").append(result.recordTime);
-        } else {
-            content.append("该QQ号暂未被标记为骗子。");
-        }
-
-        dialogBuilder.setMessage(content.toString())
-                .setPositiveButton("确定", null);
-        Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    /**
      * 检查是否首次启动App
      */
     private void checkFirstRun() {
         if (preferences.getBoolean(FIRST_RUN_KEY, true)) {
-            showWelcomeDialog();
+            DialogBuilderManager.showWelcomeDialog(requireContext());
             preferences.edit().putBoolean(FIRST_RUN_KEY, false).apply();
         }
-    }
-
-    private void showWelcomeDialog() {
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), materialAlertDialogThemeStyleId)
-                .setTitle("欢迎使用 HyperFVM")
-                .setMessage("如果您是第一次使用，建议您先阅读使用说明，以快速了解本App。")
-                .setPositiveButton("去阅读👉", (dialog, which) -> {
-                    Intent intent = new Intent(requireActivity(), UsingInstructionActivity.class);
-                    startActivity(intent);
-                })
-                .setNegativeButton("我是老手\uD83D\uDE0E", null)
-                .setCancelable(false);
-        Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
     }
 
     /**

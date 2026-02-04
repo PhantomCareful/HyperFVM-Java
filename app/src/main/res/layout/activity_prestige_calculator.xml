@@ -35,7 +35,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望商店余额："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -64,7 +65,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值1)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -93,7 +95,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值5)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -122,7 +125,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值10)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -151,7 +155,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值50)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -180,7 +185,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值100)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -209,7 +215,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值200)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -239,7 +246,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值500)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -268,7 +276,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值1000)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -297,7 +306,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值2000)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -326,7 +336,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值3000)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -355,7 +366,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值4000)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -385,7 +397,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值5000)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -414,7 +427,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值8000)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -443,7 +457,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="威望币(币值10000)："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -472,7 +487,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="月卡礼包："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
@@ -501,7 +517,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="豪华福利礼包："
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"

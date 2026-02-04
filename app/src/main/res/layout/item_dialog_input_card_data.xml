@@ -36,7 +36,9 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/dialog_input_padding"
             android:hint="请输入防御卡名称"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
             android:textSize="20sp"
+            android:textColor="?attr/colorOnSurface"
             android:inputType="text"
             android:singleLine="true"/>
     </com.google.android.material.textfield.TextInputLayout>

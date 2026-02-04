@@ -1,6 +1,5 @@
 package com.careful.HyperFVM.Activities.NecessaryThings;
 
-import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
@@ -11,17 +10,13 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.work.WorkManager;
 
@@ -32,10 +27,10 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 import java.util.List;
@@ -109,17 +104,7 @@ public class SettingsActivity extends BaseActivity {
                         MaterialSwitch switchAutoTask = findViewById(R.id.Switch_AutoTask);
                         switchAutoTask.setChecked(false);
                         dbHelper.updateSettingValue(CONTENT_AUTO_TASK, "false");
-                        new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                                .setTitle("权限申请")
-                                .setMessage("为了向通知中心推送消息，需要您授予通知权限哦~")
-                                .setCancelable(false)
-                                .setPositiveButton("去开启", (dialog, which) -> {
-                                    Intent intent = new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                                            .putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, getPackageName());
-                                    startActivity(intent);
-                                })
-                                .setNegativeButton("取消", null)
-                                .show();
+                        DialogBuilderManager.showNotificationPermissionRequestDialog(this);
                     }
                 }
         );
@@ -204,64 +189,15 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void showThemeSelectionDialog() {
-        showSelectionDialog(R.array.theme_entries, currentTheme, "🎨设置主题", CONTENT_APP_THEME, themeCurrentSelection);
+        DialogBuilderManager.showSelectionDialog(this, R.array.theme_entries, currentTheme, "🎨设置主题", CONTENT_APP_THEME, themeCurrentSelection);
     }
 
     private void showDarkModeSelectionDialog() {
-        showSelectionDialog(R.array.dark_mode_entries, currentDarkMode, "\uD83C\uDF1D\uD83C\uDF1A设置深色模式", CONTENT_DARK_MODE, darkModeCurrentSelection);
+        DialogBuilderManager.showSelectionDialog(this, R.array.dark_mode_entries, currentDarkMode, "\uD83C\uDF1D\uD83C\uDF1A设置深色模式", CONTENT_DARK_MODE, darkModeCurrentSelection);
     }
 
     private void showInterfaceStyleSelectionDialog() {
-        showSelectionDialog(R.array.interface_style_entries, currentInterfaceStyle, "🥕设置界面风格", CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection);
-    }
-
-    /**
-     * 通用的列表弹窗的构建方法
-     */
-    private void showSelectionDialog(int arrayId, String currentContent, String dialogTitle, String dbHelperUpdateContent, TextView currentSelection) {
-        String[] entries = getResources().getStringArray(arrayId);
-        int selectedIndex = 0;
-        for (int i = 0; i < entries.length; i++) {
-            if (entries[i].equals(currentContent)) {
-                selectedIndex = i;
-                break;
-            }
-        }
-
-        // 加载自定义布局
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.item_dialog_selection, null);
-        ListView listView = dialogView.findViewById(R.id.dialog_list);
-        if (entries.length <= 10) {
-            dialogView.findViewById(R.id.dialog_list_top_gradient).setVisibility(View.GONE);
-            dialogView.findViewById(R.id.dialog_list_bottom_gradient).setVisibility(View.GONE);
-        }
-
-        // 设置列表
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_single_choice, entries);
-        listView.setAdapter(adapter);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setItemChecked(selectedIndex, true);
-
-        // 构建Dialog
-        AlertDialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle(dialogTitle)
-                .setView(dialogView)
-                .setNegativeButton("关闭", null)
-                .create();
-
-        // 列表点击事件
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedEntries = entries[position];
-            dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
-            currentSelection.setText(selectedEntries);
-            dialog.dismiss();
-            Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
-            restartApp();
-        });
-
-        listView.setTag(dialog); // 传递Dialog引用
-        dialog.show();
+        DialogBuilderManager.showSelectionDialog(this, R.array.interface_style_entries, currentInterfaceStyle, "🥕设置界面风格", CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection);
     }
 
     /**
