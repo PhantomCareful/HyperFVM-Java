@@ -28,6 +28,7 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtil
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
+import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 public class DataImagesIndexActivity extends BaseActivity {
@@ -165,13 +166,7 @@ public class DataImagesIndexActivity extends BaseActivity {
     }
 
     private void checkVersion() {
-        // 获取本地版本号
-        String localVersion = dbHelper.getDataStationValue("DataImagesVersionCode");
-        if (localVersion == null) {
-            localVersionCode = 0;
-        } else {
-            localVersionCode = Long.parseLong(localVersion);
-        }
+        localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(this);
 
         // 检查本地资源是否就绪
         isResourcesReady = imageUtil.isResourcesReady(this);
