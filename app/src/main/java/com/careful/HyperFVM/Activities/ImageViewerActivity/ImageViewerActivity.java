@@ -21,7 +21,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
+import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.ZoomImageView;
 
@@ -33,7 +33,7 @@ public class ImageViewerActivity extends BaseActivity {
     private int pressFeedbackAnimationDelay;
 
     private ZoomImageView zoomImageView;
-    private DataImagesUpdaterUtil imageUtil;
+    private ImageResourcesUpdaterUtil imageUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class ImageViewerActivity extends BaseActivity {
         setupBlurEffect();
 
         // 初始化图片工具类、数据库工具类
-        imageUtil = DataImagesUpdaterUtil.getInstance();
+        imageUtil = ImageResourcesUpdaterUtil.getInstance();
 
         // 找到ZoomImageView并设置图片
         zoomImageView = findViewById(R.id.ZoomImageViewer);

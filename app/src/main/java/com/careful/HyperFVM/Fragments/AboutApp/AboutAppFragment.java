@@ -21,6 +21,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 
 import java.util.Objects;
@@ -35,10 +36,10 @@ public class AboutAppFragment extends Fragment {
         setEasterEgg(root);
 
         //从build.gradle中获取版本号
-        getVersion(root);
+        getAppLocalVersionAndCheckUpdate(root);
 
         //跳转检查更新的Activity
-        clickToNewActivity(root.findViewById(R.id.label_check_update), CheckUpdateActivity.class);
+        clickToNewActivity(root.findViewById(R.id.about_app_check_update_container), CheckUpdateActivity.class);
 
         //跳转浏览器，前往作者的Github主页
         root.findViewById(R.id.about_app_developer_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
@@ -138,7 +139,7 @@ public class AboutAppFragment extends Fragment {
         imageView.setOnClickListener(v -> Toast.makeText(requireContext(), "Make FVM Great Again\uD83C\uDF89\uD83C\uDF89\uD83C\uDF89", Toast.LENGTH_SHORT).show());
     }
 
-    private void getVersion(View root) {
+    private void getAppLocalVersionAndCheckUpdate(View root) {
         // 获取version信息
         long localVersionCode = LocalVersionUtil.getAppLocalVersionCode(requireContext());
         String localVersionName = LocalVersionUtil.getAppLocalVersionName(requireContext());
@@ -150,6 +151,19 @@ public class AboutAppFragment extends Fragment {
         TextView version_info = root.findViewById(R.id.version_info);
         String versionInfo = localVersionName + "(" + localVersionCode + ")" + betaOrRelease;
         version_info.setText(versionInfo);
+
+        // 检查更新
+        TextView checkUpdateTitle1 = root.findViewById(R.id.about_app_check_update_title_1);
+        TextView checkUpdateTitle2 = root.findViewById(R.id.about_app_check_update_title_2);
+
+        if (!BadgeDotUtil.checkUpdateAndShowRedDot(requireContext())) {
+            checkUpdateTitle1.setText("发 现 新 版 本");
+            checkUpdateTitle2.setText("速 速 更 新 \uD83D\uDCE2 \uD83D\uDCE2 \uD83D\uDCE2");
+        } else {
+            checkUpdateTitle1.setText(getResources().getString(R.string.title_about_app_check_update_1));
+            checkUpdateTitle2.setText(getResources().getString(R.string.title_about_app_check_update_2));
+        }
+
     }
 
     private void clickToNewActivity(View view, Class<? extends Activity> activityClass) {

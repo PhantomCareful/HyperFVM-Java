@@ -20,6 +20,65 @@ public class BadgeDotUtil {
     private static final int DOT_SIZE_DP = 16;
 
     /**
+     * 检查更新然后返回是否显示小红点
+     */
+    public static boolean checkUpdateAndShowRedDot(Context context) {
+        final boolean[] isShowRedDot = {false};
+
+        long localAppVersionCode = LocalVersionUtil.getAppLocalVersionCode(context);
+
+        // 调用UpdaterUtil检查App更新
+        AppUpdaterUtil appUpdaterUtil = AppUpdaterUtil.getInstance();
+        appUpdaterUtil.checkServerVersion(new AppUpdaterUtil.OnVersionCheckCallback() {
+            @Override
+            public void onVersionCheckSuccess(long serverVersion, String updateLog) {
+                try {
+                    isShowRedDot[0] = serverVersion > localAppVersionCode;
+                } catch (Exception e) {
+                    isShowRedDot[0] = false;
+                }
+            }
+
+            @Override
+            public void onVersionCheckFailure(String errorMsg) {
+                isShowRedDot[0] = false;
+            }
+
+            @Override
+            public void onVersionParseError() {
+                isShowRedDot[0] = false;
+            }
+        });
+
+        long localImageResourcesVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+
+        // 调用UpdaterUtil检查图片资源更新
+        ImageResourcesUpdaterUtil imageResourcesUpdaterUtil = ImageResourcesUpdaterUtil.getInstance();
+        imageResourcesUpdaterUtil.checkServerVersion(new ImageResourcesUpdaterUtil.OnVersionCheckCallback() {
+            @Override
+            public void onVersionCheckSuccess(long serverVersion, String updateLog) {
+                try {
+                    isShowRedDot[0] = serverVersion > localImageResourcesVersionCode;
+                } catch (Exception e) {
+                    isShowRedDot[0] = false;
+                }
+            }
+
+            @Override
+            public void onVersionCheckFailure(String errorMsg) {
+                isShowRedDot[0] = false;
+            }
+
+            @Override
+            public void onVersionParseError() {
+                isShowRedDot[0] = false;
+            }
+        });
+
+        return isShowRedDot[0];
+    }
+
+    /**
      * 给指定位置的BottomNavigationItem添加小红点
      * @param navigationView 自定义的NoPaddingBottomNavigationView
      * @param position 目标Item的位置（从0开始）

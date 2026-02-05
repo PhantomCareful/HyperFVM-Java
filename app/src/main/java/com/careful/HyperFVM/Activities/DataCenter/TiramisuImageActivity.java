@@ -24,13 +24,13 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
+import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 public class TiramisuImageActivity extends BaseActivity {
-
     private DBHelper dbHelper;
-    private DataImagesUpdaterUtil imageUtil;
+
+    private ImageResourcesUpdaterUtil imageUtil;
     private LinearLayout tools_tiramisu_image_container;
     private Button update_image_action;
     private boolean isResourcesReady = false;
@@ -55,7 +55,7 @@ public class TiramisuImageActivity extends BaseActivity {
         }
 
         dbHelper = new DBHelper(this);
-        imageUtil = DataImagesUpdaterUtil.getInstance();
+        imageUtil = ImageResourcesUpdaterUtil.getInstance();
         update_image_action = findViewById(R.id.update_image_resources_action);
         tools_tiramisu_image_container = findViewById(R.id.tools_tiramisu_image_container);
 
@@ -116,7 +116,7 @@ public class TiramisuImageActivity extends BaseActivity {
     private void getImageServerVersionAndCheckImageUpdate() {
         update_image_action.setText(getResources().getString(R.string.label_check_update_status_checking));
 
-        imageUtil.checkServerVersion(new DataImagesUpdaterUtil.OnVersionCheckCallback() {
+        imageUtil.checkServerVersion(new ImageResourcesUpdaterUtil.OnVersionCheckCallback() {
             @Override
             public void onVersionCheckSuccess(long serverVersion, String updateLog) {
                 runOnUiThread(() -> {

@@ -23,7 +23,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
+import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.ZoomImageView;
 
@@ -35,12 +35,12 @@ public class ImageViewerDynamicActivity extends BaseActivity {
     private int pressFeedbackAnimationDelay;
 
     private ZoomImageView zoomImageView;
-    private DataImagesUpdaterUtil imageUtil;
+    private ImageResourcesUpdaterUtil imageUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 初始化图片工具类、数据库工具类
-        imageUtil = DataImagesUpdaterUtil.getInstance();
+        imageUtil = ImageResourcesUpdaterUtil.getInstance();
         dbHelper = new DBHelper(this);
 
         if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {

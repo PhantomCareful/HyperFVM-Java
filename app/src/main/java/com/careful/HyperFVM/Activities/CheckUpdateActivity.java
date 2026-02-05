@@ -33,7 +33,7 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtil
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
+import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -46,7 +46,7 @@ public class CheckUpdateActivity extends BaseActivity {
     private DBHelper dbHelper;
 
     private AppUpdaterUtil appUpdaterUtil;
-    private DataImagesUpdaterUtil imageUtil;
+    private ImageResourcesUpdaterUtil imageUtil;
 
     private long localAppVersionCode;
     private long serverAppVersionCode = -1;
@@ -98,7 +98,7 @@ public class CheckUpdateActivity extends BaseActivity {
         // 初始化工具类
         dbHelper = new DBHelper(this);
         appUpdaterUtil = AppUpdaterUtil.getInstance();
-        imageUtil = DataImagesUpdaterUtil.getInstance();
+        imageUtil = ImageResourcesUpdaterUtil.getInstance();
 
         // 初始化动画效果
         check_update_container = findViewById(R.id.check_update_container);
@@ -159,7 +159,7 @@ public class CheckUpdateActivity extends BaseActivity {
     private void getImageServerVersionAndCheckImageUpdate() {
         update_image_resources_action.setText(getResources().getString(R.string.label_check_update_status_checking));
 
-        imageUtil.checkServerVersion(new DataImagesUpdaterUtil.OnVersionCheckCallback() {
+        imageUtil.checkServerVersion(new ImageResourcesUpdaterUtil.OnVersionCheckCallback() {
             @Override
             public void onVersionCheckSuccess(long serverVersion, String updateLog) {
                 runOnUiThread(() -> {
@@ -221,13 +221,13 @@ public class CheckUpdateActivity extends BaseActivity {
         boolean isFullDownload = (versionDiff > 1); // 差值大于1：全量更新，差值等于1：增量更新
 
         // 根据更新类型获取下载链接
-        DataImagesUpdaterUtil.OnDownloadUrlCallback urlCallback = new DataImagesUpdaterUtil.OnDownloadUrlCallback() {
+        ImageResourcesUpdaterUtil.OnDownloadUrlCallback urlCallback = new ImageResourcesUpdaterUtil.OnDownloadUrlCallback() {
             @Override
             public void onSuccess(String downloadUrl) {
                 downloadImageResourcesUrl = downloadUrl;
                 Log.d("downloadImageUrl", downloadImageResourcesUrl);
                 // 调用工具类下载解压
-                imageUtil.downloadAndUnzip(CheckUpdateActivity.this, downloadImageResourcesUrl, isFullDownload, new DataImagesUpdaterUtil.DownloadCallback() {
+                imageUtil.downloadAndUnzip(CheckUpdateActivity.this, downloadImageResourcesUrl, isFullDownload, new ImageResourcesUpdaterUtil.DownloadCallback() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDownloadProgress(int progress) {

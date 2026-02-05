@@ -13,8 +13,8 @@ import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class DataImagesUpdaterUtil {
-    private static DataImagesUpdaterUtil instance;
+public class ImageResourcesUpdaterUtil {
+    private static ImageResourcesUpdaterUtil instance;
     private final HttpUtil httpUtil;
     private final Handler mainHandler;
 
@@ -56,14 +56,14 @@ public class DataImagesUpdaterUtil {
         void onFailure(String errorMsg);
     }
 
-    private DataImagesUpdaterUtil() {
+    private ImageResourcesUpdaterUtil() {
         httpUtil = HttpUtil.getInstance();
         mainHandler = new Handler(Looper.getMainLooper());
     }
 
-    public static synchronized DataImagesUpdaterUtil getInstance() {
+    public static synchronized ImageResourcesUpdaterUtil getInstance() {
         if (instance == null) {
-            instance = new DataImagesUpdaterUtil();
+            instance = new ImageResourcesUpdaterUtil();
         }
         return instance;
     }

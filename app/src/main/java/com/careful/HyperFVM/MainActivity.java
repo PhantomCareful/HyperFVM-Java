@@ -28,9 +28,7 @@ import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.NoPaddingBottomNavigationView.NoPaddingBottomNavigationView;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
-import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
 import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
@@ -48,7 +46,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
-
     // 广播接收器：监听设备重启
     public static class BootReceiver extends BroadcastReceiver {
         @Override
@@ -224,40 +221,15 @@ public class MainActivity extends BaseActivity {
      *
      */
     private void checkUpdate() {
-        long localVersionCode = LocalVersionUtil.getAppLocalVersionCode(this);
         NoPaddingBottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
-        // 调用UpdaterUtil检查更新
-        AppUpdaterUtil appUpdaterUtil = AppUpdaterUtil.getInstance();
-        appUpdaterUtil.checkServerVersion(
-                new AppUpdaterUtil.OnVersionCheckCallback() {
-                    @Override
-                    public void onVersionCheckSuccess(long serverVersion, String updateLog) {
-                        runOnUiThread(() -> {
-                            try {
-                                if (serverVersion > localVersionCode) {
-                                    // 给第1个Item（关于软件）添加小红点
-                                    bottomNav.post(() -> BadgeDotUtil.showRedDot(bottomNav, 1));
-                                } else {
-                                    BadgeDotUtil.hideRedDot(bottomNav, 1);
-                                }
-                            } catch (Exception e) {
-                                BadgeDotUtil.hideRedDot(bottomNav, 1);
-                            }
-                        });
-                    }
+        boolean isShowRedDot = BadgeDotUtil.checkUpdateAndShowRedDot(this);
 
-                    @Override
-                    public void onVersionCheckFailure(String errorMsg) {
-                        BadgeDotUtil.hideRedDot(bottomNav, 1);
-                    }
-
-                    @Override
-                    public void onVersionParseError() {
-                        BadgeDotUtil.hideRedDot(bottomNav, 1);
-                    }
-                }
-        );
+        if (isShowRedDot) {
+            BadgeDotUtil.showRedDot(bottomNav, 1);
+        } else {
+            BadgeDotUtil.hideRedDot(bottomNav, 1);
+        }
     }
 
     /**
