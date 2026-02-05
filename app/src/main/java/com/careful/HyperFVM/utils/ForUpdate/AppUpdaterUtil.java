@@ -189,7 +189,9 @@ public class AppUpdaterUtil {
     /**
      * 删除文件
      */
-    private boolean deleteFile(File file) {
-        return file.exists() && file.delete();
+    private void deleteFile(File file) {
+        if (file.exists()) {
+            file.delete();
+        }
     }
 }

@@ -58,7 +58,7 @@ public class DataImagesIndexActivity extends BaseActivity {
 
         dbHelper = new DBHelper(this);
         imageUtil = DataImagesUpdaterUtil.getInstance();
-        update_image_action = findViewById(R.id.update_image_action);
+        update_image_action = findViewById(R.id.update_image_resources_action);
         data_images_index_container = findViewById(R.id.data_images_index_container);
 
         // 初始化组件点击事件
@@ -285,7 +285,7 @@ public class DataImagesIndexActivity extends BaseActivity {
             pressFeedbackAnimationDelay = 0;
             isPressFeedbackAnimation = false;
         }
-        findViewById(R.id.update_image_action).setOnTouchListener((v, event) ->
+        findViewById(R.id.update_image_resources_action).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));

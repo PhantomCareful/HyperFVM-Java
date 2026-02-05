@@ -184,7 +184,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     "VALUES ('安全-生物认证', 'false')");
         }
 
-        // 版本53：重构仪表盘界面
+        // 版本53-56：重构仪表盘界面
         if (oldVersion < 56) {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
                     "VALUES ('meishi_wechat_result_emoji', 'null')," +
@@ -222,6 +222,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("UPDATE " + TABLE_DASHBOARD + " SET id = 'bounty_notification' WHERE id = 'new_year_notification'");
         }
 
+        // 版本59：修改一下图片资源的ID
+        if (oldVersion < 59) {
+            db.execSQL("UPDATE " + TABLE_DATA_STATION + " SET content = 'DataImageResourcesVersionCode' WHERE content = 'DataImagesVersionCode'");
+            db.execSQL("UPDATE " + TABLE_DATA_STATION + " SET content = 'CurrentUpdateLogImageResources' WHERE content = 'CurrentUpdateLogImage'");
+        }
     }
 
     @Override

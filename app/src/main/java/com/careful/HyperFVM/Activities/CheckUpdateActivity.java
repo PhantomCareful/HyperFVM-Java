@@ -7,7 +7,6 @@ import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getCont
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +35,7 @@ import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.DataImagesUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
+import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 import java.io.File;
@@ -58,16 +58,16 @@ public class CheckUpdateActivity extends BaseActivity {
     private TextView app_log_new;
     private TextView app_log_current;
 
-    private long localImageVersionCode;
-    private long serverImageVersionCode = -1;
-    private String serverImageUpdateLog;
-    private String downloadImageUrl;
-    private boolean isImageDownloading = false;
+    private long localImageResourcesVersionCode;
+    private long serverImageResourcesVersionCode = -1;
+    private String serverImageResourcesUpdateLog;
+    private String downloadImageResourcesUrl;
+    private boolean isImageResourcesDownloading = false;
 
-    private Button update_image_action;
-    private CardView container_image_log_new;
-    private TextView image_log_new;
-    private TextView image_log_current;
+    private Button update_image_resources_action;
+    private CardView container_image_resources_log_new;
+    private TextView image_resources_log_new;
+    private TextView image_resources_log_current;
 
     private LinearLayout check_update_container;
     private TransitionSet transition;
@@ -124,18 +124,18 @@ public class CheckUpdateActivity extends BaseActivity {
      * 初始化图片资源更新要用到的视图
      */
     private void initViewsForImage() {
-        getContent(this, findViewById(R.id.title_image_log), "# 图片资源");
-        update_image_action = findViewById(R.id.update_image_action);
-        container_image_log_new = findViewById(R.id.container_image_log_new);
-        image_log_new = findViewById(R.id.image_log_new);
-        image_log_current = findViewById(R.id.image_log_current);
-        getContent(this, image_log_current, dbHelper.getDataStationValue("CurrentUpdateLogImage"));
+        getContent(this, findViewById(R.id.title_image_resources_log), "# 图片资源");
+        update_image_resources_action = findViewById(R.id.update_image_resources_action);
+        container_image_resources_log_new = findViewById(R.id.container_image_resources_log_new);
+        image_resources_log_new = findViewById(R.id.image_resources_log_new);
+        image_resources_log_current = findViewById(R.id.image_resources_log_current);
+        getContent(this, image_resources_log_current, dbHelper.getDataStationValue("CurrentUpdateLogImageResources"));
 
         // 设置图片资源更新按钮点击监听
-        update_image_action.setOnClickListener(v -> v.postDelayed(() -> {
-            if (update_image_action.getText().toString().equals(getResources().getString(R.string.label_check_update_status_new))) {
+        update_image_resources_action.setOnClickListener(v -> v.postDelayed(() -> {
+            if (update_image_resources_action.getText().toString().equals(getResources().getString(R.string.label_check_update_status_new))) {
                 // 有新版本，开始下载
-                if (!isImageDownloading) {
+                if (!isImageResourcesDownloading) {
                     startImageDownload();
                 }
             } else {
@@ -150,36 +150,31 @@ public class CheckUpdateActivity extends BaseActivity {
      */
     private void getImageLocalVersion() {
         // 从数据库获取
-        String localVersion = dbHelper.getDataStationValue("DataImagesVersionCode");
-        if (localVersion == null) {
-            localImageVersionCode = 0;
-        } else {
-            localImageVersionCode = Long.parseLong(localVersion);
-        }
+        localImageResourcesVersionCode = LocalVersionUtil.getImageResourcesVersionCode(this);
     }
 
     /**
      * 检查云端仓库的图片资源版本号
      */
     private void getImageServerVersionAndCheckImageUpdate() {
-        update_image_action.setText(getResources().getString(R.string.label_check_update_status_checking));
+        update_image_resources_action.setText(getResources().getString(R.string.label_check_update_status_checking));
 
         imageUtil.checkServerVersion(new DataImagesUpdaterUtil.OnVersionCheckCallback() {
             @Override
             public void onVersionCheckSuccess(long serverVersion, String updateLog) {
                 runOnUiThread(() -> {
-                    serverImageVersionCode = serverVersion;
+                    serverImageResourcesVersionCode = serverVersion;
                     try {
-                        long versionDiff = serverVersion - localImageVersionCode;
+                        long versionDiff = serverVersion - localImageResourcesVersionCode;
 
                         if (versionDiff > 0) {
                             // 有新版本，显示更新日志
-                            serverImageUpdateLog = "## 当前：" + updateLog;
-                            getContent(CheckUpdateActivity.this, image_log_new, "## 最新：" + updateLog);
-                            update_image_action.setText(getResources().getString(R.string.label_check_update_status_new));
+                            serverImageResourcesUpdateLog = "## 当前：" + updateLog;
+                            getContent(CheckUpdateActivity.this, image_resources_log_new, "## 最新：" + updateLog);
+                            update_image_resources_action.setText(getResources().getString(R.string.label_check_update_status_new));
                         } else {
                             // 已是最新版本
-                            update_image_action.setText(getResources().getString(R.string.label_check_update_status_current));
+                            update_image_resources_action.setText(getResources().getString(R.string.label_check_update_status_current));
                         }
                         // 标记完成并尝试执行动画
                         hasImageResult = true;
@@ -187,7 +182,7 @@ public class CheckUpdateActivity extends BaseActivity {
                     } catch (Exception e) {
                         hasImageResult = true; // 即使出错也标记完成
                         checkAndRunAnimation();
-                        update_image_action.setText("检查版本时发生错误");
+                        update_image_resources_action.setText("检查版本时发生错误");
                     }
                 });
             }
@@ -197,7 +192,7 @@ public class CheckUpdateActivity extends BaseActivity {
                 runOnUiThread(() -> {
                     hasImageResult = true; // 标记完成
                     checkAndRunAnimation();
-                    update_image_action.setText("检查版本失败，请稍后再试");
+                    update_image_resources_action.setText("检查版本失败，请稍后再试");
                 });
             }
 
@@ -206,7 +201,7 @@ public class CheckUpdateActivity extends BaseActivity {
                 runOnUiThread(() -> {
                     hasImageResult = true; // 标记完成
                     checkAndRunAnimation();
-                    update_image_action.setText("版本信息错误");
+                    update_image_resources_action.setText("版本信息错误");
                 });
             }
         });
@@ -216,28 +211,28 @@ public class CheckUpdateActivity extends BaseActivity {
      * 下载图片资源的方法
      */
     private void startImageDownload() {
-        update_image_action.setText("⏳获取下载链接中⏳");
+        update_image_resources_action.setText("⏳获取下载链接中⏳");
 
-        isImageDownloading = true;
-        update_image_action.setClickable(false);
+        isImageResourcesDownloading = true;
+        update_image_resources_action.setClickable(false);
 
         // 计算版本差，判断是全量更新还是增量更新
-        long versionDiff = serverImageVersionCode - localImageVersionCode;
+        long versionDiff = serverImageResourcesVersionCode - localImageResourcesVersionCode;
         boolean isFullDownload = (versionDiff > 1); // 差值大于1：全量更新，差值等于1：增量更新
 
         // 根据更新类型获取下载链接
         DataImagesUpdaterUtil.OnDownloadUrlCallback urlCallback = new DataImagesUpdaterUtil.OnDownloadUrlCallback() {
             @Override
             public void onSuccess(String downloadUrl) {
-                downloadImageUrl = downloadUrl;
-                Log.d("downloadImageUrl", downloadImageUrl);
+                downloadImageResourcesUrl = downloadUrl;
+                Log.d("downloadImageUrl", downloadImageResourcesUrl);
                 // 调用工具类下载解压
-                imageUtil.downloadAndUnzip(CheckUpdateActivity.this, downloadImageUrl, isFullDownload, new DataImagesUpdaterUtil.DownloadCallback() {
+                imageUtil.downloadAndUnzip(CheckUpdateActivity.this, downloadImageResourcesUrl, isFullDownload, new DataImagesUpdaterUtil.DownloadCallback() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDownloadProgress(int progress) {
                         runOnUiThread(() ->
-                                update_image_action.setText("⏳下载中: " + progress + "%⏳")
+                                update_image_resources_action.setText("⏳下载中: " + progress + "%⏳")
                         );
                     }
 
@@ -245,7 +240,7 @@ public class CheckUpdateActivity extends BaseActivity {
                     @Override
                     public void onUnzipProgress(int progress) {
                         runOnUiThread(() ->
-                                update_image_action.setText("⏳解压中: " + progress + "%⏳")
+                                update_image_resources_action.setText("⏳解压中: " + progress + "%⏳")
                         );
                     }
 
@@ -253,25 +248,25 @@ public class CheckUpdateActivity extends BaseActivity {
                     public void onSuccess() {
                         runOnUiThread(() -> {
                             // 更新本地版本号
-                            String newVersion = String.valueOf(serverImageVersionCode);
+                            String newVersion = String.valueOf(serverImageResourcesVersionCode);
                             dbHelper.updateDataStationValue("DataImagesVersionCode", newVersion);
                             // 更新本地更新日志
-                            dbHelper.updateDataStationValue("CurrentUpdateLogImage", serverImageUpdateLog);
-                            localImageVersionCode = serverImageVersionCode;
+                            dbHelper.updateDataStationValue("CurrentUpdateLogImage", serverImageResourcesUpdateLog);
+                            localImageResourcesVersionCode = serverImageResourcesVersionCode;
 
-                            isImageDownloading = false;
+                            isImageResourcesDownloading = false;
 
-                            update_image_action.setText("✅更新成功✅");
-                            update_image_action.setClickable(true);
+                            update_image_resources_action.setText("✅更新成功✅");
+                            update_image_resources_action.setClickable(true);
                         });
                     }
 
                     @Override
                     public void onFailure(String errorMsg) {
                         runOnUiThread(() -> {
-                            isImageDownloading = false;
-                            update_image_action.setText("下载失败，点击重试");
-                            update_image_action.setClickable(true);
+                            isImageResourcesDownloading = false;
+                            update_image_resources_action.setText("下载失败，点击重试");
+                            update_image_resources_action.setClickable(true);
                         });
                     }
                 });
@@ -280,9 +275,9 @@ public class CheckUpdateActivity extends BaseActivity {
             @Override
             public void onFailure(String errorMsg) {
                 runOnUiThread(() -> {
-                    isImageDownloading = false;
-                    update_image_action.setText("获取链接失败，点击重试");
-                    update_image_action.setClickable(true);
+                    isImageResourcesDownloading = false;
+                    update_image_resources_action.setText("获取链接失败，点击重试");
+                    update_image_resources_action.setClickable(true);
                 });
             }
         };
@@ -335,47 +330,15 @@ public class CheckUpdateActivity extends BaseActivity {
      */
     private void getAppLocalVersion() {
         // 获取version信息
-        localAppVersionCode = 0;
-        String localAppVersionName = "0.0.0";
-
-        // 获取versionCode
-        try {
-            localAppVersionCode = this.getPackageManager()
-                    .getPackageInfo(this.getPackageName(), 0)
-                    .getLongVersionCode();
-        } catch (PackageManager.NameNotFoundException ignored) {
-        }
-
-        // 获取versionName
-        try {
-            localAppVersionName = this.getPackageManager()
-                    .getPackageInfo(this.getPackageName(), 0)
-                    .versionName;
-        } catch (PackageManager.NameNotFoundException ignored) {
-        }
+        localAppVersionCode = LocalVersionUtil.getAppLocalVersionCode(this);
+        String localAppVersionName = LocalVersionUtil.getAppLocalVersionName(this);
 
         // 判断是否为Beta版
-        String versionSuffix = "";
-        String[] versionParts = null; // 分割版本号
-        if (localAppVersionName != null) {
-            versionParts = localAppVersionName.split("\\.");
-        }
-        // 确保版本号格式正确（至少3段）
-        if (versionParts != null && versionParts.length >= 3) {
-            try {
-                int c = Integer.parseInt(versionParts[2]);
-                if (c != 0) {
-                    versionSuffix = " | Beta"; // 不为0时添加Beta标识
-                } else {
-                    versionSuffix = " | Release"; // 为0时添加Release标识
-                }
-            } catch (NumberFormatException ignored) {
-            }
-        }
+        String betaOrRelease = Objects.equals(localAppVersionName.split("\\.")[2], "0") ? " | Release" : " | Beta";
 
         // 拼接最终版本信息
         TextView version_info = findViewById(R.id.version_info);
-        String versionInfo = localAppVersionName + "(" + localAppVersionCode + ")" + versionSuffix;
+        String versionInfo = localAppVersionName + "(" + localAppVersionCode + ")" + betaOrRelease;
         version_info.setText(versionInfo);
     }
 
@@ -639,10 +602,10 @@ public class CheckUpdateActivity extends BaseActivity {
             // 使用post确保在UI线程的下一个循环执行动画
             check_update_container.post(() -> {
                 TransitionManager.beginDelayedTransition(check_update_container, transition);
-                if (localImageVersionCode < serverImageVersionCode) {
-                    showViewWithAnimation(container_image_log_new);
+                if (localImageResourcesVersionCode < serverImageResourcesVersionCode) {
+                    showViewWithAnimation(container_image_resources_log_new);
                 } else {
-                    hideViewWithAnimation(container_image_log_new);
+                    hideViewWithAnimation(container_image_resources_log_new);
                 }
                 if (localAppVersionCode < serverAppVersionCode) {
                     showViewWithAnimation(container_app_log_new);
@@ -712,7 +675,7 @@ public class CheckUpdateActivity extends BaseActivity {
             pressFeedbackAnimationDelay = 0;
             isPressFeedbackAnimation = false;
         }
-        findViewById(R.id.update_image_action).setOnTouchListener((v, event) ->
+        findViewById(R.id.update_image_resources_action).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         findViewById(R.id.update_app_action).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
@@ -727,7 +690,7 @@ public class CheckUpdateActivity extends BaseActivity {
         if (isAppDownloading) {
             appUpdaterUtil.cancelDownload();
         }
-        if (isImageDownloading) {
+        if (isImageResourcesDownloading) {
             imageUtil.cancelDownload();
         }
     }

@@ -2,7 +2,6 @@ package com.careful.HyperFVM.Fragments.AboutApp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +21,9 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
+
+import java.util.Objects;
 
 public class AboutAppFragment extends Fragment {
 
@@ -133,52 +135,20 @@ public class AboutAppFragment extends Fragment {
 
     private void setEasterEgg(View root) {
         ImageView imageView = root.findViewById(R.id.about_app_icon);
-        imageView.setOnClickListener(v -> Toast.makeText(v.getContext(), "Make FVM Great Again\uD83C\uDF89\uD83C\uDF89\uD83C\uDF89", Toast.LENGTH_SHORT).show());
+        imageView.setOnClickListener(v -> Toast.makeText(requireContext(), "Make FVM Great Again\uD83C\uDF89\uD83C\uDF89\uD83C\uDF89", Toast.LENGTH_SHORT).show());
     }
 
     private void getVersion(View root) {
         // 获取version信息
-        long versionCode = 0;
-        String versionName = "0.0.0";
-
-        // 获取versionCode
-        try {
-            versionCode = requireActivity().getPackageManager()
-                    .getPackageInfo(requireActivity().getPackageName(), 0)
-                    .getLongVersionCode();
-        } catch (PackageManager.NameNotFoundException ignored) {
-        }
-
-        // 获取versionName
-        try {
-            versionName = requireActivity().getPackageManager()
-                    .getPackageInfo(requireActivity().getPackageName(), 0)
-                    .versionName;
-        } catch (PackageManager.NameNotFoundException ignored) {
-        }
+        long localVersionCode = LocalVersionUtil.getAppLocalVersionCode(requireContext());
+        String localVersionName = LocalVersionUtil.getAppLocalVersionName(requireContext());
 
         // 判断是否为Beta版
-        String versionSuffix = "";
-        String[] versionParts = null; // 分割版本号
-        if (versionName != null) {
-            versionParts = versionName.split("\\.");
-        }
-        // 确保版本号格式正确（至少3段）
-        if (versionParts != null && versionParts.length >= 3) {
-            try {
-                int c = Integer.parseInt(versionParts[2]);
-                if (c != 0) {
-                    versionSuffix = " | Beta"; // 不为0时添加Beta标识
-                } else {
-                    versionSuffix = " | Release"; // 不为0时添加Release标识
-                }
-            } catch (NumberFormatException ignored) {
-            }
-        }
+        String betaOrRelease = Objects.equals(localVersionName.split("\\.")[2], "0") ? " | Release" : " | Beta";
 
         // 拼接最终版本信息
         TextView version_info = root.findViewById(R.id.version_info);
-        String versionInfo = versionName + "(" + versionCode + ")" + versionSuffix;
+        String versionInfo = localVersionName + "(" + localVersionCode + ")" + betaOrRelease;
         version_info.setText(versionInfo);
     }
 

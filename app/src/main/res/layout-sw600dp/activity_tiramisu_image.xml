@@ -39,7 +39,7 @@
                     tools:ignore="ContentDescription" />
 
                 <Button
-                    android:id="@+id/update_image_action"
+                    android:id="@+id/update_image_resources_action"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""

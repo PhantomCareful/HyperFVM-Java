@@ -25,8 +25,12 @@ import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotif
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForDesign.NoPaddingBottomNavigationView.NoPaddingBottomNavigationView;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
+import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
+import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
 import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
@@ -152,6 +156,9 @@ public class MainActivity extends BaseActivity {
         // 防御卡数据查询按钮
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> v.postDelayed(() ->
                 DialogBuilderManager.showCardQueryDialog(this), pressFeedbackAnimationDelay));
+
+        // 检查更新
+        checkUpdate();
     }
 
     /**
@@ -210,6 +217,47 @@ public class MainActivity extends BaseActivity {
         } catch (Exception e) {
             Log.e("ViewPagerSetup", "ViewPager初始化失败", e);
         }
+    }
+
+    /**
+     * 检查App更新和图片资源更新，如果其中任何一个有更新，则在底栏的图标上添加小红点
+     *
+     */
+    private void checkUpdate() {
+        long localVersionCode = LocalVersionUtil.getAppLocalVersionCode(this);
+        NoPaddingBottomNavigationView bottomNav = findViewById(R.id.nav_view);
+
+        // 调用UpdaterUtil检查更新
+        AppUpdaterUtil appUpdaterUtil = AppUpdaterUtil.getInstance();
+        appUpdaterUtil.checkServerVersion(
+                new AppUpdaterUtil.OnVersionCheckCallback() {
+                    @Override
+                    public void onVersionCheckSuccess(long serverVersion, String updateLog) {
+                        runOnUiThread(() -> {
+                            try {
+                                if (serverVersion > localVersionCode) {
+                                    // 给第1个Item（关于软件）添加小红点
+                                    bottomNav.post(() -> BadgeDotUtil.showRedDot(bottomNav, 1));
+                                } else {
+                                    BadgeDotUtil.hideRedDot(bottomNav, 1);
+                                }
+                            } catch (Exception e) {
+                                BadgeDotUtil.hideRedDot(bottomNav, 1);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onVersionCheckFailure(String errorMsg) {
+                        BadgeDotUtil.hideRedDot(bottomNav, 1);
+                    }
+
+                    @Override
+                    public void onVersionParseError() {
+                        BadgeDotUtil.hideRedDot(bottomNav, 1);
+                    }
+                }
+        );
     }
 
     /**

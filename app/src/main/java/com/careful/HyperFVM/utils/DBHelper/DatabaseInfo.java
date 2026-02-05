@@ -91,6 +91,8 @@ public class DatabaseInfo {
      * 重构仪表盘界面
      * DB_VERSION = 58
      * 添加威望转职凭证数据
+     * DB_VERSION = 59
+     * 修改一下图片资源的ID
      */
-    public static final int DB_VERSION = 57;
+    public static final int DB_VERSION = 59;
 }
