@@ -1792,6 +1792,55 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:id="@+id/data_images_index_decompose_and_get_12_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="16dp"
+                                android:background="?attr/selectableItemBackground">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_horse"
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                    tools:ignore="ContentDescription" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginStart="16dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/text_data_images_index_decompose_and_get_12_1"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/text_data_images_index_decompose_and_get_12_2"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="15sp" />
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>

@@ -156,7 +156,7 @@ public class AboutAppFragment extends Fragment {
         TextView checkUpdateTitle1 = root.findViewById(R.id.about_app_check_update_title_1);
         TextView checkUpdateTitle2 = root.findViewById(R.id.about_app_check_update_title_2);
 
-        if (!BadgeDotUtil.checkUpdateAndShowRedDot(requireContext())) {
+        if (BadgeDotUtil.checkUpdateAndShowRedDot(requireContext())) {
             checkUpdateTitle1.setText("发 现 新 版 本");
             checkUpdateTitle2.setText("速 速 更 新 \uD83D\uDCE2 \uD83D\uDCE2 \uD83D\uDCE2");
         } else {

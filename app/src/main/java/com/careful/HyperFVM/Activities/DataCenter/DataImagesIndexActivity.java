@@ -115,6 +115,7 @@ public class DataImagesIndexActivity extends BaseActivity {
         setupContainer(R.id.data_images_index_decompose_and_get_9_container, "data_image_decompose_and_get_9", false);
         setupContainer(R.id.data_images_index_decompose_and_get_10_container, "data_image_decompose_and_get_10", false);
         setupContainer(R.id.data_images_index_decompose_and_get_11_container, "data_image_decompose_and_get_11", false);
+        setupContainer(R.id.data_images_index_decompose_and_get_12_container, "data_image_decompose_and_get_12", false);
 
         // 老输血量数据图
         setupContainer(R.id.data_images_index_mouse_hp_1_container, "data_image_mouse_hp_1", false);
