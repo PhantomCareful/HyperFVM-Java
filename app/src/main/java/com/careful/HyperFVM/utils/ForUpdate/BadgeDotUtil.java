@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,66 +17,109 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  * 给BottomNavigationView添加小红点的工具类
  */
 public class BadgeDotUtil {
+    private static final String TAG = "BadgeDot";
     // 小红点的尺寸（dp）
     private static final int DOT_SIZE_DP = 16;
+
+    // 定义回调接口
+    public interface OnUpdateCheckComplete {
+        void onComplete(boolean isShowRedDot);
+    }
 
     /**
      * 检查更新然后返回是否显示小红点
      */
-    public static boolean checkUpdateAndShowRedDot(Context context) {
+    public static void checkUpdateAndShowRedDot(Context context, OnUpdateCheckComplete callback) {
         final boolean[] isShowRedDot = {false};
+        // 计数器，等待两个异步任务都完成
+        final int[] checkCount = {2};
 
         long localAppVersionCode = LocalVersionUtil.getAppLocalVersionCode(context);
+
+        Log.d(TAG, "localAppVersionCode = " + localAppVersionCode);
 
         // 调用UpdaterUtil检查App更新
         AppUpdaterUtil appUpdaterUtil = AppUpdaterUtil.getInstance();
         appUpdaterUtil.checkServerVersion(new AppUpdaterUtil.OnVersionCheckCallback() {
             @Override
             public void onVersionCheckSuccess(long serverVersion, String updateLog) {
+                Log.d(TAG, "serverAppVersionCode = " + serverVersion);
+
                 try {
-                    isShowRedDot[0] = serverVersion > localAppVersionCode;
+                    if (!isShowRedDot[0]) {
+                        isShowRedDot[0] = serverVersion > localAppVersionCode;
+                    }
                 } catch (Exception e) {
                     isShowRedDot[0] = false;
                 }
+
+                checkComplete(checkCount, callback, isShowRedDot[0]);
             }
 
             @Override
             public void onVersionCheckFailure(String errorMsg) {
+                Log.e(TAG, "onVersionCheckFailure: " + errorMsg);
+
                 isShowRedDot[0] = false;
+                checkComplete(checkCount, callback, false);
             }
 
             @Override
             public void onVersionParseError() {
                 isShowRedDot[0] = false;
+                checkComplete(checkCount, callback, false);
             }
         });
 
         long localImageResourcesVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+
+        Log.d(TAG, "localImageResourcesVersionCode = " + localImageResourcesVersionCode);
 
         // 调用UpdaterUtil检查图片资源更新
         ImageResourcesUpdaterUtil imageResourcesUpdaterUtil = ImageResourcesUpdaterUtil.getInstance();
         imageResourcesUpdaterUtil.checkServerVersion(new ImageResourcesUpdaterUtil.OnVersionCheckCallback() {
             @Override
             public void onVersionCheckSuccess(long serverVersion, String updateLog) {
+                Log.d(TAG, "serverImageResourcesVersionCode = " + serverVersion);
+
                 try {
-                    isShowRedDot[0] = serverVersion > localImageResourcesVersionCode;
+                    if (!isShowRedDot[0]) {
+                        isShowRedDot[0] = serverVersion > localImageResourcesVersionCode;
+                    }
                 } catch (Exception e) {
                     isShowRedDot[0] = false;
                 }
+
+                checkComplete(checkCount, callback, isShowRedDot[0]);
             }
 
             @Override
             public void onVersionCheckFailure(String errorMsg) {
+                Log.e(TAG, "onVersionCheckFailure: " + errorMsg);
+
                 isShowRedDot[0] = false;
+                checkComplete(checkCount, callback, false);
             }
 
             @Override
             public void onVersionParseError() {
                 isShowRedDot[0] = false;
+                checkComplete(checkCount, callback, false);
             }
         });
+    }
 
-        return isShowRedDot[0];
+    /**
+     * 检查是否两个异步任务都已完成
+     */
+    private static void checkComplete(int[] checkCount, OnUpdateCheckComplete callback, boolean isShowRedDot) {
+        synchronized (BadgeDotUtil.class) {
+            checkCount[0]--;
+            if (checkCount[0] == 0 && callback != null) {
+                Log.d(TAG, "isShowRedDot = " + isShowRedDot);
+                callback.onComplete(isShowRedDot);
+            }
+        }
     }
 
     /**

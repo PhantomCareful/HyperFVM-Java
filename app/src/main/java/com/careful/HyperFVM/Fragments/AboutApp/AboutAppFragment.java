@@ -27,16 +27,14 @@ import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import java.util.Objects;
 
 public class AboutAppFragment extends Fragment {
+    private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentAboutAppBinding binding = FragmentAboutAppBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        root = binding.getRoot();
 
         //一个小彩蛋🥚
         setEasterEgg(root);
-
-        //从build.gradle中获取版本号
-        getAppLocalVersionAndCheckUpdate(root);
 
         //跳转检查更新的Activity
         clickToNewActivity(root.findViewById(R.id.about_app_check_update_container), CheckUpdateActivity.class);
@@ -156,14 +154,15 @@ public class AboutAppFragment extends Fragment {
         TextView checkUpdateTitle1 = root.findViewById(R.id.about_app_check_update_title_1);
         TextView checkUpdateTitle2 = root.findViewById(R.id.about_app_check_update_title_2);
 
-        if (BadgeDotUtil.checkUpdateAndShowRedDot(requireContext())) {
-            checkUpdateTitle1.setText("发 现 新 版 本");
-            checkUpdateTitle2.setText("速 速 更 新 \uD83D\uDCE2 \uD83D\uDCE2 \uD83D\uDCE2");
-        } else {
-            checkUpdateTitle1.setText(getResources().getString(R.string.title_about_app_check_update_1));
-            checkUpdateTitle2.setText(getResources().getString(R.string.title_about_app_check_update_2));
-        }
-
+        BadgeDotUtil.checkUpdateAndShowRedDot(requireContext(), isShowRedDot -> {
+            if (isShowRedDot) {
+                checkUpdateTitle1.setText("发 现 新 版 本");
+                checkUpdateTitle2.setText("速 速 更 新 \uD83D\uDCE2 \uD83D\uDCE2 \uD83D\uDCE2");
+            } else {
+                checkUpdateTitle1.setText(getResources().getString(R.string.title_about_app_check_update_1));
+                checkUpdateTitle2.setText(getResources().getString(R.string.title_about_app_check_update_2));
+            }
+        });
     }
 
     private void clickToNewActivity(View view, Class<? extends Activity> activityClass) {
@@ -171,5 +170,13 @@ public class AboutAppFragment extends Fragment {
             Intent intent = new Intent(requireActivity(), activityClass);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //从build.gradle中获取版本号
+        getAppLocalVersionAndCheckUpdate(root);
     }
 }

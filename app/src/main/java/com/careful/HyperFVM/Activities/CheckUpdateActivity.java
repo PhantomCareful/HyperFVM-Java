@@ -249,7 +249,7 @@ public class CheckUpdateActivity extends BaseActivity {
                         runOnUiThread(() -> {
                             // 更新本地版本号
                             String newVersion = String.valueOf(serverImageResourcesVersionCode);
-                            dbHelper.updateDataStationValue("DataImagesVersionCode", newVersion);
+                            dbHelper.updateDataStationValue("DataImageResourcesVersionCode", newVersion);
                             // 更新本地更新日志
                             dbHelper.updateDataStationValue("CurrentUpdateLogImage", serverImageResourcesUpdateLog);
                             localImageResourcesVersionCode = serverImageResourcesVersionCode;

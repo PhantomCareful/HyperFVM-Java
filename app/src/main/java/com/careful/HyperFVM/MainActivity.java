@@ -153,9 +153,6 @@ public class MainActivity extends BaseActivity {
         // 防御卡数据查询按钮
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> v.postDelayed(() ->
                 DialogBuilderManager.showCardQueryDialog(this), pressFeedbackAnimationDelay));
-
-        // 检查更新
-        checkUpdate();
     }
 
     /**
@@ -223,13 +220,13 @@ public class MainActivity extends BaseActivity {
     private void checkUpdate() {
         NoPaddingBottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
-        boolean isShowRedDot = BadgeDotUtil.checkUpdateAndShowRedDot(this);
-
-        if (isShowRedDot) {
-            BadgeDotUtil.showRedDot(bottomNav, 1);
-        } else {
-            BadgeDotUtil.hideRedDot(bottomNav, 1);
-        }
+        BadgeDotUtil.checkUpdateAndShowRedDot(this, isShowRedDot -> {
+            if (isShowRedDot) {
+                BadgeDotUtil.showRedDot(bottomNav, 1);
+            } else {
+                BadgeDotUtil.hideRedDot(bottomNav, 1);
+            }
+        });
     }
 
     /**
@@ -308,6 +305,9 @@ public class MainActivity extends BaseActivity {
         }
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+
+        // 检查更新
+        new Thread(this::checkUpdate).start();
     }
 
     /**
