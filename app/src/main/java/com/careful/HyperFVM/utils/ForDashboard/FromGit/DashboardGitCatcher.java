@@ -267,7 +267,7 @@ public class DashboardGitCatcher {
                     case "日氪":
                         contentDetail = contentDetail + "本次日氪持续" + length + "天\n今天是第" + duringCount + "天\n\n" +
                                 "今天你应该有" + duringCount * 4 + "个道具了";
-                        dbHelper.updateDashboardContent("daily_recharge", duringCount * 4 + "/" + length * 4);
+                        dbHelper.updateDashboardContent("daily_recharge", duringCount * 8 + "/" + length * 4);
                         dbHelper.updateDashboardContent("daily_recharge_emoji", "✊");
                         dbHelper.updateDashboardContent("daily_recharge_detail", contentDetail);
                         break;
