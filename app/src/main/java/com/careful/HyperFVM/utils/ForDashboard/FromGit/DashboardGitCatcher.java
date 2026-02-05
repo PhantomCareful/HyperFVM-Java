@@ -91,7 +91,7 @@ public class DashboardGitCatcher {
         Date end = TimeUtil.transformStringToDate(endDate);
         if (today.before(start)) {
             Log.d(TAG, "二转打折：活动尚未开始");
-            String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢\n\n参与打折的卡片为\n\n" + cardListResult;
+            String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢\n\n以下卡片\n二转保险金仅需1500D\n\n" + cardListResult;
             dbHelper.updateDashboardContent("transfer_discount", "尚未开始");
             dbHelper.updateDashboardContent("transfer_discount_emoji", "⏳");
             dbHelper.updateDashboardContent("transfer_discount_detail", contentDetail);
@@ -115,7 +115,7 @@ public class DashboardGitCatcher {
                 int length = TimeUtil.calculateDaysBetween(startDate, endDate) - 1;
                 String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate +
                         "\n\n本次打折一共持续" + length + "天\n今天是第" + duringCount + "天" +
-                        "\n\n参与打折的卡片为\n\n" + cardListResult;
+                        "\n\n以下卡片\n二转保险金仅需1500D\n\n" + cardListResult;
                 dbHelper.updateDashboardContent("transfer_discount", cardListArr.length + "张");
                 dbHelper.updateDashboardContent("transfer_discount_emoji", "\uD83E\uDD29");
                 dbHelper.updateDashboardContent("transfer_discount_detail", contentDetail);
@@ -266,8 +266,8 @@ public class DashboardGitCatcher {
                 switch (name) {
                     case "日氪":
                         contentDetail = contentDetail + "本次日氪持续" + length + "天\n今天是第" + duringCount + "天\n\n" +
-                                "今天你应该有" + duringCount * 4 + "个道具了";
-                        dbHelper.updateDashboardContent("daily_recharge", duringCount * 8 + "/" + length * 4);
+                                "今天你应该有" + duringCount * 8 + "个道具了";
+                        dbHelper.updateDashboardContent("daily_recharge", duringCount * 8 + "/" + length * 8);
                         dbHelper.updateDashboardContent("daily_recharge_emoji", "✊");
                         dbHelper.updateDashboardContent("daily_recharge_detail", contentDetail);
                         break;
