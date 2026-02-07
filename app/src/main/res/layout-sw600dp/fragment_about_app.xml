@@ -96,6 +96,7 @@
                         android:layout_marginStart="16dp">
 
                         <TextView
+                            android:id="@+id/about_app_check_update_title_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/title_about_app_check_update_1"
@@ -104,6 +105,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/about_app_check_update_title_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/title_about_app_check_update_2"
