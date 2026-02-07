@@ -51,7 +51,11 @@
 
         <include
             android:id="@+id/card_card_data_index_12_1_4"
-            layout="@layout/card_card_data_index_12_1_4" />
+            layout="@layout/card_card_data_index_12_1_5" />
+
+        <include
+            android:id="@+id/card_card_data_index_10_1_8"
+            layout="@layout/card_card_data_index_10_1_8" />
 
     </LinearLayout>
 

@@ -34,6 +34,10 @@
             layout="@layout/card_card_data_index_2_1_5" />
 
         <include
+            android:id="@+id/card_card_data_index_2_1_6"
+            layout="@layout/card_card_data_index_2_1_6" />
+
+        <include
             android:id="@+id/card_card_data_index_2_2_1"
             layout="@layout/card_card_data_index_2_2_1" />
 
@@ -130,12 +134,12 @@
             layout="@layout/card_card_data_index_10_4_1" />
 
         <include
-            android:id="@+id/card_card_data_index_12_1_4"
-            layout="@layout/card_card_data_index_12_1_4" />
-
-        <include
             android:id="@+id/card_card_data_index_12_1_5"
             layout="@layout/card_card_data_index_12_1_5" />
+
+        <include
+            android:id="@+id/card_card_data_index_12_1_6"
+            layout="@layout/card_card_data_index_12_1_6" />
 
     </LinearLayout>
 

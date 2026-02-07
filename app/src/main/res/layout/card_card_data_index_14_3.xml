@@ -24,6 +24,10 @@
 
         <include layout="@layout/card_card_data_index_14_3_6" />
 
+        <include layout="@layout/card_card_data_index_14_3_7" />
+
+        <include layout="@layout/card_card_data_index_14_3_8" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -24,6 +24,12 @@
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="20sp"
             android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name_card_data_index_7_2_5_1"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <!-- 右侧卡片 -->
@@ -32,5 +38,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_7_2_5_0"
+        tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/card_data_index_7_2_5_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/card_data_index_7_2_5_1"
+        tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/card_data_index_7_2_5_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/card_data_index_7_2_5_2"
         tools:ignore="ContentDescription" />
 </LinearLayout>

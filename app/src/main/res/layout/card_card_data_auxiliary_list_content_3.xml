@@ -42,12 +42,16 @@
             layout="@layout/card_card_data_index_9_1_7" />
 
         <include
-            android:id="@+id/card_card_data_index_9_2_3"
-            layout="@layout/card_card_data_index_9_2_3" />
+            android:id="@+id/card_card_data_index_9_4_4"
+            layout="@layout/card_card_data_index_9_4_4" />
 
         <include
-            android:id="@+id/card_card_data_index_12_1_5"
-            layout="@layout/card_card_data_index_12_1_5" />
+            android:id="@+id/card_card_data_index_12_1_6"
+            layout="@layout/card_card_data_index_12_1_6" />
+
+        <include
+            android:id="@+id/card_card_data_index_9_2_3"
+            layout="@layout/card_card_data_index_9_2_3" />
 
     </LinearLayout>
 

@@ -78,6 +78,10 @@
             android:id="@+id/card_card_data_index_10_1_2"
             layout="@layout/card_card_data_index_10_1_2" />
 
+        <include
+            android:id="@+id/card_card_data_index_9_4_5"
+            layout="@layout/card_card_data_index_9_4_5" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

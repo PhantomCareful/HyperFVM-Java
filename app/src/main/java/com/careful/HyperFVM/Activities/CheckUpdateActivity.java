@@ -251,7 +251,7 @@ public class CheckUpdateActivity extends BaseActivity {
                             String newVersion = String.valueOf(serverImageResourcesVersionCode);
                             dbHelper.updateDataStationValue("DataImageResourcesVersionCode", newVersion);
                             // 更新本地更新日志
-                            dbHelper.updateDataStationValue("CurrentUpdateLogImage", serverImageResourcesUpdateLog);
+                            dbHelper.updateDataStationValue("CurrentUpdateLogImageResources", serverImageResourcesUpdateLog);
                             localImageResourcesVersionCode = serverImageResourcesVersionCode;
 
                             isImageResourcesDownloading = false;

@@ -59,19 +59,40 @@
             android:background="?attr/selectableItemBackground"/>
 
         <include
+            android:id="@+id/card_card_data_index_3_2_5_1"
+            layout="@layout/card_card_data_index_3_2_5" />
+
+        <include
+            android:id="@+id/card_card_data_index_16_1_3_1"
+            layout="@layout/card_card_data_index_16_1_3" />
+
+        <TextView
+            android:id="@+id/title_card_data_auxiliary_list_6_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/title_card_data_auxiliary_list_6_2"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"/>
+
+        <include
             android:id="@+id/card_card_data_index_3_2_1"
             layout="@layout/card_card_data_index_3_2_1" />
 
         <include
-            android:id="@+id/card_card_data_index_11_2_6"
-            layout="@layout/card_card_data_index_11_2_6" />
+            android:id="@+id/card_card_data_index_11_3_7"
+            layout="@layout/card_card_data_index_11_3_7" />
 
         <include
-            android:id="@+id/card_card_data_index_3_2_5"
+            android:id="@+id/card_card_data_index_3_2_5_2"
             layout="@layout/card_card_data_index_3_2_5" />
 
         <include
-            android:id="@+id/card_card_data_index_16_1_3"
+            android:id="@+id/card_card_data_index_16_1_3_2"
             layout="@layout/card_card_data_index_16_1_3" />
 
         <include

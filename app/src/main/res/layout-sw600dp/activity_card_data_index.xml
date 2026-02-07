@@ -407,11 +407,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginBottom="10dp"
-                        android:text="@string/title_card_data_index_11_2"
+                        android:text="@string/title_card_data_index_11_3"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="15sp"/>
 
-                    <include layout="@layout/card_card_data_index_11_2"/>
+                    <include layout="@layout/card_card_data_index_11_3"/>
 
                     <TextView
                         android:id="@+id/title_card_data_index_11_3"
@@ -419,11 +419,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginBottom="10dp"
-                        android:text="@string/title_card_data_index_11_3"
+                        android:text="@string/title_card_data_index_11_4"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="15sp"/>
 
-                    <include layout="@layout/card_card_data_index_11_3"/>
+                    <include layout="@layout/card_card_data_index_11_4"/>
 
                     <TextView
                         android:id="@+id/title_card_data_index_12_1"

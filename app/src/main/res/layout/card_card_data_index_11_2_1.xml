@@ -45,4 +45,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_11_2_1_1"
         tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/card_data_index_11_2_1_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/card_data_index_11_2_1_2"
+        tools:ignore="ContentDescription" />
 </LinearLayout>

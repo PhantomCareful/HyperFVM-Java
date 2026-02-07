@@ -93,6 +93,8 @@ public class DatabaseInfo {
      * 添加威望转职凭证数据
      * DB_VERSION = 59
      * 修改一下图片资源的ID
+     * DB_VERSION = 60
+     * 更新防御卡数据
      */
-    public static final int DB_VERSION = 59;
+    public static final int DB_VERSION = 60;
 }

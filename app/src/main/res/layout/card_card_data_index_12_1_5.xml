@@ -51,10 +51,4 @@
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_12_1_5_2"
         tools:ignore="ContentDescription" />
-    <ImageView
-        android:id="@+id/card_data_index_12_1_5_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/card_data_index_12_1_5_3"
-        tools:ignore="ContentDescription" />
 </LinearLayout>
