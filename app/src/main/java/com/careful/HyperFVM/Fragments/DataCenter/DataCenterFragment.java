@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -63,7 +64,7 @@ public class DataCenterFragment extends Fragment {
 
     private TextView dashboardBilibiliFVM;
     private TextView dashboardBilibiliFVMEmoji;
-    private LinearLayout dashboardBilibiliFVMContainer;
+    private FrameLayout dashboardBilibiliFVMContainer;
 
     private TextView dashboardEveryday;
     private TextView dashboardEverydayEmoji;
@@ -135,11 +136,11 @@ public class DataCenterFragment extends Fragment {
 
         dashboardDoubleExplosionRate = root.findViewById(R.id.dashboard_DoubleExplosionRate);
         dashboardDoubleExplosionRateEmoji = root.findViewById(R.id.dashboard_DoubleExplosionRate_Emoji);
-        LinearLayout dashboardDoubleExplosionRateContainer = root.findViewById(R.id.dashboard_DoubleExplosionRate_Container);
+        FrameLayout dashboardDoubleExplosionRateContainer = root.findViewById(R.id.dashboard_DoubleExplosionRate_Container);
 
         dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
         dashboardMeishiWechatEmoji = root.findViewById(R.id.dashboard_MeishiWechat_Emoji);
-        LinearLayout dashboardMeishiWechatContainer = root.findViewById(R.id.dashboard_MeishiWechat_Container);
+        FrameLayout dashboardMeishiWechatContainer = root.findViewById(R.id.dashboard_MeishiWechat_Container);
 
         dashboardBilibiliFVM = root.findViewById(R.id.dashboard_BilibiliFVM);
         dashboardBilibiliFVMEmoji = root.findViewById(R.id.dashboard_BilibiliFVM_Emoji);
@@ -148,47 +149,47 @@ public class DataCenterFragment extends Fragment {
 
         dashboardEveryday = root.findViewById(R.id.dashboard_Everyday);
         dashboardEverydayEmoji = root.findViewById(R.id.dashboard_Everyday_Emoji);
-        LinearLayout dashboardEverydayContainer = root.findViewById(R.id.dashboard_Everyday_Container);
+        FrameLayout dashboardEverydayContainer = root.findViewById(R.id.dashboard_Everyday_Container);
 
         dashboardFertilizationTask = root.findViewById(R.id.dashboard_FertilizationTask);
         dashboardFertilizationTaskEmoji = root.findViewById(R.id.dashboard_FertilizationTask_Emoji);
-        LinearLayout dashboardFertilizationTaskContainer = root.findViewById(R.id.dashboard_FertilizationTask_Container);
+        FrameLayout dashboardFertilizationTaskContainer = root.findViewById(R.id.dashboard_FertilizationTask_Container);
 
         dashboardBounty = root.findViewById(R.id.dashboard_NewYearBounty);
         dashboardBountyEmoji = root.findViewById(R.id.dashboard_NewYearBounty_Emoji);
-        LinearLayout dashboardBountyContainer = root.findViewById(R.id.dashboard_NewYearBounty_Container);
+        FrameLayout dashboardBountyContainer = root.findViewById(R.id.dashboard_NewYearBounty_Container);
 
         dashboardMillionConsumption = root.findViewById(R.id.dashboard_NewYearMillionConsumption);
         dashboardMillionConsumptionEmoji = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Emoji);
-        LinearLayout dashboardMillionConsumptionContainer = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Container);
+        FrameLayout dashboardMillionConsumptionContainer = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Container);
 
         dashboardDailyRecharge = root.findViewById(R.id.dashboard_DailyRecharge);
         dashboardDailyRechargeEmoji = root.findViewById(R.id.dashboard_DailyRecharge_Emoji);
-        LinearLayout dashboardDailyRechargeContainer = root.findViewById(R.id.dashboard_DailyRecharge_Container);
+        FrameLayout dashboardDailyRechargeContainer = root.findViewById(R.id.dashboard_DailyRecharge_Container);
 
         dashboardHappyHoliday = root.findViewById(R.id.dashboard_HappyHoliday);
         dashboardHappyHolidayEmoji = root.findViewById(R.id.dashboard_HappyHoliday_Emoji);
-        LinearLayout dashboardHappyHolidayContainer = root.findViewById(R.id.dashboard_HappyHoliday_Container);
+        FrameLayout dashboardHappyHolidayContainer = root.findViewById(R.id.dashboard_HappyHoliday_Container);
 
         dashboardFoodContest = root.findViewById(R.id.dashboard_FoodContest);
         dashboardFoodContestEmoji = root.findViewById(R.id.dashboard_FoodContest_Emoji);
-        LinearLayout dashboardFoodContestContainer = root.findViewById(R.id.dashboard_FoodContest_Container);
+        FrameLayout dashboardFoodContestContainer = root.findViewById(R.id.dashboard_FoodContest_Container);
 
         dashboardThreeIslands = root.findViewById(R.id.dashboard_ThreeIslands);
         dashboardThreeIslandsEmoji = root.findViewById(R.id.dashboard_ThreeIslands_Emoji);
-        LinearLayout dashboardThreeIslandsContainer = root.findViewById(R.id.dashboard_ThreeIslands_Container);
+        FrameLayout dashboardThreeIslandsContainer = root.findViewById(R.id.dashboard_ThreeIslands_Container);
 
         dashboardCrossServerTeamUp = root.findViewById(R.id.dashboard_CrossServerTeamUp);
         dashboardCrossServerTeamUpEmoji = root.findViewById(R.id.dashboard_CrossServerTeamUp_Emoji);
-        LinearLayout dashboardCrossServerTeamUpContainer = root.findViewById(R.id.dashboard_CrossServerTeamUp_Container);
+        FrameLayout dashboardCrossServerTeamUpContainer = root.findViewById(R.id.dashboard_CrossServerTeamUp_Container);
 
         dashboardTransferDiscount = root.findViewById(R.id.dashboard_TransferDiscount);
         dashboardTransferDiscountEmoji = root.findViewById(R.id.dashboard_TransferDiscount_Emoji);
-        LinearLayout dashboardTransferDiscountContainer = root.findViewById(R.id.dashboard_TransferDiscount_Container);
+        FrameLayout dashboardTransferDiscountContainer = root.findViewById(R.id.dashboard_TransferDiscount_Container);
 
         dashboardLuckyMoney = root.findViewById(R.id.dashboard_NewYearLuckyMoney);
         dashboardLuckyMoneyEmoji = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Emoji);
-        LinearLayout dashboardLuckyMoneyContainer = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Container);
+        FrameLayout dashboardLuckyMoneyContainer = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Container);
 
         // 初始化仪表盘工具类
         everyMonthAndEveryWeek = new EveryMonthAndEveryWeek();

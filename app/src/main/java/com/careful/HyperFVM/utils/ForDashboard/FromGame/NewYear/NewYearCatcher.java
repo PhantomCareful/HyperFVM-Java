@@ -280,7 +280,7 @@ public class NewYearCatcher {
         // 网络请求必须在子线程执行，避免阻塞主线程
         new Thread(() -> {
             String errorMsg;
-            String contentDetail; // 最终生成的结果文本
+            StringBuilder contentDetail; // 最终生成的结果文本
 
             try {
                 // 第1步：XML字符串并缓存
@@ -334,11 +334,11 @@ public class NewYearCatcher {
                     Log.d(TAG, "catchLuckyConsumptionInfo：正在匹配日期，今天：" + currentMonth + "月" + currentDay + "日，匹配到：" + month + "月" + day + "日");
                     if (month == currentMonth && day == currentDay) {
                         Log.d(TAG, "catchLuckyConsumptionInfo：匹配到了日期");
-                        contentDetail = "今天13点到15点抢红包\n恭喜发财，红包拿来";
+                        contentDetail = new StringBuilder("今天13点到15点抢红包\n恭喜发财，红包拿来");
                         sendLuckyMoneyResultToDB(
                                 "恭喜发财",
                                 "\uD83E\uDDE7",
-                                contentDetail
+                                contentDetail.toString()
                         );
                         return;
                     }
@@ -346,11 +346,15 @@ public class NewYearCatcher {
 
                 // 来到这里的话说明今天没有抢红包活动
                 Log.d(TAG, "catchLuckyConsumptionInfo：一个日期都没匹配上");
-                contentDetail = "今天没有抢红包活动\n再等等吧";
+                contentDetail = new StringBuilder("今天没有抢红包活动\n\n以下日期有抢红包活动\n");
+                for (String s : dateArray) {
+                    contentDetail.append(s).append("\n");
+                }
+                contentDetail.append("\n再等等吧");
                 sendLuckyMoneyResultToDB(
                         "暂无",
                         "⏳",
-                        contentDetail
+                        contentDetail.toString()
                 );
 
             } catch (IOException e) {

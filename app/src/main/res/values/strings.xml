@@ -172,7 +172,6 @@
     <!--工具箱-->
     <!--仪表盘-->
     <string name="title_dashboard">仪表盘📌</string>
-    <string name="text_button_refresh_dashboard">刷新内容</string>
     <string name="text_dashboard_last_day_of_month">月末了，请注意清空积分和金券⚠️</string>
     <string name="title_dashboard_double_explosion_rate">双爆信息</string>
     <string name="title_dashboard_meishi_wechat">温馨礼包</string>
@@ -192,10 +191,10 @@
     <string name="title_dashboard_happy_holiday">欢乐假期</string>
     <string name="title_dashboard_food_contest">美食大赛</string>
     <string name="title_dashboard_three_islands">三岛福利</string>
-    <string name="title_dashboard_cross_server_team_up">跨服助人为乐</string>
+    <string name="title_dashboard_cross_server_team_up">助人为乐</string>
     <string name="title_dashboard_transfer_discount">二转打折</string>
     <string name="title_dashboard_new_year_lucky_money">抢红包</string>
-    <string name="title_dashboard_refresh_dashboard_1">刷新仪表盘</string>
+    <string name="title_dashboard_refresh_dashboard_1">刷新内容</string>
     <string name="title_dashboard_refresh_dashboard_2">点击执行</string>
     <string name="text_tools_tiramisu_image_1_1">周氪图</string>
     <string name="text_tools_tiramisu_image_1_2">Q群获取指令：@提拉米鼠 /周氪</string>
