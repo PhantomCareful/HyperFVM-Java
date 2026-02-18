@@ -227,6 +227,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("UPDATE " + TABLE_DATA_STATION + " SET content = 'DataImageResourcesVersionCode' WHERE content = 'DataImagesVersionCode'");
             db.execSQL("UPDATE " + TABLE_DATA_STATION + " SET content = 'CurrentUpdateLogImageResources' WHERE content = 'CurrentUpdateLogImage'");
         }
+
+        // 版本62：将默认界面风格切换为素雅-扁平
+        if (oldVersion < 62) {
+            db.execSQL("UPDATE " + TABLE_SETTINGS + " SET value = '素雅-扁平' WHERE content = '界面风格'");
+        }
     }
 
     @Override

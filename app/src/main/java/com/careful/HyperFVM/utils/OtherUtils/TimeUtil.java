@@ -22,9 +22,6 @@ public class TimeUtil {
     // 统一的日期格式
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
-    // 日期类
-    private static final Calendar calendar = Calendar.getInstance();
-
     /**
      * 获取当前日期（格式：yyyy-MM-dd）
      * @return 格式化后的当前日期字符串
@@ -95,6 +92,7 @@ public class TimeUtil {
      * SATURDAY = 7
      */
     public static int getWeek() {
+        Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
 
@@ -102,6 +100,7 @@ public class TimeUtil {
      * 获取今天几号
      */
     public static int getCurrentDay() {
+        Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
@@ -109,6 +108,7 @@ public class TimeUtil {
      * 获取当月一共多少天
      */
     public static int getMaxDayOfMonth() {
+        Calendar calendar = Calendar.getInstance();
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
@@ -116,6 +116,7 @@ public class TimeUtil {
      * 获取今天几月
      */
     public static int getCurrentMonth() {
+        Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.MONTH) + 1;
     }
 
@@ -123,6 +124,7 @@ public class TimeUtil {
      * 获取今天是哪一年
      */
     public static int getCurrentYear() {
+        Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.YEAR);
     }
 

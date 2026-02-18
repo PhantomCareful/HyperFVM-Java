@@ -26,7 +26,7 @@
     <string name="top_bar_data_center_tiramisu_image">米鼠的图📊</string>
     <string name="label_data_img_viewer">数据图查看器👀</string>
     <string name="card_data_search_title">🔍防御卡数据查询</string>
-    <string name="card_data_search_tips">数据库日期【20260205】\n卡片冷却默认7秒，体力默认50，如有不同会单独标出。</string>
+    <string name="card_data_search_tips">数据库日期【20260212】\n卡片冷却默认7秒，体力默认50，如有不同会单独标出。</string>
     <string name="text_data_images_index_card_0_1_1">新卡速递</string>
     <string name="text_data_images_index_card_0_1_2">看看最近出了哪些卡片</string>
     <string name="text_data_images_index_card_0_2_1_1">防御卡名称(Part1)</string>

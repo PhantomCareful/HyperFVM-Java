@@ -911,7 +911,7 @@
                                     android:id="@+id/dashboard_DailyRecharge"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="6dp"
+                                    android:paddingVertical="6dp"
                                     android:textColor="?attr/TextViewColorOnImportantCardView"
                                     android:textSize="15sp"
                                     android:textStyle="bold"
