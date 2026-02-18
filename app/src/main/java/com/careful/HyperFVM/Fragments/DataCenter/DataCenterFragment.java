@@ -9,6 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,6 +122,9 @@ public class DataCenterFragment extends Fragment {
 
     private int pressFeedbackAnimationDelay;
 
+    private LinearLayout DataCenterContainer;
+    private TransitionSet transition;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentDataCenterBinding binding = FragmentDataCenterBinding.inflate(inflater, container, false);
@@ -196,7 +203,12 @@ public class DataCenterFragment extends Fragment {
         bilibiliFVMUtil = BilibiliFVMUtil.getInstance();
         latestBilibiliFVMUrl = null;
 
-        // 初始化查黑工具类
+        // 初始化动画效果
+        DataCenterContainer = root.findViewById(R.id.DataCenter_Container);
+        transition = new TransitionSet();
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.addTransition(new Fade());
+        transition.setDuration(400); // 动画时长400ms
 
         // 读取数据库结果并显示
         loadResultsFromDatabase();
@@ -512,7 +524,7 @@ public class DataCenterFragment extends Fragment {
         doubleExplosionRateEmoji = dbHelper.getDashboardContent("double_explosion_rate_emoji");
         dashboardDoubleExplosionRate.setText(activityResult.isEmpty() ? "null" : activityResult);
         dashboardDoubleExplosionRateEmoji.setText(doubleExplosionRateEmoji.isEmpty() ? "❌" : doubleExplosionRateEmoji);
-        // 读取礼包领取结果
+        // 读取温馨礼包领取结果
         String meishiWechatResult = dbHelper.getDashboardContent("meishi_wechat_result_text");
         String meishiWechatResultEmoji = dbHelper.getDashboardContent("meishi_wechat_result_emoji");
         dashboardMeishiWechat.setText(meishiWechatResult.isEmpty() ? "null" : meishiWechatResult);
@@ -522,16 +534,36 @@ public class DataCenterFragment extends Fragment {
         fertilizationTaskEmoji = dbHelper.getDashboardContent("fertilization_task_emoji");
         dashboardFertilizationTask.setText(fertilizationTaskResult.isEmpty() ? "null" : fertilizationTaskResult);
         dashboardFertilizationTaskEmoji.setText(fertilizationTaskEmoji.isEmpty() ? "❌" : fertilizationTaskEmoji);
+        // 读取抢红包活动结果
+        String luckyMoneyResult = dbHelper.getDashboardContent("lucky_money");
+        luckyMoneyEmoji = dbHelper.getDashboardContent("lucky_money_emoji");
+        dashboardLuckyMoney.setText(luckyMoneyResult.isEmpty() ? "null" : luckyMoneyResult);
+        dashboardLuckyMoneyEmoji.setText(luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji);
         // 读取美食悬赏活动结果
         String bountyResult = dbHelper.getDashboardContent("bounty");
         bountyEmoji = dbHelper.getDashboardContent("bounty_emoji");
         dashboardBounty.setText(bountyResult.isEmpty() ? "null" : bountyResult);
         dashboardBountyEmoji.setText(bountyEmoji.isEmpty() ? "null" : bountyEmoji);
-        // 读取百万消费活动结果
-        String millionConsumptionResult = dbHelper.getDashboardContent("million_consumption");
-        millionConsumptionEmoji = dbHelper.getDashboardContent("million_consumption_emoji");
-        dashboardMillionConsumption.setText(millionConsumptionResult.isEmpty() ? "null" : millionConsumptionResult);
-        dashboardMillionConsumptionEmoji.setText(millionConsumptionEmoji.isEmpty() ? "null" : millionConsumptionEmoji);
+        // 读取跨服助人为乐活动结果
+        String crossServerTeamUpResult = dbHelper.getDashboardContent("cross_server_team_up");
+        crossServerTeamUpEmoji = dbHelper.getDashboardContent("cross_server_team_up_emoji");
+        dashboardCrossServerTeamUp.setText(crossServerTeamUpResult.isEmpty() ? "null" : crossServerTeamUpResult);
+        dashboardCrossServerTeamUpEmoji.setText(crossServerTeamUpEmoji.isEmpty() ? "null" : crossServerTeamUpEmoji);
+        // 读取三岛福利活动结果
+        String threeIslandsResult = dbHelper.getDashboardContent("three_islands");
+        threeIslandsEmoji = dbHelper.getDashboardContent("three_islands_emoji");
+        dashboardThreeIslands.setText(threeIslandsResult.isEmpty() ? "null" : threeIslandsResult);
+        dashboardThreeIslandsEmoji.setText(threeIslandsEmoji.isEmpty() ? "null" : threeIslandsEmoji);
+        // 读取美食大赛活动结果
+        String foodContestResult = dbHelper.getDashboardContent("food_contest");
+        foodContestEmoji = dbHelper.getDashboardContent("food_contest_emoji");
+        dashboardFoodContest.setText(foodContestResult.isEmpty() ? "null" : foodContestResult);
+        dashboardFoodContestEmoji.setText(foodContestEmoji.isEmpty() ? "null" : foodContestEmoji);
+        // 读取二转打折活动结果
+        String transferDiscountResult = dbHelper.getDashboardContent("transfer_discount");
+        transferDiscountEmoji = dbHelper.getDashboardContent("transfer_discount_emoji");
+        dashboardTransferDiscount.setText(transferDiscountResult.isEmpty() ? "null" : transferDiscountResult);
+        dashboardTransferDiscountEmoji.setText(transferDiscountEmoji.isEmpty() ? "null" : transferDiscountEmoji);
         // 读取日氪活动结果
         String dailyRechargeResult = dbHelper.getDashboardContent("daily_recharge");
         dailyRechargeEmoji = dbHelper.getDashboardContent("daily_recharge_emoji");
@@ -542,31 +574,26 @@ public class DataCenterFragment extends Fragment {
         happyHolidayEmoji = dbHelper.getDashboardContent("happy_holiday_emoji");
         dashboardHappyHoliday.setText(happyHolidayResult.isEmpty() ? "null" : happyHolidayResult);
         dashboardHappyHolidayEmoji.setText(happyHolidayEmoji.isEmpty() ? "null" : happyHolidayEmoji);
-        // 读取美食大赛活动结果
-        String foodContestResult = dbHelper.getDashboardContent("food_contest");
-        foodContestEmoji = dbHelper.getDashboardContent("food_contest_emoji");
-        dashboardFoodContest.setText(foodContestResult.isEmpty() ? "null" : foodContestResult);
-        dashboardFoodContestEmoji.setText(foodContestEmoji.isEmpty() ? "null" : foodContestEmoji);
-        // 读取三岛福利活动结果
-        String threeIslandsResult = dbHelper.getDashboardContent("three_islands");
-        threeIslandsEmoji = dbHelper.getDashboardContent("three_islands_emoji");
-        dashboardThreeIslands.setText(threeIslandsResult.isEmpty() ? "null" : threeIslandsResult);
-        dashboardThreeIslandsEmoji.setText(threeIslandsEmoji.isEmpty() ? "null" : threeIslandsEmoji);
-        // 读取跨服助人为乐活动结果
-        String crossServerTeamUpResult = dbHelper.getDashboardContent("cross_server_team_up");
-        crossServerTeamUpEmoji = dbHelper.getDashboardContent("cross_server_team_up_emoji");
-        dashboardCrossServerTeamUp.setText(crossServerTeamUpResult.isEmpty() ? "null" : crossServerTeamUpResult);
-        dashboardCrossServerTeamUpEmoji.setText(crossServerTeamUpEmoji.isEmpty() ? "null" : crossServerTeamUpEmoji);
-        // 读取二转打折活动结果
-        String transferDiscountResult = dbHelper.getDashboardContent("transfer_discount");
-        transferDiscountEmoji = dbHelper.getDashboardContent("transfer_discount_emoji");
-        dashboardTransferDiscount.setText(transferDiscountResult.isEmpty() ? "null" : transferDiscountResult);
-        dashboardTransferDiscountEmoji.setText(transferDiscountEmoji.isEmpty() ? "null" : transferDiscountEmoji);
-        // 读取抢红包活动结果
-        String luckyMoneyResult = dbHelper.getDashboardContent("lucky_money");
-        luckyMoneyEmoji = dbHelper.getDashboardContent("lucky_money_emoji");
-        dashboardLuckyMoney.setText(luckyMoneyResult.isEmpty() ? "null" : luckyMoneyResult);
-        dashboardLuckyMoneyEmoji.setText(luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji);
+        // 读取百万消费活动结果
+        String millionConsumptionResult = dbHelper.getDashboardContent("million_consumption");
+        millionConsumptionEmoji = dbHelper.getDashboardContent("million_consumption_emoji");
+        dashboardMillionConsumption.setText(millionConsumptionResult.isEmpty() ? "null" : millionConsumptionResult);
+        dashboardMillionConsumptionEmoji.setText(millionConsumptionEmoji.isEmpty() ? "null" : millionConsumptionEmoji);
+
+        // 读取App通知
+        if (dbHelper.getDashboardContent("global_notification_is_show").equals("true")) {
+            String dashboardGlobalNotificationTitle = dbHelper.getDashboardContent("global_notification_title");
+            String dashboardGlobalNotificationContent = dbHelper.getDashboardContent("global_notification_content");
+            TextView title = root.findViewById(R.id.dashboard_GlobalNotification_Title);
+            TextView content = root.findViewById(R.id.dashboard_GlobalNotification_Content);
+            title.setText(dashboardGlobalNotificationTitle);
+            content.setText(dashboardGlobalNotificationContent);
+            TransitionManager.beginDelayedTransition(DataCenterContainer, transition);
+            root.findViewById(R.id.card_global_notification_container).setVisibility(View.VISIBLE);
+        } else {
+            TransitionManager.beginDelayedTransition(DataCenterContainer, transition);
+            root.findViewById(R.id.card_global_notification_container).setVisibility(View.GONE);
+        }
     }
 
     /**

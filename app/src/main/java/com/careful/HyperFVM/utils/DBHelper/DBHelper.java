@@ -232,6 +232,14 @@ public class DBHelper extends SQLiteOpenHelper {
         if (oldVersion < 62) {
             db.execSQL("UPDATE " + TABLE_SETTINGS + " SET value = '素雅-扁平' WHERE content = '界面风格'");
         }
+
+        // 版本63：新增“App通知”
+        if (oldVersion < 63) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
+                    "VALUES ('global_notification_is_show', 'null')," +
+                    "('global_notification_title', 'null')," +
+                    "('global_notification_content', 'null')");
+        }
     }
 
     @Override

@@ -194,6 +194,13 @@ public class DashboardGitCatcher {
                     dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
                     dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
                     break;
+                case "App通知":
+                    String title = itemObj.getString("title");
+                    String content = itemObj.getString("content");
+                    Log.d(TAG, "title = " + title + "\ncontent = " + content);
+                    dbHelper.updateDashboardContent("global_notification_is_show", "false");
+                    dbHelper.updateDashboardContent("global_notification_title", title);
+                    dbHelper.updateDashboardContent("global_notification_content", content);
             }
         } else if (today.after(end)) {
             Log.d(TAG, name + ": 活动已结束");
@@ -224,6 +231,13 @@ public class DashboardGitCatcher {
                     dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
                     dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
                     break;
+                case "App通知":
+                    String title = itemObj.getString("title");
+                    String content = itemObj.getString("content");
+                    Log.d(TAG, "title = " + title + "\ncontent = " + content);
+                    dbHelper.updateDashboardContent("global_notification_is_show", "false");
+                    dbHelper.updateDashboardContent("global_notification_title", title);
+                    dbHelper.updateDashboardContent("global_notification_content", content);
             }
         } else {
             // 如果在结束当天过了上午10点，则也视为活动结束
@@ -247,6 +261,13 @@ public class DashboardGitCatcher {
                         dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
                         dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
                         break;
+                    case "App通知":
+                        String title = itemObj.getString("title");
+                        String content = itemObj.getString("content");
+                        Log.d(TAG, "title = " + title + "\ncontent = " + content);
+                        dbHelper.updateDashboardContent("global_notification_is_show", "false");
+                        dbHelper.updateDashboardContent("global_notification_title", title);
+                        dbHelper.updateDashboardContent("global_notification_content", content);
                 }
             } else {
                 Log.d(TAG, name + ": 活动正在进行中");
@@ -295,6 +316,13 @@ public class DashboardGitCatcher {
                         dbHelper.updateDashboardContent("food_contest_emoji", "✊");
                         dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
                         break;
+                    case "App通知":
+                        String title = itemObj.getString("title");
+                        String content = itemObj.getString("content");
+                        Log.d(TAG, "title = " + title + "\ncontent = " + content);
+                        dbHelper.updateDashboardContent("global_notification_is_show", "true");
+                        dbHelper.updateDashboardContent("global_notification_title", title);
+                        dbHelper.updateDashboardContent("global_notification_content", content);
                 }
             }
         }

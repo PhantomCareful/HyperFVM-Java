@@ -97,6 +97,8 @@ public class DatabaseInfo {
      * 更新防御卡数据
      * DB_VERSION = 62
      * 将默认界面风格切换为素雅-扁平
+     * DB_VERSION = 63
+     * 新增“App通知”
      */
-    public static final int DB_VERSION = 62;
+    public static final int DB_VERSION = 63;
 }

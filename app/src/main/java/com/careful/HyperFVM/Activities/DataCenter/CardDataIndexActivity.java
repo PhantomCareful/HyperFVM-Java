@@ -538,6 +538,9 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_16_1_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火影怪味鱿鱼"));
         findViewById(R.id.card_data_index_16_1_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "酱香锅烤栗子"));
         findViewById(R.id.card_data_index_16_1_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "热狗耗油双菇"));
+        findViewById(R.id.card_data_index_16_1_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "子母三线酒架"));
+        findViewById(R.id.card_data_index_16_1_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "刺梨烧烤盘"));
+        findViewById(R.id.card_data_index_16_1_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "机枪咖啡杯"));
     }
 
     /**
