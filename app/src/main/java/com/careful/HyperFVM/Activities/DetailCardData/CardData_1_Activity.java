@@ -24,6 +24,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
@@ -88,6 +89,11 @@ public class CardData_1_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            ImageView finalImageView0 = imageView;
+            imageView.setOnLongClickListener(v -> {
+                DialogBuilderManager.showImageExportDialog(this, finalImageView0, cardName, "不转形态");
+                return false;
+            });
 
             //第2张图片
             imageView = findViewById(R.id.Image_View_1);
@@ -100,6 +106,12 @@ public class CardData_1_Activity extends BaseActivity {
                         getPackageName()
                 );
                 imageView.setImageResource(imageResId);
+
+                ImageView finalImageView1 = imageView;
+                imageView.setOnLongClickListener(v -> {
+                    DialogBuilderManager.showImageExportDialog(this, finalImageView1, cardName, "一转形态");
+                    return false;
+                });
             } else {
                 imageView.setVisibility(View.GONE);
             }
@@ -115,6 +127,12 @@ public class CardData_1_Activity extends BaseActivity {
                         getPackageName()
                 );
                 imageView.setImageResource(imageResId);
+
+                ImageView finalImageView2 = imageView;
+                imageView.setOnLongClickListener(v -> {
+                    DialogBuilderManager.showImageExportDialog(this, finalImageView2, cardName, "二转形态");
+                    return false;
+                });
             } else {
                 imageView.setVisibility(View.GONE);
             }
@@ -281,7 +299,6 @@ public class CardData_1_Activity extends BaseActivity {
         } catch (Exception e) {
             ((TextView) findViewById(R.id.base_info)).setText("数据加载失败");
         }
-        // 关闭游标，避免内存泄漏
     }
 
     // 辅助方法：设置文本到控件，避免重复代码

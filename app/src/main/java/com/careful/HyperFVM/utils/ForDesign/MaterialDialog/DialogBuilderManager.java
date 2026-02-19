@@ -10,9 +10,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
+import com.careful.HyperFVM.utils.OtherUtils.ImageExportUtil;
 import com.careful.HyperFVM.utils.OtherUtils.SuggestionAdapter;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
@@ -42,6 +45,27 @@ import java.util.Objects;
  * 将散落在各个地方的MaterialAlertDialogBuilder集中到这里，方便管理
  */
 public class DialogBuilderManager {
+    /**
+     * 一般弹窗展示方法，仅展示内容和一个按钮，不做任何额外的操作。
+     * @param context 上下文
+     * @param title 弹窗标题
+     * @param content 弹窗内容
+     * @param cancelable 弹窗是否可以通过点击背景关闭
+     * @param positiveButtonTitle 弹窗按钮标题，比如【确定】
+     */
+    public static void showDialog(Context context, String title, String content, boolean cancelable, String positiveButtonTitle) {
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setTitle(title)
+                .setMessage(content)
+                .setCancelable(cancelable)
+                .setPositiveButton(positiveButtonTitle, (dialogInterface, which) -> dialogInterface.dismiss())
+                .create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
     /**
      * 签名校验弹窗
      */
@@ -86,7 +110,6 @@ public class DialogBuilderManager {
 
     /**
      * 仪表盘：展示详细信息的弹窗
-     *
      * @param title         弹窗标题
      * @param emoji         弹窗中的大表情
      * @param detailContent 详细内容
@@ -113,7 +136,6 @@ public class DialogBuilderManager {
 
     /**
      * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
-     *
      * @param title         弹窗标题
      * @param emoji         弹窗中的大表情
      * @param detailContent 详细内容
@@ -211,7 +233,6 @@ public class DialogBuilderManager {
 
     /**
      * 美食数据站：展示二次确认跳转弹窗
-     *
      * @param title 要前往的网站名字
      * @param url   网址链接
      */
@@ -272,15 +293,7 @@ public class DialogBuilderManager {
 
                                 @Override
                                 public void onError(String message) {
-                                    Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                                            .setTitle("查询失败")
-                                            .setMessage(message)
-                                            .setPositiveButton("确定", null)
-                                            .create();
-
-                                    // 添加背景模糊
-                                    DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-                                    dialog.show();
+                                    showDialog(context, "查询失败❌", message, true, "好的");
                                 }
                             });
                         }
@@ -310,15 +323,11 @@ public class DialogBuilderManager {
             content.append("该QQ号暂未被标记为骗子。");
         }
 
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)")
-                .setMessage(content.toString())
-                .setPositiveButton("确定", null)
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
+        showDialog(context,
+                result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)",
+                content.toString(),
+                true,
+                "好的");
     }
 
     /**
@@ -416,7 +425,7 @@ public class DialogBuilderManager {
      */
     @SuppressLint("QueryPermissionsNeeded")
     public static void showPackageInstallPermissionDialog(Context context) {
-        Dialog dialog = new MaterialAlertDialogBuilder(context)
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setTitle("需要安装权限")
                 .setMessage("应用需要\"安装未知应用\"权限才能安装更新。\n\n请点击\"去设置\"按钮，然后在设置中找到\"安装未知应用\"或\"特殊应用权限\"，为HyperFVM开启安装权限。")
                 .setPositiveButton("去设置", (dialogInterface, which) -> {
@@ -438,6 +447,26 @@ public class DialogBuilderManager {
                 })
                 .setNegativeButton("取消", (dialogInterface, which) -> dialogInterface.dismiss())
                 .setCancelable(false)
+                .create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 图片资源导出弹窗
+     */
+    public static void showImageExportDialog(Context context, ImageView imageView, String cardName, String categoryName) {
+        imageView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setTitle("导出图片")
+                .setMessage("图片将保存到：Pictures/" + context.getResources().getString(R.string.app_name) +
+                        "/" + cardName +
+                        "/" + cardName + "(" + categoryName + ")" + ".webp")
+                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportCardImage(context, imageView, cardName, categoryName))
+                .setNegativeButton("咱手滑了\uD83E\uDEE3", (dialogInterface, which) -> dialogInterface.dismiss())
+                .setCancelable(true)
                 .create();
 
         // 添加背景模糊
