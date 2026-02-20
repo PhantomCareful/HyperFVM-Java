@@ -891,6 +891,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         case 1:
                             if (tableNameNum == 3) {
                                 transferCategory = "三转形态";
+                            } else if (tableNameNum == 2) {
+                                transferCategory = "初级融合";
                             } else {
                                 transferCategory = "一转形态";
                             }
@@ -898,12 +900,18 @@ public class DBHelper extends SQLiteOpenHelper {
                         case 2:
                             if (tableNameNum == 3) {
                                 transferCategory = "四转形态";
+                            } else if (tableNameNum == 2) {
+                                transferCategory = "深度融合";
                             } else {
                                 transferCategory = "二转形态";
                             }
                             break;
                         case 3:
-                            transferCategory = "终转形态";
+                            if (tableNameNum == 2) {
+                                transferCategory = "灵魂融合";
+                            } else {
+                                transferCategory = "终转形态";
+                            }
                             break;
                     }
                     suggestions.add(new CardSuggestion(name, transferCategory, imageId));
