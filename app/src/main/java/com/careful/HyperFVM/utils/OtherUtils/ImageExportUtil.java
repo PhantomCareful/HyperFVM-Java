@@ -11,7 +11,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -21,7 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class ImageExportUtil {
-    private static void exportImageToPictures(Context context, ImageView imageView, String folderName, String categoryName) {
+    private static void exportCardImageToPictures(Context context, ImageView imageView, String folderName, String cardName, String categoryName) {
         // 1. 获取 ImageView 中的 Drawable 并转为 Bitmap
         Drawable drawable = imageView.getDrawable();
         Bitmap bitmap;
@@ -47,7 +46,7 @@ public class ImageExportUtil {
         }
 
         // 2. 准备文件名和相对路径
-        String fileName = folderName + "(" + categoryName + ").webp";
+        String fileName = cardName + "(" + categoryName + ").webp";
         // 相对路径：Pictures/应用名/folderName/
         String relativePath = Environment.DIRECTORY_PICTURES + File.separator
                 + context.getResources().getString(R.string.app_name) + File.separator
@@ -86,11 +85,10 @@ public class ImageExportUtil {
 
             DialogBuilderManager.showDialog(context,
                     "导出成功🎉",
-                    "图片已保存到：Pictures/HyperFVM/" + folderName + "/" + folderName + "(" + categoryName + ").webp",
+                    "图片已保存到：Pictures/HyperFVM/" + folderName + "/" + fileName,
                     true,
                     "好耶");
         } catch (IOException e) {
-            Toast.makeText(context, "导出失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("export", "导出异常", e);
 
             DialogBuilderManager.showDialog(context,
@@ -101,7 +99,7 @@ public class ImageExportUtil {
         }
     }
 
-    public static void exportCardImage(Context context, ImageView imageView, String cardName, String categoryName) {
-        exportImageToPictures(context, imageView, cardName, categoryName);
+    public static void exportCardImage(Context context, ImageView imageView, String folderName, String cardName, String categoryName) {
+        exportCardImageToPictures(context, imageView, folderName, cardName, categoryName);
     }
 }

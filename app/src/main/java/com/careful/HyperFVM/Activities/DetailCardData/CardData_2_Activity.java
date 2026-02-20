@@ -28,6 +28,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
@@ -99,7 +100,9 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCardBig.setImageResource(imageResId);
-            setTextToView(R.id.card_name_1, getStringFromCursor(cursor, "name"));
+            String cardName1 = getStringFromCursor(cursor, "name");
+            setTextToView(R.id.card_name_1, cardName1);
+            exportImage(ImageViewCardBig, cardName, cardName1, "初级融合, 大");
 
             ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2")) + "_big";
@@ -110,7 +113,9 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCardBig.setImageResource(imageResId);
-            setTextToView(R.id.card_name_2, getStringFromCursor(cursor, "name_2"));
+            String cardName2 = getStringFromCursor(cursor, "name_2");
+            setTextToView(R.id.card_name_2, cardName2);
+            exportImage(ImageViewCardBig, cardName, cardName2, "深度融合, 大");
 
             ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_3);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_3")) + "_big";
@@ -121,7 +126,9 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCardBig.setImageResource(imageResId);
+            String cardName3 = getStringFromCursor(cursor, "name_3");
             setTextToView(R.id.card_name_3, getStringFromCursor(cursor, "name_3"));
+            exportImage(ImageViewCardBig, cardName, cardName3, "灵魂融合, 大");
 
             // 基础信息区域
             // 全新的Markdown样式
@@ -141,6 +148,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName1, "初级融合, 主卡");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_1_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_2"));
@@ -151,6 +159,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName1, "初级融合, 融合副卡");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_Result_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_1"));
@@ -161,6 +170,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName1, "初级融合");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_2_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_1"));
@@ -171,6 +181,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName2, "深度融合, 主卡");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_2_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_2_2"));
@@ -181,6 +192,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName2, "深度融合, 融合副卡");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_Result_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2"));
@@ -191,6 +203,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName2, "深度融合");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_3_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_2"));
@@ -201,6 +214,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName3, "灵魂融合, 主卡");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_3_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_3_2"));
@@ -211,6 +225,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName3, "灵魂融合, 融合副卡");
 
             ImageViewCard = findViewById(R.id.Image_View_Card_Result_3);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_result_id_3"));
@@ -221,6 +236,7 @@ public class CardData_2_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCard.setImageResource(imageResId);
+            exportImage(ImageViewCard, cardName, cardName3, "灵魂融合");
 
             // 给相关卡片设置跳转查询的点击事件
             // 缓存点击事件需要用到的字段值
@@ -338,6 +354,14 @@ public class CardData_2_Activity extends BaseActivity {
         }
         String value = cursor.getString(columnIndex);
         return (value == null || value.isEmpty()) ? "无" : value;
+    }
+
+    // 辅助方法：给图片控件设置长按导出图片
+    private void exportImage(ImageView imageView, String folderName, String cardName, String categoryName) {
+        imageView.setOnLongClickListener(v -> {
+            DialogBuilderManager.showImageExportDialog(this, imageView, folderName, cardName, categoryName);
+            return false;
+        });
     }
 
     /**

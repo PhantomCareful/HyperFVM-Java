@@ -28,6 +28,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
@@ -98,7 +99,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCardBig.setImageResource(imageResId);
-            setTextToView(R.id.card_name_1, getStringFromCursor(cursor, "name"));
+            String cardName0 = getStringFromCursor(cursor, "name");
+            setTextToView(R.id.card_name_1, cardName0);
+            exportImage(ImageViewCardBig, cardName, cardName0, "不转形态, 大");
 
             ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1")) + "_big";
@@ -109,9 +112,14 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCardBig.setImageResource(imageResId);
-            setTextToView(R.id.card_name_2, getStringFromCursor(cursor, "name_1"));
+            String cardName1 = getStringFromCursor(cursor, "name_1");
+            setTextToView(R.id.card_name_2, cardName1);
+            exportImage(ImageViewCardBig, cardName, cardName1, "三转形态, 大");
 
             // 对于第3、4张大图，先判断该金卡是否有终转，有和没有的情况下，需要使用的组件不一样
+            String cardName2 = getStringFromCursor(cursor, "name_2");
+            String cardName3 = getStringFromCursor(cursor, "name_3");
+
             String imageId3 = cursor.getString(cursor.getColumnIndex("image_id_3"));
             if (imageId3.equals("无")) { // 无终转
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_3_1);
@@ -123,7 +131,8 @@ public class CardData_3_Activity extends BaseActivity {
                         getPackageName()
                 );
                 ImageViewCardBig.setImageResource(imageResId);
-                setTextToView(R.id.card_name_3_1, getStringFromCursor(cursor, "name_2"));
+                setTextToView(R.id.card_name_3_1, cardName2);
+                exportImage(ImageViewCardBig, cardName, cardName2, "四转形态, 大");
 
                 // 隐藏不用的组件
                 findViewById(R.id.Image_View_Card_Big_3_2_Container).setVisibility(View.GONE);
@@ -138,7 +147,8 @@ public class CardData_3_Activity extends BaseActivity {
                         getPackageName()
                 );
                 ImageViewCardBig.setImageResource(imageResId);
-                setTextToView(R.id.card_name_3, getStringFromCursor(cursor, "name_2"));
+                setTextToView(R.id.card_name_3, cardName2);
+                exportImage(ImageViewCardBig, cardName, cardName2, "四转形态, 大");
 
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_4);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_3")) + "_big";
@@ -149,7 +159,8 @@ public class CardData_3_Activity extends BaseActivity {
                         getPackageName()
                 );
                 ImageViewCardBig.setImageResource(imageResId);
-                setTextToView(R.id.card_name_4, getStringFromCursor(cursor, "name_3"));
+                setTextToView(R.id.card_name_4, cardName3);
+                exportImage(ImageViewCardBig, cardName, cardName3, "终转形态, 大");
 
                 // 隐藏不用的组件
                 findViewById(R.id.Image_View_Card_Big_3_1_Container).setVisibility(View.GONE);
@@ -162,6 +173,10 @@ public class CardData_3_Activity extends BaseActivity {
                     "### 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
                     getStringFromCursor(cursor, "base_info") + "\n";
             if (!getStringFromCursor(cursor, "name_1_1").equals("无")) {
+                // 缓存点击事件需要用到的字段值
+                String name1_1 = getStringFromCursor(cursor, "name_1_1");
+                String name1_2 = getStringFromCursor(cursor, "name_1_2");
+
                 contentBaseInfo = contentBaseInfo + "### 相关卡片" + "\n" + "- 点击材料卡的图片可跳转该卡片数据";
                 ImageView ImageViewCard = findViewById(R.id.Image_View_Card_1_1);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_1"));
@@ -172,6 +187,7 @@ public class CardData_3_Activity extends BaseActivity {
                         getPackageName()
                 );
                 ImageViewCard.setImageResource(imageResId);
+                exportImage(ImageViewCard, cardName, name1_1, "进化用卡1");
 
                 ImageViewCard = findViewById(R.id.Image_View_Card_1_2);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1_2"));
@@ -182,6 +198,7 @@ public class CardData_3_Activity extends BaseActivity {
                         getPackageName()
                 );
                 ImageViewCard.setImageResource(imageResId);
+                exportImage(ImageViewCard, cardName, name1_2, "进化用卡2");
 
                 ImageViewCard = findViewById(R.id.Image_View_Card_Result_1);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0"));
@@ -194,9 +211,6 @@ public class CardData_3_Activity extends BaseActivity {
                 ImageViewCard.setImageResource(imageResId);
 
                 // 给相关卡片设置跳转查询的点击事件
-                // 缓存点击事件需要用到的字段值
-                String name1_1 = getStringFromCursor(cursor, "name_1_1");
-                String name1_2 = getStringFromCursor(cursor, "name_1_2");
                 findViewById(R.id.Image_View_Card_1_1).setOnClickListener(v -> selectCardDataByName(name1_1));
                 findViewById(R.id.Image_View_Card_1_2).setOnClickListener(v -> selectCardDataByName(name1_2));
             } else {
@@ -279,6 +293,7 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            exportImage(imageView, cardName, cardName0, "不转形态");
 
             imageView = findViewById(R.id.decompose_image_id_card_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2"));
@@ -288,6 +303,7 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            exportImage(imageView, cardName, cardName1, "三转形态");
 
             imageView = findViewById(R.id.decompose_image_id_card_3);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3"));
@@ -297,6 +313,7 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            exportImage(imageView, cardName, cardName2, "四转形态");
 
             imageView = findViewById(R.id.decompose_image_id_card_4);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_4"));
@@ -306,6 +323,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!cardName3.equals("无")) {
+                exportImage(imageView, cardName, cardName3, "终转形态");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_skill_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_1"));
@@ -315,6 +335,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "初级技能书");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_skill_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_2"));
@@ -324,6 +347,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "高级技能书");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_skill_3);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_3"));
@@ -333,6 +359,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "终级技能书");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_skill_4);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_4"));
@@ -342,6 +371,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "究级技能书");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_1_a);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_a"));
@@ -351,6 +383,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "三转凭证A");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_1_b);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_b"));
@@ -360,6 +395,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "三转凭证B");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_1_c);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_c"));
@@ -369,6 +407,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "三转凭证C");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_2_a);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a"));
@@ -378,6 +419,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "四转凭证A");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_2_b);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_b"));
@@ -387,6 +431,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "四转凭证B");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_2_c);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_c"));
@@ -396,6 +443,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "四转凭证C");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_3_a);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_a"));
@@ -405,6 +455,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "终转凭证A");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_3_b);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_b"));
@@ -414,6 +467,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "终转凭证B");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_3_c);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_c"));
@@ -423,6 +479,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "终转凭证C");
+            }
 
             imageView = findViewById(R.id.decompose_image_id_compose);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_compose"));
@@ -432,6 +491,9 @@ public class CardData_3_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
+            if (!imageIdStr.equals("card_data_x")) {
+                exportImage(imageView, cardName, cardName0, "进化凭证");
+            }
 
             setTextToView(R.id.decompose_card_1, getStringFromCursor(cursor, "decompose_card_1"));
             setTextToView(R.id.decompose_card_2, getStringFromCursor(cursor, "decompose_card_2"));
@@ -510,6 +572,14 @@ public class CardData_3_Activity extends BaseActivity {
         }
         String value = cursor.getString(columnIndex);
         return (value == null || value.isEmpty()) ? "无" : value;
+    }
+
+    // 辅助方法：给图片控件设置长按导出图片
+    private void exportImage(ImageView imageView, String folderName, String cardName, String categoryName) {
+        imageView.setOnLongClickListener(v -> {
+            DialogBuilderManager.showImageExportDialog(this, imageView, folderName, cardName, categoryName);
+            return false;
+        });
     }
 
     /**

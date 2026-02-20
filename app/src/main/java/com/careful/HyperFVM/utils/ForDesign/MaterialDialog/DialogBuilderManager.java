@@ -457,14 +457,14 @@ public class DialogBuilderManager {
     /**
      * 图片资源导出弹窗
      */
-    public static void showImageExportDialog(Context context, ImageView imageView, String cardName, String categoryName) {
+    public static void showImageExportDialog(Context context, ImageView imageView, String folderName, String cardName, String categoryName) {
         imageView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setTitle("导出图片")
                 .setMessage("图片将保存到：Pictures/" + context.getResources().getString(R.string.app_name) +
-                        "/" + cardName +
+                        "/" + folderName +
                         "/" + cardName + "(" + categoryName + ")" + ".webp")
-                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportCardImage(context, imageView, cardName, categoryName))
+                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportCardImage(context, imageView, folderName, cardName, categoryName))
                 .setNegativeButton("咱手滑了\uD83E\uDEE3", (dialogInterface, which) -> dialogInterface.dismiss())
                 .setCancelable(true)
                 .create();

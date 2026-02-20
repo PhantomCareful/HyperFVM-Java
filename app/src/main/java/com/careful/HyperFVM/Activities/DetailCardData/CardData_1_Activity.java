@@ -89,11 +89,7 @@ public class CardData_1_Activity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
-            ImageView finalImageView0 = imageView;
-            imageView.setOnLongClickListener(v -> {
-                DialogBuilderManager.showImageExportDialog(this, finalImageView0, cardName, "不转形态");
-                return false;
-            });
+            exportImage(imageView, cardName, cardName, "不转形态");
 
             //第2张图片
             imageView = findViewById(R.id.Image_View_1);
@@ -106,12 +102,7 @@ public class CardData_1_Activity extends BaseActivity {
                         getPackageName()
                 );
                 imageView.setImageResource(imageResId);
-
-                ImageView finalImageView1 = imageView;
-                imageView.setOnLongClickListener(v -> {
-                    DialogBuilderManager.showImageExportDialog(this, finalImageView1, cardName, "一转形态");
-                    return false;
-                });
+                exportImage(imageView, cardName, cardName, "一转形态");
             } else {
                 imageView.setVisibility(View.GONE);
             }
@@ -127,12 +118,7 @@ public class CardData_1_Activity extends BaseActivity {
                         getPackageName()
                 );
                 imageView.setImageResource(imageResId);
-
-                ImageView finalImageView2 = imageView;
-                imageView.setOnLongClickListener(v -> {
-                    DialogBuilderManager.showImageExportDialog(this, finalImageView2, cardName, "二转形态");
-                    return false;
-                });
+                exportImage(imageView, cardName, cardName, "二转形态");
             } else {
                 imageView.setVisibility(View.GONE);
             }
@@ -317,6 +303,14 @@ public class CardData_1_Activity extends BaseActivity {
         }
         String value = cursor.getString(columnIndex);
         return (value == null || value.isEmpty()) ? "无" : value;
+    }
+
+    // 辅助方法：给图片控件设置长按导出图片
+    private void exportImage(ImageView imageView, String folderName, String cardName, String categoryName) {
+        imageView.setOnLongClickListener(v -> {
+            DialogBuilderManager.showImageExportDialog(this, imageView, folderName, cardName, categoryName);
+            return false;
+        });
     }
 
     /**
