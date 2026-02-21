@@ -410,8 +410,9 @@ public class CheckUpdateActivity extends BaseActivity {
      * 检查是否存在已下载的APK文件
      */
     private boolean checkExistingApkFile() {
-        // 从数据库获取已保存的APK文件名
+        // 从数据库获取已保存的APK文件名和版本号
         String savedApkFileName = dbHelper.getDataStationValue("DownloadedApkFileName");
+        long savedApkFileVersionCode = Long.parseLong(dbHelper.getDataStationValue("DownloadedApkFileVersionCode"));
 
         if (savedApkFileName != null && !savedApkFileName.isEmpty()) {
             // 构建完整的APK文件路径
@@ -419,8 +420,8 @@ public class CheckUpdateActivity extends BaseActivity {
             if (apkDir != null && apkDir.exists()) {
                 File apkFile = new File(apkDir, savedApkFileName);
 
-                // 检查文件是否存在且是一个文件（不是目录）
-                if (apkFile.exists() && apkFile.isFile() && apkFile.length() > 0) {
+                // 检查文件是否存在且是一个文件（不是目录），并且这个文件的版本号比当前App的版本号更高（必须是大于）
+                if (apkFile.exists() && apkFile.isFile() && apkFile.length() > 0 && savedApkFileVersionCode > localAppVersionCode) {
                     downloadAppUrl = apkFile.getAbsolutePath();
                     return true;
                 } else {
@@ -528,12 +529,14 @@ public class CheckUpdateActivity extends BaseActivity {
                     // 保存APK文件路径
                     downloadAppUrl = apkFilePath;
 
-                    // 保存APK文件名到数据库
+                    // 保存APK文件名和APK的版本号到数据库
                     File apkFile = new File(apkFilePath);
                     if (apkFile.exists()) {
                         String apkFileName = apkFile.getName();
                         dbHelper.updateDataStationValue("DownloadedApkFileName", apkFileName);
+                        dbHelper.updateDataStationValue("DownloadedApkFileVersionCode", String.valueOf(serverAppVersionCode));
                         Log.d("ApkDownload", "Saved APK filename to DB: " + apkFileName);
+                        Log.d("ApkDownload", "Saved APK version code to DB: " + serverAppVersionCode);
                     }
                 });
             }

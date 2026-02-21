@@ -240,6 +240,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     "('global_notification_title', 'null')," +
                     "('global_notification_content', 'null')");
         }
+
+        // 版本64：新增DownloadedApkFileVersionCode
+        if (oldVersion < 64) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
+                    "VALUES ('DownloadedApkFileVersionCode', '0')");
+        }
     }
 
     @Override

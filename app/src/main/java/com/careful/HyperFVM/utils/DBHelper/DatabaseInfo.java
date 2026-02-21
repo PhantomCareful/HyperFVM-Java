@@ -99,6 +99,8 @@ public class DatabaseInfo {
      * 将默认界面风格切换为素雅-扁平
      * DB_VERSION = 63
      * 新增“App通知”
+     * DB_VERSION = 64
+     * 新增DownloadedApkFileVersionCode
      */
-    public static final int DB_VERSION = 63;
+    public static final int DB_VERSION = 64;
 }
