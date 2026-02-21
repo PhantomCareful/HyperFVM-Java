@@ -214,7 +214,7 @@ public class CheckUpdateActivity extends BaseActivity {
         update_image_resources_action.setText("⏳获取下载链接中⏳");
 
         isImageResourcesDownloading = true;
-        update_image_resources_action.setClickable(false);
+        update_image_resources_action.setEnabled(false);
 
         // 计算版本差，判断是全量更新还是增量更新
         long versionDiff = serverImageResourcesVersionCode - localImageResourcesVersionCode;
@@ -257,7 +257,7 @@ public class CheckUpdateActivity extends BaseActivity {
                             isImageResourcesDownloading = false;
 
                             update_image_resources_action.setText("✅更新成功✅");
-                            update_image_resources_action.setClickable(true);
+                            update_image_resources_action.setEnabled(true);
                         });
                     }
 
@@ -266,7 +266,7 @@ public class CheckUpdateActivity extends BaseActivity {
                         runOnUiThread(() -> {
                             isImageResourcesDownloading = false;
                             update_image_resources_action.setText("下载失败，点击重试");
-                            update_image_resources_action.setClickable(true);
+                            update_image_resources_action.setEnabled(true);
                         });
                     }
                 });
@@ -277,7 +277,7 @@ public class CheckUpdateActivity extends BaseActivity {
                 runOnUiThread(() -> {
                     isImageResourcesDownloading = false;
                     update_image_resources_action.setText("获取链接失败，点击重试");
-                    update_image_resources_action.setClickable(true);
+                    update_image_resources_action.setEnabled(true);
                 });
             }
         };
@@ -508,7 +508,7 @@ public class CheckUpdateActivity extends BaseActivity {
         }
 
         isAppDownloading = true;
-        update_app_action.setClickable(false);
+        update_app_action.setEnabled(false);
 
         appUpdaterUtil.downloadApk(this, downloadAppUrl, new AppUpdaterUtil.DownloadCallback() {
             @SuppressLint("SetTextI18n")
@@ -524,7 +524,7 @@ public class CheckUpdateActivity extends BaseActivity {
                 runOnUiThread(() -> {
                     isAppDownloading = false;
                     update_app_action.setText(getResources().getString(R.string.label_check_update_status_downloaded_now));
-                    update_app_action.setClickable(true);
+                    update_app_action.setEnabled(true);
 
                     // 保存APK文件路径
                     downloadAppUrl = apkFilePath;
@@ -546,7 +546,7 @@ public class CheckUpdateActivity extends BaseActivity {
                 runOnUiThread(() -> {
                     isAppDownloading = false;
                     update_app_action.setText("下载失败，点击重试");
-                    update_app_action.setClickable(true);
+                    update_app_action.setEnabled(true);
                 });
             }
         });
