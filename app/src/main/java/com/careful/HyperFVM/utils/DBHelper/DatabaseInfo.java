@@ -101,6 +101,10 @@ public class DatabaseInfo {
      * 新增“App通知”
      * DB_VERSION = 64
      * 新增DownloadedApkFileVersionCode
+     * DB_VERSION = 65 - 66
+     * 修改一下图片资源的ID
+     * DB_VERSION = 67 - 69
+     * 更新防御卡数据
      */
-    public static final int DB_VERSION = 64;
+    public static final int DB_VERSION = 69;
 }
