@@ -53,7 +53,8 @@ configure<ApplicationExtension> {
             // 关联release签名
             signingConfig = signingConfigs.getByName("release")
             // 混淆配置
-            isMinifyEnabled = false
+            isMinifyEnabled = true // 启用代码混淆
+            isShrinkResources = false // 启用资源缩减（移除无用资源）
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
