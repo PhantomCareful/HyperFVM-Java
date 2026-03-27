@@ -103,8 +103,8 @@ public class DatabaseInfo {
      * 新增DownloadedApkFileVersionCode
      * DB_VERSION = 65 - 66
      * 修改一下图片资源的ID
-     * DB_VERSION = 67 - 71
+     * DB_VERSION = 67 - 73
      * 更新防御卡数据
      */
-    public static final int DB_VERSION = 71;
+    public static final int DB_VERSION = 73;
 }

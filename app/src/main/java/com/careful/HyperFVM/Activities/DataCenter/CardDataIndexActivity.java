@@ -355,6 +355,8 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_9_4_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "电流虎"));
         findViewById(R.id.card_data_index_9_4_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
         findViewById(R.id.card_data_index_9_4_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "金刚马"));
+        findViewById(R.id.card_data_index_9_4_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
+        findViewById(R.id.card_data_index_9_4_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蜜糖陷阱"));
         findViewById(R.id.card_data_index_10_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "肥牛火锅"));
         findViewById(R.id.card_data_index_10_1_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "麻辣香锅"));
         findViewById(R.id.card_data_index_10_1_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "生煎锅"));
@@ -375,6 +377,7 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_10_3_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "钢鱼刺"));
         findViewById(R.id.card_data_index_10_3_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "糖渍刺梨"));
         findViewById(R.id.card_data_index_10_4_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蜂蜜史莱姆"));
+        findViewById(R.id.card_data_index_10_4_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "糖人马"));
         findViewById(R.id.card_data_index_11_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "小笼包"));
         findViewById(R.id.card_data_index_11_1_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "双层小笼包"));
         findViewById(R.id.card_data_index_11_1_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "三向小笼包"));

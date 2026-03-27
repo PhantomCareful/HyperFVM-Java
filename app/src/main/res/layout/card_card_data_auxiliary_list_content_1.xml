@@ -134,6 +134,10 @@
             layout="@layout/card_card_data_index_10_4_1" />
 
         <include
+            android:id="@+id/card_card_data_index_10_4_2"
+            layout="@layout/card_card_data_index_10_4_2" />
+
+        <include
             android:id="@+id/card_card_data_index_12_1_5"
             layout="@layout/card_card_data_index_12_1_5" />
 

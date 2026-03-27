@@ -46,6 +46,10 @@
             layout="@layout/card_card_data_index_9_4_4" />
 
         <include
+            android:id="@+id/card_card_data_index_9_4_6"
+            layout="@layout/card_card_data_index_9_4_6" />
+
+        <include
             android:id="@+id/card_card_data_index_12_1_6"
             layout="@layout/card_card_data_index_12_1_6" />
 
