@@ -1150,6 +1150,7 @@
 
                         <include layout="@layout/card_tiramisu"/>
                         <include layout="@layout/card_faa"/>
+                        <include layout="@layout/card_guidao"/>
                         <include layout="@layout/card_icu"/>
                         <include layout="@layout/card_card_calculator"/>
 

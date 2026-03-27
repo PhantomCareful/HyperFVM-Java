@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_guidao_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:id="@+id/Img_ToolsStrategy"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/data_center_image_guidao"
+            android:scaleType="fitCenter"
+            android:layout_gravity="end|bottom"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="false"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/title_ToolsStrategy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_tools_guidao"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/description_ToolsStrategy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_tools_guidao"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</merge>
