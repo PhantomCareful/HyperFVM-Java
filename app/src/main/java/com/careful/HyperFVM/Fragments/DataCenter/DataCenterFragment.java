@@ -458,6 +458,12 @@ public class DataCenterFragment extends Fragment {
                 getResources().getString(R.string.title_tools_faa_dialog),
                 getResources().getString(R.string.label_tools_faa_url)), pressFeedbackAnimationDelay));
 
+        // 轨道强卡统计
+        root.findViewById(R.id.card_guidao_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_tools_guidao_dialog),
+                getResources().getString(R.string.label_tools_guidao_url)), pressFeedbackAnimationDelay));
+
         // 卡片鼠军对策表
         root.findViewById(R.id.card_strategy_container).setOnClickListener(v -> v.postDelayed(() -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
@@ -704,6 +710,8 @@ public class DataCenterFragment extends Fragment {
         root.findViewById(R.id.card_tiramisu_container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         root.findViewById(R.id.card_faa_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        root.findViewById(R.id.card_guidao_container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
         root.findViewById(R.id.card_icu_container).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
