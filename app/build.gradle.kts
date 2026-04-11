@@ -8,14 +8,18 @@ plugins {
 // 使用新的 ApplicationExtension 替代旧的 android 扩展
 configure<ApplicationExtension> {
     namespace = "com.careful.HyperFVM"
-    compileSdk = 36
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 0
+        }
+    }
 
     defaultConfig {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
-        targetSdk = 36
-        versionCode = 88
-        versionName = "3.5.0"
+        targetSdk = 37
+        versionCode = 89
+        versionName = "3.6.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
