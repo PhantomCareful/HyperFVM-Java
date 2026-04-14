@@ -5,6 +5,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimat
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.ForegroundServiceStartNotAllowedException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -107,14 +108,32 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         // 启动自动任务服务 & 注册重启广播
-        if (dbHelper.getSettingValue("自动任务")) {
-            Intent serviceIntent = new Intent(this, PersistentService.class);
-            startForegroundService(serviceIntent);
+        try {
+            if (dbHelper.getSettingValue("自动任务")) {
+                Intent serviceIntent = new Intent(this, PersistentService.class);
+                startForegroundService(serviceIntent);
 
-            bootReceiver = new BootReceiver();
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_BOOT_COMPLETED);
-            registerReceiver(bootReceiver, filter);
+                bootReceiver = new BootReceiver();
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(Intent.ACTION_BOOT_COMPLETED);
+                registerReceiver(bootReceiver, filter);
+            }
+        } catch (ForegroundServiceStartNotAllowedException e) {
+            DialogBuilderManager.showDialog(
+                    this,
+                    "不大对劲😵",
+                    "“自动任务”服务自启动失败了，因为您没有为App“忽略电池优化”（Xiaomi、REDMI、华为、荣耀、三星）或者“允许后台活动”（OPPO、一加、Realme、vivo、IQOO）。\n请您根据当前使用的设备，为App忽略电池优化或者允许后台启动，再尝试启用自动任务。\n如您确认已完成上述操作但仍见到此弹窗，可联系开发者进一步排查问题。",
+                    false,
+                    "好的"
+            );
+        } catch (Exception e) {
+            DialogBuilderManager.showDialog(
+                    this,
+                    "不大对劲😵",
+                    "“自动任务”服务自启动失败了，请按照以下方式排查问题：\n1.允许App自启动\n2.在“最近任务”界面锁定App\n3.为App“忽略电池优化”（Xiaomi、REDMI、华为、荣耀、三星）或者“允许后台活动”（OPPO、一加、Realme、vivo、IQOO）\n请您根据当前使用的设备，为App执行相应的操作。如您确认已完成上述操作但仍见到此弹窗，可联系开发者进一步排查问题。",
+                    false,
+                    "好的"
+            );
         }
 
         // 小白条沉浸（MIUI/澎湃OS适配）
