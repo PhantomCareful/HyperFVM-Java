@@ -1,16 +1,21 @@
 package com.careful.HyperFVM.utils.ForDashboard.NotificationManager;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 
 import androidx.activity.ComponentActivity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -45,7 +50,65 @@ public class AutoTaskNotificationManager {
         manager.createNotificationChannel(channel);
     }
 
-    // 发送一般通知
+    /**
+     * 发送实时活动通知（Android 16+）
+     * 如果系统不支持实时活动，会自动降级为普通通知
+     */
+    @SuppressLint("MissingPermission")
+    public void sendAutoTaskNotification(int progress, String statusText) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+            // Android 16+：发送Live Updates实时通知
+            sendPromotedNotification(progress, statusText);
+        } else {
+            // 降级：发送普通通知
+            sendGeneralNotification();
+        }
+    }
+
+    /**
+     * 构建实时活动通知
+     */
+    @SuppressLint("InlinedApi")
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
+    private void sendPromotedNotification(int progress, String statusText) {
+        Intent dismissIntent = new Intent(context, NotificationDismissReceiver.class);
+        dismissIntent.putExtra(NotificationDismissReceiver.ACTION_DISMISS, NOTIFICATION_ID_AUTO_MEISHI_WECHAT);
+
+        PendingIntent dismissPendingIntent = PendingIntent.getBroadcast(
+                context,
+                NOTIFICATION_ID_AUTO_MEISHI_WECHAT,
+                dismissIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        Intent refreshIntent = new Intent(context, AutoTaskNotificationRefreshReceiver.class);
+        refreshIntent.setAction(AutoTaskNotificationRefreshReceiver.ACTION_REFRESH);
+        PendingIntent refreshPendingIntent = PendingIntent.getBroadcast(
+                context,
+                NOTIFICATION_ID_AUTO_MEISHI_WECHAT + 1, // 使用不同的 requestCode
+                refreshIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Notification.EXTRA_REQUEST_PROMOTED_ONGOING, true);
+
+        Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID_GENERAL)
+                .setContentTitle(statusText)
+                .setContentText("🎁温馨礼包：6个已领取 ⬆️双爆：限时\n🌳施肥：20/21 📜悬赏：6/14\n🏝️三岛：27/28 🥟大赛：27/28")
+                .setSmallIcon(R.drawable.app_icon_tile)
+                .addAction(R.drawable.app_icon_tile, "刷新内容", refreshPendingIntent)
+                .addAction(R.drawable.app_icon_tile, "关闭", dismissPendingIntent)
+                .setOngoing(true)
+                .addExtras(bundle)
+                .build();
+
+        notificationManager.notify(NOTIFICATION_ID_AUTO_MEISHI_WECHAT, notification);
+    }
+
+    /**
+     * 发送一般通知
+     */
     @SuppressLint("MissingPermission")
     public void sendGeneralNotification() {
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID_GENERAL)

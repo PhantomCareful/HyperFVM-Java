@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.POST_PROMOTED_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission
         android:name="android.permission.FOREGROUND_SERVICE"
@@ -115,6 +116,17 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".utils.ForDashboard.NotificationManager.NotificationDismissReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".utils.ForDashboard.NotificationManager.AutoTaskNotificationRefreshReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="ACTION_REFRESH_AUTO_TASK" />
             </intent-filter>
         </receiver>
 

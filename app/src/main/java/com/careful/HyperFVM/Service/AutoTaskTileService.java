@@ -2,21 +2,23 @@ package com.careful.HyperFVM.Service;
 
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PersistentServiceNotificationManager;
+import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
 
 public class AutoTaskTileService extends TileService {
     @Override
     public void onClick() {
         super.onClick();
-        PersistentServiceNotificationManager persistentManager = new PersistentServiceNotificationManager(getApplicationContext());
-        persistentManager.sendForegroundNotification();
 
-        Log.d("Tile", "SUCCESS!");
+        executeAutoTask();
+    }
 
-        showToast("SUCCESS!");
+    public void executeAutoTask() {
+        AutoTaskNotificationManager autoTaskNotificationManager = new AutoTaskNotificationManager(getApplicationContext());
+        autoTaskNotificationManager.createNotificationChannel();
+        autoTaskNotificationManager.sendAutoTaskNotification(0, "执行中⏳");
+        autoTaskNotificationManager.sendAutoTaskNotification(50, "执行中⏳");
+        autoTaskNotificationManager.sendAutoTaskNotification(100, "执行完成🎉");
     }
 
     @Override
@@ -29,7 +31,4 @@ public class AutoTaskTileService extends TileService {
         }
     }
 
-    private void showToast(String message) {
-        getMainExecutor().execute(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show());
-    }
 }
