@@ -24,7 +24,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
+import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.TileTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -39,7 +39,7 @@ public class SettingsActivity extends BaseActivity {
 
     private DBHelper dbHelper;
     private int pressFeedbackAnimationDelay;
-    private AutoTaskNotificationManager autoTaskNotificationManager;
+    private TileTaskNotificationManager tileTaskNotificationManager;
 
     // 提前注册通知权限请求器
     private ActivityResultLauncher<String> notificationPermissionLauncher;
@@ -93,7 +93,7 @@ public class SettingsActivity extends BaseActivity {
         dbHelper = new DBHelper(this);
 
         // 初始自动任务通知管理类
-        autoTaskNotificationManager = new AutoTaskNotificationManager(this);
+        tileTaskNotificationManager = new TileTaskNotificationManager(this);
 
         // 在 onCreate() 中注册权限请求器（符合生命周期要求）
         notificationPermissionLauncher = registerForActivityResult(
@@ -365,9 +365,9 @@ public class SettingsActivity extends BaseActivity {
      */
     private void initPersistentNotification() {
         if (dbHelper.getSettingValue(CONTENT_AUTO_TASK)) {
-            autoTaskNotificationManager.createNotificationChannel();
+            tileTaskNotificationManager.createNotificationChannel();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                // 直接使用提前注册的 launcher 发起请求，而非让 AutoTaskNotificationManager 注册
+                // 直接使用提前注册的 launcher 发起请求，而非让 TileTaskNotificationManager 注册
                 if (!hasNotificationPermission()) {
                     notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS);
                 } else {

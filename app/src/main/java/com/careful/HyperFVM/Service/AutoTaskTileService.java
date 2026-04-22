@@ -3,22 +3,17 @@ package com.careful.HyperFVM.Service;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
+import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.TileTaskHelper;
+import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.TileTaskNotificationManager;
 
 public class AutoTaskTileService extends TileService {
     @Override
     public void onClick() {
         super.onClick();
 
-        executeAutoTask();
-    }
+        TileTaskNotificationManager tileTaskNotificationManager = new TileTaskNotificationManager(getApplicationContext());
+        TileTaskHelper.executeTileTasks(getApplicationContext(), tileTaskNotificationManager);
 
-    public void executeAutoTask() {
-        AutoTaskNotificationManager autoTaskNotificationManager = new AutoTaskNotificationManager(getApplicationContext());
-        autoTaskNotificationManager.createNotificationChannel();
-        autoTaskNotificationManager.sendAutoTaskNotification(0, "执行中⏳");
-        autoTaskNotificationManager.sendAutoTaskNotification(50, "执行中⏳");
-        autoTaskNotificationManager.sendAutoTaskNotification(100, "执行完成🎉");
     }
 
     @Override

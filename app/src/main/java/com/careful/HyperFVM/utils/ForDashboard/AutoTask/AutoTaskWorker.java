@@ -14,7 +14,7 @@ import androidx.work.WorkerParameters;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
+import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.TileTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PersistentServiceNotificationManager;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
@@ -26,12 +26,12 @@ import java.util.concurrent.TimeUnit;
 
 public class AutoTaskWorker extends Worker {
     private final DBHelper dbHelper = new DBHelper(getApplicationContext());
-    private final AutoTaskNotificationManager autoManager;
+    private final TileTaskNotificationManager autoManager;
     private final PersistentServiceNotificationManager persistentManager;
 
     public AutoTaskWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
-        autoManager = new AutoTaskNotificationManager(context);
+        autoManager = new TileTaskNotificationManager(context);
         persistentManager = new PersistentServiceNotificationManager(context);
     }
 
@@ -64,7 +64,7 @@ public class AutoTaskWorker extends Worker {
             if (needExecute) {
                 // 自动任务执行结果通知每天只发一次
                 autoManager.createNotificationChannel();
-                autoManager.sendGeneralNotification();
+                autoManager.sendGeneralNotification("", "");
             }
             // 保护通知每小时发一次
             persistentManager.sendForegroundNotification();

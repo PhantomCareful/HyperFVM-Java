@@ -28,6 +28,25 @@ public class ExecuteDailyTasks {
         dashboardGitCatcher = new DashboardGitCatcher(context);
     }
 
+    public String executeGiftTask() {
+        giftFetcher.fetchAndSaveGift();
+        return "🎁温馨礼包：" + dbHelper.getDashboardContent("meishi_wechat_result_text_notification");
+    }
+
+    public String executeDashboardTask() {
+        activityCatcher.catchTodayActivityInfo();
+        fertilizationTaskCatcher.catchFertilizationTaskInfo();
+        newYearCatcher.catchBountyInfo();
+        newYearCatcher.catchMillionConsumptionInfo();
+        newYearCatcher.catchLuckyConsumptionInfo();
+        dashboardGitCatcher.catchGitDashboardInfo();
+
+        return "⬆️双爆：" + dbHelper.getDashboardContent("double_explosion_rate_notification") + "\n" +
+                "🌳施肥：" + dbHelper.getDashboardContent("fertilization_task_notification") + " " +
+                "📜悬赏：" + dbHelper.getDashboardContent("bounty_notification") + "\n" +
+                dbHelper.getDashboardContent("git_dashboard_notification");
+    }
+
     public void executeDailyTasks() {
         String today = TimeUtil.getCurrentDate();
         String lastDate = dbHelper.getDashboardContent("last_date");

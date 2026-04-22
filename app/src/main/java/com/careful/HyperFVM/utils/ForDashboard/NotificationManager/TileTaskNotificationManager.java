@@ -21,7 +21,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.careful.HyperFVM.R;
 
-public class AutoTaskNotificationManager {
+public class TileTaskNotificationManager {
     private static final String CHANNEL_ID_GENERAL = "general_channel"; // 通知通道：普通通知
     private static final int NOTIFICATION_ID_AUTO_MEISHI_WECHAT = 2001; // 唯一通知ID
 
@@ -29,7 +29,7 @@ public class AutoTaskNotificationManager {
     private final NotificationManagerCompat notificationManager;
 
 
-    public AutoTaskNotificationManager(Context context) {
+    public TileTaskNotificationManager(Context context) {
         this.context = context;
         this.notificationManager = NotificationManagerCompat.from(context);
     }
@@ -38,10 +38,10 @@ public class AutoTaskNotificationManager {
     public void createNotificationChannel() {
         NotificationChannel channel = new NotificationChannel(
                 CHANNEL_ID_GENERAL,
-                "自动任务通道", // 渠道名称（用户在设置中可见）
+                "磁贴任务通道", // 渠道名称（用户在设置中可见）
                 NotificationManager.IMPORTANCE_HIGH
         );
-        channel.setDescription("顾名思义，解放双手"); // 渠道描述
+        channel.setDescription("快捷操作，解放双手"); // 渠道描述
         channel.setSound(null, null); // 禁用通知声音
         channel.setShowBadge(false); // 不显示角标
 
@@ -55,13 +55,13 @@ public class AutoTaskNotificationManager {
      * 如果系统不支持实时活动，会自动降级为普通通知
      */
     @SuppressLint("MissingPermission")
-    public void sendAutoTaskNotification(int progress, String statusText) {
+    public void sendAutoTaskNotification(String title, String content) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
             // Android 16+：发送Live Updates实时通知
-            sendPromotedNotification(progress, statusText);
+            sendPromotedNotification(title, content);
         } else {
             // 降级：发送普通通知
-            sendGeneralNotification();
+            sendGeneralNotification(title, content);
         }
     }
 
@@ -70,7 +70,7 @@ public class AutoTaskNotificationManager {
      */
     @SuppressLint("InlinedApi")
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
-    private void sendPromotedNotification(int progress, String statusText) {
+    private void sendPromotedNotification(String title, String content) {
         Intent dismissIntent = new Intent(context, NotificationDismissReceiver.class);
         dismissIntent.putExtra(NotificationDismissReceiver.ACTION_DISMISS, NOTIFICATION_ID_AUTO_MEISHI_WECHAT);
 
@@ -81,8 +81,8 @@ public class AutoTaskNotificationManager {
                 PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        Intent refreshIntent = new Intent(context, AutoTaskNotificationRefreshReceiver.class);
-        refreshIntent.setAction(AutoTaskNotificationRefreshReceiver.ACTION_REFRESH);
+        Intent refreshIntent = new Intent(context, TileTaskNotificationRefreshReceiver.class);
+        refreshIntent.setAction(TileTaskNotificationRefreshReceiver.ACTION_REFRESH);
         PendingIntent refreshPendingIntent = PendingIntent.getBroadcast(
                 context,
                 NOTIFICATION_ID_AUTO_MEISHI_WECHAT + 1, // 使用不同的 requestCode
@@ -94,8 +94,8 @@ public class AutoTaskNotificationManager {
         bundle.putBoolean(Notification.EXTRA_REQUEST_PROMOTED_ONGOING, true);
 
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID_GENERAL)
-                .setContentTitle(statusText)
-                .setContentText("🎁温馨礼包：6个已领取 ⬆️双爆：限时\n🌳施肥：20/21 📜悬赏：6/14\n🏝️三岛：27/28 🥟大赛：27/28")
+                .setContentTitle(title)
+                .setContentText(content)
                 .setSmallIcon(R.drawable.app_icon_tile)
                 .addAction(R.drawable.app_icon_tile, "刷新内容", refreshPendingIntent)
                 .addAction(R.drawable.app_icon_tile, "关闭", dismissPendingIntent)
@@ -110,10 +110,11 @@ public class AutoTaskNotificationManager {
      * 发送一般通知
      */
     @SuppressLint("MissingPermission")
-    public void sendGeneralNotification() {
+    public void sendGeneralNotification(String title, String content) {
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID_GENERAL)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("自动任务执行完成✅")
+                .setContentTitle(title)
+                .setContentText(content)
                 .setContentIntent(PendingIntentHelper.getPendingIntent(context))
                 .setOngoing(false)
                 .setAutoCancel(true)
@@ -121,7 +122,7 @@ public class AutoTaskNotificationManager {
                 .setShowWhen(true)
                 .setWhen(System.currentTimeMillis()) // 设置时间为当前发送时间（毫秒级）
                 .build();
-        notificationManager.notify(AutoTaskNotificationManager.NOTIFICATION_ID_AUTO_MEISHI_WECHAT, notification);
+        notificationManager.notify(TileTaskNotificationManager.NOTIFICATION_ID_AUTO_MEISHI_WECHAT, notification);
     }
 
     /**

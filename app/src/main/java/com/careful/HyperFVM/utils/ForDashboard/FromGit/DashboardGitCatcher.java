@@ -30,6 +30,9 @@ public class DashboardGitCatcher {
 
     private final DBHelper dbHelper;
 
+    // 适用于三岛和大赛，要在通知上展示的内容
+    private String contentNotification;
+
     public DashboardGitCatcher(Context context) {
         dbHelper = new DBHelper(context);
     }
@@ -126,7 +129,7 @@ public class DashboardGitCatcher {
     /**
      * 获取其他活动内容
      * 示例内容
-     * {
+     *   {
      *     "name": "日氪",
      *     "startDate": "2026-01-30",
      *     "endDate": "2026-02-05"
@@ -163,6 +166,7 @@ public class DashboardGitCatcher {
         Date start = TimeUtil.transformStringToDate(startDate);
         Date end = TimeUtil.transformStringToDate(endDate);
 
+        // App内的仪表盘，弹窗详情中要展示的内容
         String contentDetail;
 
         if (today.before(start)) {
@@ -188,11 +192,13 @@ public class DashboardGitCatcher {
                     dbHelper.updateDashboardContent("three_islands", "尚未开始");
                     dbHelper.updateDashboardContent("three_islands_emoji", "⏳");
                     dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
+                    contentNotification = "🏝️三岛：暂无 ";
                     break;
                 case "美食大赛":
                     dbHelper.updateDashboardContent("food_contest", "尚未开始");
                     dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
                     dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
+                    contentNotification = contentNotification + " 🥟大赛：暂无";
                     break;
                 case "App通知":
                     String title = itemObj.getString("title");
@@ -225,11 +231,13 @@ public class DashboardGitCatcher {
                     dbHelper.updateDashboardContent("three_islands", "暂无");
                     dbHelper.updateDashboardContent("three_islands_emoji", "⏳");
                     dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
+                    contentNotification = "🏝️三岛：暂无";
                     break;
                 case "美食大赛":
                     dbHelper.updateDashboardContent("food_contest", "暂无");
                     dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
                     dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
+                    contentNotification = contentNotification + " 🥟大赛：暂无";
                     break;
                 case "App通知":
                     String title = itemObj.getString("title");
@@ -255,11 +263,13 @@ public class DashboardGitCatcher {
                         dbHelper.updateDashboardContent("three_islands", "暂无");
                         dbHelper.updateDashboardContent("three_islands_emoji", "⏳");
                         dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
+                        contentNotification = "🏝️三岛：暂无";
                         break;
                     case "美食大赛":
                         dbHelper.updateDashboardContent("food_contest", "暂无");
                         dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
                         dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
+                        contentNotification = contentNotification + " 🥟大赛：暂无";
                         break;
                     case "App通知":
                         String title = itemObj.getString("title");
@@ -309,12 +319,14 @@ public class DashboardGitCatcher {
                         dbHelper.updateDashboardContent("three_islands", duringCount + "/" + length);
                         dbHelper.updateDashboardContent("three_islands_emoji", "✊");
                         dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
+                        contentNotification = "🏝️三岛：" + duringCount + "/" + length;
                         break;
                     case "美食大赛":
                         contentDetail = contentDetail + "本次美食大赛持续" + length + "天\n今天是第" + duringCount + "天";
                         dbHelper.updateDashboardContent("food_contest", duringCount + "/" + length);
                         dbHelper.updateDashboardContent("food_contest_emoji", "✊");
                         dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
+                        contentNotification = contentNotification + " 🥟大赛：" + duringCount + "/" + length;
                         break;
                     case "App通知":
                         String title = itemObj.getString("title");
@@ -326,5 +338,7 @@ public class DashboardGitCatcher {
                 }
             }
         }
+
+        dbHelper.updateDashboardContent("git_dashboard_notification", contentNotification);
     }
 }

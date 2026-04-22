@@ -22,7 +22,7 @@ import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.AutoTaskNotificationManager;
+import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.TileTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private ActivityMainBinding binding;
-    private AutoTaskNotificationManager autoTaskNotificationManager;
+    private TileTaskNotificationManager tileTaskNotificationManager;
     private DBHelper dbHelper;
     private List<Integer> menuOrder; // 导航菜单顺序
     private BootReceiver bootReceiver;
@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
         mainHandler = new Handler(Looper.getMainLooper()); // 初始化主线程 Handler
 
         // 初始化通知管理和数据库
-        autoTaskNotificationManager = new AutoTaskNotificationManager(this);
+        tileTaskNotificationManager = new TileTaskNotificationManager(this);
         dbHelper = new DBHelper(this);
 
         // 启动时进行签名校验
@@ -283,9 +283,9 @@ public class MainActivity extends BaseActivity {
      */
     private void initPersistentNotification() {
         if (dbHelper.getSettingValue("自动任务")) {
-            autoTaskNotificationManager.createNotificationChannel();
+            tileTaskNotificationManager.createNotificationChannel();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                autoTaskNotificationManager.requestNotificationPermission(this, new PermissionCallback() {
+                tileTaskNotificationManager.requestNotificationPermission(this, new PermissionCallback() {
                     @Override
                     public void onPermissionGranted() {
                     }

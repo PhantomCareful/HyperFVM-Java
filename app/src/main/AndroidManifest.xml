@@ -123,7 +123,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".utils.ForDashboard.NotificationManager.AutoTaskNotificationRefreshReceiver"
+            android:name=".utils.ForDashboard.NotificationManager.TileTaskNotificationRefreshReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="ACTION_REFRESH_AUTO_TASK" />
