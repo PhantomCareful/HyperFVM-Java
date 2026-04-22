@@ -45,7 +45,7 @@ public class FertilizationTaskCatcher {
                     Log.e(TAG, "catchFertilizationTaskInfo: 获取XML内容失败");
                     sendResultToDB(
                             "获取失败",
-                            "失败❌",
+                            "❌失败",
                             "❌",
                             "获取内容失败，请联系开发者并提交此界面截图。"
                     );
@@ -78,7 +78,7 @@ public class FertilizationTaskCatcher {
                 Log.e(TAG, "catchFertilizationTaskInfo: 网络IO异常：" + e.getMessage(), e);
                 sendResultToDB(
                         "网络异常",
-                        "网络❌",
+                        "❌网络",
                         "❌",
                         "网络异常\n请检查网络是否可用"
                 );
@@ -86,7 +86,7 @@ public class FertilizationTaskCatcher {
                 Log.e(TAG, "catchFertilizationTaskInfo: 时间戳转换异常：" + e.getMessage(), e);
                 sendResultToDB(
                         "获取失败",
-                        "失败❌",
+                        "❌失败",
                         "❌",
                         "时间戳转换异常，请联系开发者并提交此界面截图"
                 );
@@ -94,7 +94,7 @@ public class FertilizationTaskCatcher {
                 Log.e(TAG, "catchFertilizationTaskInfo: 日期解析异常：" + e.getMessage(), e);
                 sendResultToDB(
                         "获取失败",
-                        "失败❌",
+                        "❌失败",
                         "❌",
                         "日期解析异常，请联系开发者并提交此界面截图"
                 );
@@ -119,7 +119,7 @@ public class FertilizationTaskCatcher {
             String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始\n趁现在多攒点肥料吧";
             sendResultToDB(
                     "尚未开始",
-                    "暂无⏳",
+                    "暂无",
                     "⏳",
                     contentDetail
             );
@@ -128,7 +128,7 @@ public class FertilizationTaskCatcher {
             String contentDetail = "还没有新的活动\n趁现在多攒点肥料吧";
             sendResultToDB(
                     "暂无",
-                    "暂无⏳",
+                    "暂无",
                     "⏳",
                     contentDetail
             );
@@ -137,7 +137,7 @@ public class FertilizationTaskCatcher {
             String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n进度：" + duringCount + "/21";
             sendResultToDB(
                     duringCount + "/21",
-                    duringCount + "/21✊",
+                    duringCount + "/21",
                     "✊",
                     contentDetail
             );

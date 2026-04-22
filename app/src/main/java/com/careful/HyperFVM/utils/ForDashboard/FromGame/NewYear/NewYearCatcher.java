@@ -38,7 +38,7 @@ public class NewYearCatcher {
                 if (cachedXmlContent == null) {
                     errorMsg = "内容获取失败，请联系开发者。";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                    sendBountyResultToDB("获取失败", "失败❌", "❌", errorMsg);
+                    sendBountyResultToDB("获取失败", "❌失败", "❌", errorMsg);
                     return;
                 }
 
@@ -48,7 +48,7 @@ public class NewYearCatcher {
                 if (matcher == null) {
                     Log.e(TAG, "获取XML内容失败");
                     sendBountyResultToDB(
-                            "获取失败", "失败❌", "❌", "获取内容失败，请联系开发者并提交此界面截图。"
+                            "获取失败", "❌失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。"
                     );
                     return;
                 }
@@ -58,7 +58,7 @@ public class NewYearCatcher {
                 if (bountyInfo == null || bountyInfo.trim().isEmpty()) {
                     errorMsg = "获取到的活动内容为空，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                    sendBountyResultToDB("获取失败", "失败❌", "❌", errorMsg);
+                    sendBountyResultToDB("获取失败", "❌失败", "❌", errorMsg);
                     return;
                 }
                 Log.d(TAG, "catchTodayActivityInfo: 原始内容：" + bountyInfo);
@@ -116,7 +116,7 @@ public class NewYearCatcher {
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢";
                     sendBountyResultToDB(
                             "尚未开始",
-                            "暂无⏳",
+                            "暂无",
                             "⏳",
                             contentDetail
                     );
@@ -125,7 +125,7 @@ public class NewYearCatcher {
                     contentDetail = "还没有新的活动呢";
                     sendBountyResultToDB(
                             "暂无",
-                            "暂无⏳",
+                            "暂无",
                             "⏳",
                             contentDetail
                     );
@@ -139,7 +139,7 @@ public class NewYearCatcher {
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n进度：" + duringCount + "/" + length;
                     sendBountyResultToDB(
                             duringCount + "/" + length,
-                            duringCount + "/" + length + "✊",
+                            duringCount + "/" + length,
                             "✊",
                             contentDetail
                     );

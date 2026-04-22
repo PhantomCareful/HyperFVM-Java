@@ -23,8 +23,8 @@ public class GiftFetcher {
         List<DBHelper.PlayerInfo> playerInfos = dbHelper.getAllMeishiWechat();
 
         if (playerInfos.isEmpty()) {
-            String resultSimple = "暂无";
-            String resultNotification = "暂无✅";
+            String resultSimple = "暂无账号";
+            String resultNotification = "暂无账号";
             saveResult("✅", resultSimple, resultNotification, "成功");
             return;
         }
@@ -42,20 +42,20 @@ public class GiftFetcher {
                     @Override
                     public void onResult(int successCount) {
                         String resultSimple = successCount + "个";
-                        String resultNotification = successCount + "个✅";
+                        String resultNotification = successCount + "个已领取";
                         saveResult("✅", resultSimple, resultNotification, "成功");
                     }
 
                     @Override
                     public void onError() {
                         String resultSimple = "失败";
-                        String resultNotification = "服务器❌";
+                        String resultNotification = "❌服务器";
                         saveResult("❌", resultSimple, resultNotification, "失败");
                     }
                 });
             } catch (Exception e) {
                 String resultSimple = "领取异常";
-                String resultNotification = "失败❌";
+                String resultNotification = "❌请重新尝试";
                 saveResult("❌", resultSimple, resultNotification, "失败");
             }
         }).start();

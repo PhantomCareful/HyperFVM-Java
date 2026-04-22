@@ -71,7 +71,7 @@ public class ActivityCatcher {
                 if (cachedXmlContent == null) {
                     errorMsg = "内容获取失败，请联系开发者并提交此界面截图。";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                    sendResultToDB("获取失败", "失败❌", "❌", errorMsg);
+                    sendResultToDB("获取失败", "❌失败", "❌", errorMsg);
                     return;
                 }
 
@@ -80,7 +80,7 @@ public class ActivityCatcher {
                 if (rawContent == null || rawContent.trim().isEmpty()) {
                     errorMsg = "未找到今日(" + todayDate + ")的活动内容，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                    sendResultToDB("获取失败", "失败❌", "❌", errorMsg);
+                    sendResultToDB("获取失败", "❌失败", "❌", errorMsg);
                     return;
                 }
                 Log.d(TAG, "catchTodayActivityInfo: 原始Content内容：" + rawContent);
@@ -90,7 +90,7 @@ public class ActivityCatcher {
                 if (targetContent == null) {
                     errorMsg = "活动内容格式解析失败，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                    sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
+                    sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
                     return;
                 }
 
@@ -99,7 +99,7 @@ public class ActivityCatcher {
                 if (dateContentMap.isEmpty()) {
                     errorMsg = "未解析到任何活动日期数据，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                    sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
+                    sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
                     return;
                 }
 
@@ -113,13 +113,13 @@ public class ActivityCatcher {
                     if (numDaysKeepFullDoubleDay <= 0 || endDayKeepFullDoubleDay == null) {
                         errorMsg = "未找到连续的全天双倍双爆日期，请联系开发者并提交此界面截图";
                         Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                        sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
+                        sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
                         return;
                     }
 
                     // 生成结果文本
                     contentDetail = "今天是" + todayDate + "\n今天已开启全天双倍双爆\n将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
-                    sendResultToDB("全天双爆", "全天🎉", "🎉", contentDetail);
+                    sendResultToDB("全天双爆", "全天", "🎉", contentDetail);
                 } else {
                     // 分支2：今日是限时双倍双爆
                     // 查找下一个全天双倍双爆日期，并计算距离下一个全天双倍双爆的天数
@@ -132,7 +132,7 @@ public class ActivityCatcher {
                     numDaysToNextFullDoubleDay = result.second;
                     if (nextFullDoubleDay == null) {
                         contentDetail = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n今年已经没有全天双倍双爆了。";
-                        sendResultToDB("限时双爆", "限时⏳", "⏳", contentDetail);
+                        sendResultToDB("限时双爆", "限时", "⏳", contentDetail);
                         return;
                     }
 
@@ -144,23 +144,23 @@ public class ActivityCatcher {
                     if (numDaysKeepFullDoubleDay <= 0 || endDayKeepFullDoubleDay == null) {
                         errorMsg = "未找到" + nextFullDoubleDay + "之后连续的全天双倍双爆日期，请联系开发者并提交此界面截图。";
                         Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
-                        sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
+                        sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
                         return;
                     }
 
                     // 生成结果文本
                     contentDetail = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
-                    sendResultToDB("限时双爆", "限时⏳", "⏳", contentDetail);
+                    sendResultToDB("限时双爆", "限时", "⏳", contentDetail);
                 }
 
             } catch (IOException e) {
                 errorMsg = "网络/解析异常，请联系开发者并提交此界面截图。\n" + e.getMessage();
                 Log.e(TAG, "catchTodayActivityInfo: 解析活动内容异常：" + e.getMessage(), e);
-                sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
+                sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
             } catch (ParseException e) {
                 errorMsg = "日期解析失败，请联系开发者并提交此界面截图。\n" + e.getMessage();
                 Log.e(TAG, "catchTodayActivityInfo: 日期解析失败：" + e.getMessage(), e);
-                sendResultToDB("解析失败", "失败❌", "❌", errorMsg);
+                sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
             }
         }).start();
     }
