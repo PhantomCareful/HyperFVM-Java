@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.utils.ForDashboard;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.Activity.ActivityCatcher;
@@ -28,27 +29,45 @@ public class ExecuteDailyTasks {
         dashboardGitCatcher = new DashboardGitCatcher(context);
     }
 
-    public String executeGiftTask() {
-        giftFetcher.fetchAndSaveGift();
-        return "🎁温馨礼包：" + dbHelper.getDashboardContent("meishi_wechat_result_text_notification");
+    public void executeGiftTask(GiftTaskResultCallBack callBack) {
+        giftFetcher.fetchAndSaveGift(result ->
+                callBack.onResult("🎁温馨礼包：" + result.get("resultNotification"))
+        );
     }
 
-    public String executeDashboardTask() {
-        activityCatcher.catchTodayActivityInfo();
+    public void executeDashboardTask(DashboardTaskResultCallBack callBack) {
+
+        // 存放结果
+        final String[] catchTodayActivityInfoResult = {""};
+        final boolean[] catchTodayActivityInfoDone = {false};
+
+        // 检查是否都完成，完成则返回最终结果
+        Runnable checkAndSend = () -> {
+            if (catchTodayActivityInfoDone[0]) {
+                String result = catchTodayActivityInfoResult[0];
+                callBack.onResult(result);
+            }
+        };
+
+        activityCatcher.catchTodayActivityInfo(result -> {
+            catchTodayActivityInfoResult[0] = "⬆️双爆：" + result.get("resultNotification");
+            catchTodayActivityInfoDone[0] = true;
+            checkAndSend.run();
+        });
         fertilizationTaskCatcher.catchFertilizationTaskInfo();
         newYearCatcher.catchBountyInfo();
         newYearCatcher.catchMillionConsumptionInfo();
         newYearCatcher.catchLuckyConsumptionInfo();
         dashboardGitCatcher.catchGitDashboardInfo();
 
-        return "⬆️双爆：" + dbHelper.getDashboardContent("double_explosion_rate_notification") + "\n" +
+        /*return "⬆️双爆：" + dbHelper.getDashboardContent("double_explosion_rate_notification") + "\n" +
                 "🌳施肥：" + dbHelper.getDashboardContent("fertilization_task_notification") + " " +
                 "📜悬赏：" + dbHelper.getDashboardContent("bounty_notification") + "\n" +
-                dbHelper.getDashboardContent("git_dashboard_notification");
+                dbHelper.getDashboardContent("git_dashboard_notification");*/
     }
 
     public void executeDailyTasks() {
-        String today = TimeUtil.getCurrentDate();
+        /*String today = TimeUtil.getCurrentDate();
         String lastDate = dbHelper.getDashboardContent("last_date");
         boolean needExecute = !today.equals(lastDate)
                 || "失败".equals(dbHelper.getDashboardContent("meishi_wechat_result"));
@@ -60,16 +79,16 @@ public class ExecuteDailyTasks {
         newYearCatcher.catchBountyInfo();
         newYearCatcher.catchMillionConsumptionInfo();
         newYearCatcher.catchLuckyConsumptionInfo();
-        dashboardGitCatcher.catchGitDashboardInfo();
+        dashboardGitCatcher.catchGitDashboardInfo();*/
     }
 
     public void executeDailyTasksForRefreshDashboard() {
-        giftFetcher.fetchAndSaveGift();
+        /*giftFetcher.fetchAndSaveGift();
         activityCatcher.catchTodayActivityInfo();
         fertilizationTaskCatcher.catchFertilizationTaskInfo();
         newYearCatcher.catchBountyInfo();
         newYearCatcher.catchMillionConsumptionInfo();
         newYearCatcher.catchLuckyConsumptionInfo();
-        dashboardGitCatcher.catchGitDashboardInfo();
+        dashboardGitCatcher.catchGitDashboardInfo();*/
     }
 }

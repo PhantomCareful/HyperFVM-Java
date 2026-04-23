@@ -56,7 +56,7 @@ public class ActivityCatcher {
     /**
      * 异步解析今日活动内容（核心方法）
      */
-    public void catchTodayActivityInfo() {
+    public void catchTodayActivityInfo(ActivityCatchResultCallBack callBack) {
         // 网络请求必须在子线程执行，避免阻塞主线程
         new Thread(() -> {
             String errorMsg;
@@ -71,7 +71,12 @@ public class ActivityCatcher {
                 if (cachedXmlContent == null) {
                     errorMsg = "内容获取失败，请联系开发者并提交此界面截图。";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendResultToDB("获取失败", "❌失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "❌失败", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -80,7 +85,12 @@ public class ActivityCatcher {
                 if (rawContent == null || rawContent.trim().isEmpty()) {
                     errorMsg = "未找到今日(" + todayDate + ")的活动内容，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendResultToDB("获取失败", "❌失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "❌失败", "❌", errorMsg)
+                    );
+
                     return;
                 }
                 Log.d(TAG, "catchTodayActivityInfo: 原始Content内容：" + rawContent);
@@ -90,7 +100,12 @@ public class ActivityCatcher {
                 if (targetContent == null) {
                     errorMsg = "活动内容格式解析失败，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("解析失败", "❌失败", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -99,7 +114,12 @@ public class ActivityCatcher {
                 if (dateContentMap.isEmpty()) {
                     errorMsg = "未解析到任何活动日期数据，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("解析失败", "❌失败", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -113,13 +133,21 @@ public class ActivityCatcher {
                     if (numDaysKeepFullDoubleDay <= 0 || endDayKeepFullDoubleDay == null) {
                         errorMsg = "未找到连续的全天双倍双爆日期，请联系开发者并提交此界面截图";
                         Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                         sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
+                        callBack.onResult(
+                                generateMap("解析失败", "❌失败", "❌", errorMsg)
+                        );
+
                         return;
                     }
 
                     // 生成结果文本
                     contentDetail = "今天是" + todayDate + "\n今天已开启全天双倍双爆\n将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
                     sendResultToDB("全天双爆", "全天", "🎉", contentDetail);
+                    callBack.onResult(
+                            generateMap("全天双爆", "全天", "🎉", contentDetail)
+                    );
                 } else {
                     // 分支2：今日是限时双倍双爆
                     // 查找下一个全天双倍双爆日期，并计算距离下一个全天双倍双爆的天数
@@ -133,6 +161,9 @@ public class ActivityCatcher {
                     if (nextFullDoubleDay == null) {
                         contentDetail = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n今年已经没有全天双倍双爆了。";
                         sendResultToDB("限时双爆", "限时", "⏳", contentDetail);
+                        callBack.onResult(
+                                generateMap("限时双爆", "限时", "⏳", contentDetail)
+                        );
                         return;
                     }
 
@@ -144,23 +175,39 @@ public class ActivityCatcher {
                     if (numDaysKeepFullDoubleDay <= 0 || endDayKeepFullDoubleDay == null) {
                         errorMsg = "未找到" + nextFullDoubleDay + "之后连续的全天双倍双爆日期，请联系开发者并提交此界面截图。";
                         Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                         sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
+                        callBack.onResult(
+                                generateMap("解析失败", "❌失败", "❌", errorMsg)
+                        );
+
                         return;
                     }
 
                     // 生成结果文本
                     contentDetail = "今天是" + todayDate + "\n" + targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
                     sendResultToDB("限时双爆", "限时", "⏳", contentDetail);
+                    callBack.onResult(
+                            generateMap("限时双爆", "限时", "⏳", contentDetail)
+                    );
                 }
 
             } catch (IOException e) {
                 errorMsg = "网络/解析异常，请联系开发者并提交此界面截图。\n" + e.getMessage();
                 Log.e(TAG, "catchTodayActivityInfo: 解析活动内容异常：" + e.getMessage(), e);
+
                 sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
+                callBack.onResult(
+                        generateMap("解析失败", "❌失败", "❌", errorMsg)
+                );
             } catch (ParseException e) {
                 errorMsg = "日期解析失败，请联系开发者并提交此界面截图。\n" + e.getMessage();
                 Log.e(TAG, "catchTodayActivityInfo: 日期解析失败：" + e.getMessage(), e);
+
                 sendResultToDB("解析失败", "❌失败", "❌", errorMsg);
+                callBack.onResult(
+                        generateMap("解析失败", "❌失败", "❌", errorMsg)
+                );
             }
         }).start();
     }
@@ -409,7 +456,7 @@ public class ActivityCatcher {
     /**
      * 向数据库写入结果
      * @param contentSimple 显示在主界面的简要信息
-     * @param contentNotification 显示在常驻通知的简要信息
+     * @param contentNotification 显示在通知的简要信息
      * @param emoji 显示在主界面和弹窗上的表情
      * @param contentDetail 显示在弹窗上的详细信息
      */
@@ -419,4 +466,25 @@ public class ActivityCatcher {
         dbHelper.updateDashboardContent("double_explosion_rate_emoji", emoji);
         dbHelper.updateDashboardContent("double_explosion_rate_detail", contentDetail);
     }
+
+
+    /**
+     * 保存结果到Map，用于及时输出数据
+     * @param resultSimple 显示在主界面的简要信息
+     * @param resultNotification 显示在通知的简要信息
+     * @param resultEmoji 显示在主界面和弹窗上的表情
+     * @param resultDetail 显示在弹窗上的详细信息
+     * @return 生成的Map格式的数据
+     */
+    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultDetail) {
+        Map<String, String> result = new HashMap<>();
+
+        result.put("resultSimple", resultSimple);
+        result.put("resultNotification", resultNotification);
+        result.put("resultEmoji", resultEmoji);
+        result.put("resultDetail", resultDetail);
+
+        return result;
+    }
+
 }

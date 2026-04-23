@@ -7,7 +7,9 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GiftFetcher {
     private final DBHelper dbHelper;
@@ -19,13 +21,18 @@ public class GiftFetcher {
     }
 
     // 执行自动领取并保存结果
-    public void fetchAndSaveGift() {
+    public void fetchAndSaveGift(GiftFetchResultCallback callback) {
         List<DBHelper.PlayerInfo> playerInfos = dbHelper.getAllMeishiWechat();
 
         if (playerInfos.isEmpty()) {
             String resultSimple = "暂无账号";
             String resultNotification = "暂无账号";
             saveResult("✅", resultSimple, resultNotification, "成功");
+
+            callback.onResult(
+                    generateMap("✅", resultSimple, resultNotification, "成功")
+            );
+
             return;
         }
 
@@ -44,6 +51,10 @@ public class GiftFetcher {
                         String resultSimple = successCount + "个";
                         String resultNotification = successCount + "个已领取";
                         saveResult("✅", resultSimple, resultNotification, "成功");
+
+                        callback.onResult(
+                                generateMap("✅", resultSimple, resultNotification, "成功")
+                        );
                     }
 
                     @Override
@@ -51,12 +62,20 @@ public class GiftFetcher {
                         String resultSimple = "失败";
                         String resultNotification = "❌服务器";
                         saveResult("❌", resultSimple, resultNotification, "失败");
+
+                        callback.onResult(
+                                generateMap("❌", resultSimple, resultNotification, "失败")
+                        );
                     }
                 });
             } catch (Exception e) {
                 String resultSimple = "领取异常";
                 String resultNotification = "❌请重新尝试";
                 saveResult("❌", resultSimple, resultNotification, "失败");
+
+                callback.onResult(
+                        generateMap("❌", resultSimple, resultNotification, "失败")
+                );
             }
         }).start();
     }
@@ -71,6 +90,18 @@ public class GiftFetcher {
         if (resultEmoji.equals("✅")) {
             dbHelper.updateDashboardContent("last_date", TimeUtil.getCurrentDate());
         }
+    }
+
+    // 保存结果到Map，用于及时输出数据
+    private Map<String, String> generateMap(String resultEmoji, String resultSimple, String resultNotification, String resultState) {
+        Map<String, String> result = new HashMap<>();
+
+        result.put("resultEmoji", resultEmoji);
+        result.put("resultSimple", resultSimple);
+        result.put("resultNotification", resultNotification);
+        result.put("resultState", resultState);
+
+        return result;
     }
 
 }
