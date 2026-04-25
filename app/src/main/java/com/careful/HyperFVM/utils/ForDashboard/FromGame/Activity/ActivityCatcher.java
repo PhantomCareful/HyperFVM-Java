@@ -467,7 +467,6 @@ public class ActivityCatcher {
         dbHelper.updateDashboardContent("double_explosion_rate_detail", contentDetail);
     }
 
-
     /**
      * 保存结果到Map，用于及时输出数据
      * @param resultSimple 显示在主界面的简要信息

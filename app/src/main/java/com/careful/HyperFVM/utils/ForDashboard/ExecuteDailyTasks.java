@@ -39,12 +39,19 @@ public class ExecuteDailyTasks {
 
         // 存放结果
         final String[] catchTodayActivityInfoResult = {""};
+        final String[] catchFertilizationTaskInfoResult = {""};
+        final String[] catchBountyInfoResult = {""};
         final boolean[] catchTodayActivityInfoDone = {false};
+        final boolean[] catchFertilizationTaskInfoDone = {false};
+        final boolean[] catchBountyInfoDone = {false};
+        final boolean[] catchMillionConsumptionInfoDone = {false};
+        final boolean[] catchLuckyConsumptionInfoDone = {false};
 
         // 检查是否都完成，完成则返回最终结果
         Runnable checkAndSend = () -> {
-            if (catchTodayActivityInfoDone[0]) {
-                String result = catchTodayActivityInfoResult[0];
+            if (catchTodayActivityInfoDone[0] && catchFertilizationTaskInfoDone[0] && catchBountyInfoDone[0] && catchMillionConsumptionInfoDone[0] && catchLuckyConsumptionInfoDone[0]) {
+                String result = catchTodayActivityInfoResult[0] + "\n" +
+                        catchFertilizationTaskInfoResult[0] + catchBountyInfoResult[0];
                 callBack.onResult(result);
             }
         };
@@ -54,10 +61,24 @@ public class ExecuteDailyTasks {
             catchTodayActivityInfoDone[0] = true;
             checkAndSend.run();
         });
-        fertilizationTaskCatcher.catchFertilizationTaskInfo();
-        newYearCatcher.catchBountyInfo();
-        newYearCatcher.catchMillionConsumptionInfo();
-        newYearCatcher.catchLuckyConsumptionInfo();
+        fertilizationTaskCatcher.catchFertilizationTaskInfo(result -> {
+            catchFertilizationTaskInfoResult[0] = "🌳施肥：" + result.get("resultNotification");
+            catchFertilizationTaskInfoDone[0] = true;
+            checkAndSend.run();
+        });
+        newYearCatcher.catchBountyInfo(result -> {
+            catchBountyInfoResult[0] = "📜悬赏：" + result.get("resultNotification");
+            catchBountyInfoDone[0] = true;
+            checkAndSend.run();
+        });
+        newYearCatcher.catchMillionConsumptionInfo(result -> {
+            catchMillionConsumptionInfoDone[0] = true;
+            checkAndSend.run();
+        });
+        newYearCatcher.catchLuckyConsumptionInfo(result -> {
+            catchLuckyConsumptionInfoDone[0] = true;
+            checkAndSend.run();
+        });
         dashboardGitCatcher.catchGitDashboardInfo();
 
         /*return "⬆️双爆：" + dbHelper.getDashboardContent("double_explosion_rate_notification") + "\n" +

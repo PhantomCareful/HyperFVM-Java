@@ -13,6 +13,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 从我们自己的仓库获取部分无法直接在游戏内获取或者获取起来比较麻烦的内容
@@ -341,4 +343,26 @@ public class DashboardGitCatcher {
 
         dbHelper.updateDashboardContent("git_dashboard_notification", contentNotification);
     }
+
+    /**
+     * 保存结果到Map，用于及时输出数据
+     * @param resultSimple 显示在主界面的简要信息
+     * @param resultNotification 显示在通知的简要信息
+     * @param resultEmoji 显示在主界面和弹窗上的表情
+     * @param resultDetail 显示在弹窗上的详细信息
+     * @return 生成的Map格式的数据
+     */
+    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultDetail) {
+        Map<String, String> result = new HashMap<>();
+
+        result.put("resultSimple", resultSimple);
+        if (!resultNotification.isEmpty()) {
+            result.put("resultNotification", resultNotification);
+        }
+        result.put("resultEmoji", resultEmoji);
+        result.put("resultDetail", resultDetail);
+
+        return result;
+    }
+
 }

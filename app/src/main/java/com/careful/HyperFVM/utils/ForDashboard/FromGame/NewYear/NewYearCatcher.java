@@ -9,6 +9,8 @@ import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 public class NewYearCatcher {
@@ -26,7 +28,7 @@ public class NewYearCatcher {
     /**
      * 异步解析美食悬赏活动内容
      */
-    public void catchBountyInfo() {
+    public void catchBountyInfo(BountyInfoCatchResultCallBack callBack) {
         // 网络请求必须在子线程执行，避免阻塞主线程
         new Thread(() -> {
             String errorMsg;
@@ -38,7 +40,12 @@ public class NewYearCatcher {
                 if (cachedXmlContent == null) {
                     errorMsg = "内容获取失败，请联系开发者。";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendBountyResultToDB("获取失败", "❌失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "❌失败", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -47,9 +54,12 @@ public class NewYearCatcher {
                         "\\s*(活动时间:\\s*\\d{1,2}月\\d{1,2}日-\\d{1,2}月\\d{1,2}日10:00)\\s*");
                 if (matcher == null) {
                     Log.e(TAG, "获取XML内容失败");
-                    sendBountyResultToDB(
-                            "获取失败", "❌失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。"
+
+                    sendBountyResultToDB("获取失败", "❌失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。");
+                    callBack.onResult(
+                            generateMap("获取失败", "❌失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。")
                     );
+
                     return;
                 }
 
@@ -58,7 +68,12 @@ public class NewYearCatcher {
                 if (bountyInfo == null || bountyInfo.trim().isEmpty()) {
                     errorMsg = "获取到的活动内容为空，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendBountyResultToDB("获取失败", "❌失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "❌失败", "❌", errorMsg)
+                    );
+
                     return;
                 }
                 Log.d(TAG, "catchTodayActivityInfo: 原始内容：" + bountyInfo);
@@ -114,20 +129,18 @@ public class NewYearCatcher {
                 if (today.before(start)) {
                     Log.d(TAG, "活动尚未开始");
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢";
-                    sendBountyResultToDB(
-                            "尚未开始",
-                            "暂无",
-                            "⏳",
-                            contentDetail
+
+                    sendBountyResultToDB("尚未开始", "暂无", "⏳", contentDetail);
+                    callBack.onResult(
+                            generateMap("尚未开始", "暂无", "⏳", contentDetail)
                     );
                 } else if (today.after(end)) {
                     Log.d(TAG, "活动已结束");
                     contentDetail = "还没有新的活动呢";
-                    sendBountyResultToDB(
-                            "暂无",
-                            "暂无",
-                            "⏳",
-                            contentDetail
+
+                    sendBountyResultToDB("暂无", "暂无", "⏳", contentDetail);
+                    callBack.onResult(
+                            generateMap("暂无", "暂无", "⏳", contentDetail)
                     );
                 } else {
                     Log.d(TAG, "活动正在进行中");
@@ -137,11 +150,10 @@ public class NewYearCatcher {
                      */
                     int length = TimeUtil.calculateDaysBetween(startDate, endDate) - 1;
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n进度：" + duringCount + "/" + length;
-                    sendBountyResultToDB(
-                            duringCount + "/" + length,
-                            duringCount + "/" + length,
-                            "✊",
-                            contentDetail
+
+                    sendBountyResultToDB(duringCount + "/" + length, duringCount + "/" + length, "✊", contentDetail);
+                    callBack.onResult(
+                            generateMap(duringCount + "/" + length, duringCount + "/" + length, "✊", contentDetail)
                     );
                 }
 
@@ -154,7 +166,7 @@ public class NewYearCatcher {
     /**
      * 异步解析百万消费活动内容
      */
-    public void catchMillionConsumptionInfo() {
+    public void catchMillionConsumptionInfo(MillionConsumptionInfoCatchResultCallBack callBack) {
         // 网络请求必须在子线程执行，避免阻塞主线程
         new Thread(() -> {
             String errorMsg;
@@ -166,7 +178,12 @@ public class NewYearCatcher {
                 if (cachedXmlContent == null) {
                     errorMsg = "内容获取失败，请联系开发者。";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendMillionConsumptionResultToDB("获取失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -174,8 +191,14 @@ public class NewYearCatcher {
                 Matcher matcher = XMLHelper.getContentByRegularExpression(cachedXmlContent,
                         "\\s*(\\s*\\d{1,2}月\\d{1,2}日-\\d{1,2}月\\d{1,2}日10:00\" reddes=\"以下方式消费点券可领取豪礼：诸神宝殿、幸运转转、法老宝藏、塔罗寻宝、大富翁、商城、保险金、月卡、婚礼、宠物开槽、公会捐献！\")\\s*");
                 if (matcher == null) {
+                    errorMsg = "获取内容失败，请联系开发者并提交此界面截图。";
                     Log.e(TAG, "获取XML内容失败");
-                    sendMillionConsumptionResultToDB("获取失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。");
+
+                    sendMillionConsumptionResultToDB("获取失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -184,7 +207,12 @@ public class NewYearCatcher {
                 if (millionConsumptionInfo == null || millionConsumptionInfo.trim().isEmpty()) {
                     errorMsg = "获取到的活动内容为空，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
                     sendMillionConsumptionResultToDB("获取失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "", "❌", errorMsg)
+                    );
+
                     return;
                 }
                 Log.d(TAG, "catchTodayActivityInfo: 原始内容：" + millionConsumptionInfo);
@@ -239,18 +267,18 @@ public class NewYearCatcher {
                 if (today.before(start)) {
                     Log.d(TAG, "活动尚未开始");
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢";
-                    sendMillionConsumptionResultToDB(
-                            "尚未开始",
-                            "⏳",
-                            contentDetail
+
+                    sendMillionConsumptionResultToDB("尚未开始", "⏳", contentDetail);
+                    callBack.onResult(
+                            generateMap("尚未开始", "", "⏳", contentDetail)
                     );
                 } else if (today.after(end)) {
                     Log.d(TAG, "活动已结束");
                     contentDetail = "还没有新的活动呢";
-                    sendMillionConsumptionResultToDB(
-                            "暂无",
-                            "⏳",
-                            contentDetail
+
+                    sendMillionConsumptionResultToDB("暂无", "⏳", contentDetail);
+                    callBack.onResult(
+                            generateMap("暂无", "", "⏳", contentDetail)
                     );
                 } else {
                     Log.d(TAG, "活动正在进行中");
@@ -260,10 +288,10 @@ public class NewYearCatcher {
                      */
                     int length = TimeUtil.calculateDaysBetween(startDate, endDate) - 1;
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n本次消费一共持续" + length + "天\n今天是第" + duringCount + "天";
-                    sendMillionConsumptionResultToDB(
-                            duringCount + "/" + length,
-                            "\uD83D\uDCB8",
-                            contentDetail
+
+                    sendMillionConsumptionResultToDB(duringCount + "/" + length, "\uD83D\uDCB8", contentDetail);
+                    callBack.onResult(
+                            generateMap(duringCount + "/" + length, "", "\uD83D\uDCB8", contentDetail)
                     );
                 }
 
@@ -276,7 +304,7 @@ public class NewYearCatcher {
     /**
      * 异步解析抢红包活动内容
      */
-    public void catchLuckyConsumptionInfo() {
+    public void catchLuckyConsumptionInfo(LuckyConsumptionInfoCatchResultCallBack callBack) {
         // 网络请求必须在子线程执行，避免阻塞主线程
         new Thread(() -> {
             String errorMsg;
@@ -288,7 +316,12 @@ public class NewYearCatcher {
                 if (cachedXmlContent == null) {
                     errorMsg = "内容获取失败，请联系开发者。";
                     Log.e(TAG, "catchLuckyConsumptionInfo: " + errorMsg);
+
                     sendLuckyMoneyResultToDB("获取失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -296,8 +329,14 @@ public class NewYearCatcher {
                 Matcher matcher = XMLHelper.getContentByRegularExpression(cachedXmlContent,
                         "stime\\s*=\\s*\"[^\"]*\"\\s+reddes\\s*=\\s*\"下午13:00-15:00之间，各个服务器随机间隔一定时间开启抢红包活动\"");
                 if (matcher == null) {
+                    errorMsg = "内容获取失败，请联系开发者。";
                     Log.e(TAG, "catchLuckyConsumptionInfo：获取XML内容失败");
-                    sendLuckyMoneyResultToDB("获取失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。");
+
+                    sendLuckyMoneyResultToDB("获取失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "", "❌", errorMsg)
+                    );
+
                     return;
                 }
 
@@ -306,7 +345,12 @@ public class NewYearCatcher {
                 if (luckyMoneyInfo == null || luckyMoneyInfo.trim().isEmpty()) {
                     errorMsg = "获取到的活动内容为空，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchLuckyConsumptionInfo: " + errorMsg);
+
                     sendLuckyMoneyResultToDB("获取失败", "❌", errorMsg);
+                    callBack.onResult(
+                            generateMap("获取失败", "", "❌", errorMsg)
+                    );
+
                     return;
                 }
                 Log.d(TAG, "catchLuckyConsumptionInfo: 原始内容：" + luckyMoneyInfo);
@@ -335,11 +379,12 @@ public class NewYearCatcher {
                     if (month == currentMonth && day == currentDay) {
                         Log.d(TAG, "catchLuckyConsumptionInfo：匹配到了日期");
                         contentDetail = new StringBuilder("今天13点到15点抢红包\n恭喜发财，红包拿来");
-                        sendLuckyMoneyResultToDB(
-                                "恭喜发财",
-                                "\uD83E\uDDE7",
-                                contentDetail.toString()
+
+                        sendLuckyMoneyResultToDB("恭喜发财", "\uD83E\uDDE7", contentDetail.toString());
+                        callBack.onResult(
+                                generateMap("恭喜发财", "", "\uD83E\uDDE7", contentDetail.toString())
                         );
+
                         return;
                     }
                 }
@@ -351,10 +396,10 @@ public class NewYearCatcher {
                     contentDetail.append(s).append("\n");
                 }
                 contentDetail.append("\n再等等吧");
-                sendLuckyMoneyResultToDB(
-                        "暂无",
-                        "⏳",
-                        contentDetail.toString()
+
+                sendLuckyMoneyResultToDB("暂无", "⏳", contentDetail.toString());
+                callBack.onResult(
+                        generateMap("暂无", "", "⏳", contentDetail.toString())
                 );
 
             } catch (IOException e) {
@@ -400,4 +445,26 @@ public class NewYearCatcher {
         dbHelper.updateDashboardContent("lucky_money_emoji", emoji);
         dbHelper.updateDashboardContent("lucky_money_detail", contentDetail);
     }
+
+    /**
+     * 保存结果到Map，用于及时输出数据
+     * @param resultSimple 显示在主界面的简要信息
+     * @param resultNotification 显示在通知的简要信息
+     * @param resultEmoji 显示在主界面和弹窗上的表情
+     * @param resultDetail 显示在弹窗上的详细信息
+     * @return 生成的Map格式的数据
+     */
+    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultDetail) {
+        Map<String, String> result = new HashMap<>();
+
+        result.put("resultSimple", resultSimple);
+        if (!resultNotification.isEmpty()) {
+            result.put("resultNotification", resultNotification);
+        }
+        result.put("resultEmoji", resultEmoji);
+        result.put("resultDetail", resultDetail);
+
+        return result;
+    }
+
 }
