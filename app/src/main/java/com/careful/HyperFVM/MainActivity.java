@@ -4,14 +4,7 @@ import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.C
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
-import android.app.ForegroundServiceStartNotAllowedException;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,9 +13,7 @@ import android.widget.TextView;
 
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
-import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.TileTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -31,7 +22,6 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.PermissionCallback;
 import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,27 +37,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
-    // 广播接收器：监听设备重启
-    public static class BootReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            DBHelper dbHelper = new DBHelper(context);
-            if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) && dbHelper.getSettingValue("自动任务")) {
-                Intent restartIntent = new Intent(context, PersistentService.class);
-                context.startForegroundService(restartIntent);
-                HyperFVMApplication app = (HyperFVMApplication) context.getApplicationContext();
-                app.scheduleDailyTask();
-                Log.d("BootReceiver", "设备重启，重新调度每日任务");
-            }
-            dbHelper.close(); // 关闭数据库，避免泄漏
-        }
-    }
-
     private ActivityMainBinding binding;
-    private TileTaskNotificationManager tileTaskNotificationManager;
     private DBHelper dbHelper;
     private List<Integer> menuOrder; // 导航菜单顺序
-    private BootReceiver bootReceiver;
     private BottomNavigationView navView;
 
     // 新增：ViewPager2相关
@@ -81,9 +53,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mainHandler = new Handler(Looper.getMainLooper()); // 初始化主线程 Handler
-
-        // 初始化通知管理和数据库
-        tileTaskNotificationManager = new TileTaskNotificationManager(this);
         dbHelper = new DBHelper(this);
 
         // 启动时进行签名校验
@@ -98,43 +67,7 @@ public class MainActivity extends BaseActivity {
         DarkModeManager.applyDarkMode(this);
         ThemeManager.applyTheme(this);
 
-        boolean isDoAutoTaskEnhanced = dbHelper.getSettingValue("自动任务-增强");
-        ActivityManager systemService = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.AppTask> appTasks = systemService.getAppTasks();
-        if (!appTasks.isEmpty()) {
-            appTasks.get(0).setExcludeFromRecents(isDoAutoTaskEnhanced);//设置activity是否隐藏
-        }
-
         super.onCreate(savedInstanceState);
-
-        // 启动自动任务服务 & 注册重启广播
-        try {
-            if (dbHelper.getSettingValue("自动任务")) {
-                Intent serviceIntent = new Intent(this, PersistentService.class);
-                startForegroundService(serviceIntent);
-
-                bootReceiver = new BootReceiver();
-                IntentFilter filter = new IntentFilter();
-                filter.addAction(Intent.ACTION_BOOT_COMPLETED);
-                registerReceiver(bootReceiver, filter);
-            }
-        } catch (ForegroundServiceStartNotAllowedException e) {
-            DialogBuilderManager.showDialog(
-                    this,
-                    "不大对劲😵",
-                    "“自动任务”服务自启动失败了，因为您没有为App“忽略电池优化”（Xiaomi、REDMI、华为、荣耀、三星）或者“允许后台活动”（OPPO、一加、Realme、vivo、IQOO）。\n请您根据当前使用的设备，为App忽略电池优化或者允许后台启动，再尝试启用自动任务。\n如您确认已完成上述操作但仍见到此弹窗，可联系开发者进一步排查问题。",
-                    false,
-                    "好的"
-            );
-        } catch (Exception e) {
-            DialogBuilderManager.showDialog(
-                    this,
-                    "不大对劲😵",
-                    "“自动任务”服务自启动失败了，请按照以下方式排查问题：\n1.允许App自启动\n2.在“最近任务”界面锁定App\n3.为App“忽略电池优化”（Xiaomi、REDMI、华为、荣耀、三星）或者“允许后台活动”（OPPO、一加、Realme、vivo、IQOO）\n请您根据当前使用的设备，为App执行相应的操作。如您确认已完成上述操作但仍见到此弹窗，可联系开发者进一步排查问题。",
-                    false,
-                    "好的"
-            );
-        }
 
         // 小白条沉浸（MIUI/澎湃OS适配）
         EdgeToEdge.enable(this);
@@ -165,9 +98,6 @@ public class MainActivity extends BaseActivity {
                 finish();
             }
         });
-
-        // 初始化常驻通知
-        initPersistentNotification();
 
         // 防御卡数据查询按钮
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> v.postDelayed(() ->
@@ -278,27 +208,6 @@ public class MainActivity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
     }
 
-    /**
-     * 初始化常驻通知
-     */
-    private void initPersistentNotification() {
-        if (dbHelper.getSettingValue("自动任务")) {
-            tileTaskNotificationManager.createNotificationChannel();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                tileTaskNotificationManager.requestNotificationPermission(this, new PermissionCallback() {
-                    @Override
-                    public void onPermissionGranted() {
-                    }
-
-                    @Override
-                    public void onPermissionDenied() {
-                        DialogBuilderManager.showNotificationPermissionRequestDialog(MainActivity.this);
-                    }
-                });
-            }
-        }
-    }
-
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -345,14 +254,5 @@ public class MainActivity extends BaseActivity {
         binding = null;
 
         dbHelper.close();
-
-        // 注销广播接收器，避免内存泄漏
-        if (bootReceiver != null) {
-            try {
-                unregisterReceiver(bootReceiver);
-            } catch (IllegalArgumentException e) {
-                Log.w("MainActivity", "广播接收器未注册或已注销", e);
-            }
-        }
     }
 }

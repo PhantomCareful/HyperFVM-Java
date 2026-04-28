@@ -32,16 +32,19 @@ public class DashboardGitCatcher {
 
     private final DBHelper dbHelper;
 
-    // 适用于三岛和大赛，要在通知上展示的内容
-    private String contentNotification;
+    // 这个Map用于及时将获取到的内容显示出来，而不从数据库获取
+    private Map<String, String> result;
 
     public DashboardGitCatcher(Context context) {
         dbHelper = new DBHelper(context);
     }
 
-    public void catchGitDashboardInfo() {
+    public void catchGitDashboardInfo(DashboardGitCatchResultCallBack callBack) {
         new Thread(() -> {
             try {
+                // 第0步：初始化Map
+                result = new HashMap<>();
+
                 // 第1步：先从给定链接获取JSON字符串
                 String JSONArrayStr = XMLHelper.getContentFromUrl(GIT_URL);
 
@@ -62,6 +65,9 @@ public class DashboardGitCatcher {
                         catchOtherActivityInfo(itemObj);
                     }
                 }
+
+                // 第4步，将Map回调出去
+                callBack.onResult(result);
             } catch (IOException | JSONException e) {
                 throw new RuntimeException(e);
             }
@@ -77,6 +83,10 @@ public class DashboardGitCatcher {
      * "cardList": "肥牛火锅|烤蜥蜴投手|炭烧海星|章鱼烧|金牛烟花|玉兔灯笼|蜂蜜史莱姆|糖葫芦炮弹|糖炒栗子|冰激凌|可乐炸弹|青涩柿柿|火龙果"
      */
     private void catchTransferDiscountInfo(JSONObject itemObj) throws JSONException {
+        String resultTransferDiscountSimple;
+        String resultTransferDiscountEmoji;
+        String resultTransferDiscountDetail;
+
         String startDate = itemObj.getString("startDate");
         String endDate = itemObj.getString("endDate");
         String cardList = itemObj.getString("cardList");
@@ -96,36 +106,41 @@ public class DashboardGitCatcher {
         Date end = TimeUtil.transformStringToDate(endDate);
         if (today.before(start)) {
             Log.d(TAG, "二转打折：活动尚未开始");
-            String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢\n\n以下卡片\n二转保险金仅需1500D\n\n" + cardListResult;
-            dbHelper.updateDashboardContent("transfer_discount", "尚未开始");
-            dbHelper.updateDashboardContent("transfer_discount_emoji", "⏳");
-            dbHelper.updateDashboardContent("transfer_discount_detail", contentDetail);
+            resultTransferDiscountSimple = "尚未开始";
+            resultTransferDiscountEmoji = "⏳";
+            resultTransferDiscountDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢\n\n以下卡片\n二转保险金仅需1500D\n\n" + cardListResult;
         } else if (today.after(end)) {
             Log.d(TAG, "二转打折：活动已结束");
-            String contentDetail = "还没有新的打折活动呢";
-            dbHelper.updateDashboardContent("transfer_discount", "暂无");
-            dbHelper.updateDashboardContent("transfer_discount_emoji", "⏳");
-            dbHelper.updateDashboardContent("transfer_discount_detail", contentDetail);
+            resultTransferDiscountSimple = "暂无";
+            resultTransferDiscountEmoji = "⏳";
+            resultTransferDiscountDetail = "还没有新的打折活动呢";
         } else {
             // 如果在结束当天过了上午10点，则也视为活动结束
             if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10) {
                 Log.d(TAG, "二转打折：活动已结束");
-                String contentDetail = "还没有新的打折活动呢";
-                dbHelper.updateDashboardContent("transfer_discount", "暂无");
-                dbHelper.updateDashboardContent("transfer_discount_emoji", "⏳");
-                dbHelper.updateDashboardContent("transfer_discount_detail", contentDetail);
+                resultTransferDiscountSimple = "暂无";
+                resultTransferDiscountEmoji = "⏳";
+                resultTransferDiscountDetail = "还没有新的打折活动呢";
             } else {
                 Log.d(TAG, "二转打折：活动正在进行中");
                 int duringCount = TimeUtil.calculateDaysBetween(startDate, todayDate);
                 int length = TimeUtil.calculateDaysBetween(startDate, endDate) - 1;
-                String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate +
+
+                resultTransferDiscountSimple = cardListArr.length + "张";
+                resultTransferDiscountEmoji = "😍";
+                resultTransferDiscountDetail = "开始日期：" + startDate + "\n结束日期：" + endDate +
                         "\n\n本次打折一共持续" + length + "天\n今天是第" + duringCount + "天" +
                         "\n\n以下卡片\n二转保险金仅需1500D\n\n" + cardListResult;
-                dbHelper.updateDashboardContent("transfer_discount", cardListArr.length + "张");
-                dbHelper.updateDashboardContent("transfer_discount_emoji", "\uD83E\uDD29");
-                dbHelper.updateDashboardContent("transfer_discount_detail", contentDetail);
             }
         }
+
+        dbHelper.updateDashboardContent("transfer_discount", resultTransferDiscountSimple);
+        dbHelper.updateDashboardContent("transfer_discount_emoji", resultTransferDiscountEmoji);
+        dbHelper.updateDashboardContent("transfer_discount_detail", resultTransferDiscountDetail);
+
+        result.put("resultTransferDiscountSimple", resultTransferDiscountSimple);
+        result.put("resultTransferDiscountEmoji", resultTransferDiscountEmoji);
+        result.put("resultTransferDiscountDetail", resultTransferDiscountDetail);
     }
 
     /**
@@ -158,6 +173,10 @@ public class DashboardGitCatcher {
      *   }
      */
     private void catchOtherActivityInfo(JSONObject itemObj) throws JSONException {
+        String resultTransferDiscountSimple;
+        String resultTransferDiscountEmoji;
+        String resultTransferDiscountDetail;
+
         String name = itemObj.getString("name");
         String startDate = itemObj.getString("startDate");
         String endDate = itemObj.getString("endDate");
@@ -168,39 +187,56 @@ public class DashboardGitCatcher {
         Date start = TimeUtil.transformStringToDate(startDate);
         Date end = TimeUtil.transformStringToDate(endDate);
 
-        // App内的仪表盘，弹窗详情中要展示的内容
-        String contentDetail;
-
         if (today.before(start)) {
             Log.d(TAG, name + ": 活动尚未开始");
-            contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n活动还没开始呢";
+            resultTransferDiscountSimple = "尚未开始";
+            resultTransferDiscountEmoji = "⏳";
+            resultTransferDiscountDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n活动还没开始呢";
             switch (name) {
                 case "日氪":
-                    dbHelper.updateDashboardContent("daily_recharge", "尚未开始");
-                    dbHelper.updateDashboardContent("daily_recharge_emoji", "⏳");
-                    dbHelper.updateDashboardContent("daily_recharge_detail", contentDetail);
+                    dbHelper.updateDashboardContent("daily_recharge", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("daily_recharge_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("daily_recharge_detail", resultTransferDiscountDetail);
+
+                    result.put("resultDailyRechargeSimple", resultTransferDiscountSimple);
+                    result.put("resultDailyRechargeEmoji", resultTransferDiscountEmoji);
+                    result.put("resultDailyRechargeDetail", resultTransferDiscountDetail);
                     break;
                 case "欢乐假期":
-                    dbHelper.updateDashboardContent("happy_holiday", "尚未开始");
-                    dbHelper.updateDashboardContent("happy_holiday_emoji", "⏳");
-                    dbHelper.updateDashboardContent("happy_holiday_detail", contentDetail);
+                    dbHelper.updateDashboardContent("happy_holiday", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("happy_holiday_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("happy_holiday_detail", resultTransferDiscountDetail);
+
+                    result.put("resultHappyHolidaySimple", resultTransferDiscountSimple);
+                    result.put("resultHappyHolidayEmoji", resultTransferDiscountEmoji);
+                    result.put("resultHappyHolidayDetail", resultTransferDiscountDetail);
                     break;
                 case "助人为乐":
-                    dbHelper.updateDashboardContent("cross_server_team_up", "尚未开始");
-                    dbHelper.updateDashboardContent("cross_server_team_up_emoji", "⏳");
-                    dbHelper.updateDashboardContent("cross_server_team_up_detail", contentDetail);
+                    dbHelper.updateDashboardContent("cross_server_team_up", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("cross_server_team_up_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("cross_server_team_up_detail", resultTransferDiscountDetail);
+
+                    result.put("resultServerTeamUpSimple", resultTransferDiscountSimple);
+                    result.put("resultServerTeamUpEmoji", resultTransferDiscountEmoji);
+                    result.put("resultServerTeamUpDetail", resultTransferDiscountDetail);
                     break;
                 case "三岛":
-                    dbHelper.updateDashboardContent("three_islands", "尚未开始");
-                    dbHelper.updateDashboardContent("three_islands_emoji", "⏳");
-                    dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
-                    contentNotification = "🏝️三岛：暂无 ";
+                    dbHelper.updateDashboardContent("three_islands", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("three_islands_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("three_islands_detail", resultTransferDiscountDetail);
+
+                    result.put("resultThreeIslandsSimple", resultTransferDiscountSimple);
+                    result.put("resultThreeIslandsEmoji", resultTransferDiscountEmoji);
+                    result.put("resultThreeIslandsDetail", resultTransferDiscountDetail);
                     break;
                 case "美食大赛":
-                    dbHelper.updateDashboardContent("food_contest", "尚未开始");
-                    dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
-                    dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
-                    contentNotification = contentNotification + " 🥟大赛：暂无";
+                    dbHelper.updateDashboardContent("food_contest", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("food_contest_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("food_contest_detail", resultTransferDiscountDetail);
+
+                    result.put("resultFoodContestSimple", resultTransferDiscountSimple);
+                    result.put("resultFoodContestEmoji", resultTransferDiscountEmoji);
+                    result.put("resultFoodContestDetail", resultTransferDiscountDetail);
                     break;
                 case "App通知":
                     String title = itemObj.getString("title");
@@ -209,77 +245,111 @@ public class DashboardGitCatcher {
                     dbHelper.updateDashboardContent("global_notification_is_show", "false");
                     dbHelper.updateDashboardContent("global_notification_title", title);
                     dbHelper.updateDashboardContent("global_notification_content", content);
+
+                    result.put("resultGlobalNotificationIsShow", "false");
+                    result.put("resultGlobalNotificationTitle", title);
+                    result.put("resultGlobalNotificationContent", content);
             }
         } else if (today.after(end)) {
             Log.d(TAG, name + ": 活动已结束");
-            contentDetail = "还没有新的活动呢";
+            resultTransferDiscountSimple = "暂无";
+            resultTransferDiscountEmoji = "⏳";
+            resultTransferDiscountDetail = "还没有新的活动呢";
             switch (name) {
                 case "日氪":
-                    dbHelper.updateDashboardContent("daily_recharge", "暂无");
-                    dbHelper.updateDashboardContent("daily_recharge_emoji", "⏳");
-                    dbHelper.updateDashboardContent("daily_recharge_detail", contentDetail);
+                    dbHelper.updateDashboardContent("daily_recharge", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("daily_recharge_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("daily_recharge_detail", resultTransferDiscountDetail);
+
+                    result.put("resultDailyRechargeSimple", resultTransferDiscountSimple);
+                    result.put("resultDailyRechargeEmoji", resultTransferDiscountEmoji);
+                    result.put("resultDailyRechargeDetail", resultTransferDiscountDetail);
                     break;
                 case "欢乐假期":
-                    dbHelper.updateDashboardContent("happy_holiday", "暂无");
-                    dbHelper.updateDashboardContent("happy_holiday_emoji", "⏳");
-                    dbHelper.updateDashboardContent("happy_holiday_detail", contentDetail);
+                    dbHelper.updateDashboardContent("happy_holiday", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("happy_holiday_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("happy_holiday_detail", resultTransferDiscountDetail);
+
+                    result.put("resultHappyHolidaySimple", resultTransferDiscountSimple);
+                    result.put("resultHappyHolidayEmoji", resultTransferDiscountEmoji);
+                    result.put("resultHappyHolidayDetail", resultTransferDiscountDetail);
                     break;
                 case "助人为乐":
-                    dbHelper.updateDashboardContent("cross_server_team_up", "暂无");
-                    dbHelper.updateDashboardContent("cross_server_team_up_emoji", "⏳");
-                    dbHelper.updateDashboardContent("cross_server_team_up_detail", contentDetail);
+                    dbHelper.updateDashboardContent("cross_server_team_up", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("cross_server_team_up_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("cross_server_team_up_detail", resultTransferDiscountDetail);
+
+                    result.put("resultServerTeamUpSimple", resultTransferDiscountSimple);
+                    result.put("resultServerTeamUpEmoji", resultTransferDiscountEmoji);
+                    result.put("resultServerTeamUpDetail", resultTransferDiscountDetail);
                     break;
                 case "三岛":
-                    dbHelper.updateDashboardContent("three_islands", "暂无");
-                    dbHelper.updateDashboardContent("three_islands_emoji", "⏳");
-                    dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
-                    contentNotification = "🏝️三岛：暂无";
+                    dbHelper.updateDashboardContent("three_islands", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("three_islands_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("three_islands_detail", resultTransferDiscountDetail);
+
+                    result.put("resultThreeIslandsSimple", resultTransferDiscountSimple);
+                    result.put("resultThreeIslandsEmoji", resultTransferDiscountEmoji);
+                    result.put("resultThreeIslandsDetail", resultTransferDiscountDetail);
                     break;
                 case "美食大赛":
-                    dbHelper.updateDashboardContent("food_contest", "暂无");
-                    dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
-                    dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
-                    contentNotification = contentNotification + " 🥟大赛：暂无";
+                    dbHelper.updateDashboardContent("food_contest", resultTransferDiscountSimple);
+                    dbHelper.updateDashboardContent("food_contest_emoji", resultTransferDiscountEmoji);
+                    dbHelper.updateDashboardContent("food_contest_detail", resultTransferDiscountDetail);
+
+                    result.put("resultFoodContestSimple", resultTransferDiscountSimple);
+                    result.put("resultFoodContestEmoji", resultTransferDiscountEmoji);
+                    result.put("resultFoodContestDetail", resultTransferDiscountDetail);
                     break;
                 case "App通知":
                     String title = itemObj.getString("title");
                     String content = itemObj.getString("content");
                     Log.d(TAG, "title = " + title + "\ncontent = " + content);
+
                     dbHelper.updateDashboardContent("global_notification_is_show", "false");
                     dbHelper.updateDashboardContent("global_notification_title", title);
                     dbHelper.updateDashboardContent("global_notification_content", content);
+
+                    result.put("resultGlobalNotificationIsShow", "false");
+                    result.put("resultGlobalNotificationTitle", title);
+                    result.put("resultGlobalNotificationContent", content);
             }
         } else {
             // 如果在结束当天过了上午10点，则也视为活动结束
             // 日氪和假期除外
-            if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10 && !name.equals("日氪") && !name.equals("欢乐假期")) {
+            if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10 && !name.equals("日氪") && !name.equals("欢乐假期") && !name.equals("App通知")) {
                 Log.d(TAG, name + ": 活动已结束");
-                contentDetail = "还没有新的活动呢";
+                resultTransferDiscountSimple = "暂无";
+                resultTransferDiscountEmoji = "⏳";
+                resultTransferDiscountDetail = "还没有新的活动呢";
                 switch (name) {
                     case "助人为乐":
-                        dbHelper.updateDashboardContent("cross_server_team_up", "暂无");
-                        dbHelper.updateDashboardContent("cross_server_team_up_emoji", "⏳");
-                        dbHelper.updateDashboardContent("cross_server_team_up_detail", contentDetail);
+                        dbHelper.updateDashboardContent("cross_server_team_up", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("cross_server_team_up_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("cross_server_team_up_detail", resultTransferDiscountDetail);
+
+                        result.put("resultServerTeamUpSimple", resultTransferDiscountSimple);
+                        result.put("resultServerTeamUpEmoji", resultTransferDiscountEmoji);
+                        result.put("resultServerTeamUpDetail", resultTransferDiscountDetail);
                         break;
                     case "三岛":
-                        dbHelper.updateDashboardContent("three_islands", "暂无");
-                        dbHelper.updateDashboardContent("three_islands_emoji", "⏳");
-                        dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
-                        contentNotification = "🏝️三岛：暂无";
+                        dbHelper.updateDashboardContent("three_islands", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("three_islands_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("three_islands_detail", resultTransferDiscountDetail);
+
+                        result.put("resultThreeIslandsSimple", resultTransferDiscountSimple);
+                        result.put("resultThreeIslandsEmoji", resultTransferDiscountEmoji);
+                        result.put("resultThreeIslandsDetail", resultTransferDiscountDetail);
                         break;
                     case "美食大赛":
-                        dbHelper.updateDashboardContent("food_contest", "暂无");
-                        dbHelper.updateDashboardContent("food_contest_emoji", "⏳");
-                        dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
-                        contentNotification = contentNotification + " 🥟大赛：暂无";
+                        dbHelper.updateDashboardContent("food_contest", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("food_contest_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("food_contest_detail", resultTransferDiscountDetail);
+
+                        result.put("resultFoodContestSimple", resultTransferDiscountSimple);
+                        result.put("resultFoodContestEmoji", resultTransferDiscountEmoji);
+                        result.put("resultFoodContestDetail", resultTransferDiscountDetail);
                         break;
-                    case "App通知":
-                        String title = itemObj.getString("title");
-                        String content = itemObj.getString("content");
-                        Log.d(TAG, "title = " + title + "\ncontent = " + content);
-                        dbHelper.updateDashboardContent("global_notification_is_show", "false");
-                        dbHelper.updateDashboardContent("global_notification_title", title);
-                        dbHelper.updateDashboardContent("global_notification_content", content);
                 }
             } else {
                 Log.d(TAG, name + ": 活动正在进行中");
@@ -294,75 +364,85 @@ public class DashboardGitCatcher {
                     length = TimeUtil.calculateDaysBetween(startDate, endDate) - 1;
                 }
 
-                contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n";
+                resultTransferDiscountEmoji = "✊";
+                resultTransferDiscountDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n";
 
                 switch (name) {
                     case "日氪":
-                        contentDetail = contentDetail + "本次日氪持续" + length + "天\n今天是第" + duringCount + "天\n\n" +
+                        resultTransferDiscountSimple = duringCount * 8 + "/" + length * 8;
+                        resultTransferDiscountDetail = resultTransferDiscountDetail + "本次日氪持续" + length + "天\n今天是第" + duringCount + "天\n\n" +
                                 "今天你应该有" + duringCount * 8 + "个道具了";
-                        dbHelper.updateDashboardContent("daily_recharge", duringCount * 8 + "/" + length * 8);
-                        dbHelper.updateDashboardContent("daily_recharge_emoji", "✊");
-                        dbHelper.updateDashboardContent("daily_recharge_detail", contentDetail);
+
+                        dbHelper.updateDashboardContent("daily_recharge", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("daily_recharge_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("daily_recharge_detail", resultTransferDiscountDetail);
+
+                        result.put("resultDailyRechargeSimple", resultTransferDiscountSimple);
+                        result.put("resultDailyRechargeEmoji", resultTransferDiscountEmoji);
+                        result.put("resultDailyRechargeDetail", resultTransferDiscountDetail);
                         break;
                     case "欢乐假期":
-                        contentDetail = contentDetail + "本次假期持续" + length + "天\n今天是第" + duringCount + "天";
-                        dbHelper.updateDashboardContent("happy_holiday", duringCount + "/" + length);
-                        dbHelper.updateDashboardContent("happy_holiday_emoji", "✊");
-                        dbHelper.updateDashboardContent("happy_holiday_detail", contentDetail);
+                        resultTransferDiscountSimple = duringCount + "/" + length;
+                        resultTransferDiscountDetail = resultTransferDiscountDetail + "本次假期持续" + length + "天\n今天是第" + duringCount + "天";
+
+                        dbHelper.updateDashboardContent("happy_holiday", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("happy_holiday_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("happy_holiday_detail", resultTransferDiscountDetail);
+
+                        result.put("resultHappyHolidaySimple", resultTransferDiscountSimple);
+                        result.put("resultHappyHolidayEmoji", resultTransferDiscountEmoji);
+                        result.put("resultHappyHolidayDetail", resultTransferDiscountDetail);
                         break;
                     case "助人为乐":
-                        contentDetail = contentDetail + "本次助人为乐持续" + length + "天\n今天是第" + duringCount + "天";
-                        dbHelper.updateDashboardContent("cross_server_team_up", duringCount + "/" + length);
-                        dbHelper.updateDashboardContent("cross_server_team_up_emoji", "✊");
-                        dbHelper.updateDashboardContent("cross_server_team_up_detail", contentDetail);
+                        resultTransferDiscountSimple = duringCount + "/" + length;
+                        resultTransferDiscountDetail = resultTransferDiscountDetail + "本次助人为乐持续" + length + "天\n今天是第" + duringCount + "天";
+
+                        dbHelper.updateDashboardContent("cross_server_team_up", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("cross_server_team_up_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("cross_server_team_up_detail", resultTransferDiscountDetail);
+
+                        result.put("resultServerTeamUpSimple", resultTransferDiscountSimple);
+                        result.put("resultServerTeamUpEmoji", resultTransferDiscountEmoji);
+                        result.put("resultServerTeamUpDetail", resultTransferDiscountDetail);
                         break;
                     case "三岛":
-                        contentDetail = contentDetail + "本次三岛活动持续" + length + "天\n今天是第" + duringCount + "天";
-                        dbHelper.updateDashboardContent("three_islands", duringCount + "/" + length);
-                        dbHelper.updateDashboardContent("three_islands_emoji", "✊");
-                        dbHelper.updateDashboardContent("three_islands_detail", contentDetail);
-                        contentNotification = "🏝️三岛：" + duringCount + "/" + length;
+                        resultTransferDiscountSimple = duringCount + "/" + length;
+                        resultTransferDiscountDetail = resultTransferDiscountDetail + "本次三岛活动持续" + length + "天\n今天是第" + duringCount + "天";
+
+                        dbHelper.updateDashboardContent("three_islands", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("three_islands_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("three_islands_detail", resultTransferDiscountDetail);
+
+                        result.put("resultThreeIslandsSimple", resultTransferDiscountSimple);
+                        result.put("resultThreeIslandsEmoji", resultTransferDiscountEmoji);
+                        result.put("resultThreeIslandsDetail", resultTransferDiscountDetail);
                         break;
                     case "美食大赛":
-                        contentDetail = contentDetail + "本次美食大赛持续" + length + "天\n今天是第" + duringCount + "天";
-                        dbHelper.updateDashboardContent("food_contest", duringCount + "/" + length);
-                        dbHelper.updateDashboardContent("food_contest_emoji", "✊");
-                        dbHelper.updateDashboardContent("food_contest_detail", contentDetail);
-                        contentNotification = contentNotification + " 🥟大赛：" + duringCount + "/" + length;
+                        resultTransferDiscountSimple = duringCount + "/" + length;
+                        resultTransferDiscountDetail = resultTransferDiscountDetail + "本次美食大赛持续" + length + "天\n今天是第" + duringCount + "天";
+
+                        dbHelper.updateDashboardContent("food_contest", resultTransferDiscountSimple);
+                        dbHelper.updateDashboardContent("food_contest_emoji", resultTransferDiscountEmoji);
+                        dbHelper.updateDashboardContent("food_contest_detail", resultTransferDiscountDetail);
+
+                        result.put("resultFoodContestSimple", resultTransferDiscountSimple);
+                        result.put("resultFoodContestEmoji", resultTransferDiscountEmoji);
+                        result.put("resultFoodContestDetail", resultTransferDiscountDetail);
                         break;
                     case "App通知":
                         String title = itemObj.getString("title");
                         String content = itemObj.getString("content");
                         Log.d(TAG, "title = " + title + "\ncontent = " + content);
+
                         dbHelper.updateDashboardContent("global_notification_is_show", "true");
                         dbHelper.updateDashboardContent("global_notification_title", title);
                         dbHelper.updateDashboardContent("global_notification_content", content);
+
+                        result.put("resultGlobalNotificationIsShow", "false");
+                        result.put("resultGlobalNotificationTitle", title);
+                        result.put("resultGlobalNotificationContent", content);
                 }
             }
         }
-
-        dbHelper.updateDashboardContent("git_dashboard_notification", contentNotification);
     }
-
-    /**
-     * 保存结果到Map，用于及时输出数据
-     * @param resultSimple 显示在主界面的简要信息
-     * @param resultNotification 显示在通知的简要信息
-     * @param resultEmoji 显示在主界面和弹窗上的表情
-     * @param resultDetail 显示在弹窗上的详细信息
-     * @return 生成的Map格式的数据
-     */
-    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultDetail) {
-        Map<String, String> result = new HashMap<>();
-
-        result.put("resultSimple", resultSimple);
-        if (!resultNotification.isEmpty()) {
-            result.put("resultNotification", resultNotification);
-        }
-        result.put("resultEmoji", resultEmoji);
-        result.put("resultDetail", resultDetail);
-
-        return result;
-    }
-
 }

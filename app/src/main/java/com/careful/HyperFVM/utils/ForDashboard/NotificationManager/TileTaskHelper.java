@@ -2,7 +2,7 @@ package com.careful.HyperFVM.utils.ForDashboard.NotificationManager;
 
 import android.content.Context;
 
-import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTasks;
+import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTask;
 
 public class TileTaskHelper {
     public static void executeTileTasks(
@@ -11,7 +11,7 @@ public class TileTaskHelper {
     ) {
         tileTaskNotificationManager.createNotificationChannel();
 
-        ExecuteDailyTasks executeDailyTasks = new ExecuteDailyTasks(context);
+        ExecuteDailyTask executeDailyTask = new ExecuteDailyTask(context);
 
         // 存放结果
         final String[] giftResult = {""};
@@ -28,17 +28,17 @@ public class TileTaskHelper {
         };
 
         tileTaskNotificationManager.sendAutoTaskNotification("温馨礼包⏳", "正在领取温馨礼包，请稍候~");
-        executeDailyTasks.executeGiftTask(result -> {
-            giftResult[0] = result;
+        executeDailyTask.executeGiftTileTask(resultGift -> {
+            giftResult[0] = resultGift;
             giftDone[0] = true;
             checkAndSend.run();
-        });
 
-        tileTaskNotificationManager.sendAutoTaskNotification("更新数据⏳", "正在更新仪表盘数据，请稍候~");
-        executeDailyTasks.executeDashboardTask(result -> {
-            dashboardResult[0] = result;
-            dashboardDone[0] = true;
-            checkAndSend.run();
+            tileTaskNotificationManager.sendAutoTaskNotification("更新数据⏳", "正在更新仪表盘数据，请稍候~");
+            executeDailyTask.executeDashboardTileTask(resultDashboard -> {
+                dashboardResult[0] = resultDashboard;
+                dashboardDone[0] = true;
+                checkAndSend.run();
+            });
         });
     }
 }

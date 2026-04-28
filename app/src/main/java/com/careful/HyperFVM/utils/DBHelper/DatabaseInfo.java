@@ -105,8 +105,6 @@ public class DatabaseInfo {
      * 修改一下图片资源的ID
      * DB_VERSION = 67 - 76
      * 更新防御卡数据
-     * DB_VERSION = 77
-     * dashboard表新增git_dashboard_notification
      */
-    public static final int DB_VERSION = 77;
+    public static final int DB_VERSION = 76;
 }

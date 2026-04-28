@@ -246,12 +246,6 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
                     "VALUES ('DownloadedApkFileVersionCode', '0')");
         }
-
-        // 版本77：dashboard表新增git_dashboard_notification
-        if (oldVersion < 77) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
-                    "VALUES ('git_dashboard_notification', 'null')");
-        }
     }
 
     @Override
