@@ -110,15 +110,6 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".MainActivity$BootReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
         <receiver android:name=".utils.ForDashboard.NotificationManager.NotificationDismissReceiver"
             android:exported="false" />
 
@@ -129,12 +120,6 @@
                 <action android:name="ACTION_REFRESH_AUTO_TASK" />
             </intent-filter>
         </receiver>
-
-        <service
-            android:name=".Service.PersistentService"
-            android:exported="false"
-            android:foregroundServiceType="dataSync"
-            android:stopWithTask="false" />
 
         <service
             android:name=".Service.AutoTaskTileService"

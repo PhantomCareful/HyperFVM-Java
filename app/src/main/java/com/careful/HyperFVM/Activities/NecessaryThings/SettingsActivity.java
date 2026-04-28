@@ -3,28 +3,20 @@ package com.careful.HyperFVM.Activities.NecessaryThings;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
-import androidx.work.WorkManager;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.Service.PersistentService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDashboard.NotificationManager.TileTaskNotificationManager;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -33,16 +25,10 @@ import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
-import java.util.List;
-
 public class SettingsActivity extends BaseActivity {
 
     private DBHelper dbHelper;
     private int pressFeedbackAnimationDelay;
-    private TileTaskNotificationManager tileTaskNotificationManager;
-
-    // 提前注册通知权限请求器
-    private ActivityResultLauncher<String> notificationPermissionLauncher;
 
     private static final String CONTENT_IS_DYNAMIC_COLOR = "主题-是否动态取色";
     private static final String CONTENT_APP_THEME = "主题-自定义主题色";
@@ -60,9 +46,6 @@ public class SettingsActivity extends BaseActivity {
 
     public static final String CONTENT_IS_FIXED_FONT_SCALE = "界面布局优化";
 
-    private static final String CONTENT_AUTO_TASK = "自动任务";
-    private static final String CONTENT_AUTO_TASK_ENHANCED = "自动任务-增强";
-
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
     public static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
@@ -70,6 +53,7 @@ public class SettingsActivity extends BaseActivity {
     public static final String CONTENT_IS_PRESS_FEEDBACK_ANIMATION = "按压反馈动画";
 
     public static final String CONTENT_IS_BIOMETRIC_AUTH = "安全-生物认证";
+
     // 使用标志位来防止循环调用
     private boolean isPermitSwitchChanging = false;
 
@@ -91,23 +75,6 @@ public class SettingsActivity extends BaseActivity {
 
         // 初始化数据库
         dbHelper = new DBHelper(this);
-
-        // 初始自动任务通知管理类
-        tileTaskNotificationManager = new TileTaskNotificationManager(this);
-
-        // 在 onCreate() 中注册权限请求器（符合生命周期要求）
-        notificationPermissionLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestPermission(),
-                isGranted -> {
-                    if (!isGranted) {
-                        // 权限拒绝后的处理
-                        MaterialSwitch switchAutoTask = findViewById(R.id.Switch_AutoTask);
-                        switchAutoTask.setChecked(false);
-                        dbHelper.updateSettingValue(CONTENT_AUTO_TASK, "false");
-                        DialogBuilderManager.showNotificationPermissionRequestDialog(this);
-                    }
-                }
-        );
 
         // 初始化主题选择器
         initThemeSelector();
@@ -231,14 +198,6 @@ public class SettingsActivity extends BaseActivity {
         boolean isFixedFontScale = dbHelper.getSettingValue(CONTENT_IS_FIXED_FONT_SCALE);
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
         materialSwitch.setChecked(isFixedFontScale);
-        // 自动任务开关
-        boolean isDoAutoTask = dbHelper.getSettingValue(CONTENT_AUTO_TASK);
-        materialSwitch = findViewById(R.id.Switch_AutoTask);
-        materialSwitch.setChecked(isDoAutoTask);
-        // 自动任务增强模式开关
-        boolean isDoAutoTaskEnhanced = dbHelper.getSettingValue(CONTENT_AUTO_TASK_ENHANCED);
-        materialSwitch = findViewById(R.id.Switch_AutoTask_Enhanced);
-        materialSwitch.setChecked(isDoAutoTaskEnhanced);
         // Toast显示设置开关
         boolean toastIsVisibleCardDataIndex = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
         boolean toastIsVisibleCardDataAuxiliaryList = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST);
@@ -297,33 +256,6 @@ public class SettingsActivity extends BaseActivity {
             // 重启App
             restartApp();
         });
-        // 自动任务开关
-        materialSwitch = findViewById(R.id.Switch_AutoTask);
-        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            dbHelper.updateSettingValue(CONTENT_AUTO_TASK, isChecked ? "true" : "false");
-            if (!isChecked) {
-                // 取消所有已调度的自动任务
-                WorkManager.getInstance(this).cancelAllWorkByTag("AUTO_TASK_TAG");
-                dbHelper.updateSettingValue("自动任务-初始时间", "0");
-                Log.d("WorkManager", "All scheduled auto tasks have been canceled");
-                // 停止前台服务
-                Intent serviceIntent = new Intent(this, PersistentService.class);
-                stopService(serviceIntent);
-                Log.d("WorkManager", "PersistentService stopped, notification removed");
-            } else {
-                initPersistentNotification();
-            }
-        });
-        // 自动任务增强模式开关
-        materialSwitch = findViewById(R.id.Switch_AutoTask_Enhanced);
-        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            dbHelper.updateSettingValue(CONTENT_AUTO_TASK_ENHANCED, isChecked ? "true" : "false");
-            ActivityManager systemService = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-            List<ActivityManager.AppTask> appTasks = systemService.getAppTasks();
-            if (!appTasks.isEmpty()) {
-                appTasks.get(0).setExcludeFromRecents(isChecked);//设置activity是否隐藏
-            }
-        });
         // Toast显示设置开关
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
@@ -358,23 +290,6 @@ public class SettingsActivity extends BaseActivity {
                 finalMaterialSwitch.setChecked(!isChecked);
             }
         });
-    }
-
-    /**
-     * 初始化常驻通知，使用提前注册的 launcher
-     */
-    private void initPersistentNotification() {
-        if (dbHelper.getSettingValue(CONTENT_AUTO_TASK)) {
-            tileTaskNotificationManager.createNotificationChannel();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                // 直接使用提前注册的 launcher 发起请求，而非让 TileTaskNotificationManager 注册
-                if (!hasNotificationPermission()) {
-                    notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS);
-                } else {
-                    Toast.makeText(this, "请重启App\n看到保护通知则启用成功~", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
     }
 
     /**
