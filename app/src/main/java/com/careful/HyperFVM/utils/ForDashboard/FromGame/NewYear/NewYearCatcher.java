@@ -158,7 +158,7 @@ public class NewYearCatcher {
                 }
 
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                Log.e(TAG, "捕获异常：" + e.getMessage());
             }
         }).start();
     }

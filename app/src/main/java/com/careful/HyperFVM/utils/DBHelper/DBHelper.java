@@ -69,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
             } catch (IOException e) {
                 Log.e("DBHelper", "复制失败：" + e.getMessage());
                 if (dbFile.exists()) dbFile.delete();
-                throw new RuntimeException("数据库初始化失败");
+                Log.e("DBHelper", "数据库初始化失败：" + e.getMessage());
             }
         }
     }

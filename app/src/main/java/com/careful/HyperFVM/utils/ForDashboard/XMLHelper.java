@@ -96,7 +96,7 @@ public class XMLHelper {
             return XMLContent;
         } catch (IOException e) {
             Log.e(TAG, "getContentFromUrl: 捕获异常：" + e.getMessage(), e);
-            throw e;
+            return e.getMessage() + "\n" + e;
         }
     }
 

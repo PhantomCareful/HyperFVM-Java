@@ -69,7 +69,7 @@ public class DashboardGitCatcher {
                 // 第4步，将Map回调出去
                 callBack.onResult(result);
             } catch (IOException | JSONException e) {
-                throw new RuntimeException(e);
+                Log.e(TAG, "捕获异常：" + e.getMessage());
             }
         }).start();
     }
