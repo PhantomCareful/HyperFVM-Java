@@ -55,7 +55,7 @@ public class TileTaskNotificationManager {
      * 如果系统不支持实时活动，会自动降级为普通通知
      */
     @SuppressLint("MissingPermission")
-    public void sendAutoTaskNotification(String title, String content) {
+    public void sendTileTaskNotification(String title, String content) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
             // Android 16+：发送Live Updates实时通知
             sendPromotedNotification(title, content);
@@ -96,6 +96,7 @@ public class TileTaskNotificationManager {
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID_GENERAL)
                 .setContentTitle(title)
                 .setContentText(content)
+                .setContentIntent(PendingIntentHelper.getPendingIntent(context))
                 .setSmallIcon(R.drawable.app_icon_tile)
                 .addAction(R.drawable.app_icon_tile, "刷新内容", refreshPendingIntent)
                 .addAction(R.drawable.app_icon_tile, "关闭", dismissPendingIntent)
