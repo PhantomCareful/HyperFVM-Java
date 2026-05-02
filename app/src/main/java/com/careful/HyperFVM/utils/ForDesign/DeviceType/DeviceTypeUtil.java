@@ -32,11 +32,7 @@ public final class DeviceTypeUtil {
 
             // 获取物理屏幕尺寸
             Point realSize = new Point();
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                display.getRealSize(realSize);
-            } else {
-                display.getSize(realSize);
-            }
+            display.getRealSize(realSize);
 
             // 获取屏幕密度
             Resources resources = sApplication.getResources();
@@ -69,11 +65,7 @@ public final class DeviceTypeUtil {
 
             // 获取物理屏幕尺寸
             Point realSize = new Point();
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                display.getRealSize(realSize);
-            } else {
-                display.getSize(realSize);
-            }
+            display.getRealSize(realSize);
 
             // 获取屏幕密度
             Resources resources = sApplication.getResources();

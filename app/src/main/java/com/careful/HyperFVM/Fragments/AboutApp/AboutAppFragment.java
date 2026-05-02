@@ -32,6 +32,24 @@ public class AboutAppFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentAboutAppBinding binding = FragmentAboutAppBinding.inflate(inflater, container, false);
         root = binding.getRoot();
+/*
+
+        // 适配导航栏高度
+        LinearLayout aboutAppContainer = root.findViewById(R.id.about_app_container);
+        View rootView = requireActivity().findViewById(android.R.id.content);
+        // 动态获取导航栏高度（小白条/三键导航）
+        InsetsUtil.getNavigationBarHeight(rootView, height -> {
+
+            Log.d("height", "height in AboutAppFragment = " + height);
+
+            // 获取原有的 left, top, right padding
+            int left = aboutAppContainer.getPaddingLeft();
+            int top = aboutAppContainer.getPaddingTop();
+            int right = aboutAppContainer.getPaddingRight();
+
+            aboutAppContainer.setPadding(left, top, right, height + DensityUtil.dpToPx(requireContext(), 72));
+        });
+*/
 
         //一个小彩蛋🥚
         setEasterEgg(root);

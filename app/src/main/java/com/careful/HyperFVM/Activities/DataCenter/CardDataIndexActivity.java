@@ -1,13 +1,9 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
-import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -15,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -28,11 +25,12 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
-import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -41,20 +39,31 @@ public class CardDataIndexActivity extends BaseActivity {
     private DBHelper dbHelper;
     private SpringBackScrollView CardDataIndexContainer;
 
-    private int pressFeedbackAnimationDelay;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
 
         super.onCreate(savedInstanceState);
+
         //小白条沉浸
         EdgeToEdge.enable(this);
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
+
         setContentView(R.layout.activity_card_data_index);
+
+        // 适配导航栏高度
+        MaterialCardView floatButtonContainer = findViewById(R.id.FloatButton_CardDataSearch_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取导航栏高度（小白条/三键导航）
+        InsetsUtil.getNavigationBarHeight(rootView, height -> {
+            // 悬浮底栏抬高设置为：12dp+导航栏高度
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonContainer.getLayoutParams();
+            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            floatButtonContainer.setLayoutParams(params);
+        });
 
         // 初始化数据库
         dbHelper = new DBHelper(this);
@@ -65,15 +74,15 @@ public class CardDataIndexActivity extends BaseActivity {
         // 防御卡目录按钮
         CardDataIndexContainer = findViewById(R.id.CardDataIndex_Container);
         findViewById(R.id.FloatButton_CardDataIndex_Container).setOnClickListener(v ->
-                v.postDelayed(this::showTitleNavigationDialog, pressFeedbackAnimationDelay));
+                showTitleNavigationDialog());
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v ->v.postDelayed(() ->
-                DialogBuilderManager.showCardQueryDialog(this), pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v ->
+                DialogBuilderManager.showCardQueryDialog(this));
 
-        // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
+        // 给所有防御卡组件设置点击事件，以实现点击查询其数据
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            initCardImages();
+            initCardComponents();
             if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX)) {
                 Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
             }}, 50);
@@ -199,7 +208,7 @@ public class CardDataIndexActivity extends BaseActivity {
     /**
      * 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
      */
-    private void initCardImages() {
+    private void initCardComponents() {
         findViewById(R.id.card_data_index_1_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "双向水管"));
         findViewById(R.id.card_data_index_1_1_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "天秤座精灵"));
         findViewById(R.id.card_data_index_1_1_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "呆呆鸡"));
@@ -556,28 +565,8 @@ public class CardDataIndexActivity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
-        // 顺便添加一个位移动画
-        MaterialCardView cardView = findViewById(R.id.FloatButton_CardDataIndex_Container);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(
-                cardView,
-                View.TRANSLATION_X,
-                550f, 0f // 从1000px移动到0px
-        );
-        animator.setDuration(1200);
-        animator.start();
-
-        // 顺便添加一个位移动画
-        cardView = findViewById(R.id.FloatButton_CardDataSearch_Container);
-        animator = ObjectAnimator.ofFloat(
-                cardView,
-                View.TRANSLATION_X,
-                550f, 0f // 从1000px移动到0px
-        );
-        animator.setDuration(1200);
-        animator.start();
-
         // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
     @Override
@@ -585,29 +574,5 @@ public class CardDataIndexActivity extends BaseActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
-    }
-
-    /**
-     * 在onResume阶段设置按压反馈动画
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 添加按压动画
-        boolean isPressFeedbackAnimation;
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            pressFeedbackAnimationDelay = 200;
-            isPressFeedbackAnimation = true;
-        } else {
-            pressFeedbackAnimationDelay = 0;
-            isPressFeedbackAnimation = false;
-        }
-        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 }

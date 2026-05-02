@@ -1,26 +1,27 @@
 package com.careful.HyperFVM;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
-import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
-
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.NoPaddingBottomNavigationView.NoPaddingBottomNavigationView;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,8 +48,6 @@ public class MainActivity extends BaseActivity {
     private TabLayoutFragmentStateAdapter viewPagerAdapter;
 
     private Handler mainHandler;
-
-    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +78,17 @@ public class MainActivity extends BaseActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 适配导航栏高度
+        LinearLayout navigationBarContainer = findViewById(R.id.navigation_bar_container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取导航栏高度（小白条/三键导航）
+        InsetsUtil.getNavigationBarHeight(rootView, height -> {
+            Log.d("height", "height in MainActivity = " + height);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) navigationBarContainer.getLayoutParams();
+            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            navigationBarContainer.setLayoutParams(params);
+        });
+
         // 初始化菜单顺序（必须与bottom_nav_menu.xml的item顺序一致）
         menuOrder = new ArrayList<>();
         menuOrder.add(R.id.navigation_data_station);
@@ -100,8 +110,7 @@ public class MainActivity extends BaseActivity {
         });
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> v.postDelayed(() ->
-                DialogBuilderManager.showCardQueryDialog(this), pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
     }
 
     /**
@@ -222,17 +231,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // 添加按压动画
-        boolean isPressFeedbackAnimation;
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            pressFeedbackAnimationDelay = 200;
-            isPressFeedbackAnimation = true;
-        } else {
-            pressFeedbackAnimationDelay = 0;
-            isPressFeedbackAnimation = false;
-        }
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
 
         // 检查更新
         new Thread(this::checkUpdate).start();

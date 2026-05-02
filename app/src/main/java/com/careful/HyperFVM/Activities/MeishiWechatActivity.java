@@ -1,10 +1,7 @@
 package com.careful.HyperFVM.Activities;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
-import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.res.Configuration;
@@ -19,6 +16,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +29,14 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityMeishiWechatBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -61,8 +61,6 @@ public class MeishiWechatActivity extends BaseActivity {
     private LinearLayout MeishiWechatContainer;
     private TransitionSet transition;
 
-    private int pressFeedbackAnimationDelay;
-
     // 在Activity中定义主线程Handler
     private Handler mainHandler = new Handler(Looper.getMainLooper());
 
@@ -74,17 +72,28 @@ public class MeishiWechatActivity extends BaseActivity {
         //设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
 
-        super.onCreate(savedInstanceState);
-
         // 小白条沉浸
         EdgeToEdge.enable(this);
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
 
+        super.onCreate(savedInstanceState);
+
         binding = ActivityMeishiWechatBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
         setContentView(root);
+
+        // 适配导航栏高度
+        MaterialCardView floatButtonContainer = findViewById(R.id.FloatButton_MeishiWechat_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取导航栏高度（小白条/三键导航）
+        InsetsUtil.getNavigationBarHeight(rootView, height -> {
+            // 悬浮底栏抬高设置为：12dp+导航栏高度
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonContainer.getLayoutParams();
+            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            floatButtonContainer.setLayoutParams(params);
+        });
 
         // 初始化Handler（主线程的Looper）
         mainHandler = new Handler(Looper.getMainLooper());
@@ -118,7 +127,7 @@ public class MeishiWechatActivity extends BaseActivity {
         setupBlurEffect();
 
         // 添加按钮点击事件
-        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnClickListener(v -> v.postDelayed(this::showAddLinkDialog, pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnClickListener(v -> showAddLinkDialog());
 
         // 获取Markdown文本
         MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
@@ -230,16 +239,6 @@ public class MeishiWechatActivity extends BaseActivity {
             return true;
         });
 
-        /*
-          可能的Bug：
-          因为这里是动态添加的按压动画，所以无法放到onResume阶段，可能调整设置后不生效。
-          但是目前调整设置的话，这个活动一定是不会启动的，所以规避了这个Bug。
-         */
-        // 添加按压动画
-        boolean isPressFeedbackAnimation = dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION);
-        cardView.setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.TILT : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-
         TransitionManager.beginDelayedTransition(MeishiWechatContainer, transition);
         accountListContainer.addView(cardView);
     }
@@ -318,18 +317,8 @@ public class MeishiWechatActivity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButton));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
-        // 顺便添加一个位移动画
-        CardView cardView = findViewById(R.id.FloatButton_MeishiWechat_Container);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(
-                cardView,
-                View.TRANSLATION_X,
-                550f, 0f // 从1000px移动到0px
-        );
-        animator.setDuration(800);
-        animator.start();
-
         // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
     @Override
@@ -337,28 +326,6 @@ public class MeishiWechatActivity extends BaseActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
-    }
-
-    /**
-     * 在onResume阶段设置按压反馈动画
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 添加按压动画
-        boolean isPressFeedbackAnimation;
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            pressFeedbackAnimationDelay = 200;
-            isPressFeedbackAnimation = true;
-        } else {
-            pressFeedbackAnimationDelay = 0;
-            isPressFeedbackAnimation = false;
-        }
-        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
     }
 
     @Override
