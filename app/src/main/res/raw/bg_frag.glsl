@@ -1,10 +1,4 @@
 uniform vec2 uResolution;
-uniform shader uTex;
-uniform shader uTexBitmap;
-uniform vec2 uTexWH;
-//uniform shader uPerlinTex;
-
-// 新版参数
 uniform float uAnimTime;
 uniform vec4 uBound;
 uniform float uTranslateY;
@@ -112,52 +106,23 @@ float perlin(vec2 x) {
     return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
 }
 
-vec4 srcOver(vec4 src, vec4 dst){
-    return src + dst * (1.0 - src.a);
-}
-
-vec4 blendSrcOver(vec4 src, vec4 dst) {
-    if (src.a == 0.0) {
-        return dst;
-    }
-
-    float srcAlpha = src.a;
-    float dstAlpha = dst.a * (1.0 - srcAlpha);
-    float outAlpha = srcAlpha + dstAlpha;
-
-    if (outAlpha == 0.0) {
-        return vec4(0, 0, 0, 0);
-    }
-
-    vec4 outColor = (src * srcAlpha + dst * dstAlpha) / outAlpha;
-    return vec4(outColor.rgb, outAlpha);
-}
-
 float gradientNoise(in vec2 uv)
 {
     return fract(52.9829189 * fract(dot(uv, vec2(0.06711056, 0.00583715))));
 }
 
-vec4 main(vec2 fragCoord){
-
-    vec2 vUv = fragCoord/uResolution;
-    vUv.y = 1.0-vUv.y;
+vec4 main(vec2 fragCoord) {
+    vec2 vUv = fragCoord / uResolution;
+    vUv.y = 1.0 - vUv.y;
     vec2 uv = vUv;
     uv -= vec2(0., uTranslateY);
-
     uv.xy -= uBound.xy;
     uv.xy /= uBound.zw;
 
-    vec3 hsv;
-
-//    vec4 color = vec4(1, 1, 1, 0.);
     vec4 color = vec4(0.0);
-
     float noiseValue = perlin(vUv * uNoiseScale + vec2(-uAnimTime, -uAnimTime));
-//    float noiseValue = uPerlinTex.eval(vUv * vec2(128.0) + vec2(-uAnimTime, -uAnimTime)*50.0).r;
 
-    // draw circles
-    for (int i = 0; i < 4; i++){
+    for (int i = 0; i < 4; i++) {
         vec4 pointColor = uColors[i];
         pointColor.rgb *= pointColor.a;
         vec2 point = uPoints[i].xy;
@@ -168,59 +133,22 @@ vec4 main(vec2 fragCoord){
 
         float d = distance(uv, point);
         float pct = smoothstep(rad, 0., d);
-        //float pct = smoothstep(rad, rad - 0.01, d);
-
-        // color = blendSrcOver(color, pointColor);
-        // color = blendSrcOver(pointColor, color);
 
         color.rgb = mix(color.rgb, pointColor.rgb, pct);
-
-        // color.a += (1. - color.a) * pointColor.a;
         color.a = mix(color.a, pointColor.a, pct);
     }
 
     float oppositeNoise = smoothstep(0., 1., noiseValue);
-    color.rgb /= color.a;
-    hsv = rgb2hsv(color.rgb);
+    color.rgb /= color.a; // 避免除以零？可能需要防护，但原始代码如此
+    vec3 hsv = rgb2hsv(color.rgb);
     hsv.y = mix(hsv.y, 0.0, oppositeNoise * uSaturateOffset);
-//    hsv.y += oppositeNoise * uSaturateOffset;
     color.rgb = hsv2rgb(hsv);
 
     color.rgb += oppositeNoise * uLightOffset;
-//    color.rgb = mix(color.rgb, min(color.rgb + oppositeNoise * uLightOffset, vec3(1.)), oppositeNoise);
-    // color.a += noiseValue * uAlphaOffset;
-
     color.a = clamp(color.a, 0., 1.);
     color.a *= uAlphaMulti;
 
-    vec4 texColor = uTexBitmap.eval(vec2(vUv.x, 1.0 - vUv.y)*uTexWH);
-   vec4 uiColor = uTex.eval(vec2(vUv.x, 1.0 - vUv.y)*uResolution);
-
-    vec4 fragColor;
-
-    // 显示uBound区域
-    //float debugColor = 1.;
-    //debugColor *= step(0., uv.x);
-    //debugColor *= step(0., uv.y);
-    //debugColor *= step(uv.x, 1.);
-    //debugColor *= step(uv.y, 1.);
-    //color = mix(color, vec4(1., 0., 0., 1.), debugColor * 0.5);
-
     color += (10.0 / 255.0) * gradientNoise(fragCoord.xy) - (5.0 / 255.0);
 
-    if (uiColor.a < 0.01) {
-        fragColor = color;
-    } else {
-        fragColor = uiColor;
-    }
-
-    //        return vec4(0.0);
-    //        return vec4(vUv,0.0,1.0);
-    //        return vec4(abs(sin(uAnimTime)).rrr, 1.0);
-    //            return texColor;
-//    return vec4(noiseValue.rrr,1.0);
-    return vec4(fragColor.rgb*fragColor.a, fragColor.a);
-    //color += (10.0 / 255.0) * gradientNoise(fragCoord.xy) - (5.0 / 255.0);
-    color += (1.0 / 255.0) * gradientNoise(fragCoord.xy) - (0.5 / 255.0);
-    return vec4(color.rgb*color.a, color.a);
+    return vec4(color.rgb * color.a, color.a);
 }
