@@ -6,10 +6,13 @@
     <color name="splash_color">@color/material_dynamic_primary100</color>
 
     <!--Blur叠加色-->
-    <color name="blur_overlay_color">#40ffffff</color>
+    <color name="blur_overlay_color">#3FFFFFFF</color>
 
     <!--底栏和按钮描边颜色-->
-    <color name="bottom_navigation_view_stroke_color">#40ffffff</color>
+    <color name="bottom_navigation_view_stroke_color">#3FFFFFFF</color>
+
+    <!--动态流光背景上的卡片颜色和文字颜色-->
+    <color name="card_background_color_effect">#1FFFFFFF</color>
 
     <!--宫墙-->
     <color name="md_red_gongqiang_primary">#904B3C</color>

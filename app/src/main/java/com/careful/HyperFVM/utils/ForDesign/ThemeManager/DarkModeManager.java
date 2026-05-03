@@ -1,7 +1,7 @@
 package com.careful.HyperFVM.utils.ForDesign.ThemeManager;
 
 import android.app.Activity;
-import android.util.Log;
+import android.content.Context;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -35,5 +35,16 @@ public class DarkModeManager {
                     break;
             }
         }
+    }
+
+    /**
+     * 获取系统的深色模式
+     * @param context 上下文
+     * @return 深色模式返回true，浅色模式返回false
+     */
+    public static boolean isDarkTheme(Context context) {
+        int nightMode = context.getResources().getConfiguration().uiMode
+                & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+        return nightMode == android.content.res.Configuration.UI_MODE_NIGHT_YES;
     }
 }

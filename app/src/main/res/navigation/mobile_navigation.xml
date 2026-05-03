@@ -8,11 +8,11 @@
         android:id="@+id/navigation_data_station"
         android:name="com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment"
         android:label="@string/top_bar_data_center"
-        tools:layout="@layout/fragment_data_center_shadow" />
+        tools:layout="@layout/fragment_data_center" />
 
     <fragment
         android:id="@+id/navigation_about_app"
         android:name="com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment"
         android:label="@string/top_bar_about_app"
-        tools:layout="@layout/fragment_about_app_shadow" />
+        tools:layout="@layout/fragment_about_app" />
 </navigation>

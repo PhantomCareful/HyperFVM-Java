@@ -2,6 +2,7 @@ package com.careful.HyperFVM;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.careful.HyperFVM.Fragments.AboutApp.AboutAppEffectFragment;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -126,8 +128,11 @@ public class MainActivity extends BaseActivity {
 
             // 添加Fragment
             viewPagerAdapter.addFragment(new DataCenterFragment(), getResources().getString(R.string.top_bar_data_center));
-            viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                viewPagerAdapter.addFragment(new AboutAppEffectFragment(), "");
+            } else {
+                viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));
+            }
             viewPager.setAdapter(viewPagerAdapter);
 
             // 禁用预加载相邻页面（可选，减少内存使用）
@@ -194,6 +199,11 @@ public class MainActivity extends BaseActivity {
         if (position >= 0 && position < viewPagerAdapter.getItemCount()) {
             CharSequence title = viewPagerAdapter.getPageTitle(position);
             if (title != null) {
+                if (position == 1 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    findViewById(R.id.status_bar_gradient).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.status_bar_gradient).setVisibility(View.VISIBLE);
+                }
                 setTopAppBarTitle(String.valueOf(title));
             }
         }
