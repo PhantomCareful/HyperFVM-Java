@@ -1,6 +1,5 @@
 package com.careful.HyperFVM.Activities;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
@@ -18,7 +17,6 @@ import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -35,8 +33,6 @@ public class TodayLuckyActivity extends BaseActivity {
     private AnimatedImageDrawable animatedDrawable;
     private Button button;
     private boolean isPlaying;
-
-    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +141,7 @@ public class TodayLuckyActivity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
     @Override
@@ -174,20 +170,7 @@ public class TodayLuckyActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         // 添加按压动画
-        try (DBHelper dbHelper = new DBHelper(this)) {
-            // 添加按压动画
-            boolean isPressFeedbackAnimation;
-            if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-                pressFeedbackAnimationDelay = 200;
-                isPressFeedbackAnimation = true;
-            } else {
-                pressFeedbackAnimationDelay = 0;
-                isPressFeedbackAnimation = false;
-            }
-            findViewById(R.id.Button_ControlGif).setOnTouchListener((v, event) ->
-                    setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-            findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
-                    setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-        }
+        findViewById(R.id.Button_ControlGif).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 }

@@ -283,8 +283,6 @@
     <string name="label_settings_switch_card_data_index">防御卡全能数据库</string>
     <string name="label_settings_switch_card_data_auxiliary_list">增幅卡名单</string>
     <string name="label_settings_switch_data_image_viewer">数据图查看器</string>
-    <string name="title_settings_animation">动画</string>
-    <string name="label_settings_switch_is_press_feedback_animation">按压反馈动画</string>
     <string name="title_settings_safety">安全</string>
     <string name="label_settings_switch_biometric_auth">启用设备生物认证</string>
     <string name="label_settings_biometric_auth_description">⭐开启后，进入温馨礼包链接管理界面前需要进行指纹认证。</string>

@@ -1,7 +1,5 @@
 package com.careful.HyperFVM.Activities.DetailCardData;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
-import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
 
 import android.annotation.SuppressLint;
@@ -26,7 +24,6 @@ import androidx.annotation.NonNull;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -37,8 +34,6 @@ public class CardData_2_Activity extends BaseActivity {
 
     private TransitionSet transition;
     private LinearLayout container;
-
-    private int pressFeedbackAnimationDelay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -407,27 +402,7 @@ public class CardData_2_Activity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
-    }
-
-    /**
-     * 在onResume阶段设置按压反馈动画
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 添加按压动画
-        boolean isPressFeedbackAnimation;
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            pressFeedbackAnimationDelay = 200;
-            isPressFeedbackAnimation = true;
-        } else {
-            pressFeedbackAnimationDelay = 0;
-            isPressFeedbackAnimation = false;
-        }
-        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
     @Override

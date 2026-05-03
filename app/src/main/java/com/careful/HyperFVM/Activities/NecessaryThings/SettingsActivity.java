@@ -1,7 +1,5 @@
 package com.careful.HyperFVM.Activities.NecessaryThings;
 
-import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,7 +15,6 @@ import androidx.core.content.ContextCompat;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -28,7 +25,6 @@ import com.google.android.material.materialswitch.MaterialSwitch;
 public class SettingsActivity extends BaseActivity {
 
     private DBHelper dbHelper;
-    private int pressFeedbackAnimationDelay;
 
     private static final String CONTENT_IS_DYNAMIC_COLOR = "主题-是否动态取色";
     private static final String CONTENT_APP_THEME = "主题-自定义主题色";
@@ -49,8 +45,6 @@ public class SettingsActivity extends BaseActivity {
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
     public static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
-
-    public static final String CONTENT_IS_PRESS_FEEDBACK_ANIMATION = "按压反馈动画";
 
     public static final String CONTENT_IS_BIOMETRIC_AUTH = "安全-生物认证";
 
@@ -208,10 +202,6 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch.setChecked(toastIsVisibleCardDataAuxiliaryList);
         materialSwitch = findViewById(R.id.Switch_isVisible_DataImageViewer);
         materialSwitch.setChecked(toastIsVisibleDataImageViewer);
-        // 按压反馈动画开关
-        boolean isPressFeedbackAnimation = dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION);
-        materialSwitch = findViewById(R.id.Switch_isPressFeedbackAnimation);
-        materialSwitch.setChecked(isPressFeedbackAnimation);
         // 生物认证开关
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
         if (BiometricAuthHelper.isBiometricAvailable(this)) {
@@ -266,10 +256,6 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_isVisible_DataImageViewer);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER, isChecked ? "true" : "false"));
-        // 按压反馈动画开关
-        materialSwitch = findViewById(R.id.Switch_isPressFeedbackAnimation);
-        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
-                dbHelper.updateSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION, isChecked ? "true" : "false"));
         // 生物认证开关
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
         MaterialSwitch finalMaterialSwitch = materialSwitch;
@@ -300,32 +286,16 @@ public class SettingsActivity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
     /**
-     * 在onResume阶段：
-     * 1. 设置按压反馈动画
-     * 2. 检查通知权限并实时更新
+     * 在onResume阶段：检查通知权限并实时更新
      */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onResume() {
         super.onResume();
-        boolean isPressFeedbackAnimation;
-        try (DBHelper dbHelper = new DBHelper(this)) {
-            // 添加按压动画
-            if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-                pressFeedbackAnimationDelay = 200;
-                isPressFeedbackAnimation = true;
-            } else {
-                pressFeedbackAnimationDelay = 0;
-                isPressFeedbackAnimation = false;
-            }
-        }
-        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-
         // 检查通知权限授予状态
         checkPermissionStates();
     }

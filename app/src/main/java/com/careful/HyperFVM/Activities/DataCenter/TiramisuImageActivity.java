@@ -1,6 +1,5 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_PRESS_FEEDBACK_ANIMATION;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
@@ -20,7 +19,6 @@ import com.careful.HyperFVM.Activities.CheckUpdateActivity;
 import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -29,7 +27,6 @@ import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 public class TiramisuImageActivity extends BaseActivity {
-    private DBHelper dbHelper;
 
     private ImageResourcesUpdaterUtil imageUtil;
     private LinearLayout tools_tiramisu_image_container;
@@ -55,7 +52,6 @@ public class TiramisuImageActivity extends BaseActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
 
-        dbHelper = new DBHelper(this);
         imageUtil = ImageResourcesUpdaterUtil.getInstance();
         update_image_action = findViewById(R.id.update_image_resources_action);
         tools_tiramisu_image_container = findViewById(R.id.tools_tiramisu_image_container);
@@ -183,7 +179,7 @@ public class TiramisuImageActivity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> v.postDelayed(this::finish, pressFeedbackAnimationDelay));
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
     /**
@@ -200,17 +196,8 @@ public class TiramisuImageActivity extends BaseActivity {
         // 检查图片资源是否有更新
         getImageServerVersionAndCheckImageUpdate();
         // 添加按压动画
-        boolean isPressFeedbackAnimation;
-        if (dbHelper.getSettingValue(CONTENT_IS_PRESS_FEEDBACK_ANIMATION)) {
-            pressFeedbackAnimationDelay = 200;
-            isPressFeedbackAnimation = true;
-        } else {
-            pressFeedbackAnimationDelay = 0;
-            isPressFeedbackAnimation = false;
-        }
+        pressFeedbackAnimationDelay = 200;
         findViewById(R.id.update_image_resources_action).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
-        findViewById(R.id.FloatButton_Back_Container).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, isPressFeedbackAnimation ? PressFeedbackAnimationUtils.PressFeedbackType.SINK : PressFeedbackAnimationUtils.PressFeedbackType.NONE));
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 }
