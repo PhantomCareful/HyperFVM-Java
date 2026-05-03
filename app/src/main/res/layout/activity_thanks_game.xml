@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:id="@+id/CoContributorTeam_Container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:paddingTop="120dp"
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/thanks_list_container_fvm_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:id="@+id/thanks_list_container_fvm_top_Content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:padding="16dp"
+                        android:text="@string/label_thanks_list_fvm_top"
+                        android:textColor="?attr/TextViewColorOnImportantCardView"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/thanks_list_container_fvm_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- 第1个选项：陌路 -->
+                        <LinearLayout
+                            android:id="@+id/thanks_list_container_fvm_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/thanks_list_image_fvm_1"
+                                android:layout_gravity="start|center_vertical"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp"
+                                android:gravity="center_vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_1_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_1_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_bilibili"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <!-- 第2个选项：夏夜 -->
+                        <LinearLayout
+                            android:id="@+id/thanks_list_container_fvm_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/thanks_list_image_fvm_2"
+                                android:layout_gravity="start|center_vertical"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp"
+                                android:gravity="center_vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_2_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_2_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_bilibili"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <!-- 第3个选项：右撇三叶 -->
+                        <LinearLayout
+                            android:id="@+id/thanks_list_container_fvm_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/thanks_list_image_fvm_3"
+                                android:layout_gravity="start|center_vertical"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp"
+                                android:gravity="center_vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_3_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_3_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <!-- 第4个选项：就喝百事 -->
+                        <LinearLayout
+                            android:id="@+id/thanks_list_container_fvm_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/thanks_list_image_fvm_4"
+                                android:layout_gravity="start|center_vertical"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp"
+                                android:gravity="center_vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_4_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_4_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <!-- 第5个选项：哪片花火 -->
+                        <LinearLayout
+                            android:id="@+id/thanks_list_container_fvm_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/thanks_list_image_fvm_5"
+                                android:layout_gravity="start|center_vertical"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp"
+                                android:gravity="center_vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_5_1"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/label_thanks_list_fvm_5_2"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <!-- 状态栏渐变遮罩层 -->
+    <View
+        android:id="@+id/status_bar_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/status_bar_gradient_no_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/FloatButton_Back_Container"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        app:strokeWidth="0dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewButtonBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blurOverlayColor="@color/blur_overlay_color">
+
+            <ImageButton
+                android:id="@+id/FloatButton_Back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_arrow_left"
+                android:stateListAnimator="@null"
+                android:clickable="false"
+                app:elevation="0dp"
+                app:pressedTranslationZ="0dp"
+                app:rippleColor="@android:color/transparent"
+                tools:ignore="ContentDescription" />
+
+        </eightbitlab.com.blurview.BlurView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

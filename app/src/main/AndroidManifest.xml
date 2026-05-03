@@ -15,7 +15,8 @@
         android:name="android.permission.REQUEST_INSTALL_PACKAGES"
         tools:ignore="RequestInstallPackagesPolicy" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <uses-permission android:name="android.permission.BIND_QUICK_SETTINGS_TILE"
+    <uses-permission
+        android:name="android.permission.BIND_QUICK_SETTINGS_TILE"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -33,6 +34,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="upside_down_cake">
         <activity
+            android:name=".Activities.ThanksList.ThanksAppActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ThanksList.ThanksGameActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.DataCenter.CardDataIndexActivity"
             android:exported="false" />
         <activity
@@ -48,7 +55,7 @@
             android:name=".Activities.CheckUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.NecessaryThings.CoContributorTeamActivity"
+            android:name=".Activities.CoContributorTeamActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.NecessaryThings.UsingInstructionActivity"
@@ -110,9 +117,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".utils.ForDashboard.NotificationManager.NotificationDismissReceiver"
+        <receiver
+            android:name=".utils.ForDashboard.NotificationManager.NotificationDismissReceiver"
             android:exported="false" />
-
         <receiver
             android:name=".utils.ForDashboard.NotificationManager.TileTaskNotificationRefreshReceiver"
             android:exported="false">
@@ -123,9 +130,9 @@
 
         <service
             android:name=".Service.AutoTaskTileService"
+            android:exported="true"
             android:icon="@drawable/app_icon_tile"
             android:label="@string/app_name"
-            android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
