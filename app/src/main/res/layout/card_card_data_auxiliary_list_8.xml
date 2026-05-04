@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/card_card_data_index_4_2_11" />
+        <include layout="@layout/card_card_data_index_4_2_12" />
 
     </LinearLayout>
 

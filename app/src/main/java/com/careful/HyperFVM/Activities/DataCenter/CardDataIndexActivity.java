@@ -288,7 +288,8 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_4_2_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弗雷神使"));
         findViewById(R.id.card_data_index_4_2_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "加速榨汁机"));
         findViewById(R.id.card_data_index_4_2_10).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "魔杖蛇"));
-        findViewById(R.id.card_data_index_4_2_11).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎焱兔"));
+        findViewById(R.id.card_data_index_4_2_11).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "塔拉萨神使"));
+        findViewById(R.id.card_data_index_4_2_12).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎焱兔"));
         findViewById(R.id.card_data_index_4_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "11周年美食盒子"));
         findViewById(R.id.card_data_index_4_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "战旗马"));
         findViewById(R.id.card_data_index_5_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "小火炉"));
@@ -366,6 +367,7 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_9_4_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "金刚马"));
         findViewById(R.id.card_data_index_9_4_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
         findViewById(R.id.card_data_index_9_4_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蜜糖陷阱"));
+        findViewById(R.id.card_data_index_9_4_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
         findViewById(R.id.card_data_index_10_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "肥牛火锅"));
         findViewById(R.id.card_data_index_10_1_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "麻辣香锅"));
         findViewById(R.id.card_data_index_10_1_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "生煎锅"));
@@ -405,6 +407,7 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_11_1_16).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "激光汪"));
         findViewById(R.id.card_data_index_11_2_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "阴阳蛇"));
         findViewById(R.id.card_data_index_11_2_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "焚寂马"));
+        findViewById(R.id.card_data_index_11_2_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弹珠汽水"));
         findViewById(R.id.card_data_index_11_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "天蝎座精灵"));
         findViewById(R.id.card_data_index_11_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "工程猪"));
         findViewById(R.id.card_data_index_11_3_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "双刃蛇"));
@@ -416,6 +419,7 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_11_3_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赖皮蛇"));
         findViewById(R.id.card_data_index_11_3_10).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "迷你披萨炉"));
         findViewById(R.id.card_data_index_11_3_11).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
+        findViewById(R.id.card_data_index_11_3_12).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
         findViewById(R.id.card_data_index_11_4_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "焦油喷壶"));
         findViewById(R.id.card_data_index_11_4_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "喷壶汪"));
         findViewById(R.id.card_data_index_11_4_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "派派鸡"));
@@ -453,6 +457,7 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_12_2_19).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "麻辣串炸弹"));
         findViewById(R.id.card_data_index_12_2_20).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "竹筒粽子"));
         findViewById(R.id.card_data_index_12_2_21).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "娇娇虎"));
+        findViewById(R.id.card_data_index_12_2_22).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "泡泡鸡尾酒"));
         findViewById(R.id.card_data_index_12_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "辣椒粉"));
         findViewById(R.id.card_data_index_12_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "月蟾兔"));
         findViewById(R.id.card_data_index_12_3_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "爆炸汪"));
