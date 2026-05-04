@@ -4,9 +4,9 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -16,10 +16,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class UpdateLogHistoryActivity extends AppCompatActivity {
-
-    private TabLayout tabLayout;
-    private ViewPager2 viewPager2;
+public class UpdateLogHistoryActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +34,8 @@ public class UpdateLogHistoryActivity extends AppCompatActivity {
         //设置顶栏标题
         setTopAppBarTitle(getResources().getString(R.string.label_update_log_history));
 
-        tabLayout = findViewById(R.id.Tab_Layout);
-        viewPager2 = findViewById(R.id.View_Page2);
+        TabLayout tabLayout = findViewById(R.id.Tab_Layout);
+        ViewPager2 viewPager2 = findViewById(R.id.View_Page2);
 
         TabLayoutFragmentStateAdapter adapter = new TabLayoutFragmentStateAdapter(this);
         initTabLayoutFragments(adapter);

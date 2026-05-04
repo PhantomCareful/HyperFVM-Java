@@ -44,7 +44,7 @@ public class BaseActivity extends AppCompatActivity {
             // 仅当fontScale≠1.0时修改，避免不必要的操作
             if (dbHelper.getSettingValue(CONTENT_IS_FIXED_FONT_SCALE)) {
                 // 开关开启：强制固定为1.0
-                configuration.fontScale = 0.9f;
+                configuration.fontScale = 1.0f;
 
                 // Android 8.0以后，Configuration不可变，需要新建对象
                 configuration = new Configuration(configuration);

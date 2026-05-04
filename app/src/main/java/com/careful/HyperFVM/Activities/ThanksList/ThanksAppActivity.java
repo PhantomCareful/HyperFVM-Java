@@ -3,15 +3,15 @@ package com.careful.HyperFVM.Activities.ThanksList;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
-public class ThanksAppActivity extends AppCompatActivity {
+public class ThanksAppActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
