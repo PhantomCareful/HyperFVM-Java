@@ -2,12 +2,14 @@ package com.careful.HyperFVM.utils.ForCardData;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.widget.Toast;
 
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_1_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_2_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_3_Activity;
-import com.careful.HyperFVM.Activities.DetailCardData.CardData_4_Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData1Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData2Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData3Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData4Activity;
+import com.careful.HyperFVM.Activities.DetailCardData.CardData4EffectActivity;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
 public class CardDataHelper {
@@ -35,17 +37,25 @@ public class CardDataHelper {
         }
 
         // 跳转详情页
-        Intent intent = switch (tableName) {
-            case "card_data_1" ->
-                    new Intent(context, CardData_1_Activity.class);
-            case "card_data_2" ->
-                    new Intent(context, CardData_2_Activity.class);
-            case "card_data_3" ->
-                    new Intent(context, CardData_3_Activity.class);
-            case "card_data_4" ->
-                    new Intent(context, CardData_4_Activity.class);
-            default -> null;
-        };
+        Intent intent = null;
+        switch (tableName) {
+            case "card_data_1":
+                intent = new Intent(context, CardData1Activity.class);
+                break;
+            case "card_data_2":
+                intent = new Intent(context, CardData2Activity.class);
+                break;
+            case "card_data_3":
+                intent = new Intent(context, CardData3Activity.class);
+                break;
+            case "card_data_4":
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    intent = new Intent(context, CardData4EffectActivity.class);
+                } else {
+                    intent = new Intent(context, CardData4Activity.class);
+                }
+                break;
+        }
 
         if (intent != null) {
             intent.putExtra("name", baseName);

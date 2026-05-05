@@ -70,16 +70,19 @@
             android:name=".Activities.ImageViewerActivity.ImageViewerActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData_1_Activity"
+            android:name=".Activities.DetailCardData.CardData1Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData_2_Activity"
+            android:name=".Activities.DetailCardData.CardData2Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData_3_Activity"
+            android:name=".Activities.DetailCardData.CardData3Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData_4_Activity"
+            android:name=".Activities.DetailCardData.CardData4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.CardData4EffectActivity"
             android:exported="false" />
 
         <provider

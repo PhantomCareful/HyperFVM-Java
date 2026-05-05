@@ -18,7 +18,6 @@ public class DarkModeManager {
      */
     public static void applyDarkMode(Activity activity) {
         // 1. 获取数据库实例（使用Activity的Context）
-
         try (DBHelper dbHelper = new DBHelper(activity)) {
             // 2. 读取深色模式设置
             String darkMode = dbHelper.getSettingValueString(KEY_DARK_MODE);
@@ -42,9 +41,19 @@ public class DarkModeManager {
      * @param context 上下文
      * @return 深色模式返回true，浅色模式返回false
      */
-    public static boolean isDarkTheme(Context context) {
-        int nightMode = context.getResources().getConfiguration().uiMode
-                & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
-        return nightMode == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+    public static boolean isDarkMode(Context context) {
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            String darkMode = dbHelper.getSettingValueString(KEY_DARK_MODE);
+
+            return switch (darkMode) {
+                case "总是开启\uD83C\uDF1A" -> true;
+                case "总是关闭\uD83C\uDF1D" -> false;
+                default -> {
+                    int nightMode = context.getResources().getConfiguration().uiMode
+                            & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+                    yield nightMode == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+                }
+            };
+        }
     }
 }

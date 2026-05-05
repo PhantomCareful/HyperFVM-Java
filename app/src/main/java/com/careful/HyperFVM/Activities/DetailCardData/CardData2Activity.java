@@ -29,7 +29,7 @@ import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
-public class CardData_2_Activity extends BaseActivity {
+public class CardData2Activity extends BaseActivity {
     private DBHelper dbHelper;
 
     private TransitionSet transition;
@@ -378,13 +378,13 @@ public class CardData_2_Activity extends BaseActivity {
         // 跳转详情页
         Intent intent = switch (tableName) {
             case "card_data_1" ->
-                    new Intent(this, CardData_1_Activity.class);
+                    new Intent(this, CardData1Activity.class);
             case "card_data_2" ->
-                    new Intent(this, CardData_2_Activity.class);
+                    new Intent(this, CardData2Activity.class);
             case "card_data_3" ->
-                    new Intent(this, CardData_3_Activity.class);
+                    new Intent(this, CardData3Activity.class);
             case "card_data_4" ->
-                    new Intent(this, CardData_4_Activity.class);
+                    new Intent(this, CardData4Activity.class);
             default -> null;
         };
         if (intent != null) {
