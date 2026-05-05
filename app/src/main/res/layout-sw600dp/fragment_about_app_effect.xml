@@ -22,26 +22,18 @@
         android:clipChildren="false"
         android:clipToPadding="false">
 
-        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
-            android:id="@+id/ScrollViewAboutApp"
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scrollbars="none"
             android:clipChildren="false"
             android:clipToPadding="false">
 
             <LinearLayout
-                android:id="@+id/about_app_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="10dp"
-                android:paddingTop="120dp"
-                android:paddingBottom="150dp"
                 android:orientation="vertical"
-                android:clipChildren="false"
-                android:clipToPadding="false">
+                android:layout_marginTop="120dp">
 
                 <ImageView
                     android:id="@+id/about_app_icon"
@@ -72,152 +64,47 @@
                     android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface"/>
 
-                <TextView
+            </LinearLayout>
+
+            <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+                android:id="@+id/ScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:id="@+id/about_app_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginVertical="10dp"
-                    android:text="@string/title_about_app_check_update_1"
-                    android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="360dp"
+                    android:paddingBottom="150dp"
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    app:cardBackgroundColor="@color/card_background_color_effect"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:id="@+id/about_app_check_update_container"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dp"
-                        android:background="?attr/selectableItemBackground">
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="@string/title_about_app_check_update_1"
+                        android:textSize="15sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_arrow_up_circle"
-                            app:tint="?attr/colorOnSurface"
-                            tools:ignore="ContentDescription" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical"
-                            android:layout_marginStart="16dp">
-
-                            <TextView
-                                android:id="@+id/about_app_check_update_title_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/title_about_app_check_update_1"
-                                android:textColor="?attr/colorOnSurface"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/about_app_check_update_title_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/title_about_app_check_update_2"
-                                android:textColor="?attr/colorOnSurface"
-                                android:textSize="15sp" />
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/colorOnSurface"
-                            tools:ignore="ContentDescription" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_about_app_developer_name"
-                    android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    app:cardBackgroundColor="@color/card_background_color_effect"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="25dp"
+                        app:cardBackgroundColor="@color/card_background_color_effect"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
 
                         <LinearLayout
-                            android:id="@+id/about_app_developer_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:id="@+id/Image_View_Phantom_Careful"
-                                android:layout_width="50dp"
-                                android:layout_height="match_parent"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/phantom_careful"
-                                android:layout_gravity="start|center_vertical"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_developer_name_1"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_developer_name_2"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_github"
-                                app:tint="?attr/colorOnSurface"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/about_app_co_construction_team_container"
+                            android:id="@+id/about_app_check_update_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -227,7 +114,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/ic_account_group"
+                                android:src="@drawable/ic_arrow_up_circle"
                                 app:tint="?attr/colorOnSurface"
                                 tools:ignore="ContentDescription" />
 
@@ -240,17 +127,19 @@
                                 android:layout_marginStart="16dp">
 
                                 <TextView
+                                    android:id="@+id/about_app_check_update_title_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_co_construction_team_1"
+                                    android:text="@string/title_about_app_check_update_1"
                                     android:textColor="?attr/colorOnSurface"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/about_app_check_update_title_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_co_construction_team_2"
+                                    android:text="@string/title_about_app_check_update_2"
                                     android:textColor="?attr/colorOnSurface"
                                     android:textSize="15sp" />
 
@@ -265,147 +154,274 @@
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/about_app_title_thanks_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_about_app_thanks_list"
-                    android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/about_app_thanks_list_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    app:cardBackgroundColor="@color/card_background_color_effect"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_about_app_developer_name"
+                        android:textSize="15sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
-                        <!-- 游戏相关 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        app:cardBackgroundColor="@color/card_background_color_effect"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
                         <LinearLayout
-                            android:id="@+id/about_app_thanks_list_container_fvm"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:padding="16dp"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_account_multiple"
-                                app:tint="?attr/colorOnSurface"
-                                tools:ignore="ContentDescription" />
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
+                                android:id="@+id/about_app_developer_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="16dp"
+                                android:background="?attr/selectableItemBackground">
 
-                                <!-- 左侧文字 -->
-                                <TextView
+                                <ImageView
+                                    android:id="@+id/Image_View_Phantom_Careful"
+                                    android:layout_width="50dp"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/phantom_careful"
+                                    android:layout_gravity="start|center_vertical"
+                                    tools:ignore="ContentDescription" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_marginStart="16dp"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_developer_name_1"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_developer_name_2"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="15sp" />
+
+                                </LinearLayout>
+
+                                <ImageView
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_thanks_list_fvm_1"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_thanks_list_fvm_2"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textSize="15sp"/>
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_github"
+                                    app:tint="?attr/colorOnSurface"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnSurface"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <!-- App相关 -->
-                        <LinearLayout
-                            android:id="@+id/about_app_thanks_list_container_app"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:padding="16dp"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_github"
-                                app:tint="?attr/colorOnSurface"
-                                tools:ignore="ContentDescription" />
-
                             <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
+                                android:id="@+id/about_app_co_construction_team_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="16dp"
+                                android:background="?attr/selectableItemBackground">
 
-                                <!-- 左侧文字 -->
-                                <TextView
+                                <ImageView
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_thanks_list_app_1"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"/>
-                                <TextView
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_account_group"
+                                    app:tint="?attr/colorOnSurface"
+                                    tools:ignore="ContentDescription" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginStart="16dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_co_construction_team_1"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_co_construction_team_2"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="15sp" />
+
+                                </LinearLayout>
+
+                                <ImageView
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_about_app_thanks_list_app_2"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textSize="15sp"/>
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnSurface"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/colorOnSurface"
-                                tools:ignore="ContentDescription" />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/about_app_title_thanks_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_about_app_thanks_list"
+                        android:textSize="15sp"
+                        android:textColor="?attr/colorOnSurface"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/about_app_thanks_list_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        app:cardBackgroundColor="@color/card_background_color_effect"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!-- 游戏相关 -->
+                            <LinearLayout
+                                android:id="@+id/about_app_thanks_list_container_fvm"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:padding="16dp"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_account_multiple"
+                                    app:tint="?attr/colorOnSurface"
+                                    tools:ignore="ContentDescription" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_marginStart="16dp"
+                                    android:gravity="center_vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_thanks_list_fvm_1"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_thanks_list_fvm_2"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="15sp"/>
+
+                                </LinearLayout>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnSurface"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
+                            <!-- App相关 -->
+                            <LinearLayout
+                                android:id="@+id/about_app_thanks_list_container_app"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:padding="16dp"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_github"
+                                    app:tint="?attr/colorOnSurface"
+                                    tools:ignore="ContentDescription" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_marginStart="16dp"
+                                    android:gravity="center_vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_thanks_list_app_1"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/label_about_app_thanks_list_app_2"
+                                        android:textColor="?attr/colorOnSurface"
+                                        android:textSize="15sp"/>
+
+                                </LinearLayout>
+
+                                <!-- 右侧箭头 -->
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/ic_chevron_right"
+                                    app:tint="?attr/colorOnSurface"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
-            </LinearLayout>
+            </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
 
-        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+        </FrameLayout>
 
         <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
             android:layout_width="0dp"

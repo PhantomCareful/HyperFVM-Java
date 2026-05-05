@@ -53,7 +53,7 @@
     </LinearLayout>
 
     <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
-        android:id="@+id/ScrollViewAboutApp"
+        android:id="@+id/ScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"

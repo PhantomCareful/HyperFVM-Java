@@ -28,7 +28,6 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundI
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
-import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -213,7 +212,7 @@ public class AboutAppEffectFragment extends Fragment {
         appVersionMaxScroll = DensityUtil.dpToPx(requireContext(), 50);
 
         // 监听滚动
-        if (scrollView instanceof SpringBackScrollView && SmallestWidthUtil.getSmallestWidthDp() < 600) {
+        if (scrollView instanceof SpringBackScrollView) {
             scrollView.post(() -> {
                 scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
                 // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
