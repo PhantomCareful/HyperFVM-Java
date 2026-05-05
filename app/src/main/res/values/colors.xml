@@ -12,7 +12,7 @@
     <color name="bottom_navigation_view_stroke_color">#3FFFFFFF</color>
 
     <!--动态流光背景上的卡片颜色和文字颜色-->
-    <color name="card_background_color_effect">#1FFFFFFF</color>
+    <color name="card_background_color_effect">#2FFFFFFF</color>
 
     <!--宫墙-->
     <color name="md_red_gongqiang_primary">#904B3C</color>
