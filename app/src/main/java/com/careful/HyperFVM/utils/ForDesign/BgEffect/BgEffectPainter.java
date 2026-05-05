@@ -32,7 +32,7 @@ public class BgEffectPainter {
         @Language("AGSL") String shaderSource = loadShader(context.getResources(), R.raw.bg_frag);
         mBgRuntimeShader = new RuntimeShader(shaderSource);
         mBgEffectDataManager = new BgEffectDataManager();
-        mBgEffectData = mBgEffectDataManager.getData(BgEffectController.DeviceType.PHONE, BgEffectController.ThemeMode.LIGHT);
+        mBgEffectData = mBgEffectDataManager.getAboutAppColorData(BgEffectController.DeviceType.PHONE, BgEffectController.ThemeMode.LIGHT);
         applyData(mBgEffectData);
     }
 
@@ -55,8 +55,16 @@ public class BgEffectPainter {
         mBgRuntimeShader.setFloatUniform("uResolution", width, height);
     }
 
-    public void setType(BgEffectController.DeviceType deviceType, BgEffectController.ThemeMode themeMode, float[] uBound) {
-        mBgEffectData = mBgEffectDataManager.getData(deviceType, themeMode);
+    public void setAboutAppColorType(BgEffectController.DeviceType deviceType, BgEffectController.ThemeMode themeMode, float[] uBound) {
+        mBgEffectData = mBgEffectDataManager.getAboutAppColorData(deviceType, themeMode);
+        uAnimTime = 0.0f;
+        gradientSpeed = mBgEffectData.gradientSpeedRest;
+        applyData(mBgEffectData);
+        mBgRuntimeShader.setFloatUniform("uBound", uBound);
+    }
+
+    public void setDetailCardDataColorType(BgEffectController.ThemeMode themeMode, float[] uBound) {
+        mBgEffectData = mBgEffectDataManager.getDetailCardDataColorData(themeMode);
         uAnimTime = 0.0f;
         gradientSpeed = mBgEffectData.gradientSpeedRest;
         applyData(mBgEffectData);

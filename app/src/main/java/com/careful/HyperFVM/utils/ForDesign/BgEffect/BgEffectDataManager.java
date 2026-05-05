@@ -15,6 +15,9 @@ public class BgEffectDataManager {
     private final BgEffectData mPadLightData;
     private final BgEffectData mPadDarkData;
 
+    private final BgEffectData mRMBLightData;
+    private final BgEffectData mRMBDarkData;
+
     public static class BgEffectData {
         public float uTranslateY;
         public float[] uPoints;
@@ -125,13 +128,83 @@ public class BgEffectDataManager {
         mPadDarkData.gradientColors1 = new float[]{0.66f, 0.26f, 0.62f, 0.4f, 0.06f, 0.25f, 0.84f, 0.5f, 0.0f, 0.64f, 0.96f, 0.5f, 0.14f, 0.18f, 0.55f, 0.5f};
         mPadDarkData.gradientColors2 = new float[]{0.07f, 0.15f, 0.79f, 0.5f, 0.11f, 0.16f, 0.83f, 0.5f, 0.06f, 0.25f, 0.84f, 0.5f, 0.66f, 0.26f, 0.62f, 0.5f};
         mPadDarkData.gradientColors3 = new float[]{0.58f, 0.3f, 0.74f, 0.5f, 0.11f, 0.16f, 0.83f, 0.5f, 0.66f, 0.26f, 0.62f, 0.5f, 0.27f, 0.18f, 0.6f, 0.6f};
+
+        // 自建主题：20/50/100元的人民币配色
+        // 浅色主题
+        mRMBLightData = new BgEffectData();
+        mRMBLightData.uTranslateY = 0.0f;
+        mRMBLightData.uPoints = new float[]{0.8f, 0.2f, 1.0f, 0.8f, 0.9f, 1.0f, 0.2f, 0.9f, 1.0f, 0.2f, 0.2f, 1.0f};
+        mRMBLightData.uAlphaMulti = 1.0f;
+        mRMBLightData.uNoiseScale = 1.5f;
+        mRMBLightData.uPointOffset = 0.2f;
+        mRMBLightData.uPointRadiusMulti = 1.0f;
+        mRMBLightData.uSaturateOffset = 0.2f;
+        mRMBLightData.uLightOffset = 0.1f;
+        mRMBLightData.uAlphaOffset = 0.5f;
+        mRMBLightData.uShadowColorMulti = 0.3f;
+        mRMBLightData.uShadowColorOffset = 0.3f;
+        mRMBLightData.uShadowNoiseScale = 5.0f;
+        mRMBLightData.uShadowOffset = 0.01f;
+        mRMBLightData.colorInterpPeriod = 5.0f;
+        mRMBLightData.gradientSpeedChange = 1.6f;
+        mRMBLightData.gradientSpeedRest = 1.05f;
+        mRMBLightData.gradientColors1 = new float[]{
+                0.8f, 0.286f, 0.408f, 1.0f,
+                0.925f, 0.678f, 0.714f, 1.0f,
+                0.957f, 0.475f, 0.416f, 1.0f,
+                0.824f, 0.784f, 0.675f, 1.0f
+        };
+        mRMBLightData.gradientColors2 = new float[]{
+                0.522f, 0.392f, 0.255f, 1.0f,
+                0.984f, 0.765f, 0.533f, 1.0f,
+                0.604f, 0.792f, 0.682f, 1.0f,
+                0.929f, 0.804f, 0.714f, 1.0f
+        };
+        mRMBLightData.gradientColors3 = new float[]{
+                0.318f, 0.518f, 0.388f, 1.0f,
+                0.655f, 0.827f, 0.698f, 1.0f,
+                0.796f, 0.949f, 0.878f, 1.0f,
+                0.824f, 0.784f, 0.675f, 1.0f
+        };
+
+        // 深色主题
+        mRMBDarkData = new BgEffectData();
+        mRMBDarkData.uTranslateY = 0.0f;
+        mRMBDarkData.uPoints = new float[]{0.8f, 0.2f, 1.0f, 0.8f, 0.9f, 1.0f, 0.2f, 0.9f, 1.0f, 0.2f, 0.2f, 1.0f};
+        mRMBDarkData.uAlphaMulti = 1.0f;
+        mRMBDarkData.uNoiseScale = 1.5f;
+        mRMBDarkData.uPointOffset = 0.4f;
+        mRMBDarkData.uPointRadiusMulti = 1.0f;
+        mRMBDarkData.uSaturateOffset = 0.17f;
+        mRMBDarkData.uLightOffset = 0.0f;
+        mRMBDarkData.uAlphaOffset = 0.5f;
+        mRMBDarkData.uShadowColorMulti = 0.3f;
+        mRMBDarkData.uShadowColorOffset = 0.3f;
+        mRMBDarkData.uShadowNoiseScale = 5.0f;
+        mRMBDarkData.uShadowOffset = 0.01f;
+        mRMBDarkData.colorInterpPeriod = 8.0f;
+        mRMBDarkData.gradientSpeedChange = 1.0f;
+        mRMBDarkData.gradientSpeedRest = 1.0f;
+        mRMBDarkData.gradientColors1 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
+        mRMBDarkData.gradientColors2 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
+        mRMBDarkData.gradientColors3 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
     }
 
-    public BgEffectData getData(BgEffectController.DeviceType deviceType, BgEffectController.ThemeMode themeMode) {
+    public BgEffectData getAboutAppColorData(BgEffectController.DeviceType deviceType, BgEffectController.ThemeMode themeMode) {
         if (themeMode == LIGHT) {
             return deviceType == PHONE ? mPhoneLightData : mPadLightData;
         } else {
             return deviceType == PHONE ? mPhoneDarkData : mPadDarkData;
         }
+    }
+
+    public BgEffectData getDetailCardDataColorData(BgEffectController.ThemeMode themeMode) {
+        return themeMode == LIGHT ? mRMBLightData : mRMBDarkData;
     }
 }

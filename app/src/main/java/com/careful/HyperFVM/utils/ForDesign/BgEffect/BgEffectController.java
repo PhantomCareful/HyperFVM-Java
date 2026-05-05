@@ -6,6 +6,9 @@ import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
+import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
+import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
+
 @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
 public class BgEffectController implements Runnable {
     public enum DeviceType { PHONE, TABLET }
@@ -18,27 +21,47 @@ public class BgEffectController implements Runnable {
     private float mTimeDirection = 1.0f;
     private float mDeltaTime;
 
-    private DeviceType mDeviceType = DeviceType.PHONE;
-    private ThemeMode mThemeMode = ThemeMode.LIGHT;
+    private DeviceType mDeviceType;
+    private ThemeMode mThemeMode;
     private final float[] mBound = {0.0f, 0.0f, 1.0f, 1.0f}; // 全屏
 
     public BgEffectController(View target) {
         mTarget = target;
     }
 
-    public void setType(Context context, DeviceType deviceType, ThemeMode themeMode) {
-        mDeviceType = deviceType;
-        mThemeMode = themeMode;
-        // 不再需要计算 bound，直接全屏
+    public void setAboutAppColorType(Context context) {
+        mDeviceType = SmallestWidthUtil.getSmallestWidthDp() < 600 ? DeviceType.PHONE : DeviceType.TABLET;
+        mThemeMode = DarkModeManager.isDarkMode(context) ? BgEffectController.ThemeMode.DARK : BgEffectController.ThemeMode.LIGHT;
+
+        // 不需要计算 bound，直接全屏
         if (mBgEffectPainter != null) {
-            mBgEffectPainter.setType(deviceType, themeMode, mBound);
+            mBgEffectPainter.setAboutAppColorType(mDeviceType, mThemeMode, mBound);
         }
     }
 
-    public void start() {
+    public void setDetailCardDataColorType(Context context) {
+        mThemeMode = DarkModeManager.isDarkMode(context) ? BgEffectController.ThemeMode.DARK : BgEffectController.ThemeMode.LIGHT;
+
+        // 不需要计算 bound，直接全屏
+        if (mBgEffectPainter != null) {
+            mBgEffectPainter.setDetailCardDataColorType(mThemeMode, mBound);
+        }
+    }
+
+    public void startAboutAppBgEffect() {
         if (mBgEffectPainter == null) {
             mBgEffectPainter = new BgEffectPainter(mTarget.getContext());
-            mBgEffectPainter.setType(mDeviceType, mThemeMode, mBound);
+            mBgEffectPainter.setAboutAppColorType(mDeviceType, mThemeMode, mBound);
+            mLastGlobalTime = System.nanoTime();
+            resetTime();
+            mTarget.postOnAnimation(this);
+        }
+    }
+
+    public void startDetailCardDataBgEffect() {
+        if (mBgEffectPainter == null) {
+            mBgEffectPainter = new BgEffectPainter(mTarget.getContext());
+            mBgEffectPainter.setDetailCardDataColorType(mThemeMode, mBound);
             mLastGlobalTime = System.nanoTime();
             resetTime();
             mTarget.postOnAnimation(this);
