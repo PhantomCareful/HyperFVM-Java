@@ -25,16 +25,31 @@ import androidx.annotation.NonNull;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
+import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 public class CardData4Activity extends BaseActivity {
     private DBHelper dbHelper;
 
     private TransitionSet transition;
-    private LinearLayout container;
+    private LinearLayout bigImageContainer;
+
+    private LinearLayout cardDataContainer;
+
+    private View Image_View_Card_Big_1_Container;
+    private View Image_View_Card_Big_2_Container;
+    private View Image_View_Card_Big_3_Container;
+
+    private int savedScrollY = 0;                              // 用于保存/恢复的滚动位置
+
+    private int imageViewCardBig1ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
+    private int imageViewCardBig2ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
+    private int imageViewCardBig3ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +64,10 @@ public class CardData4Activity extends BaseActivity {
         }
         setContentView(R.layout.activity_card_data_4);
 
-        // 初始化动画效果
-        transition = new TransitionSet();
-        transition.addTransition(new Fade()); // 淡入淡出
-        transition.setDuration(300); // 动画时长300ms
-        container = findViewById(R.id.card_data_container);
+        // 恢复之前保存的滚动位置
+        if (savedInstanceState != null) {
+            savedScrollY = savedInstanceState.getInt("scrollY", 0);
+        }
 
         // 获取传入的参数
         String cardName = getIntent().getStringExtra("name");
@@ -65,10 +79,11 @@ public class CardData4Activity extends BaseActivity {
             return;
         }
 
-        setupBlurEffect();
-
         // 初始化数据库工具
         dbHelper = new DBHelper(this);
+
+        // 初始化各种装饰效果
+        initDecoration();
 
         // 查询卡片数据并显示
         queryAndShowCardData(tableName, cardName);
@@ -96,26 +111,7 @@ public class CardData4Activity extends BaseActivity {
             int imageResId;
             // 先判断这张卡是否只有不转，如果是的话，启用Image_View_Card_Big_1_1_Container
             if (cursor.getString(cursor.getColumnIndex("image_id_1")).equals("无")) {
-                // 这张卡只有不转，启用Image_View_Card_Big_1_1_Container
-                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_1_1);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0")) + "_big";
-                // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        getPackageName()
-                );
-                ImageViewCardBig.setImageResource(imageResId);
-                setTextToView(R.id.card_name_1_1, cardName0);
-                exportImage(ImageViewCardBig, cardName, cardName0, "不转形态, 大");
-
-                // 隐藏剩下的组件
-                findViewById(R.id.Image_View_Card_Big_1_2_Container).setVisibility(View.GONE);
-                findViewById(R.id.Text_View_Card_Big_1_2_Container).setVisibility(View.GONE);
-                findViewById(R.id.Image_View_Card_Big_3_Container).setVisibility(View.GONE);
-                findViewById(R.id.card_name_3).setVisibility(View.GONE);
-            } else {
-                // 这张卡有一转，启用Image_View_Card_Big_1_2_Container
+                // 这张卡只有不转，启用Image_View_Card_Big_1_Container
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_1);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0")) + "_big";
                 // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
@@ -128,7 +124,32 @@ public class CardData4Activity extends BaseActivity {
                 setTextToView(R.id.card_name_1, cardName0);
                 exportImage(ImageViewCardBig, cardName, cardName0, "不转形态, 大");
 
-                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2);
+                // 隐藏剩下的组件
+                findViewById(R.id.Image_View_Card_Big_2_1_Container).setVisibility(View.GONE);
+                findViewById(R.id.Image_View_Card_Big_2_2_Container).setVisibility(View.GONE);
+                findViewById(R.id.Image_View_Card_Big_3_Container).setVisibility(View.GONE);
+
+                // 调整容器顶部距离
+                cardDataContainer.setPadding(
+                        cardDataContainer.getPaddingLeft(),
+                        DensityUtil.dpToPx(this, 320),
+                        cardDataContainer.getPaddingRight(),
+                        cardDataContainer.getPaddingBottom());
+            } else {
+                // 这张卡有一转，启用Image_View_Card_Big_2_Container
+                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2_1);
+                imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0")) + "_big";
+                // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                imageResId = getResources().getIdentifier(
+                        imageIdStr,
+                        "drawable",
+                        getPackageName()
+                );
+                ImageViewCardBig.setImageResource(imageResId);
+                setTextToView(R.id.card_name_2_1, cardName0);
+                exportImage(ImageViewCardBig, cardName, cardName0, "不转形态, 大");
+
+                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2_2);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1")) + "_big";
                 // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
                 imageResId = getResources().getIdentifier(
@@ -137,12 +158,11 @@ public class CardData4Activity extends BaseActivity {
                         getPackageName()
                 );
                 ImageViewCardBig.setImageResource(imageResId);
-                setTextToView(R.id.card_name_2, cardName1);
+                setTextToView(R.id.card_name_2_2, cardName1);
                 exportImage(ImageViewCardBig, cardName, cardName1, "一转形态, 大");
 
-                // 隐藏Image_View_Card_Big_1_1_Container
-                findViewById(R.id.Image_View_Card_Big_1_1_Container).setVisibility(View.GONE);
-                findViewById(R.id.card_name_1_1).setVisibility(View.GONE);
+                // 隐藏Image_View_Card_Big_1_Container
+                findViewById(R.id.Image_View_Card_Big_1_Container).setVisibility(View.GONE);
 
                 // 再判断是否有二转
                 if (!cursor.getString(cursor.getColumnIndex("image_id_2")).equals("无")) {
@@ -158,10 +178,23 @@ public class CardData4Activity extends BaseActivity {
                     ImageViewCardBig.setImageResource(imageResId);
                     setTextToView(R.id.card_name_3, cardName2);
                     exportImage(ImageViewCardBig, cardName, cardName2, "二转形态, 大");
+
+                    // 调整容器顶部距离
+                    cardDataContainer.setPadding(
+                            cardDataContainer.getPaddingLeft(),
+                            DensityUtil.dpToPx(this, 460),
+                            cardDataContainer.getPaddingRight(),
+                            cardDataContainer.getPaddingBottom());
                 } else {
                     // 这张卡没有二转，隐藏Image_View_Card_Big_3_Container
                     findViewById(R.id.Image_View_Card_Big_3_Container).setVisibility(View.GONE);
-                    findViewById(R.id.card_name_3).setVisibility(View.GONE);
+
+                    // 调整容器顶部距离
+                    cardDataContainer.setPadding(
+                            cardDataContainer.getPaddingLeft(),
+                            DensityUtil.dpToPx(this, 320),
+                            cardDataContainer.getPaddingRight(),
+                            cardDataContainer.getPaddingBottom());
                 }
             }
 
@@ -183,7 +216,7 @@ public class CardData4Activity extends BaseActivity {
             String correspondingGoldenCardName = getStringFromCursor(cursor, "corresponding_golden_card_name");
             if (!correspondingGoldenCardName.equals("无")) {
                 LinearLayout correspondingCardContainer = (LinearLayout) LayoutInflater.from(this)
-                        .inflate(R.layout.card_card_data_corresponding_card, container, false);
+                        .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 // 绑定控件并设置内容
                 TextView correspondingCardName = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_name);
                 TextView correspondingCardContent = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_content);
@@ -225,7 +258,7 @@ public class CardData4Activity extends BaseActivity {
 
                     // 4. Inflate单个融合卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                     LinearLayout correspondingCardContainer = (LinearLayout) LayoutInflater.from(this)
-                            .inflate(R.layout.card_card_data_corresponding_card, container, false);
+                            .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
 
                     // 5. 绑定当前布局的子控件（必须从当前container查找，避免复用错误）
                     TextView correspondingCardName = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_name);
@@ -498,10 +531,10 @@ public class CardData4Activity extends BaseActivity {
 
         // 所有任务完成后，显示大图片
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            TransitionManager.beginDelayedTransition(container, transition);
-            findViewById(R.id.Image_View_Card_Big_1_1).setVisibility(View.VISIBLE);
+            TransitionManager.beginDelayedTransition(bigImageContainer, transition);
             findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
-            findViewById(R.id.Image_View_Card_Big_2).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_2_1).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_2_2).setVisibility(View.VISIBLE);
             findViewById(R.id.Image_View_Card_Big_3).setVisibility(View.VISIBLE);
         }, 500);
     }
@@ -557,13 +590,64 @@ public class CardData4Activity extends BaseActivity {
             case "card_data_3" ->
                     new Intent(this, CardData3Activity.class);
             case "card_data_4" ->
-                    new Intent(this, CardData4Activity.class);
+                    new Intent(this, CardData4EffectActivity.class);
             default -> null;
         };
         if (intent != null) {
             intent.putExtra("name", baseName);
             intent.putExtra("table", tableName);
             startActivity(intent);
+        }
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 初始化大图片的淡入动画
+        transition = new TransitionSet();
+        transition.addTransition(new Fade()); // 淡入淡出
+        transition.setDuration(300); // 动画时长300ms
+        bigImageContainer = findViewById(R.id.big_image_container);
+
+        cardDataContainer = findViewById(R.id.card_data_container);
+
+        // 添加模糊材质
+        setupBlurEffect();
+
+        // 获取需要渐隐的元素
+        Image_View_Card_Big_1_Container = findViewById(R.id.Image_View_Card_Big_1_Container);
+        Image_View_Card_Big_2_Container = findViewById(R.id.Image_View_Card_Big_2_Container);
+        Image_View_Card_Big_3_Container = findViewById(R.id.Image_View_Card_Big_3_Container);
+
+        // 获取滚动视图SpringBackScrollView
+        View scrollView = findViewById(R.id.ScrollView);
+
+        // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
+        imageViewCardBig1ContainerMaxScroll = DensityUtil.dpToPx(this, 50);
+        imageViewCardBig2ContainerMaxScroll = DensityUtil.dpToPx(this, 200);
+        imageViewCardBig3ContainerMaxScroll = DensityUtil.dpToPx(this, 50);
+
+        // 监听滚动
+        if (scrollView instanceof SpringBackScrollView) {
+            scrollView.post(() -> {
+                scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
+                // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
+                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_1_Container, savedScrollY, imageViewCardBig1ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_2_Container, savedScrollY, imageViewCardBig2ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_3_Container, savedScrollY, imageViewCardBig3ContainerMaxScroll);
+            });
+
+            scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                savedScrollY = scrollY;// 实时记录当前滚动位置
+                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_1_Container, scrollY, imageViewCardBig1ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_2_Container, scrollY, imageViewCardBig2ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_3_Container, scrollY, imageViewCardBig3ContainerMaxScroll);
+            });
         }
     }
 
@@ -583,5 +667,11 @@ public class CardData4Activity extends BaseActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("scrollY", savedScrollY);
     }
 }

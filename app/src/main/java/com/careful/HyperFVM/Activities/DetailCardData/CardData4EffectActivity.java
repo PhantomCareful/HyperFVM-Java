@@ -32,7 +32,6 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
-import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -139,7 +138,7 @@ public class CardData4EffectActivity extends BaseActivity {
                 // 调整容器顶部距离
                 cardDataContainer.setPadding(
                         cardDataContainer.getPaddingLeft(),
-                        SmallestWidthUtil.getSmallestWidthDp() < 600 ? DensityUtil.dpToPx(this, 360) : DensityUtil.dpToPx(this, 400),
+                        DensityUtil.dpToPx(this, 320),
                         cardDataContainer.getPaddingRight(),
                         cardDataContainer.getPaddingBottom());
             } else {
@@ -189,7 +188,7 @@ public class CardData4EffectActivity extends BaseActivity {
                     // 调整容器顶部距离
                     cardDataContainer.setPadding(
                             cardDataContainer.getPaddingLeft(),
-                            SmallestWidthUtil.getSmallestWidthDp() < 600 ? DensityUtil.dpToPx(this, 500) : DensityUtil.dpToPx(this, 540),
+                            DensityUtil.dpToPx(this, 460),
                             cardDataContainer.getPaddingRight(),
                             cardDataContainer.getPaddingBottom());
                 } else {
@@ -199,7 +198,7 @@ public class CardData4EffectActivity extends BaseActivity {
                     // 调整容器顶部距离
                     cardDataContainer.setPadding(
                             cardDataContainer.getPaddingLeft(),
-                            SmallestWidthUtil.getSmallestWidthDp() < 600 ? DensityUtil.dpToPx(this, 360) : DensityUtil.dpToPx(this, 400),
+                            DensityUtil.dpToPx(this, 320),
                             cardDataContainer.getPaddingRight(),
                             cardDataContainer.getPaddingBottom());
                 }

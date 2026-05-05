@@ -188,7 +188,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
-                        android:paddingTop="460dp"
+                        android:paddingTop="480dp"
                         android:orientation="vertical"
                         android:clipChildren="false"
                         android:clipToPadding="false">

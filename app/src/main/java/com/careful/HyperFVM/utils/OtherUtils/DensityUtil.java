@@ -18,7 +18,7 @@ public class DensityUtil {
 
     public static int dpToPx(Context context, int dpValue) {
         if (context == null || context.getResources() == null) return 0;
-        int density = (int) context.getResources().getDisplayMetrics().density;
-        return dpValue * density;
+        float density = context.getResources().getDisplayMetrics().density;
+        return Math.round(dpValue * density);
     }
 }
