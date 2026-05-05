@@ -22,14 +22,27 @@ import com.careful.HyperFVM.Activities.ThanksList.ThanksGameActivity;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
+import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
+import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 
 import java.util.Objects;
 
 public class AboutAppFragment extends Fragment {
     private View root;
+
+    private View logoView;                  // about_app_icon
+    private TextView appNameText;           // about_app_name
+    private TextView versionInfoText;       // about_app_version_info
+
+    private int savedScrollY = 0;           // 用于保存/恢复的滚动位置
+
+    private int logoMaxScroll;              // 判定完全消失的滚动距离（dp 转 px）
+    private int appNameMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
+    private int appVersionMaxScroll;        // 判定完全消失的滚动距离（dp 转 px）
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentAboutAppBinding binding = FragmentAboutAppBinding.inflate(inflater, container, false);
@@ -52,6 +65,14 @@ public class AboutAppFragment extends Fragment {
             aboutAppContainer.setPadding(left, top, right, height + DensityUtil.dpToPx(requireContext(), 72));
         });
 */
+
+        // 恢复之前保存的滚动位置
+        if (savedInstanceState != null) {
+            savedScrollY = savedInstanceState.getInt("scrollY", 0);
+        }
+
+        // 初始化各种装饰效果
+        initDecoration();
 
         //一个小彩蛋🥚
         setEasterEgg(root);
@@ -151,6 +172,52 @@ public class AboutAppFragment extends Fragment {
             Intent intent = new Intent(requireActivity(), activityClass);
             startActivity(intent);
         });
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 获取需要渐隐的元素
+        logoView = root.findViewById(R.id.about_app_icon);
+        appNameText = root.findViewById(R.id.about_app_name);
+        versionInfoText = root.findViewById(R.id.about_app_version_info);
+
+        // 获取滚动视图SpringBackScrollView
+        View scrollView = root.findViewById(R.id.ScrollView);
+
+        // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
+        logoMaxScroll = DensityUtil.dpToPx(requireContext(), 200);
+        appNameMaxScroll = DensityUtil.dpToPx(requireContext(), 100);
+        appVersionMaxScroll = DensityUtil.dpToPx(requireContext(), 50);
+
+        // 监听滚动
+        if (scrollView instanceof SpringBackScrollView) {
+            scrollView.post(() -> {
+                scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
+                // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
+                ScrollEffectForBackgroundItem.applyScrollEffect(logoView, savedScrollY, logoMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(appNameText, savedScrollY, appNameMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(versionInfoText, savedScrollY, appVersionMaxScroll);
+            });
+
+            scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                savedScrollY = scrollY;// 实时记录当前滚动位置
+                ScrollEffectForBackgroundItem.applyScrollEffect(logoView, scrollY, logoMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(appNameText, scrollY, appNameMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollEffect(versionInfoText, scrollY, appVersionMaxScroll);
+            });
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("scrollY", savedScrollY);
     }
 
     @Override
