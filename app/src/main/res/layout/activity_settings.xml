@@ -515,10 +515,10 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_Back_Container"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:strokeWidth="0dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
@@ -543,6 +543,43 @@
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
                 app:rippleColor="@android:color/transparent"
+                tools:ignore="ContentDescription" />
+
+        </eightbitlab.com.blurview.BlurView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/FloatButton_Restart_Container"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        app:strokeWidth="0dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewButtonRestart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blurOverlayColor="@color/blur_overlay_color">
+
+            <ImageButton
+                android:id="@+id/FloatButton_Restart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_refresh"
+                android:stateListAnimator="@null"
+                android:clickable="false"
+                app:elevation="0dp"
+                app:pressedTranslationZ="0dp"
+                app:rippleColor="@android:color/transparent"
+                app:tint="?attr/colorOnSurface"
                 tools:ignore="ContentDescription" />
 
         </eightbitlab.com.blurview.BlurView>

@@ -288,7 +288,7 @@
     <string name="label_settings_biometric_auth_description">⭐开启后，进入温馨礼包链接管理界面前需要进行指纹认证。</string>
     <string name="label_settings_biometric_auth_description_not_support">❌当前设备不支持生物认证，请检查设备是否支持指纹解锁或是否已录入指纹。</string>
     <string name="biometric_auth_title">👀确保那是你👀</string>
-    <string name="biometric_auth_sub_title">验证您的指纹以继续操作🫰</string>
+    <string name="biometric_auth_sub_title">🫰验证您的指纹以继续操作🫰</string>
     <!--关于软件-->
     <string name="label_version_info">版本号</string>
     <string name="version_info">0</string>

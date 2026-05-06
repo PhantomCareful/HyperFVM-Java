@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.utils.ForDesign.ThemeManager;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import com.careful.HyperFVM.R;
@@ -12,6 +13,7 @@ public class ThemeManager {
     public static final String KEY_CUSTOM_THEME = "主题-自定义主题色";
     public static final String KEY_INTERFACE_STYLE = "界面风格";
 
+    @SuppressLint("StaticFieldLeak")
     private static DBHelper dbHelper;
 
     /**

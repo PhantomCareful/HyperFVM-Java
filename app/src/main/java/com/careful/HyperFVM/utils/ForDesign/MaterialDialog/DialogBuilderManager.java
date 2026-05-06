@@ -3,7 +3,6 @@ package com.careful.HyperFVM.utils.ForDesign.MaterialDialog;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -354,7 +353,8 @@ public class DialogBuilderManager {
     /**
      * 通用的列表弹窗的构建方法
      */
-    public static void showSelectionDialog(Context context, int arrayId, String currentContent, String dialogTitle, String dbHelperUpdateContent, TextView currentSelection) {
+    public static void showSelectionDialog(Context context, int arrayId, String currentContent, String dialogTitle, String dbHelperUpdateContent, TextView currentSelection,
+                                           SettingsSelectionDialogCallBack callBack) {
         ListView listView;
         Dialog dialog;
         try (DBHelper dbHelper = new DBHelper(context)) {
@@ -396,23 +396,10 @@ public class DialogBuilderManager {
                 String selectedEntries = entries[position];
                 dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
                 currentSelection.setText(selectedEntries);
+                // 使用回调，将selectedEntries传回SettingsActivity
+                callBack.onResult(selectedEntries);
                 dialog.dismiss();
-                Toast.makeText(context, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
-
-                // 重启App
-                // 获取App的主Activity（通常是AndroidManifest中声明的LAUNCHER Activity）
-                Intent intent = context.getPackageManager()
-                        .getLaunchIntentForPackage(context.getPackageName());
-                if (intent != null) {
-                    // 清除之前的任务栈，避免重启后返回旧页面
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    // 启动主Activity
-                    context.startActivity(intent);
-                    // 关闭当前所有Activity
-                    if (context instanceof Activity) {
-                        ((Activity) context).finishAffinity();
-                    }
-                }
+                Toast.makeText(context, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
             });
         }
 

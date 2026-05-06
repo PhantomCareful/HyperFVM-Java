@@ -155,15 +155,18 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void showThemeSelectionDialog() {
-        DialogBuilderManager.showSelectionDialog(this, R.array.theme_entries, currentTheme, "🎨设置主题", CONTENT_APP_THEME, themeCurrentSelection);
+        DialogBuilderManager.showSelectionDialog(this, R.array.theme_entries, currentTheme, "🎨设置主题", CONTENT_APP_THEME, themeCurrentSelection,
+                selectedEntries -> currentTheme = selectedEntries);
     }
 
     private void showDarkModeSelectionDialog() {
-        DialogBuilderManager.showSelectionDialog(this, R.array.dark_mode_entries, currentDarkMode, "\uD83C\uDF1D\uD83C\uDF1A设置深色模式", CONTENT_DARK_MODE, darkModeCurrentSelection);
+        DialogBuilderManager.showSelectionDialog(this, R.array.dark_mode_entries, currentDarkMode, "\uD83C\uDF1D\uD83C\uDF1A设置深色模式", CONTENT_DARK_MODE, darkModeCurrentSelection,
+                selectedEntries -> currentDarkMode = selectedEntries);
     }
 
     private void showInterfaceStyleSelectionDialog() {
-        DialogBuilderManager.showSelectionDialog(this, R.array.interface_style_entries, currentInterfaceStyle, "🥕设置界面风格", CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection);
+        DialogBuilderManager.showSelectionDialog(this, R.array.interface_style_entries, currentInterfaceStyle, "🥕设置界面风格", CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection,
+                selectedEntries -> currentInterfaceStyle = selectedEntries);
     }
 
     /**
@@ -244,17 +247,13 @@ public class SettingsActivity extends BaseActivity {
                 // 动态取色开启：禁用点击
                 themeSelectorContainer.setOnClickListener(null);
             }
-            Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
-            // 重启App
-            restartApp();
+            Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
         });
         // 跟随系统字体大小开关
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, isChecked ? "true" : "false");
-            Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
-            // 重启App
-            restartApp();
+            Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
         });
         // 自定义字体大小滑条
         fontScaleSlider.addOnChangeListener((slider, v, b) -> {
@@ -310,9 +309,15 @@ public class SettingsActivity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonRestart));
 
-        // 顺便设置返回按钮的功能
+        // 顺便设置按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+        findViewById(R.id.FloatButton_Restart_Container).setOnClickListener(v -> {
+            Toast.makeText(this, "重启App⏳⏳⏳", Toast.LENGTH_SHORT).show();
+            // 重启App
+            restartApp();
+        });
     }
 
     /**
