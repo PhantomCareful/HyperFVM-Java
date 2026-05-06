@@ -11,8 +11,61 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/card_data_index_background_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/card_data_index_background"
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/card_data_index_background"
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/card_data_index_background"
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/background_image_gradient"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/background_image_gradient"
+                app:layout_constraintBottom_toBottomOf="@+id/card_data_index_background_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
         <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
-            android:id="@+id/CardDataIndex_Container"
+            android:id="@+id/ScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipChildren="false"
@@ -624,20 +677,10 @@
 
     </eightbitlab.com.blurview.BlurTarget>
 
-    <!-- 状态栏渐变遮罩层 -->
-    <View
-        android:id="@+id/status_bar_gradient"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/status_bar_gradient_general"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_Back_Container"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         app:strokeWidth="0dp"
@@ -670,56 +713,37 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- 顶栏 -->
-    <TextView
-        android:id="@+id/Top_AppBar"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:text="@string/top_bar_data_center_card_data_index"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="?attr/colorOnSurface"
-        android:gravity="center_vertical"
-        app:layout_constraintLeft_toRightOf="@+id/FloatButton_Back_Container"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_CardDataIndex_Container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="15dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         app:strokeWidth="0dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/FloatButton_CardDataSearch_Container"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/FloatButton_CardDataSearch_Container">
 
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewButtonIndex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clipToOutline="true"
-            app:blurOverlayColor="@color/blur_overlay_color"
-            tools:ignore="MissingConstraints">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blurOverlayColor="@color/blur_overlay_color">
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            <ImageButton
                 android:id="@+id/FloatButton_CardDataIndex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/float_button_data_center_card_data_index"
-                android:textSize="25sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_index"
                 android:stateListAnimator="@null"
                 android:clickable="false"
-                app:icon="@drawable/ic_index"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
-                app:rippleColor="@android:color/transparent" />
+                app:rippleColor="@android:color/transparent"
+                tools:ignore="ContentDescription" />
 
         </eightbitlab.com.blurview.BlurView>
 
@@ -727,39 +751,36 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_CardDataSearch_Container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         app:strokeWidth="0dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewButtonSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clipToOutline="true"
-            app:blurOverlayColor="@color/blur_overlay_color"
-            tools:ignore="MissingConstraints">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blurOverlayColor="@color/blur_overlay_color">
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            <ImageButton
                 android:id="@+id/FloatButton_CardDataSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/float_button_data_center_card_data_search"
-                android:textSize="25sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_search"
                 android:stateListAnimator="@null"
                 android:clickable="false"
-                app:icon="@drawable/ic_search"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
-                app:rippleColor="@android:color/transparent" />
+                app:rippleColor="@android:color/transparent"
+                app:tint="?attr/colorOnSurface"
+                tools:ignore="ContentDescription" />
 
         </eightbitlab.com.blurview.BlurView>
 

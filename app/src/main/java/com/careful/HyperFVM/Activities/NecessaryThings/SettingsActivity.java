@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
@@ -21,6 +22,7 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.slider.Slider;
 
 public class SettingsActivity extends BaseActivity {
 
@@ -40,7 +42,10 @@ public class SettingsActivity extends BaseActivity {
     private String currentInterfaceStyle;
     private TextView interfaceStyleCurrentSelection;
 
-    public static final String CONTENT_IS_FIXED_FONT_SCALE = "界面布局优化";
+    public static final String CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE = "跟随系统字体大小";
+    public static final String CONTENT_DIY_FONT_SCALE = "自定义字体大小";
+    private Slider fontScaleSlider;
+    private float fontScale;
 
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
@@ -74,10 +79,10 @@ public class SettingsActivity extends BaseActivity {
         initThemeSelector();
 
         // 初始化所有开关状态（从数据库读取）
-        initSwitches();
+        initSwitchesAndSliders();
 
         // 设置开关监听（更新数据库）
-        setupSwitchListeners();
+        setupSwitchAndSliderListeners();
     }
 
     private void checkPermissionStates() {
@@ -126,17 +131,17 @@ public class SettingsActivity extends BaseActivity {
         View interfaceStyleSelectorContainer = findViewById(R.id.interface_style_selector_container);
 
         // 从数据库获取当前主题值
-        currentTheme = dbHelper.getSettingValueString(CONTENT_APP_THEME);
+        currentTheme = dbHelper.getSettingStringValue(CONTENT_APP_THEME);
         themeCurrentSelection.setText(currentTheme);
         // 从数据库获取深色模式
-        currentDarkMode = dbHelper.getSettingValueString(CONTENT_DARK_MODE);
+        currentDarkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
         darkModeCurrentSelection.setText(currentDarkMode);
         // 从数据库获取界面风格
-        currentInterfaceStyle = dbHelper.getSettingValueString(CONTENT_INTERFACE_STYLE);
+        currentInterfaceStyle = dbHelper.getSettingStringValue(CONTENT_INTERFACE_STYLE);
         interfaceStyleCurrentSelection.setText(currentInterfaceStyle);
 
         // 设置点击事件
-        if (!dbHelper.getSettingValue(CONTENT_IS_DYNAMIC_COLOR)) {
+        if (!dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR)) {
             // 动态取色关闭：允许点击
             themeSelectorContainer.setOnClickListener(v -> showThemeSelectionDialog());
         } else {
@@ -179,23 +184,28 @@ public class SettingsActivity extends BaseActivity {
     }
 
     /**
-     * 从数据库读取状态并初始化开关
+     * 从数据库读取状态并初始化开关和滑条
      */
     @SuppressLint("SetTextI18n")
-    private void initSwitches() {
+    private void initSwitchesAndSliders() {
         MaterialSwitch materialSwitch;
         // 动态取色开关
-        boolean isDynamicColor = dbHelper.getSettingValue(CONTENT_IS_DYNAMIC_COLOR);
+        boolean isDynamicColor = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR);
         materialSwitch = findViewById(R.id.Switch_isDynamicColor);
         materialSwitch.setChecked(isDynamicColor);
-        // 界面布局优化开关
-        boolean isFixedFontScale = dbHelper.getSettingValue(CONTENT_IS_FIXED_FONT_SCALE);
+        // 跟随系统字体大小开关
+        boolean isFollowSystemFontScale = dbHelper.getSettingBooleanValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE);
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
-        materialSwitch.setChecked(isFixedFontScale);
+        materialSwitch.setChecked(isFollowSystemFontScale);
+        // 自定义字体大小滑条
+        fontScaleSlider = findViewById(R.id.Slider_FontScale);
+        fontScaleSlider.setEnabled(!isFollowSystemFontScale);
+        fontScale = dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE);
+        fontScaleSlider.setValue(fontScale);
         // Toast显示设置开关
-        boolean toastIsVisibleCardDataIndex = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
-        boolean toastIsVisibleCardDataAuxiliaryList = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST);
-        boolean toastIsVisibleDataImageViewer = dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER);
+        boolean toastIsVisibleCardDataIndex = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
+        boolean toastIsVisibleCardDataAuxiliaryList = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST);
+        boolean toastIsVisibleDataImageViewer = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER);
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);
         materialSwitch.setChecked(toastIsVisibleCardDataIndex);
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
@@ -206,7 +216,7 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
         if (BiometricAuthHelper.isBiometricAvailable(this)) {
             // 设备支持生物认证
-            boolean isBiometricAuth = dbHelper.getSettingValue(CONTENT_IS_BIOMETRIC_AUTH);
+            boolean isBiometricAuth = dbHelper.getSettingBooleanValue(CONTENT_IS_BIOMETRIC_AUTH);
             materialSwitch.setChecked(isBiometricAuth);
         } else {
             // 设备不支持生物认证
@@ -219,9 +229,9 @@ public class SettingsActivity extends BaseActivity {
     }
 
     /**
-     * 设置开关状态变化监听，同步更新数据库
+     * 设置开关和滑条状态变化监听，同步更新数据库
      */
-    private void setupSwitchListeners() {
+    private void setupSwitchAndSliderListeners() {
         MaterialSwitch materialSwitch;
         // 动态取色开关
         materialSwitch = findViewById(R.id.Switch_isDynamicColor);
@@ -238,13 +248,29 @@ public class SettingsActivity extends BaseActivity {
             // 重启App
             restartApp();
         });
-        // 界面布局优化开关
+        // 跟随系统字体大小开关
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            dbHelper.updateSettingValue(CONTENT_IS_FIXED_FONT_SCALE, isChecked ? "true" : "false");
+            dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, isChecked ? "true" : "false");
             Toast.makeText(this, "切换主题ing⏳⏳⏳", Toast.LENGTH_SHORT).show();
             // 重启App
             restartApp();
+        });
+        // 自定义字体大小滑条
+        fontScaleSlider.addOnChangeListener((slider, v, b) -> {
+            fontScale = v;
+            dbHelper.updateSettingValue(CONTENT_DIY_FONT_SCALE, String.valueOf(v));
+        });
+        fontScaleSlider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+                // 啥也不做
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                Toast.makeText(SettingsActivity.this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
+            }
         });
         // Toast显示设置开关
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);

@@ -65,7 +65,7 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
         MaterialCardView floatButtonContainer = findViewById(R.id.FloatButton_CardDataAuxiliaryListIndex_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
-        InsetsUtil.getNavigationBarHeight(rootView, height -> {
+        InsetsUtil.getNavigationBarHeight(this, rootView, height -> {
             // 悬浮底栏抬高设置为：12dp+导航栏高度
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonContainer.getLayoutParams();
             params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
@@ -86,7 +86,7 @@ public class CardDataAuxiliaryListActivity extends BaseActivity {
         // 给所有防御卡图片设置点击事件，以实现点击卡片查询其数据
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             initCardImages();
-            if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST)) {
+            if (dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST)) {
                 Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
             }}, 50);
     }

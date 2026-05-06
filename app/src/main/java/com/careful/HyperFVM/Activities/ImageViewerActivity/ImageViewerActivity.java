@@ -33,7 +33,7 @@ public class ImageViewerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // 初始化数据库
         dbHelper = new DBHelper(this);
-        if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
+        if (dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
             Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
         }
 

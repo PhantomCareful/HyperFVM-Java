@@ -23,15 +23,15 @@ public class ThemeManager {
         dbHelper = new DBHelper(activity);
 
         // 2. 读取主题设置
-        boolean isDynamicColor = dbHelper.getSettingValue(KEY_IS_DYNAMIC_COLOR);
-        String currentTheme = dbHelper.getSettingValueString(KEY_CUSTOM_THEME);
+        boolean isDynamicColor = dbHelper.getSettingBooleanValue(KEY_IS_DYNAMIC_COLOR);
+        String currentTheme = dbHelper.getSettingStringValue(KEY_CUSTOM_THEME);
 
         if (!isDynamicColor) {
             // 3. 非动态取色时，应用自定义主题
             applyCustomTheme(activity, currentTheme);
         } else {
             // 4. 动态取色时，使用默认主题，选择Shadow/NoShadow
-            String currentInterfaceStyle = dbHelper.getSettingValueString(KEY_INTERFACE_STYLE);
+            String currentInterfaceStyle = dbHelper.getSettingStringValue(KEY_INTERFACE_STYLE);
             if (currentInterfaceStyle.equals("鲜艳-立体")) {
                 activity.setTheme(R.style.Base_Theme_HyperFVMJava_Shadow);
             } else {
@@ -52,7 +52,7 @@ public class ThemeManager {
 
         int themeResId;
 
-        String currentInterfaceStyle = dbHelper.getSettingValueString(KEY_INTERFACE_STYLE);
+        String currentInterfaceStyle = dbHelper.getSettingStringValue(KEY_INTERFACE_STYLE);
         if (currentInterfaceStyle.equals("鲜艳-立体")) {
             // 根据主题名称匹配对应的样式资源
             themeResId = switch (themeValue) {

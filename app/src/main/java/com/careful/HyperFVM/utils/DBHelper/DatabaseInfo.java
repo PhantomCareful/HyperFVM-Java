@@ -105,6 +105,8 @@ public class DatabaseInfo {
      * 修改一下图片资源的ID
      * DB_VERSION = 67 - 77
      * 更新防御卡数据
+     * DB_VERSION = 78
+     * settings表增加”跟随系统字体大小““自定义字体大小”设置
      */
-    public static final int DB_VERSION = 77;
+    public static final int DB_VERSION = 78;
 }

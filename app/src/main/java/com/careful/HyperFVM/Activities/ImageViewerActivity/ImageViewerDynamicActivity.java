@@ -37,7 +37,7 @@ public class ImageViewerDynamicActivity extends BaseActivity {
         imageUtil = ImageResourcesUpdaterUtil.getInstance();
         dbHelper = new DBHelper(this);
 
-        if (dbHelper.getSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
+        if (dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER)) {
             Toast.makeText(this, "图片可以放大查看的哦\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
         }
 
@@ -111,7 +111,7 @@ public class ImageViewerDynamicActivity extends BaseActivity {
         String unzipRootPath = imageUtil.getUnzipPath(this);
         // 根据深色模式动态加载对应的图片
         int currentNightMode;
-        String darkMode = dbHelper.getSettingValueString(CONTENT_DARK_MODE);
+        String darkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
         currentNightMode = switch (darkMode) {
             case "总是开启\uD83C\uDF1A" -> Configuration.UI_MODE_NIGHT_YES;
             case "总是关闭\uD83C\uDF1D" -> Configuration.UI_MODE_NIGHT_NO;

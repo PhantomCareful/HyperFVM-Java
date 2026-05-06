@@ -1,6 +1,7 @@
 package com.careful.HyperFVM;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_FIXED_FONT_SCALE;
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_DIY_FONT_SCALE;
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -41,10 +42,9 @@ public class BaseActivity extends AppCompatActivity {
             Configuration systemConfig = Resources.getSystem().getConfiguration();
             float originalFontScale = systemConfig.fontScale;
 
-            // 仅当fontScale≠1.0时修改，避免不必要的操作
-            if (dbHelper.getSettingValue(CONTENT_IS_FIXED_FONT_SCALE)) {
-                // 开关开启：强制固定为1.0
-                configuration.fontScale = 1.0f;
+            if (!dbHelper.getSettingBooleanValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE)) {
+                // 开关关闭：读取自定义字体大小
+                configuration.fontScale = dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE);
 
                 // Android 8.0以后，Configuration不可变，需要新建对象
                 configuration = new Configuration(configuration);

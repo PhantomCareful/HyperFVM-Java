@@ -20,7 +20,7 @@ public class DarkModeManager {
         // 1. 获取数据库实例（使用Activity的Context）
         try (DBHelper dbHelper = new DBHelper(activity)) {
             // 2. 读取深色模式设置
-            String darkMode = dbHelper.getSettingValueString(KEY_DARK_MODE);
+            String darkMode = dbHelper.getSettingStringValue(KEY_DARK_MODE);
 
             switch (darkMode) {
                 case "总是开启\uD83C\uDF1A":
@@ -43,7 +43,7 @@ public class DarkModeManager {
      */
     public static boolean isDarkMode(Context context) {
         try (DBHelper dbHelper = new DBHelper(context)) {
-            String darkMode = dbHelper.getSettingValueString(KEY_DARK_MODE);
+            String darkMode = dbHelper.getSettingStringValue(KEY_DARK_MODE);
 
             return switch (darkMode) {
                 case "总是开启\uD83C\uDF1A" -> true;

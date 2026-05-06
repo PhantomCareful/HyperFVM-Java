@@ -246,6 +246,13 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
                     "VALUES ('DownloadedApkFileVersionCode', '0')");
         }
+
+        // 版本78：settings表增加”跟随系统字体大小““自定义字体大小”设置
+        if (oldVersion < 78) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('跟随系统字体大小', 'true')," +
+                    "('自定义字体大小', '1')");
+        }
     }
 
     @Override
@@ -743,7 +750,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // ====================== 以下为settings表的操作方法 ======================
-    public boolean getSettingValue(String content) {
+    public boolean getSettingBooleanValue(String content) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 TABLE_SETTINGS,
@@ -760,7 +767,24 @@ public class DBHelper extends SQLiteOpenHelper {
         return Objects.equals(value, "true");
     }
 
-    public String getSettingValueString(String content) {
+    public float getSettingFloatValue(String content) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(
+                TABLE_SETTINGS,
+                new String[]{"value"},
+                "content = ?",
+                new String[]{content},
+                null, null, null
+        );
+        String value = "";
+        if (cursor.moveToFirst()) {
+            value = cursor.getString(0);
+        }
+        cursor.close();
+        return Float.parseFloat(value);
+    }
+
+    public String getSettingStringValue(String content) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(
                 TABLE_SETTINGS,
@@ -778,7 +802,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public int getCurrentMaterialAlertDialogThemeStyle() {
-        String currentStyle = getSettingValueString(CONTENT_INTERFACE_STYLE);
+        String currentStyle = getSettingStringValue(CONTENT_INTERFACE_STYLE);
         // 界面风格ID
         int themeStyleId;
         if ("鲜艳-立体".equals(currentStyle)) {
