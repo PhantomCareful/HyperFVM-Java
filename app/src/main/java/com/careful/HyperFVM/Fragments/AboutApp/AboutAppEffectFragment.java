@@ -53,24 +53,6 @@ public class AboutAppEffectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentAboutAppEffectBinding binding = FragmentAboutAppEffectBinding.inflate(inflater, container, false);
         root = binding.getRoot();
-/*
-
-        // 适配导航栏高度
-        LinearLayout aboutAppContainer = root.findViewById(R.id.about_app_container);
-        View rootView = requireActivity().findViewById(android.R.id.content);
-        // 动态获取导航栏高度（小白条/三键导航）
-        InsetsUtil.getNavigationBarHeight(rootView, height -> {
-
-            Log.d("height", "height in AboutAppEffectFragment = " + height);
-
-            // 获取原有的 left, top, right padding
-            int left = aboutAppContainer.getPaddingLeft();
-            int top = aboutAppContainer.getPaddingTop();
-            int right = aboutAppContainer.getPaddingRight();
-
-            aboutAppContainer.setPadding(left, top, right, height + DensityUtil.dpToPx(requireContext(), 72));
-        });
-*/
 
         // 恢复之前保存的滚动位置
         if (savedInstanceState != null) {
@@ -84,7 +66,7 @@ public class AboutAppEffectFragment extends Fragment {
         setEasterEgg(root);
 
         // 从build.gradle中获取版本号
-        getAppLocalVersionAndCheckUpdate(root);
+        getAppLocalVersion(root);
 
         // 跳转检查更新的Activity
         clickToNewActivity(root.findViewById(R.id.about_app_check_update_container), CheckUpdateActivity.class);
@@ -145,7 +127,7 @@ public class AboutAppEffectFragment extends Fragment {
         imageView.setOnClickListener(v -> Toast.makeText(requireContext(), "Make FVM Great Again\uD83C\uDF89\uD83C\uDF89\uD83C\uDF89", Toast.LENGTH_SHORT).show());
     }
 
-    private void getAppLocalVersionAndCheckUpdate(View root) {
+    private void getAppLocalVersion(View root) {
         // 获取version信息
         long localVersionCode = LocalVersionUtil.getAppLocalVersionCode(requireContext());
         String localVersionName = LocalVersionUtil.getAppLocalVersionName(requireContext());
@@ -157,7 +139,9 @@ public class AboutAppEffectFragment extends Fragment {
         TextView version_info = root.findViewById(R.id.about_app_version_info);
         String versionInfo = localVersionName + "(" + localVersionCode + ")" + betaOrRelease;
         version_info.setText(versionInfo);
+    }
 
+    private void checkUpdate(View root) {
         // 检查更新
         TextView checkUpdateTitle1 = root.findViewById(R.id.about_app_check_update_title_1);
         TextView checkUpdateTitle2 = root.findViewById(R.id.about_app_check_update_title_2);
@@ -204,7 +188,7 @@ public class AboutAppEffectFragment extends Fragment {
         versionInfoText = root.findViewById(R.id.about_app_version_info);
 
         // 获取滚动视图SpringBackScrollView
-        View scrollView = root.findViewById(R.id.ScrollView);
+        SpringBackScrollView scrollView = root.findViewById(R.id.ScrollView);
 
         // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
         logoMaxScroll = DensityUtil.dpToPx(requireContext(), 200);
@@ -212,20 +196,20 @@ public class AboutAppEffectFragment extends Fragment {
         appVersionMaxScroll = DensityUtil.dpToPx(requireContext(), 50);
 
         // 监听滚动
-        if (scrollView instanceof SpringBackScrollView) {
+        if (scrollView != null) {
             scrollView.post(() -> {
                 scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
                 // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
-                ScrollEffectForBackgroundItem.applyScrollEffect(logoView, savedScrollY, logoMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(appNameText, savedScrollY, appNameMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(versionInfoText, savedScrollY, appVersionMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, savedScrollY, logoMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, savedScrollY, appNameMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, savedScrollY, appVersionMaxScroll);
             });
 
             scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
                 savedScrollY = scrollY;// 实时记录当前滚动位置
-                ScrollEffectForBackgroundItem.applyScrollEffect(logoView, scrollY, logoMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(appNameText, scrollY, appNameMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(versionInfoText, scrollY, appVersionMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, scrollY, logoMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, scrollY, appNameMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, scrollY, appVersionMaxScroll);
             });
         }
     }
@@ -244,8 +228,8 @@ public class AboutAppEffectFragment extends Fragment {
             bgEffectController.startAboutAppBgEffect();
         }
 
-        //从build.gradle中获取版本号
-        getAppLocalVersionAndCheckUpdate(root);
+        // 检查更新
+        checkUpdate(root);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,9 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.slider.Slider;
 
@@ -69,11 +72,11 @@ public class SettingsActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_settings);
 
-        // 添加模糊材质
-        setupBlurEffect();
-
         // 初始化数据库
         dbHelper = new DBHelper(this);
+
+        // 初始化各种装饰效果
+        initDecoration();
 
         // 初始化主题选择器
         initThemeSelector();
@@ -301,6 +304,33 @@ public class SettingsActivity extends BaseActivity {
                 finalMaterialSwitch.setChecked(!isChecked);
             }
         });
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView floatButtonRestartContainer = findViewById(R.id.FloatButton_Restart_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonRestartContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonRestartContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
     }
 
     /**

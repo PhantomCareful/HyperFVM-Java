@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity {
         LinearLayout navigationBarContainer = findViewById(R.id.navigation_bar_container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
-        InsetsUtil.getNavigationBarHeight(rootView, height -> {
+        InsetsUtil.getNavigationBarHeight(this, rootView, height -> {
             Log.d("height", "height in MainActivity = " + height);
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) navigationBarContainer.getLayoutParams();
             params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;

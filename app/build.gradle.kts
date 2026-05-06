@@ -92,6 +92,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics.android)
     implementation(libs.androidx.preference)
     implementation(libs.androidx.biometric)
+    implementation(libs.androidx.window)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -125,9 +126,9 @@ dependencies {
     implementation(libs.core)
     implementation(libs.ext.tables)
     implementation(libs.ext.strikethrough)
-    implementation("io.noties.markwon:image:4.6.2")
-    implementation("io.noties.markwon:image-glide:4.6.2")
-    implementation("io.noties.markwon:html:4.6.2")
+    implementation(libs.image)
+    implementation(libs.image.glide)
+    implementation(libs.html)
 
     //Blur
     implementation(libs.blurview)

@@ -220,6 +220,7 @@ public class DataCenterFragment extends Fragment {
         bilibiliFVMUtil = BilibiliFVMUtil.getInstance();
 
         // 初始化动画效果
+        dataCenterContainer = root.findViewById(R.id.DataCenter_Container);
         transition = new TransitionSet();
         transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
         transition.addTransition(new Fade());
@@ -345,33 +346,6 @@ public class DataCenterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // 适配导航栏高度
-        dataCenterContainer = root.findViewById(R.id.DataCenter_Container);
-        /*View rootView = requireActivity().findViewById(android.R.id.content);
-        WindowInsetsCompat currentInsets = ViewCompat.getRootWindowInsets(rootView);
-        if (currentInsets != null) {
-            int height = currentInsets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
-
-            // 获取原有的 left, top, right padding
-            int left = dataCenterContainer.getPaddingLeft();
-            int top = dataCenterContainer.getPaddingTop();
-            int right = dataCenterContainer.getPaddingRight();
-
-            dataCenterContainer.setPadding(left, top, right, height + DensityUtil.dpToPx(requireContext(), 72));
-        }
-        // 动态获取导航栏高度（小白条/三键导航）
-        InsetsUtil.getNavigationBarHeight(rootView, height -> {
-            Log.d("height", "height in DataCenterFragment = " + height);
-
-            // 获取原有的 left, top, right padding
-            int left = dataCenterContainer.getPaddingLeft();
-            int top = dataCenterContainer.getPaddingTop();
-            int right = dataCenterContainer.getPaddingRight();
-
-            dataCenterContainer.setPadding(left, top, right, height + DensityUtil.dpToPx(requireContext(), 72));
-        });*/
-
         checkFirstRun();
     }
 
@@ -491,7 +465,7 @@ public class DataCenterFragment extends Fragment {
         dashboardMeishiWechatEmoji.setText(Objects.requireNonNull(meishiWechatResultEmoji).isEmpty() ? "❌" : meishiWechatResultEmoji);
         // 设置点击打开详情弹窗
         dashboardMeishiWechatContainer.setOnClickListener(v -> {
-            if (dbHelper.getSettingValue(CONTENT_IS_BIOMETRIC_AUTH)) {
+            if (dbHelper.getSettingBooleanValue(CONTENT_IS_BIOMETRIC_AUTH)) {
                 // 指纹验证(如果开启的话)
                 BiometricAuthHelper.simpleBiometricAuth(
                         this, getResources().getString(R.string.biometric_auth_title), getResources().getString(R.string.biometric_auth_sub_title), () -> {

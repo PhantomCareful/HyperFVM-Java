@@ -61,26 +61,6 @@ public class CardDataIndexActivity extends BaseActivity {
 
         setContentView(R.layout.activity_card_data_index);
 
-        // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
-        MaterialCardView floatButtonCardDataIndexContainer = findViewById(R.id.FloatButton_CardDataIndex_Container);
-        MaterialCardView floatButtonCardDataSearchContainer = findViewById(R.id.FloatButton_CardDataSearch_Container);
-        View rootView = findViewById(android.R.id.content);
-        // 动态获取状态栏高度
-        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) floatButtonCardDataIndexContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonCardDataIndexContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) floatButtonCardDataSearchContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonCardDataSearchContainer.setLayoutParams(params);
-        });
-
         // 初始化数据库
         dbHelper = new DBHelper(this);
 
@@ -589,6 +569,26 @@ public class CardDataIndexActivity extends BaseActivity {
      * 等等等等
      */
     private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView floatButtonCardDataIndexContainer = findViewById(R.id.FloatButton_CardDataIndex_Container);
+        MaterialCardView floatButtonCardDataSearchContainer = findViewById(R.id.FloatButton_CardDataSearch_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonCardDataIndexContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonCardDataIndexContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonCardDataSearchContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonCardDataSearchContainer.setLayoutParams(params);
+        });
+
         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
             // 获取需要渐隐的元素
             backgroundImage = findViewById(R.id.card_data_index_background_image);

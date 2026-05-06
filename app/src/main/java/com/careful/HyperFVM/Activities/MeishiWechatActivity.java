@@ -88,7 +88,7 @@ public class MeishiWechatActivity extends BaseActivity {
         MaterialCardView floatButtonContainer = findViewById(R.id.FloatButton_MeishiWechat_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
-        InsetsUtil.getNavigationBarHeight(rootView, height -> {
+        InsetsUtil.getNavigationBarHeight(this, rootView, height -> {
             // 悬浮底栏抬高设置为：12dp+导航栏高度
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonContainer.getLayoutParams();
             params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;

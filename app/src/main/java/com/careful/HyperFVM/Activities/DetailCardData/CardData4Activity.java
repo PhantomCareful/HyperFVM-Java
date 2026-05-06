@@ -625,7 +625,7 @@ public class CardData4Activity extends BaseActivity {
         Image_View_Card_Big_3_Container = findViewById(R.id.Image_View_Card_Big_3_Container);
 
         // 获取滚动视图SpringBackScrollView
-        View scrollView = findViewById(R.id.ScrollView);
+        SpringBackScrollView scrollView = findViewById(R.id.ScrollView);
 
         // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
         imageViewCardBig1ContainerMaxScroll = DensityUtil.dpToPx(this, 50);
@@ -633,20 +633,20 @@ public class CardData4Activity extends BaseActivity {
         imageViewCardBig3ContainerMaxScroll = DensityUtil.dpToPx(this, 50);
 
         // 监听滚动
-        if (scrollView instanceof SpringBackScrollView) {
+        if (scrollView != null) {
             scrollView.post(() -> {
                 scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
                 // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
-                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_1_Container, savedScrollY, imageViewCardBig1ContainerMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_2_Container, savedScrollY, imageViewCardBig2ContainerMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_3_Container, savedScrollY, imageViewCardBig3ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_1_Container, savedScrollY, imageViewCardBig1ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_2_Container, savedScrollY, imageViewCardBig2ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_3_Container, savedScrollY, imageViewCardBig3ContainerMaxScroll);
             });
 
             scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
                 savedScrollY = scrollY;// 实时记录当前滚动位置
-                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_1_Container, scrollY, imageViewCardBig1ContainerMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_2_Container, scrollY, imageViewCardBig2ContainerMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollEffect(Image_View_Card_Big_3_Container, scrollY, imageViewCardBig3ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_1_Container, scrollY, imageViewCardBig1ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_2_Container, scrollY, imageViewCardBig2ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_3_Container, scrollY, imageViewCardBig3ContainerMaxScroll);
             });
         }
     }
