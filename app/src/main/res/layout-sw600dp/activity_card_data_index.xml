@@ -11,59 +11,6 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <!--<androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/card_data_index_background_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/card_data_index_background"
-                    android:scaleType="fitXY"
-                    tools:ignore="ContentDescription" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/card_data_index_background"
-                    android:scaleType="fitXY"
-                    tools:ignore="ContentDescription" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/card_data_index_background"
-                    android:scaleType="fitXY"
-                    tools:ignore="ContentDescription" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/background_image_gradient"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/background_image_gradient"
-                app:layout_constraintBottom_toBottomOf="@+id/card_data_index_background_image"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
         <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
             android:id="@+id/ScrollView"
             android:layout_width="match_parent"
@@ -75,8 +22,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="120dp"
-                android:paddingBottom="20dp"
+                android:paddingTop="300dp"
+                android:paddingBottom="80dp"
                 android:orientation="horizontal"
                 android:baselineAligned="false"
                 android:clipChildren="false"
@@ -674,6 +621,86 @@
             </LinearLayout>
 
         </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+        <LinearLayout
+            android:id="@+id/card_data_index_background_images_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="120dp"
+            android:layout_marginHorizontal="20dp">
+
+            <ImageView
+                android:id="@+id/card_data_index_background_image_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/card_data_index_3_1_1_2_big"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/card_data_index_background_image_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/card_data_index_4_2_7_2_big"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/card_data_index_background_image_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/card_data_index_9_3_5_2_big"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/card_data_index_background_image_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/card_data_index_4_2_4_2_big"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/card_data_index_background_image_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/card_data_index_8_1_4_2_big"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/card_data_index_background_image_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/card_data_index_4_2_10_2_big"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/card_data_index_background_image_7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/card_data_index_16_1_9_3_big"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 

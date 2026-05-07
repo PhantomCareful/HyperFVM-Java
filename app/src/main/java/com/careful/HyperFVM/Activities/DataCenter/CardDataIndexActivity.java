@@ -4,16 +4,19 @@ import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.C
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
+import com.careful.HyperFVM.utils.ForCardData.DisplayBackgroundCardImageHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
 import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -41,10 +45,12 @@ public class CardDataIndexActivity extends BaseActivity {
     private DBHelper dbHelper;
 
     private SpringBackScrollView scrollView;
-    private View backgroundImage;
+    private View backgroundImage1;
+    private View backgroundImage2;
 
-    private int savedScrollY = 0;           // 用于保存/恢复的滚动位置
-    private int backgroundImageMaxScroll;   // 判定完全消失的滚动距离（dp 转 px）
+    private int savedScrollY = 0;            // 用于保存/恢复的滚动位置
+    private int backgroundImageMaxScroll1;   // 判定完全消失的滚动距离（dp 转 px）
+    private int backgroundImageMaxScroll2;   // 判定完全消失的滚动距离（dp 转 px）
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -568,6 +574,7 @@ public class CardDataIndexActivity extends BaseActivity {
      * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
+    @SuppressLint("DiscouragedApi")
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
@@ -591,31 +598,103 @@ public class CardDataIndexActivity extends BaseActivity {
 
         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
             // 获取需要渐隐的元素
-            backgroundImage = findViewById(R.id.card_data_index_background_image);
+            backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
+            backgroundImage2 = findViewById(R.id.card_data_index_background_images_2);
 
             // 获取滚动视图SpringBackScrollView
             scrollView = findViewById(R.id.ScrollView);
 
             // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
-            backgroundImageMaxScroll = DensityUtil.dpToPx(this, 100);
+            backgroundImageMaxScroll1 = DensityUtil.dpToPx(this, 150);
+            backgroundImageMaxScroll2 = DensityUtil.dpToPx(this, 100);
 
             // 监听滚动
             if (scrollView != null) {
                 scrollView.post(() -> {
                     scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
                     // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
-                    ScrollEffectForBackgroundItem.applyScrollAlphaEffect(backgroundImage, savedScrollY, backgroundImageMaxScroll);
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, savedScrollY, backgroundImageMaxScroll1);
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage2, savedScrollY, backgroundImageMaxScroll2);
                 });
 
                 scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
                     savedScrollY = scrollY;// 实时记录当前滚动位置
-                    ScrollEffectForBackgroundItem.applyScrollAlphaEffect(backgroundImage, scrollY, backgroundImageMaxScroll);
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, scrollY, backgroundImageMaxScroll1);
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage2, scrollY, backgroundImageMaxScroll2);
+                });
+            }
+        } else {
+            // 获取需要渐隐的元素
+            backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
+
+            // 获取滚动视图SpringBackScrollView
+            scrollView = findViewById(R.id.ScrollView);
+
+            // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
+            backgroundImageMaxScroll1 = DensityUtil.dpToPx(this, 100);
+
+            // 监听滚动
+            if (scrollView != null) {
+                scrollView.post(() -> {
+                    scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
+                    // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, savedScrollY, backgroundImageMaxScroll1);
+                });
+
+                scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    savedScrollY = scrollY;// 实时记录当前滚动位置
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, scrollY, backgroundImageMaxScroll1);
                 });
             }
         }
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 随机展示图片
+        if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
+            ImageView[] cardDataIndexBackgroundImages = {
+                    findViewById(R.id.card_data_index_background_image_1),
+                    findViewById(R.id.card_data_index_background_image_2),
+                    findViewById(R.id.card_data_index_background_image_3),
+                    findViewById(R.id.card_data_index_background_image_4),
+                    findViewById(R.id.card_data_index_background_image_5),
+                    findViewById(R.id.card_data_index_background_image_6),
+            };
+
+            String[][] cardImageFileInfoArray = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(6);
+
+            for (int i = 0; i < 6; i++) {
+                int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
+                if (resId != 0) {
+                    cardDataIndexBackgroundImages[i].setImageResource(resId);
+                    int finalI = i;
+                    cardDataIndexBackgroundImages[i].setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, cardImageFileInfoArray[finalI][1]));
+                }
+            }
+
+        } else {
+            ImageView[] cardDataIndexBackgroundImages = {
+                    findViewById(R.id.card_data_index_background_image_1),
+                    findViewById(R.id.card_data_index_background_image_2),
+                    findViewById(R.id.card_data_index_background_image_3),
+                    findViewById(R.id.card_data_index_background_image_4),
+                    findViewById(R.id.card_data_index_background_image_5),
+                    findViewById(R.id.card_data_index_background_image_6),
+                    findViewById(R.id.card_data_index_background_image_7),
+            };
+
+            String[][] cardImageFileInfoArray = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(7);
+
+            for (int i = 0; i < 7; i++) {
+                int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
+                if (resId != 0) {
+                    cardDataIndexBackgroundImages[i].setImageResource(resId);
+                    int finalI = i;
+                    cardDataIndexBackgroundImages[i].setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, cardImageFileInfoArray[finalI][1]));
+                }
+            }
+        }
     }
 
     /**
@@ -636,6 +715,12 @@ public class CardDataIndexActivity extends BaseActivity {
         super.onConfigurationChanged(newConfig);
         // 重新构建布局
         recreate();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("最小宽度", String.valueOf(SmallestWidthUtil.getSmallestWidthDp()));
     }
 
     @Override
