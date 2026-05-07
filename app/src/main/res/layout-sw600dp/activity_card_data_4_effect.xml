@@ -197,12 +197,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginBottom="10dp"
                             android:text="@string/title_card_data_base_info"
                             android:textSize="15sp"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textStyle="bold"
-                            android:layout_marginTop="20dp"/>
+                            android:textColor="?attr/colorOnSurface"/>
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
@@ -237,6 +236,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/copyright_and_molu"
                             android:textSize="15sp"
+                            android:textStyle="bold"
                             android:textColor="?attr/colorOnSurface"
                             android:layout_marginVertical="20dp"
                             android:gravity="center"/>
@@ -273,8 +273,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_corresponding_info"
                         android:textSize="15sp"
-                        android:textColor="?attr/colorOnSurface"
-                        android:textStyle="bold"/>
+                        android:textColor="?attr/colorOnSurface" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/Card_Corresponding"
@@ -301,8 +300,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_data_info"
                         android:textSize="15sp"
-                        android:textColor="?attr/colorOnSurface"
-                        android:textStyle="bold"/>
+                        android:textColor="?attr/colorOnSurface" />
 
                     <TextView
                         android:id="@+id/star"
@@ -1371,8 +1369,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="其他信息"
                         android:textSize="15sp"
-                        android:textColor="?attr/colorOnSurface"
-                        android:textStyle="bold"/>
+                        android:textColor="?attr/colorOnSurface" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/Card_Other"
@@ -1406,6 +1403,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/copyright_and_molu"
                         android:textSize="15sp"
+                        android:textStyle="bold"
                         android:textColor="?attr/colorOnSurface"
                         android:layout_marginVertical="20dp"
                         android:gravity="center"/>

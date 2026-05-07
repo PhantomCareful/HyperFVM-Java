@@ -348,6 +348,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/copyright_and_molu"
                         android:textSize="15sp"
+                        android:textStyle="bold"
                         android:textColor="?attr/colorOnSurface"
                         android:layout_marginVertical="20dp"
                         android:gravity="center"/>
@@ -1438,6 +1439,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/copyright_and_molu"
                         android:textSize="15sp"
+                        android:textStyle="bold"
                         android:textColor="?attr/colorOnSurface"
                         android:layout_marginVertical="20dp"
                         android:gravity="center"/>
