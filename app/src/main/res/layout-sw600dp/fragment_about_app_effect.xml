@@ -29,43 +29,6 @@
             android:clipChildren="false"
             android:clipToPadding="false">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="120dp">
-
-                <ImageView
-                    android:id="@+id/about_app_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/app_icon_in"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    android:id="@+id/about_app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginVertical="12dp"
-                    android:text="@string/app_name"
-                    android:textSize="45sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorOnSurface"/>
-
-                <TextView
-                    android:id="@+id/about_app_version_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/version_info"
-                    android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
-
-            </LinearLayout>
-
             <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
                 android:id="@+id/ScrollView"
                 android:layout_width="match_parent"
@@ -420,6 +383,43 @@
                 </LinearLayout>
 
             </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="120dp">
+
+                <ImageView
+                    android:id="@+id/about_app_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/app_icon_in"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/about_app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="12dp"
+                    android:text="@string/app_name"
+                    android:textSize="45sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"/>
+
+                <TextView
+                    android:id="@+id/about_app_version_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/version_info"
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
+
+            </LinearLayout>
 
         </FrameLayout>
 
