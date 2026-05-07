@@ -271,7 +271,10 @@
     <string name="top_bar_prestige_calculator">威望储备计算器📱</string>
     <!--设置-->
     <string name="title_settings_permission">授权检查</string>
-    <string name="label_settings_permission_notification">通知权限</string>
+    <string name="label_settings_permission_notification">通知推送权限</string>
+    <string name="label_settings_permission_notification_description">👉授予通知权限后，可在设备的控制中心添加HyperFVM磁贴，点击磁贴即可领取温馨礼包，并向您推送部分重要的仪表盘数据。\n👉对于部分Android16+的设备(如小米澎湃OS3.0.300和ColorOS16等)，还可以进一步开启实时通知，开启后通知可上岛。</string>
+    <string name="label_settings_permission_install">软件包安装权限</string>
+    <string name="label_settings_permission_install_description">👉授予安装权限后，当您在App内收到更新推送并下载好新版本安装包后，才能够顺利调起系统的软件包安装程序进行升级。</string>
     <string name="title_settings_theme">主题</string>
     <string name="label_settings_switch_is_dynamic_color">动态取色</string>
     <string name="label_settings_option_themed_color">自定义主题色</string>
@@ -285,7 +288,7 @@
     <string name="label_settings_switch_data_image_viewer">数据图查看器</string>
     <string name="title_settings_safety">安全</string>
     <string name="label_settings_switch_biometric_auth">启用设备生物认证</string>
-    <string name="label_settings_biometric_auth_description">⭐开启后，进入温馨礼包链接管理界面前需要进行指纹认证。</string>
+    <string name="label_settings_biometric_auth_description">👉开启后，进入温馨礼包链接管理界面前需要先进行指纹认证。</string>
     <string name="label_settings_biometric_auth_description_not_support">❌当前设备不支持生物认证，请检查设备是否支持指纹解锁或是否已录入指纹。</string>
     <string name="biometric_auth_title">👀确保那是你👀</string>
     <string name="biometric_auth_sub_title">🫰验证您的指纹以继续操作🫰</string>

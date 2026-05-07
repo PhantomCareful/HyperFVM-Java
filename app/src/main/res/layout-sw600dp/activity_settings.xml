@@ -43,43 +43,122 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/permission_notification_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_bell"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_permission_notification"
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                            <TextView
+                                android:id="@+id/permission_current_state_notification"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_settings_permission_notification_description"
+                            android:textSize="18sp"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="16dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
                     <LinearLayout
-                        android:id="@+id/permission_notification_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:orientation="horizontal"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="?attr/selectableItemBackground">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_bell"
-                            app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                            tools:ignore="ContentDescription" />
+                        <LinearLayout
+                            android:id="@+id/permission_install_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_tools"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/label_settings_permission_install"
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                            <TextView
+                                android:id="@+id/permission_current_state_install"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="20sp"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/label_settings_permission_notification"
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
-                        <TextView
-                            android:id="@+id/permission_current_state_notification"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textSize="20sp"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                            android:text="@string/label_settings_permission_install_description"
+                            android:textSize="18sp"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="16dp" />
 
                     </LinearLayout>
 
@@ -89,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:text="@string/title_settings_theme"
                     android:textSize="15sp"
                     android:textColor="?attr/colorOnSurface" />
@@ -97,7 +176,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="20dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -241,6 +320,22 @@
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -515,8 +610,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_Back_Container"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         app:strokeWidth="0dp"

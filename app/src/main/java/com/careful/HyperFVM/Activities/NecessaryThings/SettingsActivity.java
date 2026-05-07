@@ -88,10 +88,13 @@ public class SettingsActivity extends BaseActivity {
         setupSwitchAndSliderListeners();
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private void checkPermissionStates() {
-        // 1. 获取权限状态显示的TextView（根据实际布局ID调整）
+        // 1 获取权限状态显示的TextView（根据实际布局ID调整）
         TextView notificationStateTv = findViewById(R.id.permission_current_state_notification);
-        // 2. 检查通知权限并更新状态
+        TextView installStateTv = findViewById(R.id.permission_current_state_install);
+
+        // 2.1 检查通知权限并更新状态
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (!hasNotificationPermission()) {
                 //点击授权
@@ -106,12 +109,38 @@ public class SettingsActivity extends BaseActivity {
                 findViewById(R.id.permission_notification_container).setOnClickListener(null);
             }
         }
+
+        // 2.2 检查安装权限并更新状态
+        if (!hasInstallPermission()) {
+            //点击授权
+            findViewById(R.id.permission_install_container).setOnClickListener(v -> {
+                // 跳转到安装未知应用权限设置页面
+                Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+
+                // 需要指定包名
+                intent.setData(android.net.Uri.parse("package:" + this.getPackageName()));
+
+                // 检查是否有可以处理此Intent的应用
+                if (intent.resolveActivity(this.getPackageManager()) != null) {
+                    this.startActivity(intent);
+                } else {
+                    // 如果无法跳转到精确设置页面，跳转到应用详情页
+                    Intent appDetailsIntent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    appDetailsIntent.setData(android.net.Uri.parse("package:" + this.getPackageName()));
+                    this.startActivity(appDetailsIntent);
+                }
+            });
+        } else {
+            findViewById(R.id.permission_install_container).setOnClickListener(null);
+        }
+
         // 更新UI
-        notificationStateTv.setText(hasNotificationPermission() ? "已授予✅" : "未授予，点我去授权👉");
+        notificationStateTv.setText(hasNotificationPermission() ? "已授予✅" : "点我去授权👉");
+        installStateTv.setText(hasInstallPermission() ? "已授予✅" : "点我去授权👉");
     }
 
     /**
-     * 检查是否拥有通知权限（抽取为单独方法，方便复用）
+     * 检查是否拥有通知权限
      */
     private boolean hasNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -123,6 +152,13 @@ public class SettingsActivity extends BaseActivity {
             // Android 12及以下默认拥有通知权限
             return true;
         }
+    }
+
+    /**
+     * 检查是否拥有安装权限
+     */
+    private boolean hasInstallPermission() {
+        return getPackageManager().canRequestPackageInstalls();
     }
 
     private void initThemeSelector() {
@@ -256,6 +292,7 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, isChecked ? "true" : "false");
+            fontScaleSlider.setEnabled(!isChecked);
             Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
         });
         // 自定义字体大小滑条
