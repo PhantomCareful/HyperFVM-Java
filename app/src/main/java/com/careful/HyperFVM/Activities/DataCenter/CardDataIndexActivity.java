@@ -597,6 +597,26 @@ public class CardDataIndexActivity extends BaseActivity {
         });
 
         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
+            // 随机展示图片
+            ImageView[] cardDataIndexBackgroundImages = {
+                    findViewById(R.id.card_data_index_background_image_1),
+                    findViewById(R.id.card_data_index_background_image_2),
+                    findViewById(R.id.card_data_index_background_image_3),
+                    findViewById(R.id.card_data_index_background_image_4),
+                    findViewById(R.id.card_data_index_background_image_5),
+                    findViewById(R.id.card_data_index_background_image_6),
+            };
+
+            String[][] cardImageFileInfoArray = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(6);
+
+            // 展示随机图片
+            for (int i = 0; i < 6; i++) {
+                int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
+                if (resId != 0) {
+                    cardDataIndexBackgroundImages[i].setImageResource(resId);
+                }
+            }
+
             // 获取需要渐隐的元素
             backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
             backgroundImage2 = findViewById(R.id.card_data_index_background_images_2);
@@ -615,65 +635,38 @@ public class CardDataIndexActivity extends BaseActivity {
                     // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
                     ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, savedScrollY, backgroundImageMaxScroll1);
                     ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage2, savedScrollY, backgroundImageMaxScroll2);
+
+                    // 给图片设置点击事件
+                    // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
+                    for (int i = 0; i <= 2; i++) {
+                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
+                                this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
+                    }
+                    for (int i = 3; i <= 5; i++) {
+                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
+                                this, backgroundImage2, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
+                    }
                 });
 
                 scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
                     savedScrollY = scrollY;// 实时记录当前滚动位置
                     ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, scrollY, backgroundImageMaxScroll1);
                     ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage2, scrollY, backgroundImageMaxScroll2);
+
+                    // 给图片设置点击事件
+                    // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
+                    for (int i = 0; i <= 2; i++) {
+                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
+                                this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
+                    }
+                    for (int i = 3; i <= 5; i++) {
+                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
+                                this, backgroundImage2, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
+                    }
                 });
             }
         } else {
-            // 获取需要渐隐的元素
-            backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
-
-            // 获取滚动视图SpringBackScrollView
-            scrollView = findViewById(R.id.ScrollView);
-
-            // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
-            backgroundImageMaxScroll1 = DensityUtil.dpToPx(this, 100);
-
-            // 监听滚动
-            if (scrollView != null) {
-                scrollView.post(() -> {
-                    scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
-                    // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
-                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, savedScrollY, backgroundImageMaxScroll1);
-                });
-
-                scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-                    savedScrollY = scrollY;// 实时记录当前滚动位置
-                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, scrollY, backgroundImageMaxScroll1);
-                });
-            }
-        }
-
-        // 添加模糊材质
-        setupBlurEffect();
-
-        // 随机展示图片
-        if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
-            ImageView[] cardDataIndexBackgroundImages = {
-                    findViewById(R.id.card_data_index_background_image_1),
-                    findViewById(R.id.card_data_index_background_image_2),
-                    findViewById(R.id.card_data_index_background_image_3),
-                    findViewById(R.id.card_data_index_background_image_4),
-                    findViewById(R.id.card_data_index_background_image_5),
-                    findViewById(R.id.card_data_index_background_image_6),
-            };
-
-            String[][] cardImageFileInfoArray = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(6);
-
-            for (int i = 0; i < 6; i++) {
-                int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
-                if (resId != 0) {
-                    cardDataIndexBackgroundImages[i].setImageResource(resId);
-                    int finalI = i;
-                    cardDataIndexBackgroundImages[i].setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, cardImageFileInfoArray[finalI][1]));
-                }
-            }
-
-        } else {
+            // 随机展示图片
             ImageView[] cardDataIndexBackgroundImages = {
                     findViewById(R.id.card_data_index_background_image_1),
                     findViewById(R.id.card_data_index_background_image_2),
@@ -690,11 +683,49 @@ public class CardDataIndexActivity extends BaseActivity {
                 int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
                 if (resId != 0) {
                     cardDataIndexBackgroundImages[i].setImageResource(resId);
-                    int finalI = i;
-                    cardDataIndexBackgroundImages[i].setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, cardImageFileInfoArray[finalI][1]));
                 }
             }
+
+            // 获取需要渐隐的元素
+            backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
+
+            // 获取滚动视图SpringBackScrollView
+            scrollView = findViewById(R.id.ScrollView);
+
+            // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
+            backgroundImageMaxScroll1 = DensityUtil.dpToPx(this, 100);
+
+            // 监听滚动
+            if (scrollView != null) {
+                scrollView.post(() -> {
+                    scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
+                    // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, savedScrollY, backgroundImageMaxScroll1);
+
+                    // 给图片设置点击事件
+                    // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
+                    for (int i = 0; i < 7; i++) {
+                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
+                                this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
+                    }
+                });
+
+                scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    savedScrollY = scrollY;// 实时记录当前滚动位置
+                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, scrollY, backgroundImageMaxScroll1);
+
+                    // 给图片设置点击事件
+                    // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
+                    for (int i = 0; i < 7; i++) {
+                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
+                                this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
+                    }
+                });
+            }
         }
+
+        // 添加模糊材质
+        setupBlurEffect();
     }
 
     /**

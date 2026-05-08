@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -55,9 +53,6 @@ public class AboutAppFragment extends Fragment {
 
         // 初始化各种装饰效果
         initDecoration();
-
-        //一个小彩蛋🥚
-        setEasterEgg(root);
 
         //从build.gradle中获取版本号
         getAppLocalVersionAndCheckUpdate(root);
@@ -114,11 +109,6 @@ public class AboutAppFragment extends Fragment {
         clickToNewActivity(root.findViewById(R.id.about_app_see_update_log_history), UpdateLogHistoryActivity.class);
 
         return root;
-    }
-
-    private void setEasterEgg(View root) {
-        ImageView imageView = root.findViewById(R.id.about_app_icon);
-        imageView.setOnClickListener(v -> Toast.makeText(requireContext(), "Make FVM Great Again\uD83C\uDF89\uD83C\uDF89\uD83C\uDF89", Toast.LENGTH_SHORT).show());
     }
 
     private void getAppLocalVersionAndCheckUpdate(View root) {
@@ -185,6 +175,10 @@ public class AboutAppFragment extends Fragment {
                 ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, savedScrollY, logoMaxScroll);
                 ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, savedScrollY, appNameMaxScroll);
                 ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, savedScrollY, appVersionMaxScroll);
+
+                // 给LOGO设置点击彩蛋
+                // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
+                ScrollEffectForBackgroundItem.updateBackgroundLogoClickable(requireContext(), logoView);
             });
 
             scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
@@ -192,6 +186,10 @@ public class AboutAppFragment extends Fragment {
                 ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, scrollY, logoMaxScroll);
                 ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, scrollY, appNameMaxScroll);
                 ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, scrollY, appVersionMaxScroll);
+
+                // 给LOGO设置点击彩蛋
+                // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
+                ScrollEffectForBackgroundItem.updateBackgroundLogoClickable(requireContext(), logoView);
             });
         }
     }
