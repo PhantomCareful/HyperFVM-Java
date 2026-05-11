@@ -25,6 +25,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
+                android:paddingBottom="50dp"
                 android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
@@ -3114,17 +3115,17 @@
         android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/status_bar_gradient_general"
+        android:background="@drawable/status_bar_gradient_no_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_Back_Container"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:strokeWidth="0dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
@@ -3154,20 +3155,5 @@
         </eightbitlab.com.blurview.BlurView>
 
     </com.google.android.material.card.MaterialCardView>
-
-    <!-- 顶栏 -->
-    <TextView
-        android:id="@+id/Top_AppBar"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:text="@string/top_bar_data_center_data_images_index"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="?attr/colorOnSurface"
-        android:gravity="center_vertical"
-        app:layout_constraintLeft_toRightOf="@+id/FloatButton_Back_Container"
-        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

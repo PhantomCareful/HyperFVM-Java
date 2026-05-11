@@ -10,6 +10,7 @@ import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,7 +20,9 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 
 public class UsingInstructionActivity extends BaseActivity {
 
@@ -36,8 +39,8 @@ public class UsingInstructionActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_using_instruction);
 
-        // 添加模糊材质
-        setupBlurEffect();
+        // 初始化各种装饰效果
+        initDecoration();
 
         TextView overview_top = findViewById(R.id.using_instruction_top);
         TextView overview1 = findViewById(R.id.using_instruction1);
@@ -79,6 +82,27 @@ public class UsingInstructionActivity extends BaseActivity {
         }, 300);
     }
 
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
+    }
 
     /**
      * 添加模糊效果

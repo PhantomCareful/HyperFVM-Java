@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppEffectFragment;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
@@ -47,7 +46,6 @@ public class MainActivity extends BaseActivity {
 
     // 新增：ViewPager2相关
     private ViewPager2 viewPager;
-    private TabLayoutFragmentStateAdapter viewPagerAdapter;
 
     private Handler mainHandler;
 
@@ -80,17 +78,6 @@ public class MainActivity extends BaseActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 适配导航栏高度
-        LinearLayout navigationBarContainer = findViewById(R.id.navigation_bar_container);
-        View rootView = findViewById(android.R.id.content);
-        // 动态获取导航栏高度（小白条/三键导航）
-        InsetsUtil.getNavigationBarHeight(this, rootView, height -> {
-            Log.d("height", "height in MainActivity = " + height);
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) navigationBarContainer.getLayoutParams();
-            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
-            navigationBarContainer.setLayoutParams(params);
-        });
-
         // 初始化菜单顺序（必须与bottom_nav_menu.xml的item顺序一致）
         menuOrder = new ArrayList<>();
         menuOrder.add(R.id.navigation_data_station);
@@ -98,10 +85,9 @@ public class MainActivity extends BaseActivity {
 
         // 确保视图加载完成后初始化ViewPager（避免空指针）
         setupViewPager();
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_data_center) + " ");
 
-        // 配置模糊效果
-        setupBlurEffect();
+        // 初始化各种装饰效果
+        initDecoration();
 
         // 注册返回键回调，主界面返回直接退出App
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -124,12 +110,12 @@ public class MainActivity extends BaseActivity {
             navView = findViewById(R.id.nav_view);
 
             // 初始化适配器
-            viewPagerAdapter = new TabLayoutFragmentStateAdapter(this);
+            TabLayoutFragmentStateAdapter viewPagerAdapter = new TabLayoutFragmentStateAdapter(this);
 
             // 添加Fragment
             viewPagerAdapter.addFragment(new DataCenterFragment(), getResources().getString(R.string.top_bar_data_center));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                viewPagerAdapter.addFragment(new AboutAppEffectFragment(), "");
+                viewPagerAdapter.addFragment(new AboutAppEffectFragment(), getResources().getString(R.string.top_bar_data_center));
             } else {
                 viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));
             }
@@ -149,9 +135,6 @@ public class MainActivity extends BaseActivity {
                     // 同步底部导航栏状态
                     int selectedId = menuOrder.get(position);
                     navView.setSelectedItemId(selectedId);
-
-                    // 更新Toolbar标题
-                    updateToolbarTitle(position);
                 }
             });
 
@@ -178,7 +161,6 @@ public class MainActivity extends BaseActivity {
 
     /**
      * 检查App更新和图片资源更新，如果其中任何一个有更新，则在底栏的图标上添加小红点
-     *
      */
     private void checkUpdate() {
         NoPaddingBottomNavigationView bottomNav = findViewById(R.id.nav_view);
@@ -193,29 +175,26 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 更新Toolbar标题
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
      */
-    private void updateToolbarTitle(int position) {
-        if (position >= 0 && position < viewPagerAdapter.getItemCount()) {
-            CharSequence title = viewPagerAdapter.getPageTitle(position);
-            if (title != null) {
-                if (position == 1 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    findViewById(R.id.status_bar_gradient).setVisibility(View.GONE);
-                } else {
-                    findViewById(R.id.status_bar_gradient).setVisibility(View.VISIBLE);
-                }
-                setTopAppBarTitle(String.valueOf(title));
-            }
-        }
-    }
+    private void initDecoration() {
+        // 适配导航栏高度
+        LinearLayout navigationBarContainer = findViewById(R.id.navigation_bar_container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取导航栏高度（小白条/三键导航）
+        InsetsUtil.getNavigationBarHeight(this, rootView, height -> {
+            Log.d("height", "height in MainActivity = " + height);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) navigationBarContainer.getLayoutParams();
+            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            navigationBarContainer.setLayoutParams(params);
+        });
 
-    /**
-     * 设置Toolbar标题
-     */
-    private void setTopAppBarTitle(String title) {
-        //设置顶栏标题
-        TextView topAppBar = findViewById(R.id.Top_AppBar);
-        topAppBar.setText(title);
+        // 添加模糊材质
+        setupBlurEffect();
     }
 
     /**

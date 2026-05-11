@@ -2,9 +2,9 @@
     <!--总体-->
     <string name="app_name">HyperFVM</string>
     <string name="hyper_fvm">HyperFVM</string>
-    <string name="top_bar_data_center">融合数据中心🤏</string>
+    <string name="top_bar_data_center">🍪融合数据中心🍪</string>
     <string name="label_data_center_navigation">融合数据中心</string>
-    <string name="top_bar_about_app">关于软件🫴</string>
+    <string name="top_bar_about_app">🍭关于软件🍭</string>
     <string name="label_about_app_navigation">关于软件</string>
     <!--融合数据中心-->
     <string name="title_data_center_about_data">数据相关👀</string>
@@ -206,7 +206,7 @@
     <string name="text_tools_tiramisu_image_7_3_2">Q群获取指令：@提拉米鼠 /大赛-3</string>
     <string name="text_tools_tiramisu_image_7_4_1">大赛任务图(第4周)</string>
     <string name="text_tools_tiramisu_image_7_4_2">Q群获取指令：@提拉米鼠 /大赛-4</string>
-    <string name="copyright_and_xiaye">数据来自：提拉米鼠，作者：夏夜浅酌\n\nHyperFVM\nMade By Phantom Careful 😈</string>
+    <string name="copyright_and_tiramisu">数据图来自：提拉米鼠\n\nHyperFVM\nMade By Phantom Careful 😈</string>
     <!--美食数据站-->
     <string name="label_tools_made_by_xiaye">美食数据站🥰</string>
     <string name="title_tools_tiramisu">提拉米鼠\n作者：夏夜浅酌</string>

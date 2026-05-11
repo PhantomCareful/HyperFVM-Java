@@ -15,6 +15,7 @@ import android.transition.TransitionSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,7 +34,9 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
@@ -740,6 +743,16 @@ public class CardData4Activity extends BaseActivity {
      * 等等等等
      */
     private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+
         // 初始化大图片的淡入动画
         transition = new TransitionSet();
         transition.addTransition(new Fade()); // 淡入淡出

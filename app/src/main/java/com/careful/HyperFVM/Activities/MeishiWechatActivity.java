@@ -33,7 +33,6 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
@@ -84,17 +83,6 @@ public class MeishiWechatActivity extends BaseActivity {
         View root = binding.getRoot();
         setContentView(root);
 
-        // 适配导航栏高度
-        MaterialCardView floatButtonContainer = findViewById(R.id.FloatButton_MeishiWechat_Container);
-        View rootView = findViewById(android.R.id.content);
-        // 动态获取导航栏高度（小白条/三键导航）
-        InsetsUtil.getNavigationBarHeight(this, rootView, height -> {
-            // 悬浮底栏抬高设置为：12dp+导航栏高度
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonContainer.getLayoutParams();
-            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
-            floatButtonContainer.setLayoutParams(params);
-        });
-
         // 初始化Handler（主线程的Looper）
         mainHandler = new Handler(Looper.getMainLooper());
 
@@ -105,6 +93,9 @@ public class MeishiWechatActivity extends BaseActivity {
         initViews();
         // 加载已保存的账号
         loadAccountList();
+
+        // 初始化各种装饰效果
+        initDecoration();
 
         Runnable transitionRunnable = () -> {
             TransitionManager.beginDelayedTransition(MeishiWechatContainer, transition);
@@ -122,12 +113,6 @@ public class MeishiWechatActivity extends BaseActivity {
         // 账号数量文本和列表容器
         accountCountText = findViewById(R.id.TitleMeishiWechatSavedAccount);
         accountListContainer = findViewById(R.id.LinearLayout_AccountList);
-
-        // 配置模糊效果
-        setupBlurEffect();
-
-        // 添加按钮点击事件
-        findViewById(R.id.FloatButton_MeishiWechat_Container).setOnClickListener(v -> showAddLinkDialog());
 
         // 获取Markdown文本
         MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
@@ -310,15 +295,44 @@ public class MeishiWechatActivity extends BaseActivity {
     }
 
     /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView floatButtonAddContainer = findViewById(R.id.FloatButton_Add_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonAddContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonAddContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
+    }
+
+    /**
      * 添加模糊效果
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButton));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonAdd));
 
-        // 顺便设置返回按钮的功能
+        // 顺便设置按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+        findViewById(R.id.FloatButton_Add_Container).setOnClickListener(v -> showAddLinkDialog());
+
     }
 
     @Override

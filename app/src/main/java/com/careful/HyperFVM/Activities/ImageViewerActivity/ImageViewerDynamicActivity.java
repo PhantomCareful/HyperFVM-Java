@@ -8,6 +8,8 @@ import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.C
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,8 +22,10 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.ZoomImageView;
+import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 
@@ -54,8 +58,8 @@ public class ImageViewerDynamicActivity extends BaseActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
 
-        // 添加模糊材质
-        setupBlurEffect();
+        // 初始化各种装饰效果
+        initDecoration();
 
         // 找到ZoomImageView并设置图片
         zoomImageView = findViewById(R.id.ZoomImageViewer);
@@ -121,6 +125,28 @@ public class ImageViewerDynamicActivity extends BaseActivity {
         return (currentNightMode == Configuration.UI_MODE_NIGHT_YES) ?
                 unzipRootPath + File.separator + imageName + "_dark.webp" :
                 unzipRootPath + File.separator + imageName + "_light.webp" ;
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
     }
 
     /**

@@ -27,7 +27,7 @@
                 android:baselineAligned="false"
                 android:orientation="vertical"
                 android:paddingTop="120dp"
-                android:paddingBottom="20dp"
+                android:paddingBottom="50dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -257,8 +257,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_Back_Container"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         app:strokeWidth="0dp"

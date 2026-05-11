@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +26,9 @@ import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
@@ -55,10 +58,11 @@ public class CardData1Activity extends BaseActivity {
             return;
         }
 
-        setupBlurEffect();
-
         // 初始化数据库工具
         dbHelper = new DBHelper(this);
+
+        // 初始化各种装饰效果
+        initDecoration();
 
         // 查询卡片数据并显示
         queryAndShowCardData(tableName, cardName);
@@ -434,6 +438,28 @@ public class CardData1Activity extends BaseActivity {
             intent.putExtra("table", tableName);
             startActivity(intent);
         }
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
     }
 
     /**

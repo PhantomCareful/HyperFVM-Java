@@ -16,6 +16,7 @@ import android.transition.TransitionSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,8 +37,13 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.ImageExportUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
@@ -61,6 +67,9 @@ public class CardData4EffectActivity extends BaseActivity {
     private int imageViewCardBig2ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
     private int imageViewCardBig3ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
 
+    private String cardName;
+    private final List<ExportInfo> exportInfoList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -80,7 +89,7 @@ public class CardData4EffectActivity extends BaseActivity {
         }
 
         // 获取传入的参数
-        String cardName = getIntent().getStringExtra("name");
+        cardName = getIntent().getStringExtra("name");
         String tableName = getIntent().getStringExtra("table");
 
         // 校验参数
@@ -132,7 +141,7 @@ public class CardData4EffectActivity extends BaseActivity {
                 );
                 ImageViewCardBig.setImageResource(imageResId);
                 setTextToView(R.id.card_name_1, cardName0);
-                exportImage(ImageViewCardBig, cardName, cardName0, "不转形态, 大");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName0 + "(不转形态, 大)"));
 
                 // 隐藏剩下的组件
                 findViewById(R.id.Image_View_Card_Big_2_1_Container).setVisibility(View.GONE);
@@ -157,7 +166,7 @@ public class CardData4EffectActivity extends BaseActivity {
                 );
                 ImageViewCardBig.setImageResource(imageResId);
                 setTextToView(R.id.card_name_2_1, cardName0);
-                exportImage(ImageViewCardBig, cardName, cardName0, "不转形态, 大");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName0 + "(不转形态, 大)"));
 
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2_2);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1")) + "_big";
@@ -169,7 +178,7 @@ public class CardData4EffectActivity extends BaseActivity {
                 );
                 ImageViewCardBig.setImageResource(imageResId);
                 setTextToView(R.id.card_name_2_2, cardName1);
-                exportImage(ImageViewCardBig, cardName, cardName1, "一转形态, 大");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName1 + "(一转形态, 大)"));
 
                 // 隐藏Image_View_Card_Big_1_Container
                 findViewById(R.id.Image_View_Card_Big_1_Container).setVisibility(View.GONE);
@@ -187,7 +196,7 @@ public class CardData4EffectActivity extends BaseActivity {
                     );
                     ImageViewCardBig.setImageResource(imageResId);
                     setTextToView(R.id.card_name_3, cardName2);
-                    exportImage(ImageViewCardBig, cardName, cardName2, "二转形态, 大");
+                    exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName2 + "(二转形态, 大)"));
 
                     // 调整容器顶部距离
                     cardDataContainer.setPadding(
@@ -496,7 +505,7 @@ public class CardData4EffectActivity extends BaseActivity {
                     getPackageName()
             );
             imageView.setImageResource(imageResId);
-            exportImage(imageView, cardName, cardName0, "不转形态");
+            exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(不转形态)"));
 
             imageView = findViewById(R.id.decompose_image_id_card_2);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2"));
@@ -507,7 +516,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!cardName1.equals("无")) {
-                exportImage(imageView, cardName, cardName1, "一转形态");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName1 + "(一转形态)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_card_3);
@@ -519,7 +528,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!cardName2.equals("无")) {
-                exportImage(imageView, cardName, cardName2, "二转形态");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName2 + "(二转形态)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_skill_1);
@@ -531,7 +540,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "初级技能书");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(初级技能书)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_skill_2);
@@ -543,7 +552,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "高级技能书");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(高级技能书)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_skill_3);
@@ -555,7 +564,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "终级技能书");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(终级技能书)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_skill_4);
@@ -567,7 +576,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "究级技能书");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(究级技能书)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_1_a);
@@ -579,7 +588,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "一转凭证A");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(一转凭证A)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_1_b);
@@ -591,7 +600,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "一转凭证B");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(一转凭证B)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_2_a);
@@ -603,7 +612,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "二转凭证A");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(二转凭证A)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_2_b);
@@ -615,7 +624,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "二转凭证B");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(二转凭证B)"));
             }
 
             imageView = findViewById(R.id.decompose_image_id_transfer_2_c);
@@ -627,7 +636,7 @@ public class CardData4EffectActivity extends BaseActivity {
             );
             imageView.setImageResource(imageResId);
             if (!imageIdStr.equals("card_data_x")) {
-                exportImage(imageView, cardName, cardName0, "二转凭证C");
+                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(二转凭证C)"));
             }
 
             setTextToView(R.id.decompose_card_1, getStringFromCursor(cursor, "decompose_card_1"));
@@ -695,14 +704,6 @@ public class CardData4EffectActivity extends BaseActivity {
         return (value == null || value.isEmpty()) ? "无" : value;
     }
 
-    // 辅助方法：给图片控件设置长按导出图片
-    private void exportImage(ImageView imageView, String folderName, String cardName, String categoryName) {
-        imageView.setOnLongClickListener(v -> {
-            DialogBuilderManager.showImageExportDialog(this, imageView, folderName, cardName, categoryName);
-            return false;
-        });
-    }
-
     /**
      * 直接查询相关卡片数据
      * @param cardName 卡片名称
@@ -746,6 +747,21 @@ public class CardData4EffectActivity extends BaseActivity {
      * 等等等等
      */
     private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView floatButtonExportContainer = findViewById(R.id.FloatButton_Export_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonExportContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonExportContainer.setLayoutParams(params);
+        });
+
         // 初始化大图片的淡入动画
         transition = new TransitionSet();
         transition.addTransition(new Fade()); // 淡入淡出
@@ -805,9 +821,18 @@ public class CardData4EffectActivity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonExport));
 
-        // 顺便设置返回按钮的功能
+        // 顺便设置按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+        findViewById(R.id.FloatButton_Export_Container).setOnClickListener(v -> exportAllImages(exportInfoList));
+    }
+
+    /**
+     * 批量导出图片
+     */
+    private void exportAllImages(List<ExportInfo> exportInfoList) {
+        DialogBuilderManager.showExportAllImagesDialog(this, cardName, exportInfoList);
     }
 
     @Override

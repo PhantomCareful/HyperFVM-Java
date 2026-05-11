@@ -37,7 +37,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="10dp"
                     android:paddingTop="120dp"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="50dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false">
@@ -78,7 +78,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="20dp"
                     android:paddingTop="120dp"
-                    android:paddingBottom="120dp"
+                    android:paddingBottom="50dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false">
@@ -242,15 +242,15 @@
         android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/status_bar_gradient_general"
+        android:background="@drawable/status_bar_gradient_no_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/FloatButton_Back_Container"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         app:strokeWidth="0dp"
@@ -283,56 +283,38 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- 顶栏 -->
-    <TextView
-        android:id="@+id/Top_AppBar"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:text="@string/top_bar_meishi_wechat"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="?attr/colorOnSurface"
-        android:gravity="center_vertical"
-        app:layout_constraintLeft_toRightOf="@+id/FloatButton_Back_Container"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/FloatButton_MeishiWechat_Container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:id="@+id/FloatButton_Add_Container"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         app:strokeWidth="0dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
         <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurViewButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clipToOutline="true"
-            app:blurOverlayColor="@color/blur_overlay_color"
-            tools:ignore="MissingConstraints">
+            android:id="@+id/blurViewButtonAdd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blurOverlayColor="@color/blur_overlay_color">
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/FloatButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_meishi_wechat_button_add_url"
-                android:textSize="20sp"
+            <ImageButton
+                android:id="@+id/FloatButton_Add"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_plus"
                 android:stateListAnimator="@null"
                 android:clickable="false"
-                app:icon="@drawable/ic_plus"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
-                app:rippleColor="@android:color/transparent" />
+                app:rippleColor="@android:color/transparent"
+                app:tint="?attr/colorOnSurface"
+                tools:ignore="ContentDescription" />
 
         </eightbitlab.com.blurview.BlurView>
 

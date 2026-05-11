@@ -9,6 +9,7 @@ import android.graphics.drawable.AnimatedImageDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,13 +21,16 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 
 import java.io.IOException;
 
 public class TodayLuckyActivity extends BaseActivity {
     //圆角半径，单位：像素
-    private static final float CORNER_RADIUS_DP = 50f;
+    private static final int CORNER_RADIUS_DP = 50;
     private int cornerRadiusPx;//转换后的像素值
 
     private ImageView gifImageView;
@@ -47,11 +51,11 @@ public class TodayLuckyActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_today_lucky);
 
-        // 添加模糊材质
-        setupBlurEffect();
+        // 初始化各种装饰效果
+        initDecoration();
 
         // 将dp值转换为像素
-        cornerRadiusPx = (int) (CORNER_RADIUS_DP * getResources().getDisplayMetrics().density);
+        cornerRadiusPx = DensityUtil.dpToPx(this, CORNER_RADIUS_DP);
 
         this.gifImageView = findViewById(R.id.Gif_Image_View);
         this.button = findViewById(R.id.Button_ControlGif);
@@ -131,6 +135,28 @@ public class TodayLuckyActivity extends BaseActivity {
         button.setText(isPlaying ?
                 getString(R.string.label_tools_today_lucky_pause_gif) :
                 getString(R.string.label_tools_today_lucky_play_gif));
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
     }
 
     /**

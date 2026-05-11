@@ -9,6 +9,7 @@ import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -24,7 +25,9 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+import com.google.android.material.card.MaterialCardView;
 
 public class TiramisuImageActivity extends BaseActivity {
 
@@ -56,13 +59,14 @@ public class TiramisuImageActivity extends BaseActivity {
         update_image_action = findViewById(R.id.update_image_resources_action);
         tools_tiramisu_image_container = findViewById(R.id.tools_tiramisu_image_container);
 
+        // 初始化各种装饰效果
+        initDecoration();
+
+        // 初始化组件点击事件
         initViews();
     }
 
     private void initViews() {
-        // 添加模糊材质
-        setupBlurEffect();
-
         setupContainer(R.id.tiramisu_image_1_container, "tiramisu_image_1");
         setupContainer(R.id.tiramisu_image_2_container, "tiramisu_image_2");
         setupContainer(R.id.tiramisu_image_3_1_container, "tiramisu_image_3_1");
@@ -75,11 +79,6 @@ public class TiramisuImageActivity extends BaseActivity {
         setupContainer(R.id.tiramisu_image_7_2_container, "tiramisu_image_7_2");
         setupContainer(R.id.tiramisu_image_7_3_container, "tiramisu_image_7_3");
         setupContainer(R.id.tiramisu_image_7_4_container, "tiramisu_image_7_4");
-
-        // 初始化动画效果
-        transition = new TransitionSet();
-        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
-        transition.setDuration(400); // 动画时长400ms
     }
 
     private void setupContainer(int viewId, String imageName) {
@@ -169,6 +168,34 @@ public class TiramisuImageActivity extends BaseActivity {
                 .setDuration(400)
                 .withEndAction(() -> view.setVisibility(View.GONE))
                 .start();
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    @SuppressLint("DiscouragedApi")
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
+
+        // 初始化动画效果
+        transition = new TransitionSet();
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.setDuration(400); // 动画时长400ms
     }
 
     /**

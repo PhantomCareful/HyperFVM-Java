@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
+import com.careful.HyperFVM.Activities.DetailCardData.ExportInfo;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -451,7 +452,25 @@ public class DialogBuilderManager {
                 .setMessage("图片将保存到：Pictures/" + context.getResources().getString(R.string.app_name) +
                         "/" + folderName +
                         "/" + cardName + "(" + categoryName + ")" + ".webp")
-                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportCardImage(context, imageView, folderName, cardName, categoryName))
+                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportSignalImage(context, imageView, folderName, cardName, categoryName))
+                .setNegativeButton("咱手滑了\uD83E\uDEE3", (dialogInterface, which) -> dialogInterface.dismiss())
+                .setCancelable(true)
+                .create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 批量导出图片的弹窗
+     */
+    public static void showExportAllImagesDialog(Context context, String folderName, List<ExportInfo> exportInfoList) {
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setTitle("导出所有图片")
+                .setMessage("图片将保存到：Pictures/" + context.getResources().getString(R.string.app_name) +
+                        "/" + folderName)
+                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportAllImages(context, folderName, exportInfoList))
                 .setNegativeButton("咱手滑了\uD83E\uDEE3", (dialogInterface, which) -> dialogInterface.dismiss())
                 .setCancelable(true)
                 .create();
