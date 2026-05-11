@@ -39,12 +39,21 @@ public class BgEffectController implements Runnable {
         }
     }
 
-    public void setDetailCardDataColorType(Context context) {
+    public void setDetailAnimalCardDataColorType(Context context) {
         mThemeMode = DarkModeManager.isDarkMode(context) ? BgEffectController.ThemeMode.DARK : BgEffectController.ThemeMode.LIGHT;
 
         // 不需要计算 bound，直接全屏
         if (mBgEffectPainter != null) {
-            mBgEffectPainter.setDetailCardDataColorType(mThemeMode, mBound);
+            mBgEffectPainter.setDetailAnimalCardDataColorType(mThemeMode, mBound);
+        }
+    }
+
+    public void setDetailGoldenCardDataColorType(Context context) {
+        mThemeMode = DarkModeManager.isDarkMode(context) ? BgEffectController.ThemeMode.DARK : BgEffectController.ThemeMode.LIGHT;
+
+        // 不需要计算 bound，直接全屏
+        if (mBgEffectPainter != null) {
+            mBgEffectPainter.setDetailGoldenCardDataColorType(mThemeMode, mBound);
         }
     }
 
@@ -58,10 +67,20 @@ public class BgEffectController implements Runnable {
         }
     }
 
-    public void startDetailCardDataBgEffect() {
+    public void startDetailAnimalCardDataBgEffect() {
         if (mBgEffectPainter == null) {
             mBgEffectPainter = new BgEffectPainter(mTarget.getContext());
-            mBgEffectPainter.setDetailCardDataColorType(mThemeMode, mBound);
+            mBgEffectPainter.setDetailAnimalCardDataColorType(mThemeMode, mBound);
+            mLastGlobalTime = System.nanoTime();
+            resetTime();
+            mTarget.postOnAnimation(this);
+        }
+    }
+
+    public void startDetailGoldenCardDataBgEffect() {
+        if (mBgEffectPainter == null) {
+            mBgEffectPainter = new BgEffectPainter(mTarget.getContext());
+            mBgEffectPainter.setDetailGoldenCardDataColorType(mThemeMode, mBound);
             mLastGlobalTime = System.nanoTime();
             resetTime();
             mTarget.postOnAnimation(this);

@@ -18,6 +18,9 @@ public class BgEffectDataManager {
     private final BgEffectData mRMBLightData;
     private final BgEffectData mRMBDarkData;
 
+    private final BgEffectData mSupremeGoldenLightData;
+    private final BgEffectData mSupremeGoldenDarkData;
+
     public static class BgEffectData {
         public float uTranslateY;
         public float[] uPoints;
@@ -194,6 +197,72 @@ public class BgEffectDataManager {
         mRMBDarkData.gradientColors3 = new float[]{
                 0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
         };
+
+        // 自建主题：金卡终转
+        // 浅色主题
+        mSupremeGoldenLightData = new BgEffectData();
+        mSupremeGoldenLightData.uTranslateY = 0.0f;
+        mSupremeGoldenLightData.uPoints = new float[]{0.8f, 0.2f, 1.0f, 0.8f, 0.9f, 1.0f, 0.2f, 0.9f, 1.0f, 0.2f, 0.2f, 1.0f};
+        mSupremeGoldenLightData.uAlphaMulti = 1.0f;
+        mSupremeGoldenLightData.uNoiseScale = 1.5f;
+        mSupremeGoldenLightData.uPointOffset = 0.2f;
+        mSupremeGoldenLightData.uPointRadiusMulti = 1.0f;
+        mSupremeGoldenLightData.uSaturateOffset = 0.2f;
+        mSupremeGoldenLightData.uLightOffset = 0.1f;
+        mSupremeGoldenLightData.uAlphaOffset = 0.5f;
+        mSupremeGoldenLightData.uShadowColorMulti = 0.3f;
+        mSupremeGoldenLightData.uShadowColorOffset = 0.3f;
+        mSupremeGoldenLightData.uShadowNoiseScale = 5.0f;
+        mSupremeGoldenLightData.uShadowOffset = 0.01f;
+        mSupremeGoldenLightData.colorInterpPeriod = 5.0f;
+        mSupremeGoldenLightData.gradientSpeedChange = 1.6f;
+        mSupremeGoldenLightData.gradientSpeedRest = 1.05f;
+        mSupremeGoldenLightData.gradientColors1 = new float[]{
+                0.769f, 0.278f, 0.765f, 1.0f,  // #C447C3
+                1.0f, 0.941f, 0.482f, 1.0f,    // #FEF07B
+                0.867f, 0.267f, 0.745f, 1.0f,  // #DD44BE
+                0.506f, 0.973f, 0.996f, 1.0f,  // #81F8FE
+        };
+        mSupremeGoldenLightData.gradientColors2 = new float[]{
+                0.769f, 0.278f, 0.765f, 1.0f,  // #C447C3
+                1.0f, 0.941f, 0.482f, 1.0f,    // #FEF07B
+                0.867f, 0.267f, 0.745f, 1.0f,  // #DD44BE
+                0.506f, 0.973f, 0.996f, 1.0f,  // #81F8FE
+        };
+        mSupremeGoldenLightData.gradientColors3 = new float[]{
+                0.769f, 0.278f, 0.765f, 1.0f,  // #C447C3
+                1.0f, 0.941f, 0.482f, 1.0f,    // #FEF07B
+                0.867f, 0.267f, 0.745f, 1.0f,  // #DD44BE
+                0.506f, 0.973f, 0.996f, 1.0f,  // #81F8FE
+        };
+
+        // 深色主题
+        mSupremeGoldenDarkData = new BgEffectData();
+        mSupremeGoldenDarkData.uTranslateY = 0.0f;
+        mSupremeGoldenDarkData.uPoints = new float[]{0.8f, 0.2f, 1.0f, 0.8f, 0.9f, 1.0f, 0.2f, 0.9f, 1.0f, 0.2f, 0.2f, 1.0f};
+        mSupremeGoldenDarkData.uAlphaMulti = 1.0f;
+        mSupremeGoldenDarkData.uNoiseScale = 1.5f;
+        mSupremeGoldenDarkData.uPointOffset = 0.4f;
+        mSupremeGoldenDarkData.uPointRadiusMulti = 1.0f;
+        mSupremeGoldenDarkData.uSaturateOffset = 0.17f;
+        mSupremeGoldenDarkData.uLightOffset = 0.0f;
+        mSupremeGoldenDarkData.uAlphaOffset = 0.5f;
+        mSupremeGoldenDarkData.uShadowColorMulti = 0.3f;
+        mSupremeGoldenDarkData.uShadowColorOffset = 0.3f;
+        mSupremeGoldenDarkData.uShadowNoiseScale = 5.0f;
+        mSupremeGoldenDarkData.uShadowOffset = 0.01f;
+        mSupremeGoldenDarkData.colorInterpPeriod = 8.0f;
+        mSupremeGoldenDarkData.gradientSpeedChange = 1.0f;
+        mSupremeGoldenDarkData.gradientSpeedRest = 1.0f;
+        mSupremeGoldenDarkData.gradientColors1 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
+        mSupremeGoldenDarkData.gradientColors2 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
+        mSupremeGoldenDarkData.gradientColors3 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
     }
 
     public BgEffectData getAboutAppColorData(BgEffectController.DeviceType deviceType, BgEffectController.ThemeMode themeMode) {
@@ -204,7 +273,11 @@ public class BgEffectDataManager {
         }
     }
 
-    public BgEffectData getDetailCardDataColorData(BgEffectController.ThemeMode themeMode) {
+    public BgEffectData getDetailAnimalCardDataColorData(BgEffectController.ThemeMode themeMode) {
         return themeMode == LIGHT ? mRMBLightData : mRMBDarkData;
+    }
+
+    public BgEffectData getDetailGoldenCardDataColorData(BgEffectController.ThemeMode themeMode) {
+        return themeMode == LIGHT ? mSupremeGoldenLightData : mSupremeGoldenDarkData;
     }
 }

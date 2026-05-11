@@ -29,7 +29,6 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.careful.HyperFVM.Activities.DataCenter.CardDataAuxiliaryListActivity;
 import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
@@ -253,14 +252,6 @@ public class DataCenterFragment extends Fragment {
             TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
             DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index_loading));
             Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
-            startActivity(intent);
-        });
-
-        // 增幅卡名单
-        root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Container).setOnClickListener(v -> {
-            TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
-            DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list_loading));
-            Intent intent = new Intent(requireActivity(), CardDataAuxiliaryListActivity.class);
             startActivity(intent);
         });
 
@@ -748,7 +739,5 @@ public class DataCenterFragment extends Fragment {
         // 还原卡片状态
         TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
         DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
-        TextView DataCenter_CardDataAuxiliaryList_Content =  root.findViewById(R.id.DataCenter_CardDataAuxiliaryList_Content);
-        DataCenter_CardDataAuxiliaryList_Content.setText(getResources().getString(R.string.label_data_center_card_data_auxiliary_list));
     }
 }

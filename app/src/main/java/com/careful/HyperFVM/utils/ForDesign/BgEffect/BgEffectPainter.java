@@ -63,8 +63,16 @@ public class BgEffectPainter {
         mBgRuntimeShader.setFloatUniform("uBound", uBound);
     }
 
-    public void setDetailCardDataColorType(BgEffectController.ThemeMode themeMode, float[] uBound) {
-        mBgEffectData = mBgEffectDataManager.getDetailCardDataColorData(themeMode);
+    public void setDetailAnimalCardDataColorType(BgEffectController.ThemeMode themeMode, float[] uBound) {
+        mBgEffectData = mBgEffectDataManager.getDetailAnimalCardDataColorData(themeMode);
+        uAnimTime = 0.0f;
+        gradientSpeed = mBgEffectData.gradientSpeedRest;
+        applyData(mBgEffectData);
+        mBgRuntimeShader.setFloatUniform("uBound", uBound);
+    }
+
+    public void setDetailGoldenCardDataColorType(BgEffectController.ThemeMode themeMode, float[] uBound) {
+        mBgEffectData = mBgEffectDataManager.getDetailGoldenCardDataColorData(themeMode);
         uAnimTime = 0.0f;
         gradientSpeed = mBgEffectData.gradientSpeedRest;
         applyData(mBgEffectData);

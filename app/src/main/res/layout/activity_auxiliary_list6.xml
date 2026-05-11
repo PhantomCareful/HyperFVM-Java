@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
+
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="120dp"
+                android:paddingBottom="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <!-- 展示各增幅卡的大图 -->
+                <LinearLayout
+                    android:id="@+id/card_data_index_background_images_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/card_data_index_background_image_1_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/card_data_index_4_2_4_0_big"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="精灵龙"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/card_data_index_background_image_1_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/card_data_index_4_2_4_1_big"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="蛋筒精灵龙"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/card_data_index_background_image_1_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/card_data_index_4_2_4_2_big"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="樱桃精灵龙"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- 展示增幅名单 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_card_data_auxiliary_list_content"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="15sp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <include
+                        android:id="@+id/card_card_data_auxiliary_list6"
+                        layout="@layout/card_card_data_auxiliary_list6"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copyright"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginVertical="20dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <!-- 状态栏渐变遮罩层 -->
+    <View
+        android:id="@+id/status_bar_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/status_bar_gradient_no_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/FloatButton_Back_Container"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        app:strokeWidth="0dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewButtonBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blurOverlayColor="@color/blur_overlay_color">
+
+            <ImageButton
+                android:id="@+id/FloatButton_Back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_arrow_left"
+                android:stateListAnimator="@null"
+                android:clickable="false"
+                app:elevation="0dp"
+                app:pressedTranslationZ="0dp"
+                app:rippleColor="@android:color/transparent"
+                tools:ignore="ContentDescription" />
+
+        </eightbitlab.com.blurview.BlurView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

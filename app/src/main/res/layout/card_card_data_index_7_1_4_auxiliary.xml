@@ -20,14 +20,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_card_data_auxiliary_list_4_2_1"
+            android:text="@string/title_card_data_auxiliary_list_5_2_1"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="20sp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_card_data_auxiliary_list_4_2_2"
+            android:text="@string/title_card_data_auxiliary_list_5_2_2"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="11sp" />
     </LinearLayout>

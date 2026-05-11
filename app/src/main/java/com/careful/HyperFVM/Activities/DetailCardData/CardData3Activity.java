@@ -12,6 +12,8 @@ import android.os.Looper;
 import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,10 +26,13 @@ import androidx.annotation.NonNull;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
+
+import java.util.Objects;
 
 public class CardData3Activity extends BaseActivity {
     private DBHelper dbHelper;
@@ -46,7 +51,7 @@ public class CardData3Activity extends BaseActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_card_data_3);
+        setContentView(R.layout.activity_card_data3);
 
         // 初始化动画效果
         transition = new TransitionSet();
@@ -222,6 +227,100 @@ public class CardData3Activity extends BaseActivity {
             contentBaseInfo = contentBaseInfo +
                     "### 作为副卡：" + getStringFromCursor(cursor, "sub_card");
             getContent(this, findViewById(R.id.base_info_2), contentBaseInfo);
+
+            // 相关卡片 - 增幅卡
+            LinearLayout container = findViewById(R.id.Card_Corresponding_Container);
+            String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
+            if (!correspondingAuxiliaryCardName.equals("无")) {
+                // 1. 读取增幅卡片图片ID列（同样增加null校验）
+                String correspondingAuxiliaryCardImageId = cursor.getString(cursor.getColumnIndex("corresponding_auxiliary_card_image_id"));
+
+                // 2. 按换行符拆分名称和图片ID数组（兼容Windows(\r\n)和Linux(\n)换行符）
+                String[] nameArray = correspondingAuxiliaryCardName.split("\\r?\\n");
+                String[] imageIdArray = correspondingAuxiliaryCardImageId.split("\\r?\\n");
+
+                // 3. 遍历拆分后的名称数组，为每条数据生成布局
+                for (int i = 0; i < nameArray.length; i++) {
+                    String singleCardName = nameArray[i].trim(); // 去除首尾空格（避免空行/空格干扰）
+                    // 跳过空名称（比如拆分后出现空字符串）
+                    if (singleCardName.isEmpty() || singleCardName.equals("无")) {
+                        continue;
+                    }
+
+                    // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
+                    LinearLayout correspondingCardContainer = (LinearLayout) LayoutInflater.from(this)
+                            .inflate(R.layout.card_card_data_corresponding_card, container, false);
+
+                    // 5. 绑定当前布局的子控件（必须从当前container查找，避免复用错误）
+                    TextView correspondingCardName = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_name);
+                    TextView correspondingCardContent = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_content);
+                    @SuppressLint("CutPasteId") ImageView correspondingCardImage = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_image);
+
+                    // 6. 匹配对应索引的图片ID（处理图片ID数组长度不足的情况）
+                    if (i < imageIdArray.length) {
+                        imageIdStr = imageIdArray[i];
+                    }
+
+                    // 根据image_id获取资源ID
+                    imageResId = getResources().getIdentifier(
+                            imageIdStr,
+                            "drawable",
+                            getPackageName()
+                    );
+                    correspondingCardImage.setImageResource(imageResId);
+
+                    // 7. 设置卡片名称和描述
+                    correspondingCardName.setText(singleCardName);
+                    correspondingCardContent.setText("此类卡片增幅本卡片");
+
+                    // 8. 设置点击事件（点击跳转到对应卡片详情）
+                    correspondingCardContainer.setOnClickListener(v -> CardDataHelper.selectAuxiliaryCardByName(this, singleCardName));
+
+                    // 9. 将当前卡片布局添加到父容器
+                    container.addView(correspondingCardContainer);
+                }
+            }
+
+            // 相关卡片 - 自己就是增幅卡
+            if (
+                    Objects.equals(cardName, "洛基神使") || Objects.equals(cardName, "欧若拉神使") || Objects.equals(cardName, "塔利亚神使") ||
+                            Objects.equals(cardName, "弗雷神使") || Objects.equals(cardName, "塔拉萨神使")
+            ) {
+                // 1. Inflate单个增幅卡片的布局
+                LinearLayout correspondingCardContainer = (LinearLayout) LayoutInflater.from(this)
+                        .inflate(R.layout.card_card_data_corresponding_card, container, false);
+
+                // 2. 绑定当前布局的子控件（必须从当前container查找，避免复用错误）
+                TextView correspondingCardName = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_name);
+                TextView correspondingCardContent = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_content);
+                @SuppressLint("CutPasteId") ImageView correspondingCardImage = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_image);
+
+                // 3. 设置标题，并隐藏描述和图片
+                correspondingCardName.setText("查看此卡片的增幅名单");
+                correspondingCardContent.setText("点击跳转");
+                imageResId = getResources().getIdentifier(
+                        "ic_chevron_right",
+                        "drawable",
+                        getPackageName()
+                );
+                correspondingCardImage.setImageResource(imageResId);
+                TypedValue typedValue = new TypedValue();
+                getTheme().resolveAttribute(R.attr.VectorGraphicColorOnGeneralCardView, typedValue, true);
+                int tintColor = typedValue.data;
+                correspondingCardImage.setColorFilter(tintColor);
+
+                // 4. 设置点击事件（点击跳转到对应卡片详情）
+                correspondingCardContainer.setOnClickListener(v -> CardDataHelper.selectAuxiliaryCardBySelfName(this, cardName));
+
+                // 5. 将当前卡片布局添加到父容器
+                container.addView(correspondingCardContainer);
+            } else {
+                // 没有任何相关卡片的话，隐藏标题和CardView
+                if (correspondingAuxiliaryCardName.equals("无")) {
+                    findViewById(R.id.title_card_data_corresponding_info).setVisibility(View.GONE);
+                    findViewById(R.id.Card_Corresponding).setVisibility(View.GONE);
+                }
+            }
 
             // 数据信息区域
             // 星级数据

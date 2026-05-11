@@ -34,6 +34,60 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="upside_down_cake">
         <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList9Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList8EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList8Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList7EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList7Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList6EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList6Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList5EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList5Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList4EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList3EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList2EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList1EffectActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ThanksList.ThanksAppActivity"
             android:exported="false" />
         <activity
@@ -41,9 +95,6 @@
             android:exported="false" />
         <activity
             android:name=".Activities.DataCenter.CardDataIndexActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.DataCenter.CardDataAuxiliaryListActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.DataCenter.DataImagesIndexActivity"

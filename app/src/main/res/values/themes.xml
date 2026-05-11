@@ -64,6 +64,11 @@
         <item name="VectorGraphicColorOnGeneralCardView">?attr/VectorGraphicColorOnImportantCardView</item>
     </style>
 
+    <style name="GeneralTextViewInBgEffectCardViewStyle" parent="Base.Theme.HyperFVMJava">
+        <item name="TextViewColorOnGeneralCardView">?attr/colorOnSurface</item>
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorOnSurface</item>
+    </style>
+
     <style name="ToolBarTitleStyle" parent="Base.Theme.HyperFVMJava">
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
