@@ -215,15 +215,15 @@ public class CardData4Activity extends BaseActivity {
             }
 
             //全新的Markdown样式
-            String contentBaseInfo1 = getStringFromCursor(cursor, "base_info");
+            String contentBaseInfo1 = CardDataHelper.getStringFromCursor(cursor, "base_info");
             getContent(this, findViewById(R.id.base_info_1), contentBaseInfo1);
 
-            String contentBaseInfo2 = "- 所属分类：" + getStringFromCursor(cursor, "category") + "\n" +
-                    "- 耗能：" + getStringFromCursor(cursor, "price") + "\n" +
-                    "- 作为副卡：" + getStringFromCursor(cursor, "sub_card");
+            String contentBaseInfo2 = "- 所属分类：" + CardDataHelper.getStringFromCursor(cursor, "category") + "\n" +
+                    "- 耗能：" + CardDataHelper.getStringFromCursor(cursor, "price") + "\n" +
+                    "- 作为副卡：" + CardDataHelper.getStringFromCursor(cursor, "sub_card");
             getContent(this, findViewById(R.id.base_info_2), contentBaseInfo2);
 
-            String contentTransferChange = getStringFromCursor(cursor, "transfer_change");
+            String contentTransferChange = CardDataHelper.getStringFromCursor(cursor, "transfer_change");
             if (!contentTransferChange.equals("无")) {
                 getContent(this, findViewById(R.id.transfer_change), contentTransferChange);
             }
@@ -235,46 +235,46 @@ public class CardData4Activity extends BaseActivity {
             CardDataHelper.addCorrespondingCardForGeneralAndAnimalCard(this, container, cursor, cardName, titleCardDataCorrespondingInfo, CardCorresponding);
 
             // 数据信息区域（星级）
-            setTextToView(R.id.star, "\uD83C\uDF1F强化提升：" + getStringFromCursor(cursor, "star"));
-            setTextToView(R.id.star_detail, getStringFromCursor(cursor, "star_detail"));
-            setTextToView(R.id.star_0, getStringFromCursor(cursor, "star_0"));
-            setTextToView(R.id.star_1, getStringFromCursor(cursor, "star_1"));
-            setTextToView(R.id.star_2, getStringFromCursor(cursor, "star_2"));
-            setTextToView(R.id.star_3, getStringFromCursor(cursor, "star_3"));
-            setTextToView(R.id.star_4, getStringFromCursor(cursor, "star_4"));
-            setTextToView(R.id.star_5, getStringFromCursor(cursor, "star_5"));
-            setTextToView(R.id.star_6, getStringFromCursor(cursor, "star_6"));
-            setTextToView(R.id.star_7, getStringFromCursor(cursor, "star_7"));
-            setTextToView(R.id.star_8, getStringFromCursor(cursor, "star_8"));
-            setTextToView(R.id.star_9, getStringFromCursor(cursor, "star_9"));
-            setTextToView(R.id.star_10, getStringFromCursor(cursor, "star_10"));
-            setTextToView(R.id.star_11, getStringFromCursor(cursor, "star_11"));
-            setTextToView(R.id.star_12, getStringFromCursor(cursor, "star_12"));
-            setTextToView(R.id.star_13, getStringFromCursor(cursor, "star_13"));
-            setTextToView(R.id.star_14, getStringFromCursor(cursor, "star_14"));
-            setTextToView(R.id.star_15, getStringFromCursor(cursor, "star_15"));
-            setTextToView(R.id.star_16, getStringFromCursor(cursor, "star_16"));
-            setTextToView(R.id.star_M, getStringFromCursor(cursor, "star_M"));
-            setTextToView(R.id.star_U, getStringFromCursor(cursor, "star_U"));
+            setTextToView(R.id.star, "\uD83C\uDF1F强化提升：" + CardDataHelper.getStringFromCursor(cursor, "star"));
+            setTextToView(R.id.star_detail, CardDataHelper.getStringFromCursor(cursor, "star_detail"));
+            setTextToView(R.id.star_0, CardDataHelper.getStringFromCursor(cursor, "star_0"));
+            setTextToView(R.id.star_1, CardDataHelper.getStringFromCursor(cursor, "star_1"));
+            setTextToView(R.id.star_2, CardDataHelper.getStringFromCursor(cursor, "star_2"));
+            setTextToView(R.id.star_3, CardDataHelper.getStringFromCursor(cursor, "star_3"));
+            setTextToView(R.id.star_4, CardDataHelper.getStringFromCursor(cursor, "star_4"));
+            setTextToView(R.id.star_5, CardDataHelper.getStringFromCursor(cursor, "star_5"));
+            setTextToView(R.id.star_6, CardDataHelper.getStringFromCursor(cursor, "star_6"));
+            setTextToView(R.id.star_7, CardDataHelper.getStringFromCursor(cursor, "star_7"));
+            setTextToView(R.id.star_8, CardDataHelper.getStringFromCursor(cursor, "star_8"));
+            setTextToView(R.id.star_9, CardDataHelper.getStringFromCursor(cursor, "star_9"));
+            setTextToView(R.id.star_10, CardDataHelper.getStringFromCursor(cursor, "star_10"));
+            setTextToView(R.id.star_11, CardDataHelper.getStringFromCursor(cursor, "star_11"));
+            setTextToView(R.id.star_12, CardDataHelper.getStringFromCursor(cursor, "star_12"));
+            setTextToView(R.id.star_13, CardDataHelper.getStringFromCursor(cursor, "star_13"));
+            setTextToView(R.id.star_14, CardDataHelper.getStringFromCursor(cursor, "star_14"));
+            setTextToView(R.id.star_15, CardDataHelper.getStringFromCursor(cursor, "star_15"));
+            setTextToView(R.id.star_16, CardDataHelper.getStringFromCursor(cursor, "star_16"));
+            setTextToView(R.id.star_M, CardDataHelper.getStringFromCursor(cursor, "star_M"));
+            setTextToView(R.id.star_U, CardDataHelper.getStringFromCursor(cursor, "star_U"));
 
             // 技能信息
-            if (getStringFromCursor(cursor, "skill").equals("该防御卡不支持技能")) {
+            if (CardDataHelper.getStringFromCursor(cursor, "skill").equals("该防御卡不支持技能")) {
                 findViewById(R.id.Card_Skill).setVisibility(View.GONE);
             }
-            setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + getStringFromCursor(cursor, "skill"));
-            setTextToView(R.id.skill_detail, getStringFromCursor(cursor, "skill_detail"));
-            setTextToView(R.id.skill_0, getStringFromCursor(cursor, "skill_0"));
-            setTextToView(R.id.skill_1, getStringFromCursor(cursor, "skill_1"));
-            setTextToView(R.id.skill_2, getStringFromCursor(cursor, "skill_2"));
-            setTextToView(R.id.skill_3, getStringFromCursor(cursor, "skill_3"));
-            setTextToView(R.id.skill_4, getStringFromCursor(cursor, "skill_4"));
-            setTextToView(R.id.skill_5, getStringFromCursor(cursor, "skill_5"));
-            setTextToView(R.id.skill_6, getStringFromCursor(cursor, "skill_6"));
-            setTextToView(R.id.skill_7, getStringFromCursor(cursor, "skill_7"));
-            setTextToView(R.id.skill_8, getStringFromCursor(cursor, "skill_8"));
+            setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + CardDataHelper.getStringFromCursor(cursor, "skill"));
+            setTextToView(R.id.skill_detail, CardDataHelper.getStringFromCursor(cursor, "skill_detail"));
+            setTextToView(R.id.skill_0, CardDataHelper.getStringFromCursor(cursor, "skill_0"));
+            setTextToView(R.id.skill_1, CardDataHelper.getStringFromCursor(cursor, "skill_1"));
+            setTextToView(R.id.skill_2, CardDataHelper.getStringFromCursor(cursor, "skill_2"));
+            setTextToView(R.id.skill_3, CardDataHelper.getStringFromCursor(cursor, "skill_3"));
+            setTextToView(R.id.skill_4, CardDataHelper.getStringFromCursor(cursor, "skill_4"));
+            setTextToView(R.id.skill_5, CardDataHelper.getStringFromCursor(cursor, "skill_5"));
+            setTextToView(R.id.skill_6, CardDataHelper.getStringFromCursor(cursor, "skill_6"));
+            setTextToView(R.id.skill_7, CardDataHelper.getStringFromCursor(cursor, "skill_7"));
+            setTextToView(R.id.skill_8, CardDataHelper.getStringFromCursor(cursor, "skill_8"));
 
             // 分解&兑换信息
-            setTextToView(R.id.decompose_and_get, "\uD83C\uDF1F分解&兑换：" + getStringFromCursor(cursor, "decompose_item"));
+            setTextToView(R.id.decompose_and_get, "\uD83C\uDF1F分解&兑换：" + CardDataHelper.getStringFromCursor(cursor, "decompose_item"));
 
             ImageView imageView = findViewById(R.id.decompose_image_id_card_1);
             imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1"));
@@ -418,38 +418,38 @@ public class CardData4Activity extends BaseActivity {
                 exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName0 + "(二转凭证C)"));
             }
 
-            setTextToView(R.id.decompose_card_1, getStringFromCursor(cursor, "decompose_card_1"));
-            setTextToView(R.id.decompose_card_2, getStringFromCursor(cursor, "decompose_card_2"));
-            setTextToView(R.id.decompose_card_3, getStringFromCursor(cursor, "decompose_card_3"));
-            setTextToView(R.id.decompose_skill_1, getStringFromCursor(cursor, "decompose_skill_1"));
-            setTextToView(R.id.decompose_skill_2, getStringFromCursor(cursor, "decompose_skill_2"));
-            setTextToView(R.id.decompose_skill_3, getStringFromCursor(cursor, "decompose_skill_3"));
-            setTextToView(R.id.decompose_skill_4, getStringFromCursor(cursor, "decompose_skill_4"));
-            setTextToView(R.id.decompose_transfer_1_a, getStringFromCursor(cursor, "decompose_transfer_1_a"));
-            setTextToView(R.id.decompose_transfer_1_b, getStringFromCursor(cursor, "decompose_transfer_1_b"));
-            setTextToView(R.id.decompose_transfer_2_a, getStringFromCursor(cursor, "decompose_transfer_2_a"));
-            setTextToView(R.id.decompose_transfer_2_b, getStringFromCursor(cursor, "decompose_transfer_2_b"));
-            setTextToView(R.id.decompose_transfer_2_c, getStringFromCursor(cursor, "decompose_transfer_2_c"));
-            setTextToView(R.id.get_card_1, getStringFromCursor(cursor, "get_card_1"));
-            setTextToView(R.id.get_card_2, getStringFromCursor(cursor, "get_card_2"));
-            setTextToView(R.id.get_card_3, getStringFromCursor(cursor, "get_card_3"));
-            setTextToView(R.id.get_skill_1, getStringFromCursor(cursor, "get_skill_1"));
-            setTextToView(R.id.get_skill_2, getStringFromCursor(cursor, "get_skill_2"));
-            setTextToView(R.id.get_skill_3, getStringFromCursor(cursor, "get_skill_3"));
-            setTextToView(R.id.get_skill_4, getStringFromCursor(cursor, "get_skill_4"));
-            setTextToView(R.id.get_transfer_1_a, getStringFromCursor(cursor, "get_transfer_1_a"));
-            setTextToView(R.id.get_transfer_1_b, getStringFromCursor(cursor, "get_transfer_1_b"));
-            setTextToView(R.id.get_transfer_2_a, getStringFromCursor(cursor, "get_transfer_2_a"));
-            setTextToView(R.id.get_transfer_2_b, getStringFromCursor(cursor, "get_transfer_2_b"));
-            setTextToView(R.id.get_transfer_2_c, getStringFromCursor(cursor, "get_transfer_2_c"));
+            setTextToView(R.id.decompose_card_1, CardDataHelper.getStringFromCursor(cursor, "decompose_card_1"));
+            setTextToView(R.id.decompose_card_2, CardDataHelper.getStringFromCursor(cursor, "decompose_card_2"));
+            setTextToView(R.id.decompose_card_3, CardDataHelper.getStringFromCursor(cursor, "decompose_card_3"));
+            setTextToView(R.id.decompose_skill_1, CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1"));
+            setTextToView(R.id.decompose_skill_2, CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2"));
+            setTextToView(R.id.decompose_skill_3, CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3"));
+            setTextToView(R.id.decompose_skill_4, CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4"));
+            setTextToView(R.id.decompose_transfer_1_a, CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a"));
+            setTextToView(R.id.decompose_transfer_1_b, CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b"));
+            setTextToView(R.id.decompose_transfer_2_a, CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a"));
+            setTextToView(R.id.decompose_transfer_2_b, CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b"));
+            setTextToView(R.id.decompose_transfer_2_c, CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c"));
+            setTextToView(R.id.get_card_1, CardDataHelper.getStringFromCursor(cursor, "get_card_1"));
+            setTextToView(R.id.get_card_2, CardDataHelper.getStringFromCursor(cursor, "get_card_2"));
+            setTextToView(R.id.get_card_3, CardDataHelper.getStringFromCursor(cursor, "get_card_3"));
+            setTextToView(R.id.get_skill_1, CardDataHelper.getStringFromCursor(cursor, "get_skill_1"));
+            setTextToView(R.id.get_skill_2, CardDataHelper.getStringFromCursor(cursor, "get_skill_2"));
+            setTextToView(R.id.get_skill_3, CardDataHelper.getStringFromCursor(cursor, "get_skill_3"));
+            setTextToView(R.id.get_skill_4, CardDataHelper.getStringFromCursor(cursor, "get_skill_4"));
+            setTextToView(R.id.get_transfer_1_a, CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a"));
+            setTextToView(R.id.get_transfer_1_b, CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b"));
+            setTextToView(R.id.get_transfer_2_a, CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a"));
+            setTextToView(R.id.get_transfer_2_b, CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b"));
+            setTextToView(R.id.get_transfer_2_c, CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c"));
 
             // 其他信息
-            if (getStringFromCursor(cursor, "additional_info").equals("无")) {
+            if (CardDataHelper.getStringFromCursor(cursor, "additional_info").equals("无")) {
                 findViewById(R.id.card_data_other_title).setVisibility(View.GONE);
                 findViewById(R.id.Card_Other).setVisibility(View.GONE);
             }
             //全新的Markdown样式
-            getContent(this, findViewById(R.id.additional_info), getStringFromCursor(cursor, "additional_info"));
+            getContent(this, findViewById(R.id.additional_info), CardDataHelper.getStringFromCursor(cursor, "additional_info"));
 
         } catch (Exception e) {
             ((TextView) findViewById(R.id.base_info_1)).setText("数据加载失败");
@@ -471,16 +471,6 @@ public class CardData4Activity extends BaseActivity {
         if (textView != null) {
             textView.setText(text);
         }
-    }
-
-    // 辅助方法：从游标获取字符串（处理空值）
-    private String getStringFromCursor(Cursor cursor, String columnName) {
-        int columnIndex = cursor.getColumnIndex(columnName);
-        if (columnIndex == -1) {
-            return "未知"; // 列名不存在时提示
-        }
-        String value = cursor.getString(columnIndex);
-        return (value == null || value.isEmpty()) ? "无" : value;
     }
 
     /**
