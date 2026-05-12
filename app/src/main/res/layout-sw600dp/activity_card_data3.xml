@@ -474,7 +474,7 @@
                         android:id="@+id/Card_Corresponding"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
+                        android:layout_marginBottom="10dp"
                         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                         app:cardCornerRadius="20dp">
 
@@ -492,6 +492,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_data_info"
                         android:textSize="15sp"

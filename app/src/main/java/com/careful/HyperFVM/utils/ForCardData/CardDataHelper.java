@@ -460,11 +460,12 @@ public class CardDataHelper {
      * @param cardName 当前卡片的名字，主要是【自己就是增幅卡】这里需要用到
      * @param titleCardDataCorrespondingInfo 如果没有相关卡片内容时，需要对标题TextView进行隐藏
      * @param CardCorresponding 如果没有相关卡片内容时，需要对内容CardView进行隐藏
+     * @param isSubCard 这张金卡是否可以合成，用于判断最终是否隐藏相关卡片标题TextView
      */
     @SuppressLint({"Range", "DiscouragedApi", "CutPasteId"})
     public static void addCorrespondingCardForGoldenCard(
             Context context, LinearLayout container, Cursor cursor, String cardName,
-            TextView titleCardDataCorrespondingInfo, CardView CardCorresponding
+            TextView titleCardDataCorrespondingInfo, CardView CardCorresponding, boolean isSubCard
     ) {
         String imageIdStr = "";
         int imageResId;
@@ -569,8 +570,11 @@ public class CardDataHelper {
         } else {
             // 没有任何相关卡片的话，隐藏标题和CardView
             if (correspondingAuxiliaryCardName.equals("无")) {
-                titleCardDataCorrespondingInfo.setVisibility(View.GONE);
                 CardCorresponding.setVisibility(View.GONE);
+
+                if (!isSubCard) {
+                    titleCardDataCorrespondingInfo.setVisibility(View.GONE);
+                }
             }
         }
     }
