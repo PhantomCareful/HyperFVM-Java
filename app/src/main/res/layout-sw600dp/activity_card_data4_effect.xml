@@ -264,6 +264,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
+                            android:id="@+id/title_card_data_transfer_change"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -273,6 +274,7 @@
                             android:textColor="?attr/colorOnSurface" />
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/Card_TransferChange"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="25dp"

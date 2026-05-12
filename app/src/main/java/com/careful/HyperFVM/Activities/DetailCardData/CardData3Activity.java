@@ -223,6 +223,9 @@ public class CardData3Activity extends BaseActivity {
             String contentTransferChange = CardDataHelper.getStringFromCursor(cursor, "transfer_change");
             if (!contentTransferChange.equals("无")) {
                 getContent(this, findViewById(R.id.transfer_change), contentTransferChange);
+            } else {
+                findViewById(R.id.title_card_data_transfer_change).setVisibility(View.GONE);
+                findViewById(R.id.Card_TransferChange).setVisibility(View.GONE);
             }
 
             // 相关卡片
