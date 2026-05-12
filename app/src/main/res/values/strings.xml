@@ -150,6 +150,7 @@
     <string name="title_card_data_auxiliary_list_8_1">魔杖蛇和海洋女神\n👇还可增幅本行的这些卡片👇</string>
     <!--防御卡数据库-->
     <string name="title_card_data_base_info">基础信息</string>
+    <string name="title_card_data_transfer_change">人话解释</string>
     <string name="title_card_data_corresponding_info">相关卡片</string>
     <string name="title_card_data_corresponding_info_demo">可用于金卡合成</string>
     <string name="title_card_data_data_info">数据信息</string>

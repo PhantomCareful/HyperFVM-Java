@@ -132,9 +132,6 @@
         <activity
             android:name=".Activities.DetailCardData.CardData4Activity"
             android:exported="false" />
-        <activity
-            android:name=".Activities.DetailCardData.CardData4EffectActivity"
-            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
