@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -91,6 +92,7 @@ public class CardData4Activity extends BaseActivity {
 
         // 校验参数
         if (cardName == null || tableName == null) {
+            Toast.makeText(this, "cardName或tableName为null", Toast.LENGTH_SHORT).show();
             finish(); // 参数错误直接关闭页面
             return;
         }
@@ -112,11 +114,11 @@ public class CardData4Activity extends BaseActivity {
             // 从指定表中查询卡片数据
             if (cursor == null || !cursor.moveToFirst()) {
                 // 无数据时提示
-                ((TextView) findViewById(R.id.base_info_1)).setText("未找到卡片数据");
+                Toast.makeText(this, "未找到卡片数据", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 逐个绑定控件（确保控件ID与表列名完全一致）
+            // 获取卡片的名字
             String cardName0 = cursor.getString(cursor.getColumnIndex("name"));
             String cardName1 = cursor.getString(cursor.getColumnIndex("name_1"));
             String cardName2 = cursor.getString(cursor.getColumnIndex("name_2"));
@@ -125,7 +127,7 @@ public class CardData4Activity extends BaseActivity {
             ImageView ImageViewCardBig;
             String imageIdStr;
             int imageResId;
-            // 先判断这张卡是否只有不转，如果是的话，启用Image_View_Card_Big_1_1_Container
+            // 先判断这张卡是否只有不转，如果是的话，启用Image_View_Card_Big_1_Container
             if (cursor.getString(cursor.getColumnIndex("image_id_1")).equals("无")) {
                 // 这张卡只有不转，启用Image_View_Card_Big_1_Container
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_1);
@@ -141,8 +143,7 @@ public class CardData4Activity extends BaseActivity {
                 exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName0 + "(不转形态, 大)"));
 
                 // 隐藏剩下的组件
-                findViewById(R.id.Image_View_Card_Big_2_1_Container).setVisibility(View.GONE);
-                findViewById(R.id.Image_View_Card_Big_2_2_Container).setVisibility(View.GONE);
+                findViewById(R.id.Image_View_Card_Big_2_Container).setVisibility(View.GONE);
                 findViewById(R.id.Image_View_Card_Big_3_Container).setVisibility(View.GONE);
 
                 // 调整容器顶部距离
@@ -150,7 +151,8 @@ public class CardData4Activity extends BaseActivity {
                         cardDataContainer.getPaddingLeft(),
                         DensityUtil.dpToPx(this, 320),
                         cardDataContainer.getPaddingRight(),
-                        cardDataContainer.getPaddingBottom());
+                        cardDataContainer.getPaddingBottom()
+                );
             } else {
                 // 这张卡有一转，启用Image_View_Card_Big_2_Container
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2_1);
@@ -200,7 +202,8 @@ public class CardData4Activity extends BaseActivity {
                             cardDataContainer.getPaddingLeft(),
                             DensityUtil.dpToPx(this, 460),
                             cardDataContainer.getPaddingRight(),
-                            cardDataContainer.getPaddingBottom());
+                            cardDataContainer.getPaddingBottom()
+                    );
                 } else {
                     // 这张卡没有二转，隐藏Image_View_Card_Big_3_Container
                     findViewById(R.id.Image_View_Card_Big_3_Container).setVisibility(View.GONE);
@@ -210,11 +213,12 @@ public class CardData4Activity extends BaseActivity {
                             cardDataContainer.getPaddingLeft(),
                             DensityUtil.dpToPx(this, 320),
                             cardDataContainer.getPaddingRight(),
-                            cardDataContainer.getPaddingBottom());
+                            cardDataContainer.getPaddingBottom()
+                    );
                 }
             }
 
-            //全新的Markdown样式
+            // 内容部分：全新的Markdown样式
             String contentBaseInfo1 = CardDataHelper.getStringFromCursor(cursor, "base_info");
             getContent(this, findViewById(R.id.base_info_1), contentBaseInfo1);
 
@@ -448,14 +452,13 @@ public class CardData4Activity extends BaseActivity {
                 findViewById(R.id.card_data_other_title).setVisibility(View.GONE);
                 findViewById(R.id.Card_Other).setVisibility(View.GONE);
             }
-            //全新的Markdown样式
             getContent(this, findViewById(R.id.additional_info), CardDataHelper.getStringFromCursor(cursor, "additional_info"));
 
         } catch (Exception e) {
-            ((TextView) findViewById(R.id.base_info_1)).setText("数据加载失败");
+            Toast.makeText(this, "数据加载失败", Toast.LENGTH_SHORT).show();
         }
 
-        // 所有任务完成后，显示大图片
+        // 所有任务完成后，显示大图片，带渐显动画
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             TransitionManager.beginDelayedTransition(bigImageContainer, transition);
             findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
@@ -465,7 +468,9 @@ public class CardData4Activity extends BaseActivity {
         }, 500);
     }
 
-    // 辅助方法：设置文本到控件，避免重复代码
+    /**
+     * 辅助方法：设置文本到控件，避免重复代码
+     */
     private void setTextToView(int viewId, String text) {
         TextView textView = findViewById(viewId);
         if (textView != null) {

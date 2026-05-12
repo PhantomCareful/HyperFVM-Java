@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -91,6 +92,7 @@ public class CardData3Activity extends BaseActivity {
 
         // 校验参数
         if (cardName == null || tableName == null) {
+            Toast.makeText(this, "cardName或tableName为null", Toast.LENGTH_SHORT).show();
             finish(); // 参数错误直接关闭页面
             return;
         }
@@ -112,9 +114,15 @@ public class CardData3Activity extends BaseActivity {
             // 从指定表中查询卡片数据
             if (cursor == null || !cursor.moveToFirst()) {
                 // 无数据时提示
-                ((TextView) findViewById(R.id.base_info)).setText("未找到卡片数据");
+                Toast.makeText(this, "未找到卡片数据", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            // 获取卡片的名字
+            String cardName0 = cursor.getString(cursor.getColumnIndex("name"));
+            String cardName1 = cursor.getString(cursor.getColumnIndex("name_1"));
+            String cardName2 = cursor.getString(cursor.getColumnIndex("name_2"));
+            String cardName3 = cursor.getString(cursor.getColumnIndex("name_3"));
 
             // 逐个绑定控件（确保控件ID与表列名完全一致）
             ImageView ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_1_1);
@@ -126,7 +134,6 @@ public class CardData3Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCardBig.setImageResource(imageResId);
-            String cardName0 = CardDataHelper.getStringFromCursor(cursor, "name");
             setTextToView(R.id.card_name_1_1, cardName0);
             exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName0 + "(不转形态, 大)"));
 
@@ -139,14 +146,10 @@ public class CardData3Activity extends BaseActivity {
                     getPackageName()
             );
             ImageViewCardBig.setImageResource(imageResId);
-            String cardName1 = CardDataHelper.getStringFromCursor(cursor, "name_1");
             setTextToView(R.id.card_name_1_2, cardName1);
             exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName1 + "(三转形态, 大)"));
 
             // 对于第3、4张大图，先判断该金卡是否有终转，有和没有的情况下，需要使用的组件不一样
-            String cardName2 = CardDataHelper.getStringFromCursor(cursor, "name_2");
-            String cardName3 = CardDataHelper.getStringFromCursor(cursor, "name_3");
-
             String imageId3 = cursor.getString(cursor.getColumnIndex("image_id_3"));
             if (imageId3.equals("无")) { // 无终转
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2);
@@ -169,7 +172,8 @@ public class CardData3Activity extends BaseActivity {
                         cardDataContainer.getPaddingLeft(),
                         DensityUtil.dpToPx(this, 480),
                         cardDataContainer.getPaddingRight(),
-                        cardDataContainer.getPaddingBottom());
+                        cardDataContainer.getPaddingBottom()
+                );
             } else { // 有终转
                 ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_3_1);
                 imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_2")) + "_big";
@@ -203,10 +207,11 @@ public class CardData3Activity extends BaseActivity {
                         cardDataContainer.getPaddingLeft(),
                         DensityUtil.dpToPx(this, 520),
                         cardDataContainer.getPaddingRight(),
-                        cardDataContainer.getPaddingBottom());
+                        cardDataContainer.getPaddingBottom()
+                );
             }
 
-            // 全新的Markdown样式
+            // 内容部分：全新的Markdown样式
             String contentBaseInfo1 = CardDataHelper.getStringFromCursor(cursor, "base_info");
             getContent(this, findViewById(R.id.base_info_1), contentBaseInfo1);
 
@@ -586,10 +591,10 @@ public class CardData3Activity extends BaseActivity {
             }
 
         } catch (Exception e) {
-            ((TextView) findViewById(R.id.base_info_1)).setText("数据加载失败");
+            Toast.makeText(this, "数据加载失败", Toast.LENGTH_SHORT).show();
         }
 
-        // 所有任务完成后，显示大图片
+        // 所有任务完成后，显示大图片，带渐显动画
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             TransitionManager.beginDelayedTransition(bigImageContainer, transition);
             findViewById(R.id.Image_View_Card_Big_1_1).setVisibility(View.VISIBLE);
@@ -600,7 +605,9 @@ public class CardData3Activity extends BaseActivity {
         }, 500);
     }
 
-    // 辅助方法：设置文本到控件，避免重复代码
+    /**
+     * 辅助方法：设置文本到控件，避免重复代码
+     */
     private void setTextToView(int viewId, String text) {
         TextView textView = findViewById(viewId);
         if (textView != null) {
