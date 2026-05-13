@@ -79,6 +79,14 @@ public class BgEffectPainter {
         mBgRuntimeShader.setFloatUniform("uBound", uBound);
     }
 
+    public void setDetailFusionCardDataColorType(BgEffectController.ThemeMode themeMode, float[] uBound) {
+        mBgEffectData = mBgEffectDataManager.getDetailFusionCardDataColorData(themeMode);
+        uAnimTime = 0.0f;
+        gradientSpeed = mBgEffectData.gradientSpeedRest;
+        applyData(mBgEffectData);
+        mBgRuntimeShader.setFloatUniform("uBound", uBound);
+    }
+
     private void applyData(BgEffectDataManager.BgEffectData data) {
         mBgRuntimeShader.setFloatUniform("uTranslateY", data.uTranslateY);
         mBgRuntimeShader.setFloatUniform("uPoints", data.uPoints);

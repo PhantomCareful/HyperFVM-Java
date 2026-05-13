@@ -7,6 +7,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.Random;
+
 @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
 public class BgEffectDataManager {
 
@@ -17,9 +19,30 @@ public class BgEffectDataManager {
 
     private final BgEffectData mRMBLightData;
     private final BgEffectData mRMBDarkData;
+    private final float[] mRMBTheme100 = {
+            0.925f, 0.678f, 0.714f, 1.0f,   // #ECADB6
+            0.957f, 0.475f, 0.416f, 1.0f,   // #F4796A
+            0.824f, 0.784f, 0.675f, 1.0f,   // #D2C8AC
+            0.886f, 0.698f, 0.820f, 1.0f    // #E2B2D1
+    };
+    private final float[] mRMBTheme50 = {
+            0.655f, 0.827f, 0.698f, 1.0f,   // #A7D3B2
+            0.796f, 0.949f, 0.878f, 1.0f,   // #CBF2E0
+            0.824f, 0.784f, 0.675f, 1.0f,   // #D2C8AC
+            0.808f, 0.733f, 0.847f, 1.0f    // #CEBBD8
+    };
+    private final float[] mRMBTheme5 = {
+            0.702f, 0.518f, 0.690f, 1.0f,   // #B384B0
+            0.925f, 0.851f, 0.796f, 1.0f,   // #ECD9CB
+            0.663f, 0.820f, 0.851f, 1.0f,   // #A9D1D9
+            0.902f, 0.878f, 0.729f, 1.0f    // #E6E0BA
+    };
 
     private final BgEffectData mSupremeGoldenLightData;
     private final BgEffectData mSupremeGoldenDarkData;
+
+    private final BgEffectData mSupremeFusionLightData;
+    private final BgEffectData mSupremeFusionDarkData;
 
     public static class BgEffectData {
         public float uTranslateY;
@@ -62,9 +85,9 @@ public class BgEffectDataManager {
         mPhoneLightData.colorInterpPeriod = 5.0f;
         mPhoneLightData.gradientSpeedChange = 1.6f;
         mPhoneLightData.gradientSpeedRest = 1.05f;
-        mPhoneLightData.gradientColors1 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
-        mPhoneLightData.gradientColors2 = new float[]{0.58f, 0.74f, 1.0f, 1.0f, 1.0f, 0.9f, 0.93f, 1.0f, 0.74f, 0.76f, 1.0f, 1.0f, 0.97f, 0.77f, 0.84f, 1.0f};
-        mPhoneLightData.gradientColors3 = new float[]{0.98f, 0.86f, 0.9f, 1.0f, 0.6f, 0.73f, 0.98f, 1.0f, 0.92f, 0.93f, 1.0f, 1.0f, 0.56f, 0.69f, 1.0f, 1.0f};
+        mPhoneLightData.gradientColors1 = new float[]{0.98f, 0.86f, 0.9f, 1.0f, 0.6f, 0.73f, 0.98f, 1.0f, 0.92f, 0.93f, 1.0f, 1.0f, 0.56f, 0.69f, 1.0f, 1.0f};
+        mPhoneLightData.gradientColors2 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
+        mPhoneLightData.gradientColors3 = new float[]{0.58f, 0.74f, 1.0f, 1.0f, 1.0f, 0.9f, 0.93f, 1.0f, 0.74f, 0.76f, 1.0f, 1.0f, 0.97f, 0.77f, 0.84f, 1.0f};
 
         // 平板浅色（可省略，仅保留手机参数）
         mPadLightData = new BgEffectData();
@@ -132,7 +155,7 @@ public class BgEffectDataManager {
         mPadDarkData.gradientColors2 = new float[]{0.07f, 0.15f, 0.79f, 0.5f, 0.11f, 0.16f, 0.83f, 0.5f, 0.06f, 0.25f, 0.84f, 0.5f, 0.66f, 0.26f, 0.62f, 0.5f};
         mPadDarkData.gradientColors3 = new float[]{0.58f, 0.3f, 0.74f, 0.5f, 0.11f, 0.16f, 0.83f, 0.5f, 0.66f, 0.26f, 0.62f, 0.5f, 0.27f, 0.18f, 0.6f, 0.6f};
 
-        // 自建主题：20/50/100元的人民币配色
+        // 自建主题：100/50/5元的人民币配色
         // 浅色主题
         mRMBLightData = new BgEffectData();
         mRMBLightData.uTranslateY = 0.0f;
@@ -151,24 +174,6 @@ public class BgEffectDataManager {
         mRMBLightData.colorInterpPeriod = 5.0f;
         mRMBLightData.gradientSpeedChange = 1.6f;
         mRMBLightData.gradientSpeedRest = 1.05f;
-        mRMBLightData.gradientColors1 = new float[]{
-                0.8f, 0.286f, 0.408f, 1.0f,
-                0.925f, 0.678f, 0.714f, 1.0f,
-                0.957f, 0.475f, 0.416f, 1.0f,
-                0.824f, 0.784f, 0.675f, 1.0f
-        };
-        mRMBLightData.gradientColors2 = new float[]{
-                0.522f, 0.392f, 0.255f, 1.0f,
-                0.984f, 0.765f, 0.533f, 1.0f,
-                0.604f, 0.792f, 0.682f, 1.0f,
-                0.929f, 0.804f, 0.714f, 1.0f
-        };
-        mRMBLightData.gradientColors3 = new float[]{
-                0.318f, 0.518f, 0.388f, 1.0f,
-                0.655f, 0.827f, 0.698f, 1.0f,
-                0.796f, 0.949f, 0.878f, 1.0f,
-                0.824f, 0.784f, 0.675f, 1.0f
-        };
 
         // 深色主题
         mRMBDarkData = new BgEffectData();
@@ -263,6 +268,72 @@ public class BgEffectDataManager {
         mSupremeGoldenDarkData.gradientColors3 = new float[]{
                 0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
         };
+
+        // 自建主题：融合卡绿
+        // 浅色主题
+        mSupremeFusionLightData = new BgEffectData();
+        mSupremeFusionLightData.uTranslateY = 0.0f;
+        mSupremeFusionLightData.uPoints = new float[]{0.8f, 0.2f, 1.0f, 0.8f, 0.9f, 1.0f, 0.2f, 0.9f, 1.0f, 0.2f, 0.2f, 1.0f};
+        mSupremeFusionLightData.uAlphaMulti = 1.0f;
+        mSupremeFusionLightData.uNoiseScale = 1.5f;
+        mSupremeFusionLightData.uPointOffset = 0.2f;
+        mSupremeFusionLightData.uPointRadiusMulti = 1.0f;
+        mSupremeFusionLightData.uSaturateOffset = 0.2f;
+        mSupremeFusionLightData.uLightOffset = 0.1f;
+        mSupremeFusionLightData.uAlphaOffset = 0.5f;
+        mSupremeFusionLightData.uShadowColorMulti = 0.3f;
+        mSupremeFusionLightData.uShadowColorOffset = 0.3f;
+        mSupremeFusionLightData.uShadowNoiseScale = 5.0f;
+        mSupremeFusionLightData.uShadowOffset = 0.01f;
+        mSupremeFusionLightData.colorInterpPeriod = 5.0f;
+        mSupremeFusionLightData.gradientSpeedChange = 1.6f;
+        mSupremeFusionLightData.gradientSpeedRest = 1.05f;
+        mSupremeFusionLightData.gradientColors1 = new float[]{
+                0.769f, 0.941f, 0.627f, 1.0f,   // #C4F0A0
+                0.984f, 0.945f, 0.843f, 1.0f,   // #FBF1D7
+                0.980f, 0.871f, 0.239f, 1.0f,   // #FADE3D
+                0.553f, 0.839f, 0.549f, 1.0f,   // #8DD68C
+        };
+        mSupremeFusionLightData.gradientColors2 = new float[]{
+                0.769f, 0.941f, 0.627f, 1.0f,   // #C4F0A0
+                0.984f, 0.945f, 0.843f, 1.0f,   // #FBF1D7
+                0.980f, 0.871f, 0.239f, 1.0f,   // #FADE3D
+                0.553f, 0.839f, 0.549f, 1.0f,   // #8DD68C
+        };
+        mSupremeFusionLightData.gradientColors3 = new float[]{
+                0.769f, 0.941f, 0.627f, 1.0f,   // #C4F0A0
+                0.984f, 0.945f, 0.843f, 1.0f,   // #FBF1D7
+                0.980f, 0.871f, 0.239f, 1.0f,   // #FADE3D
+                0.553f, 0.839f, 0.549f, 1.0f,   // #8DD68C
+        };
+
+        // 深色主题
+        mSupremeFusionDarkData = new BgEffectData();
+        mSupremeFusionDarkData.uTranslateY = 0.0f;
+        mSupremeFusionDarkData.uPoints = new float[]{0.8f, 0.2f, 1.0f, 0.8f, 0.9f, 1.0f, 0.2f, 0.9f, 1.0f, 0.2f, 0.2f, 1.0f};
+        mSupremeFusionDarkData.uAlphaMulti = 1.0f;
+        mSupremeFusionDarkData.uNoiseScale = 1.5f;
+        mSupremeFusionDarkData.uPointOffset = 0.4f;
+        mSupremeFusionDarkData.uPointRadiusMulti = 1.0f;
+        mSupremeFusionDarkData.uSaturateOffset = 0.17f;
+        mSupremeFusionDarkData.uLightOffset = 0.0f;
+        mSupremeFusionDarkData.uAlphaOffset = 0.5f;
+        mSupremeFusionDarkData.uShadowColorMulti = 0.3f;
+        mSupremeFusionDarkData.uShadowColorOffset = 0.3f;
+        mSupremeFusionDarkData.uShadowNoiseScale = 5.0f;
+        mSupremeFusionDarkData.uShadowOffset = 0.01f;
+        mSupremeFusionDarkData.colorInterpPeriod = 8.0f;
+        mSupremeFusionDarkData.gradientSpeedChange = 1.0f;
+        mSupremeFusionDarkData.gradientSpeedRest = 1.0f;
+        mSupremeFusionDarkData.gradientColors1 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
+        mSupremeFusionDarkData.gradientColors2 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
+        mSupremeFusionDarkData.gradientColors3 = new float[]{
+                0.0f, 0.31f, 0.58f, 1.0f, 0.53f, 0.29f, 0.15f, 1.0f, 0.46f, 0.06f, 0.27f, 1.0f, 0.16f, 0.12f, 0.45f, 1.0f
+        };
     }
 
     public BgEffectData getAboutAppColorData(BgEffectController.DeviceType deviceType, BgEffectController.ThemeMode themeMode) {
@@ -274,10 +345,33 @@ public class BgEffectDataManager {
     }
 
     public BgEffectData getDetailAnimalCardDataColorData(BgEffectController.ThemeMode themeMode) {
+        Random random = new Random();
+        int themeNum = random.nextInt(3);
+        switch (themeNum) {
+            case 0:
+                mRMBLightData.gradientColors1 = mRMBTheme100;
+                mRMBLightData.gradientColors2 = mRMBTheme100;
+                mRMBLightData.gradientColors3 = mRMBTheme100;
+                break;
+            case 1:
+                mRMBLightData.gradientColors1 = mRMBTheme50;
+                mRMBLightData.gradientColors2 = mRMBTheme50;
+                mRMBLightData.gradientColors3 = mRMBTheme50;
+                break;
+            case 2:
+                mRMBLightData.gradientColors1 = mRMBTheme5;
+                mRMBLightData.gradientColors2 = mRMBTheme5;
+                mRMBLightData.gradientColors3 = mRMBTheme5;
+                break;
+        }
         return themeMode == LIGHT ? mRMBLightData : mRMBDarkData;
     }
 
     public BgEffectData getDetailGoldenCardDataColorData(BgEffectController.ThemeMode themeMode) {
         return themeMode == LIGHT ? mSupremeGoldenLightData : mSupremeGoldenDarkData;
+    }
+
+    public BgEffectData getDetailFusionCardDataColorData(BgEffectController.ThemeMode themeMode) {
+        return themeMode == LIGHT ? mSupremeFusionLightData : mSupremeFusionDarkData;
     }
 }

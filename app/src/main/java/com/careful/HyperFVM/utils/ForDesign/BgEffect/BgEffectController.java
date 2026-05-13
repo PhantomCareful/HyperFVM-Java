@@ -57,6 +57,15 @@ public class BgEffectController implements Runnable {
         }
     }
 
+    public void setDetailFusionCardDataColorType(Context context) {
+        mThemeMode = DarkModeManager.isDarkMode(context) ? BgEffectController.ThemeMode.DARK : BgEffectController.ThemeMode.LIGHT;
+
+        // 不需要计算 bound，直接全屏
+        if (mBgEffectPainter != null) {
+            mBgEffectPainter.setDetailFusionCardDataColorType(mThemeMode, mBound);
+        }
+    }
+
     public void startAboutAppBgEffect() {
         if (mBgEffectPainter == null) {
             mBgEffectPainter = new BgEffectPainter(mTarget.getContext());
@@ -81,6 +90,16 @@ public class BgEffectController implements Runnable {
         if (mBgEffectPainter == null) {
             mBgEffectPainter = new BgEffectPainter(mTarget.getContext());
             mBgEffectPainter.setDetailGoldenCardDataColorType(mThemeMode, mBound);
+            mLastGlobalTime = System.nanoTime();
+            resetTime();
+            mTarget.postOnAnimation(this);
+        }
+    }
+
+    public void startDetailFusionCardDataBgEffect() {
+        if (mBgEffectPainter == null) {
+            mBgEffectPainter = new BgEffectPainter(mTarget.getContext());
+            mBgEffectPainter.setDetailFusionCardDataColorType(mThemeMode, mBound);
             mLastGlobalTime = System.nanoTime();
             resetTime();
             mTarget.postOnAnimation(this);
