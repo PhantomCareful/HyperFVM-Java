@@ -388,9 +388,7 @@
                                 android:layout_marginStart="16dp"
                                 android:text="@string/label_settings_switch_font_scale_description"
                                 android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                android:clickable="true"
-                                android:background="?attr/selectableItemBackground" />
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
 
