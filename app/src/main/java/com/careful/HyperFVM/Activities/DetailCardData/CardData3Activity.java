@@ -125,6 +125,7 @@ public class CardData3Activity extends BaseActivity {
             String cardName3 = cursor.getString(cursor.getColumnIndex("name_3"));
 
             // 逐个绑定控件（确保控件ID与表列名完全一致）
+            // 大图片区域
             ImageView ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_1_1);
             String imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0")) + "_big";
             // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）

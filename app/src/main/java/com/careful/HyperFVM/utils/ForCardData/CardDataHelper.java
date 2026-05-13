@@ -579,6 +579,127 @@ public class CardDataHelper {
         }
     }
 
+    /**
+     * 解析并添加相关卡片信息，包括：金卡、融合卡、增幅卡、自己就是增幅卡
+     * 注意：此方法仅用于融合卡使用
+     * @param context 上下文
+     * @param container 相关卡片CardView内部的组件，每个组件装一个卡片信息
+     * @param cursor 从数据库取出的当前卡片的信息，需要用这个来读取相关卡片信息
+     * @param cardName 当前卡片的名字，主要是【自己就是增幅卡】这里需要用到
+     * @param CardCorresponding 如果没有相关卡片内容时，需要对内容CardView进行隐藏
+     */
+    @SuppressLint({"Range", "DiscouragedApi", "CutPasteId"})
+    public static void addCorrespondingCardForFusionCard(
+            Context context, LinearLayout container, Cursor cursor, String cardName,
+            CardView CardCorresponding
+    ) {
+        String imageIdStr = "";
+        int imageResId;
+
+        // 相关卡片 - 增幅卡
+        String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
+        if (!correspondingAuxiliaryCardName.equals("无")) {
+            // 1. 读取增幅卡片图片ID列（同样增加null校验）
+            String correspondingAuxiliaryCardImageId = cursor.getString(cursor.getColumnIndex("corresponding_auxiliary_card_image_id"));
+
+            // 2. 按换行符拆分名称和图片ID数组（兼容Windows(\r\n)和Linux(\n)换行符）
+            String[] nameArray = correspondingAuxiliaryCardName.split("\\r?\\n");
+            String[] imageIdArray = correspondingAuxiliaryCardImageId.split("\\r?\\n");
+
+            // 3. 遍历拆分后的名称数组，为每条数据生成布局
+            for (int i = 0; i < nameArray.length; i++) {
+                String singleCardName = nameArray[i].trim(); // 去除首尾空格（避免空行/空格干扰）
+                // 跳过空名称（比如拆分后出现空字符串）
+                if (singleCardName.isEmpty() || singleCardName.equals("无")) {
+                    continue;
+                }
+
+                // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
+                LinearLayout correspondingCardContainer;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
+                            .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
+                } else {
+                    correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
+                            .inflate(R.layout.card_card_data_corresponding_card, container, false);
+                }
+
+                // 5. 绑定当前布局的子控件（必须从当前container查找，避免复用错误）
+                TextView correspondingCardName = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_name);
+                TextView correspondingCardContent = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_content);
+                @SuppressLint("CutPasteId") ImageView correspondingCardImage = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_image);
+
+                // 6. 匹配对应索引的图片ID（处理图片ID数组长度不足的情况）
+                if (i < imageIdArray.length) {
+                    imageIdStr = imageIdArray[i];
+                }
+
+                // 根据image_id获取资源ID
+                imageResId = context.getResources().getIdentifier(
+                        imageIdStr,
+                        "drawable",
+                        context.getPackageName()
+                );
+                correspondingCardImage.setImageResource(imageResId);
+
+                // 7. 设置卡片名称和描述
+                correspondingCardName.setText(singleCardName);
+                correspondingCardContent.setText("此类卡片增幅本卡片");
+
+                // 8. 设置点击事件（点击跳转到对应卡片详情）
+                correspondingCardContainer.setOnClickListener(v -> CardDataHelper.selectAuxiliaryCardByName(context, singleCardName));
+
+                // 9. 将当前卡片布局添加到父容器
+                container.addView(correspondingCardContainer);
+            }
+        }
+
+        // 相关卡片 - 自己就是增幅卡
+        if (
+                Objects.equals(cardName, "刺梨烧烤盘")
+        ) {
+            // 1. Inflate单个增幅卡片的布局
+            LinearLayout correspondingCardContainer;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
+                        .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
+            } else {
+                correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
+                        .inflate(R.layout.card_card_data_corresponding_card, container, false);
+            }
+
+            // 2. 绑定当前布局的子控件（必须从当前container查找，避免复用错误）
+            TextView correspondingCardName = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_name);
+            TextView correspondingCardContent = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_content);
+            ImageView correspondingCardImage = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_image);
+
+            // 3. 设置标题，并隐藏描述和图片
+            correspondingCardName.setText("查看此卡片的增幅名单");
+            correspondingCardContent.setText("点击跳转");
+            imageResId = context.getResources().getIdentifier(
+                    "ic_chevron_right",
+                    "drawable",
+                    context.getPackageName()
+            );
+            correspondingCardImage.setImageResource(imageResId);
+            TypedValue typedValue = new TypedValue();
+            context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorOnSurface, typedValue, true);
+            int tintColor = typedValue.data;
+            correspondingCardImage.setColorFilter(tintColor);
+
+            // 4. 设置点击事件（点击跳转到对应卡片详情）
+            correspondingCardContainer.setOnClickListener(v -> CardDataHelper.selectAuxiliaryCardBySelfName(context, cardName));
+
+            // 5. 将当前卡片布局添加到父容器
+            container.addView(correspondingCardContainer);
+        } else {
+            // 没有任何相关卡片的话，隐藏CardView
+            if (correspondingAuxiliaryCardName.equals("无")) {
+                CardCorresponding.setVisibility(View.GONE);
+            }
+        }
+    }
+
     // 辅助方法：从游标获取字符串（处理空值）
     public static String getStringFromCursor(Cursor cursor, String columnName) {
         int columnIndex = cursor.getColumnIndex(columnName);
