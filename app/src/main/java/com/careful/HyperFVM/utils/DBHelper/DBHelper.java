@@ -296,6 +296,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "corresponding_auxiliary_card_image_id TEXT, " +
                 "image_id TEXT, " +
                 "base_info TEXT, " +
+                "transfer_certificate_info TEXT, " +
                 "category TEXT, " +
                 "price TEXT, " +
                 "sub_card TEXT, " +
@@ -520,12 +521,12 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "corresponding_golden_card_name, corresponding_golden_card_image_id, " +
                                             "corresponding_fusion_card_name, corresponding_fusion_card_image_id, " +
                                             "corresponding_auxiliary_card_name, corresponding_auxiliary_card_image_id, " +
-                                            "base_info, category, price, sub_card, star, star_detail, " +
+                                            "base_info, transfer_certificate_info, category, price, sub_card, star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
                                             "skill, skill_detail, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
                                             "transfer_change, additional_info) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -536,7 +537,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[30], rowData[31], rowData[32], rowData[33], rowData[34],
                                             rowData[35], rowData[36], rowData[37], rowData[38], rowData[39],
                                             rowData[40], rowData[41], rowData[42], rowData[43], rowData[44],
-                                            rowData[45], rowData[46], rowData[47]
+                                            rowData[45], rowData[46], rowData[47], rowData[48]
                                     });
                             importedCount++;
                         } catch (Exception e) {

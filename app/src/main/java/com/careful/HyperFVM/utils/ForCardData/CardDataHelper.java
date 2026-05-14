@@ -201,7 +201,7 @@ public class CardDataHelper {
 
         // 相关卡片 - 金卡
         String correspondingGoldenCardName = getStringFromCursor(cursor, "corresponding_golden_card_name");
-        Log.d("correspondingGoldenCardName", "cardName: " + cardName + ", correspondingGoldenCardName: " + correspondingGoldenCardName);
+        Log.d("correspondingCard", "cardName: " + cardName + ", correspondingGoldenCardName: " + correspondingGoldenCardName);
         if (!correspondingGoldenCardName.equals("无")) {
             LinearLayout correspondingCardContainer;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -236,6 +236,7 @@ public class CardDataHelper {
 
         // 相关卡片 - 融合卡
         String correspondingFusionCardName = getStringFromCursor(cursor, "corresponding_fusion_card_name");
+        Log.d("correspondingCard", "cardName: " + cardName + ", correspondingFusionCardName: " + correspondingFusionCardName);
         if (!correspondingFusionCardName.equals("无")) {
             // 1. 读取融合卡片图片ID列（同样增加null校验）
             String correspondingFusionCardImageId = cursor.getString(cursor.getColumnIndex("corresponding_fusion_card_image_id"));
@@ -306,6 +307,7 @@ public class CardDataHelper {
 
         // 相关卡片 - 增幅卡
         String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
+        Log.d("correspondingCard", "cardName: " + cardName + ", correspondingAuxiliaryCardName: " + correspondingAuxiliaryCardName);
         if (!correspondingAuxiliaryCardName.equals("无")) {
             // 1. 读取增幅卡片图片ID列（同样增加null校验）
             String correspondingAuxiliaryCardImageId = cursor.getString(cursor.getColumnIndex("corresponding_auxiliary_card_image_id"));
@@ -364,6 +366,9 @@ public class CardDataHelper {
 
         // 相关卡片 - 自己就是增幅卡
         if (
+                Objects.equals(cardName, "火盆") || Objects.equals(cardName, "蓝莓信号塔塔") || Objects.equals(cardName, "美味水果塔") ||
+                        Objects.equals(cardName, "莓果点心") || Objects.equals(cardName, "龙须面") || Objects.equals(cardName, "五谷丰登") ||
+                        Objects.equals(cardName, "加速榨汁机") ||
                 Objects.equals(cardName, "金牛座精灵") || Objects.equals(cardName, "暖炉汪") || Objects.equals(cardName, "能量喵") ||
                         Objects.equals(cardName, "坩埚蛇") || Objects.equals(cardName, "猪猪加强器") || Objects.equals(cardName, "香料虎") ||
                         Objects.equals(cardName, "精灵龙") || Objects.equals(cardName, "五行蛇") || Objects.equals(cardName, "魔杖蛇") ||

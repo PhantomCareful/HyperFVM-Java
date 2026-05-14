@@ -584,15 +584,4 @@ public class CardData4Activity extends BaseActivity {
         super.onSaveInstanceState(outState);
         outState.putInt("scrollY", savedScrollY);
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (bgEffectController != null) {
-                bgEffectController.startDetailAnimalCardDataBgEffect();
-            }
-        }
-    }
 }
