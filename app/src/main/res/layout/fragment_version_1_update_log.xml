@@ -14,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="150dp">
+            android:paddingTop="150dp"
+            android:paddingBottom="50dp">
 
             <TextView
                 android:id="@+id/about_app_history_update_log_1"
