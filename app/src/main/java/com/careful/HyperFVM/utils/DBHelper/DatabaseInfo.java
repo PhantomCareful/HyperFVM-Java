@@ -109,6 +109,8 @@ public class DatabaseInfo {
      * settings表增加”跟随系统字体大小““自定义字体大小”设置
      * DB_VERSION = 79
      * 防御卡数据库新增增幅卡相关内容
+     * DB_VERSION = 80
+     * settings表增加“动态背景”设置
      */
-    public static final int DB_VERSION = 79;
+    public static final int DB_VERSION = 80;
 }

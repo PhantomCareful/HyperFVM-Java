@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.utils.ForCardData;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -84,10 +86,16 @@ public class CardDataHelper {
     }
 
     public static void selectAuxiliaryCardByName(Context context, String cardName) {
+        boolean isDynamicBackground;
+
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        }
+
         Intent intent;
         switch (cardName) {
             case "平射增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList1EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList1Activity.class);
@@ -95,7 +103,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "投手增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList2EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList2Activity.class);
@@ -103,7 +111,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "莓果点心":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList3EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList3Activity.class);
@@ -111,7 +119,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "香料虎":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList4EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList4Activity.class);
@@ -119,7 +127,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "塔利亚神使", "宴飨女神·塔利亚":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList5EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList5Activity.class);
@@ -127,7 +135,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "精灵龙":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList6EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList6Activity.class);
@@ -135,7 +143,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "五向增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList7EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList7Activity.class);
@@ -143,7 +151,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "喷壶增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList8EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList8Activity.class);
@@ -151,7 +159,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "炎焱兔":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList9EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList9Activity.class);

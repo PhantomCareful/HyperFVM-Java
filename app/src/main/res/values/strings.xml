@@ -269,13 +269,15 @@
     <string name="label_settings_option_interface_style">界面风格</string>
     <string name="label_settings_is_fixed_font_scale">跟随系统字体大小</string>
     <string name="label_settings_switch_font_scale_description">自定义字体大小</string>
+    <string name="label_settings_switch_is_dynamic_background">动态背景</string>
+    <string name="label_settings_switch_is_dynamic_background_description">👉启用后，App的关于页、防御卡数据详情页、增幅卡名单页将使用带混色的流动背景。\n👉此功能需要Android13+系统支持。</string>
     <string name="title_settings_toast">提示语显示</string>
     <string name="label_settings_switch_card_data_index">防御卡全能数据库</string>
     <string name="label_settings_switch_card_data_auxiliary_list">增幅卡名单</string>
     <string name="label_settings_switch_data_image_viewer">数据图查看器</string>
     <string name="title_settings_safety">安全</string>
     <string name="label_settings_switch_biometric_auth">启用设备生物认证</string>
-    <string name="label_settings_biometric_auth_description">👉开启后，进入温馨礼包链接管理界面前需要先进行指纹认证。</string>
+    <string name="label_settings_biometric_auth_description">👉启用后，进入温馨礼包链接管理界面前需要先进行指纹认证。</string>
     <string name="label_settings_biometric_auth_description_not_support">❌当前设备不支持生物认证，请检查设备是否支持指纹解锁或是否已录入指纹。</string>
     <string name="biometric_auth_title">👀确保那是你👀</string>
     <string name="biometric_auth_sub_title">🫰验证您的指纹以继续操作🫰</string>

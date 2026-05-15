@@ -50,6 +50,8 @@ public class SettingsActivity extends BaseActivity {
     private Slider fontScaleSlider;
     private float fontScale;
 
+    public static final String CONTENT_IS_DYNAMIC_BACKGROUND = "动态背景";
+
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
     public static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
@@ -244,6 +246,16 @@ public class SettingsActivity extends BaseActivity {
         fontScaleSlider.setEnabled(!isFollowSystemFontScale);
         fontScale = dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE);
         fontScaleSlider.setValue(fontScale);
+        // 动态背景开关
+        boolean isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        materialSwitch = findViewById(R.id.Switch_isDynamicBackground);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            materialSwitch.setEnabled(true);
+            materialSwitch.setChecked(isDynamicBackground);
+        } else {
+            materialSwitch.setEnabled(false);
+            materialSwitch.setChecked(false);
+        }
         // Toast显示设置开关
         boolean toastIsVisibleCardDataIndex = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
         boolean toastIsVisibleCardDataAuxiliaryList = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST);
@@ -310,6 +322,12 @@ public class SettingsActivity extends BaseActivity {
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 Toast.makeText(SettingsActivity.this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
             }
+        });
+        // 动态背景开关
+        materialSwitch = findViewById(R.id.Switch_isDynamicBackground);
+        materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_BACKGROUND, isChecked ? "true" : "false");
+            Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
         });
         // Toast显示设置开关
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);

@@ -253,11 +253,17 @@ public class DBHelper extends SQLiteOpenHelper {
                     "VALUES ('跟随系统字体大小', 'true')," +
                     "('自定义字体大小', '1')");
         }
+
+        // 版本80：settings表增加”动态背景”设置
+        if (oldVersion < 80) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('动态背景', 'true')");
+        }
     }
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //啥也不做
+        // 啥也不做
         // 从5开始每次都要做的
         // 添加防御卡数据表
         createCardTables(db);

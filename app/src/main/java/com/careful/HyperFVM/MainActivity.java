@@ -1,5 +1,7 @@
 package com.careful.HyperFVM;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
+
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -114,8 +116,10 @@ public class MainActivity extends BaseActivity {
 
             // 添加Fragment
             viewPagerAdapter.addFragment(new DataCenterFragment(), getResources().getString(R.string.top_bar_data_center));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                viewPagerAdapter.addFragment(new AboutAppEffectFragment(), getResources().getString(R.string.top_bar_data_center));
+            // 是否启用动态背景
+            boolean isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                viewPagerAdapter.addFragment(new AboutAppEffectFragment(), getResources().getString(R.string.top_bar_about_app));
             } else {
                 viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));
             }

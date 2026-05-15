@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.Activities.DetailCardData;
 
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
 
 import android.annotation.SuppressLint;
@@ -46,6 +47,7 @@ public class CardData1Activity extends BaseActivity {
     private DBHelper dbHelper;
 
     private BgEffectController bgEffectController;
+    private boolean isDynamicBackground;
 
     private TransitionSet transition;
     private LinearLayout Image_View_Card_Container;
@@ -62,13 +64,19 @@ public class CardData1Activity extends BaseActivity {
         //设置主题（必须在super.onCreate前调用才有效）
         ThemeManager.applyTheme(this);
 
+        // 初始化数据库工具
+        dbHelper = new DBHelper(this);
+
+        // 是否启用动态背景
+        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+
         super.onCreate(savedInstanceState);
         // 初始化布局和基础设置
         EdgeToEdge.enable(this);
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
             setContentView(R.layout.activity_card_data1_effect);
         } else {
             setContentView(R.layout.activity_card_data1);
@@ -89,9 +97,6 @@ public class CardData1Activity extends BaseActivity {
             finish(); // 参数错误直接关闭页面
             return;
         }
-
-        // 初始化数据库工具
-        dbHelper = new DBHelper(this);
 
         // 初始化各种装饰效果
         initDecoration();
@@ -287,7 +292,7 @@ public class CardData1Activity extends BaseActivity {
         transition.setDuration(300); // 动画时长300ms
         Image_View_Card_Container = findViewById(R.id.Image_View_Card_Container);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
             // 初始化流光背景
             View bgView = findViewById(R.id.bgEffectView);
             if (bgView != null) {
