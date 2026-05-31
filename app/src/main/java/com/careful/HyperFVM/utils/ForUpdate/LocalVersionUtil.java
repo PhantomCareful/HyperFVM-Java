@@ -54,4 +54,13 @@ public class LocalVersionUtil {
 
         return localImageResourcesVersionCode;
     }
+
+    /**
+     * 更新图片资源的本地版本号
+     */
+    public static void setImageResourcesVersionCode(Context context, long newLocalImageResourcesVersionCode) {
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            dbHelper.updateDataStationValue("DataImageResourcesVersionCode", String.valueOf(newLocalImageResourcesVersionCode));
+        }
+    }
 }

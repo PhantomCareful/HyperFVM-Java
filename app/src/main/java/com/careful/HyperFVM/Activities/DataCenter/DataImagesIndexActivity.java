@@ -1,48 +1,84 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 
-import com.careful.HyperFVM.Activities.CheckUpdateActivity;
-import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
-import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerDynamicActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageCardActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageDecomposeAndGetActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageMouseHpActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageOthersActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageWeaponAndGemActivity;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
+import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.ForUpdate.ImageResourcesUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 
-public class DataImagesIndexActivity extends BaseActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    private ImageResourcesUpdaterUtil imageUtil;
-    private LinearLayout data_images_index_container;
-    private Button update_image_action;
-    private boolean isResourcesReady = false;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class DataImagesIndexActivity extends BaseActivity {
+    private final String TAG = "DataImagesIndexActivity";
+
+    private final String DATA_IMAGES_URL = "https://raw.giteeusercontent.com/phantom-careful/hyper-fvm-updater/raw/main/DataImages/DataImagesUrl.m3u";
+    // 存储从DATA_IMAGES_URL获取到的图片信息
+    private final List<DataImagesInfo> dataImagesInfoList = new ArrayList<>();
+    // 存储需要更新的图片信息
+    private final List<DataImagesInfo> needUpdateDataImagesInfoList = new ArrayList<>();
+    // 存储下载失败的图片信息
+    private final List<DataImagesInfo> downloadFailedDataImagesInfoList = new ArrayList<>();
+
     private long localVersionCode;
 
+    private SpringBackScrollView scrollView;
     private TransitionSet transition;
 
-    private int pressFeedbackAnimationDelay;
+    private LinearLayout data_images_index_card_container;
+    private LinearLayout data_images_index_weapon_and_gem_container;
+    private LinearLayout data_images_index_decompose_and_get_container;
+    private LinearLayout data_images_index_mouse_hp_container;
+    private LinearLayout data_images_index_others_container;
+    private LinearLayout data_images_index_tiramisu_container;
+
+    private LinearLayout data_images_index_update_info_container;
+    private TextView data_images_index_update_info_title;
+    private TextView data_images_index_update_info_description;
+
+    private ExecutorService downloadExecutor;
+    private Handler mainHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,182 +93,272 @@ public class DataImagesIndexActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_data_images_index);
 
-        imageUtil = ImageResourcesUpdaterUtil.getInstance();
-        update_image_action = findViewById(R.id.update_image_resources_action);
-        data_images_index_container = findViewById(R.id.data_images_index_container);
+        scrollView = findViewById(R.id.scrollView);
+        transition = new TransitionSet();
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.setDuration(300); // 动画时长400ms
+
+        data_images_index_card_container = findViewById(R.id.data_images_index_card_container);
+        data_images_index_weapon_and_gem_container = findViewById(R.id.data_images_index_weapon_and_gem_container);
+        data_images_index_decompose_and_get_container = findViewById(R.id.data_images_index_decompose_and_get_container);
+        data_images_index_mouse_hp_container = findViewById(R.id.data_images_index_mouse_hp_container);
+        data_images_index_others_container = findViewById(R.id.data_images_index_others_container);
+        data_images_index_tiramisu_container = findViewById(R.id.data_images_index_tiramisu_container);
+
+        data_images_index_update_info_container = findViewById(R.id.data_images_index_update_info_container);
+        data_images_index_update_info_title = findViewById(R.id.data_images_index_update_info_title);
+        data_images_index_update_info_description = findViewById(R.id.data_images_index_update_info_description);
+        data_images_index_update_info_title.setText("正在检查图片版本⏳⏳⏳");
+        data_images_index_update_info_description.setText("请稍候，很快就好哦");
+
+        downloadExecutor = Executors.newFixedThreadPool(4);
+        mainHandler = new Handler(Looper.getMainLooper());
 
         // 初始化各种装饰效果
         initDecoration();
 
-        // 初始化组件点击事件
-        initViews();
-    }
-
-    private void initViews() {
-        // 防御卡数据图
-        setupContainer(R.id.data_images_index_card_0_1_container, "data_image_card_0_1", false);
-        setupContainer(R.id.data_images_index_card_0_2_1_container, "data_image_card_0_2_1", false);
-        setupContainer(R.id.data_images_index_card_0_2_2_container, "data_image_card_0_2_2", false);
-        setupContainer(R.id.data_images_index_card_0_3_container, "data_image_card_0_3", false);
-        setupContainer(R.id.data_images_index_card_1_container, "data_image_card_1", false);
-        setupContainer(R.id.data_images_index_card_2_container, "data_image_card_2", false);
-        setupContainer(R.id.data_images_index_card_3_container, "data_image_card_3", false);
-        setupContainer(R.id.data_images_index_card_4_container, "data_image_card_4", false);
-        setupContainer(R.id.data_images_index_card_5_container, "data_image_card_5", false);
-        setupContainer(R.id.data_images_index_card_6_container, "data_image_card_6", false);
-        setupContainer(R.id.data_images_index_card_7_container, "data_image_card_7", false);
-        setupContainer(R.id.data_images_index_card_8_container, "data_image_card_8", false);
-        setupContainer(R.id.data_images_index_card_9_container, "data_image_card_9", false);
-        setupContainer(R.id.data_images_index_card_10_container, "data_image_card_10", false);
-        setupContainer(R.id.data_images_index_card_11_container, "data_image_card_11", false);
-        setupContainer(R.id.data_images_index_card_12_container, "data_image_card_12", false);
-        setupContainer(R.id.data_images_index_card_13_container, "data_image_card_13", false);
-        setupContainer(R.id.data_images_index_card_14_container, "data_image_card_14", false);
-        setupContainer(R.id.data_images_index_card_15_container, "data_image_card_15", false);
-        setupContainer(R.id.data_images_index_card_16_container, "data_image_card_16", false);
-        setupContainer(R.id.data_images_index_card_17_container, "data_image_card_17", false);
-        setupContainer(R.id.data_images_index_card_18_container, "data_image_card_18", false);
-        setupContainer(R.id.data_images_index_card_19_container, "data_image_card_19", false);
-
-        // 武器宝石数据图
-        setupContainer(R.id.data_images_index_weapon_and_gem_0_1_container, "data_image_weapon_and_gem_0_1", false);
-        setupContainer(R.id.data_images_index_weapon_and_gem_1_container, "data_image_weapon_and_gem_1", false);
-        setupContainer(R.id.data_images_index_weapon_and_gem_2_container, "data_image_weapon_and_gem_2", false);
-        setupContainer(R.id.data_images_index_weapon_and_gem_3_container, "data_image_weapon_and_gem_3", false);
-        setupContainer(R.id.data_images_index_weapon_and_gem_4_container, "data_image_weapon_and_gem_4", false);
-        setupContainer(R.id.data_images_index_weapon_and_gem_5_container, "data_image_weapon_and_gem_5", false);
-
-        // 道具分解&兑换数据图
-        setupContainer(R.id.data_images_index_decompose_and_get_1_container, "data_image_decompose_and_get_1", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_2_container, "data_image_decompose_and_get_2", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_3_container, "data_image_decompose_and_get_3", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_4_container, "data_image_decompose_and_get_4", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_5_container, "data_image_decompose_and_get_5", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_6_container, "data_image_decompose_and_get_6", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_7_container, "data_image_decompose_and_get_7", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_8_container, "data_image_decompose_and_get_8", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_9_container, "data_image_decompose_and_get_9", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_10_container, "data_image_decompose_and_get_10", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_11_container, "data_image_decompose_and_get_11", false);
-        setupContainer(R.id.data_images_index_decompose_and_get_12_container, "data_image_decompose_and_get_12", false);
-
-        // 老输血量数据图
-        setupContainer(R.id.data_images_index_mouse_hp_1_container, "data_image_mouse_hp_1", false);
-        setupContainer(R.id.data_images_index_mouse_hp_2_container, "data_image_mouse_hp_2", false);
-        setupContainer(R.id.data_images_index_mouse_hp_3_container, "data_image_mouse_hp_3", false);
-        setupContainer(R.id.data_images_index_mouse_hp_4_container, "data_image_mouse_hp_4", false);
-        setupContainer(R.id.data_images_index_mouse_hp_5_container, "data_image_mouse_hp_5", false);
-        setupContainer(R.id.data_images_index_mouse_hp_6_container, "data_image_mouse_hp_6", false);
-        setupContainer(R.id.data_images_index_mouse_hp_7_container, "data_image_mouse_hp_7", false);
-        setupContainer(R.id.data_images_index_mouse_hp_8_container, "data_image_mouse_hp_8", false);
-        setupContainer(R.id.data_images_index_mouse_hp_9_container, "data_image_mouse_hp_9", false);
-        setupContainer(R.id.data_images_index_mouse_hp_10_container, "data_image_mouse_hp_10", false);
-
-        // 其他数据图
-        setupContainer(R.id.data_images_index_others_1_container, "data_image_others_1", true);
-        setupContainer(R.id.data_images_index_others_2_container, "data_image_others_2", true);
-        setupContainer(R.id.data_images_index_others_3_container, "data_image_others_3", true);
-        setupContainer(R.id.data_images_index_others_4_container, "data_image_others_4", false);
-        setupContainer(R.id.data_images_index_others_5_container, "data_image_others_5", true);
-        setupContainer(R.id.data_images_index_others_6_container, "data_image_others_6", false);
-        setupContainer(R.id.data_images_index_others_7_container, "data_image_others_7", true);
-        setupContainer(R.id.data_images_index_others_8_container, "data_image_others_8", true);
-        setupContainer(R.id.data_images_index_others_9_container, "data_image_others_9", true);
-    }
-
-    private void setupContainer(int viewId, String imageName, boolean isDynamic) {
-        LinearLayout container = findViewById(viewId);
-        container.setTag(imageName);
-        container.setOnClickListener(v -> v.postDelayed(() -> {
-            if (!isResourcesReady) {
-                Toast.makeText(this, "还没有图片资源哦，请先更新", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Intent intent;
-            if (isDynamic) {
-                intent = new Intent(this, ImageViewerDynamicActivity.class);
-            } else {
-                intent = new Intent(this, ImageViewerActivity.class);
-            }
-            intent.putExtra("imgPath", imageName);
-            startActivity(intent);
-        }, pressFeedbackAnimationDelay));
-    }
-
-    private void checkVersion() {
-        localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(this);
-
-        // 检查本地资源是否就绪
-        isResourcesReady = imageUtil.isResourcesReady(this);
-    }
-
-    private void getImageServerVersionAndCheckImageUpdate() {
-        update_image_action.setText(getResources().getString(R.string.label_check_update_status_checking));
-
-        imageUtil.checkServerVersion(new ImageResourcesUpdaterUtil.OnVersionCheckCallback() {
+        // 从云端仓库获取数据图信息（版本号、访问链接等）
+        getDataImagesInfoFromGit(new DataImagesCatchResultCallBack() {
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onVersionCheckSuccess(long serverVersion, String updateLog) {
-                runOnUiThread(() -> {
-                    try {
-                        if (serverVersion > localVersionCode) {
-                            update_image_action.setText(getResources().getString(R.string.label_check_update_status_new));
-                            update_image_action.setOnClickListener(v -> v.postDelayed(() -> {
-                                Intent intent = new Intent(DataImagesIndexActivity.this, CheckUpdateActivity.class);
-                                startActivity(intent);
-                            }, pressFeedbackAnimationDelay));
-                            showViewWithAnimation(update_image_action);
-                        } else {
-                            // 已是最新版本
-                            hideViewWithAnimation(update_image_action);
-                            update_image_action.setText(getResources().getString(R.string.label_check_update_status_current));
+            public void onSuccess() {
+                // 获取成功了，再初始化各入口卡片的点击事件
+                mainHandler.post(() -> initViews());
+
+                // 获取成功以后，需要将所有图片的version与数据库存储的versionCode进行对比
+                // 如果有图片更新，则单独下载这些图片
+                // 如果是第一次使用，则数据库存储的versionCode为0，自然所有图片都需要更新
+
+                // 获取本地版本号
+                localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(DataImagesIndexActivity.this);
+
+                // 如果localVersionCode == 0，则需要将入口卡片的enable值设为false，因为此时还没有存储任何图片，打开会报错。
+                if (localVersionCode == 0) {
+                    mainHandler.post(() -> {
+                        setAllCardViewEnabled(false);
+                        TransitionManager.beginDelayedTransition(scrollView, transition);
+                        data_images_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
+                        data_images_index_update_info_description.setText("第一次使用需要先将图片下载到本地才能查看哦");
+                        data_images_index_update_info_container.setOnClickListener(v -> downloadImages(dataImagesInfoList));
+                    });
+                } else {
+                    boolean needUpdate = false;
+                    for (int i = 0; i < dataImagesInfoList.size(); i++) {
+                        // 如有云端图片版本号更新，将其信息加入需要更新的List中
+                        Log.d(TAG, dataImagesInfoList.get(i).getFileName() + ": 云端" + dataImagesInfoList.get(i).getVersion() + ", 本地" + localVersionCode);
+                        if (localVersionCode < dataImagesInfoList.get(i).getVersion()) {
+                            needUpdateDataImagesInfoList.add(dataImagesInfoList.get(i));
+                            needUpdate = true;
                         }
-                    } catch (Exception e) {
-                        update_image_action.setText("检查版本时发生错误");
                     }
-                });
+
+                    boolean finalNeedUpdate = needUpdate;
+                    mainHandler.post(() -> {
+                        TransitionManager.beginDelayedTransition(scrollView, transition);
+                        if (finalNeedUpdate) {
+                            data_images_index_update_info_title.setText(needUpdateDataImagesInfoList.size() + "张图片需要更新📣📣📣");
+                            data_images_index_update_info_description.setText("单击本卡片仅下载有更新的图片\n长按本卡片下载全部图片(耗时更长，仅在需要时使用)");
+                            data_images_index_update_info_container.setOnClickListener(v -> downloadImages(needUpdateDataImagesInfoList));
+                        } else {
+                            data_images_index_update_info_title.setText("已经是最新版本😋😋😋");
+                            data_images_index_update_info_description.setText("如有需要，可长按本卡片重新下载图片");
+                            data_images_index_update_info_container.setOnClickListener(null);
+                        }
+                        data_images_index_update_info_container.setOnLongClickListener(v -> {
+                            downloadImages(dataImagesInfoList);
+                            return true;
+                        });
+                    });
+                }
             }
 
             @Override
-            public void onVersionCheckFailure(String errorMsg) {
-                runOnUiThread(() -> update_image_action.setText("检查版本失败，请稍后再试"));
-            }
-
-            @Override
-            public void onVersionParseError() {
-                runOnUiThread(() -> update_image_action.setText("版本信息错误"));
+            public void onFailed(Exception e) {
+                // 失败的话，用弹窗显示异常日志
+                DialogBuilderManager.showDialog(
+                        DataImagesIndexActivity.this,
+                        "抛出异常",
+                        "请将本页面截图反馈给开发者：\n" + e,
+                        true,
+                        "好的"
+                );
             }
         });
     }
 
-    /**
-     * 给检查更新的按钮和文字添加动画
-     */
-    private void showViewWithAnimation(View view) {
-        TransitionManager.beginDelayedTransition(data_images_index_container, transition);
-        if (view.getVisibility() == View.VISIBLE) return;
-        view.setVisibility(View.VISIBLE);
-        view.setAlpha(0f);
-        view.setScaleX(0.95f);
-        view.setScaleY(0.95f);
-        view.animate()
-                .alpha(1f)
-                .scaleX(1f)
-                .scaleY(1f)
-                .setDuration(400)
-                .start();
+    private void getDataImagesInfoFromGit(DataImagesCatchResultCallBack callBack) {
+        new Thread(() -> {
+            try {
+                // 第1步：从给定的链接获取JSON字符串
+                String JSONArrayStr = XMLHelper.getContentFromUrl(DATA_IMAGES_URL);
+
+                // 第2步：将JSON字符串转换成JSON数组
+                JSONArray jsonArray = new JSONArray(JSONArrayStr);
+
+                JSONObject itemObj;
+
+                // 第3步：遍历数组中的每个JSON对象
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    // 提取单个JSON对象
+                    itemObj = jsonArray.getJSONObject(i);
+
+                    // 讲JSON中的内容存储到DataImagesInfo类中
+                    DataImagesInfo dataImagesInfo = new DataImagesInfo();
+                    dataImagesInfo.setFileName(itemObj.getString("fileName"));
+                    dataImagesInfo.setVersion(Long.parseLong(itemObj.getString("version")));
+                    dataImagesInfo.setUrl(itemObj.getString("url"));
+
+                    // 加入List
+                    dataImagesInfoList.add(dataImagesInfo);
+                }
+
+                // 第4步：触发回调
+                callBack.onSuccess();
+
+            } catch (IOException | JSONException e) {
+                // 出发回调
+                callBack.onFailed(e);
+            }
+        }).start();
     }
 
-    private void hideViewWithAnimation(View view) {
-        TransitionManager.beginDelayedTransition(data_images_index_container, transition);
-        if (view.getVisibility() == View.GONE) return;
-        view.animate()
-                .alpha(0f)
-                .scaleX(0.95f)
-                .scaleY(0.95f)
-                .setDuration(400)
-                .withEndAction(() -> view.setVisibility(View.GONE))
-                .start();
+    private void initViews() {
+        data_images_index_card_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageCardActivity.class)));
+        data_images_index_weapon_and_gem_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageWeaponAndGemActivity.class)));
+        data_images_index_decompose_and_get_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageDecomposeAndGetActivity.class)));
+        data_images_index_mouse_hp_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageMouseHpActivity.class)));
+        data_images_index_others_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageOthersActivity.class)));
+        data_images_index_tiramisu_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageTiramisuActivity.class)));
+    }
+
+    private void setAllCardViewEnabled(boolean enabled) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            runOnUiThread(() -> setAllCardViewEnabled(enabled));
+            return;
+        }
+        data_images_index_tiramisu_container.setEnabled(enabled);
+        data_images_index_card_container.setEnabled(enabled);
+        data_images_index_weapon_and_gem_container.setEnabled(enabled);
+        data_images_index_decompose_and_get_container.setEnabled(enabled);
+        data_images_index_mouse_hp_container.setEnabled(enabled);
+        data_images_index_others_container.setEnabled(enabled);
+    }
+
+    /**
+     * 下载图片
+     * @param dataImagesInfoList 需要下载的图片的信息
+     *                           全量下载：请传入dataImagesInfoList
+     *                           增量下载：请传入needUpdateDataImagesInfoList
+     */
+    @SuppressLint("SetTextI18n")
+    private void downloadImages(List<DataImagesInfo> dataImagesInfoList) {
+        final AtomicInteger completedCount = new AtomicInteger(0);
+
+        TransitionManager.beginDelayedTransition(scrollView, transition);
+        data_images_index_update_info_title.setText("正在下载，已完成(" + completedCount + "/" + dataImagesInfoList.size() + ")⏳⏳⏳");
+        data_images_index_update_info_description.setText("请保持App处于前台状态，并不要退出本界面");
+        // 将卡片点击事件设置为null，防止重复下载
+        data_images_index_update_info_container.setOnClickListener(null);
+        data_images_index_update_info_container.setOnLongClickListener(null);
+        // 下载过程中不能查看图片
+        setAllCardViewEnabled(false);
+
+        for (DataImagesInfo dataImagesInfo : dataImagesInfoList) {
+            downloadExecutor.execute(() -> {
+                boolean success = downloadSingleImage(dataImagesInfo);
+                int current = completedCount.incrementAndGet();
+                if (!success) {
+                    synchronized (downloadFailedDataImagesInfoList) {
+                        downloadFailedDataImagesInfoList.add(dataImagesInfo);
+                    }
+                }
+
+                // 更新下载进度
+                mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + dataImagesInfoList.size() + ")⏳⏳⏳"));
+
+                // 全部完成
+                if (current == dataImagesInfoList.size()) {
+                    mainHandler.post(() -> {
+                        data_images_index_update_info_title.setText("更新完成🎉🎉🎉");
+                        if (downloadFailedDataImagesInfoList.isEmpty()) {
+                            data_images_index_update_info_description.setText(
+                                    dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败");
+
+                            // 更新本地版本号，取图片信息中版本号最大的值
+                            long newestVersion = 0;
+                            for (DataImagesInfo info : dataImagesInfoList) {
+                                if (info.getVersion() > newestVersion) {
+                                    newestVersion = info.getVersion();
+                                }
+                            }
+                            LocalVersionUtil.setImageResourcesVersionCode(this, newestVersion);
+
+                        } else {
+                            data_images_index_update_info_description.setText(
+                                    dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败" + "\n" +
+                                    "再次点击本卡片可重新下载更新失败的图片"
+                            );
+                            data_images_index_update_info_container.setOnClickListener(v -> downloadImages(downloadFailedDataImagesInfoList));
+                            data_images_index_update_info_container.setOnLongClickListener(v -> {
+                                downloadImages(dataImagesInfoList);
+                                return true;
+                            });
+                        }
+                        setAllCardViewEnabled(true);
+                    });
+                }
+            });
+        }
+    }
+
+    /**
+     * 下载单张图片的方法
+     * @param dataImagesInfo 图片信息
+     * @return 是否成功
+     */
+    private boolean downloadSingleImage(DataImagesInfo dataImagesInfo) {
+        HttpURLConnection connection = null;
+        InputStream inputStream = null;
+        FileOutputStream outputStream = null;
+
+        try {
+            // 构建保存路径
+            File dir = new File(getFilesDir(), "data_images");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File file = new File(dir, dataImagesInfo.getFileName() + ".png");
+
+            URL url = new URL(dataImagesInfo.getUrl());
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(15000);
+            connection.setRequestMethod("GET");
+
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                inputStream = connection.getInputStream();
+                outputStream = new FileOutputStream(file);
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                outputStream.flush();
+
+                return true;
+            } else {
+                return false;
+            }
+        } catch (IOException e) {
+            DialogBuilderManager.showDialog(this, "捕获异常", "" + e, true, "好的");
+            return false;
+        } finally {
+            try {
+                if (inputStream != null) inputStream.close();
+                if (outputStream != null) outputStream.close();
+                if (connection != null) connection.disconnect();
+            } catch (Exception ignored) {}
+        }
     }
 
     /**
@@ -256,11 +382,6 @@ public class DataImagesIndexActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
-
-        // 初始化动画效果
-        transition = new TransitionSet();
-        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
-        transition.setDuration(400); // 动画时长400ms
     }
 
     /**
@@ -270,34 +391,7 @@ public class DataImagesIndexActivity extends BaseActivity {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
-        // 顺便设置返回按钮的功能
+        // 顺便设置按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
-    }
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // 重新构建布局
-        recreate();
-    }
-
-    /**
-     * 在onResume阶段：
-     * 1. 检查图片资源更新
-     * 2. 设置按压反馈动画
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    public void onResume() {
-        super.onResume();
-        // 获取本地版本号
-        checkVersion();
-        // 检查图片资源是否有更新
-        getImageServerVersionAndCheckImageUpdate();
-        // 添加按压动画
-        pressFeedbackAnimationDelay = 200;
-        findViewById(R.id.update_image_resources_action).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK)
-        );
     }
 }

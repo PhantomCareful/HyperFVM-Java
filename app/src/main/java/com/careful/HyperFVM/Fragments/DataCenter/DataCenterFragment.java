@@ -33,7 +33,6 @@ import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
 import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
-import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
@@ -258,12 +257,6 @@ public class DataCenterFragment extends Fragment {
         // 数据图合集
         root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), DataImagesIndexActivity.class);
-            startActivity(intent);
-        });
-
-        // 米鼠的图
-        root.findViewById(R.id.DataCenter_TiramisuImage_Container).setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), TiramisuImageActivity.class);
             startActivity(intent);
         });
 

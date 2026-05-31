@@ -23,6 +23,10 @@
     <string name="label_data_img_viewer">数据图查看器👀</string>
     <string name="card_data_search_title">🔍防御卡数据查询</string>
     <string name="card_data_search_tips">数据库日期【20260503】\n卡片冷却默认7秒，体力默认50，如有不同会单独标出。</string>
+    <string name="text_data_images_index_tiramisu">米鼠的图</string>
+    <string name="text_data_images_index_tiramisu_author">By 夏夜浅酌</string>
+    <string name="text_data_images_index_card">防御卡数据图</string>
+    <string name="text_data_images_index_card_author">By So陌路の</string>
     <string name="text_data_images_index_card_0_1_1">新卡速递</string>
     <string name="text_data_images_index_card_0_1_2">看看最近出了哪些卡片</string>
     <string name="text_data_images_index_card_0_2_1_1">防御卡名称(Part1)</string>
@@ -69,6 +73,8 @@
     <string name="text_data_images_index_card_18_2">包含：开启食神谱需要的卡片、加成、同时可开启食谱数</string>
     <string name="text_data_images_index_card_19_1">18.特别说明</string>
     <string name="text_data_images_index_card_19_2">针对一些卡片的各种补充说明</string>
+    <string name="text_data_images_index_weapon_and_gem">武器宝石数据图</string>
+    <string name="text_data_images_index_weapon_and_gem_author">By So陌路の</string>
     <string name="text_data_images_index_weapon_and_gem_0_1_1">神级进化</string>
     <string name="text_data_images_index_weapon_and_gem_0_1_2">旧三神→新三神→星三神</string>
     <string name="text_data_images_index_weapon_and_gem_1">1.主武器</string>
@@ -76,6 +82,8 @@
     <string name="text_data_images_index_weapon_and_gem_3">3.超级武器</string>
     <string name="text_data_images_index_weapon_and_gem_4">4.外观模型&amp;子弹样式</string>
     <string name="text_data_images_index_weapon_and_gem_5">5.宝石强化&amp;分解&amp;进化返还</string>
+    <string name="text_data_images_index_decompose_and_get">分解兑换数据图</string>
+    <string name="text_data_images_index_decompose_and_get_author">By So陌路の</string>
     <string name="text_data_images_index_decompose_and_get_1_1">1.至尊金卡</string>
     <string name="text_data_images_index_decompose_and_get_1_2">专属道具：神谕之石(石头)</string>
     <string name="text_data_images_index_decompose_and_get_2_1">2.星座卡</string>
@@ -100,6 +108,8 @@
     <string name="text_data_images_index_decompose_and_get_11_2">专属道具：生肖宝珠(珠子)</string>
     <string name="text_data_images_index_decompose_and_get_12_1">12.马年生肖卡</string>
     <string name="text_data_images_index_decompose_and_get_12_2">专属道具：生肖宝珠(珠子)</string>
+    <string name="text_data_images_index_mouse_hp">老鼠血量数据图</string>
+    <string name="text_data_images_index_mouse_hp_author">By So陌路の</string>
     <string name="text_data_images_index_mouse_hp_1_1">1.美味岛&amp;火山岛&amp;浮空岛</string>
     <string name="text_data_images_index_mouse_hp_1_2">体力为标准值，关卡内可能会修改百分比</string>
     <string name="text_data_images_index_mouse_hp_2_1">2.星际穿越&amp;海底&amp;转职&amp;竞技岛</string>
@@ -120,7 +130,8 @@
     <string name="text_data_images_index_mouse_hp_9_2">体力为标准值，关卡内可能会修改百分比</string>
     <string name="text_data_images_index_mouse_hp_10_1">10.特殊召唤物</string>
     <string name="text_data_images_index_mouse_hp_10_2">体力为标准值，关卡内可能会修改百分比</string>
-    <string name="label_data_images_index_others">其他数据图</string>
+    <string name="text_data_images_index_others">其他数据图</string>
+    <string name="text_data_images_index_others_description">顾名思义，各种不好分类的数据图</string>
     <string name="text_data_images_index_others_1_1">1.跨服徽章掉落数据</string>
     <string name="text_data_images_index_others_1_2">By Phantom_Careful</string>
     <string name="text_data_images_index_others_2_1">2.VIP签到数据</string>

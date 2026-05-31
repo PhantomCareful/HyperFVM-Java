@@ -34,58 +34,76 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="upside_down_cake">
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity"
+            android:name=".Activities.DataCenter.DataImage.DataImageTiramisuActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList9Activity"
+            android:name=".Activities.DataCenter.DataImage.DataImageOthersActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList8EffectActivity"
+            android:name=".Activities.DataCenter.DataImage.DataImageMouseHpActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList8Activity"
+            android:name=".Activities.DataCenter.DataImage.DataImageDecomposeAndGetActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList7EffectActivity"
+            android:name=".Activities.DataCenter.DataImage.DataImageWeaponAndGemActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList7Activity"
+            android:name=".Activities.DataCenter.DataImage.DataImageCardActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList6EffectActivity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList6Activity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList5EffectActivity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList8EffectActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList5Activity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList8Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList4EffectActivity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList7EffectActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList4Activity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList7Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList3EffectActivity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList6EffectActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList3Activity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList6Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList2EffectActivity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList5EffectActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList2Activity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList5Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList1Activity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList4EffectActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.AuxiliaryList.AuxiliaryList1EffectActivity"
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList3EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList2EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1EffectActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.ThanksList.ThanksAppActivity"
@@ -115,22 +133,22 @@
             android:name=".Activities.NecessaryThings.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ImageViewerActivity.ImageViewerDynamicActivity"
+            android:name=".Activities.DataCenter.DataImage.ImageViewerActivity.ImageViewerDynamicActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ImageViewerActivity.ImageViewerActivity"
+            android:name=".Activities.DataCenter.DataImage.ImageViewerActivity.ImageViewerActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData1Activity"
+            android:name=".Activities.DataCenter.DetailCardData.CardData1Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData2Activity"
+            android:name=".Activities.DataCenter.DetailCardData.CardData2Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData3Activity"
+            android:name=".Activities.DataCenter.DetailCardData.CardData3Activity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetailCardData.CardData4Activity"
+            android:name=".Activities.DataCenter.DetailCardData.CardData4Activity"
             android:exported="false" />
 
         <provider

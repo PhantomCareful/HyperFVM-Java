@@ -1208,7 +1208,6 @@
 
                 <include layout="@layout/card_card_data_index"/>
                 <include layout="@layout/card_data_images_index"/>
-                <include layout="@layout/card_tiramisu_image"/>
 
                 <TextView
                     android:layout_width="match_parent"
