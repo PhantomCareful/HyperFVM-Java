@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities.ImageViewerActivity;
+package com.careful.HyperFVM.Activities.DataCenter.DataImage.ImageViewerActivity;
 
 import static android.content.ContentValues.TAG;
 
@@ -123,8 +123,8 @@ public class ImageViewerDynamicActivity extends BaseActivity {
         };
 
         return (currentNightMode == Configuration.UI_MODE_NIGHT_YES) ?
-                unzipRootPath + File.separator + imageName + "_dark.webp" :
-                unzipRootPath + File.separator + imageName + "_light.webp" ;
+                unzipRootPath + File.separator + imageName + "_dark.png" :
+                unzipRootPath + File.separator + imageName + "_light.png" ;
     }
 
     /**

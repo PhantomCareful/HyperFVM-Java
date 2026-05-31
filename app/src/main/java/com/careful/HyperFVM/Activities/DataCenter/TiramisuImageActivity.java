@@ -17,7 +17,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
-import com.careful.HyperFVM.Activities.ImageViewerActivity.ImageViewerActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;

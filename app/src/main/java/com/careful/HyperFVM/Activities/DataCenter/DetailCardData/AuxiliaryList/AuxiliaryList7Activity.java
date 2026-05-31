@@ -1,8 +1,7 @@
-package com.careful.HyperFVM.Activities.DetailCardData.AuxiliaryList;
+package com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,14 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.RequiresApi;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.databinding.ActivityAuxiliaryList7EffectBinding;
+import com.careful.HyperFVM.databinding.ActivityAuxiliaryList7Binding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
-import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -27,11 +24,9 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
-@RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
-public class AuxiliaryList7EffectActivity extends BaseActivity {
-    private ActivityAuxiliaryList7EffectBinding binding;
+public class AuxiliaryList7Activity extends BaseActivity {
+    private ActivityAuxiliaryList7Binding binding;
     private DBHelper dbHelper;
-    private BgEffectController bgEffectController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +38,10 @@ public class AuxiliaryList7EffectActivity extends BaseActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_auxiliary_list7_effect);
+        setContentView(R.layout.activity_auxiliary_list7);
 
         // 初始化ViewBinding
-        binding = ActivityAuxiliaryList7EffectBinding.inflate(getLayoutInflater());
+        binding = ActivityAuxiliaryList7Binding.inflate(getLayoutInflater());
         View root = binding.getRoot();
         setContentView(root);
 
@@ -74,16 +69,6 @@ public class AuxiliaryList7EffectActivity extends BaseActivity {
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
         });
-
-        // 初始化流光背景
-        View bgView = findViewById(R.id.bgEffectView);
-        if (bgView != null) {
-            bgEffectController = new BgEffectController(bgView);
-            bgEffectController.setDetailAnimalCardDataColorType(this);
-        }
-        if (bgEffectController != null) {
-            bgEffectController.startDetailAnimalCardDataBgEffect();
-        }
 
         // 添加模糊材质
         setupBlurEffect();
@@ -133,14 +118,5 @@ public class AuxiliaryList7EffectActivity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex117.cardDataIndex117.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "散弹牛"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex118.cardDataIndex118.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "威风虎"));
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (bgEffectController != null) {
-            bgEffectController.startDetailAnimalCardDataBgEffect();
-        }
     }
 }

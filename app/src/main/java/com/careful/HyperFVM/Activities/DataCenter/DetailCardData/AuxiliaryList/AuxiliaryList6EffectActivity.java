@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities.DetailCardData.AuxiliaryList;
+package com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST;
 
@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.databinding.ActivityAuxiliaryList3EffectBinding;
+import com.careful.HyperFVM.databinding.ActivityAuxiliaryList6EffectBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
@@ -28,8 +28,8 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
-public class AuxiliaryList3EffectActivity extends BaseActivity {
-    private ActivityAuxiliaryList3EffectBinding binding;
+public class AuxiliaryList6EffectActivity extends BaseActivity {
+    private ActivityAuxiliaryList6EffectBinding binding;
     private DBHelper dbHelper;
     private BgEffectController bgEffectController;
 
@@ -43,10 +43,10 @@ public class AuxiliaryList3EffectActivity extends BaseActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_auxiliary_list3_effect);
+        setContentView(R.layout.activity_auxiliary_list6_effect);
 
         // 初始化ViewBinding
-        binding = ActivityAuxiliaryList3EffectBinding.inflate(getLayoutInflater());
+        binding = ActivityAuxiliaryList6EffectBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
         setContentView(root);
 
@@ -105,22 +105,23 @@ public class AuxiliaryList3EffectActivity extends BaseActivity {
      */
     private void initCardImages() {
         // 增幅卡
-        findViewById(R.id.card_data_index_background_images_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "莓果点心"));
+        findViewById(R.id.card_data_index_background_images_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "精灵龙"));
 
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "章鱼烧"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巨蟹座精灵"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "忍忍鸡"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狄安娜神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex944.cardDataIndex944.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex946.cardDataIndex946.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex922.cardDataIndex922.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雅典娜守护"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex924.cardDataIndex924.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "宙斯神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex931.cardDataIndex931.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "魔法猪"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex932.cardDataIndex932.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "招财喵"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex933.cardDataIndex933.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雪球兔"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex934.cardDataIndex934.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "典伊神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex935.cardDataIndex935.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰晶龙"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex921.cardDataIndex921.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "咖喱龙虾炮"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex1214.cardDataIndex1215.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex1018.cardDataIndex1018.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "马卡龙烤箱"));
 
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();

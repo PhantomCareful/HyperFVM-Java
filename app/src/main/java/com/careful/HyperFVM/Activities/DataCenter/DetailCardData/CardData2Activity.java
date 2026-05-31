@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities.DetailCardData;
+package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;

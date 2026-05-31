@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
-import com.careful.HyperFVM.Activities.DetailCardData.ExportInfo;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.ExportInfo;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;

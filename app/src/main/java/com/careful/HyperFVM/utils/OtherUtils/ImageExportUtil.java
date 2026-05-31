@@ -12,7 +12,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.careful.HyperFVM.Activities.DetailCardData.ExportInfo;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.ExportInfo;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 

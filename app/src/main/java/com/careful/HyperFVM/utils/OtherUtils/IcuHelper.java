@@ -26,8 +26,8 @@ public class IcuHelper {
     private final Context context;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
-    private static final String BASE_URL = "https://www.msdzls.icu";
-    private static final String NICKNAME_API_PATH = "/fraud/getNickname?qq=";
+    private static final String URL = "https://www.msdzls.icu/fraud/web/info?qq=";
+    private static final String NICKNAME_API = "https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=";
 
     public IcuHelper(Context context) {
         this.context = context;
@@ -52,7 +52,7 @@ public class IcuHelper {
 
         executor.execute(() -> {
             FraudResult result;
-            String mainUrl = BASE_URL + "/fraud/viewFraud?qq=" + qqNumber;
+            String mainUrl = URL + qqNumber;
             try {
                 // --- 步骤 1: 请求主页面，获取基础信息 ---
                 Document doc = Jsoup.connect(mainUrl)
@@ -74,7 +74,7 @@ public class IcuHelper {
                 }
 
                 // --- 步骤 2: 使用获取到的QQ号拼接URL，请求昵称API ---
-                String nicknameApiUrl = BASE_URL + NICKNAME_API_PATH + qqFromPage;
+                String nicknameApiUrl = URL + NICKNAME_API + qqFromPage;
                 String nicknameJson = Jsoup.connect(nicknameApiUrl)
                         .ignoreContentType(true) // 关键：忽略内容类型，允许接收JSON
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")

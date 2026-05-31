@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities.ImageViewerActivity;
+package com.careful.HyperFVM.Activities.DataCenter.DataImage.ImageViewerActivity;
 
 import static android.content.ContentValues.TAG;
 
@@ -112,7 +112,7 @@ public class ImageViewerActivity extends BaseActivity {
     private String getImagePath(String imageName) {
         // 从工具类获取解压根路径，拼接图片名称+扩展名（此处假设为png，可根据实际调整）
         String unzipRootPath = imageUtil.getUnzipPath(this);
-        return unzipRootPath + File.separator + imageName + ".webp";
+        return unzipRootPath + File.separator + imageName + ".png";
     }
 
     /**

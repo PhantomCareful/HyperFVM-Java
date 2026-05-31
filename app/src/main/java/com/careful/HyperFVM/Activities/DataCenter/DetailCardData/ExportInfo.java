@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities.DetailCardData;
+package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
 import android.widget.ImageView;
 
