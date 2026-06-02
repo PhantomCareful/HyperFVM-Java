@@ -297,8 +297,8 @@ public class DataCenterFragment extends Fragment {
                 getResources().getString(R.string.label_tools_strategy_world_boss_url)));
 
         // FVM查黑系统
-        root.findViewById(R.id.card_icu_container).setOnClickListener(v ->
-                DialogBuilderManager.showQQInputDialog(requireContext()));
+        /*root.findViewById(R.id.card_icu_container).setOnClickListener(v ->
+                DialogBuilderManager.showQQInputDialog(requireContext()));*/
 
         // 强卡最优路径计算器
         root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
