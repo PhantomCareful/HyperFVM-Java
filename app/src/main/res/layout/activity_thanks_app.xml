@@ -34,24 +34,54 @@
                 android:clipToPadding="false">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/thanks_list_container_app_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
-                    <TextView
-                        android:id="@+id/thanks_list_container_app_top_content"
+                    <LinearLayout
+                        android:id="@+id/data_images_index_update_info_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
+                        android:orientation="horizontal"
                         android:padding="16dp"
-                        android:text="@string/label_thanks_list_app_top"
-                        android:textColor="?attr/TextViewColorOnImportantCardView"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_heart"
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:text="@string/title_about_app_thanks_list"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:text="@string/label_thanks_list_app_top"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
