@@ -730,7 +730,59 @@
 
                     </LinearLayout>
 
-                    <!-- 第5个选项：更新日志 -->
+                    <!-- 第5个选项：QQ群组 -->
+                    <LinearLayout
+                        android:id="@+id/about_app_tencent_group_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_qq"
+                            app:tint="?attr/colorOnSurface"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_about_app_tencent_group_1"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_about_app_tencent_group_2"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <!-- 右侧箭头 -->
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="?attr/colorOnSurface"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                    <!-- 第6个选项：更新日志 -->
                     <LinearLayout
                         android:id="@+id/about_app_see_update_log_history"
                         android:layout_width="match_parent"

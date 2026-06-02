@@ -105,6 +105,12 @@ public class AboutAppFragment extends Fragment {
                 getResources().getString(R.string.title_about_app_tencent_channel_dialog),
                 getResources().getString(R.string.label_about_app_tencent_channel_url)));
 
+        //跳转浏览器，前往App聊天群组
+        root.findViewById(R.id.about_app_tencent_group_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+                requireContext(),
+                getResources().getString(R.string.title_about_app_tencent_group_dialog),
+                getResources().getString(R.string.title_about_app_tencent_group_url)));
+
         //查看历史更新日志
         clickToNewActivity(root.findViewById(R.id.about_app_see_update_log_history), UpdateLogHistoryActivity.class);
 
