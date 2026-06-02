@@ -107,7 +107,7 @@ public class DataImagesIndexActivity extends BaseActivity {
         data_images_index_update_info_container = findViewById(R.id.data_images_index_update_info_container);
         data_images_index_update_info_title = findViewById(R.id.data_images_index_update_info_title);
         data_images_index_update_info_description = findViewById(R.id.data_images_index_update_info_description);
-        data_images_index_update_info_title.setText("正在检查图片版本⏳⏳⏳");
+        data_images_index_update_info_title.setText("正在检查图片版本⏳");
         data_images_index_update_info_description.setText("请稍候，很快就好哦");
 
         downloadExecutor = Executors.newFixedThreadPool(4);
@@ -126,7 +126,7 @@ public class DataImagesIndexActivity extends BaseActivity {
         }
         data_images_index_delete_container.setOnLongClickListener(v -> {
             DialogBuilderManager.showDialogWithCallBack(this, "二次确认", "将删除所有本地图片。", true, "确定", () -> {
-                data_images_index_delete_title.setText("操作执行中⏳⏳⏳");
+                data_images_index_delete_title.setText("操作执行中⏳");
                 setAllCardViewEnabled(false);
 
                 File dir = new File(getFilesDir(), "data_images");
@@ -356,7 +356,7 @@ public class DataImagesIndexActivity extends BaseActivity {
                     }
 
                     // 更新下载进度
-                    mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + dataImagesInfoList.size() + ")⏳⏳⏳"));
+                    mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + dataImagesInfoList.size() + ")⏳"));
 
                     // 全部完成
                     if (current == dataImagesInfoList.size() && !isActivityDestroyed) {
@@ -451,9 +451,21 @@ public class DataImagesIndexActivity extends BaseActivity {
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
-        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+        InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout data_images_index_container = findViewById(R.id.data_images_index_container);
+        InsetsUtil.setMarginHorizontal(this, data_images_index_container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) data_images_index_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            data_images_index_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
             floatButtonBackContainer.setLayoutParams(params);
         });
 

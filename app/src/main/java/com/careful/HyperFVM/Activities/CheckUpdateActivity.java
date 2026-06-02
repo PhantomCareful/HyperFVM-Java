@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -407,16 +408,35 @@ public class CheckUpdateActivity extends BaseActivity {
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
-        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+        InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
         });
         // 动态获取导航栏高度（小白条/三键导航）
         MaterialCardView floatButtonJoinContainer = findViewById(R.id.FloatButton_Join_Container);
-        InsetsUtil.getNavigationBarHeight(this, rootView, height -> {
+        InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonJoinContainer.getLayoutParams();
             params.bottomMargin = DensityUtil.dpToPx(this, 24) + height;
+            floatButtonJoinContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        MaterialCardView floatButtonUpdateContainer = findViewById(R.id.FloatButton_Update_Container);
+        LinearLayout check_update_container = findViewById(R.id.check_update_container);
+        InsetsUtil.setMarginHorizontal(this, check_update_container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) check_update_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            check_update_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            floatButtonBackContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonUpdateContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            floatButtonUpdateContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonJoinContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
             floatButtonJoinContainer.setLayoutParams(params);
         });
 

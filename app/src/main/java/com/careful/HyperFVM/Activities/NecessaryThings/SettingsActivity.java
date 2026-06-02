@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -374,7 +375,7 @@ public class SettingsActivity extends BaseActivity {
         MaterialCardView floatButtonRestartContainer = findViewById(R.id.FloatButton_Restart_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
-        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+        InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
@@ -382,6 +383,18 @@ public class SettingsActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonRestartContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonRestartContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout settings_container = findViewById(R.id.settings_container);
+        InsetsUtil.setMarginHorizontal(this, settings_container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) settings_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            settings_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            floatButtonBackContainer.setLayoutParams(params);
         });
 
         // 添加模糊材质

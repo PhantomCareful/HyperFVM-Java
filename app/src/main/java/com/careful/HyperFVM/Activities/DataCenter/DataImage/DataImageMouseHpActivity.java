@@ -98,7 +98,7 @@ public class DataImageMouseHpActivity extends AppCompatActivity {
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
-        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+        InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);

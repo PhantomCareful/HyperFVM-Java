@@ -3,6 +3,7 @@ package com.careful.HyperFVM.Activities.ThanksList;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 
@@ -76,9 +77,21 @@ public class ThanksAppActivity extends BaseActivity {
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
-        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+        InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout CoContributorTeam_Container = findViewById(R.id.CoContributorTeam_Container);
+        InsetsUtil.setMarginHorizontal(this, CoContributorTeam_Container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) CoContributorTeam_Container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            CoContributorTeam_Container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
             floatButtonBackContainer.setLayoutParams(params);
         });
 

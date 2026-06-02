@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <!-- 中间内容：移到最前面，约束到父布局四边（延伸到顶栏/底栏后方） -->
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"

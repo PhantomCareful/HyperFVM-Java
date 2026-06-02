@@ -19,7 +19,7 @@
             android:clipToPadding="false">
 
             <LinearLayout
-                android:id="@+id/tools_tiramisu_image_container"
+                android:id="@+id/data_images_index_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"

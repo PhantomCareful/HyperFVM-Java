@@ -25,6 +25,7 @@ import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 
 public class CoContributorTeamActivity extends BaseActivity {
+    private LinearLayout CoContributorTeamContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,6 @@ public class CoContributorTeamActivity extends BaseActivity {
         transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
         transition.setDuration(300); // 动画时长300ms
 
-        LinearLayout CoContributorTeamContainer = findViewById(R.id.CoContributorTeam_Container);
-
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             TransitionManager.beginDelayedTransition(CoContributorTeamContainer, transition);
             findViewById(R.id.CoContributorTeam_Top_Container).setVisibility(View.VISIBLE);
@@ -76,9 +75,21 @@ public class CoContributorTeamActivity extends BaseActivity {
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
-        InsetsUtil.getStatusBarHeight(this, rootView, height -> {
+        InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        CoContributorTeamContainer = findViewById(R.id.CoContributorTeam_Container);
+        InsetsUtil.setMarginHorizontal(this, CoContributorTeamContainer, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) CoContributorTeamContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            CoContributorTeamContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
             floatButtonBackContainer.setLayoutParams(params);
         });
 
