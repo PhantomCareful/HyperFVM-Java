@@ -19,159 +19,150 @@
             android:clipChildren="false"
             android:clipToPadding="false">
 
-            <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scrollbars="none"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
+                <!-- 展示各增幅卡的大图 -->
                 <LinearLayout
+                    android:id="@+id/card_data_index_background_images_1_1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
 
-                    <!-- 展示各增幅卡的大图 -->
                     <LinearLayout
-                        android:id="@+id/card_data_index_background_images_1_1"
-                        android:layout_width="match_parent"
+                        android:id="@+id/card_data_index_background_image_1_1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_1_1"
-                            android:layout_width="0dp"
+                        <ImageView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/card_data_index_4_2_3_0_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="塔利亚神使"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_1_2"
-                            android:layout_width="0dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/card_data_index_4_2_3_0_big"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/card_data_index_4_2_3_1_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="塔利亚圣神"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
+                            android:text="塔利亚神使"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/card_data_index_background_images_1_2"
-                        android:layout_width="match_parent"
+                        android:id="@+id/card_data_index_background_image_1_2"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_1_3"
-                            android:layout_width="0dp"
+                        <ImageView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/card_data_index_4_2_3_2_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="宴飨女神·塔利亚"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_1_4"
-                            android:layout_width="0dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/card_data_index_4_2_3_1_big"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/card_data_index_4_2_3_3_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="至尊宴飨女神"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
+                            android:text="塔利亚圣神"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
 
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/copyright"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"
-                        android:layout_marginVertical="20dp"
-                        android:gravity="center"/>
 
                 </LinearLayout>
 
-            </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+                <LinearLayout
+                    android:id="@+id/card_data_index_background_images_1_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/card_data_index_background_image_1_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/card_data_index_4_2_3_2_big"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="宴飨女神·塔利亚"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/card_data_index_background_image_1_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/card_data_index_4_2_3_3_big"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="至尊宴飨女神"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copyright"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginVertical="20dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
 
             <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
                 android:layout_width="0dp"
