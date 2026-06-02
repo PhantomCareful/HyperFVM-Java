@@ -39,19 +39,535 @@
                     android:src="@drawable/tiramisu_binding_image"
                     tools:ignore="ContentDescription" />
 
-                <Button
-                    android:id="@+id/update_image_resources_action"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="20sp"
-                    app:cornerRadius="20dp"
-                    android:visibility="gone"/>
+                    android:layout_marginBottom="25dp"
+                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/data_images_index_update_info_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_bulb"
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:text="@string/text_data_images_index_tiramisu_title"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:text="@string/text_data_images_index_tiramisu_description"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/text_tools_tiramisu_image_1"
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_1_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_1_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_1_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_2_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_2_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_2_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_3_1_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_3_1_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_3_1_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_3_2_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_3_2_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_3_2_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_3_3_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_3_3_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_3_3_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_4_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_4_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_4_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_5_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_5_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_5_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_6_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_6_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_6_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_1_7_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_cash_multiple"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_7_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_1_7_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/text_tools_tiramisu_image_2"
+                    android:textSize="15sp"
+                    android:textColor="?attr/colorOnSurface"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
@@ -62,399 +578,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/tiramisu_image_1_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_cash_multiple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_1_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_1_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_2_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_cash_multiple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_2_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_2_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_3_1_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_cash_multiple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_3_1_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_3_1_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_3_2_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_cash_multiple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_3_2_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_3_2_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_3_3_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_cash_multiple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_3_3_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_3_3_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_4_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_cash_multiple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_4_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_4_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_5_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_layers_triple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_5_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_5_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_6_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_sticker_emoji"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_6_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_6_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tiramisu_image_7_1_container"
+                            android:id="@+id/tiramisu_image_2_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -479,7 +603,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_1_1"
+                                    android:text="@string/text_tools_tiramisu_image_2_1_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -487,7 +611,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_1_2"
+                                    android:text="@string/text_tools_tiramisu_image_2_1_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -503,7 +627,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/tiramisu_image_7_2_container"
+                            android:id="@+id/tiramisu_image_2_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -528,7 +652,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_2_1"
+                                    android:text="@string/text_tools_tiramisu_image_2_2_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -536,7 +660,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_2_2"
+                                    android:text="@string/text_tools_tiramisu_image_2_2_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -552,7 +676,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/tiramisu_image_7_3_container"
+                            android:id="@+id/tiramisu_image_2_3_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -577,7 +701,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_3_1"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_1_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -585,7 +709,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_3_2"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_1_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -601,7 +725,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/tiramisu_image_7_4_container"
+                            android:id="@+id/tiramisu_image_2_3_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -626,7 +750,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_4_1"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_2_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -634,7 +758,889 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_tools_tiramisu_image_7_4_2"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_2_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_3_3_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_3_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_3_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_3_4_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_4_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_3_4_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_1_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_1_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_1_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_2_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_2_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_2_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_3_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_3_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_3_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_4_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_4_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_4_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_5_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_5_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_5_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_6_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_6_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_6_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_7_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_7_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_7_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_8_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_8_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_8_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_9_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_9_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_9_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_10_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_10_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_10_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_11_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_11_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_11_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_12_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_12_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_12_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_13_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_13_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_13_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_14_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_14_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_14_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_15_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_15_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_15_description"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_chevron_right"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription,TooManyViews" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tiramisu_image_2_4_16_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_flag"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_marginStart="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_16_title"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_tools_tiramisu_image_2_4_16_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -656,12 +1662,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/copyright_and_tiramisu"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorOnSurface"
                     android:layout_marginVertical="20dp"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="@string/copyright"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

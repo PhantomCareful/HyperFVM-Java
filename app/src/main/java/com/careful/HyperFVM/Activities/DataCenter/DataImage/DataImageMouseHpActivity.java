@@ -1,7 +1,9 @@
 package com.careful.HyperFVM.Activities.DataCenter.DataImage;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +11,17 @@ import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
-import com.careful.HyperFVM.Activities.DataCenter.DataImage.ImageViewerActivity.ImageViewerActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
+
+import java.io.File;
 
 public class DataImageMouseHpActivity extends AppCompatActivity {
 
@@ -57,9 +62,26 @@ public class DataImageMouseHpActivity extends AppCompatActivity {
     private void setupContainer(int viewId, String imageName) {
         LinearLayout container = findViewById(viewId);
         container.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ImageViewerActivity.class);
-            intent.putExtra("imgPath", imageName);
-            startActivity(intent);
+            File dir = new File(getFilesDir(), "data_images");
+            File imageFile = new File(dir, imageName + ".png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(this, getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(this, getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
         });
     }
 

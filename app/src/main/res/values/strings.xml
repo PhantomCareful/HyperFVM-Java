@@ -25,6 +25,72 @@
     <string name="card_data_search_tips">数据库日期【20260503】\n卡片冷却默认7秒，体力默认50，如有不同会单独标出。</string>
     <string name="text_data_images_index_tiramisu">米鼠的图</string>
     <string name="text_data_images_index_tiramisu_author">By 夏夜浅酌</string>
+    <string name="text_data_images_index_tiramisu_title">一个小提示</string>
+    <string name="text_data_images_index_tiramisu_description">设置这个版块的目的是当米鼠有时候叫不出来时，您仍然可以在这里查看部分数据图。图片更新可能不及时，当这里的图片和米鼠不一致时，请以米鼠提供的为准。</string>
+    <string name="text_tools_tiramisu_image_1">氪金活动类</string>
+    <string name="text_tools_tiramisu_image_1_1_title">周氪图</string>
+    <string name="text_tools_tiramisu_image_1_1_description">Q群获取指令：@提拉米鼠 /周氪</string>
+    <string name="text_tools_tiramisu_image_1_2_title">日氪图</string>
+    <string name="text_tools_tiramisu_image_1_2_description">Q群获取指令：@提拉米鼠 /日氪</string>
+    <string name="text_tools_tiramisu_image_1_3_1_title">消费图(0–100W)</string>
+    <string name="text_tools_tiramisu_image_1_3_1_description">Q群获取指令：@提拉米鼠 /消费-1</string>
+    <string name="text_tools_tiramisu_image_1_3_2_title">消费图(100–200W)</string>
+    <string name="text_tools_tiramisu_image_1_3_2_description">Q群获取指令：@提拉米鼠 /消费-2</string>
+    <string name="text_tools_tiramisu_image_1_3_3_title">消费图(200–300W)</string>
+    <string name="text_tools_tiramisu_image_1_3_3_description">Q群获取指令：@提拉米鼠 /消费-3</string>
+    <string name="text_tools_tiramisu_image_1_4_title">积分兑换图</string>
+    <string name="text_tools_tiramisu_image_1_4_description">Q群获取指令：@提拉米鼠 /积分</string>
+    <string name="text_tools_tiramisu_image_1_5_title">商城抢购图</string>
+    <string name="text_tools_tiramisu_image_1_5_description">Q群获取指令：@提拉米鼠 /商城</string>
+    <string name="text_tools_tiramisu_image_1_6_title">婚礼服装图</string>
+    <string name="text_tools_tiramisu_image_1_6_description">Q群获取指令：@提拉米鼠 /婚礼</string>
+    <string name="text_tools_tiramisu_image_1_7_title">假期兑换图</string>
+    <string name="text_tools_tiramisu_image_1_7_description">Q群获取指令：@提拉米鼠 /假期</string>
+    <string name="text_tools_tiramisu_image_2">游戏资料类</string>
+    <string name="text_tools_tiramisu_image_2_1_title">三岛兑换图</string>
+    <string name="text_tools_tiramisu_image_2_1_description">Q群获取指令：@提拉米鼠 /三岛</string>
+    <string name="text_tools_tiramisu_image_2_2_title">悬赏声望图</string>
+    <string name="text_tools_tiramisu_image_2_2_description">Q群获取指令：@提拉米鼠 /声望</string>
+    <string name="text_tools_tiramisu_image_2_3_1_title">大赛任务图(第1周)</string>
+    <string name="text_tools_tiramisu_image_2_3_1_description">Q群获取指令：@提拉米鼠 /大赛-1</string>
+    <string name="text_tools_tiramisu_image_2_3_2_title">大赛任务图(第2周)</string>
+    <string name="text_tools_tiramisu_image_2_3_2_description">Q群获取指令：@提拉米鼠 /大赛-2</string>
+    <string name="text_tools_tiramisu_image_2_3_3_title">大赛任务图(第3周)</string>
+    <string name="text_tools_tiramisu_image_2_3_3_description">Q群获取指令：@提拉米鼠 /大赛-3</string>
+    <string name="text_tools_tiramisu_image_2_3_4_title">大赛任务图(第4周)</string>
+    <string name="text_tools_tiramisu_image_2_3_4_description">Q群获取指令：@提拉米鼠 /大赛-4</string>
+    <string name="text_tools_tiramisu_image_2_4_1_title" tools:ignore="Typos">VIP1权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_1_description">Q群获取指令：@提拉米鼠 /VIP 1</string>
+    <string name="text_tools_tiramisu_image_2_4_2_title" tools:ignore="Typos">VIP2权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_2_description">Q群获取指令：@提拉米鼠 /VIP 2</string>
+    <string name="text_tools_tiramisu_image_2_4_3_title" tools:ignore="Typos">VIP3权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_3_description">Q群获取指令：@提拉米鼠 /VIP 3</string>
+    <string name="text_tools_tiramisu_image_2_4_4_title" tools:ignore="Typos">VIP4权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_4_description">Q群获取指令：@提拉米鼠 /VIP 4</string>
+    <string name="text_tools_tiramisu_image_2_4_5_title" tools:ignore="Typos">VIP5权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_5_description">Q群获取指令：@提拉米鼠 /VIP 5</string>
+    <string name="text_tools_tiramisu_image_2_4_6_title" tools:ignore="Typos">VIP6权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_6_description">Q群获取指令：@提拉米鼠 /VIP 6</string>
+    <string name="text_tools_tiramisu_image_2_4_7_title" tools:ignore="Typos">VIP7权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_7_description">Q群获取指令：@提拉米鼠 /VIP 7</string>
+    <string name="text_tools_tiramisu_image_2_4_8_title" tools:ignore="Typos">VIP8权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_8_description">Q群获取指令：@提拉米鼠 /VIP 8</string>
+    <string name="text_tools_tiramisu_image_2_4_9_title" tools:ignore="Typos">VIP9权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_9_description">Q群获取指令：@提拉米鼠 /VIP 9</string>
+    <string name="text_tools_tiramisu_image_2_4_10_title" tools:ignore="Typos">VIP10权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_10_description">Q群获取指令：@提拉米鼠 /VIP 10</string>
+    <string name="text_tools_tiramisu_image_2_4_11_title" tools:ignore="Typos">VIP11权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_11_description">Q群获取指令：@提拉米鼠 /VIP 11</string>
+    <string name="text_tools_tiramisu_image_2_4_12_title" tools:ignore="Typos">VIP12权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_12_description">Q群获取指令：@提拉米鼠 /VIP 12</string>
+    <string name="text_tools_tiramisu_image_2_4_13_title" tools:ignore="Typos">VIP13权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_13_description">Q群获取指令：@提拉米鼠 /VIP 13</string>
+    <string name="text_tools_tiramisu_image_2_4_14_title" tools:ignore="Typos">VIP14权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_14_description">Q群获取指令：@提拉米鼠 /VIP 14</string>
+    <string name="text_tools_tiramisu_image_2_4_15_title" tools:ignore="Typos">VIP15权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_15_description">Q群获取指令：@提拉米鼠 /VIP 15</string>
+    <string name="text_tools_tiramisu_image_2_4_16_title" tools:ignore="Typos">VIP16权益图</string>
+    <string name="text_tools_tiramisu_image_2_4_16_description">Q群获取指令：@提拉米鼠 /VIP 16</string>
     <string name="text_data_images_index_card">防御卡数据图</string>
     <string name="text_data_images_index_card_author">By So陌路の</string>
     <string name="text_data_images_index_card_0_1_1">新卡速递</string>
@@ -132,24 +198,26 @@
     <string name="text_data_images_index_mouse_hp_10_2">体力为标准值，关卡内可能会修改百分比</string>
     <string name="text_data_images_index_others">其他数据图</string>
     <string name="text_data_images_index_others_description">顾名思义，各种不好分类的数据图</string>
-    <string name="text_data_images_index_others_1_1">1.跨服徽章掉落数据</string>
-    <string name="text_data_images_index_others_1_2">By Phantom_Careful</string>
-    <string name="text_data_images_index_others_2_1">2.VIP签到数据</string>
-    <string name="text_data_images_index_others_2_2">By Phantom_Careful</string>
-    <string name="text_data_images_index_others_3_1">3.转运数据</string>
-    <string name="text_data_images_index_others_3_2">By 夏夜浅酌</string>
-    <string name="text_data_images_index_others_4_1">4.大富翁</string>
-    <string name="text_data_images_index_others_4_2">By So陌路の</string>
-    <string name="text_data_images_index_others_5_1">5.垫卡概率对照表</string>
-    <string name="text_data_images_index_others_5_2">By Phantom_Careful</string>
-    <string name="text_data_images_index_others_6_1">6.宠物数据</string>
-    <string name="text_data_images_index_others_6_2">By So陌路の</string>
-    <string name="text_data_images_index_others_7_1">7.世界BOSS段位数据</string>
-    <string name="text_data_images_index_others_7_2">By Phantom_Careful</string>
-    <string name="text_data_images_index_others_8_1">8.角色等级数据</string>
-    <string name="text_data_images_index_others_8_2">By Phantom_Careful</string>
-    <string name="text_data_images_index_others_9_1">9.游戏功能解锁条件对照表</string>
-    <string name="text_data_images_index_others_9_2">By 哪片花火</string>
+    <string name="text_data_images_index_others_1_title">1.跨服徽章掉落数据</string>
+    <string name="text_data_images_index_others_1_description">By Phantom_Careful</string>
+    <string name="text_data_images_index_others_2_title">2.转运数据</string>
+    <string name="text_data_images_index_others_2_description">By 夏夜浅酌</string>
+    <string name="text_data_images_index_others_3_title">3.大富翁</string>
+    <string name="text_data_images_index_others_3_description">By So陌路の</string>
+    <string name="text_data_images_index_others_4_title">4.垫卡概率对照表</string>
+    <string name="text_data_images_index_others_4_description">By Phantom_Careful</string>
+    <string name="text_data_images_index_others_5_title">5.宠物数据</string>
+    <string name="text_data_images_index_others_5_description">By So陌路の</string>
+    <string name="text_data_images_index_others_6_title">6.世界BOSS段位数据</string>
+    <string name="text_data_images_index_others_6_description">By Phantom_Careful</string>
+    <string name="text_data_images_index_others_7_title">7.角色等级数据</string>
+    <string name="text_data_images_index_others_7_description">By Phantom_Careful</string>
+    <string name="text_data_images_index_others_8_title">8.游戏功能解锁条件对照表</string>
+    <string name="text_data_images_index_others_8_description">By 哪片花火</string>
+    <string name="text_data_images_index_open_failed_file_not_found_dialog_title">图片文件不存在</string>
+    <string name="text_data_images_index_open_failed_file_not_found_dialog_content">可能的原因如下：\n1.您还没有下载此图片资源；\n2.此图片资源被意外删除；\n3.App升级以后，图片文件名发生了变更。\n\n解决方式：请回到主界面，重新下载全部图片后再尝试查看。若依然提示图片文件不存在，请向开发者反馈。</string>
+    <string name="text_data_images_index_open_failed_app_not_found_dialog_title">无法查看图片</string>
+    <string name="text_data_images_index_open_failed_app_not_found_dialog_content">可能的原因：您的设备没有可用的图片查看应用。\n\n解决方式：请确认您的设备上是否有相册/图库类应用。</string>
     <string name="copyright_and_molu">数据来自：So陌路の\n数据为人工录入，若发现问题可向开发者反馈🫰\n\nHyperFVM\nMade By Phantom Careful 😈</string>
     <string name="copyright">HyperFVM\nMade By Phantom Careful 😈</string>
     <string name="title_card_data_auxiliary_list_content">增幅名单</string>
@@ -194,31 +262,6 @@
     <string name="title_dashboard_new_year_lucky_money">抢红包</string>
     <string name="title_dashboard_refresh_dashboard_1">刷新内容</string>
     <string name="title_dashboard_refresh_dashboard_2">点击执行</string>
-    <string name="text_tools_tiramisu_image_1_1">周氪图</string>
-    <string name="text_tools_tiramisu_image_1_2">Q群获取指令：@提拉米鼠 /周氪</string>
-    <string name="text_tools_tiramisu_image_2_1">日氪图</string>
-    <string name="text_tools_tiramisu_image_2_2">Q群获取指令：@提拉米鼠 /日氪</string>
-    <string name="text_tools_tiramisu_image_3_1_1">消费图(0–100W)</string>
-    <string name="text_tools_tiramisu_image_3_1_2">Q群获取指令：@提拉米鼠 /消费-1</string>
-    <string name="text_tools_tiramisu_image_3_2_1">消费图(100–200W)</string>
-    <string name="text_tools_tiramisu_image_3_2_2">Q群获取指令：@提拉米鼠 /消费-2</string>
-    <string name="text_tools_tiramisu_image_3_3_1">消费图(200–300W)</string>
-    <string name="text_tools_tiramisu_image_3_3_2">Q群获取指令：@提拉米鼠 /消费-3</string>
-    <string name="text_tools_tiramisu_image_4_1">积分兑换图</string>
-    <string name="text_tools_tiramisu_image_4_2">Q群获取指令：@提拉米鼠 /积分</string>
-    <string name="text_tools_tiramisu_image_5_1">三岛兑换图</string>
-    <string name="text_tools_tiramisu_image_5_2">Q群获取指令：@提拉米鼠 /三岛</string>
-    <string name="text_tools_tiramisu_image_6_1">假期兑换图</string>
-    <string name="text_tools_tiramisu_image_6_2">Q群获取指令：@提拉米鼠 /假期</string>
-    <string name="text_tools_tiramisu_image_7_1_1">大赛任务图(第1周)</string>
-    <string name="text_tools_tiramisu_image_7_1_2">Q群获取指令：@提拉米鼠 /大赛-1</string>
-    <string name="text_tools_tiramisu_image_7_2_1">大赛任务图(第2周)</string>
-    <string name="text_tools_tiramisu_image_7_2_2">Q群获取指令：@提拉米鼠 /大赛-2</string>
-    <string name="text_tools_tiramisu_image_7_3_1">大赛任务图(第3周)</string>
-    <string name="text_tools_tiramisu_image_7_3_2">Q群获取指令：@提拉米鼠 /大赛-3</string>
-    <string name="text_tools_tiramisu_image_7_4_1">大赛任务图(第4周)</string>
-    <string name="text_tools_tiramisu_image_7_4_2">Q群获取指令：@提拉米鼠 /大赛-4</string>
-    <string name="copyright_and_tiramisu">数据图来自：提拉米鼠\n\nHyperFVM\nMade By Phantom Careful 😈</string>
     <!--美食数据站-->
     <string name="label_tools_made_by_xiaye">美食数据站🥰</string>
     <string name="title_tools_tiramisu">提拉米鼠\n作者：夏夜浅酌</string>

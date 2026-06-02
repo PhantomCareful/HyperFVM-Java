@@ -501,11 +501,13 @@ public class DataCenterFragment extends Fragment {
         dashboardBountyEmoji.setText(bountyEmoji.isEmpty() ? "null" : bountyEmoji);
         // 设置点击打开详情弹窗
         dashboardBountyContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialog(
+                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_new_year_bounty),
                         bountyEmoji,
-                        data.get(0).get("resultBountyInfoDetail")
+                        data.get(0).get("resultBountyInfoDetail"),
+                        "去查看悬赏声望图",
+                        "tiramisu_image_2_2"
                 )
         );
 
@@ -531,11 +533,13 @@ public class DataCenterFragment extends Fragment {
         dashboardThreeIslandsEmoji.setText(threeIslandsEmoji.isEmpty() ? "null" : threeIslandsEmoji);
         // 设置点击打开详情弹窗
         dashboardThreeIslandsContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_three_islands),
                         threeIslandsEmoji,
-                        data.get(0).get("resultThreeIslandsDetail")
+                        data.get(0).get("resultThreeIslandsDetail"),
+                        "去查看米鼠的图",
+                        "tiramisu_image_2_1"
                 )
         );
 
@@ -546,11 +550,13 @@ public class DataCenterFragment extends Fragment {
         dashboardFoodContestEmoji.setText(foodContestEmoji.isEmpty() ? "null" : foodContestEmoji);
         // 设置点击打开详情弹窗
         dashboardFoodContestContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_food_contest),
                         foodContestEmoji,
-                        data.get(0).get("resultFoodContestDetail")
+                        data.get(0).get("resultFoodContestDetail"),
+                        "去查看米鼠的图",
+                        ""
                 )
         );
 
@@ -576,11 +582,13 @@ public class DataCenterFragment extends Fragment {
         dashboardDailyRechargeEmoji.setText(dailyRechargeEmoji.isEmpty() ? "null" : dailyRechargeEmoji);
         // 设置点击打开详情弹窗
         dashboardDailyRechargeContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_daily_recharge),
                         dailyRechargeEmoji,
-                        data.get(0).get("resultDailyRechargeDetail")
+                        data.get(0).get("resultDailyRechargeDetail"),
+                        "去查看米鼠的图",
+                        "tiramisu_image_1_2"
                 )
         );
 
@@ -591,11 +599,13 @@ public class DataCenterFragment extends Fragment {
         dashboardHappyHolidayEmoji.setText(happyHolidayEmoji.isEmpty() ? "null" : happyHolidayEmoji);
         // 设置点击打开详情弹窗
         dashboardHappyHolidayContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_happy_holiday),
                         happyHolidayEmoji,
-                        data.get(0).get("resultHappyHolidayDetail")
+                        data.get(0).get("resultHappyHolidayDetail"),
+                        "去查看米鼠的图",
+                        "tiramisu_image_1_7"
                 )
         );
 
@@ -606,11 +616,13 @@ public class DataCenterFragment extends Fragment {
         dashboardMillionConsumptionEmoji.setText(millionConsumptionEmoji.isEmpty() ? "null" : millionConsumptionEmoji);
         // 设置点击打开详情弹窗
         dashboardMillionConsumptionContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndJumpToTiramisuImage(
+                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_new_year_million_consumption),
                         millionConsumptionEmoji,
-                        data.get(0).get("resultMillionConsumptionInfoDetail")
+                        data.get(0).get("resultMillionConsumptionInfoDetail"),
+                        "去查看米鼠的图",
+                        ""
                 )
         );
 

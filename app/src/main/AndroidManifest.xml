@@ -118,9 +118,6 @@
             android:name=".Activities.DataCenter.DataImagesIndexActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DataCenter.TiramisuImageActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.CheckUpdateActivity"
             android:exported="false" />
         <activity
@@ -131,12 +128,6 @@
             android:exported="false" />
         <activity
             android:name=".Activities.NecessaryThings.SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.DataCenter.DataImage.ImageViewerActivity.ImageViewerDynamicActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.DataCenter.DataImage.ImageViewerActivity.ImageViewerActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.DataCenter.DetailCardData.CardData1Activity"
@@ -153,7 +144,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

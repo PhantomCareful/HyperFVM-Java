@@ -68,14 +68,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_1_1"
+                                    android:text="@string/text_data_images_index_others_1_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_1_2"
+                                    android:text="@string/text_data_images_index_others_1_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -118,14 +118,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_2_1"
+                                    android:text="@string/text_data_images_index_others_2_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_2_2"
+                                    android:text="@string/text_data_images_index_others_2_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -168,14 +168,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_3_1"
+                                    android:text="@string/text_data_images_index_others_3_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_3_2"
+                                    android:text="@string/text_data_images_index_others_3_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -218,14 +218,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_4_1"
+                                    android:text="@string/text_data_images_index_others_4_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_4_2"
+                                    android:text="@string/text_data_images_index_others_4_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -268,14 +268,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_5_1"
+                                    android:text="@string/text_data_images_index_others_5_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_5_2"
+                                    android:text="@string/text_data_images_index_others_5_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -318,14 +318,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_6_1"
+                                    android:text="@string/text_data_images_index_others_6_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_6_2"
+                                    android:text="@string/text_data_images_index_others_6_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -368,14 +368,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_7_1"
+                                    android:text="@string/text_data_images_index_others_7_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_7_2"
+                                    android:text="@string/text_data_images_index_others_7_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
@@ -418,64 +418,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_8_1"
+                                    android:text="@string/text_data_images_index_others_8_title"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_8_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/data_images_index_others_9_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/app_icon"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_9_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_others_9_2"
+                                    android:text="@string/text_data_images_index_others_8_description"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 

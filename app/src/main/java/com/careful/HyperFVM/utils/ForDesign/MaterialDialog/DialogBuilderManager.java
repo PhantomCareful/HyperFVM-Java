@@ -4,6 +4,7 @@ import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeS
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,16 +19,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.careful.HyperFVM.Activities.DataCenter.TiramisuImageActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.ExportInfo;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
+import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.careful.HyperFVM.utils.OtherUtils.ImageExportUtil;
@@ -36,6 +40,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -59,6 +64,28 @@ public class DialogBuilderManager {
                 .setMessage(content)
                 .setCancelable(cancelable)
                 .setPositiveButton(positiveButtonTitle, (dialogInterface, which) -> dialogInterface.dismiss())
+                .create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 一般弹窗展示方法，仅展示内容和一个按钮，调用的时候可通过回调执行点击事件
+     * @param context 上下文
+     * @param title 弹窗标题
+     * @param content 弹窗内容
+     * @param cancelable 弹窗是否可以通过点击背景关闭
+     * @param positiveButtonTitle 弹窗按钮标题，比如【确定】
+     * @param callBack 回调事件，点击按钮后执行
+     */
+    public static void showDialogWithCallBack(Context context, String title, String content, boolean cancelable, String positiveButtonTitle, PositiveButtonClickCallBack callBack) {
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setTitle(title)
+                .setMessage(content)
+                .setCancelable(cancelable)
+                .setPositiveButton(positiveButtonTitle, (dialogInterface, which) -> callBack.onResult())
                 .create();
 
         // 添加背景模糊
@@ -136,11 +163,13 @@ public class DialogBuilderManager {
 
     /**
      * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
-     * @param title         弹窗标题
-     * @param emoji         弹窗中的大表情
-     * @param detailContent 详细内容
+     * @param title                 弹窗标题
+     * @param emoji                 弹窗中的大表情
+     * @param detailContent         详细内容
+     * @param positiveButtonTitle   按钮的内容
+     * @param imageName             要查看的图片文件名，若为空，则只跳转到米鼠的图
      */
-    public static void showDashboardDetailDialogAndJumpToTiramisuImage(Context context, String title, String emoji, String detailContent) {
+    public static void showDashboardDetailDialogAndSeeTiramisuImage(Context context, String title, String emoji, String detailContent, String positiveButtonTitle, String imageName) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
 
@@ -152,9 +181,41 @@ public class DialogBuilderManager {
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setTitle(title)
                 .setView(dialogView)
-                .setPositiveButton("去查看米鼠的图", (dialogInterface, which) -> {
-                    Intent intent = new Intent(context, TiramisuImageActivity.class);
-                    context.startActivity(intent);
+                .setPositiveButton(positiveButtonTitle, (dialogInterface, which) -> {
+                    // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
+                    // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+                    long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+                    if (localVersionCode == 0 || localVersionCode == 1) {
+                        context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                        return;
+                    }
+
+                    // 到这里就说明本地确实有图片了
+                    if (imageName.isEmpty()) {
+                        context.startActivity(new Intent(context, DataImageTiramisuActivity.class));
+                        return;
+                    }
+
+                    File dir = new File(context.getFilesDir(), "data_images");
+                    File imageFile = new File(dir, imageName + ".png");
+
+                    if (!imageFile.exists()) {
+                        DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                        return;
+                    }
+
+                    Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(imageUri, "image/*");
+
+                    // 授予临时读取权限
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    try {
+                        context.startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                    }
                 })
                 .create();
 
