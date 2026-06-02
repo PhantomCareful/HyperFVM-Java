@@ -236,9 +236,9 @@ public class CardData3Activity extends BaseActivity {
 
             // 相关卡片
             // 金卡合成的卡片
-            boolean isSubCard; // 这张金卡是否可以合成，用于判断最终是否隐藏相关卡片标题TextView
-            isSubCard = !CardDataHelper.getStringFromCursor(cursor, "name_1_1").equals("无");
-            if (isSubCard) {
+            boolean hasSubCard; // 这张金卡是否可以合成，用于判断最终是否隐藏相关卡片标题TextView
+            hasSubCard = !CardDataHelper.getStringFromCursor(cursor, "name_1_1").equals("无");
+            if (hasSubCard) {
                 // 缓存点击事件需要用到的字段值
                 String name1_1 = CardDataHelper.getStringFromCursor(cursor, "name_1_1");
                 String name1_2 = CardDataHelper.getStringFromCursor(cursor, "name_1_2");
@@ -286,7 +286,7 @@ public class CardData3Activity extends BaseActivity {
             LinearLayout container = findViewById(R.id.Card_Corresponding_Container);
             TextView titleCardDataCorrespondingInfo = findViewById(R.id.title_card_data_corresponding_info);
             CardView CardCorresponding = findViewById(R.id.Card_Corresponding);
-            CardDataHelper.addCorrespondingCardForGoldenCard(this, container, cursor, cardName, titleCardDataCorrespondingInfo, CardCorresponding, isSubCard);
+            CardDataHelper.addCorrespondingCardForGoldenCard(this, container, cursor, cardName, titleCardDataCorrespondingInfo, CardCorresponding, hasSubCard);
 
             // 数据信息区域
             // 星级数据

@@ -87,7 +87,6 @@ public class CardDataHelper {
 
     public static void selectAuxiliaryCardByName(Context context, String cardName) {
         boolean isDynamicBackground;
-
         try (DBHelper dbHelper = new DBHelper(context)) {
             isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
         }
@@ -207,12 +206,17 @@ public class CardDataHelper {
         String imageIdStr = "";
         int imageResId;
 
+        boolean isDynamicBackground;
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        }
+
         // 相关卡片 - 金卡
         String correspondingGoldenCardName = getStringFromCursor(cursor, "corresponding_golden_card_name");
         Log.d("correspondingCard", "cardName: " + cardName + ", correspondingGoldenCardName: " + correspondingGoldenCardName);
         if (!correspondingGoldenCardName.equals("无")) {
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {
@@ -263,7 +267,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个融合卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -334,7 +338,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -384,7 +388,7 @@ public class CardDataHelper {
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {
@@ -473,15 +477,20 @@ public class CardDataHelper {
      * @param cardName 当前卡片的名字，主要是【自己就是增幅卡】这里需要用到
      * @param titleCardDataCorrespondingInfo 如果没有相关卡片内容时，需要对标题TextView进行隐藏
      * @param CardCorresponding 如果没有相关卡片内容时，需要对内容CardView进行隐藏
-     * @param isSubCard 这张金卡是否可以合成，用于判断最终是否隐藏相关卡片标题TextView
+     * @param hasSubCard 这张金卡是否可以合成，用于判断最终是否隐藏相关卡片标题TextView
      */
     @SuppressLint({"Range", "DiscouragedApi", "CutPasteId"})
     public static void addCorrespondingCardForGoldenCard(
             Context context, LinearLayout container, Cursor cursor, String cardName,
-            TextView titleCardDataCorrespondingInfo, CardView CardCorresponding, boolean isSubCard
+            TextView titleCardDataCorrespondingInfo, CardView CardCorresponding, boolean hasSubCard
     ) {
         String imageIdStr = "";
         int imageResId;
+
+        boolean isDynamicBackground;
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        }
 
         // 相关卡片 - 增幅卡
         String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
@@ -503,7 +512,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -548,7 +557,7 @@ public class CardDataHelper {
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {
@@ -585,7 +594,7 @@ public class CardDataHelper {
             if (correspondingAuxiliaryCardName.equals("无")) {
                 CardCorresponding.setVisibility(View.GONE);
 
-                if (!isSubCard) {
+                if (!hasSubCard) {
                     titleCardDataCorrespondingInfo.setVisibility(View.GONE);
                 }
             }
@@ -609,6 +618,11 @@ public class CardDataHelper {
         String imageIdStr = "";
         int imageResId;
 
+        boolean isDynamicBackground;
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        }
+
         // 相关卡片 - 增幅卡
         String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
         if (!correspondingAuxiliaryCardName.equals("无")) {
@@ -629,7 +643,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -673,7 +687,7 @@ public class CardDataHelper {
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {
