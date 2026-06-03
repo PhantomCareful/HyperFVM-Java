@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.PrestigeCalculatorActivity">
+    tools:context=".Activities.PrestigeCalculatorActivity"
+    tools:ignore="HardcodedText">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
@@ -37,7 +38,7 @@
                         android:layout_weight="3"
                         android:text="威望商店余额："
                         android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textColor="?attr/colorOnSurface" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
