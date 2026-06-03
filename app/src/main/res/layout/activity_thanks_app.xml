@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
@@ -260,123 +260,13 @@
 
                         </LinearLayout>
 
-                        <!-- 第4个选项：数据图查看器 -->
-                        <LinearLayout
-                            android:id="@+id/thanks_list_container_app_4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:padding="16dp"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_github"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_thanks_list_app_4_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_thanks_list_app_4_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"
-                                    tools:ignore="TooManyViews" />
-
-                            </LinearLayout>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <!-- 第5个选项：ScrollView -->
-                        <LinearLayout
-                            android:id="@+id/thanks_list_container_app_5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:padding="16dp"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_wechat"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_thanks_list_app_5_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_thanks_list_app_5_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"
-                                    tools:ignore="TooManyViews" />
-
-                            </LinearLayout>
-
-                            <!-- 右侧箭头 -->
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+        </ScrollView>
 
     </eightbitlab.com.blurview.BlurTarget>
 

@@ -28,7 +28,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
-import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
+import android.widget.ScrollView;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -537,8 +537,8 @@ public class CardData4Activity extends BaseActivity {
         Image_View_Card_Big_2_Container = findViewById(R.id.Image_View_Card_Big_2_Container);
         Image_View_Card_Big_3_Container = findViewById(R.id.Image_View_Card_Big_3_Container);
 
-        // 获取滚动视图SpringBackScrollView
-        SpringBackScrollView scrollView = findViewById(R.id.ScrollView);
+        // 获取滚动视图ScrollView
+        ScrollView scrollView = findViewById(R.id.ScrollView);
 
         // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
         imageViewCardBig1ContainerMaxScroll = DensityUtil.dpToPx(this, 50);

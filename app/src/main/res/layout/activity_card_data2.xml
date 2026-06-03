@@ -117,7 +117,7 @@
 
         </LinearLayout>
 
-        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+        <ScrollView
             android:id="@+id/ScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1509,7 +1509,7 @@
 
             </LinearLayout>
 
-        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+        </ScrollView>
 
     </eightbitlab.com.blurview.BlurTarget>
 

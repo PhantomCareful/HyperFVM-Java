@@ -20,7 +20,7 @@
             android:clipToPadding="false"
             android:orientation="horizontal">
 
-            <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            <ScrollView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -231,9 +231,9 @@
 
                 </LinearLayout>
 
-            </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+            </ScrollView>
 
-            <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+            <ScrollView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -622,7 +622,7 @@
 
                 </LinearLayout>
 
-            </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+            </ScrollView>
 
         </LinearLayout>
 

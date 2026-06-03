@@ -23,7 +23,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.databinding.FragmentAboutAppEffectBinding;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
-import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
+import android.widget.ScrollView;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
@@ -183,8 +183,8 @@ public class AboutAppEffectFragment extends Fragment {
         appNameText = root.findViewById(R.id.about_app_name);
         versionInfoText = root.findViewById(R.id.about_app_version_info);
 
-        // 获取滚动视图SpringBackScrollView
-        SpringBackScrollView scrollView = root.findViewById(R.id.ScrollView);
+        // 获取滚动视图ScrollView
+        ScrollView scrollView = root.findViewById(R.id.ScrollView);
 
         // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
         logoMaxScroll = DensityUtil.dpToPx(requireContext(), 200);

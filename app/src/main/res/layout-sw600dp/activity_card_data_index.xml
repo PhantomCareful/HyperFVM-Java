@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+        <ScrollView
             android:id="@+id/ScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -629,7 +629,7 @@
 
             </LinearLayout>
 
-        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+        </ScrollView>
 
         <LinearLayout
             android:id="@+id/card_data_index_background_images_1"

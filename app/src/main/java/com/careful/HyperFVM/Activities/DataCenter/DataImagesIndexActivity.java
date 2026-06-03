@@ -25,7 +25,7 @@ import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageWeaponAndGe
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
+import android.widget.ScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -63,7 +63,7 @@ public class DataImagesIndexActivity extends BaseActivity {
 
     private long localVersionCode;
 
-    private SpringBackScrollView scrollView;
+    private ScrollView scrollView;
     private TransitionSet transition;
 
     private LinearLayout data_images_index_update_info_container;

@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
@@ -649,7 +649,7 @@
 
             </LinearLayout>
 
-        </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+        </ScrollView>
 
     </eightbitlab.com.blurview.BlurTarget>
 

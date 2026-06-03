@@ -52,17 +52,6 @@ public class ThanksAppActivity extends BaseActivity {
                 getResources().getString(R.string.title_thanks_list_app_3_dialog),
                 getResources().getString(R.string.label_thanks_list_app_3_url)));
 
-        //跳转浏览器，前往ZoomImageView仓库
-        findViewById(R.id.thanks_list_container_app_4).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                this,
-                getResources().getString(R.string.title_thanks_list_app_4_dialog),
-                getResources().getString(R.string.label_thanks_list_app_4_url)));
-
-        //跳转浏览器，前往SpringBackScrollView文章
-        findViewById(R.id.thanks_list_container_app_5).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                this,
-                getResources().getString(R.string.title_thanks_list_app_5_dialog),
-                getResources().getString(R.string.label_thanks_list_app_5_url)));
     }
 
     /**

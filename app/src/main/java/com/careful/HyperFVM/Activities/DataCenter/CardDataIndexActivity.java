@@ -29,7 +29,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForCardData.DisplayBackgroundCardImageHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
-import com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView;
+import android.widget.ScrollView;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -44,7 +44,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class CardDataIndexActivity extends BaseActivity {
     private DBHelper dbHelper;
 
-    private SpringBackScrollView scrollView;
+    private ScrollView scrollView;
     private View backgroundImage1;
     private View backgroundImage2;
 
@@ -621,7 +621,7 @@ public class CardDataIndexActivity extends BaseActivity {
             backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
             backgroundImage2 = findViewById(R.id.card_data_index_background_images_2);
 
-            // 获取滚动视图SpringBackScrollView
+            // 获取滚动视图ScrollView
             scrollView = findViewById(R.id.ScrollView);
 
             // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
@@ -689,7 +689,7 @@ public class CardDataIndexActivity extends BaseActivity {
             // 获取需要渐隐的元素
             backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
 
-            // 获取滚动视图SpringBackScrollView
+            // 获取滚动视图ScrollView
             scrollView = findViewById(R.id.ScrollView);
 
             // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView
+    <ScrollView
         android:id="@+id/ScrollViewDataStationCardDataIndex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -1191,7 +1191,7 @@
 
         </LinearLayout>
 
-    </com.careful.HyperFVM.utils.ForDesign.Animation.SpringBackScrollView>
+    </ScrollView>
 
     <!-- 状态栏渐变遮罩层 -->
     <View

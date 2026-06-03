@@ -387,14 +387,6 @@
     <string name="label_thanks_list_app_3_2">模糊材质依赖库</string>
     <string name="title_thanks_list_app_3_dialog">Github: BlurView</string>
     <string name="label_thanks_list_app_3_url">https://github.com/Dimezis/BlurView</string>
-    <string name="label_thanks_list_app_4_1">Gloomyer/ZoomImageView</string>
-    <string name="label_thanks_list_app_4_2">可缩放的图片查看器组件</string>
-    <string name="title_thanks_list_app_4_dialog">Github: ZoomImageView</string>
-    <string name="label_thanks_list_app_4_url">https://github.com/Gloomyer/ZoomImageView</string>
-    <string name="label_thanks_list_app_5_1">子林Android/SpringBackScrollView</string>
-    <string name="label_thanks_list_app_5_2">带越界回弹的滚动视图</string>
-    <string name="title_thanks_list_app_5_dialog">微信公众号–子林Android: 一个支持上下拉回弹的自定义ScrollView</string>
-    <string name="label_thanks_list_app_5_url" tools:ignore="Typos">https://mp.weixin.qq.com/s/Treavz1FDs0ptYp_J3saRw</string>
     <string name="label_some_necessary_things">一些必要的东西</string>
     <string name="label_using_instruction">使用说明🤔</string>
     <string name="label_using_instruction_1">使用说明</string>
