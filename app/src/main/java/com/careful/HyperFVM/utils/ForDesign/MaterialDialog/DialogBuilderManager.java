@@ -497,22 +497,55 @@ public class DialogBuilderManager {
      *
      * @param result 把查询到的结果显示到弹窗上
      */
+    @SuppressLint({"InflateParams", "SetTextI18n"})
     private static void showResultDialog(Context context, IcuHelper.FraudResult result) {
-        StringBuilder content = new StringBuilder();
-        content.append("QQ号：").append(result.qq).append("\n\n");
-        content.append("昵称：").append(result.nickname).append("\n\n");
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_icu, null);
+
+        TextView emoji = dialogView.findViewById(R.id.emoji);
+        TextView content_status = dialogView.findViewById(R.id.content_status);
+        TextView content_fraud_info = dialogView.findViewById(R.id.content_fraud_info);
+        TextView content_victim_info = dialogView.findViewById(R.id.content_victim_info);
+
         if (result.isFraud) {
-            content.append("备注：").append(result.remark).append("\n\n");
-            content.append("录入时间：").append(result.recordTime);
+            emoji.setText("🚨");
+            content_status.setText("是骗子，快跑");
+            content_fraud_info.setText("骗子信息👇\n" +
+                    "QQ号：" + result.qq + "\n" +
+                    "备注：" + result.remark + "\n" +
+                    "录入日期：" + result.recordTime
+            );
+
+            List<IcuHelper.VictimInfo> victims = result.victims;
+            if (victims.isEmpty()) {
+                content_victim_info.setVisibility(View.GONE);
+            } else {
+                StringBuilder victimInfo = new StringBuilder("受害者信息");
+                for (int i = 0; i < victims.size(); i++) {
+                    victimInfo.append("\n")
+                            .append("受害人").append(i + 1).append("👇").append("\n")
+                            .append("QQ号：").append(victims.get(i).victim).append("\n")
+                            .append("受骗日期：").append(victims.get(i).fraudTime).append("\n")
+                            .append("受骗备注：").append(victims.get(i).remark).append("\n");
+                }
+                content_victim_info.setText(victimInfo.toString());
+            }
         } else {
-            content.append("该QQ号暂未被标记为骗子。");
+            emoji.setText("✅");
+            content_status.setText("暂未被标记为骗子");
+            content_fraud_info.setVisibility(View.GONE);
+            content_victim_info.setVisibility(View.GONE);
         }
 
-        showDialog(context,
-                result.isFraud ? "查询结果(骗子\uD83D\uDEAB)" : "查询结果(正常✅)",
-                content.toString(),
-                true,
-                "好的");
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setTitle("查询结果")
+                .setView(dialogView)
+                .setPositiveButton("好的", (dialogInterface, which) -> dialogInterface.dismiss())
+                .create();
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
     }
 
     /**
