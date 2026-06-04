@@ -1,9 +1,7 @@
 package com.careful.HyperFVM.utils.ForDashboard.FromGame.FertilizationTask;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
@@ -26,12 +24,6 @@ public class FertilizationTaskCatcher {
     // 获取内容的正则表达式
     private static final String regularExpression = "<task id=\"39\".*?startTime=\"(\\d+)\".*?endTime=\"(\\d+)\".*?</task>";
 
-    private final DBHelper dbHelper;
-
-    public FertilizationTaskCatcher(Context context) {
-        dbHelper = new DBHelper(context);
-    }
-
     /**
      * 核心方法：执行施肥任务解析流程
      */
@@ -46,9 +38,8 @@ public class FertilizationTaskCatcher {
                 if (matcher == null) {
                     Log.e(TAG, "catchFertilizationTaskInfo: 获取XML内容失败");
 
-                    sendResultToDB("获取失败", "❌失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。");
                     callBack.onResult(
-                            generateMap("获取失败", "❌失败", "❌", "获取内容失败，请联系开发者并提交此界面截图。")
+                            generateMap("获取失败", "❌失败", "❌", "出错了呢", "获取内容失败，请联系开发者并提交此界面截图。")
                     );
 
                     return;
@@ -80,67 +71,47 @@ public class FertilizationTaskCatcher {
 
                 if (today.before(start)) {
                     Log.d(TAG, "活动尚未开始");
-                    String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始\n趁现在多攒点肥料吧";
+                    String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n趁现在多攒点肥料吧";
 
-                    sendResultToDB("尚未开始", "暂无", "⏳", contentDetail);
                     callBack.onResult(
-                            generateMap("尚未开始", "暂无", "⏳", contentDetail)
+                            generateMap("尚未开始", "暂无", "⏳", "等等等等", contentDetail)
                     );
                 } else if (today.after(end)) {
                     Log.d(TAG, "活动已结束");
-                    String contentDetail = "还没有新的活动\n趁现在多攒点肥料吧";
+                    String contentDetail = "趁现在多攒点肥料吧";
 
-                    sendResultToDB("暂无", "暂无", "⏳", contentDetail);
                     callBack.onResult(
-                            generateMap("暂无", "暂无", "⏳", contentDetail)
+                            generateMap("暂无", "暂无", "⏳", "空空如也", contentDetail)
                     );
                 } else {
                     Log.d(TAG, "活动正在进行中");
-                    String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n进度：" + duringCount + "/21";
+                    String contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate;
 
-                    sendResultToDB(duringCount + "/21", duringCount + "/21", "✊", contentDetail);
                     callBack.onResult(
-                            generateMap(duringCount + "/21", duringCount + "/21", "✊", contentDetail)
+                            generateMap(duringCount + "/21", duringCount + "/21", "✊", "施肥道具：" + duringCount + "/21", contentDetail)
                     );
                 }
 
             } catch (IOException e) {
                 Log.e(TAG, "catchFertilizationTaskInfo: 网络IO异常：" + e.getMessage(), e);
 
-                sendResultToDB("网络异常", "❌网络", "❌", "网络异常\n请检查网络是否可用");
                 callBack.onResult(
-                        generateMap("网络异常", "❌网络", "❌", "网络异常\n请检查网络是否可用")
+                        generateMap("网络异常", "❌网络", "❌", "出错了呢", "网络异常\n请检查网络是否可用")
                 );
             } catch (NumberFormatException e) {
                 Log.e(TAG, "catchFertilizationTaskInfo: 时间戳转换异常：" + e.getMessage(), e);
 
-                sendResultToDB("获取失败", "❌失败", "❌", "时间戳转换异常，请联系开发者并提交此界面截图");
                 callBack.onResult(
-                        generateMap("获取失败", "❌失败", "❌", "时间戳转换异常，请联系开发者并提交此界面截图")
+                        generateMap("获取失败", "❌失败", "❌", "出错了呢", "时间戳转换异常，请联系开发者并提交此界面截图")
                 );
             } catch (ParseException e) {
                 Log.e(TAG, "catchFertilizationTaskInfo: 日期解析异常：" + e.getMessage(), e);
 
-                sendResultToDB("获取失败", "❌失败", "❌", "日期解析异常，请联系开发者并提交此界面截图");
                 callBack.onResult(
-                        generateMap("获取失败", "❌失败", "❌", "日期解析异常，请联系开发者并提交此界面截图")
+                        generateMap("获取失败", "❌失败", "❌", "出错了呢", "日期解析异常，请联系开发者并提交此界面截图")
                 );
             }
         }).start();
-    }
-
-    /**
-     * 向数据库写入结果
-     * @param contentSimple 显示在主界面的简要信息
-     * @param contentNotification 显示在常驻通知的简要信息
-     * @param emoji 显示在主界面和弹窗上的表情
-     * @param contentDetail 显示在弹窗上的详细信息
-     */
-    private void sendResultToDB(String contentSimple, String contentNotification, String emoji, String contentDetail) {
-        dbHelper.updateDashboardContent("fertilization_task", contentSimple);
-        dbHelper.updateDashboardContent("fertilization_task_notification", contentNotification);
-        dbHelper.updateDashboardContent("fertilization_task_emoji", emoji);
-        dbHelper.updateDashboardContent("fertilization_task_detail", contentDetail);
     }
 
     /**
@@ -148,16 +119,18 @@ public class FertilizationTaskCatcher {
      * @param resultSimple 显示在主界面的简要信息
      * @param resultNotification 显示在通知的简要信息
      * @param resultEmoji 显示在主界面和弹窗上的表情
-     * @param resultDetail 显示在弹窗上的详细信息
+     * @param resultContentStatus 显示在弹窗上的状态信息
+     * @param resultContentDetail 显示在弹窗上的详细信息
      * @return 生成的Map格式的数据
      */
-    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultDetail) {
+    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultContentStatus, String resultContentDetail) {
         Map<String, String> result = new HashMap<>();
 
         result.put("resultSimple", resultSimple);
         result.put("resultNotification", resultNotification);
         result.put("resultEmoji", resultEmoji);
-        result.put("resultDetail", resultDetail);
+        result.put("resultContentStatus", resultContentStatus);
+        result.put("resultContentDetail", resultContentDetail);
 
         return result;
     }

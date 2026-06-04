@@ -1,10 +1,8 @@
 package com.careful.HyperFVM.utils.ForDashboard.FromGame.MeishiWechat;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,10 +25,9 @@ public class GiftFetcher {
         if (playerInfos.isEmpty()) {
             String resultSimple = "暂无账号";
             String resultNotification = "暂无账号";
-            saveResult("✅", resultSimple, resultNotification, "成功");
 
             callback.onResult(
-                    generateMap("✅", resultSimple, resultNotification, "成功")
+                    generateMap("✅", resultSimple, resultNotification)
             );
 
             return;
@@ -50,10 +47,9 @@ public class GiftFetcher {
                     public void onResult(int successCount) {
                         String resultSimple = successCount + "个";
                         String resultNotification = successCount + "个已领取";
-                        saveResult("✅", resultSimple, resultNotification, "成功");
 
                         callback.onResult(
-                                generateMap("✅", resultSimple, resultNotification, "成功")
+                                generateMap("✅", resultSimple, resultNotification)
                         );
                     }
 
@@ -61,45 +57,30 @@ public class GiftFetcher {
                     public void onError() {
                         String resultSimple = "失败";
                         String resultNotification = "❌服务器";
-                        saveResult("❌", resultSimple, resultNotification, "失败");
 
                         callback.onResult(
-                                generateMap("❌", resultSimple, resultNotification, "失败")
+                                generateMap("❌", resultSimple, resultNotification)
                         );
                     }
                 });
             } catch (Exception e) {
                 String resultSimple = "领取异常";
                 String resultNotification = "❌请重新尝试";
-                saveResult("❌", resultSimple, resultNotification, "失败");
 
                 callback.onResult(
-                        generateMap("❌", resultSimple, resultNotification, "失败")
+                        generateMap("❌", resultSimple, resultNotification)
                 );
             }
         }).start();
     }
 
-    // 保存结果到数据库
-    private void saveResult(String resultEmoji, String resultSimple, String resultNotification, String resultState) {
-        Log.d("meishi_wechat_result", "in util: resultEmoji: " + resultEmoji + ", resultSimple: " + resultSimple + ", resultNotification: " + resultNotification + ", resultState: " + resultState);
-        dbHelper.updateDashboardContent("meishi_wechat_result_emoji", resultEmoji);
-        dbHelper.updateDashboardContent("meishi_wechat_result_text", resultSimple);
-        dbHelper.updateDashboardContent("meishi_wechat_result_text_notification", resultNotification);
-        dbHelper.updateDashboardContent("meishi_wechat_result", resultState);
-        if (resultEmoji.equals("✅")) {
-            dbHelper.updateDashboardContent("last_date", TimeUtil.getCurrentDate());
-        }
-    }
-
     // 保存结果到Map，用于及时输出数据
-    private Map<String, String> generateMap(String resultEmoji, String resultSimple, String resultNotification, String resultState) {
+    private Map<String, String> generateMap(String resultEmoji, String resultSimple, String resultNotification) {
         Map<String, String> result = new HashMap<>();
 
         result.put("resultEmoji", resultEmoji);
         result.put("resultSimple", resultSimple);
         result.put("resultNotification", resultNotification);
-        result.put("resultState", resultState);
 
         return result;
     }

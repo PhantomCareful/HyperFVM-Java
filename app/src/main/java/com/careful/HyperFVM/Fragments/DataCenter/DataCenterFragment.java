@@ -13,6 +13,7 @@ import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -439,7 +440,9 @@ public class DataCenterFragment extends Fragment {
                 DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_double_explosion_rate),
-                        doubleExplosionRateEmoji, data.get(0).get("resultTodayActivityInfoDetail")
+                        doubleExplosionRateEmoji,
+                        data.get(0).get("resultTodayActivityInfoContentStatus"),
+                        data.get(0).get("resultTodayActivityInfoContentDetail")
                 )
         );
 
@@ -476,7 +479,8 @@ public class DataCenterFragment extends Fragment {
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_fertilization_task),
                         fertilizationTaskEmoji,
-                        data.get(0).get("resultFertilizationTaskInfoDetail")
+                        data.get(0).get("resultFertilizationTaskInfoContentStatus"),
+                        data.get(0).get("resultFertilizationTaskInfoContentDetail")
                 )
         );
 
@@ -491,7 +495,8 @@ public class DataCenterFragment extends Fragment {
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_new_year_lucky_money),
                         luckyMoneyEmoji,
-                        data.get(0).get("resultLuckyConsumptionInfoDetail")
+                        data.get(0).get("resultLuckyConsumptionInfoContentStatus"),
+                        data.get(0).get("resultLuckyConsumptionInfoContentDetail")
                 )
         );
 
@@ -506,7 +511,8 @@ public class DataCenterFragment extends Fragment {
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_new_year_bounty),
                         bountyEmoji,
-                        data.get(0).get("resultBountyInfoDetail"),
+                        data.get(0).get("resultBountyInfoContentStatus"),
+                        data.get(0).get("resultBountyInfoContentDetail"),
                         "去查看悬赏声望图",
                         "tiramisu_image_2_2"
                 )
@@ -516,14 +522,15 @@ public class DataCenterFragment extends Fragment {
         String crossServerTeamUpResult = data.get(0).get("resultServerTeamUpSimple");
         crossServerTeamUpEmoji = data.get(0).get("resultServerTeamUpEmoji");
         dashboardCrossServerTeamUp.setText(Objects.requireNonNull(crossServerTeamUpResult).isEmpty() ? "null" : crossServerTeamUpResult);
-        dashboardCrossServerTeamUpEmoji.setText(crossServerTeamUpEmoji.isEmpty() ? "null" : crossServerTeamUpEmoji);
+        dashboardCrossServerTeamUpEmoji.setText(crossServerTeamUpEmoji.isEmpty() ? "❌" : crossServerTeamUpEmoji);
         // 设置点击打开详情弹窗
         dashboardCrossServerTeamUpContainer.setOnClickListener(v ->
                 DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_cross_server_team_up),
                         crossServerTeamUpEmoji,
-                        data.get(0).get("resultServerTeamUpDetail")
+                        data.get(0).get("resultServerTeamUpContentStatus"),
+                        data.get(0).get("resultServerTeamUpContentDetail")
                 )
         );
 
@@ -531,14 +538,15 @@ public class DataCenterFragment extends Fragment {
         String threeIslandsResult = data.get(0).get("resultThreeIslandsSimple");
         threeIslandsEmoji = data.get(0).get("resultThreeIslandsEmoji");
         dashboardThreeIslands.setText(Objects.requireNonNull(threeIslandsResult).isEmpty() ? "null" : threeIslandsResult);
-        dashboardThreeIslandsEmoji.setText(threeIslandsEmoji.isEmpty() ? "null" : threeIslandsEmoji);
+        dashboardThreeIslandsEmoji.setText(threeIslandsEmoji.isEmpty() ? "❌" : threeIslandsEmoji);
         // 设置点击打开详情弹窗
         dashboardThreeIslandsContainer.setOnClickListener(v ->
                 DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_three_islands),
                         threeIslandsEmoji,
-                        data.get(0).get("resultThreeIslandsDetail"),
+                        data.get(0).get("resultThreeIslandsContentStatus"),
+                        data.get(0).get("resultThreeIslandsContentDetail"),
                         "去查看米鼠的图",
                         "tiramisu_image_2_1"
                 )
@@ -548,14 +556,15 @@ public class DataCenterFragment extends Fragment {
         String foodContestResult = data.get(0).get("resultFoodContestSimple");
         foodContestEmoji = data.get(0).get("resultFoodContestEmoji");
         dashboardFoodContest.setText(Objects.requireNonNull(foodContestResult).isEmpty() ? "null" : foodContestResult);
-        dashboardFoodContestEmoji.setText(foodContestEmoji.isEmpty() ? "null" : foodContestEmoji);
+        dashboardFoodContestEmoji.setText(foodContestEmoji.isEmpty() ? "❌" : foodContestEmoji);
         // 设置点击打开详情弹窗
         dashboardFoodContestContainer.setOnClickListener(v ->
                 DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_food_contest),
                         foodContestEmoji,
-                        data.get(0).get("resultFoodContestDetail"),
+                        data.get(0).get("resultFoodContestContentStatus"),
+                        data.get(0).get("resultFoodContestContentDetail"),
                         "去查看米鼠的图",
                         ""
                 )
@@ -568,22 +577,26 @@ public class DataCenterFragment extends Fragment {
         dashboardTransferDiscountEmoji.setText(transferDiscountEmoji.isEmpty() ? "null" : transferDiscountEmoji);
         // 设置点击打开详情弹窗
         dashboardTransferDiscountContainer.setOnClickListener(v -> {
-            String content = data.get(0).get("resultTransferDiscountDetail");
-            if (Objects.requireNonNull(content).equals("还没有新的打折活动呢")) {
+            String contentStatus = data.get(0).get("resultTransferDiscountContentStatus");
+            Log.d("resultTransferDiscountContentStatus", "resultTransferDiscountContentStatus = " + contentStatus);
+            String contentDetail = data.get(0).get("resultTransferDiscountContentDetail");
+            if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
                 DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_transfer_discount),
                         transferDiscountEmoji,
-                        content
+                        contentStatus,
+                        contentDetail
                 );
             } else {
-                List<String> discountList = new ArrayList<>(Arrays.asList(content.split("二转保险金仅需1500D\n\n")[1].split("\\|")));
-                content = content.split("二转保险金仅需1500D\n\n")[0] + "二转保险金仅需1500D";
+                List<String> discountList = new ArrayList<>(Arrays.asList(Objects.requireNonNull(contentDetail).split("以下卡片保险金仅需1500D\n\n")[1].split("\\|")));
+                contentDetail = contentDetail.split("以下卡片保险金仅需1500D\n\n")[0] + "以下卡片保险金仅需1500D";
                 DialogBuilderManager.showDashboardTransferDiscountDialog(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_transfer_discount),
                         transferDiscountEmoji,
-                        content,
+                        contentStatus,
+                        contentDetail,
                         discountList
                 );
             }
@@ -593,14 +606,15 @@ public class DataCenterFragment extends Fragment {
         String dailyRechargeResult = data.get(0).get("resultDailyRechargeSimple");
         dailyRechargeEmoji = data.get(0).get("resultDailyRechargeEmoji");
         dashboardDailyRecharge.setText(Objects.requireNonNull(dailyRechargeResult).isEmpty() ? "null" : dailyRechargeResult);
-        dashboardDailyRechargeEmoji.setText(dailyRechargeEmoji.isEmpty() ? "null" : dailyRechargeEmoji);
+        dashboardDailyRechargeEmoji.setText(dailyRechargeEmoji.isEmpty() ? "❌" : dailyRechargeEmoji);
         // 设置点击打开详情弹窗
         dashboardDailyRechargeContainer.setOnClickListener(v ->
                 DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_daily_recharge),
                         dailyRechargeEmoji,
-                        data.get(0).get("resultDailyRechargeDetail"),
+                        data.get(0).get("resultDailyRechargeContentStatus"),
+                        data.get(0).get("resultDailyRechargeContentDetail"),
                         "去查看米鼠的图",
                         "tiramisu_image_1_2"
                 )
@@ -617,7 +631,8 @@ public class DataCenterFragment extends Fragment {
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_happy_holiday),
                         happyHolidayEmoji,
-                        data.get(0).get("resultHappyHolidayDetail"),
+                        data.get(0).get("resultHappyHolidayContentStatus"),
+                        data.get(0).get("resultHappyHolidayContentDetail"),
                         "去查看米鼠的图",
                         "tiramisu_image_1_7"
                 )
@@ -634,7 +649,8 @@ public class DataCenterFragment extends Fragment {
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_new_year_million_consumption),
                         millionConsumptionEmoji,
-                        data.get(0).get("resultMillionConsumptionInfoDetail"),
+                        data.get(0).get("resultMillionConsumptionInfoContentStatus"),
+                        data.get(0).get("resultMillionConsumptionInfoContentDetail"),
                         "去查看米鼠的图",
                         ""
                 )
@@ -662,8 +678,8 @@ public class DataCenterFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void loadAndDisplayDayAndMonthData() {
         // （1）处理每日签到提示（根据1-25号/26号-月底区分显示）
-        dashboardEverydayResult = everyMonthAndEveryWeek.dailyNotifications();
-        dashboardEveryday.setText(dashboardEverydayResult);
+        dashboardEverydayResult = everyMonthAndEveryWeek.generateDailyCheckingContentStatus();
+        dashboardEveryday.setText(dashboardEverydayResult.equals("月签礼包可领取") ? "可领取" : dashboardEverydayResult.split("：")[1]);
         if (dashboardEverydayResult.equals("可领取")) {
             everydayEmoji = "🍾";
         } else {
@@ -673,16 +689,14 @@ public class DataCenterFragment extends Fragment {
 
         // 设置点击打开详情弹窗
         dashboardEverydayContainer.setOnClickListener(v -> {
-            String everydayContentDetail;
-            if (dashboardEverydayResult.equals("可领取")) {
-                everydayContentDetail = "\uD83E\uDEF0记得每天都要签到\uD83E\uDEF0\n\n本月签到礼包可以领取啦\n若有漏签请及时补签哦";
-            } else {
-                everydayContentDetail = "\uD83E\uDEF0记得每天都要签到\uD83E\uDEF0\n\n当前进度：" + dashboardEverydayResult;
-            }
+            String everydayContentStatus = everyMonthAndEveryWeek.generateDailyCheckingContentStatus();
+            String everydayContentDetail = "\uD83E\uDEF0记得每天都要签到哦\uD83E\uDEF0";
+
             DialogBuilderManager.showDashboardDetailDialog(
                     requireContext(),
                     getResources().getString(R.string.title_dashboard_everyday),
                     everydayEmoji,
+                    everydayContentStatus,
                     everydayContentDetail
             );
         });
@@ -691,7 +705,7 @@ public class DataCenterFragment extends Fragment {
         CardView card_dashboard_LastDayOfMonth = root.findViewById(R.id.card_last_day_of_month_container);
         if (everyMonthAndEveryWeek.isLastDayOfMonth()) {
             card_dashboard_LastDayOfMonth.setVisibility(View.VISIBLE);
-            dashboardLastDayOfMonth.setText("月末了，请注意清空积分和金券⚠️");
+            dashboardLastDayOfMonth.setText("⚠️月末了，请注意清空积分和金券");
         } else {
             card_dashboard_LastDayOfMonth.setVisibility(View.GONE);
         }

@@ -24,10 +24,10 @@ public class ExecuteDailyTask {
 
     public ExecuteDailyTask(Context context) {
         giftFetcher = new GiftFetcher(context);
-        activityCatcher = new ActivityCatcher(context);
-        fertilizationTaskCatcher = new FertilizationTaskCatcher(context);
-        newYearCatcher = new NewYearCatcher(context);
-        dashboardGitCatcher = new DashboardGitCatcher(context);
+        activityCatcher = new ActivityCatcher();
+        fertilizationTaskCatcher = new FertilizationTaskCatcher();
+        newYearCatcher = new NewYearCatcher();
+        dashboardGitCatcher = new DashboardGitCatcher();
     }
 
     public void executeGiftTileTask(GiftTileTaskResultCallBack callBack) {
@@ -116,65 +116,75 @@ public class ExecuteDailyTask {
                 result.put("resultMeishiWechatInfoSimple", catchMeishiWechatInfoResult.get(0).get("resultSimple"));
                 result.put("resultMeishiWechatInfoNotification", catchMeishiWechatInfoResult.get(0).get("resultNotification"));
                 result.put("resultMeishiWechatInfoEmoji", catchMeishiWechatInfoResult.get(0).get("resultEmoji"));
-                result.put("resultMeishiWechatInfoDetail", catchMeishiWechatInfoResult.get(0).get("resultDetail"));
 
                 // 双爆
                 result.put("resultTodayActivityInfoSimple", catchTodayActivityInfoResult.get(0).get("resultSimple"));
                 result.put("resultTodayActivityInfoNotification", catchTodayActivityInfoResult.get(0).get("resultNotification"));
                 result.put("resultTodayActivityInfoEmoji", catchTodayActivityInfoResult.get(0).get("resultEmoji"));
-                result.put("resultTodayActivityInfoDetail", catchTodayActivityInfoResult.get(0).get("resultDetail"));
+                result.put("resultTodayActivityInfoContentStatus", catchTodayActivityInfoResult.get(0).get("resultContentStatus"));
+                result.put("resultTodayActivityInfoContentDetail", catchTodayActivityInfoResult.get(0).get("resultContentDetail"));
 
                 // 施肥任务
                 result.put("resultFertilizationTaskInfoSimple", catchFertilizationTaskInfoResult.get(0).get("resultSimple"));
                 result.put("resultFertilizationTaskInfoNotification", catchFertilizationTaskInfoResult.get(0).get("resultNotification"));
                 result.put("resultFertilizationTaskInfoEmoji", catchFertilizationTaskInfoResult.get(0).get("resultEmoji"));
-                result.put("resultFertilizationTaskInfoDetail", catchFertilizationTaskInfoResult.get(0).get("resultDetail"));
+                result.put("resultFertilizationTaskInfoContentStatus", catchFertilizationTaskInfoResult.get(0).get("resultContentStatus"));
+                result.put("resultFertilizationTaskInfoContentDetail", catchFertilizationTaskInfoResult.get(0).get("resultContentDetail"));
 
                 // 美食悬赏
                 result.put("resultBountyInfoSimple", catchBountyInfoResult.get(0).get("resultSimple"));
                 result.put("resultBountyInfoNotification", catchBountyInfoResult.get(0).get("resultNotification"));
                 result.put("resultBountyInfoEmoji", catchBountyInfoResult.get(0).get("resultEmoji"));
-                result.put("resultBountyInfoDetail", catchBountyInfoResult.get(0).get("resultDetail"));
+                result.put("resultBountyInfoContentStatus", catchBountyInfoResult.get(0).get("resultContentStatus"));
+                result.put("resultBountyInfoContentDetail", catchBountyInfoResult.get(0).get("resultContentDetail"));
 
                 // 百万消费
                 result.put("resultMillionConsumptionInfoSimple", catchMillionConsumptionInfoResult.get(0).get("resultSimple"));
                 result.put("resultMillionConsumptionInfoEmoji", catchMillionConsumptionInfoResult.get(0).get("resultEmoji"));
-                result.put("resultMillionConsumptionInfoDetail", catchMillionConsumptionInfoResult.get(0).get("resultDetail"));
+                result.put("resultMillionConsumptionInfoContentStatus", catchMillionConsumptionInfoResult.get(0).get("resultContentStatus"));
+                result.put("resultMillionConsumptionInfoContentDetail", catchMillionConsumptionInfoResult.get(0).get("resultContentDetail"));
 
                 // 抢红包
                 result.put("resultLuckyConsumptionInfoSimple", catchLuckyConsumptionInfoResult.get(0).get("resultSimple"));
                 result.put("resultLuckyConsumptionInfoEmoji", catchLuckyConsumptionInfoResult.get(0).get("resultEmoji"));
-                result.put("resultLuckyConsumptionInfoDetail", catchLuckyConsumptionInfoResult.get(0).get("resultDetail"));
+                result.put("resultLuckyConsumptionInfoContentStatus", catchLuckyConsumptionInfoResult.get(0).get("resultContentStatus"));
+                result.put("resultLuckyConsumptionInfoContentDetail", catchLuckyConsumptionInfoResult.get(0).get("resultContentDetail"));
 
                 // 日氪
                 result.put("resultDailyRechargeSimple", catchGitDashboardInfoResult.get(0).get("resultDailyRechargeSimple"));
                 result.put("resultDailyRechargeEmoji", catchGitDashboardInfoResult.get(0).get("resultDailyRechargeEmoji"));
-                result.put("resultDailyRechargeDetail", catchGitDashboardInfoResult.get(0).get("resultDailyRechargeDetail"));
+                result.put("resultDailyRechargeContentStatus", catchGitDashboardInfoResult.get(0).get("resultDailyRechargeContentStatus"));
+                result.put("resultDailyRechargeContentDetail", catchGitDashboardInfoResult.get(0).get("resultDailyRechargeContentDetail"));
 
                 // 欢乐假期
                 result.put("resultHappyHolidaySimple", catchGitDashboardInfoResult.get(0).get("resultHappyHolidaySimple"));
                 result.put("resultHappyHolidayEmoji", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayEmoji"));
-                result.put("resultHappyHolidayDetail", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayDetail"));
+                result.put("resultHappyHolidayContentStatus", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayContentStatus"));
+                result.put("resultHappyHolidayContentDetail", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayContentDetail"));
 
                 // 助人为乐
                 result.put("resultServerTeamUpSimple", catchGitDashboardInfoResult.get(0).get("resultServerTeamUpSimple"));
                 result.put("resultServerTeamUpEmoji", catchGitDashboardInfoResult.get(0).get("resultServerTeamUpEmoji"));
-                result.put("resultServerTeamUpDetail", catchGitDashboardInfoResult.get(0).get("resultServerTeamUpDetail"));
+                result.put("resultServerTeamUpContentStatus", catchGitDashboardInfoResult.get(0).get("resultServerTeamUpContentStatus"));
+                result.put("resultServerTeamUpContentDetail", catchGitDashboardInfoResult.get(0).get("resultServerTeamUpContentDetail"));
 
                 // 三岛
                 result.put("resultThreeIslandsSimple", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsSimple"));
                 result.put("resultThreeIslandsEmoji", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsEmoji"));
-                result.put("resultThreeIslandsDetail", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsDetail"));
+                result.put("resultThreeIslandsContentStatus", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsContentStatus"));
+                result.put("resultThreeIslandsContentDetail", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsContentDetail"));
 
                 // 美食大赛
                 result.put("resultFoodContestSimple", catchGitDashboardInfoResult.get(0).get("resultFoodContestSimple"));
                 result.put("resultFoodContestEmoji", catchGitDashboardInfoResult.get(0).get("resultFoodContestEmoji"));
-                result.put("resultFoodContestDetail", catchGitDashboardInfoResult.get(0).get("resultFoodContestDetail"));
+                result.put("resultFoodContestContentStatus", catchGitDashboardInfoResult.get(0).get("resultFoodContestContentStatus"));
+                result.put("resultFoodContestContentDetail", catchGitDashboardInfoResult.get(0).get("resultFoodContestContentDetail"));
 
                 // 二转打折
                 result.put("resultTransferDiscountSimple", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountSimple"));
                 result.put("resultTransferDiscountEmoji", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountEmoji"));
-                result.put("resultTransferDiscountDetail", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountDetail"));
+                result.put("resultTransferDiscountContentStatus", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountContentStatus"));
+                result.put("resultTransferDiscountContentDetail", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountContentDetail"));
 
                 // App通知
                 result.put("resultGlobalNotificationIsShow", catchGitDashboardInfoResult.get(0).get("resultGlobalNotificationIsShow"));

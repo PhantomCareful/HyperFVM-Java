@@ -273,8 +273,6 @@ public class MeishiWechatActivity extends BaseActivity {
                     dbHelper.insertMeishiWechat(openid, serverName, playerId);
                     mainHandler.post(() -> {
                         Toast.makeText(MeishiWechatActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
-                        dbHelper.updateDashboardContent("meishi_wechat_result", "失败");
-
                         // 刷新列表
                         loadAccountList();
                     });

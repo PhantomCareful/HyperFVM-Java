@@ -16,13 +16,13 @@ public class EveryMonthAndEveryWeek {
         return TimeUtil.getWeek() == Calendar.THURSDAY;
     }
 
-    // （3）每日通知
-    public String dailyNotifications() {
+    // （3）每日签到
+    public String generateDailyCheckingContentStatus() {
         int currentDayOfMonth = TimeUtil.getCurrentDay();
         if (currentDayOfMonth >= 1 && currentDayOfMonth <= 24) {
-            return currentDayOfMonth + "/25";
+            return "月签道具：" + currentDayOfMonth + "/25";
         } else {
-            return "可领取";
+            return "月签礼包可领取";
         }
     }
 

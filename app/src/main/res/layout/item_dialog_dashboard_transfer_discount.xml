@@ -25,17 +25,26 @@
                 android:id="@+id/emoji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_gravity="center_horizontal"
                 android:textSize="100sp"
                 android:textColor="?attr/colorOnSurfaceVariant"/>
 
             <TextView
-                android:id="@+id/content"
+                android:id="@+id/content_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <TextView
+                android:id="@+id/content_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="?attr/colorOnSurfaceVariant"/>
 
             <LinearLayout

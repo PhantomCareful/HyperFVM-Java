@@ -6,7 +6,7 @@
     android:id="@+id/suggestion_card_transfer_discount"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="12dp"
+    android:layout_marginHorizontal="16dp"
     android:layout_marginBottom="10dp"
     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
     app:cardCornerRadius="20dp"
@@ -30,23 +30,23 @@
             <!-- 左侧文字 -->
             <TextView
                 android:id="@+id/suggestion_name_1_transfer_discount"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/suggestion_name_2_transfer_discount"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                android:textSize="15sp"/>
+                android:textSize="12sp"/>
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/suggestion_image_0_transfer_discount"
-            android:layout_width="wrap_content"
+            android:layout_width="32dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
@@ -55,7 +55,7 @@
 
         <ImageView
             android:id="@+id/suggestion_image_1_transfer_discount"
-            android:layout_width="wrap_content"
+            android:layout_width="32dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
@@ -64,7 +64,7 @@
 
         <ImageView
             android:id="@+id/suggestion_image_2_transfer_discount"
-            android:layout_width="wrap_content"
+            android:layout_width="32dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
@@ -73,8 +73,8 @@
 
         <ImageView
             android:id="@+id/suggestion_image_3_transfer_discount"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/card_data_index_1_1_4_3"

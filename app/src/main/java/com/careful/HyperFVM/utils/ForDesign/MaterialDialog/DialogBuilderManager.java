@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -142,16 +141,19 @@ public class DialogBuilderManager {
      * 仪表盘：展示详细信息的弹窗
      * @param title         弹窗标题
      * @param emoji         弹窗中的大表情
-     * @param detailContent 详细内容
+     * @param contentStatus 状态内容
+     * @param contentDetail 详细内容
      */
-    public static void showDashboardDetailDialog(Context context, String title, String emoji, String detailContent) {
+    public static void showDashboardDetailDialog(Context context, String title, String emoji, String contentStatus, String contentDetail) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
 
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-        TextView contentTextView = dialogView.findViewById(R.id.content);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
         emojiTextView.setText(emoji); // 设置表情符号
-        contentTextView.setText(detailContent); // 设置内容文本
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setTitle(title)
@@ -168,18 +170,21 @@ public class DialogBuilderManager {
      * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
      * @param title                 弹窗标题
      * @param emoji                 弹窗中的大表情
-     * @param detailContent         详细内容
+     * @param contentStatus         状态内容
+     * @param contentDetail         详细内容
      * @param positiveButtonTitle   按钮的内容
      * @param imageName             要查看的图片文件名，若为空，则只跳转到米鼠的图
      */
-    public static void showDashboardDetailDialogAndSeeTiramisuImage(Context context, String title, String emoji, String detailContent, String positiveButtonTitle, String imageName) {
+    public static void showDashboardDetailDialogAndSeeTiramisuImage(Context context, String title, String emoji, String contentStatus, String contentDetail, String positiveButtonTitle, String imageName) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
 
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-        TextView contentTextView = dialogView.findViewById(R.id.content);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
         emojiTextView.setText(emoji); // 设置表情符号
-        contentTextView.setText(detailContent); // 设置内容文本
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setTitle(title)
@@ -231,18 +236,21 @@ public class DialogBuilderManager {
      * 仪表盘：展示二转打折详细信息的弹窗，并可以直接跳转对应的卡片详情页
      * @param title         弹窗标题
      * @param emoji         弹窗中的大表情
-     * @param detailContent 详细内容
+     * @param contentStatus 状态内容
+     * @param contentDetail 详细内容
      * @param discountList  打折名单
      */
     @SuppressLint({"Range", "DiscouragedApi", "SetTextI18n"})
-    public static void showDashboardTransferDiscountDialog(Context context, String title, String emoji, String detailContent, List<String> discountList) {
+    public static void showDashboardTransferDiscountDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, List<String> discountList) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_transfer_discount, null);
 
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
-        TextView contentTextView = dialogView.findViewById(R.id.content);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
         emojiTextView.setText(emoji); // 设置表情符号
-        contentTextView.setText(detailContent); // 设置内容文本
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页\
         try (DBHelper dbHelper = new DBHelper(context)) {
@@ -612,26 +620,6 @@ public class DialogBuilderManager {
                 })
                 .setNegativeButton("取消", (dialogInterface, which) -> dialogInterface.dismiss())
                 .setCancelable(false)
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    /**
-     * 图片资源导出弹窗
-     */
-    public static void showImageExportDialog(Context context, ImageView imageView, String folderName, String cardName, String categoryName) {
-        imageView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("导出图片")
-                .setMessage("图片将保存到：Pictures/" + context.getResources().getString(R.string.app_name) +
-                        "/" + folderName +
-                        "/" + cardName + "(" + categoryName + ")" + ".webp")
-                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportSignalImage(context, imageView, folderName, cardName, categoryName))
-                .setNegativeButton("咱手滑了\uD83E\uDEE3", (dialogInterface, which) -> dialogInterface.dismiss())
-                .setCancelable(true)
                 .create();
 
         // 添加背景模糊

@@ -259,6 +259,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
                     "VALUES ('动态背景', 'true')");
         }
+
+        // 版本81：删除dashboard表
+        if (oldVersion < 81) {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_DASHBOARD);
+        }
     }
 
     @Override
@@ -885,31 +890,6 @@ public class DBHelper extends SQLiteOpenHelper {
             this.serverName = serverName;
             this.playerId = playerId;
         }
-    }
-
-    // ====================== 以下为dashboard表的操作方法 ======================
-    public String getDashboardContent(String id) {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(
-                TABLE_DASHBOARD,
-                new String[]{"content"},
-                "id = ?",
-                new String[]{id},
-                null, null, null
-        );
-        String content = "";
-        if (cursor.moveToFirst()) {
-            content = cursor.getString(0);
-        }
-        cursor.close();
-        return content;
-    }
-
-    public void updateDashboardContent(String id, String content) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("content", content);
-        db.update(TABLE_DASHBOARD, values, "id = ?", new String[]{id});
     }
 
     // ====================== 以下为防御卡数据表的操作方法 ======================

@@ -111,6 +111,8 @@ public class DatabaseInfo {
      * 防御卡数据库新增增幅卡相关内容
      * DB_VERSION = 80
      * settings表增加“动态背景”设置
+     * DB_VERSION = 81
+     * 删除dashboard表
      */
-    public static final int DB_VERSION = 80;
+    public static final int DB_VERSION = 81;
 }
