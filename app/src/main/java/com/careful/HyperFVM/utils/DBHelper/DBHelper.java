@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.OtherUtils.CardSuggestion;
+import com.careful.HyperFVM.utils.ForCardSearch.CardSearchSuggestion;
 import com.opencsv.CSVReader;
 
 import java.io.File;
@@ -914,8 +914,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // ====================== 以下为防御卡数据表的操作方法 ======================
     // 模糊查询卡片名称和对应图片ID
-    public List<CardSuggestion> searchCards(String keyword) {
-        List<CardSuggestion> suggestions = new ArrayList<>();
+    public List<CardSearchSuggestion> searchCards(String keyword) {
+        List<CardSearchSuggestion> suggestions = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         // 同时查询name和image_id两列
         Cursor cursor = db.rawQuery(
@@ -962,7 +962,7 @@ public class DBHelper extends SQLiteOpenHelper {
                             }
                             break;
                     }
-                    suggestions.add(new CardSuggestion(name, transferCategory, imageId));
+                    suggestions.add(new CardSearchSuggestion(name, transferCategory, imageId));
                 }
             } while (cursor.moveToNext());
         }

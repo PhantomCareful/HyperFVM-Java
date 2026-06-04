@@ -44,6 +44,7 @@ import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -566,14 +567,27 @@ public class DataCenterFragment extends Fragment {
         dashboardTransferDiscount.setText(Objects.requireNonNull(transferDiscountResult).isEmpty() ? "null" : transferDiscountResult);
         dashboardTransferDiscountEmoji.setText(transferDiscountEmoji.isEmpty() ? "null" : transferDiscountEmoji);
         // 设置点击打开详情弹窗
-        dashboardTransferDiscountContainer.setOnClickListener(v ->
+        dashboardTransferDiscountContainer.setOnClickListener(v -> {
+            String content = data.get(0).get("resultTransferDiscountDetail");
+            if (Objects.requireNonNull(content).equals("还没有新的打折活动呢")) {
                 DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_transfer_discount),
                         transferDiscountEmoji,
-                        data.get(0).get("resultTransferDiscountDetail")
-                )
-        );
+                        content
+                );
+            } else {
+                List<String> discountList = new ArrayList<>(Arrays.asList(content.split("二转保险金仅需1500D\n\n")[1].split("\\|")));
+                content = content.split("二转保险金仅需1500D\n\n")[0] + "二转保险金仅需1500D";
+                DialogBuilderManager.showDashboardTransferDiscountDialog(
+                        requireContext(),
+                        getResources().getString(R.string.title_dashboard_transfer_discount),
+                        transferDiscountEmoji,
+                        content,
+                        discountList
+                );
+            }
+        });
 
         // 读取日氪活动结果
         String dailyRechargeResult = data.get(0).get("resultDailyRechargeSimple");

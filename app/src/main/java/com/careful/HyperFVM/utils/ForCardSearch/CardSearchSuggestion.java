@@ -1,12 +1,12 @@
-package com.careful.HyperFVM.utils.OtherUtils;
+package com.careful.HyperFVM.utils.ForCardSearch;
 
 // 搜索建议项数据模型：包含卡片名称和对应图片ID
-public class CardSuggestion {
+public class CardSearchSuggestion {
     private final String name;
     private final String transferCategory;
     private final String imageId;
 
-    public CardSuggestion(String name, String transferCategory, String imageId) {
+    public CardSearchSuggestion(String name, String transferCategory, String imageId) {
         this.name = name;
         this.transferCategory = transferCategory;
         this.imageId = imageId;

@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.utils.OtherUtils;
+package com.careful.HyperFVM.utils.ForCardSearch;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,18 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.careful.HyperFVM.R;
 import java.util.List;
 
-public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.ViewHolder> {
-    private List<CardSuggestion> mData;
+public class CardSearchSuggestionAdapter extends RecyclerView.Adapter<CardSearchSuggestionAdapter.ViewHolder> {
+    private List<CardSearchSuggestion> mData;
     private final OnItemClickListener mListener;
     private final Context mContext; // 用于加载图片资源
 
     // 点击回调接口：返回选中的CardSuggestion
     public interface OnItemClickListener {
-        void onItemClick(CardSuggestion suggestion);
+        void onItemClick(CardSearchSuggestion suggestion);
     }
 
     // 构造方法：传入上下文、数据、点击监听
-    public SuggestionAdapter(Context context, List<CardSuggestion> data, OnItemClickListener listener) {
+    public CardSearchSuggestionAdapter(Context context, List<CardSearchSuggestion> data, OnItemClickListener listener) {
         this.mContext = context;
         this.mData = data;
         this.mListener = listener;
@@ -31,7 +31,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
 
     // 动态更新数据
     @SuppressLint("NotifyDataSetChanged")
-    public void updateData(List<CardSuggestion> newData) {
+    public void updateData(List<CardSearchSuggestion> newData) {
         this.mData = newData;
         notifyDataSetChanged();
     }
@@ -40,13 +40,13 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_suggestion, parent, false);
+                .inflate(R.layout.item_suggestion_search, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CardSuggestion suggestion = mData.get(position);
+        CardSearchSuggestion suggestion = mData.get(position);
         // 设置卡片名称
         holder.name.setText(suggestion.getName());
         // 设置卡片转职类型

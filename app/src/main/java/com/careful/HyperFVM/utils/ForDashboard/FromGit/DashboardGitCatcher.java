@@ -89,15 +89,8 @@ public class DashboardGitCatcher {
 
         String startDate = itemObj.getString("startDate");
         String endDate = itemObj.getString("endDate");
-        String cardList = itemObj.getString("cardList");
-        String[] cardListArr = cardList.split("\\|");
-        StringBuilder cardListResult = new StringBuilder();
-        for (int j = 0; j < cardListArr.length; j++) {
-            cardListResult.append(cardListArr[j]);
-            if (j != cardListArr.length - 1) {
-                cardListResult.append("\n");
-            }
-        }
+        String cardListResult = itemObj.getString("cardList");
+        String[] cardListArr = cardListResult.split("\\|");
 
         // 判断today和start、end之间的前后关系
         String todayDate = TimeUtil.getCurrentDate();
@@ -438,7 +431,7 @@ public class DashboardGitCatcher {
                         dbHelper.updateDashboardContent("global_notification_title", title);
                         dbHelper.updateDashboardContent("global_notification_content", content);
 
-                        result.put("resultGlobalNotificationIsShow", "false");
+                        result.put("resultGlobalNotificationIsShow", "true");
                         result.put("resultGlobalNotificationTitle", title);
                         result.put("resultGlobalNotificationContent", content);
                 }
