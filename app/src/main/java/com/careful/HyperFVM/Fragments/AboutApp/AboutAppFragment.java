@@ -54,8 +54,8 @@ public class AboutAppFragment extends Fragment {
         // 初始化各种装饰效果
         initDecoration();
 
-        //从build.gradle中获取版本号
-        getAppLocalVersionAndCheckUpdate(root);
+        // 从build.gradle中获取版本号
+        getAppLocalVersion(root);
 
         //跳转检查更新的Activity
         clickToNewActivity(root.findViewById(R.id.about_app_check_update_container), CheckUpdateActivity.class);
@@ -117,7 +117,7 @@ public class AboutAppFragment extends Fragment {
         return root;
     }
 
-    private void getAppLocalVersionAndCheckUpdate(View root) {
+    private void getAppLocalVersion(View root) {
         // 获取version信息
         long localVersionCode = LocalVersionUtil.getAppLocalVersionCode(requireContext());
         String localVersionName = LocalVersionUtil.getAppLocalVersionName(requireContext());
@@ -129,12 +129,18 @@ public class AboutAppFragment extends Fragment {
         TextView version_info = root.findViewById(R.id.about_app_version_info);
         String versionInfo = localVersionName + "(" + localVersionCode + ")" + betaOrRelease;
         version_info.setText(versionInfo);
+    }
 
+    private void checkUpdate(View root) {
         // 检查更新
         TextView checkUpdateTitle1 = root.findViewById(R.id.about_app_check_update_title_1);
         TextView checkUpdateTitle2 = root.findViewById(R.id.about_app_check_update_title_2);
 
         BadgeDotUtil.checkUpdateAndShowRedDot(requireContext(), isShowRedDot -> {
+            if (!isAdded() || getActivity() == null) {
+                return;
+            }
+
             if (isShowRedDot) {
                 checkUpdateTitle1.setText("发 现 新 版 本");
                 checkUpdateTitle2.setText("速 速 更 新 \uD83D\uDCE2 \uD83D\uDCE2 \uD83D\uDCE2");
@@ -210,7 +216,9 @@ public class AboutAppFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        //从build.gradle中获取版本号
-        getAppLocalVersionAndCheckUpdate(root);
+        // 检查更新
+        if (root != null) {
+            checkUpdate(root);
+        }
     }
 }

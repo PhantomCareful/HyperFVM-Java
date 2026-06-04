@@ -143,6 +143,10 @@ public class AboutAppEffectFragment extends Fragment {
         TextView checkUpdateTitle2 = root.findViewById(R.id.about_app_check_update_title_2);
 
         BadgeDotUtil.checkUpdateAndShowRedDot(requireContext(), isShowRedDot -> {
+            if (!isAdded() || getActivity() == null) {
+                return;
+            }
+
             if (isShowRedDot) {
                 checkUpdateTitle1.setText("发 现 新 版 本");
                 checkUpdateTitle2.setText("速 速 更 新 \uD83D\uDCE2 \uD83D\uDCE2 \uD83D\uDCE2");
@@ -233,7 +237,9 @@ public class AboutAppEffectFragment extends Fragment {
         }
 
         // 检查更新
-        checkUpdate(root);
+        if (root != null) {
+            checkUpdate(root);
+        }
     }
 
     @Override
