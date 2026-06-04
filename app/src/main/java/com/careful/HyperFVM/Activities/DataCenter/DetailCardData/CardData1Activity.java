@@ -50,11 +50,19 @@ public class CardData1Activity extends BaseActivity {
     private boolean isDynamicBackground;
 
     private TransitionSet transition;
-    private LinearLayout Image_View_Card_Container;
+    private LinearLayout bigImageContainer;
+
+    private LinearLayout cardDataContainer;
+
+    private View Image_View_Card_Big_1_Container;
+    private View Image_View_Card_Big_2_Container;
+    private View Image_View_Card_Big_3_Container;
 
     private int savedScrollY = 0;                              // 用于保存/恢复的滚动位置
 
-    private int imageViewCardContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
+    private int imageViewCardBig1ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
+    private int imageViewCardBig2ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
+    private int imageViewCardBig3ContainerMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
 
     private String cardName;
     private final List<ExportInfo> exportInfoList = new ArrayList<>();
@@ -116,50 +124,104 @@ public class CardData1Activity extends BaseActivity {
                 return;
             }
 
-            // 逐个绑定控件（确保控件ID与表列名完全一致）
+            // 获取卡片的名字
+            String cardName0 = cursor.getString(cursor.getColumnIndex("name"));
+            String cardName1 = cursor.getString(cursor.getColumnIndex("name_1"));
+            String cardName2 = cursor.getString(cursor.getColumnIndex("name_2"));
 
-            // 第1张图片
-            ImageView imageView = findViewById(R.id.Image_View_Card_1);
-            String imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0"));
-            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-            int imageResId = getResources().getIdentifier(
-                    imageIdStr,
-                    "drawable",
-                    getPackageName()
-            );
-            imageView.setImageResource(imageResId);
-            exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName + "(不转形态)"));
-
-            //第2张图片
-            imageView = findViewById(R.id.Image_View_Card_2);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1"));
-            if (!imageIdStr.equals("无")) {
+            // 大图片区域
+            ImageView ImageViewCardBig;
+            String imageIdStr;
+            int imageResId;
+            // 先判断这张卡是否只有不转，如果是的话，启用Image_View_Card_Big_1_Container
+            if (cursor.getString(cursor.getColumnIndex("image_id_1")).equals("无")) {
+                // 这张卡只有不转，启用Image_View_Card_Big_1_Container
+                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_1);
+                imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0")) + "_big";
                 // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
                 imageResId = getResources().getIdentifier(
                         imageIdStr,
                         "drawable",
                         getPackageName()
                 );
-                imageView.setImageResource(imageResId);
-                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName + "(一转形态)"));
-            } else {
-                findViewById(R.id.Image_View_Card_2_Container).setVisibility(View.GONE);
-            }
+                ImageViewCardBig.setImageResource(imageResId);
+                setTextToView(R.id.card_name_1, cardName0);
+                exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName0 + "(不转形态, 大)"));
 
-            //第3张图片
-            imageView = findViewById(R.id.Image_View_Card_3);
-            imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_2"));
-            if (!imageIdStr.equals("无")) {
+                // 隐藏剩下的组件
+                findViewById(R.id.Image_View_Card_Big_2_Container).setVisibility(View.GONE);
+                findViewById(R.id.Image_View_Card_Big_3_Container).setVisibility(View.GONE);
+
+                // 调整容器顶部距离
+                cardDataContainer.setPadding(
+                        cardDataContainer.getPaddingLeft(),
+                        DensityUtil.dpToPx(this, 320),
+                        cardDataContainer.getPaddingRight(),
+                        cardDataContainer.getPaddingBottom()
+                );
+            } else {
+                // 这张卡有一转，启用Image_View_Card_Big_2_Container
+                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2_1);
+                imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_0")) + "_big";
                 // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
                 imageResId = getResources().getIdentifier(
                         imageIdStr,
                         "drawable",
                         getPackageName()
                 );
-                imageView.setImageResource(imageResId);
-                exportInfoList.add(ImageExportUtil.generateExportInfo(imageView, cardName + "(二转形态)"));
-            } else {
-                findViewById(R.id.Image_View_Card_3_Container).setVisibility(View.GONE);
+                ImageViewCardBig.setImageResource(imageResId);
+                setTextToView(R.id.card_name_2_1, cardName0);
+                exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName0 + "(不转形态, 大)"));
+
+                ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_2_2);
+                imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_1")) + "_big";
+                // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                imageResId = getResources().getIdentifier(
+                        imageIdStr,
+                        "drawable",
+                        getPackageName()
+                );
+                ImageViewCardBig.setImageResource(imageResId);
+                setTextToView(R.id.card_name_2_2, cardName1);
+                exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName1 + "(一转形态, 大)"));
+
+                // 隐藏Image_View_Card_Big_1_Container
+                findViewById(R.id.Image_View_Card_Big_1_Container).setVisibility(View.GONE);
+
+                // 再判断是否有二转
+                if (!cursor.getString(cursor.getColumnIndex("image_id_2")).equals("无")) {
+                    // 这张卡有二转，启用Image_View_Card_Big_3_Container
+                    ImageViewCardBig = findViewById(R.id.Image_View_Card_Big_3);
+                    imageIdStr = cursor.getString(cursor.getColumnIndex("image_id_2")) + "_big";
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    imageResId = getResources().getIdentifier(
+                            imageIdStr,
+                            "drawable",
+                            getPackageName()
+                    );
+                    ImageViewCardBig.setImageResource(imageResId);
+                    setTextToView(R.id.card_name_3, cardName2);
+                    exportInfoList.add(ImageExportUtil.generateExportInfo(ImageViewCardBig, cardName2 + "(二转形态, 大)"));
+
+                    // 调整容器顶部距离
+                    cardDataContainer.setPadding(
+                            cardDataContainer.getPaddingLeft(),
+                            DensityUtil.dpToPx(this, 460),
+                            cardDataContainer.getPaddingRight(),
+                            cardDataContainer.getPaddingBottom()
+                    );
+                } else {
+                    // 这张卡没有二转，隐藏Image_View_Card_Big_3_Container
+                    findViewById(R.id.Image_View_Card_Big_3_Container).setVisibility(View.GONE);
+
+                    // 调整容器顶部距离
+                    cardDataContainer.setPadding(
+                            cardDataContainer.getPaddingLeft(),
+                            DensityUtil.dpToPx(this, 320),
+                            cardDataContainer.getPaddingRight(),
+                            cardDataContainer.getPaddingBottom()
+                    );
+                }
             }
 
             // 内容部分：全新的Markdown样式
@@ -248,10 +310,11 @@ public class CardData1Activity extends BaseActivity {
 
         // 所有任务完成后，显示大图片，带渐显动画
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            TransitionManager.beginDelayedTransition(Image_View_Card_Container, transition);
-            findViewById(R.id.Image_View_Card_1).setVisibility(View.VISIBLE);
-            findViewById(R.id.Image_View_Card_2).setVisibility(View.VISIBLE);
-            findViewById(R.id.Image_View_Card_3).setVisibility(View.VISIBLE);
+            TransitionManager.beginDelayedTransition(bigImageContainer, transition);
+            findViewById(R.id.Image_View_Card_Big_1).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_2_1).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_2_2).setVisibility(View.VISIBLE);
+            findViewById(R.id.Image_View_Card_Big_3).setVisibility(View.VISIBLE);
         }, 500);
     }
 
@@ -290,7 +353,12 @@ public class CardData1Activity extends BaseActivity {
         transition = new TransitionSet();
         transition.addTransition(new Fade()); // 淡入淡出
         transition.setDuration(300); // 动画时长300ms
-        Image_View_Card_Container = findViewById(R.id.Image_View_Card_Container);
+        bigImageContainer = findViewById(R.id.big_image_container);
+
+        cardDataContainer = findViewById(R.id.card_data_container);
+
+        // 添加模糊材质
+        setupBlurEffect();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
             // 初始化流光背景
@@ -304,29 +372,34 @@ public class CardData1Activity extends BaseActivity {
             }
         }
 
-        // 添加模糊材质
-        setupBlurEffect();
-
         // 获取需要渐隐的元素
-        Image_View_Card_Container = findViewById(R.id.Image_View_Card_Container);
+        Image_View_Card_Big_1_Container = findViewById(R.id.Image_View_Card_Big_1_Container);
+        Image_View_Card_Big_2_Container = findViewById(R.id.Image_View_Card_Big_2_Container);
+        Image_View_Card_Big_3_Container = findViewById(R.id.Image_View_Card_Big_3_Container);
 
         // 获取滚动视图ScrollView
         ScrollView scrollView = findViewById(R.id.ScrollView);
 
         // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
-        imageViewCardContainerMaxScroll = DensityUtil.dpToPx(this, 50);
+        imageViewCardBig1ContainerMaxScroll = DensityUtil.dpToPx(this, 50);
+        imageViewCardBig2ContainerMaxScroll = DensityUtil.dpToPx(this, 200);
+        imageViewCardBig3ContainerMaxScroll = DensityUtil.dpToPx(this, 50);
 
         // 监听滚动
         if (scrollView != null) {
             scrollView.post(() -> {
                 scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
                 // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Container, savedScrollY, imageViewCardContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_1_Container, savedScrollY, imageViewCardBig1ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_2_Container, savedScrollY, imageViewCardBig2ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_3_Container, savedScrollY, imageViewCardBig3ContainerMaxScroll);
             });
 
             scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
                 savedScrollY = scrollY;// 实时记录当前滚动位置
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Container, savedScrollY, imageViewCardContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_1_Container, scrollY, imageViewCardBig1ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_2_Container, scrollY, imageViewCardBig2ContainerMaxScroll);
+                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_3_Container, scrollY, imageViewCardBig3ContainerMaxScroll);
             });
         }
     }

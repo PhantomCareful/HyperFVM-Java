@@ -37,12 +37,12 @@
         android:id="@+id/card_data_index_3_3_7_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/card_data_index_3_3_7_0"
+        android:src="@drawable/card_data_index_3_3_6_0"
         tools:ignore="ContentDescription" />
     <ImageView
         android:id="@+id/card_data_index_3_3_7_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/card_data_index_3_3_7_1"
+        android:src="@drawable/card_data_index_3_3_6_1"
         tools:ignore="ContentDescription" />
 </LinearLayout>
