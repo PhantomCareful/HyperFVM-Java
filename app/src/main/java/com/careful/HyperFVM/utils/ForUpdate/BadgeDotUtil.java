@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,8 +32,6 @@ public class BadgeDotUtil {
      */
     public static void checkUpdateAndShowRedDot(Context context, OnUpdateCheckComplete callback) {
         final boolean[] isShowRedDot = {false};
-        // 计数器，等待两个异步任务都完成
-        final int[] checkCount = {2};
 
         long localAppVersionCode = LocalVersionUtil.getAppLocalVersionCode(context);
 
@@ -46,80 +45,26 @@ public class BadgeDotUtil {
                 Log.d(TAG, "serverAppVersionCode = " + serverVersion);
 
                 try {
-                    if (!isShowRedDot[0]) {
-                        isShowRedDot[0] = serverVersion > localAppVersionCode;
-                    }
+                    isShowRedDot[0] = serverVersion > localAppVersionCode;
                 } catch (Exception e) {
                     isShowRedDot[0] = false;
                 }
 
-                checkComplete(checkCount, callback, isShowRedDot[0]);
+                callback.onComplete(isShowRedDot[0]);
             }
 
             @Override
             public void onVersionCheckFailure(String errorMsg) {
                 Log.e(TAG, "onVersionCheckFailure: " + errorMsg);
 
-                isShowRedDot[0] = false;
-                checkComplete(checkCount, callback, false);
+                callback.onComplete(false);
             }
 
             @Override
             public void onVersionParseError() {
-                isShowRedDot[0] = false;
-                checkComplete(checkCount, callback, false);
+                callback.onComplete(false);
             }
         });
-
-        long localImageResourcesVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
-
-        Log.d(TAG, "localImageResourcesVersionCode = " + localImageResourcesVersionCode);
-
-        // 调用UpdaterUtil检查图片资源更新
-        ImageResourcesUpdaterUtil imageResourcesUpdaterUtil = ImageResourcesUpdaterUtil.getInstance();
-        imageResourcesUpdaterUtil.checkServerVersion(new ImageResourcesUpdaterUtil.OnVersionCheckCallback() {
-            @Override
-            public void onVersionCheckSuccess(long serverVersion, String updateLog) {
-                Log.d(TAG, "serverImageResourcesVersionCode = " + serverVersion);
-
-                try {
-                    if (!isShowRedDot[0]) {
-                        isShowRedDot[0] = serverVersion > localImageResourcesVersionCode;
-                    }
-                } catch (Exception e) {
-                    isShowRedDot[0] = false;
-                }
-
-                checkComplete(checkCount, callback, isShowRedDot[0]);
-            }
-
-            @Override
-            public void onVersionCheckFailure(String errorMsg) {
-                Log.e(TAG, "onVersionCheckFailure: " + errorMsg);
-
-                isShowRedDot[0] = false;
-                checkComplete(checkCount, callback, false);
-            }
-
-            @Override
-            public void onVersionParseError() {
-                isShowRedDot[0] = false;
-                checkComplete(checkCount, callback, false);
-            }
-        });
-    }
-
-    /**
-     * 检查是否两个异步任务都已完成
-     */
-    private static void checkComplete(int[] checkCount, OnUpdateCheckComplete callback, boolean isShowRedDot) {
-        synchronized (BadgeDotUtil.class) {
-            checkCount[0]--;
-            if (checkCount[0] == 0 && callback != null) {
-                Log.d(TAG, "isShowRedDot = " + isShowRedDot);
-                callback.onComplete(isShowRedDot);
-            }
-        }
     }
 
     /**
@@ -144,12 +89,12 @@ public class BadgeDotUtil {
         redDotView.setBackground(redDotShape);
 
         // 5. 设置小红点的布局参数（位置：右上角，尺寸：8dp）
-        int dotSize = dp2px(navigationView.getContext(), DOT_SIZE_DP);
+        int dotSize = DensityUtil.dpToPx(navigationView.getContext(), DOT_SIZE_DP);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dotSize, dotSize);
         // 调整margin控制红点与图标的偏移（可根据需求修改）
         params.gravity = Gravity.TOP | Gravity.END;
-        params.topMargin = dp2px(navigationView.getContext(), 12);
-        params.rightMargin = dp2px(navigationView.getContext(), 12);
+        params.topMargin = DensityUtil.dpToPx(navigationView.getContext(), 12);
+        params.rightMargin = DensityUtil.dpToPx(navigationView.getContext(), 12);
 
         // 6. 将小红点添加到ItemView中
         itemView.addView(redDotView, params);
@@ -197,11 +142,4 @@ public class BadgeDotUtil {
         return null;
     }
 
-    /**
-     * dp转px（适配不同屏幕）
-     */
-    private static int dp2px(Context context, float dp) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dp * scale + 0.5f);
-    }
 }
