@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这是防御卡数据按名查询的搜索结果预览的样式文件-->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/suggestion_card_transfer_discount"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="10dp"
+    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+    app:cardCornerRadius="20dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:id="@+id/suggestion_card_transfer_discount_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <!-- 左侧文字 -->
+            <TextView
+                android:id="@+id/suggestion_name_1_transfer_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/suggestion_name_2_transfer_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/suggestion_image_0_transfer_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/card_data_index_1_1_4_0"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/suggestion_image_1_transfer_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/card_data_index_1_1_4_1"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/suggestion_image_2_transfer_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/card_data_index_1_1_4_2"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/suggestion_image_3_transfer_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/card_data_index_1_1_4_3"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
