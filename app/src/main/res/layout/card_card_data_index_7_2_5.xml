@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="@string/name_card_data_index_7_2_5_1"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
-            android:textSize="15sp" />
+            android:textSize="11sp" />
     </LinearLayout>
 
     <!-- 右侧卡片 -->
