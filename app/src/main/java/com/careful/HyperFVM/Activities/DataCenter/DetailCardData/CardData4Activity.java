@@ -205,7 +205,7 @@ public class CardData4Activity extends BaseActivity {
                     // 调整容器顶部距离
                     cardDataContainer.setPadding(
                             cardDataContainer.getPaddingLeft(),
-                            DensityUtil.dpToPx(this, 460),
+                            DensityUtil.dpToPx(this, 480),
                             cardDataContainer.getPaddingRight(),
                             cardDataContainer.getPaddingBottom()
                     );

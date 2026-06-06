@@ -205,8 +205,7 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/title_card_data_base_info"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginTop="20dp"/>
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
