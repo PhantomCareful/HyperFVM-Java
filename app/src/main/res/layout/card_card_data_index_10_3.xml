@@ -18,11 +18,11 @@
 
         <include layout="@layout/card_card_data_index_10_3_3" />
 
-        <include layout="@layout/card_card_data_index_10_3_4" />
-
         <include layout="@layout/card_card_data_index_10_3_5" />
 
         <include layout="@layout/card_card_data_index_10_3_6" />
+
+        <include layout="@layout/card_card_data_index_10_3_7" />
 
     </LinearLayout>
 

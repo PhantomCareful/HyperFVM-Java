@@ -993,17 +993,18 @@
     <string name="name_card_data_index_10_3_1_1">刀削拉面–真刀削拉面</string>
 
     <string name="name_card_data_index_10_3_2_0">丸子厨师</string>
+    <string name="name_card_data_index_10_3_2_1">盛宴丸子厨师-传奇丸子厨师</string>
 
     <string name="name_card_data_index_10_3_3_0">功夫汪</string>
     <string name="name_card_data_index_10_3_3_1">铁皮功夫汪–金甲功夫汪</string>
 
-    <string name="name_card_data_index_10_3_4_0">鱼刺</string>
+    <string name="name_card_data_index_10_3_5_0">鱼刺</string>
 
-    <string name="name_card_data_index_10_3_5_0">钢鱼刺</string>
-    <string name="name_card_data_index_10_3_5_1">无座钢鱼刺–海贼王鱼刺</string>
+    <string name="name_card_data_index_10_3_6_0">钢鱼刺</string>
+    <string name="name_card_data_index_10_3_6_1">无座钢鱼刺–海贼王鱼刺</string>
 
-    <string name="name_card_data_index_10_3_6_0">糖渍刺梨</string>
-    <string name="name_card_data_index_10_3_6_1">烟熏刺梨–生腌酸刺梨</string>
+    <string name="name_card_data_index_10_3_7_0">糖渍刺梨</string>
+    <string name="name_card_data_index_10_3_7_1">烟熏刺梨–生腌酸刺梨</string>
 
     <string name="title_card_data_index_10_4">(10–4) 杂项类–衍生类</string>
 
@@ -1373,6 +1374,7 @@
     <string name="name_card_data_index_14_2_3_0">肉松清明粿</string>
 
     <string name="name_card_data_index_14_2_4_0">防萤草灯笼</string>
+    <string name="name_card_data_index_14_2_4_1">灵光防萤草灯-圣辉防萤草灯</string>
 
     <string name="name_card_data_index_14_2_5_0">萤火蛇</string>
     <string name="name_card_data_index_14_2_5_1">星辉萤火蛇–月芒萤火蛇</string>
@@ -1418,6 +1420,7 @@
     <string name="name_card_data_index_14_3_3_1">武装治愈喵–全能治愈喵</string>
 
     <string name="name_card_data_index_14_3_4_0">12周年能量饮料</string>
+    <string name="name_card_data_index_14_3_4_1">12周年活力饮料-12周年狂暴饮料</string>
 
     <string name="name_card_data_index_14_3_5_0">木塞子</string>
 
@@ -1522,5 +1525,8 @@
 
     <string name="name_card_data_index_16_1_9_0">葡萄味软糖</string>
     <string name="name_card_data_index_16_1_9_1">彩虹棉花软糖–无敌猫猫软糖</string>
+
+    <string name="name_card_data_index_16_1_10_0">脆心死神大炮</string>
+    <string name="name_card_data_index_16_1_10_1">霸王死神大炮–乾坤死神大炮</string>
 
 </resources>

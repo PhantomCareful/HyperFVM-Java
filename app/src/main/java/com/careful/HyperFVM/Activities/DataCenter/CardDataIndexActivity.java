@@ -391,9 +391,9 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_10_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "新疆炒面"));
         findViewById(R.id.card_data_index_10_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "丸子厨师"));
         findViewById(R.id.card_data_index_10_3_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "功夫汪"));
-        findViewById(R.id.card_data_index_10_3_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鱼刺"));
-        findViewById(R.id.card_data_index_10_3_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "钢鱼刺"));
-        findViewById(R.id.card_data_index_10_3_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "糖渍刺梨"));
+        findViewById(R.id.card_data_index_10_3_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鱼刺"));
+        findViewById(R.id.card_data_index_10_3_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "钢鱼刺"));
+        findViewById(R.id.card_data_index_10_3_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "糖渍刺梨"));
         findViewById(R.id.card_data_index_10_4_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蜂蜜史莱姆"));
         findViewById(R.id.card_data_index_10_4_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "糖人马"));
         findViewById(R.id.card_data_index_11_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "小笼包"));
@@ -566,6 +566,7 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_16_1_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "刺梨烧烤盘"));
         findViewById(R.id.card_data_index_16_1_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "机枪咖啡杯"));
         findViewById(R.id.card_data_index_16_1_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "葡萄味软糖"));
+        findViewById(R.id.card_data_index_16_1_10).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "脆心死神大炮"));
     }
 
     /**
