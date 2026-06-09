@@ -113,6 +113,7 @@ public class CheckUpdateActivity extends BaseActivity {
                 versionInfo = serverVersionName + "(" + serverVersionCode + ")";
                 generateAndSetVersionInfo(versionInfo);
 
+                newUpdateLog = "###" + newUpdateLog.split("###")[1];
                 getContent(CheckUpdateActivity.this, app_log, newUpdateLog);
             } else if (buttonText.equals(getResources().getString(R.string.label_check_update_status_download_update))) {
                 // 有新版本，检查是否存在已下载的APK
@@ -142,7 +143,7 @@ public class CheckUpdateActivity extends BaseActivity {
     @SuppressLint("SetTextI18n")
     private void generateAndSetVersionInfo(String versionInfo) {
         // 判断是否为Beta版
-        String betaOrRelease = Objects.equals(versionInfo.split("\\.")[2], "0") ? " | Release" : " | Beta";
+        String betaOrRelease = Objects.equals(versionInfo.split("\\.")[2].split("\\(")[0], "0") ? " | Release" : " | Beta";
 
         // 拼接最终版本信息
         version_info.setText(versionInfo + betaOrRelease);
