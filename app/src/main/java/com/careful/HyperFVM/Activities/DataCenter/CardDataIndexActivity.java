@@ -391,6 +391,7 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_10_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "新疆炒面"));
         findViewById(R.id.card_data_index_10_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "丸子厨师"));
         findViewById(R.id.card_data_index_10_3_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "功夫汪"));
+        findViewById(R.id.card_data_index_10_3_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "拳皇马"));
         findViewById(R.id.card_data_index_10_3_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鱼刺"));
         findViewById(R.id.card_data_index_10_3_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "钢鱼刺"));
         findViewById(R.id.card_data_index_10_3_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "糖渍刺梨"));
