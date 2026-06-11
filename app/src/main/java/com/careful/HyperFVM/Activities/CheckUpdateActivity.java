@@ -113,7 +113,7 @@ public class CheckUpdateActivity extends BaseActivity {
                 versionInfo = serverVersionName + "(" + serverVersionCode + ")";
                 generateAndSetVersionInfo(versionInfo);
 
-                newUpdateLog = "###" + newUpdateLog.split("###")[1];
+                newUpdateLog = newUpdateLog.split("\\)\n")[1];
                 getContent(CheckUpdateActivity.this, app_log, newUpdateLog);
             } else if (buttonText.equals(getResources().getString(R.string.label_check_update_status_download_update))) {
                 // 有新版本，检查是否存在已下载的APK
@@ -376,7 +376,7 @@ public class CheckUpdateActivity extends BaseActivity {
             // 使用FileProvider获取Uri - 修改authority
             Uri apkUri = FileProvider.getUriForFile(
                     this,
-                    getPackageName() + ".provider", // 修改为 .provider
+                    getPackageName() + ".fileprovider",
                     apkFile
             );
 

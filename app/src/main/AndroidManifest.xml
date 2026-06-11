@@ -142,6 +142,7 @@
             android:name=".Activities.DataCenter.DetailCardData.CardData4Activity"
             android:exported="false" />
 
+        <!-- fileprovider用于获取私有目录下的文件，用于查看数据图和升级App -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

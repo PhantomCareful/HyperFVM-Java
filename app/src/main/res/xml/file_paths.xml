@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
+    <!-- 指向内部存储的应用 files 目录下的 data_images 子目录 -->
     <files-path name="data_images" path="data_images/" />
+    <!-- 指向外部存储的应用 files 目录下的 apk 子目录 -->
+    <external-files-path name="apk_files" path="apk/" />
 </paths>
