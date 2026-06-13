@@ -23,8 +23,6 @@ import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
@@ -38,13 +36,11 @@ import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.ForCardSearch.CardSearchSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.careful.HyperFVM.utils.OtherUtils.ImageExportUtil;
-import com.careful.HyperFVM.utils.ForCardSearch.CardSearchSuggestionAdapter;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -624,12 +620,7 @@ public class DialogBuilderManager {
                     }
 
                     suggestion_name_1_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name")));
-                    if (tableName.equals("card_data_1")) {
-                        // TODO: 因为card_data_1里面没有专门存放转职名称，所以只能先通过图片id倒推string.xml里面的id，后续改造数据库以后，就不用这样写了
-                        String name12 = "name_" + imageIdStr0.split("_0")[0] + "_1";
-                        int strId = context.getResources().getIdentifier(name12, "string", context.getPackageName());
-                        suggestion_name_2_transfer_discount.setText(strId != 0 ? context.getString(strId) : "无");
-                    } else if (tableName.equals("card_data_3")) {
+                    if (tableName.equals("card_data_3")) {
                         suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")) + "-" + cursor.getString(cursor.getColumnIndex("name_3")));
                     } else {
                         suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")));
@@ -659,63 +650,77 @@ public class DialogBuilderManager {
      */
     @SuppressLint("InflateParams")
     public static void showCardQueryDialog(Context context) {
-        View dialogView;
-        TextInputEditText etCardName;
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_card_data, null);
+        TextInputEditText cardName = dialogView.findViewById(R.id.textInputEditText);
+        TextView content_tips2 = dialogView.findViewById(R.id.content_tips2);
+        LinearLayout suggestion_list = dialogView.findViewById(R.id.suggestion_list);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+
         try (DBHelper dbHelper = new DBHelper(context)) {
-            LayoutInflater inflater = LayoutInflater.from(context);
-            dialogView = inflater.inflate(R.layout.item_dialog_input_card_data, null);
-            etCardName = dialogView.findViewById(R.id.textInputEditText);
-            RecyclerView suggestionList = dialogView.findViewById(R.id.suggestion_list);
-
-            // 初始化适配器（传入上下文、空数据、点击监听）
-            CardSearchSuggestionAdapter adapter = new CardSearchSuggestionAdapter(context, new ArrayList<>(), suggestion -> {
-                // 点击项：填充名称到输入框，隐藏列表
-                etCardName.setText(suggestion.getName());
-                suggestionList.setVisibility(View.GONE);
-            });
-
-            // 配置RecyclerView（保持原有逻辑）
-            suggestionList.setLayoutManager(new LinearLayoutManager(context));
-            suggestionList.setAdapter(adapter);
-            CardItemDecoration itemDecoration = new CardItemDecoration(suggestionList, 20, 20);
-            suggestionList.addItemDecoration(itemDecoration);
-
             // 实时模糊查询（修改核心：适配新的数据模型）
-            etCardName.addTextChangedListener(new TextWatcher() {
+            cardName.addTextChangedListener(new TextWatcher() {
                 @Override
+                @SuppressLint("DiscouragedApi")
                 public void afterTextChanged(Editable s) {
                     String keyword = s.toString().trim();
                     if (!keyword.isEmpty()) {
                         // 从数据库获取：包含name和image_id的搜索结果
                         List<CardSearchSuggestion> suggestions = dbHelper.searchCards(keyword);
-                        adapter.updateData(suggestions);
-                        suggestionList.setVisibility(View.VISIBLE);
+
+                        suggestion_list.removeAllViews();
+                        for (int i = 0; i < suggestions.size(); i++) {
+                            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_search, suggestion_list, false);
+                            // 绑定好需要用到的组件
+                            LinearLayout suggestion_card_search_container = cardView.findViewById(R.id.suggestion_card_search_container);
+                            TextView suggestion_name = cardView.findViewById(R.id.suggestion_name);
+                            TextView suggestion_transfer_category = cardView.findViewById(R.id.suggestion_transfer_category);
+                            ImageView suggestion_image = cardView.findViewById(R.id.suggestion_image);
+
+                            suggestion_name.setText(suggestions.get(i).getName());
+                            suggestion_transfer_category.setText(suggestions.get(i).getTransferCategory());
+
+                            String imageIdStr = suggestions.get(i).getImageId();
+                            // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                            int imageResId = context.getResources().getIdentifier(
+                                    imageIdStr,
+                                    "drawable",
+                                    context.getPackageName()
+                            );
+                            suggestion_image.setImageResource(imageResId);
+
+                            String baseName = dbHelper.getCardBaseName(suggestions.get(i).getName());
+                            suggestion_card_search_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
+
+                            suggestion_list.addView(cardView);
+                        }
+
+                        if (!suggestions.isEmpty()) {
+                            suggestion_list.setVisibility(View.VISIBLE);
+                            content_tips2.setVisibility(View.VISIBLE);
+                        } else {
+                            suggestion_list.setVisibility(View.GONE);
+                            content_tips2.setVisibility(View.GONE);
+                        }
                     } else {
-                        adapter.updateData(new ArrayList<>());
-                        suggestionList.setVisibility(View.GONE);
+                        suggestion_list.setVisibility(View.GONE);
+                        content_tips2.setVisibility(View.GONE);
                     }
                 }
 
                 @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
                 @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                }
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
             });
         }
 
         // 显示弹窗（保持原有逻辑）
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(context.getResources().getString(R.string.card_data_search_title))
                 .setView(dialogView)
-                .setPositiveButton("查询", (dialogInterface, which) -> {
-                    String cardName = Objects.requireNonNull(etCardName.getText()).toString().trim();
-                    CardDataHelper.selectCardDataByName(context, cardName);
-                })
-                .setNegativeButton("取消", null)
                 .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);

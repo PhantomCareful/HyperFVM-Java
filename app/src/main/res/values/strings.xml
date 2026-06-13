@@ -15,8 +15,11 @@
     <string name="float_button_data_center_card_data_search">搜索</string>
     <string name="title_data_center_data_images_index">数据图合集</string>
     <string name="label_data_center_data_images_index">😈目标是打造成最全面的数据图合集\n👉点击去查看</string>
-    <string name="card_data_search_title">🔍防御卡数据查询</string>
-    <string name="card_data_search_tips">数据库日期【20260528】\n卡片冷却默认7秒，体力默认50，如有不同会单独标出。</string>
+    <string name="card_data_search_title">防御卡数据查询</string>
+    <string name="card_data_search_data_version">数据库版本：20260528</string>
+    <string name="card_data_search_tips1">👉卡片冷却默认7秒，体力默认50👈\n如有不同会单独标出</string>
+    <string name="card_data_search_tips2">👇点击卡片即可进入数据详情页👇</string>
+    <string name="card_data_search_input_tips">请输入防御卡名称</string>
     <string name="text_data_images_index_tiramisu">米鼠的图</string>
     <string name="text_data_images_index_tiramisu_author">By 夏夜浅酌</string>
     <string name="text_data_images_index_tiramisu_title">一个小提示</string>

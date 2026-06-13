@@ -63,7 +63,7 @@
 
     </ScrollView>
 
-    <!-- 顶部渐变层：覆盖顶部，高度30dp（可调整） -->
+    <!-- 顶部渐变层：覆盖顶部 -->
     <View
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -71,7 +71,7 @@
         android:background="@drawable/scrollview_top_gradient"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- 底部渐变层：覆盖底部，高度30dp（可调整） -->
+    <!-- 底部渐变层：覆盖底部 -->
     <View
         android:layout_width="match_parent"
         android:layout_height="50dp"
