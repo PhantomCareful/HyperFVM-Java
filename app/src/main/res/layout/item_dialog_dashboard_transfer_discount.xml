@@ -1,25 +1,37 @@
 <!--这是防御卡数据按名查询的弹窗样式文件-->
 <!-- 外层容器：垂直布局，包含输入框和建议列表 -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:ignore="HardcodedText" >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="-30dp"
-        android:layout_marginHorizontal="6dp"
         android:scrollbars="none"
         android:clipChildren="false"
-        android:clipToPadding="false" >
+        android:clipToPadding="false"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="30dp"
             android:orientation="vertical"
+            android:paddingBottom="50dp"
             android:clipChildren="false"
             android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"/>
 
             <TextView
                 android:id="@+id/emoji"
@@ -65,13 +77,28 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="top"
-        android:background="@drawable/scrollview_top_gradient"/>
+        android:background="@drawable/scrollview_top_gradient"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <!-- 底部渐变层：覆盖底部，高度30dp（可调整） -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/scrollview_bottom_gradient"/>
+        android:background="@drawable/scrollview_bottom_gradient"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/button_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="关闭窗口"
+        android:textSize="20sp"
+        app:cornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

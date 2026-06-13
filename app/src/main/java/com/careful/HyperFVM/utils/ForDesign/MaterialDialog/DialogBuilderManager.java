@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -148,18 +149,22 @@ public class DialogBuilderManager {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
 
+        TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
+        buttonAction.setText("关闭窗口");
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(title)
                 .setView(dialogView)
-                .setPositiveButton("好的", null)
                 .create();
+
+        buttonAction.setOnClickListener(v -> dialog.dismiss());
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
@@ -168,6 +173,7 @@ public class DialogBuilderManager {
 
     /**
      * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
+     * 通用版
      * @param title                 弹窗标题
      * @param emoji                 弹窗中的大表情
      * @param contentStatus         状态内容
@@ -177,55 +183,352 @@ public class DialogBuilderManager {
      */
     public static void showDashboardDetailDialogAndSeeTiramisuImage(Context context, String title, String emoji, String contentStatus, String contentDetail, String positiveButtonTitle, String imageName) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_tiramisu, null);
 
+        TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
+        buttonAction.setText(positiveButtonTitle);
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        buttonAction.setOnClickListener(v -> {
+            // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
+            // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            if (imageName.isEmpty()) {
+                context.startActivity(new Intent(context, DataImageTiramisuActivity.class));
+                return;
+            }
+
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, imageName + ".png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
+     * 仅适用于美食大赛
+     * @param title                 弹窗标题
+     * @param emoji                 弹窗中的大表情
+     * @param contentStatus         状态内容
+     * @param contentDetail         详细内容
+     */
+    public static void showDashboardDetailDialogAndSeeTiramisuImageFoodContest(Context context, String title, String emoji, String contentStatus, String contentDetail) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_tiramisu_food_contest, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonWeek1 = dialogView.findViewById(R.id.button_week1);
+        Button buttonWeek2 = dialogView.findViewById(R.id.button_week2);
+        Button buttonWeek3 = dialogView.findViewById(R.id.button_week3);
+        Button buttonWeek4 = dialogView.findViewById(R.id.button_week4);
+        titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(title)
                 .setView(dialogView)
-                .setPositiveButton(positiveButtonTitle, (dialogInterface, which) -> {
-                    // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
-                    // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-                    long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
-                    if (localVersionCode == 0 || localVersionCode == 1) {
-                        context.startActivity(new Intent(context, DataImagesIndexActivity.class));
-                        return;
-                    }
-
-                    // 到这里就说明本地确实有图片了
-                    if (imageName.isEmpty()) {
-                        context.startActivity(new Intent(context, DataImageTiramisuActivity.class));
-                        return;
-                    }
-
-                    File dir = new File(context.getFilesDir(), "data_images");
-                    File imageFile = new File(dir, imageName + ".png");
-
-                    if (!imageFile.exists()) {
-                        DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
-                        return;
-                    }
-
-                    Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(imageUri, "image/*");
-
-                    // 授予临时读取权限
-                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                    try {
-                        context.startActivity(intent);
-                    } catch (ActivityNotFoundException e) {
-                        DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
-                    }
-                })
                 .create();
+
+        buttonWeek1.setOnClickListener(v -> {
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_2_3_1.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        buttonWeek2.setOnClickListener(v -> {
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_2_3_2.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        buttonWeek3.setOnClickListener(v -> {
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_2_3_3.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        buttonWeek4.setOnClickListener(v -> {
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_2_3_4.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
+     * 仅适用于百万消费
+     * @param title                 弹窗标题
+     * @param emoji                 弹窗中的大表情
+     * @param contentStatus         状态内容
+     * @param contentDetail         详细内容
+     */
+    public static void showDashboardDetailDialogAndSeeTiramisuImageMillionConsumption(Context context, String title, String emoji, String contentStatus, String contentDetail) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_tiramisu_million_consumption, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonConsumption1 = dialogView.findViewById(R.id.button_consumption1);
+        Button buttonConsumption2 = dialogView.findViewById(R.id.button_consumption2);
+        Button buttonConsumption3 = dialogView.findViewById(R.id.button_consumption3);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonConsumption1.setOnClickListener(v -> {
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_1_3_1.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        buttonConsumption2.setOnClickListener(v -> {
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_1_3_2.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        buttonConsumption3.setOnClickListener(v -> {
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_1_3_3.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+            }
+        });
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
@@ -245,14 +548,17 @@ public class DialogBuilderManager {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_transfer_discount, null);
 
+        TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
-        // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页\
+        // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
         try (DBHelper dbHelper = new DBHelper(context)) {
             LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_list_transfer_discount);
             for (int i = 0; i < discountList.size(); i++) {
@@ -338,10 +644,10 @@ public class DialogBuilderManager {
         }
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(title)
                 .setView(dialogView)
-                .setPositiveButton("好的", null)
                 .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);

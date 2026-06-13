@@ -379,7 +379,11 @@ public class NewYearCatcher {
                 contentDetail = new StringBuilder("👇这些日期才有抢红包活动👇\n");
                 for (int i = 0; i < dateArray.length; i += 2) {
                     if (i + 1 < dateArray.length) {
-                        contentDetail.append(dateArray[i]).append("、").append(dateArray[i + 1]).append("\n");
+                        if (i + 1 == dateArray.length - 1) {
+                            contentDetail.append(dateArray[i]).append("、").append(dateArray[i + 1]);
+                        } else {
+                            contentDetail.append(dateArray[i]).append("、").append(dateArray[i + 1]).append("\n");
+                        }
                     } else {
                         contentDetail.append(dateArray[i]);
                     }
