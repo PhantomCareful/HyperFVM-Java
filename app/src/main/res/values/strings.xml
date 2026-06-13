@@ -288,6 +288,9 @@
     <string name="title_tools_icu">FVM查黑系统\n作者：就喝百事</string>
     <string name="image_tools_icu">🚫</string>
     <string name="label_tools_icu">🥰查询某个QQ号是否存在行骗记录\n👉点击开始查询</string>
+    <string name="dialog_icu_title">查黑系统</string>
+    <string name="dialog_icu_description">输入QQ号以查询是否有行骗记录\n查黑系统原作者为就喝百事\nHyperFVM仅提供本地UI方便查询</string>
+    <string name="dialog_icu_tips">请输入您要查询的QQ号</string>
     <string name="title_tools_card_calculator">强卡最优路径计算器\n作者：夏夜浅酌</string>
     <string name="label_tools_card_calculator">🥰为您提供相对更佳的上卡方案\n👉点击跳转使用</string>
     <string name="title_tools_card_calculator_dialog">强卡最优路径计算器</string>

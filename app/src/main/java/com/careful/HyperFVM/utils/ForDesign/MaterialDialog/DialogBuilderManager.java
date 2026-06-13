@@ -767,36 +767,39 @@ public class DialogBuilderManager {
         // 获取布局中的输入框
         TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
         TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("查黑系统")
                 .setView(dialogView)
-                .setPositiveButton("确定", (dialogInterface, which) -> {
-                    if (etQQ != null) {
-                        String qqNumber = Objects.requireNonNull(etQQ.getText()).toString().trim();
-                        if (qqNumber.isEmpty()) {
-                            Toast.makeText(context, "请输入QQ号", Toast.LENGTH_SHORT).show();
-                        } else if (!qqNumber.matches("\\d+")) {
-                            Toast.makeText(context, "QQ号只能包含数字", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // 使用Icu类查询
-                            IcuHelper icuHelper = new IcuHelper(context);
-                            icuHelper.queryFraudInfo(qqNumber, new IcuHelper.QueryCallback() {
-                                @Override
-                                public void onSuccess(IcuHelper.FraudResult result) {
-                                    showResultDialog(context, result);
-                                }
-
-                                @Override
-                                public void onError(String message) {
-                                    showDialog(context, "查询失败❌", message, true, "好的");
-                                }
-                            });
-                        }
-                    }
-                })
-                .setNegativeButton("取消", null)
                 .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        buttonAction.setOnClickListener(v -> {
+            if (etQQ != null) {
+                String qqNumber = Objects.requireNonNull(etQQ.getText()).toString().trim();
+                if (qqNumber.isEmpty()) {
+                    Toast.makeText(context, "请输入QQ号", Toast.LENGTH_SHORT).show();
+                } else if (!qqNumber.matches("\\d+")) {
+                    Toast.makeText(context, "QQ号只能包含数字", Toast.LENGTH_SHORT).show();
+                } else {
+                    // 使用Icu类查询
+                    IcuHelper icuHelper = new IcuHelper(context);
+                    icuHelper.queryFraudInfo(qqNumber, new IcuHelper.QueryCallback() {
+                        @Override
+                        public void onSuccess(IcuHelper.FraudResult result) {
+                            showResultDialog(context, result);
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            showDialog(context, "查询失败❌", message, true, "好的");
+                        }
+                    });
+                }
+            }
+        });
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
