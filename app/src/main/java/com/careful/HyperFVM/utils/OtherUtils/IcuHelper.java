@@ -30,12 +30,13 @@ import okhttp3.Response;
 
 /**
  * 查黑系统工具类，负责查询QQ号是否被标记为骗子
+ * 适配最新 API：<a href="https://www.msdzls.icu/fraud/getFraudAccountDetail?qq=">...</a>
  */
 public class IcuHelper {
     private final Context context;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
-    private static final String API_URL = "https://www.msdzls.icu/fraud/getFraudDetail?qq=";
+    private static final String API_URL = "https://www.msdzls.icu/fraud/getFraudAccountDetail?qq=";
     private final OkHttpClient client = new OkHttpClient.Builder().build();
 
     public IcuHelper(Context context) {
@@ -44,25 +45,31 @@ public class IcuHelper {
 
     /**
      * 将 API 返回的 ISO 8601 时间（UTC）转换为设备当前时区的日期字符串
-     * @param createTime 格式如 "2026-05-29T02:56:30.000+00:00"
+     * @param time 格式如 "2026-05-29T02:56:30.000+00:00"
      * @return 设备本地时区日期，格式 "yyyy-MM-dd"，解析失败返回原字符串或空
      */
-    private String formatCreateTimeToLocalDate(String createTime) {
-        if (createTime == null || createTime.isEmpty()) {
+    private String formatToLocalDate(String time) {
+        if (time == null || time.isEmpty()) {
             return "";
         }
         try {
-            // 解析 ISO 8601 格式（支持毫秒和时区偏移）
             SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.US);
-            Date date = isoFormat.parse(createTime);
-            // 转换为设备本地时区的日期格式
+            Date date = isoFormat.parse(time);
             SimpleDateFormat localDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             localDateFormat.setTimeZone(TimeZone.getDefault());
             return localDateFormat.format(Objects.requireNonNull(date));
         } catch (ParseException e) {
-            // 解析失败时返回原始字符串（或空字符串）
-            return createTime;
+            return time;
         }
+    }
+
+    /**
+     * 将金额从分转换为元（除以10）
+     * @param amountInCents 分为单位的金额
+     * @return 元为单位的金额，若为0则返回0.0
+     */
+    private double convertAmountToYuan(int amountInCents) {
+        return amountInCents / 10.0;
     }
 
     /**
@@ -76,14 +83,11 @@ public class IcuHelper {
             return;
         }
 
-        // 显示加载对话框
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(context)
                 .setTitle("查询中")
                 .setMessage("正在验证QQ号信息，请稍候...")
                 .setCancelable(false);
         Dialog dialog = dialogBuilder.create();
-
-        // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
         dialog.show();
 
@@ -102,30 +106,56 @@ public class IcuHelper {
                     JSONObject data = root.optJSONObject("data");
                     FraudResult result;
                     if (data == null) {
-                        // 无行骗记录
-                        result = new FraudResult(false, "", "", "", null);
+                        result = new FraudResult(false, "", "", "", null, 0, 0.0, 0, null);
                     } else {
-                        // 有行骗记录
-                        String qq = data.optString("qq", "");
-                        String remark = data.optString("remark", "");
-                        String createTimeRaw = data.optString("createTime", "");
-                        String createTimeLocalDate = formatCreateTimeToLocalDate(createTimeRaw);
-                        List<VictimInfo> victims = new ArrayList<>();
-                        JSONArray records = data.optJSONArray("records");
-                        if (records != null && records.length() > 0) {
-                            for (int i = 0; i < records.length(); i++) {
-                                JSONObject record = records.getJSONObject(i);
-                                String victim = record.optString("victim", "");
-                                if (victim.isEmpty()) {
-                                    victim = "未知";
-                                }
-                                String fraudTime = record.optString("fraudTime", "");
-                                String recordRemark = record.optString("remark", "");
+                        int status = data.optInt("status", -1);
+                        JSONObject fraudAccount = data.optJSONObject("fraudAccount");
+                        if (status != 1 || fraudAccount == null) {
+                            // 无行骗记录
+                            result = new FraudResult(false, "", "", "", null, 0, 0.0, 0, null);
+                        } else {
+                            // 有行骗记录 - 解析骗子信息
+                            String qq = fraudAccount.optString("qq", "");
+                            String lastFraudTime = formatToLocalDate(fraudAccount.optString("lastFraudTime", ""));
+                            int fraudCount = fraudAccount.optInt("fraudCount", 0);
+                            int fraudAmountCents = fraudAccount.optInt("fraudAmount", 0);
+                            double fraudAmount = convertAmountToYuan(fraudAmountCents);
+                            int uncertainAmountCount = fraudAccount.optInt("uncertainAmountCount", 0);
+                            String createTimeLocal = formatToLocalDate(fraudAccount.optString("createTime", ""));
 
-                                victims.add(new VictimInfo(victim, fraudTime, recordRemark));
+                            // 解析受害人列表
+                            List<VictimInfo> victims = new ArrayList<>();
+                            JSONArray fraudRecordList = data.optJSONArray("fraudRecordList");
+                            if (fraudRecordList != null && fraudRecordList.length() > 0) {
+                                for (int i = 0; i < fraudRecordList.length(); i++) {
+                                    JSONObject record = fraudRecordList.getJSONObject(i);
+                                    String victimQq = record.optString("victimQq", "");
+                                    if (victimQq.isEmpty()) {
+                                        victimQq = "未知";
+                                    }
+                                    String platform = record.optString("platform", "");
+                                    if (platform.isEmpty()) {
+                                        platform = null;
+                                    }
+                                    String victimServer = record.optString("victimServer", "");
+                                    if (victimServer.isEmpty()) {
+                                        victimServer = null;
+                                    }
+                                    String time = formatToLocalDate(record.optString("time", ""));
+                                    String remark = record.optString("remark", "");
+                                    int amountStatus = record.optInt("amountStatus", 0);
+                                    Double amount = null;
+                                    if (amountStatus == 1 && record.has("fraudAmount")) {
+                                        int amountCents = record.getInt("fraudAmount");
+                                        amount = convertAmountToYuan(amountCents);
+                                    }
+                                    victims.add(new VictimInfo(victimQq, platform, victimServer, time, remark, amountStatus, amount));
+                                }
                             }
+
+                            // 注意：原 remark 字段（骗子行骗手段）接口已不再提供，置为空字符串
+                            result = new FraudResult(true, qq, "", createTimeLocal, victims, fraudCount, fraudAmount, uncertainAmountCount, lastFraudTime);
                         }
-                        result = new FraudResult(true, qq, remark, createTimeLocalDate, victims);
                     }
 
                     mainHandler.post(() -> {
@@ -156,14 +186,23 @@ public class IcuHelper {
      * 受害人信息
      */
     public static class VictimInfo {
-        public final String victim;      // 受害人QQ号
-        public final String fraudTime;   // 被骗日期，格式 yyyy-MM-dd
-        public final String remark;      // 被骗过程描述
+        public final String victim;          // 受害人QQ号
+        public final String platform;        // 受害者所在平台，可能为 null
+        public final String server;          // 受害者服务器，可能为 null
+        public final String fraudTime;       // 被骗日期，格式 yyyy-MM-dd
+        public final String remark;          // 被骗过程描述
+        public final int amountStatus;       // 是否能确定受骗金额，1=能确定，0=不能确定
+        public final Double amount;          // 受骗金额（元），仅当 amountStatus==1 时有值，否则为 null
 
-        public VictimInfo(String victim, String fraudTime, String remark) {
+        public VictimInfo(String victim, String platform, String server, String fraudTime,
+                          String remark, int amountStatus, Double amount) {
             this.victim = victim;
+            this.platform = platform;
+            this.server = server;
             this.fraudTime = fraudTime;
             this.remark = remark;
+            this.amountStatus = amountStatus;
+            this.amount = amount;
         }
     }
 
@@ -171,18 +210,28 @@ public class IcuHelper {
      * 查询结果封装
      */
     public static class FraudResult {
-        public final boolean isFraud;          // 是否为骗子
-        public final String qq;                // 骗子QQ号
-        public final String remark;            // 骗子备注（行骗手段）
-        public final String recordTime;        // 录入日期（转换后的本地日期，yyyy-MM-dd）
-        public final List<VictimInfo> victims; // 受害人列表，无记录时为 null 或空列表
+        public final boolean isFraud;               // 是否为骗子
+        public final String qq;                     // 骗子QQ号
+        public final String remark;                 // 骗子备注（行骗手段），接口已不提供，固定为空
+        public final String recordTime;             // 录入日期（转换后的本地日期，yyyy-MM-dd）
+        public final List<VictimInfo> victims;      // 受害人列表，无记录时为 null 或空列表
+        public final int fraudCount;                // 行骗次数
+        public final double fraudAmount;            // 行骗总金额（元）
+        public final int uncertainAmountCount;      // 不确定金额的被骗次数
+        public final String lastFraudTime;          // 上一次行骗日期（yyyy-MM-dd）
 
-        public FraudResult(boolean isFraud, String qq, String remark, String recordTime, List<VictimInfo> victims) {
+        public FraudResult(boolean isFraud, String qq, String remark, String recordTime,
+                           List<VictimInfo> victims, int fraudCount, double fraudAmount,
+                           int uncertainAmountCount, String lastFraudTime) {
             this.isFraud = isFraud;
             this.qq = qq;
             this.remark = remark;
             this.recordTime = recordTime;
             this.victims = victims;
+            this.fraudCount = fraudCount;
+            this.fraudAmount = fraudAmount;
+            this.uncertainAmountCount = uncertainAmountCount;
+            this.lastFraudTime = lastFraudTime;
         }
     }
 }

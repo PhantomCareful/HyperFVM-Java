@@ -763,7 +763,7 @@ public class DialogBuilderManager {
     public static void showQQInputDialog(Context context) {
         // 加载自定义布局
         LayoutInflater inflater = LayoutInflater.from(context);
-        View dialogView = inflater.inflate(R.layout.item_dialog_input_layout_icu, null);
+        View dialogView = inflater.inflate(R.layout.item_dialog_input_icu, null);
         // 获取布局中的输入框
         TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
         TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
@@ -823,8 +823,11 @@ public class DialogBuilderManager {
             content_status.setText("是骗子，快跑");
             content_fraud_info.setText("骗子信息👇\n" +
                     "QQ号：" + result.qq + "\n" +
-                    "备注：" + result.remark + "\n" +
-                    "录入日期：" + result.recordTime
+                    "录入时间：" + result.recordTime + "\n" +
+                    "上一次行骗时间：" + result.lastFraudTime + "\n" +
+                    "行骗次数：" + result.fraudCount + "次\n" +
+                    "行骗总金额：" + result.fraudAmount + "元\n" +
+                    "不确定金额的行骗次数：" + result.uncertainAmountCount + "次"
             );
 
             List<IcuHelper.VictimInfo> victims = result.victims;
@@ -836,8 +839,13 @@ public class DialogBuilderManager {
                     victimInfo.append("\n")
                             .append("受害人").append(i + 1).append("👇").append("\n")
                             .append("QQ号：").append(victims.get(i).victim).append("\n")
-                            .append("受骗日期：").append(victims.get(i).fraudTime).append("\n")
-                            .append("受骗备注：").append(victims.get(i).remark).append("\n");
+                            .append("所在平台：").append(victims.get(i).platform).append("\n")
+                            .append("所在区服：").append(victims.get(i).server).append("\n")
+                            .append("被骗日期：").append(victims.get(i).fraudTime).append("\n");
+                    if (victims.get(i).amountStatus == 1) {
+                        victimInfo.append("被骗金额：").append(victims.get(i).amount).append("元\n");
+                    }
+                    victimInfo.append("备注：").append(victims.get(i).remark).append("\n");
                 }
                 content_victim_info.setText(victimInfo.toString());
             }
