@@ -1,12 +1,11 @@
 package com.careful.HyperFVM.utils.OtherUtils;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-
-import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,13 +82,7 @@ public class IcuHelper {
             return;
         }
 
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(context)
-                .setTitle("查询中")
-                .setMessage("正在验证QQ号信息，请稍候...")
-                .setCancelable(false);
-        Dialog dialog = dialogBuilder.create();
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
+        Toast.makeText(context, "查询中⏳⏳⏳", Toast.LENGTH_SHORT).show();
 
         executor.execute(() -> {
             try {
@@ -106,20 +99,20 @@ public class IcuHelper {
                     JSONObject data = root.optJSONObject("data");
                     FraudResult result;
                     if (data == null) {
-                        result = new FraudResult(false, "", "", "", null, 0, 0.0, 0, null);
+                        result = new FraudResult(false, "", "", null, 0, "", 0, null);
                     } else {
                         int status = data.optInt("status", -1);
                         JSONObject fraudAccount = data.optJSONObject("fraudAccount");
                         if (status != 1 || fraudAccount == null) {
                             // 无行骗记录
-                            result = new FraudResult(false, "", "", "", null, 0, 0.0, 0, null);
+                            result = new FraudResult(false, "", "", null, 0, "", 0, null);
                         } else {
                             // 有行骗记录 - 解析骗子信息
                             String qq = fraudAccount.optString("qq", "");
                             String lastFraudTime = formatToLocalDate(fraudAccount.optString("lastFraudTime", ""));
                             int fraudCount = fraudAccount.optInt("fraudCount", 0);
-                            int fraudAmountCents = fraudAccount.optInt("fraudAmount", 0);
-                            double fraudAmount = convertAmountToYuan(fraudAmountCents);
+                            double fraudAmountCents = convertAmountToYuan(fraudAccount.optInt("fraudAmount", 0));
+                            String fraudAmount = fraudAmountCents == 0 ? "未知" : fraudAmountCents + "元";
                             int uncertainAmountCount = fraudAccount.optInt("uncertainAmountCount", 0);
                             String createTimeLocal = formatToLocalDate(fraudAccount.optString("createTime", ""));
 
@@ -129,50 +122,36 @@ public class IcuHelper {
                             if (fraudRecordList != null && fraudRecordList.length() > 0) {
                                 for (int i = 0; i < fraudRecordList.length(); i++) {
                                     JSONObject record = fraudRecordList.getJSONObject(i);
-                                    String victimQq = record.optString("victimQq", "");
-                                    if (victimQq.isEmpty()) {
-                                        victimQq = "未知";
+                                    String victimQQ = record.optString("victimQq", "");
+                                    if (victimQQ.isEmpty() || victimQQ.equals("null")) {
+                                        victimQQ = "未知";
                                     }
                                     String platform = record.optString("platform", "");
-                                    if (platform.isEmpty()) {
-                                        platform = null;
+                                    if (platform.isEmpty() || platform.equals("null")) {
+                                        platform = "未知";
                                     }
                                     String victimServer = record.optString("victimServer", "");
-                                    if (victimServer.isEmpty()) {
-                                        victimServer = null;
+                                    if (victimServer.isEmpty() || victimServer.equals("null")) {
+                                        victimServer = "未知";
                                     }
                                     String time = formatToLocalDate(record.optString("time", ""));
                                     String remark = record.optString("remark", "");
-                                    int amountStatus = record.optInt("amountStatus", 0);
-                                    Double amount = null;
-                                    if (amountStatus == 1 && record.has("fraudAmount")) {
-                                        int amountCents = record.getInt("fraudAmount");
-                                        amount = convertAmountToYuan(amountCents);
-                                    }
-                                    victims.add(new VictimInfo(victimQq, platform, victimServer, time, remark, amountStatus, amount));
+                                    double amountCents = convertAmountToYuan(record.getInt("fraudAmount"));
+                                    String amount = amountCents == 0 ? "未知" : amountCents + "元";
+                                    victims.add(new VictimInfo(victimQQ, platform, victimServer, time, remark, amount));
                                 }
                             }
 
-                            // 注意：原 remark 字段（骗子行骗手段）接口已不再提供，置为空字符串
-                            result = new FraudResult(true, qq, "", createTimeLocal, victims, fraudCount, fraudAmount, uncertainAmountCount, lastFraudTime);
+                            result = new FraudResult(true, qq, createTimeLocal, victims, fraudCount, fraudAmount, uncertainAmountCount, lastFraudTime);
                         }
                     }
 
-                    mainHandler.post(() -> {
-                        dialog.dismiss();
-                        callback.onSuccess(result);
-                    });
+                    mainHandler.post(() -> callback.onSuccess(result));
                 }
             } catch (IOException e) {
-                mainHandler.post(() -> {
-                    dialog.dismiss();
-                    callback.onError("网络异常，请检查网络连接或稍后重试。");
-                });
+                mainHandler.post(() -> callback.onError("网络异常，请检查网络连接或稍后重试。"));
             } catch (JSONException e) {
-                mainHandler.post(() -> {
-                    dialog.dismiss();
-                    callback.onError("解析数据失败，请稍后重试。");
-                });
+                mainHandler.post(() -> callback.onError("解析数据失败，请稍后重试。"));
             }
         });
     }
@@ -185,47 +164,79 @@ public class IcuHelper {
     /**
      * 受害人信息
      */
-    public static class VictimInfo {
-        public final String victim;          // 受害人QQ号
-        public final String platform;        // 受害者所在平台，可能为 null
-        public final String server;          // 受害者服务器，可能为 null
-        public final String fraudTime;       // 被骗日期，格式 yyyy-MM-dd
-        public final String remark;          // 被骗过程描述
-        public final int amountStatus;       // 是否能确定受骗金额，1=能确定，0=不能确定
-        public final Double amount;          // 受骗金额（元），仅当 amountStatus==1 时有值，否则为 null
+    public static class VictimInfo implements Parcelable {
+        public final String victim;
+        public final String platform;
+        public final String server;
+        public final String fraudTime;
+        public final String remark;
+        public final String amount;
 
         public VictimInfo(String victim, String platform, String server, String fraudTime,
-                          String remark, int amountStatus, Double amount) {
+                          String remark, String amount) {
             this.victim = victim;
             this.platform = platform;
             this.server = server;
             this.fraudTime = fraudTime;
             this.remark = remark;
-            this.amountStatus = amountStatus;
             this.amount = amount;
         }
+
+        protected VictimInfo(Parcel in) {
+            victim = in.readString();
+            platform = in.readString();
+            server = in.readString();
+            fraudTime = in.readString();
+            remark = in.readString();
+            amount = in.readString();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(victim);
+            dest.writeString(platform);
+            dest.writeString(server);
+            dest.writeString(fraudTime);
+            dest.writeString(remark);
+            dest.writeString(amount);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<VictimInfo> CREATOR = new Creator<>() {
+            @Override
+            public VictimInfo createFromParcel(Parcel in) {
+                return new VictimInfo(in);
+            }
+
+            @Override
+            public VictimInfo[] newArray(int size) {
+                return new VictimInfo[size];
+            }
+        };
     }
 
     /**
-     * 查询结果封装
+     * 骗子信息
      */
-    public static class FraudResult {
-        public final boolean isFraud;               // 是否为骗子
-        public final String qq;                     // 骗子QQ号
-        public final String remark;                 // 骗子备注（行骗手段），接口已不提供，固定为空
-        public final String recordTime;             // 录入日期（转换后的本地日期，yyyy-MM-dd）
-        public final List<VictimInfo> victims;      // 受害人列表，无记录时为 null 或空列表
-        public final int fraudCount;                // 行骗次数
-        public final double fraudAmount;            // 行骗总金额（元）
-        public final int uncertainAmountCount;      // 不确定金额的被骗次数
-        public final String lastFraudTime;          // 上一次行骗日期（yyyy-MM-dd）
+    public static class FraudResult implements Parcelable {
+        public final boolean isFraud;
+        public final String qq;
+        public final String recordTime;
+        public final List<VictimInfo> victims;
+        public final int fraudCount;
+        public final String fraudAmount;
+        public final int uncertainAmountCount;
+        public final String lastFraudTime;
 
-        public FraudResult(boolean isFraud, String qq, String remark, String recordTime,
-                           List<VictimInfo> victims, int fraudCount, double fraudAmount,
+        public FraudResult(boolean isFraud, String qq, String recordTime,
+                           List<VictimInfo> victims, int fraudCount, String fraudAmount,
                            int uncertainAmountCount, String lastFraudTime) {
             this.isFraud = isFraud;
             this.qq = qq;
-            this.remark = remark;
             this.recordTime = recordTime;
             this.victims = victims;
             this.fraudCount = fraudCount;
@@ -233,5 +244,45 @@ public class IcuHelper {
             this.uncertainAmountCount = uncertainAmountCount;
             this.lastFraudTime = lastFraudTime;
         }
+
+        protected FraudResult(Parcel in) {
+            isFraud = in.readByte() != 0;
+            qq = in.readString();
+            recordTime = in.readString();
+            victims = in.readArrayList(VictimInfo.class.getClassLoader());
+            fraudCount = in.readInt();
+            fraudAmount = in.readString();
+            uncertainAmountCount = in.readInt();
+            lastFraudTime = in.readString();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeByte((byte) (isFraud ? 1 : 0));
+            dest.writeString(qq);
+            dest.writeString(recordTime);
+            dest.writeList(victims);
+            dest.writeInt(fraudCount);
+            dest.writeString(fraudAmount);
+            dest.writeInt(uncertainAmountCount);
+            dest.writeString(lastFraudTime);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<FraudResult> CREATOR = new Creator<>() {
+            @Override
+            public FraudResult createFromParcel(Parcel in) {
+                return new FraudResult(in);
+            }
+
+            @Override
+            public FraudResult[] newArray(int size) {
+                return new FraudResult[size];
+            }
+        };
     }
 }

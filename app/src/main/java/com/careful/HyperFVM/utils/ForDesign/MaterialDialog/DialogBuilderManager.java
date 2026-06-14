@@ -27,6 +27,7 @@ import androidx.core.content.FileProvider;
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.ExportInfo;
+import com.careful.HyperFVM.Activities.DataCenter.IcuFraudActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -814,60 +815,35 @@ public class DialogBuilderManager {
     @SuppressLint({"InflateParams", "SetTextI18n"})
     private static void showResultDialog(Context context, IcuHelper.FraudResult result) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_icu, null);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
 
-        TextView emoji = dialogView.findViewById(R.id.emoji);
-        TextView content_status = dialogView.findViewById(R.id.content_status);
-        TextView content_fraud_info = dialogView.findViewById(R.id.content_fraud_info);
-        TextView content_victim_info = dialogView.findViewById(R.id.content_victim_info);
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
 
         if (result.isFraud) {
-            emoji.setText("🚨");
-            content_status.setText("是骗子，快跑");
-            content_fraud_info.setText("骗子信息👇\n" +
-                    "QQ号：" + result.qq + "\n" +
-                    "录入时间：" + result.recordTime + "\n" +
-                    "上一次行骗时间：" + result.lastFraudTime + "\n" +
-                    "行骗次数：" + result.fraudCount + "次\n" +
-                    "行骗总金额：" + result.fraudAmount + "元\n" +
-                    "不确定金额的行骗次数：" + result.uncertainAmountCount + "次"
-            );
-
-            List<IcuHelper.VictimInfo> victims = result.victims;
-            if (victims.isEmpty()) {
-                content_victim_info.setVisibility(View.GONE);
-            } else {
-                StringBuilder victimInfo = new StringBuilder("受害者信息");
-                for (int i = 0; i < victims.size(); i++) {
-                    victimInfo.append("\n")
-                            .append("受害人").append(i + 1).append("👇").append("\n")
-                            .append("QQ号：").append(victims.get(i).victim).append("\n")
-                            .append("所在平台：").append(victims.get(i).platform).append("\n")
-                            .append("所在区服：").append(victims.get(i).server).append("\n")
-                            .append("被骗日期：").append(victims.get(i).fraudTime).append("\n");
-                    if (victims.get(i).amountStatus == 1) {
-                        victimInfo.append("被骗金额：").append(victims.get(i).amount).append("元\n");
-                    }
-                    victimInfo.append("备注：").append(victims.get(i).remark).append("\n");
-                }
-                content_victim_info.setText(victimInfo.toString());
-            }
+            Intent intent = new Intent(context, IcuFraudActivity.class);
+            intent.putExtra("FraudResult", result);
+            context.startActivity(intent);
         } else {
-            emoji.setText("✅");
-            content_status.setText("暂未被标记为骗子");
-            content_fraud_info.setVisibility(View.GONE);
-            content_victim_info.setVisibility(View.GONE);
+            titleTextView.setText("好消息"); // 设置标题
+            emojiTextView.setText("✅"); // 设置表情符号
+            contentStatusTextView.setText("暂未被标记为骗子"); // 设置状态文本
+            contentDetailTextView.setVisibility(View.GONE);
+            buttonAction.setText("关闭窗口");
+
+            Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                    .setView(dialogView)
+                    .create();
+
+            buttonAction.setOnClickListener(v -> dialog.dismiss());
+
+            // 添加背景模糊
+            DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+            dialog.show();
         }
-
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("查询结果")
-                .setView(dialogView)
-                .setPositiveButton("好的", (dialogInterface, which) -> dialogInterface.dismiss())
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
     }
 
     /**

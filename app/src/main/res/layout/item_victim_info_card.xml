@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="16dp"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/victim_info_qq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/victim_info_platform"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/victim_info_server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 水平线段 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="16dp"
+            android:background="?attr/colorSurface"/>
+
+        <TextView
+            android:id="@+id/victim_info_fraud_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/victim_info_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 水平线段 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="16dp"
+            android:background="?attr/colorSurface"/>
+
+        <TextView
+            android:id="@+id/victim_info_remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

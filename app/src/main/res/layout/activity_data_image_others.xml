@@ -21,7 +21,7 @@
             <LinearLayout
                 android:id="@+id/data_images_index_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
                 android:paddingBottom="50dp"
