@@ -171,7 +171,7 @@ public class ActivityCatcher {
                     }
 
                     // 生成结果文本
-                    contentDetail = targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
+                    contentDetail = targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到\n" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
 
                     callBack.onResult(
                             generateMap("限时双爆", "限时", "⏳", "限时双倍双爆", contentDetail)

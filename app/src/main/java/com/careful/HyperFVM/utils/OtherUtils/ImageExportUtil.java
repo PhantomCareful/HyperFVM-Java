@@ -41,6 +41,7 @@ public class ImageExportUtil {
         if (bitmap == null) {
             DialogBuilderManager.showDialog(context,
                     "出现问题",
+                    "❌",
                     "无法获取图片，请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                     true,
                     "好的");
@@ -64,6 +65,7 @@ public class ImageExportUtil {
         if (uri == null) {
             DialogBuilderManager.showDialog(context,
                     "出现问题",
+                    "❌",
                     "无法创建文件，请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                     true,
                     "好的");
@@ -75,6 +77,7 @@ public class ImageExportUtil {
             if (outputStream == null) {
                 DialogBuilderManager.showDialog(context,
                         "出现问题",
+                        "❌",
                         "无法打开输出流，请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                         true,
                         "好的");
@@ -86,15 +89,17 @@ public class ImageExportUtil {
             outputStream.flush();
 
             DialogBuilderManager.showDialog(context,
-                    "导出成功🎉",
-                    "图片已保存到：Pictures/HyperFVM/" + folderName + "/" + fileName,
+                    "导出成功",
+                    "🎉",
+                    "图片已保存到：\nPictures/HyperFVM/" + folderName + "/" + fileName,
                     true,
                     "好耶");
         } catch (IOException e) {
             Log.e("export", "导出异常", e);
 
             DialogBuilderManager.showDialog(context,
-                    "导出失败❌",
+                    "导出失败",
+                    "❌",
                     "异常信息：" + e.getMessage() + "\n\n请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                     false,
                     "好的");
@@ -125,6 +130,7 @@ public class ImageExportUtil {
             if (bitmap == null) {
                 DialogBuilderManager.showDialog(context,
                         "出现问题",
+                        "❌",
                         "无法获取图片，请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                         true,
                         "好的");
@@ -148,6 +154,7 @@ public class ImageExportUtil {
             if (uri == null) {
                 DialogBuilderManager.showDialog(context,
                         "出现问题",
+                        "❌",
                         "无法创建文件，请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                         true,
                         "好的");
@@ -159,6 +166,7 @@ public class ImageExportUtil {
                 if (outputStream == null) {
                     DialogBuilderManager.showDialog(context,
                             "出现问题",
+                            "❌",
                             "无法打开输出流，请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                             true,
                             "好的");
@@ -172,7 +180,8 @@ public class ImageExportUtil {
                 Log.e("export", "导出异常", e);
 
                 DialogBuilderManager.showDialog(context,
-                        "导出失败❌",
+                        "导出失败",
+                        "❌",
                         "异常信息：" + e.getMessage() + "\n\n请将此界面截图并向开发者反馈。感谢您的支持与配合\uD83E\uDEF0",
                         false,
                         "好的");
@@ -180,8 +189,9 @@ public class ImageExportUtil {
         }
 
         DialogBuilderManager.showDialog(context,
-                "导出成功🎉",
-                "所有图片已保存到：Pictures/HyperFVM/" + folderName,
+                "导出成功",
+                "🎉",
+                "所有图片已保存到：\nPictures/HyperFVM/" + folderName,
                 true,
                 "好耶");
     }

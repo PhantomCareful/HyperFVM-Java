@@ -28,6 +28,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
@@ -265,54 +266,78 @@ public class DataCenterFragment extends Fragment {
         // 提拉米鼠官网
         root.findViewById(R.id.card_tiramisu_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_tiramisu_dialog),
-                getResources().getString(R.string.label_tools_tiramisu_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_tiramisu),
+                100,
+                getResources().getString(R.string.dialog_title_tiramisu),
+                "",
+                getResources().getString(R.string.dialog_url_tiramisu)));
 
         // 陌路の综合数据表
         root.findViewById(R.id.card_molu_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_molu_dialog),
-                getResources().getString(R.string.label_tools_molu_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_molu),
+                0,
+                getResources().getString(R.string.dialog_title_molu),
+                "",
+                getResources().getString(R.string.dialog_url_molu)));
 
         // FAA米苏物流
         root.findViewById(R.id.card_faa_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_faa_dialog),
-                getResources().getString(R.string.label_tools_faa_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_faa),
+                100,
+                getResources().getString(R.string.dialog_title_faa),
+                "",
+                getResources().getString(R.string.dialog_url_faa)));
 
         // 轨道强卡统计
         root.findViewById(R.id.card_guidao_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_guidao_dialog),
-                getResources().getString(R.string.label_tools_guidao_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_guidao),
+                0,
+                getResources().getString(R.string.dialog_title_guidao),
+                "",
+                getResources().getString(R.string.dialog_url_guidao)));
 
         // 卡片鼠军对策表
         root.findViewById(R.id.card_strategy_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_strategy_dialog),
-                getResources().getString(R.string.label_tools_strategy_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_strategy),
+                0,
+                getResources().getString(R.string.dialog_title_strategy),
+                "",
+                getResources().getString(R.string.dialog_url_strategy)));
 
         // 巅峰对决部分机制解析
         root.findViewById(R.id.card_strategy_world_boss_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_strategy_world_boss_dialog),
-                getResources().getString(R.string.label_tools_strategy_world_boss_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_strategy_world_boss),
+                0,
+                getResources().getString(R.string.dialog_title_strategy_world_boss),
+                "",
+                getResources().getString(R.string.dialog_url_strategy_world_boss)));
 
         // FVM查黑系统
         root.findViewById(R.id.card_icu_container).setOnClickListener(v ->
-                DialogBuilderManager.showQQInputDialog(requireContext()));
+                DialogBuilderManager.showIcuQQInputDialog(requireContext()));
 
         // 强卡最优路径计算器
         root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_card_calculator_dialog),
-                getResources().getString(R.string.label_tools_card_calculator_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_card_calculator),
+                25,
+                getResources().getString(R.string.dialog_title_card_calculator),
+                "",
+                getResources().getString(R.string.dialog_url_card_calculator)));
 
         // 宝石最优路径计算器
         root.findViewById(R.id.card_gem_calculator_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_tools_gem_calculator_dialog),
-                getResources().getString(R.string.label_tools_gem_calculator_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_gem_calculator),
+                25,
+                getResources().getString(R.string.dialog_title_tools_gem_calculator),
+                "",
+                getResources().getString(R.string.dialog_url_gem_calculator)));
 
         // 今日运势
         root.findViewById(R.id.card_today_lucky_container).setOnClickListener(v -> {
@@ -722,7 +747,10 @@ public class DataCenterFragment extends Fragment {
                         dashboardBilibiliFVMContainer.setOnClickListener(v ->
                                 DialogBuilderManager.showDialogAndVisitUrl(
                                         requireContext(),
-                                        getResources().getString(R.string.title_tools_bilibili_fvm_dialog),
+                                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_bilibili),
+                                        0,
+                                        getResources().getString(R.string.dialog_title_bilibili),
+                                        getResources().getString(R.string.dialog_sub_title_bilibili_fvm),
                                         content
                                 )
                         );

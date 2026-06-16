@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
@@ -69,8 +70,11 @@ public class AboutAppEffectFragment extends Fragment {
         // 跳转浏览器，前往作者的Github主页
         root.findViewById(R.id.about_app_developer_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_about_app_developer_name_dialog),
-                getResources().getString(R.string.label_about_app_developer_name_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_github),
+                0,
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_developer),
+                getResources().getString(R.string.dialog_url_about_app_developer)));
 
         // 跳转共建团的Activity
         clickToNewActivity(root.findViewById(R.id.about_app_co_construction_team_container), CoContributorTeamActivity.class);
@@ -90,32 +94,47 @@ public class AboutAppEffectFragment extends Fragment {
         // 跳转浏览器，前往App的Github主页
         root.findViewById(R.id.about_app_github_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_about_app_github_dialog),
-                getResources().getString(R.string.label_about_app_github_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_github),
+                0,
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_github),
+                getResources().getString(R.string.dialog_url_github)));
 
         // 跳转浏览器，获取软件更新
         root.findViewById(R.id.about_app_get_update_123pan_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_about_app_get_update_123pan_dialog),
-                getResources().getString(R.string.label_about_app_get_update_123pan_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud_download),
+                0,
+                getResources().getString(R.string.dialog_title_123pan_dialog),
+                getResources().getString(R.string.dialog_sub_title_123pan_dialog),
+                getResources().getString(R.string.dialog_url_123pan)));
 
         // 跳转浏览器，前往作者B站主页
         root.findViewById(R.id.about_app_bilibili_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_about_app_bilibili_dialog),
-                getResources().getString(R.string.label_about_app_bilibili_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_bilibili),
+                0,
+                getResources().getString(R.string.dialog_title_bilibili),
+                getResources().getString(R.string.dialog_sub_title_bilibili),
+                getResources().getString(R.string.dialog_url_bilibili)));
 
         // 跳转浏览器，前往App腾讯频道
         root.findViewById(R.id.about_app_tencent_channel_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_about_app_tencent_channel_dialog),
-                getResources().getString(R.string.label_about_app_tencent_channel_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_qq),
+                0,
+                getResources().getString(R.string.dialog_title_tencent_channel),
+                getResources().getString(R.string.dialog_sub_title_tencent_channel),
+                getResources().getString(R.string.dialog_url_tencent_channel)));
 
         //跳转浏览器，前往App聊天群组
         root.findViewById(R.id.about_app_tencent_group_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                getResources().getString(R.string.title_about_app_tencent_group_dialog),
-                getResources().getString(R.string.title_about_app_tencent_group_url)));
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_qq),
+                0,
+                getResources().getString(R.string.dialog_title_tencent_group),
+                getResources().getString(R.string.dialog_sub_title_tencent_group),
+                getResources().getString(R.string.dialog_url_tencent_group)));
 
         // 查看历史更新日志
         clickToNewActivity(root.findViewById(R.id.about_app_see_update_log_history), UpdateLogHistoryActivity.class);

@@ -15,6 +15,7 @@
             android:id="@+id/Img_ToolsTiramisu"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
+            android:alpha="0.2"
             android:adjustViewBounds="true"
             android:src="@drawable/data_center_image_tiramisu"
             android:scaleType="fitCenter"

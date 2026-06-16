@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
@@ -37,26 +38,33 @@ public class ThanksGameActivity extends BaseActivity {
         // 跳转浏览器，前往陌路的哔哩哔哩主页
         findViewById(R.id.thanks_list_container_fvm_1).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                getResources().getString(R.string.title_thanks_list_fvm_1_dialog),
-                getResources().getString(R.string.label_thanks_list_fvm_1_url)));
+                ContextCompat.getDrawable(this, R.drawable.ic_bilibili),
+                0,
+                getResources().getString(R.string.dialog_title_bilibili),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_fvm_1),
+                getResources().getString(R.string.dialog_url_thanks_list_fvm_1)));
 
         // 跳转浏览器，前往夏夜的哔哩哔哩主页
         findViewById(R.id.thanks_list_container_fvm_2).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                getResources().getString(R.string.title_thanks_list_fvm_2_dialog),
-                getResources().getString(R.string.label_thanks_list_fvm_2_url)));
+                ContextCompat.getDrawable(this, R.drawable.ic_bilibili),
+                0,
+                getResources().getString(R.string.dialog_title_bilibili),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_fvm_2),
+                getResources().getString(R.string.dialog_url_thanks_list_fvm_2)));
 
         // 跳转浏览器，前往高清图楼帖子
         findViewById(R.id.thanks_list_container_fvm_3).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                getResources().getString(R.string.title_thanks_list_fvm_3_dialog),
-                getResources().getString(R.string.label_thanks_list_fvm_3_url)));
+                ContextCompat.getDrawable(this, R.drawable.ic_tieba),
+                0,
+                getResources().getString(R.string.dialog_title_thanks_list_fvm_3),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_fvm_3),
+                getResources().getString(R.string.dialog_url_thanks_list_fvm_3)));
 
         // 跳转浏览器，前往查黑系统网站
-        findViewById(R.id.thanks_list_container_fvm_4).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                this,
-                getResources().getString(R.string.title_thanks_list_fvm_4_dialog),
-                getResources().getString(R.string.label_thanks_list_fvm_4_url)));
+        findViewById(R.id.thanks_list_container_fvm_4).setOnClickListener(v ->
+                DialogBuilderManager.showIcuQQInputDialog(this));
     }
 
     /**

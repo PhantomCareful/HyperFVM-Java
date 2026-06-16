@@ -581,7 +581,11 @@ public class CardData4Activity extends BaseActivity {
      * 批量导出图片
      */
     private void exportAllImages(List<ExportInfo> exportInfoList) {
-        DialogBuilderManager.showExportAllImagesDialog(this, cardName, exportInfoList);
+        DialogBuilderManager.showDialogWithCallBack(
+                this, "导出所有图片", "📦",
+                "图片将保存到：\nPictures/" + getResources().getString(R.string.app_name) + "/" + cardName, true,
+                "咱手滑了", "一键导出", () -> ImageExportUtil.exportAllImages(this, cardName, exportInfoList)
+        );
     }
 
     @Override

@@ -8,11 +8,14 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Outline;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,7 +29,6 @@ import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.ExportInfo;
 import com.careful.HyperFVM.Activities.DataCenter.IcuFraudActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
@@ -35,8 +37,8 @@ import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.ForCardSearch.CardSearchSuggestion;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
-import com.careful.HyperFVM.utils.OtherUtils.ImageExportUtil;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -54,17 +56,30 @@ public class DialogBuilderManager {
      * 一般弹窗展示方法，仅展示内容和一个按钮，不做任何额外的操作。
      * @param context 上下文
      * @param title 弹窗标题
+     * @param emoji 状态表情
      * @param content 弹窗内容
      * @param cancelable 弹窗是否可以通过点击背景关闭
      * @param positiveButtonTitle 弹窗按钮标题，比如【确定】
      */
-    public static void showDialog(Context context, String title, String content, boolean cancelable, String positiveButtonTitle) {
+    public static void showDialog(Context context, String title, String emoji, String content, boolean cancelable, String positiveButtonTitle) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_general, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentTextView = dialogView.findViewById(R.id.content);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentTextView.setText(content); // 设置内容文本
+        buttonAction.setText(positiveButtonTitle);
+
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(title)
-                .setMessage(content)
+                .setView(dialogView)
                 .setCancelable(cancelable)
-                .setPositiveButton(positiveButtonTitle, (dialogInterface, which) -> dialogInterface.dismiss())
                 .create();
+
+        buttonAction.setOnClickListener(v -> dialog.dismiss());
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
@@ -75,18 +90,42 @@ public class DialogBuilderManager {
      * 一般弹窗展示方法，仅展示内容和一个按钮，调用的时候可通过回调执行点击事件
      * @param context 上下文
      * @param title 弹窗标题
+     * @param emoji 用表情表示状态
      * @param content 弹窗内容
      * @param cancelable 弹窗是否可以通过点击背景关闭
      * @param positiveButtonTitle 弹窗按钮标题，比如【确定】
+     * @param negativeButtonTitle 弹窗按钮标题，比如【关闭窗口】
      * @param callBack 回调事件，点击按钮后执行
      */
-    public static void showDialogWithCallBack(Context context, String title, String content, boolean cancelable, String positiveButtonTitle, PositiveButtonClickCallBack callBack) {
+    public static void showDialogWithCallBack(
+            Context context, String title, String emoji, String content, boolean cancelable,
+            String negativeButtonTitle, String positiveButtonTitle, PositiveButtonClickCallBack callBack
+    ) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_general_call_back, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentTextView = dialogView.findViewById(R.id.content);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentTextView.setText(content); // 设置内容文本
+        buttonClose.setText(negativeButtonTitle);
+        buttonAction.setText(positiveButtonTitle);
+
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(title)
-                .setMessage(content)
+                .setView(dialogView)
                 .setCancelable(cancelable)
-                .setPositiveButton(positiveButtonTitle, (dialogInterface, which) -> callBack.onResult())
                 .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        buttonAction.setOnClickListener(v -> {
+            callBack.onResult();
+            dialog.dismiss();
+        });
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
@@ -100,8 +139,8 @@ public class DialogBuilderManager {
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setTitle("签名校验失败")
                 .setMessage("同学，您使用的HyperFVM非官方版本，应用将关闭。\n请从以下官方渠道下载安装，非常感谢~\n\n" +
-                        "Github【HyperFVM-Java】：" + context.getResources().getString(R.string.label_about_app_github_url) + "\n" +
-                        "腾讯频道【HyperFVM交流社区】：" + context.getResources().getString(R.string.label_about_app_tencent_channel_url))
+                        "Github【HyperFVM-Java】：" + context.getResources().getString(R.string.dialog_url_github) + "\n" +
+                        "腾讯频道【HyperFVM交流社区】：" + context.getResources().getString(R.string.dialog_url_tencent_channel))
                 .setCancelable(false)
                 .setPositiveButton("确定", (dialogInterface, which) -> {
                     // 退出应用
@@ -219,7 +258,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, imageName + ".png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -233,7 +279,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -285,7 +338,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, "tiramisu_image_2_3_1.png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -299,7 +359,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -316,7 +383,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, "tiramisu_image_2_3_2.png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -330,7 +404,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -347,7 +428,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, "tiramisu_image_2_3_3.png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -361,7 +449,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -378,7 +473,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, "tiramisu_image_2_3_4.png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -392,7 +494,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -445,7 +554,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, "tiramisu_image_1_3_1.png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -459,7 +575,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -476,7 +599,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, "tiramisu_image_1_3_2.png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -490,7 +620,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -507,7 +644,14 @@ public class DialogBuilderManager {
             File imageFile = new File(dir, "tiramisu_image_1_3_3.png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -521,7 +665,14 @@ public class DialogBuilderManager {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(context, context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
 
@@ -729,29 +880,59 @@ public class DialogBuilderManager {
     }
 
     /**
-     * 美食数据站：展示二次确认跳转弹窗
+     * 跳转给定Url的确认弹窗
+     * @param image 要展示的图片资源id，字符串形式
+     * @param imageRadius 图片裁剪的圆角
      * @param title 要前往的网站名字
-     * @param url   网址链接
+     * @param subTitle 网站具体的内容
+     * @param url 访问链接
      */
-    public static void showDialogAndVisitUrl(Context context, String title, String url) {
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("二次确认防误触")
-                .setMessage("即将前往：\n" + title) // 显示要前往哪个网站
-                .setPositiveButton("立即跳转\uD83E\uDD13", (dialogInterface, which) -> {
-                    // 确认后执行跳转
-                    //创建打开浏览器的Intent
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
+    @SuppressLint("InflateParams,DiscouragedApi")
+    public static void showDialogAndVisitUrl(Context context, Drawable image, int imageRadius, String title, String subTitle, String url) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_visit_url, null);
 
-                    //启动浏览器（添加try-catch处理没有浏览器的异常）
-                    try {
-                        context.startActivity(intent);
-                    } catch (Exception e) {
-                        Toast.makeText(context, "无法打开浏览器", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("咱手滑了\uD83E\uDEE3", null)
+        ImageView visit_image = dialogView.findViewById(R.id.visit_image);
+        TextView visit_title = dialogView.findViewById(R.id.visit_title);
+        TextView visit_sub_title = dialogView.findViewById(R.id.visit_sub_title);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
+
+        visit_image.setImageDrawable(image);
+        visit_image.setClipToOutline(true);
+        visit_image.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                float radius = DensityUtil.dpToPx(context, imageRadius);
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radius);
+            }
+        });
+
+        visit_title.setText(title);
+        if (subTitle.isEmpty()) {
+            visit_sub_title.setVisibility(View.GONE);
+        } else {
+            visit_sub_title.setText(subTitle);
+        }
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
                 .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        buttonAction.setOnClickListener(v -> {
+            //创建打开浏览器的Intent
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+
+            //启动浏览器（添加try-catch处理没有浏览器的异常）
+            try {
+                context.startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context, "无法打开浏览器", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
@@ -761,7 +942,7 @@ public class DialogBuilderManager {
     /**
      * 查黑系统：显示查询弹窗
      */
-    public static void showQQInputDialog(Context context) {
+    public static void showIcuQQInputDialog(Context context) {
         // 加载自定义布局
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.item_dialog_input_icu, null);
@@ -790,12 +971,19 @@ public class DialogBuilderManager {
                     icuHelper.queryFraudInfo(qqNumber, new IcuHelper.QueryCallback() {
                         @Override
                         public void onSuccess(IcuHelper.FraudResult result) {
-                            showResultDialog(context, result);
+                            showIcuResultDialog(context, result);
                         }
 
                         @Override
                         public void onError(String message) {
-                            showDialog(context, "查询失败❌", message, true, "好的");
+                            showDialog(
+                                    context,
+                                    "查询失败",
+                                    "❌",
+                                    message,
+                                    true,
+                                    "好的"
+                            );
                         }
                     });
                 }
@@ -809,11 +997,10 @@ public class DialogBuilderManager {
 
     /**
      * 查黑系统：显示查询结果弹窗
-     *
      * @param result 把查询到的结果显示到弹窗上
      */
     @SuppressLint({"InflateParams", "SetTextI18n"})
-    private static void showResultDialog(Context context, IcuHelper.FraudResult result) {
+    private static void showIcuResultDialog(Context context, IcuHelper.FraudResult result) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
 
@@ -958,21 +1145,4 @@ public class DialogBuilderManager {
         dialog.show();
     }
 
-    /**
-     * 批量导出图片的弹窗
-     */
-    public static void showExportAllImagesDialog(Context context, String folderName, List<ExportInfo> exportInfoList) {
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("导出所有图片")
-                .setMessage("图片将保存到：Pictures/" + context.getResources().getString(R.string.app_name) +
-                        "/" + folderName)
-                .setPositiveButton("确定", (dialogInterface, which) -> ImageExportUtil.exportAllImages(context, folderName, exportInfoList))
-                .setNegativeButton("咱手滑了\uD83E\uDEE3", (dialogInterface, which) -> dialogInterface.dismiss())
-                .setCancelable(true)
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
 }

@@ -25,7 +25,9 @@ import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageWeaponAndGe
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
+
 import android.widget.ScrollView;
+
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -94,7 +96,7 @@ public class DataImagesIndexActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // 小白条沉浸
         EdgeToEdge.enable(this);
-        if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
+        if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
         setContentView(R.layout.activity_data_images_index);
@@ -125,35 +127,37 @@ public class DataImagesIndexActivity extends BaseActivity {
             data_images_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
         }
         data_images_index_delete_container.setOnLongClickListener(v -> {
-            DialogBuilderManager.showDialogWithCallBack(this, "二次确认", "将删除所有本地图片。", true, "确定", () -> {
-                data_images_index_delete_title.setText("操作执行中⏳");
-                setAllCardViewEnabled(false);
+            DialogBuilderManager.showDialogWithCallBack(
+                    this, "二次确认", "🗑️", "将删除所有本地图片。删除后，您需要重新下载才能查看。", true,
+                    "咱手滑了", "开始删除", () -> {
+                        data_images_index_delete_title.setText("操作执行中⏳");
+                        setAllCardViewEnabled(false);
 
-                File dir = new File(getFilesDir(), "data_images");
-                if (!dir.exists()) return; // 目录不存在，无需清理
+                        File dir = new File(getFilesDir(), "data_images");
+                        if (!dir.exists()) return; // 目录不存在，无需清理
 
-                File[] files = dir.listFiles();
-                if (files == null) return; // 目录为空，也无需清理
+                        File[] files = dir.listFiles();
+                        if (files == null) return; // 目录为空，也无需清理
 
-                for (File file : files) {
-                    if (file.isFile()) {
-                        file.delete();
-                    }
-                }
+                        for (File file : files) {
+                            if (file.isFile()) {
+                                file.delete();
+                            }
+                        }
 
-                data_images_index_delete_title.setText("删除完成🎉🎉🎉");
-                data_images_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
+                        data_images_index_delete_title.setText("删除完成🎉🎉🎉");
+                        data_images_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
 
-                LocalVersionUtil.setImageResourcesVersionCode(DataImagesIndexActivity.this, 1);
-                mainHandler.post(() -> {
-                    setAllCardViewEnabled(false);
-                    data_images_index_delete_container.setEnabled(true);
-                    TransitionManager.beginDelayedTransition(scrollView, transition);
-                    data_images_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
-                    data_images_index_update_info_description.setText("删除图片后需要重新下载才能查看哦");
-                    data_images_index_update_info_container.setOnClickListener(view -> downloadImages(dataImagesInfoList));
-                });
-            });
+                        LocalVersionUtil.setImageResourcesVersionCode(DataImagesIndexActivity.this, 1);
+                        mainHandler.post(() -> {
+                            setAllCardViewEnabled(false);
+                            data_images_index_delete_container.setEnabled(true);
+                            TransitionManager.beginDelayedTransition(scrollView, transition);
+                            data_images_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
+                            data_images_index_update_info_description.setText("删除图片后需要重新下载才能查看哦");
+                            data_images_index_update_info_container.setOnClickListener(view -> downloadImages(dataImagesInfoList));
+                        });
+                    });
 
             return true;
         });
@@ -237,6 +241,7 @@ public class DataImagesIndexActivity extends BaseActivity {
                 DialogBuilderManager.showDialog(
                         DataImagesIndexActivity.this,
                         "抛出异常",
+                        "❌",
                         "请将本页面截图反馈给开发者：\n" + e,
                         true,
                         "好的"
@@ -307,6 +312,7 @@ public class DataImagesIndexActivity extends BaseActivity {
     /**
      * 检查私有目录内是否有webp格式的图片
      * 这些图片是旧版本下载的图片，清晰度较低，应该删除
+     *
      * @return 是否存在
      */
     private boolean hasWebpImages() {
@@ -324,78 +330,82 @@ public class DataImagesIndexActivity extends BaseActivity {
 
     /**
      * 下载图片
+     *
      * @param dataImagesInfoList 需要下载的图片的信息
      *                           全量下载：请传入dataImagesInfoList
      *                           增量下载：请传入needUpdateDataImagesInfoList
      */
     @SuppressLint("SetTextI18n")
     private void downloadImages(List<DataImagesInfo> dataImagesInfoList) {
-        DialogBuilderManager.showDialogWithCallBack(this, "二次确认", "将开始下载图片资源，请确认网络流量消耗。", true, "确定", () -> {
-            final AtomicInteger completedCount = new AtomicInteger(0);
+        DialogBuilderManager.showDialogWithCallBack(
+                this, "二次确认", "⬇️", "将开始下载图片资源，请注意网络流量消耗。", true,
+                "咱手滑了", "开始下载", () -> {
+                    final AtomicInteger completedCount = new AtomicInteger(0);
 
-            // 清空之前的失败记录
-            downloadFailedDataImagesInfoList.clear();
+                    // 清空之前的失败记录
+                    downloadFailedDataImagesInfoList.clear();
 
-            TransitionManager.beginDelayedTransition(scrollView, transition);
-            data_images_index_update_info_title.setText("正在下载，已完成(" + completedCount + "/" + dataImagesInfoList.size() + ")⏳");
-            data_images_index_update_info_description.setText("请保持App处于前台状态，并不要退出本界面");
-            // 将卡片点击事件设置为null，防止重复下载
-            data_images_index_update_info_container.setOnClickListener(null);
-            data_images_index_update_info_container.setOnLongClickListener(null);
-            // 下载过程中不能查看图片
-            setAllCardViewEnabled(false);
+                    TransitionManager.beginDelayedTransition(scrollView, transition);
+                    data_images_index_update_info_title.setText("正在下载，已完成(" + completedCount + "/" + dataImagesInfoList.size() + ")⏳");
+                    data_images_index_update_info_description.setText("请保持App处于前台状态，并不要退出本界面");
+                    // 将卡片点击事件设置为null，防止重复下载
+                    data_images_index_update_info_container.setOnClickListener(null);
+                    data_images_index_update_info_container.setOnLongClickListener(null);
+                    // 下载过程中不能查看图片
+                    setAllCardViewEnabled(false);
 
-            for (DataImagesInfo dataImagesInfo : dataImagesInfoList) {
-                downloadExecutor.execute(() -> {
-                    boolean success = downloadSingleImage(dataImagesInfo);
-                    int current = completedCount.incrementAndGet();
-                    if (!success) {
-                        synchronized (downloadFailedDataImagesInfoList) {
-                            downloadFailedDataImagesInfoList.add(dataImagesInfo);
-                        }
-                    }
-
-                    // 更新下载进度
-                    mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + dataImagesInfoList.size() + ")⏳"));
-
-                    // 全部完成
-                    if (current == dataImagesInfoList.size() && !isActivityDestroyed) {
-                        mainHandler.post(() -> {
-                            data_images_index_update_info_title.setText("更新完成🎉🎉🎉");
-                            if (downloadFailedDataImagesInfoList.isEmpty()) {
-                                data_images_index_update_info_description.setText(
-                                        dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败");
-
-                                // 更新本地版本号，取图片信息中版本号最大的值
-                                long newestVersion = 0;
-                                for (DataImagesInfo info : dataImagesInfoList) {
-                                    if (info.getVersion() > newestVersion) {
-                                        newestVersion = info.getVersion();
-                                    }
+                    for (DataImagesInfo dataImagesInfo : dataImagesInfoList) {
+                        downloadExecutor.execute(() -> {
+                            boolean success = downloadSingleImage(dataImagesInfo);
+                            int current = completedCount.incrementAndGet();
+                            if (!success) {
+                                synchronized (downloadFailedDataImagesInfoList) {
+                                    downloadFailedDataImagesInfoList.add(dataImagesInfo);
                                 }
-                                LocalVersionUtil.setImageResourcesVersionCode(this, newestVersion);
+                            }
 
-                            } else {
-                                data_images_index_update_info_description.setText(
-                                        dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败" + "\n" +
-                                                "点击本卡片可重新下载更新失败的图片"
-                                );
-                                data_images_index_update_info_container.setOnClickListener(v -> downloadImages(downloadFailedDataImagesInfoList));
-                                data_images_index_update_info_container.setOnLongClickListener(v -> {
-                                    downloadImages(dataImagesInfoList);
-                                    return true;
+                            // 更新下载进度
+                            mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + dataImagesInfoList.size() + ")⏳"));
+
+                            // 全部完成
+                            if (current == dataImagesInfoList.size() && !isActivityDestroyed) {
+                                mainHandler.post(() -> {
+                                    data_images_index_update_info_title.setText("更新完成🎉🎉🎉");
+                                    if (downloadFailedDataImagesInfoList.isEmpty()) {
+                                        data_images_index_update_info_description.setText(
+                                                dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败");
+
+                                        // 更新本地版本号，取图片信息中版本号最大的值
+                                        long newestVersion = 0;
+                                        for (DataImagesInfo info : dataImagesInfoList) {
+                                            if (info.getVersion() > newestVersion) {
+                                                newestVersion = info.getVersion();
+                                            }
+                                        }
+                                        LocalVersionUtil.setImageResourcesVersionCode(this, newestVersion);
+
+                                    } else {
+                                        data_images_index_update_info_description.setText(
+                                                dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败" + "\n" +
+                                                        "点击本卡片可重新下载更新失败的图片"
+                                        );
+                                        data_images_index_update_info_container.setOnClickListener(v -> downloadImages(downloadFailedDataImagesInfoList));
+                                        data_images_index_update_info_container.setOnLongClickListener(v -> {
+                                            downloadImages(dataImagesInfoList);
+                                            return true;
+                                        });
+                                    }
+                                    setAllCardViewEnabled(true);
                                 });
                             }
-                            setAllCardViewEnabled(true);
                         });
                     }
                 });
-            }
-        });
     }
 
     /**
      * 下载单张图片的方法
+     *
      * @param dataImagesInfo 图片信息
      * @return 是否成功
      */

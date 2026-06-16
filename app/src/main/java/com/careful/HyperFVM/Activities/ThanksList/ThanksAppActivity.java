@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
@@ -37,20 +38,29 @@ public class ThanksAppActivity extends BaseActivity {
         //跳转浏览器，前往miuix仓库
         findViewById(R.id.thanks_list_container_app_1).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                getResources().getString(R.string.title_thanks_list_app_1_dialog),
-                getResources().getString(R.string.label_thanks_list_app_1_url)));
+                ContextCompat.getDrawable(this, R.drawable.ic_github),
+                0,
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_app_1),
+                getResources().getString(R.string.dialog_url_thanks_list_app_1)));
 
         //跳转浏览器，前往HyperCeiler仓库
         findViewById(R.id.thanks_list_container_app_2).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                getResources().getString(R.string.title_thanks_list_app_2_dialog),
-                getResources().getString(R.string.label_thanks_list_app_2_url)));
+                ContextCompat.getDrawable(this, R.drawable.ic_github),
+                0,
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_app_2),
+                getResources().getString(R.string.dialog_url_thanks_list_app_2)));
 
         //跳转浏览器，前往BlurView仓库
         findViewById(R.id.thanks_list_container_app_3).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                getResources().getString(R.string.title_thanks_list_app_3_dialog),
-                getResources().getString(R.string.label_thanks_list_app_3_url)));
+                ContextCompat.getDrawable(this, R.drawable.ic_github),
+                0,
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_app_3),
+                getResources().getString(R.string.dialog_url_thanks_list_app_3)));
 
     }
 

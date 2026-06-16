@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.BaseActivity;
@@ -136,8 +137,11 @@ public class CheckUpdateActivity extends BaseActivity {
         // 加入群组按钮
         float_button_join.setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                getResources().getString(R.string.title_about_app_tencent_group_dialog),
-                getResources().getString(R.string.title_about_app_tencent_group_url)));
+                ContextCompat.getDrawable(this, R.drawable.ic_qq),
+                0,
+                getResources().getString(R.string.dialog_title_tencent_group),
+                getResources().getString(R.string.dialog_sub_title_tencent_group),
+                getResources().getString(R.string.dialog_url_tencent_group)));
     }
 
     @SuppressLint("SetTextI18n")

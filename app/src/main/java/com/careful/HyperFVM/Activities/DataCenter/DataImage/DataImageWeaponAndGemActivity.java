@@ -62,7 +62,14 @@ public class DataImageWeaponAndGemActivity extends AppCompatActivity {
             File imageFile = new File(dir, imageName + ".png");
 
             if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(this, getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title), getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        this,
+                        getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        "❌",
+                        true,
+                        "好的"
+                );
                 return;
             }
 
@@ -76,7 +83,14 @@ public class DataImageWeaponAndGemActivity extends AppCompatActivity {
             try {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(this, getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title), getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content), true, "好的");
+                DialogBuilderManager.showDialog(
+                        this,
+                        getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
             }
         });
     }
