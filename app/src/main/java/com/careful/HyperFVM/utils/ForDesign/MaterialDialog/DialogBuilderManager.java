@@ -135,19 +135,51 @@ public class DialogBuilderManager {
     /**
      * 签名校验弹窗
      */
+    @SuppressLint("InflateParams")
     public static void showSignatureCheckerDialog(Context context) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_signature_check, null);
+
+        Button buttonAction1 = dialogView.findViewById(R.id.button_action1);
+        Button buttonAction2 = dialogView.findViewById(R.id.button_action2);
+        Button buttonAction3 = dialogView.findViewById(R.id.button_action3);
+
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("签名校验失败")
-                .setMessage("同学，您使用的HyperFVM非官方版本，应用将关闭。\n请从以下官方渠道下载安装，非常感谢~\n\n" +
-                        "Github【HyperFVM-Java】：" + context.getResources().getString(R.string.dialog_url_github) + "\n" +
-                        "腾讯频道【HyperFVM交流社区】：" + context.getResources().getString(R.string.dialog_url_tencent_channel))
+                .setView(dialogView)
                 .setCancelable(false)
-                .setPositiveButton("确定", (dialogInterface, which) -> {
-                    // 退出应用
-                    android.os.Process.killProcess(android.os.Process.myPid());
-                    System.exit(0);
-                })
                 .create();
+
+        buttonAction1.setOnClickListener(v -> {
+            //创建打开浏览器的Intent
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(context.getResources().getString(R.string.dialog_url_tencent_channel)));
+
+            //启动浏览器（添加try-catch处理没有浏览器的异常）
+            try {
+                context.startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context, "无法打开浏览器", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonAction2.setOnClickListener(v -> {
+            //创建打开浏览器的Intent
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(context.getResources().getString(R.string.dialog_url_github)));
+
+            //启动浏览器（添加try-catch处理没有浏览器的异常）
+            try {
+                context.startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context, "无法打开浏览器", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonAction3.setOnClickListener(v -> {
+            // 退出App
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+        });
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
@@ -158,20 +190,14 @@ public class DialogBuilderManager {
      * 第一次使用App时的弹窗
      */
     public static void showWelcomeDialog(Context context) {
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("欢迎使用 HyperFVM")
-                .setMessage("如果您是第一次使用，建议您先阅读使用说明，以快速了解本App。")
-                .setPositiveButton("去阅读👉", (dialogInterface, which) -> {
+        showDialogWithCallBack(
+                context, "欢迎使用\nHyperFVM", "🎉",
+                "这是一款专为《美食大战老鼠》游戏制作的工具箱。如果您是第一次使用，强烈建议您先阅读使用说明，以便快速了解App。\n\nHyperFVM是免费软件，如果您是花钱买来的，请立即联系卖家退款。",
+                false, "我是老手", "去阅读", () -> {
                     Intent intent = new Intent(context, UsingInstructionActivity.class);
                     context.startActivity(intent);
-                })
-                .setNegativeButton("我是老手\uD83D\uDE0E", null)
-                .setCancelable(false)
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
+                }
+        );
     }
 
     /**
@@ -1034,27 +1060,6 @@ public class DialogBuilderManager {
     }
 
     /**
-     * 设置：通知权限申请
-     */
-    public static void showNotificationPermissionRequestDialog(Context context) {
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("权限申请")
-                .setMessage("为了向通知中心推送消息，需要您授予通知权限哦~")
-                .setCancelable(false)
-                .setPositiveButton("去开启", (dialogInterface, which) -> {
-                    Intent intent = new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                            .putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-                    context.startActivity(intent);
-                })
-                .setNegativeButton("取消", null)
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
-    }
-
-    /**
      * 通用的列表弹窗的构建方法
      */
     public static void showSelectionDialog(Context context, int arrayId, String currentContent, String dialogTitle, String dbHelperUpdateContent, TextView currentSelection,
@@ -1116,15 +1121,15 @@ public class DialogBuilderManager {
      */
     @SuppressLint("QueryPermissionsNeeded")
     public static void showPackageInstallPermissionDialog(Context context) {
-        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle("需要安装权限")
-                .setMessage("应用需要\"安装未知应用\"权限才能安装更新。\n\n请点击\"去设置\"按钮，然后在设置中找到\"安装未知应用\"或\"特殊应用权限\"，为HyperFVM开启安装权限。")
-                .setPositiveButton("去设置", (dialogInterface, which) -> {
+        showDialogWithCallBack(
+                context, "权限申请", "🛠️",
+                "系统规定，必须要授予App\"安装未知应用\"权限，才能在App内拉起软件安装程序进行安装。\n\nHyperFVM仅会在应用内升级时使用此权限，且必须经过您手动点击安装按钮才会执行，不会私自发起安装，请您放心。",
+                true, "关闭窗口", "去授权", () -> {
                     // 跳转到安装未知应用权限设置页面
                     Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
 
                     // 需要指定包名
-                    intent.setData(android.net.Uri.parse("package:" + context.getPackageName()));
+                    intent.setData(Uri.parse("package:" + context.getPackageName()));
 
                     // 检查是否有可以处理此Intent的应用
                     if (intent.resolveActivity(context.getPackageManager()) != null) {
@@ -1132,17 +1137,11 @@ public class DialogBuilderManager {
                     } else {
                         // 如果无法跳转到精确设置页面，跳转到应用详情页
                         Intent appDetailsIntent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        appDetailsIntent.setData(android.net.Uri.parse("package:" + context.getPackageName()));
+                        appDetailsIntent.setData(Uri.parse("package:" + context.getPackageName()));
                         context.startActivity(appDetailsIntent);
                     }
-                })
-                .setNegativeButton("取消", (dialogInterface, which) -> dialogInterface.dismiss())
-                .setCancelable(false)
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
+                }
+        );
     }
 
 }

@@ -338,7 +338,7 @@ public class DataImagesIndexActivity extends BaseActivity {
     @SuppressLint("SetTextI18n")
     private void downloadImages(List<DataImagesInfo> dataImagesInfoList) {
         DialogBuilderManager.showDialogWithCallBack(
-                this, "二次确认", "⬇️", "将开始下载图片资源，请注意网络流量消耗。", true,
+                this, "二次确认", "\uD83D\uDCE5", "将开始下载图片资源，请注意网络流量消耗。", true,
                 "咱手滑了", "开始下载", () -> {
                     final AtomicInteger completedCount = new AtomicInteger(0);
 

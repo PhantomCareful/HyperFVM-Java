@@ -97,45 +97,38 @@ public class SettingsActivity extends BaseActivity {
         TextView notificationStateTv = findViewById(R.id.permission_current_state_notification);
         TextView installStateTv = findViewById(R.id.permission_current_state_install);
 
-        // 2.1 检查通知权限并更新状态
+        // 2.1 跳转授予通知权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (!hasNotificationPermission()) {
-                //点击授权
-                findViewById(R.id.permission_notification_container).setOnClickListener(v -> {
-                    // 调用已注册的权限请求器
-                    Intent intent = new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                            .putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, getPackageName());
-                    startActivity(intent);
-                });
-            } else {
-                // 有权限时移除点击事件
-                findViewById(R.id.permission_notification_container).setOnClickListener(null);
-            }
-        }
-
-        // 2.2 检查安装权限并更新状态
-        if (!hasInstallPermission()) {
             //点击授权
-            findViewById(R.id.permission_install_container).setOnClickListener(v -> {
-                // 跳转到安装未知应用权限设置页面
-                Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
-
-                // 需要指定包名
-                intent.setData(android.net.Uri.parse("package:" + this.getPackageName()));
-
-                // 检查是否有可以处理此Intent的应用
-                if (intent.resolveActivity(this.getPackageManager()) != null) {
-                    this.startActivity(intent);
-                } else {
-                    // 如果无法跳转到精确设置页面，跳转到应用详情页
-                    Intent appDetailsIntent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    appDetailsIntent.setData(android.net.Uri.parse("package:" + this.getPackageName()));
-                    this.startActivity(appDetailsIntent);
-                }
+            findViewById(R.id.permission_notification_container).setOnClickListener(v -> {
+                // 调用已注册的权限请求器
+                Intent intent = new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                        .putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, getPackageName());
+                startActivity(intent);
             });
         } else {
-            findViewById(R.id.permission_install_container).setOnClickListener(null);
+            findViewById(R.id.permission_notification_container).setOnClickListener(null);
         }
+
+        // 2.2 跳转授予安装权限
+        //点击授权
+        findViewById(R.id.permission_install_container).setOnClickListener(v -> {
+            // 跳转到安装未知应用权限设置页面
+            Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+
+            // 需要指定包名
+            intent.setData(android.net.Uri.parse("package:" + this.getPackageName()));
+
+            // 检查是否有可以处理此Intent的应用
+            if (intent.resolveActivity(this.getPackageManager()) != null) {
+                this.startActivity(intent);
+            } else {
+                // 如果无法跳转到精确设置页面，跳转到应用详情页
+                Intent appDetailsIntent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                appDetailsIntent.setData(android.net.Uri.parse("package:" + this.getPackageName()));
+                this.startActivity(appDetailsIntent);
+            }
+        });
 
         // 更新UI
         notificationStateTv.setText(hasNotificationPermission() ? "已授予✅" : "点我去授权👉");
@@ -425,7 +418,7 @@ public class SettingsActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-        // 检查通知权限授予状态
+        // 检查权限授予状态
         checkPermissionStates();
     }
 
