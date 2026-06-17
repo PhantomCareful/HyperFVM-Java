@@ -285,7 +285,7 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_isDynamicColor);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, isChecked ? "true" : "false");
-            if (isChecked) {
+            if (!isChecked) {
                 // 动态取色关闭：允许点击
                 themeSelectorContainer.setOnClickListener(v -> showThemeSelectionDialog());
             } else {
