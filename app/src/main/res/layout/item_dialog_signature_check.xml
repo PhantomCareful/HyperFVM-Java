@@ -13,7 +13,10 @@
         android:scrollbars="none"
         android:clipChildren="false"
         android:clipToPadding="false"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,9 +39,9 @@
 
             <TextView
                 android:id="@+id/emoji"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:text="🚨"
                 android:textSize="100sp"
                 android:textColor="?attr/colorOnSurfaceVariant"/>
