@@ -32,6 +32,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -133,7 +134,7 @@ public class MeishiWechatActivity extends BaseActivity {
     private void showAddLinkDialog() {
         // 1. 加载自定义布局文件
         LayoutInflater inflater = LayoutInflater.from(this);
-        View dialogView = inflater.inflate(R.layout.item_dialog_input_layout_meishi_wechat, null);
+        View dialogView = inflater.inflate(R.layout.item_dialog_input_meishi_wechat, null);
 
         // 2. 从布局中获取TextInputLayout和输入框
         TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
@@ -141,42 +142,39 @@ public class MeishiWechatActivity extends BaseActivity {
 
         // 3. 构建弹窗并设置自定义布局
         Dialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle("添加链接")
-                .setView(dialogView) // 替换原来的setView(input)，使用自定义布局
-                .setPositiveButton("确定", (dialogInterface, which) -> {
-                    // 4. 处理输入内容（与原来逻辑一致）
-                    if (editText != null) {
-                        String link = Objects.requireNonNull(editText.getText()).toString().trim();
-                        if (!link.isEmpty()) {
-                            handleLinkInput(link);
-                        } else {
-                            Toast.makeText(this, "请输入链接", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .setNegativeButton("取消", null)
+                .setView(dialogView)
                 .create();
+
+        dialogView.findViewById(R.id.button_close).setOnClickListener(v -> dialog.dismiss());
+
+        dialogView.findViewById(R.id.button_action).setOnClickListener(v -> {
+            // 4. 处理输入内容
+            if (editText != null) {
+                String link = Objects.requireNonNull(editText.getText()).toString().trim();
+                if (!link.isEmpty()) {
+                    if (!Patterns.WEB_URL.matcher(link).matches()) {
+                        Toast.makeText(this, "链接格式不正确", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Matcher matcher = OPENID_PATTERN.matcher(link);
+                    if (matcher.find()) {
+                        String openid = matcher.group(1);
+                        // 调用网络请求方法获取区服和角色ID
+                        fetchPlayerInfo(openid);
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(this, "链接有误，请检查链接格式是否正确", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, "链接不能为空", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         // 4. 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
         dialog.show();
-    }
-
-    // 处理链接：提取openid并触发网络请求获取玩家信息
-    private void handleLinkInput(String link) {
-        if (!Patterns.WEB_URL.matcher(link).matches()) {
-            Toast.makeText(this, "链接格式不正确", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Matcher matcher = OPENID_PATTERN.matcher(link);
-        if (matcher.find()) {
-            String openid = matcher.group(1);
-            // 关键：调用网络请求方法获取区服和角色ID
-            fetchPlayerInfo(openid);
-        } else {
-            Toast.makeText(this, "链接有误，请检查链接是否正确", Toast.LENGTH_SHORT).show();
-        }
     }
 
     // 加载玩家信息列表
@@ -208,19 +206,13 @@ public class MeishiWechatActivity extends BaseActivity {
 
         // 长按删除逻辑
         cardView.setOnLongClickListener(v -> {
-            Dialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                    .setTitle("删除账号")
-                    .setMessage("确定删除 " + (info.playerId != null ? info.playerId : info.openid) + " 吗？")
-                    .setPositiveButton("确定", (dialogInterface, which) -> {
+            DialogBuilderManager.showDialogWithCallBack(
+                    this, "删除账号", "🗑️", "确定要删除 " + (info.playerId != null ? info.playerId : info.openid) + " 吗？",
+                    true, "咱手滑了", "删除", () -> {
                         dbHelper.deleteMeishiWechat(info.openid);
                         loadAccountList();
-                    })
-                    .setNegativeButton("取消", null)
-                    .create();
-
-            // 添加背景模糊
-            DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-            dialog.show();
+                    }
+            );
             return true;
         });
 
@@ -244,13 +236,13 @@ public class MeishiWechatActivity extends BaseActivity {
                 } else {
                     // 用Handler显示Toast（主线程）
                     mainHandler.post(() ->
-                            Toast.makeText(MeishiWechatActivity.this, "获取信息失败：服务器无响应", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(MeishiWechatActivity.this, "获取信息失败\n服务器无响应", Toast.LENGTH_SHORT).show()
                     );
                 }
             } catch (IOException e) {
                 // 用Handler显示Toast（主线程）
                 mainHandler.post(() ->
-                        Toast.makeText(MeishiWechatActivity.this, "网络错误：无法连接服务器", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(MeishiWechatActivity.this, "网络错误\n无法连接服务器", Toast.LENGTH_SHORT).show()
                 );
             }
         }).start();
@@ -282,12 +274,19 @@ public class MeishiWechatActivity extends BaseActivity {
 
             // 解析失败提示（UI操作，用Handler）
             mainHandler.post(() ->
-                    Toast.makeText(MeishiWechatActivity.this, "解析失败：未找到区服和角色信息", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(MeishiWechatActivity.this, "解析失败\n未找到区服和角色信息", Toast.LENGTH_SHORT).show()
             );
         } catch (Exception e) {
             // 异常提示（UI操作，用Handler）
             mainHandler.post(() ->
-                    Toast.makeText(MeishiWechatActivity.this, "解析错误：" + e.getMessage(), Toast.LENGTH_SHORT).show()
+                    DialogBuilderManager.showDialog(
+                            this,
+                            "出现问题",
+                            "❌",
+                            "以下为问题日志，请将此界面截图并向开发者反馈。\n" + e.getMessage(),
+                            true,
+                            "好的"
+                    )
             );
         }
     }

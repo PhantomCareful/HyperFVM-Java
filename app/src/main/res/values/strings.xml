@@ -11,8 +11,6 @@
     <string name="title_data_center_card_data_index">防御卡全能数据库</string>
     <string name="label_data_center_card_data_index">😈装入了陌路防御卡数据图的所有内容\n👉点击开始查询</string>
     <string name="label_data_center_card_data_index_loading">😈装入了陌路防御卡数据图的所有内容\n⏳正在准备数据，请稍候</string>
-    <string name="float_button_data_center_card_data_index">目录</string>
-    <string name="float_button_data_center_card_data_search">搜索</string>
     <string name="title_data_center_data_images_index">数据图合集</string>
     <string name="label_data_center_data_images_index">😈目标是打造成最全面的数据图合集\n👉点击去查看</string>
     <string name="card_data_search_title">防御卡数据查询</string>
@@ -272,7 +270,8 @@
     <string name="title_meishi_wechat_account_saved">已保存的账号</string>
     <string name="title_meishi_wechat_rules">使用说明</string>
     <string name="title_meishi_wechat_gift">温馨礼包包含</string>
-    <string name="text_meishi_wechat_button_add_url">添加链接</string>
+    <string name="dialog_title_meishi_wechat_add_url">添加链接</string>
+    <string name="dialog_tips_meishi_wechat_add_url">请输入链接，形如：\nhttp://meishi.wechat.123u.com/meishi/index?openid=XXXXX</string>
     <string name="title_dashboard_everyday">每日签到</string>
     <string name="title_dashboard_fertilization_task">施肥活动</string>
     <string name="title_dashboard_bilibili_fvm">更新公告</string>
@@ -317,9 +316,9 @@
     <string name="title_tools_icu">FVM查黑系统\n作者：就喝百事</string>
     <string name="image_tools_icu">🚫</string>
     <string name="label_tools_icu">🥰查询某个QQ号是否存在行骗记录\n👉点击开始查询</string>
-    <string name="dialog_icu_title">查黑系统</string>
-    <string name="dialog_icu_description">输入QQ号以查询是否有行骗记录\n查黑系统原作者为就喝百事\nHyperFVM仅提供本地UI方便查询</string>
-    <string name="dialog_icu_tips">请输入您要查询的QQ号</string>
+    <string name="dialog_title_icu">查黑系统</string>
+    <string name="dialog_description_icu">输入QQ号以查询是否有行骗记录\n查黑系统原作者为就喝百事\nHyperFVM仅提供本地UI方便查询</string>
+    <string name="dialog_tips_icu">请输入您要查询的QQ号</string>
     <string name="title_icu_fraud">是骗子，快跑</string>
     <string name="title_icu_fraud_info">骗子信息</string>
     <string name="title_icu_victim_info">行骗记录</string>
