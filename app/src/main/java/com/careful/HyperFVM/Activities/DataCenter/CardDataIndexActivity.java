@@ -15,9 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -86,6 +85,9 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v ->
                 DialogBuilderManager.showCardQueryDialog(this));
 
+        // 设置卡片类型标题
+        initCardCategoryTitle();
+
         // 给所有防御卡组件设置点击事件，以实现点击查询其数据
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             initCardComponents();
@@ -99,62 +101,250 @@ public class CardDataIndexActivity extends BaseActivity {
      * 这个弹窗和当前Activity联系非常紧密，为了方便起见，不归到DialogBuilderManager中去
      */
     private void showTitleNavigationDialog() {
-        // 获取标题数组
-        String[] titleEntries = getResources().getStringArray(R.array.card_data_index_titles);
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_card_category_index, null);
 
-        // 加载自定义布局
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.item_dialog_selection, null);
-        ListView listView = dialogView.findViewById(R.id.dialog_list);
-
-        // 设置列表
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_index_selection, titleEntries);
-        listView.setAdapter(adapter);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        // 构建目录列表弹窗
         Dialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setTitle("🛰卡片类别导航") // 弹窗标题
-                .setView(dialogView) // 弹窗主题
-                .setNegativeButton("关闭", null) // 取消按钮
+                .setView(dialogView)
                 .create();
 
-        // 列表点击事件
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            // 点击列表项时：滚动到对应标题位置
-            if (position >= 0 && scrollView != null) {
-                // 根据索引获取对应标题View的ID
-                int targetViewId = getTitleViewIdByIndex(position);
-                View targetView = findViewById(targetViewId);
-                if (targetView != null) {
-                    // 计算滚动位置（减去顶部100dp的padding，让标题显示更友好）
-                    int scrollTop = targetView.getTop() - 400;
-                    // 目标滚动位置（保留你原有的顶部间距、边界保护逻辑）
-                    int targetScrollY = Math.max(scrollTop, 0);
-                    // 当前滚动位置
-                    int currentScrollY = scrollView.getScrollY();
-                    // 初始化值动画：实现从当前位置 → 目标位置的渐变滚动
-                    ValueAnimator scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
-                    // 滚动时长（核心：控制顺滑度，300-500ms是安卓舒适区间，值越大越慢越丝滑）
-                    scrollAnimator.setDuration(500);
-                    // 核心插值器（决定滚动的速度变化规律，这是平滑的关键！）
-                    // DecelerateInterpolator：减速插值器 → 滚动由快到慢，符合人眼视觉习惯，最推荐
-                    scrollAnimator.setInterpolator(new DecelerateInterpolator(1.0f));
-                    // 逐帧更新滚动位置
-                    scrollAnimator.addUpdateListener(animation -> {
-                        int animatedValue = (int) animation.getAnimatedValue();
-                        scrollView.scrollTo(0, animatedValue);
-                    });
-                    // 启动动画（加入防重复点击：先取消之前的滚动动画，再启动新的）
-                    scrollAnimator.cancel();
-                    scrollAnimator.start();
-                }
-            }
-            dialog.dismiss(); // 选择后关闭弹窗
+        dialogView.findViewById(R.id.button_card_category_index_1_1).setOnClickListener(v -> {
+            runFastScroll(0);
+            dialog.dismiss();
         });
+        dialogView.findViewById(R.id.button_card_category_index_1_2).setOnClickListener(v -> {
+            runFastScroll(1);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_1_3).setOnClickListener(v -> {
+            runFastScroll(2);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_2_1).setOnClickListener(v -> {
+            runFastScroll(3);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_2_2).setOnClickListener(v -> {
+            runFastScroll(4);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_2_3).setOnClickListener(v -> {
+            runFastScroll(5);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_3_1).setOnClickListener(v -> {
+            runFastScroll(6);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_3_2).setOnClickListener(v -> {
+            runFastScroll(7);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_3_3).setOnClickListener(v -> {
+            runFastScroll(8);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_4_1).setOnClickListener(v -> {
+            runFastScroll(9);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_4_2).setOnClickListener(v -> {
+            runFastScroll(10);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_4_3).setOnClickListener(v -> {
+            runFastScroll(11);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_5_1).setOnClickListener(v -> {
+            runFastScroll(12);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_5_2).setOnClickListener(v -> {
+            runFastScroll(13);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_6_1).setOnClickListener(v -> {
+            runFastScroll(14);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_6_2).setOnClickListener(v -> {
+            runFastScroll(15);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_7_1).setOnClickListener(v -> {
+            runFastScroll(16);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_7_2).setOnClickListener(v -> {
+            runFastScroll(17);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_8_1).setOnClickListener(v -> {
+            runFastScroll(18);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_8_2).setOnClickListener(v -> {
+            runFastScroll(19);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_9_1).setOnClickListener(v -> {
+            runFastScroll(20);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_9_2).setOnClickListener(v -> {
+            runFastScroll(21);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_9_3).setOnClickListener(v -> {
+            runFastScroll(22);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_9_4).setOnClickListener(v -> {
+            runFastScroll(23);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_10_1).setOnClickListener(v -> {
+            runFastScroll(24);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_10_2).setOnClickListener(v -> {
+            runFastScroll(25);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_10_3).setOnClickListener(v -> {
+            runFastScroll(26);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_10_4).setOnClickListener(v -> {
+            runFastScroll(27);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_11_1).setOnClickListener(v -> {
+            runFastScroll(28);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_11_2).setOnClickListener(v -> {
+            runFastScroll(29);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_11_3).setOnClickListener(v -> {
+            runFastScroll(30);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_11_4).setOnClickListener(v -> {
+            runFastScroll(31);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_12_1).setOnClickListener(v -> {
+            runFastScroll(32);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_12_2).setOnClickListener(v -> {
+            runFastScroll(33);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_12_3).setOnClickListener(v -> {
+            runFastScroll(34);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_12__1).setOnClickListener(v -> {
+            runFastScroll(35);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_12__2).setOnClickListener(v -> {
+            runFastScroll(36);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_12__3).setOnClickListener(v -> {
+            runFastScroll(37);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_12__4).setOnClickListener(v -> {
+            runFastScroll(38);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_13_1).setOnClickListener(v -> {
+            runFastScroll(39);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_13_2).setOnClickListener(v -> {
+            runFastScroll(40);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_13_3).setOnClickListener(v -> {
+            runFastScroll(41);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_13_4).setOnClickListener(v -> {
+            runFastScroll(42);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_14_1).setOnClickListener(v -> {
+            runFastScroll(43);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_14_2).setOnClickListener(v -> {
+            runFastScroll(44);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_card_category_index_15_1).setOnClickListener(v -> {
+            runFastScroll(45);
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.button_close).setOnClickListener(v -> dialog.dismiss());
 
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
         dialog.show();
+    }
+
+    private void runFastScroll(int position) {
+        // 点击列表项时：滚动到对应标题位置
+        if (scrollView != null) {
+            // 根据索引获取对应标题View的ID
+            int targetViewId = getTitleViewIdByIndex(position);
+            View targetView = findViewById(targetViewId);
+            if (targetView != null) {
+                // 计算滚动位置（减去顶部100dp的padding，让标题显示更友好）
+                int scrollTop = targetView.getTop() - 400;
+                // 目标滚动位置（保留你原有的顶部间距、边界保护逻辑）
+                int targetScrollY = Math.max(scrollTop, 0);
+                // 当前滚动位置
+                int currentScrollY = scrollView.getScrollY();
+                // 初始化值动画：实现从当前位置 → 目标位置的渐变滚动
+                ValueAnimator scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
+                // 滚动时长（核心：控制顺滑度，300-500ms是安卓舒适区间，值越大越慢越丝滑）
+                scrollAnimator.setDuration(500);
+                // 核心插值器（决定滚动的速度变化规律，这是平滑的关键！）
+                // DecelerateInterpolator：减速插值器 → 滚动由快到慢，符合人眼视觉习惯，最推荐
+                scrollAnimator.setInterpolator(new DecelerateInterpolator(1.0f));
+                // 逐帧更新滚动位置
+                scrollAnimator.addUpdateListener(animation -> {
+                    int animatedValue = (int) animation.getAnimatedValue();
+                    scrollView.scrollTo(0, animatedValue);
+                });
+                // 启动动画（加入防重复点击：先取消之前的滚动动画，再启动新的）
+                scrollAnimator.cancel();
+                scrollAnimator.start();
+            }
+        }
     }
 
     /**
@@ -210,6 +400,122 @@ public class CardDataIndexActivity extends BaseActivity {
             case 45 -> R.id.title_card_data_index_16_1;
             default -> -1;
         };
+    }
+
+    /**
+     * 设置卡片类型标题
+     */
+    @SuppressLint("SetTextI18n")
+    private void initCardCategoryTitle() {
+        TextView textView;
+
+        textView = findViewById(R.id.title_card_data_index_1_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_1) + " - " + getResources().getString(R.string.text_data_images_index_card_1_1));
+        textView = findViewById(R.id.title_card_data_index_1_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_1) + " - " + getResources().getString(R.string.text_data_images_index_card_1_2));
+        textView = findViewById(R.id.title_card_data_index_1_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_1) + " - " + getResources().getString(R.string.text_data_images_index_card_1_3));
+
+        textView = findViewById(R.id.title_card_data_index_2_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_2) + " - " + getResources().getString(R.string.text_data_images_index_card_2_1));
+        textView = findViewById(R.id.title_card_data_index_2_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_2) + " - " + getResources().getString(R.string.text_data_images_index_card_2_2));
+        textView = findViewById(R.id.title_card_data_index_2_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_2) + " - " + getResources().getString(R.string.text_data_images_index_card_2_3));
+
+        textView = findViewById(R.id.title_card_data_index_3_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_3) + " - " + getResources().getString(R.string.text_data_images_index_card_3_1));
+        textView = findViewById(R.id.title_card_data_index_3_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_3) + " - " + getResources().getString(R.string.text_data_images_index_card_3_2));
+        textView = findViewById(R.id.title_card_data_index_3_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_3) + " - " + getResources().getString(R.string.text_data_images_index_card_3_3));
+
+        textView = findViewById(R.id.title_card_data_index_4_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_4) + " - " + getResources().getString(R.string.text_data_images_index_card_4_1));
+        textView = findViewById(R.id.title_card_data_index_4_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_4) + " - " + getResources().getString(R.string.text_data_images_index_card_4_2));
+        textView = findViewById(R.id.title_card_data_index_4_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_4) + " - " + getResources().getString(R.string.text_data_images_index_card_4_3));
+
+        textView = findViewById(R.id.title_card_data_index_5_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_5) + " - " + getResources().getString(R.string.text_data_images_index_card_5_1));
+        textView = findViewById(R.id.title_card_data_index_5_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_5) + " - " + getResources().getString(R.string.text_data_images_index_card_5_2));
+
+        textView = findViewById(R.id.title_card_data_index_6_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_6) + " - " + getResources().getString(R.string.text_data_images_index_card_6_1));
+        textView = findViewById(R.id.title_card_data_index_6_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_6) + " - " + getResources().getString(R.string.text_data_images_index_card_6_2));
+
+        textView = findViewById(R.id.title_card_data_index_7_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_7) + " - " + getResources().getString(R.string.text_data_images_index_card_7_1));
+        textView = findViewById(R.id.title_card_data_index_7_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_7) + " - " + getResources().getString(R.string.text_data_images_index_card_7_2));
+
+        textView = findViewById(R.id.title_card_data_index_8_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_8) + " - " + getResources().getString(R.string.text_data_images_index_card_8_1));
+        textView = findViewById(R.id.title_card_data_index_8_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_8) + " - " + getResources().getString(R.string.text_data_images_index_card_8_2));
+
+        textView = findViewById(R.id.title_card_data_index_9_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_9) + " - " + getResources().getString(R.string.text_data_images_index_card_9_1));
+        textView = findViewById(R.id.title_card_data_index_9_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_9) + " - " + getResources().getString(R.string.text_data_images_index_card_9_2));
+        textView = findViewById(R.id.title_card_data_index_9_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_9) + " - " + getResources().getString(R.string.text_data_images_index_card_9_3));
+        textView = findViewById(R.id.title_card_data_index_9_4);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_9) + " - " + getResources().getString(R.string.text_data_images_index_card_9_4));
+
+        textView = findViewById(R.id.title_card_data_index_10_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_10) + " - " + getResources().getString(R.string.text_data_images_index_card_10_1));
+        textView = findViewById(R.id.title_card_data_index_10_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_10) + " - " + getResources().getString(R.string.text_data_images_index_card_10_2));
+        textView = findViewById(R.id.title_card_data_index_10_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_10) + " - " + getResources().getString(R.string.text_data_images_index_card_10_3));
+        textView = findViewById(R.id.title_card_data_index_10_4);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_10) + " - " + getResources().getString(R.string.text_data_images_index_card_10_4));
+
+        textView = findViewById(R.id.title_card_data_index_11_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_11) + " - " + getResources().getString(R.string.text_data_images_index_card_11_1));
+        textView = findViewById(R.id.title_card_data_index_11_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_11) + " - " + getResources().getString(R.string.text_data_images_index_card_11_2));
+        textView = findViewById(R.id.title_card_data_index_11_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_11) + " - " + getResources().getString(R.string.text_data_images_index_card_11_3));
+        textView = findViewById(R.id.title_card_data_index_11_4);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_11) + " - " + getResources().getString(R.string.text_data_images_index_card_11_4));
+
+        textView = findViewById(R.id.title_card_data_index_12_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_12) + " - " + getResources().getString(R.string.text_data_images_index_card_12_1));
+        textView = findViewById(R.id.title_card_data_index_12_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_12) + " - " + getResources().getString(R.string.text_data_images_index_card_12_2));
+        textView = findViewById(R.id.title_card_data_index_12_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_12) + " - " + getResources().getString(R.string.text_data_images_index_card_12_3));
+
+        textView = findViewById(R.id.title_card_data_index_13_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_12_) + " - " + getResources().getString(R.string.text_data_images_index_card_12__1));
+        textView = findViewById(R.id.title_card_data_index_13_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_12_) + " - " + getResources().getString(R.string.text_data_images_index_card_12__2));
+        textView = findViewById(R.id.title_card_data_index_13_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_12_) + " - " + getResources().getString(R.string.text_data_images_index_card_12__3));
+        textView = findViewById(R.id.title_card_data_index_13_4);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_12_) + " - " + getResources().getString(R.string.text_data_images_index_card_12__4));
+
+        textView = findViewById(R.id.title_card_data_index_14_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_13) + " - " + getResources().getString(R.string.text_data_images_index_card_13_1));
+        textView = findViewById(R.id.title_card_data_index_14_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_13) + " - " + getResources().getString(R.string.text_data_images_index_card_13_2));
+        textView = findViewById(R.id.title_card_data_index_14_3);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_13) + " - " + getResources().getString(R.string.text_data_images_index_card_13_3));
+        textView = findViewById(R.id.title_card_data_index_14_4);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_13) + " - " + getResources().getString(R.string.text_data_images_index_card_13_4));
+
+        textView = findViewById(R.id.title_card_data_index_15_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_14) + " - " + getResources().getString(R.string.text_data_images_index_card_14_1));
+        textView = findViewById(R.id.title_card_data_index_15_2);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_14) + " - " + getResources().getString(R.string.text_data_images_index_card_14_2));
+
+        textView = findViewById(R.id.title_card_data_index_16_1);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_15));
     }
 
     /**

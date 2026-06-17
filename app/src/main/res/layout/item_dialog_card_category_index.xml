@@ -1,0 +1,851 @@
+<!--这是防御卡数据按名查询的弹窗样式文件-->
+<!-- 外层容器：垂直布局，包含输入框和建议列表 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="HardcodedText">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="70dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:gravity="center"
+                android:text="卡片类别导航"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_1"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_1_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_1_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_1_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_1_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_1_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_2"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_2_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_2_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_2_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_2_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_2_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_3"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_3_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_3_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_3_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_3_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_3_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_3_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_4"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_4_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_4_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_4_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_4_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_4_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_4_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_5"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_5_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_5_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_5_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_5_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_6"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_6_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_6_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_6_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_6_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_7"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_7_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_7_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_7_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_7_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_8"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_8_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_8_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_8_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_8_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_9"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_9_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_9_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_9_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_9_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_9_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_9_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_9_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_9_4"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_10"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_10_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_10_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_10_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_10_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_10_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_10_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_10_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_10_4"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_11"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_11_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_11_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_11_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_11_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_11_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_11_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_11_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_11_4"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_12"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_12_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_12_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_12_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_12_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_12_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_12_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_12_"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_12__1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_12__1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_12__2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_12__2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_12__3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_12__3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_12__4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_12__4"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_13"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_13_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_13_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_13_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_13_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_13_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_13_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_13_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_13_4"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_14"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_14_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_14_1"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_14_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_14_2"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_data_images_index_card_15"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:justifyContent="flex_start">
+
+                <Button
+                    android:id="@+id/button_card_category_index_15_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="融合卡"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- 顶部渐变层：覆盖顶部，高度30dp（可调整） -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="top"
+        android:background="@drawable/scrollview_top_gradient"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- 底部渐变层：覆盖底部，高度30dp（可调整） -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/scrollview_bottom_gradient"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/button_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="关闭窗口"
+        android:textSize="20sp"
+        app:cornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

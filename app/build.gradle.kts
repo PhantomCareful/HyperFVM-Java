@@ -132,4 +132,7 @@ dependencies {
 
     //Blur
     implementation(libs.blurview)
+
+    //这个布局内的组件，一行放不下时会自动换行
+    implementation(libs.flexbox)
 }
