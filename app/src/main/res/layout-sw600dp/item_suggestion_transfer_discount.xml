@@ -33,14 +33,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/suggestion_name_2_transfer_discount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                android:textSize="12sp"/>
+                android:textSize="13sp"/>
 
         </LinearLayout>
 
