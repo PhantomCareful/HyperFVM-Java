@@ -37,6 +37,7 @@
 
             <include layout="@layout/card_global_notification"/>
             <include layout="@layout/card_last_day_of_month"/>
+            <include layout="@layout/card_world_boss"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_double_explosion_rate_container"

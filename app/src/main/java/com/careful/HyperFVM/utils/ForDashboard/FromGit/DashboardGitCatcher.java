@@ -23,6 +23,8 @@ import java.util.Map;
  * 4. 三岛
  * 5. 美食大赛
  * 6. 二转打折
+ * 7. App置顶公告
+ * 8. 世界BOSS
  */
 public class DashboardGitCatcher {
     private static final String TAG = "DashboardGitCatcher";
@@ -50,7 +52,7 @@ public class DashboardGitCatcher {
                     // 提取单个JSON对象
                     itemObj = jsonArray.getJSONObject(i);
 
-                    // 默认把二转打折的内容放在最后一个位置，方便处理
+                    // 把二转打折的内容放在最后一个位置，方便处理
                     if (i == jsonArray.length() - 1) {
                         catchTransferDiscountInfo(itemObj);
                     } else {
@@ -156,6 +158,22 @@ public class DashboardGitCatcher {
      *     "name": "美食大赛",
      *     "startDate": "2025-12-25",
      *     "endDate": "2026-01-29"
+     *   },
+     *   {
+     *     "name": "App通知",
+     *     "startDate": "2026-06-13",
+     *     "endDate": "2026-06-30",
+     *     "title": "重要通知",
+     *     "content": ""
+     *   },
+     *   {
+     *     "name": "世界BOSS",
+     *     "startDate": "2026-06-18",
+     *     "challengeDate": "2026-06-19",
+     *     "settlementDate": "2026-07-03",
+     *     "endDate": "2026-07-09",
+     *     "title": "巅峰对决S11",
+     *     "content": "本赛季出场BOSS：阿斯莫德、玛门、路西法"
      *   }
      */
     private void catchOtherActivityInfo(JSONObject itemObj) throws JSONException {
@@ -212,13 +230,22 @@ public class DashboardGitCatcher {
                     result.put("resultFoodContestContentDetail", resultContentDetail);
                     break;
                 case "App通知":
-                    String title = itemObj.getString("title");
-                    String content = itemObj.getString("content");
-                    Log.d(TAG, "title = " + title + "\ncontent = " + content);
-
                     result.put("resultGlobalNotificationIsShow", "false");
-                    result.put("resultGlobalNotificationTitle", title);
-                    result.put("resultGlobalNotificationContent", content);
+                    result.put("resultGlobalNotificationTitle", itemObj.getString("title"));
+                    result.put("resultGlobalNotificationContent", itemObj.getString("content"));
+                    break;
+                case "世界BOSS":
+                    result.put("resultWorldBossIsShow", "true");
+                    result.put("resultWorldBossTitle", itemObj.getString("title"));
+                    result.put("resultWorldBossContentDetail", itemObj.getString("content"));
+                    result.put("resultWorldBossContentStatus", "新赛季即将开始，请做好准备✊");
+                    result.put("resultWorldBossStartDate", startDate);
+                    result.put("resultWorldBossChallengeDate", itemObj.getString("challengeDate"));
+                    result.put("resultWorldBossSettlementDate", itemObj.getString("settlementDate"));
+                    result.put("resultWorldBossEndDate", endDate);
+                    result.put("resultWorldBossUrlRule", itemObj.getString("urlRule"));
+                    result.put("resultWorldBossUrlReward", itemObj.getString("urlReward"));
+                    break;
             }
         } else if (today.after(end)) {
             Log.d(TAG, name + ": 活动已结束");
@@ -258,13 +285,22 @@ public class DashboardGitCatcher {
                     result.put("resultFoodContestContentDetail", resultContentDetail);
                     break;
                 case "App通知":
-                    String title = itemObj.getString("title");
-                    String content = itemObj.getString("content");
-                    Log.d(TAG, "title = " + title + "\ncontent = " + content);
-
                     result.put("resultGlobalNotificationIsShow", "false");
-                    result.put("resultGlobalNotificationTitle", title);
-                    result.put("resultGlobalNotificationContent", content);
+                    result.put("resultGlobalNotificationTitle", itemObj.getString("title"));
+                    result.put("resultGlobalNotificationContent", itemObj.getString("content"));
+                    break;
+                case "世界BOSS":
+                    result.put("resultWorldBossIsShow", "false");
+                    result.put("resultWorldBossTitle", itemObj.getString("title"));
+                    result.put("resultWorldBossContentDetail", itemObj.getString("content"));
+                    result.put("resultWorldBossContentStatus", "赛季已结束，快去领取奖励吧🎉");
+                    result.put("resultWorldBossStartDate", startDate);
+                    result.put("resultWorldBossChallengeDate", itemObj.getString("challengeDate"));
+                    result.put("resultWorldBossSettlementDate", itemObj.getString("settlementDate"));
+                    result.put("resultWorldBossEndDate", endDate);
+                    result.put("resultWorldBossUrlRule", itemObj.getString("urlRule"));
+                    result.put("resultWorldBossUrlReward", itemObj.getString("urlReward"));
+                    break;
             }
         } else {
             // 如果在结束当天过了上午10点，则也视为活动结束
@@ -354,13 +390,22 @@ public class DashboardGitCatcher {
                         result.put("resultFoodContestContentDetail", resultContentDetail);
                         break;
                     case "App通知":
-                        String title = itemObj.getString("title");
-                        String content = itemObj.getString("content");
-                        Log.d(TAG, "title = " + title + "\ncontent = " + content);
-
                         result.put("resultGlobalNotificationIsShow", "true");
-                        result.put("resultGlobalNotificationTitle", title);
-                        result.put("resultGlobalNotificationContent", content);
+                        result.put("resultGlobalNotificationTitle", itemObj.getString("title"));
+                        result.put("resultGlobalNotificationContent", itemObj.getString("content"));
+                        break;
+                    case "世界BOSS":
+                        result.put("resultWorldBossIsShow", "true");
+                        result.put("resultWorldBossTitle", itemObj.getString("title"));
+                        result.put("resultWorldBossContentDetail", itemObj.getString("content"));
+                        result.put("resultWorldBossContentStatus", "");
+                        result.put("resultWorldBossStartDate", startDate);
+                        result.put("resultWorldBossChallengeDate", itemObj.getString("challengeDate"));
+                        result.put("resultWorldBossSettlementDate", itemObj.getString("settlementDate"));
+                        result.put("resultWorldBossEndDate", endDate);
+                        result.put("resultWorldBossUrlRule", itemObj.getString("urlRule"));
+                        result.put("resultWorldBossUrlReward", itemObj.getString("urlReward"));
+                        break;
                 }
             }
         }

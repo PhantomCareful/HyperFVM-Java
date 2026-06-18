@@ -191,6 +191,18 @@ public class ExecuteDailyTask {
                 result.put("resultGlobalNotificationTitle", catchGitDashboardInfoResult.get(0).get("resultGlobalNotificationTitle"));
                 result.put("resultGlobalNotificationContent", catchGitDashboardInfoResult.get(0).get("resultGlobalNotificationContent"));
 
+                // 世界BOSS
+                result.put("resultWorldBossIsShow", catchGitDashboardInfoResult.get(0).get("resultWorldBossIsShow"));
+                result.put("resultWorldBossTitle", catchGitDashboardInfoResult.get(0).get("resultWorldBossTitle"));
+                result.put("resultWorldBossContentDetail", catchGitDashboardInfoResult.get(0).get("resultWorldBossContentDetail"));
+                result.put("resultWorldBossContentStatus", catchGitDashboardInfoResult.get(0).get("resultWorldBossContentStatus"));
+                result.put("resultWorldBossStartDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossStartDate"));
+                result.put("resultWorldBossChallengeDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossChallengeDate"));
+                result.put("resultWorldBossSettlementDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossSettlementDate"));
+                result.put("resultWorldBossEndDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossEndDate"));
+                result.put("resultWorldBossUrlRule", catchGitDashboardInfoResult.get(0).get("resultWorldBossUrlRule"));
+                result.put("resultWorldBossUrlReward", catchGitDashboardInfoResult.get(0).get("resultWorldBossUrlReward"));
+
                 callBack.onResult(result);
             }
         };

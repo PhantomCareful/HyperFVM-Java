@@ -18,7 +18,7 @@
             android:layout_height="100dp"
             android:alpha="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/phantom_careful_background"
+            android:src="@drawable/phantom_careful"
             android:scaleType="fitCenter"
             android:layout_gravity="end|bottom"
             tools:ignore="ContentDescription" />

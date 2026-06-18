@@ -44,10 +44,13 @@ import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTask;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
+import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -454,6 +457,7 @@ public class DataCenterFragment extends Fragment {
     /**
      * 将从云端获取到的数据显示出来
      */
+    @SuppressLint("SetTextI18n")
     private void displayDashboardData(List<Map<String, String>> data) {
         // 读取双倍双爆结果
         String activityResult = data.get(0).get("resultTodayActivityInfoSimple");
@@ -690,6 +694,109 @@ public class DataCenterFragment extends Fragment {
         } else {
             TransitionManager.beginDelayedTransition(dataCenterContainer, transition);
             root.findViewById(R.id.card_global_notification_container).setVisibility(View.GONE);
+        }
+
+        // 读取世界BOSS赛程信息
+        if (Objects.equals(data.get(0).get("resultWorldBossIsShow"), "true")) {
+            String dashboardWorldBossTitle = data.get(0).get("resultWorldBossTitle");
+            String dashboardWorldBossContentDetail = data.get(0).get("resultWorldBossContentDetail");
+            String dashboardWorldBossContentStatus = data.get(0).get("resultWorldBossContentStatus");
+            TextView title = root.findViewById(R.id.dashboard_WorldBoss_Title);
+            TextView contentDetail = root.findViewById(R.id.dashboard_WorldBoss_Content_Detail);
+            TextView contentStatus = root.findViewById(R.id.dashboard_WorldBoss_Content_Status);
+            title.setText(dashboardWorldBossTitle);
+            contentDetail.setText(dashboardWorldBossContentDetail);
+
+            // 开始确定当前位于哪个阶段
+            // 将所有关键时间节点转换为日期类型
+            String todayDate = TimeUtil.getCurrentDate();
+            String startDate = data.get(0).get("resultWorldBossStartDate");
+            String challengeDate = data.get(0).get("resultWorldBossChallengeDate");
+            String settlementDate = data.get(0).get("resultWorldBossSettlementDate");
+            String endDate = data.get(0).get("resultWorldBossEndDate");
+
+            TextView dashboardWorldBossContentStatus1 = root.findViewById(R.id.dashboard_WorldBoss_Content_Status_1);
+            TextView dashboardWorldBossContentStatus2 = root.findViewById(R.id.dashboard_WorldBoss_Content_Status_2);
+            TextView dashboardWorldBossContentStatus3 = root.findViewById(R.id.dashboard_WorldBoss_Content_Status_3);
+            dashboardWorldBossContentStatus1.setText("预热期\n" + startDate);
+            dashboardWorldBossContentStatus2.setText("挑战期\n" + challengeDate);
+            dashboardWorldBossContentStatus3.setText("结算期\n" + settlementDate);
+
+            Date today = TimeUtil.transformStringToDate(todayDate);
+            Date start = TimeUtil.transformStringToDate(startDate);
+            Date challenge = TimeUtil.transformStringToDate(challengeDate);
+            Date settlement = TimeUtil.transformStringToDate(settlementDate);
+            Date end = TimeUtil.transformStringToDate(endDate);
+            // 获取进度条组件
+            LinearProgressIndicator dashboardWorldBossLinearProgressIndicator1 = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator_1);
+            LinearProgressIndicator dashboardWorldBossLinearProgressIndicator2 = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator_2);
+            LinearProgressIndicator dashboardWorldBossLinearProgressIndicator3 = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator_3);
+
+            if (today.before(start)) {
+                // 情况1：早于预热期，进度设为0
+                Log.d("WorldBoss", "情况1：早于预热期");
+                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(0, true);// 第二个参数表示是否使用动画
+                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(0, true);
+                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(0, true);
+
+                contentStatus.setText(dashboardWorldBossContentStatus);
+            } else if (today.before(challenge)) {
+                // 情况2：晚于预热期且早于挑战期，进度设为50
+                Log.d("WorldBoss", "情况2：晚于预热期且早于挑战期");
+                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(50, true);
+                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(0, true);
+                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(0, true);
+
+                contentStatus.setText("预热期：新赛季即将开始，请做好准备✊");
+            } else if (today.before(settlement)) {
+                // 情况3：晚于挑战期且早于结算期，进度按具体天数计算
+                Log.d("WorldBoss", "情况3：晚于挑战期且早于结算期");
+                int duringCount = TimeUtil.calculateDaysBetween(challengeDate, todayDate);
+                // 不包含结算期，天数要减1
+                int length = TimeUtil.calculateDaysBetween(challengeDate, settlementDate) - 1;
+                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(100, true);
+                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(100 * duringCount / (length + 1), true);
+                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(0, true);
+
+                contentStatus.setText("挑战期：第" + duringCount + "天/持续" + length + "天\n" + "每天23:50关闭入口，请注意把握时间⏰");
+            } else if (today.before(end)) {
+                // 情况4：晚于结算期且早于结束日期，进度按具体天数计算
+                Log.d("WorldBoss", "情况4：晚于结算期且早于结束日期");
+                int duringCount = TimeUtil.calculateDaysBetween(settlementDate, todayDate);
+                // 不包含结算期，天数要减1
+                int length = TimeUtil.calculateDaysBetween(settlementDate, endDate) - 1;
+                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(100, true);
+                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(100, true);
+                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(100 * duringCount / (length + 1), true);
+
+                contentStatus.setText("结算期：第" + duringCount + "天/持续" + length + "天⏳");
+            } else if (today.equals(end)) {
+                // 情况5：等于结束日期，进度设为50
+                Log.d("WorldBoss", "情况5：等于结束日期");
+                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(100, true);
+                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(100, true);
+                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(100, true);
+
+                contentStatus.setText("活动关闭：今晚22:00领奖，22:15抢购🎉");
+            }
+
+            // 为按钮设置点击事件
+            Log.d("WorldBoss", data.get(0).get("resultWorldBossUrlRule") == null ? "null" : Objects.requireNonNull(data.get(0).get("resultWorldBossUrlRule")));
+            Log.d("WorldBoss", data.get(0).get("resultWorldBossUrlReward") == null ? "null" : Objects.requireNonNull(data.get(0).get("resultWorldBossUrlReward")));
+            root.findViewById(R.id.button_action_1).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+                    requireContext(), ContextCompat.getDrawable(requireContext(), R.drawable.ic_bilibili), 0,
+                    getResources().getString(R.string.dialog_title_bilibili), "巅峰对决赛季规则", data.get(0).get("resultWorldBossUrlRule")
+            ));
+            root.findViewById(R.id.button_action_2).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+                    requireContext(), ContextCompat.getDrawable(requireContext(), R.drawable.ic_bilibili), 0,
+                    getResources().getString(R.string.dialog_title_bilibili), "巅峰对决赛季奖励", data.get(0).get("resultWorldBossUrlReward")
+            ));
+
+            TransitionManager.beginDelayedTransition(dataCenterContainer, transition);
+            root.findViewById(R.id.card_world_boss_container).setVisibility(View.VISIBLE);
+        } else {
+            TransitionManager.beginDelayedTransition(dataCenterContainer, transition);
+            root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
         }
     }
 
