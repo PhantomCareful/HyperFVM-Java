@@ -58,6 +58,7 @@ public class DataImageTiramisuActivity extends AppCompatActivity {
         setupContainer(R.id.tiramisu_image_1_7_container, "tiramisu_image_1_7");
         setupContainer(R.id.tiramisu_image_2_1_container, "tiramisu_image_2_1");
         setupContainer(R.id.tiramisu_image_2_2_container, "tiramisu_image_2_2");
+        setupContainer(R.id.tiramisu_image_2_3_container, "tiramisu_image_2_3");
         setupContainer(R.id.tiramisu_image_2_3_1_container, "tiramisu_image_2_3_1");
         setupContainer(R.id.tiramisu_image_2_3_2_container, "tiramisu_image_2_3_2");
         setupContainer(R.id.tiramisu_image_2_3_3_container, "tiramisu_image_2_3_3");
