@@ -11,7 +11,7 @@
         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
         app:cardCornerRadius="20dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/Img_ToolsTiramisu"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
@@ -20,6 +20,7 @@
             android:src="@drawable/data_center_image_tiramisu"
             android:scaleType="fitCenter"
             android:layout_gravity="end|bottom"
+            app:shapeAppearanceOverlay="@style/rounded_image_style"
             tools:ignore="ContentDescription" />
 
         <LinearLayout
