@@ -161,6 +161,7 @@ public class ExecuteDailyTask {
                 result.put("resultHappyHolidayEmoji", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayEmoji"));
                 result.put("resultHappyHolidayContentStatus", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayContentStatus"));
                 result.put("resultHappyHolidayContentDetail", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayContentDetail"));
+                result.put("resultHappyHolidayCardList", catchGitDashboardInfoResult.get(0).get("resultHappyHolidayCardList"));
 
                 // 助人为乐
                 result.put("resultServerTeamUpSimple", catchGitDashboardInfoResult.get(0).get("resultServerTeamUpSimple"));
@@ -173,18 +174,21 @@ public class ExecuteDailyTask {
                 result.put("resultThreeIslandsEmoji", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsEmoji"));
                 result.put("resultThreeIslandsContentStatus", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsContentStatus"));
                 result.put("resultThreeIslandsContentDetail", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsContentDetail"));
+                result.put("resultThreeIslandsCardList", catchGitDashboardInfoResult.get(0).get("resultThreeIslandsCardList"));
 
                 // 美食大赛
                 result.put("resultFoodContestSimple", catchGitDashboardInfoResult.get(0).get("resultFoodContestSimple"));
                 result.put("resultFoodContestEmoji", catchGitDashboardInfoResult.get(0).get("resultFoodContestEmoji"));
                 result.put("resultFoodContestContentStatus", catchGitDashboardInfoResult.get(0).get("resultFoodContestContentStatus"));
                 result.put("resultFoodContestContentDetail", catchGitDashboardInfoResult.get(0).get("resultFoodContestContentDetail"));
+                result.put("resultFoodContestCardList", catchGitDashboardInfoResult.get(0).get("resultFoodContestCardList"));
 
                 // 二转打折
                 result.put("resultTransferDiscountSimple", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountSimple"));
                 result.put("resultTransferDiscountEmoji", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountEmoji"));
                 result.put("resultTransferDiscountContentStatus", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountContentStatus"));
                 result.put("resultTransferDiscountContentDetail", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountContentDetail"));
+                result.put("resultTransferDiscountCardList", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountCardList"));
 
                 // App通知
                 result.put("resultGlobalNotificationIsShow", catchGitDashboardInfoResult.get(0).get("resultGlobalNotificationIsShow"));

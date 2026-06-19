@@ -254,7 +254,7 @@ public class DataCenterFragment extends Fragment {
         // ------------------------------ 设置点击事件 ------------------------------
         // 防御卡全能数据库
         root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> {
-            TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
+            TextView DataCenter_CardDataIndex_Content = root.findViewById(R.id.DataCenter_CardDataIndex_Content);
             DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index_loading));
             Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
             startActivity(intent);
@@ -569,16 +569,33 @@ public class DataCenterFragment extends Fragment {
         dashboardThreeIslands.setText(Objects.requireNonNull(threeIslandsResult).isEmpty() ? "null" : threeIslandsResult);
         dashboardThreeIslandsEmoji.setText(threeIslandsEmoji.isEmpty() ? "❌" : threeIslandsEmoji);
         // 设置点击打开详情弹窗
-        dashboardThreeIslandsContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
-                        requireContext(),
-                        getResources().getString(R.string.title_dashboard_three_islands),
-                        threeIslandsEmoji,
-                        data.get(0).get("resultThreeIslandsContentStatus"),
-                        data.get(0).get("resultThreeIslandsContentDetail"),
-                        "去看米鼠的图",
-                        "tiramisu_image_2_1"
-                )
+        dashboardThreeIslandsContainer.setOnClickListener(v -> {
+                    String contentStatus = data.get(0).get("resultThreeIslandsContentStatus");
+                    String contentDetail = data.get(0).get("resultThreeIslandsContentDetail");
+                    String cardList = data.get(0).get("resultThreeIslandsCardList");
+                    if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
+                        DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
+                                requireContext(),
+                                getResources().getString(R.string.title_dashboard_three_islands),
+                                threeIslandsEmoji,
+                                contentDetail,
+                                contentDetail,
+                                "去看米鼠的图",
+                                "tiramisu_image_2_1"
+                        );
+                    } else {
+                        List<String> list = new ArrayList<>(Arrays.asList(Objects.requireNonNull(cardList).split("\\|")));
+                        DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImageHappyHolidayAndThreeIslands(
+                                requireContext(),
+                                getResources().getString(R.string.title_dashboard_three_islands),
+                                threeIslandsEmoji,
+                                contentStatus,
+                                contentDetail,
+                                list,
+                                "tiramisu_image_2_1"
+                        );
+                    }
+                }
         );
 
         // 读取美食大赛活动结果
@@ -587,14 +604,30 @@ public class DataCenterFragment extends Fragment {
         dashboardFoodContest.setText(Objects.requireNonNull(foodContestResult).isEmpty() ? "null" : foodContestResult);
         dashboardFoodContestEmoji.setText(foodContestEmoji.isEmpty() ? "❌" : foodContestEmoji);
         // 设置点击打开详情弹窗
-        dashboardFoodContestContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImageFoodContest(
-                        requireContext(),
-                        getResources().getString(R.string.title_dashboard_food_contest),
-                        foodContestEmoji,
-                        data.get(0).get("resultFoodContestContentStatus"),
-                        data.get(0).get("resultFoodContestContentDetail")
-                )
+        dashboardFoodContestContainer.setOnClickListener(v -> {
+                    String contentStatus = data.get(0).get("resultFoodContestContentStatus");
+                    String contentDetail = data.get(0).get("resultFoodContestContentDetail");
+                    String cardList = data.get(0).get("resultFoodContestCardList");
+                    if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
+                        DialogBuilderManager.showDashboardDetailDialog(
+                                requireContext(),
+                                getResources().getString(R.string.title_dashboard_food_contest),
+                                foodContestEmoji,
+                                contentStatus,
+                                contentDetail
+                        );
+                    } else {
+                        List<String> list = new ArrayList<>(Arrays.asList(Objects.requireNonNull(cardList).split("\\|")));
+                        DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImageFoodContest(
+                                requireContext(),
+                                getResources().getString(R.string.title_dashboard_food_contest),
+                                foodContestEmoji,
+                                contentStatus,
+                                contentDetail,
+                                list
+                        );
+                    }
+                }
         );
 
         // 读取二转打折活动结果
@@ -605,8 +638,8 @@ public class DataCenterFragment extends Fragment {
         // 设置点击打开详情弹窗
         dashboardTransferDiscountContainer.setOnClickListener(v -> {
             String contentStatus = data.get(0).get("resultTransferDiscountContentStatus");
-            Log.d("resultTransferDiscountContentStatus", "resultTransferDiscountContentStatus = " + contentStatus);
             String contentDetail = data.get(0).get("resultTransferDiscountContentDetail");
+            String cardList = data.get(0).get("resultTransferDiscountCardList");
             if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
                 DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
@@ -616,8 +649,7 @@ public class DataCenterFragment extends Fragment {
                         contentDetail
                 );
             } else {
-                List<String> discountList = new ArrayList<>(Arrays.asList(Objects.requireNonNull(contentDetail).split("以下卡片保险金仅需1500D\n\n")[1].split("\\|")));
-                contentDetail = contentDetail.split("以下卡片保险金仅需1500D\n\n")[0] + "以下卡片保险金仅需1500D";
+                List<String> discountList = new ArrayList<>(Arrays.asList(Objects.requireNonNull(cardList).split("\\|")));
                 DialogBuilderManager.showDashboardTransferDiscountDialog(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_transfer_discount),
@@ -653,16 +685,33 @@ public class DataCenterFragment extends Fragment {
         dashboardHappyHoliday.setText(Objects.requireNonNull(happyHolidayResult).isEmpty() ? "null" : happyHolidayResult);
         dashboardHappyHolidayEmoji.setText(happyHolidayEmoji.isEmpty() ? "null" : happyHolidayEmoji);
         // 设置点击打开详情弹窗
-        dashboardHappyHolidayContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
-                        requireContext(),
-                        getResources().getString(R.string.title_dashboard_happy_holiday),
-                        happyHolidayEmoji,
-                        data.get(0).get("resultHappyHolidayContentStatus"),
-                        data.get(0).get("resultHappyHolidayContentDetail"),
-                        "去看米鼠的图",
-                        "tiramisu_image_1_7"
-                )
+        dashboardHappyHolidayContainer.setOnClickListener(v -> {
+                    String contentStatus = data.get(0).get("resultHappyHolidayContentStatus");
+                    String contentDetail = data.get(0).get("resultHappyHolidayContentDetail");
+                    String cardList = data.get(0).get("resultHappyHolidayCardList");
+                    if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
+                        DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
+                                requireContext(),
+                                getResources().getString(R.string.title_dashboard_happy_holiday),
+                                happyHolidayEmoji,
+                                contentDetail,
+                                contentDetail,
+                                "去看米鼠的图",
+                                "tiramisu_image_1_7"
+                        );
+                    } else {
+                        List<String> list = new ArrayList<>(Arrays.asList(Objects.requireNonNull(cardList).split("\\|")));
+                        DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImageHappyHolidayAndThreeIslands(
+                                requireContext(),
+                                getResources().getString(R.string.title_dashboard_happy_holiday),
+                                happyHolidayEmoji,
+                                contentStatus,
+                                contentDetail,
+                                list,
+                                "tiramisu_image_1_7"
+                        );
+                    }
+                }
         );
 
         // 读取百万消费活动结果
@@ -901,7 +950,7 @@ public class DataCenterFragment extends Fragment {
     public void onResume() {
         super.onResume();
         // 还原卡片状态
-        TextView DataCenter_CardDataIndex_Content =  root.findViewById(R.id.DataCenter_CardDataIndex_Content);
+        TextView DataCenter_CardDataIndex_Content = root.findViewById(R.id.DataCenter_CardDataIndex_Content);
         DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
     }
 }

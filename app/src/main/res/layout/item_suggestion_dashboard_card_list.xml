@@ -13,7 +13,7 @@
     app:strokeWidth="0dp">
 
     <LinearLayout
-        android:id="@+id/suggestion_card_transfer_discount_container"
+        android:id="@+id/suggestion_card_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -29,14 +29,14 @@
 
             <!-- 左侧文字 -->
             <TextView
-                android:id="@+id/suggestion_name_1_transfer_discount"
+                android:id="@+id/suggestion_name_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/suggestion_name_2_transfer_discount"
+                android:id="@+id/suggestion_name_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
@@ -45,7 +45,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/suggestion_image_0_transfer_discount"
+            android:id="@+id/suggestion_image_0"
             android:layout_width="32dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
@@ -54,7 +54,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/suggestion_image_1_transfer_discount"
+            android:id="@+id/suggestion_image_1"
             android:layout_width="32dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
@@ -63,7 +63,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/suggestion_image_2_transfer_discount"
+            android:id="@+id/suggestion_image_2"
             android:layout_width="32dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
@@ -72,7 +72,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/suggestion_image_3_transfer_discount"
+            android:id="@+id/suggestion_image_3"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"

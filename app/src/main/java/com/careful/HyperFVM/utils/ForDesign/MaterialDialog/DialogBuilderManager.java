@@ -322,14 +322,178 @@ public class DialogBuilderManager {
     }
 
     /**
+     * 仪表盘：展示详细信息的弹窗，并可以直接跳转对应的卡片详情页
+     * 仅适用于欢乐假期和三岛福利
+     * @param title         弹窗标题
+     * @param emoji         弹窗中的大表情
+     * @param contentStatus 状态内容
+     * @param contentDetail 详细内容
+     * @param cardList      返场卡片名单
+     */
+    @SuppressLint({"Range", "DiscouragedApi", "SetTextI18n"})
+    public static void showDashboardDetailDialogAndSeeTiramisuImageHappyHolidayAndThreeIslands(Context context, String title, String emoji, String contentStatus, String contentDetail, List<String> cardList, String imageName) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_happy_holiday_three_islands, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
+
+        // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
+            for (int i = 0; i < cardList.size(); i++) {
+                CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
+                // 绑定好需要用到的组件
+                LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
+                TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
+                TextView suggestion_name_2_transfer_discount = cardView.findViewById(R.id.suggestion_name_2);
+                ImageView suggestion_image_0_transfer_discount = cardView.findViewById(R.id.suggestion_image_0);
+                ImageView suggestion_image_1_transfer_discount = cardView.findViewById(R.id.suggestion_image_1);
+                ImageView suggestion_image_2_transfer_discount = cardView.findViewById(R.id.suggestion_image_2);
+                ImageView suggestion_image_3_transfer_discount = cardView.findViewById(R.id.suggestion_image_3);
+
+                // 先通过名字得到tableName和不转名称
+                String tableName = dbHelper.getCardTable(cardList.get(i));
+                String baseName = dbHelper.getCardBaseName(cardList.get(i));
+
+                if (tableName == null) {
+                    continue;
+                }
+
+                // 通过数据库得到卡片名称、图片id
+                try (Cursor cursor = dbHelper.getCardData(tableName, baseName)) {
+                    if (cursor == null || !cursor.moveToFirst()) {
+                        continue;
+                    }
+
+                    String imageIdStr0 = cursor.getString(cursor.getColumnIndex("image_id_0"));
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    int imageResId = context.getResources().getIdentifier(
+                            imageIdStr0,
+                            "drawable",
+                            context.getPackageName()
+                    );
+                    suggestion_image_0_transfer_discount.setImageResource(imageResId);
+                    String imageIdStr1 = cursor.getString(cursor.getColumnIndex("image_id_1"));
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    imageResId = context.getResources().getIdentifier(
+                            imageIdStr1.equals("无") ? "card_data_x" : imageIdStr1,
+                            "drawable",
+                            context.getPackageName()
+                    );
+                    suggestion_image_1_transfer_discount.setImageResource(imageResId);
+                    String imageIdStr2 = cursor.getString(cursor.getColumnIndex("image_id_2"));
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    imageResId = context.getResources().getIdentifier(
+                            imageIdStr2.equals("无") ? "card_data_x" : imageIdStr2,
+                            "drawable",
+                            context.getPackageName()
+                    );
+                    suggestion_image_2_transfer_discount.setImageResource(imageResId);
+                    if (tableName.equals("card_data_3")) {
+                        String imageIdStr3 = cursor.getString(cursor.getColumnIndex("image_id_3"));
+                        // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                        imageResId = context.getResources().getIdentifier(
+                                imageIdStr3.equals("无") ? "card_data_x" : imageIdStr3,
+                                "drawable",
+                                context.getPackageName()
+                        );
+                        suggestion_image_3_transfer_discount.setImageResource(imageResId);
+                    } else {
+                        suggestion_image_3_transfer_discount.setVisibility(View.GONE);
+                    }
+
+                    suggestion_name_1_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name")));
+                    if (tableName.equals("card_data_3")) {
+                        suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")) + "-" + cursor.getString(cursor.getColumnIndex("name_3")));
+                    } else {
+                        suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")));
+                    }
+
+                    // 设置点击事件，跳转数据详情页
+                    suggestion_card_transfer_discount_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
+
+                    suggestion_list_transfer_discount.addView(cardView);
+                }
+            }
+        }
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        buttonAction.setOnClickListener(v -> {
+            // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
+            // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            // 到这里就说明本地确实有图片了
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_1_7.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
+            }
+        });
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
      * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
      * 仅适用于美食大赛
      * @param title                 弹窗标题
      * @param emoji                 弹窗中的大表情
      * @param contentStatus         状态内容
      * @param contentDetail         详细内容
+     * @param cardList              返场卡片名单
      */
-    public static void showDashboardDetailDialogAndSeeTiramisuImageFoodContest(Context context, String title, String emoji, String contentStatus, String contentDetail) {
+    @SuppressLint({"Range", "DiscouragedApi", "SetTextI18n"})
+    public static void showDashboardDetailDialogAndSeeTiramisuImageFoodContest(Context context, String title, String emoji, String contentStatus, String contentDetail, List<String> cardList) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_tiramisu_food_contest, null);
 
@@ -347,6 +511,86 @@ public class DialogBuilderManager {
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
+
+        // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
+        try (DBHelper dbHelper = new DBHelper(context)) {
+            LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
+            for (int i = 0; i < cardList.size(); i++) {
+                CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
+                // 绑定好需要用到的组件
+                LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
+                TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
+                TextView suggestion_name_2_transfer_discount = cardView.findViewById(R.id.suggestion_name_2);
+                ImageView suggestion_image_0_transfer_discount = cardView.findViewById(R.id.suggestion_image_0);
+                ImageView suggestion_image_1_transfer_discount = cardView.findViewById(R.id.suggestion_image_1);
+                ImageView suggestion_image_2_transfer_discount = cardView.findViewById(R.id.suggestion_image_2);
+                ImageView suggestion_image_3_transfer_discount = cardView.findViewById(R.id.suggestion_image_3);
+
+                // 先通过名字得到tableName和不转名称
+                String tableName = dbHelper.getCardTable(cardList.get(i));
+                String baseName = dbHelper.getCardBaseName(cardList.get(i));
+
+                if (tableName == null) {
+                    continue;
+                }
+
+                // 通过数据库得到卡片名称、图片id
+                try (Cursor cursor = dbHelper.getCardData(tableName, baseName)) {
+                    if (cursor == null || !cursor.moveToFirst()) {
+                        continue;
+                    }
+
+                    String imageIdStr0 = cursor.getString(cursor.getColumnIndex("image_id_0"));
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    int imageResId = context.getResources().getIdentifier(
+                            imageIdStr0,
+                            "drawable",
+                            context.getPackageName()
+                    );
+                    suggestion_image_0_transfer_discount.setImageResource(imageResId);
+                    String imageIdStr1 = cursor.getString(cursor.getColumnIndex("image_id_1"));
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    imageResId = context.getResources().getIdentifier(
+                            imageIdStr1.equals("无") ? "card_data_x" : imageIdStr1,
+                            "drawable",
+                            context.getPackageName()
+                    );
+                    suggestion_image_1_transfer_discount.setImageResource(imageResId);
+                    String imageIdStr2 = cursor.getString(cursor.getColumnIndex("image_id_2"));
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    imageResId = context.getResources().getIdentifier(
+                            imageIdStr2.equals("无") ? "card_data_x" : imageIdStr2,
+                            "drawable",
+                            context.getPackageName()
+                    );
+                    suggestion_image_2_transfer_discount.setImageResource(imageResId);
+                    if (tableName.equals("card_data_3")) {
+                        String imageIdStr3 = cursor.getString(cursor.getColumnIndex("image_id_3"));
+                        // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                        imageResId = context.getResources().getIdentifier(
+                                imageIdStr3.equals("无") ? "card_data_x" : imageIdStr3,
+                                "drawable",
+                                context.getPackageName()
+                        );
+                        suggestion_image_3_transfer_discount.setImageResource(imageResId);
+                    } else {
+                        suggestion_image_3_transfer_discount.setVisibility(View.GONE);
+                    }
+
+                    suggestion_name_1_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name")));
+                    if (tableName.equals("card_data_3")) {
+                        suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")) + "-" + cursor.getString(cursor.getColumnIndex("name_3")));
+                    } else {
+                        suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")));
+                    }
+
+                    // 设置点击事件，跳转数据详情页
+                    suggestion_card_transfer_discount_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
+
+                    suggestion_list_transfer_discount.addView(cardView);
+                }
+            }
+        }
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setView(dialogView)
@@ -780,17 +1024,17 @@ public class DialogBuilderManager {
 
         // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
         try (DBHelper dbHelper = new DBHelper(context)) {
-            LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_list_transfer_discount);
+            LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
             for (int i = 0; i < discountList.size(); i++) {
-                CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_transfer_discount, suggestion_list_transfer_discount, false);
+                CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
                 // 绑定好需要用到的组件
-                LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_transfer_discount_container);
-                TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1_transfer_discount);
-                TextView suggestion_name_2_transfer_discount = cardView.findViewById(R.id.suggestion_name_2_transfer_discount);
-                ImageView suggestion_image_0_transfer_discount = cardView.findViewById(R.id.suggestion_image_0_transfer_discount);
-                ImageView suggestion_image_1_transfer_discount = cardView.findViewById(R.id.suggestion_image_1_transfer_discount);
-                ImageView suggestion_image_2_transfer_discount = cardView.findViewById(R.id.suggestion_image_2_transfer_discount);
-                ImageView suggestion_image_3_transfer_discount = cardView.findViewById(R.id.suggestion_image_3_transfer_discount);
+                LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
+                TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
+                TextView suggestion_name_2_transfer_discount = cardView.findViewById(R.id.suggestion_name_2);
+                ImageView suggestion_image_0_transfer_discount = cardView.findViewById(R.id.suggestion_image_0);
+                ImageView suggestion_image_1_transfer_discount = cardView.findViewById(R.id.suggestion_image_1);
+                ImageView suggestion_image_2_transfer_discount = cardView.findViewById(R.id.suggestion_image_2);
+                ImageView suggestion_image_3_transfer_discount = cardView.findViewById(R.id.suggestion_image_3);
 
                 // 先通过名字得到tableName和不转名称
                 String tableName = dbHelper.getCardTable(discountList.get(i));
