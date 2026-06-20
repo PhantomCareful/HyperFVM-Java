@@ -5,55 +5,19 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/card_card_data_index_5_1_1"
-        layout="@layout/card_card_data_index_5_1_1" />
+        android:id="@+id/card_card_data_index_11_3_9"
+        layout="@layout/card_card_data_index_11_3_9" />
 
     <include
-        android:id="@+id/card_card_data_index_5_1_2"
-        layout="@layout/card_card_data_index_5_1_2" />
+        android:id="@+id/card_card_data_index_11_3_10"
+        layout="@layout/card_card_data_index_11_3_10" />
 
     <include
-        android:id="@+id/card_card_data_index_5_1_3"
-        layout="@layout/card_card_data_index_5_1_3" />
+        android:id="@+id/card_card_data_index_11_3_11"
+        layout="@layout/card_card_data_index_11_3_11" />
 
     <include
-        android:id="@+id/card_card_data_index_5_1_4"
-        layout="@layout/card_card_data_index_5_1_4" />
-
-    <include
-        android:id="@+id/card_card_data_index_5_1_5"
-        layout="@layout/card_card_data_index_5_1_5" />
-
-    <include
-        android:id="@+id/card_card_data_index_5_1_6"
-        layout="@layout/card_card_data_index_5_1_6" />
-
-    <include
-        android:id="@+id/card_card_data_index_5_1_7"
-        layout="@layout/card_card_data_index_5_1_7" />
-
-    <include
-        android:id="@+id/card_card_data_index_5_1_8"
-        layout="@layout/card_card_data_index_5_1_8" />
-
-    <include
-        android:id="@+id/card_card_data_index_5_1_9"
-        layout="@layout/card_card_data_index_5_1_9" />
-
-    <include
-        android:id="@+id/card_card_data_index_15_2_5"
-        layout="@layout/card_card_data_index_15_2_5" />
-
-    <include
-        android:id="@+id/card_card_data_index_15_2_6"
-        layout="@layout/card_card_data_index_15_2_6" />
-
-    <include
-        android:id="@+id/card_card_data_index_15_2_7"
-        layout="@layout/card_card_data_index_15_2_7" />
-
-    <include
-        android:id="@+id/card_card_data_index_15_2_8"
-        layout="@layout/card_card_data_index_15_2_8" />
+        android:id="@+id/card_card_data_index_11_3_12"
+        layout="@layout/card_card_data_index_11_3_12" />
 
 </LinearLayout>

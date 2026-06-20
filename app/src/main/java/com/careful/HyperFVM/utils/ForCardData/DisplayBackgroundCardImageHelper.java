@@ -106,7 +106,8 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_4_2_10_2_big", "魔杖蛇", "card_data_4"},
             {"card_data_index_4_2_11_2_big", "塔拉萨神使", "card_data_3"},
             {"card_data_index_4_2_11_3_big", "塔拉萨神使", "card_data_3"},
-            {"card_data_index_4_2_12_2_big", "炎焱兔", "card_data_4"},
+            {"card_data_index_4_2_12_2_big", "音盒马", "card_data_4"},
+            {"card_data_index_4_2_13_2_big", "炎焱兔", "card_data_4"},
 
             {"card_data_index_4_3_1_0_big", "11周年美食盒子", "card_data_1"},
             {"card_data_index_4_3_2_2_big", "战旗马", "card_data_4"},
@@ -123,6 +124,7 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_5_1_9_2_big", "火焰牛", "card_data_4"},
             {"card_data_index_5_1_10_2_big", "花火龙", "card_data_4"},
             {"card_data_index_5_1_11_2_big", "蛇羹煲", "card_data_1"},
+            {"card_data_index_5_1_12_2_big", "禅心马", "card_data_4"},
 
             {"card_data_index_5_2_1_2_big", "钱罐猪", "card_data_4"},
             {"card_data_index_5_2_2_2_big", "罐罐牛", "card_data_4"},
@@ -267,6 +269,7 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_11_3_9_2_big", "赖皮蛇", "card_data_4"},
             {"card_data_index_11_3_10_2_big", "迷你披萨炉", "card_data_1"},
             {"card_data_index_11_3_11_2_big", "鲁班神使", "card_data_3"},
+            {"card_data_index_11_3_11_3_big", "鲁班神使", "card_data_3"},
             {"card_data_index_11_3_12_2_big", "炎凰马", "card_data_4"},
 
             {"card_data_index_11_4_1_2_big", "焦油喷壶", "card_data_1"},
@@ -367,10 +370,11 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_14_1_10_2_big", "天使猪", "card_data_4"},
             {"card_data_index_14_1_11_2_big", "黯然销魂饭", "card_data_1"},
             {"card_data_index_14_1_12_2_big", "星穹马", "card_data_4"},
-            {"card_data_index_14_1_13_2_big", "13周年时光机", "card_data_1"},
-            {"card_data_index_14_1_14_2_big", "蛇蛇酒", "card_data_4"},
-            {"card_data_index_14_1_15_2_big", "克洛托神使", "card_data_3"},
-            {"card_data_index_14_1_15_3_big", "克洛托神使", "card_data_3"},
+            {"card_data_index_14_1_13_2_big", "奥西里斯神使", "card_data_3"},
+            {"card_data_index_14_1_14_2_big", "13周年时光机", "card_data_1"},
+            {"card_data_index_14_1_15_2_big", "蛇蛇酒", "card_data_4"},
+            {"card_data_index_14_1_16_2_big", "克洛托神使", "card_data_3"},
+            {"card_data_index_14_1_16_3_big", "克洛托神使", "card_data_3"},
 
             {"card_data_index_14_2_1_1_big", "油灯", "card_data_1"},
             {"card_data_index_14_2_2_0_big", "南瓜灯", "card_data_1"},

@@ -14,7 +14,7 @@
     <string name="title_data_center_data_images_index">数据图合集</string>
     <string name="label_data_center_data_images_index">😈目标是打造成最全面的数据图合集\n👉点击去查看</string>
     <string name="card_data_search_title">防御卡数据查询</string>
-    <string name="card_data_search_data_version">数据库版本：20260528</string>
+    <string name="card_data_search_data_version">数据库版本：20260618</string>
     <string name="card_data_search_tips1">👉卡片冷却默认7秒，体力默认50👈\n如有不同会单独标出</string>
     <string name="card_data_search_tips2">👇点击卡片即可进入数据详情页👇</string>
     <string name="card_data_search_input_tips">请输入防御卡名称</string>
@@ -732,6 +732,9 @@
     <string name="name_card_data_index_4_2_12_0">炎焱兔</string>
     <string name="name_card_data_index_4_2_12_1">火火炎焱兔–燚燚炎焱兔</string>
 
+    <string name="name_card_data_index_4_2_13_0">音盒马</string>
+    <string name="name_card_data_index_4_2_13_1">叮咚音盒马–玲珑音盒马</string>
+
 
 
     <string name="name_card_data_index_4_3_1_0">11周年美食盒子</string>
@@ -772,6 +775,9 @@
 
     <string name="name_card_data_index_5_1_11_0">蛇羹煲</string>
     <string name="name_card_data_index_5_1_11_1">厨圣蛇羹煲–帝王蛇羹煲</string>
+
+    <string name="name_card_data_index_5_1_12_0">禅心马</string>
+    <string name="name_card_data_index_5_1_12_1">一念禅心马–明镜禅心马</string>
 
 
 
@@ -1145,7 +1151,7 @@
     <string name="name_card_data_index_11_3_10_1">香脆披萨炉–拉丝披萨炉</string>
 
     <string name="name_card_data_index_11_3_11_0">鲁班神使</string>
-    <string name="name_card_data_index_11_3_11_1">鲁班圣神–工匠神·鲁班</string>
+    <string name="name_card_data_index_11_3_11_1">鲁班圣神–工匠神·鲁班-至尊工匠神</string>
 
     <string name="name_card_data_index_11_3_12_0">炎凰马</string>
     <string name="name_card_data_index_11_3_12_1">白炽炎凰马–焚天炎凰马</string>
@@ -1401,14 +1407,17 @@
     <string name="name_card_data_index_14_1_12_0">星穹马</string>
     <string name="name_card_data_index_14_1_12_1">璀璨星穹马–浩瀚星穹马</string>
 
-    <string name="name_card_data_index_14_1_13_0">13周年时光机</string>
-    <string name="name_card_data_index_14_1_13_1">超载时光机–未来时光机</string>
+    <string name="name_card_data_index_14_1_13_0">奥西里斯神使</string>
+    <string name="name_card_data_index_14_1_13_1">奥西里斯圣神–重生神·奥西里斯-至尊重生神</string>
 
-    <string name="name_card_data_index_14_1_14_0">蛇蛇酒</string>
-    <string name="name_card_data_index_14_1_14_1">仙露蛇蛇酒–琼浆蛇蛇酒</string>
+    <string name="name_card_data_index_14_1_14_0">13周年时光机</string>
+    <string name="name_card_data_index_14_1_14_1">超载时光机–未来时光机</string>
 
-    <string name="name_card_data_index_14_1_15_0">克洛托神使</string>
-    <string name="name_card_data_index_14_1_15_1">克洛托圣神–命运女神·克洛托–至尊命运女神</string>
+    <string name="name_card_data_index_14_1_15_0">蛇蛇酒</string>
+    <string name="name_card_data_index_14_1_15_1">仙露蛇蛇酒–琼浆蛇蛇酒</string>
+
+    <string name="name_card_data_index_14_1_16_0">克洛托神使</string>
+    <string name="name_card_data_index_14_1_16_1">克洛托圣神–命运女神·克洛托–至尊命运女神</string>
 
 
 

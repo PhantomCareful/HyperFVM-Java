@@ -55,6 +55,12 @@
             android:name=".Activities.DataCenter.DataImage.DataImageCardActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10EffectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity"
             android:exported="false" />
         <activity

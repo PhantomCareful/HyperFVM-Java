@@ -36,6 +36,8 @@
 
         <include layout="@layout/card_card_data_index_4_2_12" />
 
+        <include layout="@layout/card_card_data_index_4_2_13" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

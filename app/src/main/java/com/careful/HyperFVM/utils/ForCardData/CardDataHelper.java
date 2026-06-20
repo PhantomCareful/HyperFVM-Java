@@ -34,6 +34,8 @@ import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.A
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList7EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList8Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList8EffectActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10Activity;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData1Activity;
@@ -157,11 +159,19 @@ public class CardDataHelper {
                 }
                 context.startActivity(intent);
                 break;
-            case "炎焱兔":
+            case "音盒马":
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList9EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList9Activity.class);
+                }
+                context.startActivity(intent);
+                break;
+            case "炎焱兔":
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                    intent = new Intent(context, AuxiliaryList10EffectActivity.class);
+                } else {
+                    intent = new Intent(context, AuxiliaryList10Activity.class);
                 }
                 context.startActivity(intent);
                 break;
@@ -384,7 +394,7 @@ public class CardDataHelper {
                 Objects.equals(cardName, "金牛座精灵") || Objects.equals(cardName, "暖炉汪") || Objects.equals(cardName, "能量喵") ||
                         Objects.equals(cardName, "坩埚蛇") || Objects.equals(cardName, "猪猪加强器") || Objects.equals(cardName, "香料虎") ||
                         Objects.equals(cardName, "精灵龙") || Objects.equals(cardName, "五行蛇") || Objects.equals(cardName, "魔杖蛇") ||
-                        Objects.equals(cardName, "炎焱兔")
+                        Objects.equals(cardName, "音盒马") || Objects.equals(cardName, "炎焱兔")
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;

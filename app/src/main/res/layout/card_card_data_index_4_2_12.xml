@@ -20,33 +20,33 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name_card_data_index_4_2_12_0"
+            android:text="@string/name_card_data_index_4_2_13_0"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="20sp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name_card_data_index_4_2_12_1"
+            android:text="@string/name_card_data_index_4_2_13_1"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="11sp" />
     </LinearLayout>
 
     <!-- 右侧卡片 -->
     <ImageView
-        android:id="@+id/card_data_index_4_2_11_0"
+        android:id="@+id/card_data_index_4_2_12_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_4_2_12_0"
         tools:ignore="ContentDescription" />
     <ImageView
-        android:id="@+id/card_data_index_4_2_11_1"
+        android:id="@+id/card_data_index_4_2_12_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_4_2_12_1"
         tools:ignore="ContentDescription" />
     <ImageView
-        android:id="@+id/card_data_index_4_2_11_2"
+        android:id="@+id/card_data_index_4_2_12_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_4_2_12_2"
