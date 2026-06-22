@@ -113,8 +113,8 @@ public class DatabaseInfo {
      * settings表增加“动态背景”设置
      * DB_VERSION = 81
      * 删除dashboard表
-     * DB_VERSION = 82 - 84
+     * DB_VERSION = 82 - 86
      * 改造+更新普通卡数据库
      */
-    public static final int DB_VERSION = 84;
+    public static final int DB_VERSION = 86;
 }
