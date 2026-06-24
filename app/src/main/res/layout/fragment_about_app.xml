@@ -869,7 +869,7 @@
 
     <!-- 顶栏 -->
     <TextView
-        android:id="@+id/Top_AppBar"
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"

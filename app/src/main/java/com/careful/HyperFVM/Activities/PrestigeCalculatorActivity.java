@@ -145,7 +145,7 @@ public class PrestigeCalculatorActivity extends BaseActivity {
 
     // 设置顶栏标题和返回按钮
     private void setTopAppBarTitle(String title) {
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
+        MaterialToolbar toolbar = findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

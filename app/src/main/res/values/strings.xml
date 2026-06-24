@@ -2,8 +2,10 @@
     <!--总体-->
     <string name="app_name">HyperFVM</string>
     <string name="hyper_fvm">HyperFVM</string>
-    <string name="top_bar_data_center">🍪融合数据中心🍪</string>
-    <string name="label_data_center_navigation">融合数据中心</string>
+    <string name="top_bar_dashboard">仪表盘🌭</string>
+    <string name="label_dashboard_navigation">仪表盘</string>
+    <string name="top_bar_data_center">🍪数据中心🍪</string>
+    <string name="label_data_center_navigation">数据中心</string>
     <string name="top_bar_about_app">🍭关于软件🍭</string>
     <string name="label_about_app_navigation">关于软件</string>
     <!--融合数据中心-->

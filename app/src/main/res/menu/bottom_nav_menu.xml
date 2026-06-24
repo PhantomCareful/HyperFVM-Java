@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/selector_dashboard"
+        android:title="@string/label_dashboard_navigation"
+        android:checked="true"/>
+
+    <item
         android:id="@+id/navigation_data_station"
         android:icon="@drawable/selector_data_center"
         android:title="@string/label_data_center_navigation"

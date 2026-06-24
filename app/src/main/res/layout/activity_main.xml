@@ -28,7 +28,7 @@
 
     <LinearLayout
         android:id="@+id/navigation_bar_container"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:clipChildren="false"
@@ -52,14 +52,14 @@
             <eightbitlab.com.blurview.BlurView
                 android:id="@+id/blurViewNavView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:blurOverlayColor="@color/blur_overlay_color">
 
                 <!-- 底栏：移到中间内容之后（层级更高），设透明背景 -->
                 <com.careful.HyperFVM.utils.ForDesign.NoPaddingBottomNavigationView.NoPaddingBottomNavigationView
                     android:id="@+id/nav_view"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     app:itemIconSize="40dp"
                     app:itemIconTint="@null"

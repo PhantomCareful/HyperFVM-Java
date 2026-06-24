@@ -31,4 +31,14 @@ public class BlurUtil {
                 .setBlurRadius(radius)
                 .setBlurAutoUpdate(true);
     }
+
+    public void setBlur(BlurView blurViewId, BlurTarget blurTarget) {
+        View decorView = window.getDecorView();
+        Drawable windowBackground = decorView.getBackground();
+
+        blurViewId.setupWith(blurTarget)
+                .setFrameClearDrawable(windowBackground)
+                .setBlurRadius(radius)
+                .setBlurAutoUpdate(true);
+    }
 }

@@ -54,7 +54,7 @@ public class UpdateLogHistoryActivity extends BaseActivity {
 
     private void setTopAppBarTitle(String title) {
         //设置顶栏标题、启用返回按钮
-        MaterialToolbar toolbar = findViewById(R.id.Top_AppBar);
+        MaterialToolbar toolbar = findViewById(R.id.topBar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

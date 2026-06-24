@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppEffectFragment;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
+import com.careful.HyperFVM.Fragments.Dashboard.DashboardFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -46,7 +47,6 @@ public class MainActivity extends BaseActivity {
     private List<Integer> menuOrder; // 导航菜单顺序
     private BottomNavigationView navView;
 
-    // 新增：ViewPager2相关
     private ViewPager2 viewPager;
 
     private Handler mainHandler;
@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity {
 
         // 初始化菜单顺序（必须与bottom_nav_menu.xml的item顺序一致）
         menuOrder = new ArrayList<>();
+        menuOrder.add(R.id.navigation_dashboard);
         menuOrder.add(R.id.navigation_data_station);
         menuOrder.add(R.id.navigation_about_app);
 
@@ -115,6 +116,7 @@ public class MainActivity extends BaseActivity {
             TabLayoutFragmentStateAdapter viewPagerAdapter = new TabLayoutFragmentStateAdapter(this);
 
             // 添加Fragment
+            viewPagerAdapter.addFragment(new DashboardFragment(), getResources().getString(R.string.top_bar_dashboard));
             viewPagerAdapter.addFragment(new DataCenterFragment(), getResources().getString(R.string.top_bar_data_center));
             // 是否启用动态背景
             boolean isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
@@ -126,7 +128,7 @@ public class MainActivity extends BaseActivity {
             viewPager.setAdapter(viewPagerAdapter);
 
             // 禁用预加载相邻页面（可选，减少内存使用）
-            viewPager.setOffscreenPageLimit(1);
+            viewPager.setOffscreenPageLimit(2);
 
             // 禁用ViewPager2的滚动动画（如果需要）
             viewPager.setUserInputEnabled(false); // 如果不想让用户滑动
@@ -156,7 +158,7 @@ public class MainActivity extends BaseActivity {
             });
 
             // 设置默认选中项
-            navView.setSelectedItemId(R.id.navigation_data_station);
+            navView.setSelectedItemId(R.id.navigation_dashboard);
 
         } catch (Exception e) {
             Log.e("ViewPagerSetup", "ViewPager初始化失败", e);

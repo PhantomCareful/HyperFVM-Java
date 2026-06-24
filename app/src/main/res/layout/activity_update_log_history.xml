@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/Top_AppBar"
+                    android:id="@+id/topBar"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:titleTextColor="?attr/colorOnSurface"
