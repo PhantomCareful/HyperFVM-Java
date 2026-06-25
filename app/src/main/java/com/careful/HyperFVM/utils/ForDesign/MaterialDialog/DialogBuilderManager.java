@@ -329,6 +329,7 @@ public class DialogBuilderManager {
      * @param contentStatus 状态内容
      * @param contentDetail 详细内容
      * @param cardList      返场卡片名单
+     * @param imageName     对应的米鼠的图的文件名
      */
     @SuppressLint({"Range", "DiscouragedApi", "SetTextI18n"})
     public static void showDashboardDetailDialogAndSeeTiramisuImageHappyHolidayAndThreeIslands(Context context, String title, String emoji, String contentStatus, String contentDetail, List<String> cardList, String imageName) {
@@ -443,7 +444,7 @@ public class DialogBuilderManager {
 
             // 到这里就说明本地确实有图片了
             File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_1_7.png");
+            File imageFile = new File(dir, imageName);
 
             if (!imageFile.exists()) {
                 DialogBuilderManager.showDialog(
