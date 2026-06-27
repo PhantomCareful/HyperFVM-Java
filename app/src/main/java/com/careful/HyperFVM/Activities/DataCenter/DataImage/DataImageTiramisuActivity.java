@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -23,7 +23,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 
-public class DataImageTiramisuActivity extends AppCompatActivity {
+public class DataImageTiramisuActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,7 @@ public class DataImageTiramisuActivity extends AppCompatActivity {
         setupContainer(R.id.tiramisu_image_2_4_14_container, "tiramisu_image_2_4_14");
         setupContainer(R.id.tiramisu_image_2_4_15_container, "tiramisu_image_2_4_15");
         setupContainer(R.id.tiramisu_image_2_4_16_container, "tiramisu_image_2_4_16");
+        setupContainer(R.id.tiramisu_image_2_5_container, "tiramisu_image_2_5");
     }
 
     private void setupContainer(int viewId, String imageName) {

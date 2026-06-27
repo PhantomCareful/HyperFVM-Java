@@ -2,11 +2,11 @@
     <!--总体-->
     <string name="app_name">HyperFVM</string>
     <string name="hyper_fvm">HyperFVM</string>
-    <string name="top_bar_dashboard">仪表盘🌭</string>
+    <string name="top_bar_dashboard">🌭仪表盘</string>
     <string name="label_dashboard_navigation">仪表盘</string>
-    <string name="top_bar_data_center">🍪数据中心🍪</string>
+    <string name="top_bar_data_center">🍪数据中心</string>
     <string name="label_data_center_navigation">数据中心</string>
-    <string name="top_bar_about_app">🍭关于软件🍭</string>
+    <string name="top_bar_about_app">🍭关于软件</string>
     <string name="label_about_app_navigation">关于软件</string>
     <!--融合数据中心-->
     <string name="title_data_center_about_data">数据相关👀</string>
@@ -90,6 +90,8 @@
     <string name="text_tools_tiramisu_image_2_4_15_description">Q群获取指令：@提拉米鼠 /VIP 15</string>
     <string name="text_tools_tiramisu_image_2_4_16_title" tools:ignore="Typos">VIP16权益图</string>
     <string name="text_tools_tiramisu_image_2_4_16_description">Q群获取指令：@提拉米鼠 /VIP 16</string>
+    <string name="text_tools_tiramisu_image_2_5_title">营地任务解谜图</string>
+    <string name="text_tools_tiramisu_image_2_5_description">Q群获取指令：@提拉米鼠 /营地</string>
     <string name="text_data_images_index_card">防御卡数据图</string>
     <string name="text_data_images_index_card_author">By So陌路の</string>
     <string name="text_data_images_index_card_0_1">新卡速递</string>
@@ -278,7 +280,7 @@
     <string name="dialog_tips_meishi_wechat_add_url">请输入链接，形如：\nhttp://meishi.wechat.123u.com/meishi/index?openid=XXXXX</string>
     <string name="title_dashboard_everyday">每日签到</string>
     <string name="title_dashboard_fertilization_task">施肥活动</string>
-    <string name="title_dashboard_bilibili_fvm">更新公告</string>
+    <string name="title_dashboard_weekly_recharge">更新公告</string>
     <string name="dialog_sub_title_bilibili_fvm">美食官号最新更新公告</string>
     <string name="title_dashboard_new_year_bounty">美食悬赏</string>
     <string name="title_dashboard_new_year_million_consumption">百万消费</string>
@@ -289,8 +291,12 @@
     <string name="title_dashboard_cross_server_team_up">助人为乐</string>
     <string name="title_dashboard_transfer_discount">二转打折</string>
     <string name="title_dashboard_new_year_lucky_money">抢红包</string>
-    <string name="title_dashboard_refresh_dashboard_1">刷新内容</string>
-    <string name="title_dashboard_refresh_dashboard_2">点击执行</string>
+    <string name="title_dashboard_world_boss">巅峰对决</string>
+    <string name="title_dashboard_camp_task">营地任务</string>
+    <string name="title_dashboard_cry_stone_discount">结晶强化打折</string>
+    <string name="title_dashboard_wedding_discount">豪华婚礼打折</string>
+    <string name="title_dashboard_tips">小贴士</string>
+    <string name="content_dashboard_tips">点击仪表盘的卡片可查看其详细内容</string>
     <!--美食数据站-->
     <string name="label_tools_made_by_xiaye">美食数据站🥰</string>
     <string name="title_tools_tiramisu">提拉米鼠\n作者：夏夜浅酌</string>
@@ -298,11 +304,11 @@
     <string name="dialog_title_tiramisu">提拉米鼠使用指南</string>
     <string name="dialog_url_tiramisu">https://msdzls.cn/docs</string>
     <string name="title_tools_molu">综合数据表\n作者：So陌路の</string>
-    <string name="label_tools_molu">🥰顾名思义，防御卡全能数据库的大部分内容和一堆数据图都来自这里\n👉点击跳转共享文档</string>
+    <string name="label_tools_molu">🥰伟大无需多言\n👉点击跳转共享文档</string>
     <string name="dialog_title_molu">陌路の综合数据表</string>
     <string name="dialog_url_molu">https://www.kdocs.cn/l/cmk63gHnvUdi</string>
     <string name="title_tools_faa">FAA米苏物流\n作者：夏夜浅酌</string>
-    <string name="label_tools_faa">🥰FAA游戏数据统计分析平台，在这里查什么道具在哪个图掉得最多\n👉点击跳转查询</string>
+    <string name="label_tools_faa">🥰FAA游戏数据统计分析平台\n👉点击跳转查询</string>
     <string name="dialog_title_faa">FAA米苏物流</string>
     <string name="dialog_url_faa">https://faa.msdzls.cn</string>
     <string name="title_tools_guidao">轨道强卡统计\n作者：夏夜浅酌</string>
@@ -310,16 +316,16 @@
     <string name="dialog_title_guidao">轨道强卡统计</string>
     <string name="dialog_url_guidao">https://card.mstrack.cn/</string>
     <string name="title_tools_strategy">卡片鼠军对策表\n作者：繁华洛尽、布鲁、陌路、式祈</string>
-    <string name="label_tools_strategy">🥰非常全面的游戏伤害机制详点说法，一定有你不知道的\n👉点击跳转共享文档</string>
+    <string name="label_tools_strategy">🥰非常全面的游戏伤害机制详点说法\n👉点击跳转共享文档</string>
     <string name="dialog_title_strategy">卡片鼠军对策表</string>
     <string name="dialog_url_strategy">https://www.kdocs.cn/l/cku3hMogOycM</string>
     <string name="title_tools_strategy_world_boss">巅峰对决部分机制解析\n作者：式祈</string>
-    <string name="label_tools_strategy_world_boss">🥰段位数据、BOSS技能、BUFF机制，全部都有\n👉点击跳转共享文档</string>
+    <string name="label_tools_strategy_world_boss">🥰段位数据、BOSS技能、BUFF机制\n👉点击跳转共享文档</string>
     <string name="dialog_title_strategy_world_boss">巅峰对决部分机制解析</string>
     <string name="dialog_url_strategy_world_boss">https://www.kdocs.cn/l/cll09ugqnrwG</string>
     <string name="title_tools_icu">FVM查黑系统\n作者：就喝百事</string>
     <string name="image_tools_icu">🚫</string>
-    <string name="label_tools_icu">🥰查询某个QQ号是否存在行骗记录\n👉点击开始查询</string>
+    <string name="label_tools_icu">🥰查询QQ号是否存在行骗记录\n👉点击开始查询</string>
     <string name="dialog_title_icu">查黑系统</string>
     <string name="dialog_description_icu">输入QQ号以查询是否有行骗记录\n查黑系统原作者为就喝百事\nHyperFVM仅提供本地UI方便查询</string>
     <string name="dialog_tips_icu">请输入您要查询的QQ号</string>

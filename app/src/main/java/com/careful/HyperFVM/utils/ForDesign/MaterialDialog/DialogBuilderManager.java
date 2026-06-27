@@ -322,6 +322,100 @@ public class DialogBuilderManager {
     }
 
     /**
+     * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
+     * 仅适用于营地任务
+     * @param title                 弹窗标题
+     * @param emoji                 弹窗中的大表情
+     * @param contentStatus         状态内容
+     * @param contentDetail         详细内容
+     * @param urlTask               营地任务顺序表链接
+     */
+    public static void showDashboardDetailDialogAndSeeTiramisuImageCampTask(Context context, String title, String emoji, String contentStatus, String contentDetail, String urlTask) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_tiramisu_camp_task, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonAction1 = dialogView.findViewById(R.id.button_action_1);
+        Button buttonAction2 = dialogView.findViewById(R.id.button_action_2);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        buttonAction1.setOnClickListener(v -> {
+            // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
+            // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            if (localVersionCode == 0 || localVersionCode == 1) {
+                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                return;
+            }
+
+            File dir = new File(context.getFilesDir(), "data_images");
+            File imageFile = new File(dir, "tiramisu_image_2_5.png");
+
+            if (!imageFile.exists()) {
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
+                return;
+            }
+
+            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(imageUri, "image/*");
+
+            // 授予临时读取权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                DialogBuilderManager.showDialog(
+                        context,
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                        "❌",
+                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                        true,
+                        "好的"
+                );
+            }
+        });
+
+        buttonAction2.setOnClickListener(v -> {
+            // 创建打开浏览器的Intent
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(urlTask));
+
+            // 启动浏览器（添加try-catch处理没有浏览器的异常）
+            try {
+                context.startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context, "无法打开浏览器", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
      * 仪表盘：展示详细信息的弹窗，并可以直接跳转对应的卡片详情页
      * 仅适用于欢乐假期和三岛福利
      * @param title         弹窗标题
@@ -444,7 +538,7 @@ public class DialogBuilderManager {
 
             // 到这里就说明本地确实有图片了
             File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, imageName);
+            File imageFile = new File(dir, imageName + ".png");
 
             if (!imageFile.exists()) {
                 DialogBuilderManager.showDialog(
@@ -1239,11 +1333,11 @@ public class DialogBuilderManager {
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
         buttonAction.setOnClickListener(v -> {
-            //创建打开浏览器的Intent
+            // 创建打开浏览器的Intent
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
 
-            //启动浏览器（添加try-catch处理没有浏览器的异常）
+            // 启动浏览器（添加try-catch处理没有浏览器的异常）
             try {
                 context.startActivity(intent);
             } catch (Exception e) {

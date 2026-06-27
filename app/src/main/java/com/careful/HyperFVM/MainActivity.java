@@ -173,9 +173,9 @@ public class MainActivity extends BaseActivity {
 
         BadgeDotUtil.checkUpdateAndShowRedDot(this, isShowRedDot -> {
             if (isShowRedDot) {
-                BadgeDotUtil.showRedDot(bottomNav, 1);
+                BadgeDotUtil.showRedDot(bottomNav, 2);
             } else {
-                BadgeDotUtil.hideRedDot(bottomNav, 1);
+                BadgeDotUtil.hideRedDot(bottomNav, 2);
             }
         });
     }

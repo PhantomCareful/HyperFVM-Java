@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -23,7 +23,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 
-public class DataImageMouseHpActivity extends AppCompatActivity {
+public class DataImageMouseHpActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

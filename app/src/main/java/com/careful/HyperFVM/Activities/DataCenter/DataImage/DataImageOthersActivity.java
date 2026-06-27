@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -27,7 +27,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 
-public class DataImageOthersActivity extends AppCompatActivity {
+public class DataImageOthersActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

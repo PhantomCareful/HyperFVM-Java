@@ -4,49 +4,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_card_calculator_container"
-        android:layout_width="match_parent"
+        android:id="@+id/dashboard_HappyHoliday_Container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
         android:layout_marginBottom="10dp"
         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
         app:cardCornerRadius="20dp">
 
         <ImageView
-            android:id="@+id/Img_ToolsCardCalculator"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="5dp"
             android:alpha="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/data_center_image_card_calculator"
-            android:scaleType="fitCenter"
-            android:layout_gravity="end|bottom"
+            android:src="@drawable/dashboard_happy_holiday_image"
+            android:scaleType="fitXY"
             tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="10dp"
             android:clickable="false"
-            android:background="?attr/selectableItemBackground"
-            android:padding="10dp">
+            android:background="?attr/selectableItemBackground">
 
             <TextView
-                android:id="@+id/title_ToolsCardCalculator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_tools_card_calculator"
+                android:layout_marginBottom="2dp"
+                android:text="@string/title_dashboard_happy_holiday"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="15sp"/>
 
             <TextView
-                android:id="@+id/description_ToolsCardCalculator"
+                android:id="@+id/dashboard_HappyHoliday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_tools_card_calculator"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
-                android:textSize="18sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 

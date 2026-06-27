@@ -316,32 +316,48 @@ public class DashboardGitCatcher {
     /**
      * 获取其他活动内容
      * 示例内容
-     *   {
-     *     "name": "日氪",
-     *     "startDate": "2026-01-30",
-     *     "endDate": "2026-02-05"
-     *   },
-     *   {
-     *     "name": "助人为乐",
-     *     "startDate": "2026-01-08",
-     *     "endDate": "2026-02-26"
-     *   },
-     *   {
-     *     "name": "App通知",
-     *     "startDate": "2026-06-13",
-     *     "endDate": "2026-06-30",
-     *     "title": "重要通知",
-     *     "content": ""
-     *   },
-     *   {
-     *     "name": "世界BOSS",
-     *     "startDate": "2026-06-18",
-     *     "challengeDate": "2026-06-19",
-     *     "settlementDate": "2026-07-03",
-     *     "endDate": "2026-07-09",
-     *     "title": "巅峰对决S11",
-     *     "content": "本赛季出场BOSS：阿斯莫德、玛门、路西法"
-     *   }
+     * {
+     * "name": "日氪",
+     * "startDate": "2026-01-30",
+     * "endDate": "2026-02-05"
+     * },
+     * {
+     * "name": "助人为乐",
+     * "startDate": "2026-01-08",
+     * "endDate": "2026-02-26"
+     * },
+     * {
+     * "name": "App通知",
+     * "startDate": "2026-06-13",
+     * "endDate": "2026-06-30",
+     * "title": "重要通知",
+     * "content": ""
+     * },
+     * {
+     * "name": "世界BOSS",
+     * "startDate": "2026-06-18",
+     * "challengeDate": "2026-06-19",
+     * "settlementDate": "2026-07-03",
+     * "endDate": "2026-07-09",
+     * "title": "巅峰对决S11",
+     * "content": "本赛季出场BOSS：阿斯莫德、玛门、路西法"
+     * },
+     * {
+     * "name": "营地任务",
+     * "startDate": "2026-04-16",
+     * "endDate": "2026-07-30",
+     * "urlTask": "<a href="https://www.kdocs.cn/l/cjEHQ7XO5T26">...</a>"
+     * },
+     * {
+     * "name": "豪华婚礼",
+     * "startDate": "2026-06-18",
+     * "endDate": "2026-07-09"
+     * },
+     * {
+     * "name": "结晶打折",
+     * "startDate": "2026-06-25",
+     * "endDate": "2026-08-27"
+     * },
      */
     private void catchOtherActivityInfo(JSONObject itemObj) throws JSONException {
         String resultSimple;
@@ -351,17 +367,17 @@ public class DashboardGitCatcher {
 
         String name = itemObj.getString("name");
 
-        // 有些活动写了单独的获取方法的，这里先判断一下
+        // 有些活动写了单独的获取方法的（主要是涉及cardList，单独写一下更方便），这里先判断一下
         switch (name) {
             case "欢乐假期":
                 catchHappyHolidayInfo(itemObj);
-                break;
+                return;
             case "三岛":
                 catchThreeIslandsInfo(itemObj);
-                break;
+                return;
             case "美食大赛":
                 catchFoodContestInfo(itemObj);
-                break;
+                return;
         }
 
         String startDate = itemObj.getString("startDate");
@@ -409,6 +425,25 @@ public class DashboardGitCatcher {
                     result.put("resultWorldBossUrlRule", itemObj.getString("urlRule"));
                     result.put("resultWorldBossUrlReward", itemObj.getString("urlReward"));
                     break;
+                case "营地任务":
+                    result.put("resultCampTaskSimple", resultSimple);
+                    result.put("resultCampTaskEmoji", resultEmoji);
+                    result.put("resultCampTaskContentStatus", resultContentStatus);
+                    result.put("resultCampTaskContentDetail", resultContentDetail);
+                    result.put("resultCampTaskUrl", itemObj.getString("urlTask"));
+                    break;
+                case "豪华婚礼":
+                    result.put("resultWeddingDiscountSimple", resultSimple);
+                    result.put("resultWeddingDiscountEmoji", resultEmoji);
+                    result.put("resultWeddingDiscountContentStatus", resultContentStatus);
+                    result.put("resultWeddingDiscountContentDetail", resultContentDetail);
+                    break;
+                case "结晶打折":
+                    result.put("resultCryStoneDiscountSimple", resultSimple);
+                    result.put("resultCryStoneDiscountEmoji", resultEmoji);
+                    result.put("resultCryStoneDiscountContentStatus", resultContentStatus);
+                    result.put("resultCryStoneDiscountContentDetail", resultContentDetail + "\n\n在此期间\n10级以上结晶强化保险金5折");
+                    break;
             }
         } else if (today.after(end)) {
             Log.d(TAG, name + ": 活动已结束");
@@ -446,21 +481,60 @@ public class DashboardGitCatcher {
                     result.put("resultWorldBossUrlRule", itemObj.getString("urlRule"));
                     result.put("resultWorldBossUrlReward", itemObj.getString("urlReward"));
                     break;
+                case "营地任务":
+                    result.put("resultCampTaskSimple", resultSimple);
+                    result.put("resultCampTaskEmoji", resultEmoji);
+                    result.put("resultCampTaskContentStatus", resultContentStatus);
+                    result.put("resultCampTaskContentDetail", resultContentDetail);
+                    result.put("resultCampTaskUrl", itemObj.getString("urlTask"));
+                    break;
+                case "豪华婚礼":
+                    result.put("resultWeddingDiscountSimple", resultSimple);
+                    result.put("resultWeddingDiscountEmoji", resultEmoji);
+                    result.put("resultWeddingDiscountContentStatus", resultContentStatus);
+                    result.put("resultWeddingDiscountContentDetail", resultContentDetail);
+                    break;
+                case "结晶打折":
+                    result.put("resultCryStoneDiscountSimple", resultSimple);
+                    result.put("resultCryStoneDiscountEmoji", resultEmoji);
+                    result.put("resultCryStoneDiscountContentStatus", resultContentStatus);
+                    result.put("resultCryStoneDiscountContentDetail", resultContentDetail);
+                    break;
             }
         } else {
             // 如果在结束当天过了上午10点，则也视为活动结束
-            // 日氪和假期除外
-            if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10 && !name.equals("日氪") && !name.equals("欢乐假期") && !name.equals("App通知")) {
+            if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10 && !name.equals("日氪") && !name.equals("App通知") && !name.equals("世界BOSS")) {
                 Log.d(TAG, name + ": 活动已结束");
                 resultSimple = "暂无";
                 resultEmoji = "⏳";
                 resultContentStatus = "空空如也";
                 resultContentDetail = "还没有新的活动呢";
-                if (name.equals("助人为乐")) {
-                    result.put("resultServerTeamUpSimple", resultSimple);
-                    result.put("resultServerTeamUpEmoji", resultEmoji);
-                    result.put("resultServerTeamUpContentStatus", resultContentStatus);
-                    result.put("resultServerTeamUpContentDetail", resultContentDetail);
+                switch (name) {
+                    case "助人为乐":
+                        result.put("resultServerTeamUpSimple", resultSimple);
+                        result.put("resultServerTeamUpEmoji", resultEmoji);
+                        result.put("resultServerTeamUpContentStatus", resultContentStatus);
+                        result.put("resultServerTeamUpContentDetail", resultContentDetail);
+                        break;
+                    case "营地任务":
+                        result.put("resultCampTaskSimple", resultSimple);
+                        result.put("resultCampTaskEmoji", resultEmoji);
+                        result.put("resultCampTaskContentStatus", resultContentStatus);
+                        result.put("resultCampTaskContentDetail", resultContentDetail);
+                        result.put("resultCampTaskUrl", itemObj.getString("urlTask"));
+                        break;
+                    case "豪华婚礼":
+                        result.put("resultWeddingDiscountSimple", resultSimple);
+                        result.put("resultWeddingDiscountEmoji", resultEmoji);
+                        result.put("resultWeddingDiscountContentStatus", resultContentStatus);
+                        result.put("resultWeddingDiscountContentDetail", resultContentDetail);
+                        break;
+                    case "结晶打折":
+                        result.put("resultCryStoneDiscountSimple", resultSimple);
+                        result.put("resultCryStoneDiscountEmoji", resultEmoji);
+                        result.put("resultCryStoneDiscountContentStatus", resultContentStatus);
+                        result.put("resultCryStoneDiscountContentDetail", resultContentDetail);
+                        break;
                 }
             } else {
                 Log.d(TAG, name + ": 活动正在进行中");
@@ -506,6 +580,35 @@ public class DashboardGitCatcher {
                         result.put("resultWorldBossEndDate", endDate);
                         result.put("resultWorldBossUrlRule", itemObj.getString("urlRule"));
                         result.put("resultWorldBossUrlReward", itemObj.getString("urlReward"));
+                        break;
+                    case "营地任务":
+                        resultSimple = duringCount + "/" + length;
+                        resultContentStatus = "第" + duringCount + "天/持续" + length + "天";
+
+                        result.put("resultCampTaskSimple", resultSimple);
+                        result.put("resultCampTaskEmoji", resultEmoji);
+                        result.put("resultCampTaskContentStatus", resultContentStatus);
+                        result.put("resultCampTaskContentDetail", resultContentDetail);
+                        result.put("resultCampTaskUrl", itemObj.getString("urlTask"));
+                        break;
+                    case "豪华婚礼":
+                        resultSimple = duringCount + "/" + length;
+                        resultContentStatus = "第" + duringCount + "天/持续" + length + "天";
+
+                        result.put("resultWeddingDiscountSimple", resultSimple);
+                        result.put("resultWeddingDiscountEmoji", "💍💍");
+                        result.put("resultWeddingDiscountContentStatus", resultContentStatus);
+                        result.put("resultWeddingDiscountContentDetail", resultContentDetail);
+                        break;
+                    case "结晶打折":
+                        resultSimple = duringCount + "/" + length;
+                        resultContentStatus = "第" + duringCount + "天/持续" + length + "天";
+
+                        result.put("resultCryStoneDiscountSimple", resultSimple);
+                        result.put("resultCryStoneDiscountEmoji", "😍");
+                        result.put("resultCryStoneDiscountContentStatus", resultContentStatus);
+                        result.put("resultCryStoneDiscountContentDetail", resultContentDetail + "\n\n在此期间\n10级以上结晶强化保险金打5折");
+
                         break;
                 }
             }

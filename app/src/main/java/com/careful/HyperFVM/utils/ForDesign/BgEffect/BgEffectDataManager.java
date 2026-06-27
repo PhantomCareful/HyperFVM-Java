@@ -84,9 +84,9 @@ public class BgEffectDataManager {
         mPhoneLightData.colorInterpPeriod = 5.0f;
         mPhoneLightData.gradientSpeedChange = 1.6f;
         mPhoneLightData.gradientSpeedRest = 1.05f;
-        mPhoneLightData.gradientColors1 = new float[]{0.98f, 0.86f, 0.9f, 1.0f, 0.6f, 0.73f, 0.98f, 1.0f, 0.92f, 0.93f, 1.0f, 1.0f, 0.56f, 0.69f, 1.0f, 1.0f};
+        mPhoneLightData.gradientColors1 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
         mPhoneLightData.gradientColors2 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
-        mPhoneLightData.gradientColors3 = new float[]{0.58f, 0.74f, 1.0f, 1.0f, 1.0f, 0.9f, 0.93f, 1.0f, 0.74f, 0.76f, 1.0f, 1.0f, 0.97f, 0.77f, 0.84f, 1.0f};
+        mPhoneLightData.gradientColors3 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
 
         // 平板浅色（可省略，仅保留手机参数）
         mPadLightData = new BgEffectData();

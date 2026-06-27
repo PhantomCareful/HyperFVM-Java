@@ -115,7 +115,6 @@ public class ExecuteDailyTask {
                 // 温馨礼包
                 result.put("resultMeishiWechatInfoSimple", catchMeishiWechatInfoResult.get(0).get("resultSimple"));
                 result.put("resultMeishiWechatInfoNotification", catchMeishiWechatInfoResult.get(0).get("resultNotification"));
-                result.put("resultMeishiWechatInfoEmoji", catchMeishiWechatInfoResult.get(0).get("resultEmoji"));
 
                 // 双爆
                 result.put("resultTodayActivityInfoSimple", catchTodayActivityInfoResult.get(0).get("resultSimple"));
@@ -206,6 +205,25 @@ public class ExecuteDailyTask {
                 result.put("resultWorldBossEndDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossEndDate"));
                 result.put("resultWorldBossUrlRule", catchGitDashboardInfoResult.get(0).get("resultWorldBossUrlRule"));
                 result.put("resultWorldBossUrlReward", catchGitDashboardInfoResult.get(0).get("resultWorldBossUrlReward"));
+
+                // 营地任务
+                result.put("resultCampTaskSimple", catchGitDashboardInfoResult.get(0).get("resultCampTaskSimple"));
+                result.put("resultCampTaskEmoji", catchGitDashboardInfoResult.get(0).get("resultCampTaskEmoji"));
+                result.put("resultCampTaskContentStatus", catchGitDashboardInfoResult.get(0).get("resultCampTaskContentStatus"));
+                result.put("resultCampTaskContentDetail", catchGitDashboardInfoResult.get(0).get("resultCampTaskContentDetail"));
+                result.put("resultCampTaskUrl", catchGitDashboardInfoResult.get(0).get("resultCampTaskUrl"));
+
+                // 豪华婚礼
+                result.put("resultWeddingDiscountSimple", catchGitDashboardInfoResult.get(0).get("resultWeddingDiscountSimple"));
+                result.put("resultWeddingDiscountEmoji", catchGitDashboardInfoResult.get(0).get("resultWeddingDiscountEmoji"));
+                result.put("resultWeddingDiscountContentStatus", catchGitDashboardInfoResult.get(0).get("resultWeddingDiscountContentStatus"));
+                result.put("resultWeddingDiscountContentDetail", catchGitDashboardInfoResult.get(0).get("resultWeddingDiscountContentDetail"));
+
+                // 结晶打折
+                result.put("resultCryStoneDiscountSimple", catchGitDashboardInfoResult.get(0).get("resultCryStoneDiscountSimple"));
+                result.put("resultCryStoneDiscountEmoji", catchGitDashboardInfoResult.get(0).get("resultCryStoneDiscountEmoji"));
+                result.put("resultCryStoneDiscountContentStatus", catchGitDashboardInfoResult.get(0).get("resultCryStoneDiscountContentStatus"));
+                result.put("resultCryStoneDiscountContentDetail", catchGitDashboardInfoResult.get(0).get("resultCryStoneDiscountContentDetail"));
 
                 callBack.onResult(result);
             }

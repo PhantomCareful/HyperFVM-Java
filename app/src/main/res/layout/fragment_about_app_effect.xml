@@ -24,7 +24,7 @@
         android:clipToPadding="false">
 
         <LinearLayout
-            android:id="@+id/about_app_container"
+            android:id="@+id/AboutApp_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"

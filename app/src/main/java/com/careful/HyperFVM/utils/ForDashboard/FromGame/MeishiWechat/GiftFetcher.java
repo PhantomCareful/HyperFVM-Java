@@ -27,7 +27,7 @@ public class GiftFetcher {
             String resultNotification = "暂无账号";
 
             callback.onResult(
-                    generateMap("✅", resultSimple, resultNotification)
+                    generateMap(resultSimple, resultNotification)
             );
 
             return;
@@ -45,11 +45,8 @@ public class GiftFetcher {
                 giftHelper.fetchAllGifts(openids, new GiftFetchHelper.GiftFetchCallback() {
                     @Override
                     public void onResult(int successCount) {
-                        String resultSimple = successCount + "个";
-                        String resultNotification = successCount + "个已领取";
-
                         callback.onResult(
-                                generateMap("✅", resultSimple, resultNotification)
+                                generateMap(successCount + "个✅", successCount + "个已领取")
                         );
                     }
 
@@ -59,7 +56,7 @@ public class GiftFetcher {
                         String resultNotification = "❌服务器";
 
                         callback.onResult(
-                                generateMap("❌", resultSimple, resultNotification)
+                                generateMap(resultSimple, resultNotification)
                         );
                     }
                 });
@@ -68,17 +65,16 @@ public class GiftFetcher {
                 String resultNotification = "❌请重新尝试";
 
                 callback.onResult(
-                        generateMap("❌", resultSimple, resultNotification)
+                        generateMap(resultSimple, resultNotification)
                 );
             }
         }).start();
     }
 
     // 保存结果到Map，用于及时输出数据
-    private Map<String, String> generateMap(String resultEmoji, String resultSimple, String resultNotification) {
+    private Map<String, String> generateMap(String resultSimple, String resultNotification) {
         Map<String, String> result = new HashMap<>();
 
-        result.put("resultEmoji", resultEmoji);
         result.put("resultSimple", resultSimple);
         result.put("resultNotification", resultNotification);
 

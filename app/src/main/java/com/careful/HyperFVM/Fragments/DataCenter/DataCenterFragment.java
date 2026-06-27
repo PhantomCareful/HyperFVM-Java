@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,10 @@ import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
+import com.google.android.material.card.MaterialCardView;
 
 public class DataCenterFragment extends Fragment {
     private View root;
@@ -27,6 +31,9 @@ public class DataCenterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentDataCenterBinding binding = FragmentDataCenterBinding.inflate(inflater, container, false);
         root = binding.getRoot();
+
+        // 初始化各种装饰效果
+        initDecoration();
 
         // ------------------------------ 设置点击事件 ------------------------------
         // 防御卡全能数据库
@@ -91,7 +98,7 @@ public class DataCenterFragment extends Fragment {
         // 巅峰对决部分机制解析
         root.findViewById(R.id.card_strategy_world_boss_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_strategy_world_boss),
+                ContextCompat.getDrawable(requireContext(), R.drawable.dashboard_world_boss),
                 0,
                 getResources().getString(R.string.dialog_title_strategy_world_boss),
                 "",
@@ -144,5 +151,46 @@ public class DataCenterFragment extends Fragment {
         // 还原卡片状态
         TextView DataCenter_CardDataIndex_Content = root.findViewById(R.id.DataCenter_CardDataIndex_Content);
         DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
+    }
+
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView topBarContainer = root.findViewById(R.id.TopBar_Container);
+        // 动态获取状态栏高度
+        InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout dataCenterContainer = root.findViewById(R.id.DataCenter_Container);
+        InsetsUtil.setMarginHorizontal(requireContext(), dataCenterContainer, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) dataCenterContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            dataCenterContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            topBarContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
+    }
+
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(requireContext());
+        blurUtil.setBlur(root.findViewById(R.id.blurViewTopBar), root.findViewById(R.id.targetView));
     }
 }
