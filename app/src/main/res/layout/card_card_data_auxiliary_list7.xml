@@ -75,8 +75,8 @@
         layout="@layout/card_card_data_index_3_2_1" />
 
     <include
-        android:id="@+id/card_card_data_index_11_3_7"
-        layout="@layout/card_card_data_index_11_3_7" />
+        android:id="@+id/card_card_data_index_11_3_8"
+        layout="@layout/card_card_data_index_11_3_8" />
 
     <include
         android:id="@+id/card_card_data_index_3_2_5_2"

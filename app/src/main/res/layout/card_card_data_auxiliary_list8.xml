@@ -77,4 +77,8 @@
         android:id="@+id/card_card_data_index_11_2_3"
         layout="@layout/card_card_data_index_11_2_3" />
 
+    <include
+        android:id="@+id/card_card_data_index_11_3_6"
+        layout="@layout/card_card_data_index_11_3_6" />
+
 </LinearLayout>
