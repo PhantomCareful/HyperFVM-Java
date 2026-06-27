@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,10 +24,14 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
 import android.widget.ScrollView;
+
+import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
@@ -185,6 +190,27 @@ public class AboutAppFragment extends Fragment {
      * 等等等等
      */
     private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView topBarContainer = root.findViewById(R.id.TopBar_Container);
+        // 动态获取状态栏高度
+        InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout aboutAppContainer = root.findViewById(R.id.AboutApp_container);
+        InsetsUtil.setMarginHorizontal(requireContext(), aboutAppContainer, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) aboutAppContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            aboutAppContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            topBarContainer.setLayoutParams(params);
+        });
+
         // 获取需要渐隐的元素
         logoView = root.findViewById(R.id.about_app_icon);
         appNameText = root.findViewById(R.id.about_app_name);
@@ -223,6 +249,17 @@ public class AboutAppFragment extends Fragment {
                 ScrollEffectForBackgroundItem.updateBackgroundLogoClickable(requireContext(), logoView);
             });
         }
+
+        // 添加模糊材质
+        setupBlurEffect();
+    }
+
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(requireContext());
+        blurUtil.setBlur(root.findViewById(R.id.blurViewTopBar), root.findViewById(R.id.targetView));
     }
 
     @Override

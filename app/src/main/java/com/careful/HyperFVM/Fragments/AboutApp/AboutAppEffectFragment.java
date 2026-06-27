@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 import java.util.Objects;
 
@@ -191,6 +193,15 @@ public class AboutAppEffectFragment extends Fragment {
      * 等等等等
      */
     private void initDecoration() {
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout aboutAppContainer = root.findViewById(R.id.AboutApp_container);
+        InsetsUtil.setMarginHorizontal(requireContext(), aboutAppContainer, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) aboutAppContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            aboutAppContainer.setLayoutParams(params);
+        });
+
         // 初始化流光背景
         View bgView = root.findViewById(R.id.bgEffectView);
         if (bgView != null) {
@@ -250,10 +261,6 @@ public class AboutAppEffectFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        if (bgEffectController != null) {
-            bgEffectController.startAboutAppBgEffect();
-        }
 
         // 检查更新
         if (root != null) {

@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.utils.OtherUtils;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import androidx.core.view.ViewCompat;
@@ -37,7 +38,9 @@ public class InsetsUtil {
             int statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
 
             if (heightConsumer != null) {
-                heightConsumer.accept(statusBarHeight == 0 ? DensityUtil.dpToPx(context, 36) : statusBarHeight);
+                heightConsumer.accept(statusBarHeight == 0 ?
+                        DensityUtil.dpToPx(context, 36) :
+                        (SmallestWidthUtil.getSmallestWidthDp() < 600 ? statusBarHeight : statusBarHeight + DensityUtil.dpToPx(context, 10)));
             }
 
             return insets;
@@ -45,7 +48,7 @@ public class InsetsUtil {
     }
 
     /**
-     * 动态设置水平边距
+     * 动态设置顶栏的水平边距
      * 手机：10dp，PAD：20dp
      * @param view 通常是 Activity 的根容器
      * @param horizontalConsumer 一个用于接收间距的回调
@@ -61,7 +64,6 @@ public class InsetsUtil {
             return insets;
         });
     }
-
     public interface Consumer<T> {
         void accept(T t);
     }
