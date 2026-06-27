@@ -388,7 +388,7 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_14_2_10_2_big", "清障猪", "card_data_4"},
             {"card_data_index_14_2_11_2_big", "旋风牛", "card_data_4"},
             {"card_data_index_14_2_12_2_big", "酸柠檬爆弹", "card_data_1"},
-            {"card_data_index_14_2_13_2_big", "炸炸菇", "card_data_1"},
+            {"card_data_index_14_2_13_1_big", "炸炸菇", "card_data_1"},
             {"card_data_index_14_2_14_2_big", "海盐粉", "card_data_1"},
             {"card_data_index_14_2_15_2_big", "碎冰喵", "card_data_4"},
 
