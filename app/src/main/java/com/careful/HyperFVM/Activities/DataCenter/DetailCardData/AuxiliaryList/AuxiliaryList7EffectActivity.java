@@ -130,8 +130,8 @@ public class AuxiliaryList7EffectActivity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex16132.cardDataIndex1613.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火影怪味鱿鱼"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex326.cardDataIndex326.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烟花虎"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex327.cardDataIndex327.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "风车龙"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex117.cardDataIndex117.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "散弹牛"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex118.cardDataIndex118.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "威风虎"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex132.cardDataIndex132.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弩箭牛"));
 
     }
 

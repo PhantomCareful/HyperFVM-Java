@@ -4,16 +4,19 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.ActionBar;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +43,11 @@ public class PrestigeCalculatorActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_prestige_calculator);
 
-        // 设置顶栏标题和返回按钮
-        setTopAppBarTitle(getResources().getString(R.string.top_bar_prestige_calculator));
-
         // 初始化视图
         initViews();
+
+        // 初始化各种装饰效果
+        initDecoration();
 
         // 给所有输入框设置文本变化监听器
         setupTextWatchers();
@@ -70,23 +73,11 @@ public class PrestigeCalculatorActivity extends BaseActivity {
         inputEditTexts.add(findViewById(R.id.et_5000));
         inputEditTexts.add(findViewById(R.id.et_8000));
         inputEditTexts.add(findViewById(R.id.et_10000));
-        inputEditTexts.add(findViewById(R.id.et_month_card));
-        inputEditTexts.add(findViewById(R.id.et_luxury_welfare_gift_package));
+        inputEditTexts.add(findViewById(R.id.et_month_card_gift));
+        inputEditTexts.add(findViewById(R.id.et_luxury_welfare_gift));
 
         // 初始化结果显示
-        tvTotal = findViewById(R.id.tv_total);
-
-        // 顶栏模糊材质
-        setupBlurEffect();
-    }
-
-    /**
-     * 添加模糊效果
-     */
-    private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopAppBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewTextTotal));
+        tvTotal = findViewById(R.id.total);
     }
 
     // 给所有输入框设置文本变化监听器（实时计算）
@@ -143,15 +134,66 @@ public class PrestigeCalculatorActivity extends BaseActivity {
         tvTotal.setText("总储备：" + total);
     }
 
-    // 设置顶栏标题和返回按钮
-    private void setTopAppBarTitle(String title) {
-        MaterialToolbar toolbar = findViewById(R.id.topBar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        toolbar.setNavigationOnClickListener(v -> finish());
+    /**
+     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
+     * 1.模糊材质
+     * 2.背景动态流光
+     * 3.背景组件滑动渐隐渐显
+     * 等等等等
+     */
+    @SuppressLint("DiscouragedApi")
+    private void initDecoration() {
+        // 适配状态栏高度
+        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
+        MaterialCardView totalContainer = findViewById(R.id.Total_Container);
+        View rootView = findViewById(android.R.id.content);
+        // 动态获取状态栏高度
+        InsetsUtil.setStatusBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout prestige_calculator_container = findViewById(R.id.prestige_calculator_container);
+        InsetsUtil.setMarginHorizontal(this, prestige_calculator_container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) prestige_calculator_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            prestige_calculator_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            topBarContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) totalContainer.getLayoutParams();
+            params.topMargin = layout_marginHorizontal;
+            totalContainer.setLayoutParams(params);
+        });
+
+        // 添加模糊材质
+        setupBlurEffect();
     }
+
+    /**
+     * 添加模糊效果
+     */
+    private void setupBlurEffect() {
+        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
+        blurUtil.setBlur(findViewById(R.id.blurViewTextTotal));
+
+        // 顺便设置按钮的功能
+        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+    }
+
 }

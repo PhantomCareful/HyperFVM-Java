@@ -301,6 +301,7 @@ public class MeishiWechatActivity extends BaseActivity {
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
         MaterialCardView floatButtonAddContainer = findViewById(R.id.FloatButton_Add_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
@@ -308,6 +309,10 @@ public class MeishiWechatActivity extends BaseActivity {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonAddContainer.getLayoutParams();
             params.topMargin = height;
@@ -324,6 +329,7 @@ public class MeishiWechatActivity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonAdd));
 
         // 顺便设置按钮的功能

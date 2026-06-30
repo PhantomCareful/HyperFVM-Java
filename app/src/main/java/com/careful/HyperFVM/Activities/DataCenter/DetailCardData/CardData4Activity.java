@@ -496,6 +496,7 @@ public class CardData4Activity extends BaseActivity {
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
         MaterialCardView floatButtonExportContainer = findViewById(R.id.FloatButton_Export_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
@@ -504,10 +505,18 @@ public class CardData4Activity extends BaseActivity {
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
 
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
+
             params = (ViewGroup.MarginLayoutParams) floatButtonExportContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonExportContainer.setLayoutParams(params);
         });
+
+        // 设置顶栏标题
+        TextView topBar = findViewById(R.id.topBar);
+        topBar.setText(cardName);
 
         // 初始化大图片的淡入动画
         transition = new TransitionSet();
@@ -570,6 +579,7 @@ public class CardData4Activity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonExport));
 
         // 顺便设置按钮的功能

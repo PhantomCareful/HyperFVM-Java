@@ -459,12 +459,17 @@ public class DataImagesIndexActivity extends BaseActivity {
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout data_images_index_container = findViewById(R.id.data_images_index_container);
@@ -477,6 +482,10 @@ public class DataImagesIndexActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            topBarContainer.setLayoutParams(params);
         });
 
         // 添加模糊材质
@@ -489,6 +498,7 @@ public class DataImagesIndexActivity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
 
         // 顺便设置按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());

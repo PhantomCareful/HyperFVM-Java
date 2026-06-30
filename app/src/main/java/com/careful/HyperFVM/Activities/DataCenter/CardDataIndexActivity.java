@@ -891,6 +891,7 @@ public class CardDataIndexActivity extends BaseActivity {
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
         MaterialCardView floatButtonCardDataIndexContainer = findViewById(R.id.FloatButton_CardDataIndex_Container);
         MaterialCardView floatButtonCardDataSearchContainer = findViewById(R.id.FloatButton_CardDataSearch_Container);
         View rootView = findViewById(android.R.id.content);
@@ -899,6 +900,10 @@ public class CardDataIndexActivity extends BaseActivity {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonCardDataIndexContainer.getLayoutParams();
             params.topMargin = height;
@@ -1047,6 +1052,7 @@ public class CardDataIndexActivity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 

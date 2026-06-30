@@ -365,6 +365,7 @@ public class SettingsActivity extends BaseActivity {
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
         MaterialCardView floatButtonRestartContainer = findViewById(R.id.FloatButton_Restart_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
@@ -372,6 +373,10 @@ public class SettingsActivity extends BaseActivity {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.topMargin = height;
+            topBarContainer.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonRestartContainer.getLayoutParams();
             params.topMargin = height;
@@ -384,6 +389,10 @@ public class SettingsActivity extends BaseActivity {
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
             settings_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            topBarContainer.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
@@ -400,6 +409,7 @@ public class SettingsActivity extends BaseActivity {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonRestart));
 
         // 顺便设置按钮的功能
