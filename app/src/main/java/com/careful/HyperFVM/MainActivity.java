@@ -210,6 +210,7 @@ public class MainActivity extends BaseActivity {
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewNavView));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonDecomposeAndGetSearch));
     }
 
     @Override

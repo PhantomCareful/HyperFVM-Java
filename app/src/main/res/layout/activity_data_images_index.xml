@@ -148,7 +148,7 @@
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="24dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_robot"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView"
@@ -206,7 +206,7 @@
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="24dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_cards"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView"
@@ -264,7 +264,7 @@
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="24dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_shield_half_full"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView"
@@ -322,7 +322,7 @@
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="24dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_recycle"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView"
@@ -380,7 +380,7 @@
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="24dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_water"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView"
@@ -438,7 +438,7 @@
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="24dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/app_icon"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView"
