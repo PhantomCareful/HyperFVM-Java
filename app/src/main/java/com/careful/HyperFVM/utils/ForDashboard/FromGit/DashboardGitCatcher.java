@@ -97,7 +97,7 @@ public class DashboardGitCatcher {
             simple = "尚未开始";
             emoji = "⏳";
             contentStatus = "等等等等";
-            contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n以下卡片保险金仅需1500D\n\n";
+            contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n以下卡片保险金仅需1500D";
         } else if (today.after(end)) {
             Log.d(TAG, "二转打折：活动已结束");
             simple = "暂无";
