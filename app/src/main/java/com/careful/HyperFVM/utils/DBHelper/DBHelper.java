@@ -106,147 +106,6 @@ public class DBHelper extends SQLiteOpenHelper {
         // 清空表并重新导入CSV
         clearAndImportCardData(db);
 
-        // 版本15：优化通知：仪表盘展示的文案和通知展示的文案分开存储
-        if (oldVersion < 15) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
-                    "VALUES ('meishi_wechat_result_text_notification', 'null')," +
-                    "('double_explosion_rate_notification', 'null')," +
-                    "('fertilization_task_notification', 'null')," +
-                    "('new_year_notification', 'null')");
-        }
-
-        // 版本20：新增data_station表，管理数据图版本号
-        if (oldVersion < 20) {
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_DATA_STATION + "(" +
-                    "content TEXT PRIMARY KEY," +
-                    "value TEXT)");
-            //版本号初始为0
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
-                    "VALUES ('DataImagesVersionCode', '0')");
-        }
-
-        // 版本21：修复：深色模式设置失效的问题
-        if (oldVersion < 21) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('主题-深色主题', '跟随系统\uD83C\uDF17')");
-        }
-
-        // 版本22：CurrentUpdateLogImage
-        if (oldVersion < 22) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
-                    "VALUES ('CurrentUpdateLogImage', '- 啥都还没有哦~')");
-        }
-
-        // 版本23：新增DownloadedApkFileName
-        // 版本23：强行重置DataImagesVersionCode为0
-        if (oldVersion < 23) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
-                    "VALUES ('DownloadedApkFileName', '')");
-            db.execSQL("UPDATE " + TABLE_DATA_STATION +
-                    " SET value = '0' WHERE content = 'DataImagesVersionCode'");
-        }
-
-        // 版本25：settings表增加“自动任务-增强”
-        if (oldVersion < 25) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('自动任务-增强', 'false')");
-        }
-
-        // 版本34：settings表增加“提示语显示”3个设置
-        if (oldVersion < 34) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('提示语显示-防御卡全能数据库', 'true')," +
-                    "('提示语显示-增幅卡名单', 'true')," +
-                    "('提示语显示-数据图查看器', 'true')");
-        }
-
-        // 版本35：settings表增加“界面风格”设置
-        if (oldVersion < 35) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('界面风格', '鲜艳-立体')");
-        }
-
-        // 版本36：settings表增加“按压反馈动画”开关
-        if (oldVersion < 36) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('按压反馈动画', 'true')");
-        }
-
-        // 版本46：settings表增加“界面布局优化”开关
-        if (oldVersion < 46) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('界面布局优化', 'true')");
-        }
-
-        // 版本52：settings表增加“生物认证”开关
-        if (oldVersion < 52) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('安全-生物认证', 'false')");
-        }
-
-        // 版本53-56：重构仪表盘界面
-        if (oldVersion < 56) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
-                    "VALUES ('meishi_wechat_result_emoji', 'null')," +
-                    "('double_explosion_rate_emoji', 'null')," +
-                    "('fertilization_task_emoji', 'null')," +
-                    "('bounty_emoji', 'null')," +
-                    "('double_explosion_rate_detail', 'null')," +
-                    "('fertilization_task_detail', 'null')," +
-                    "('bounty_detail', 'null')," +
-                    "('million_consumption', 'null')," +
-                    "('million_consumption_emoji', 'null')," +
-                    "('million_consumption_detail', 'null')," +
-                    "('lucky_money', 'null')," +
-                    "('lucky_money_emoji', 'null')," +
-                    "('lucky_money_detail', 'null')," +
-                    "('daily_recharge', 'null')," +
-                    "('daily_recharge_emoji', 'null')," +
-                    "('daily_recharge_detail', 'null')," +
-                    "('happy_holiday', 'null')," +
-                    "('happy_holiday_emoji', 'null')," +
-                    "('happy_holiday_detail', 'null')," +
-                    "('cross_server_team_up', 'null')," +
-                    "('cross_server_team_up_emoji', 'null')," +
-                    "('cross_server_team_up_detail', 'null')," +
-                    "('three_islands', 'null')," +
-                    "('three_islands_emoji', 'null')," +
-                    "('three_islands_detail', 'null')," +
-                    "('food_contest', 'null')," +
-                    "('food_contest_emoji', 'null')," +
-                    "('food_contest_detail', 'null')," +
-                    "('transfer_discount', 'null')," +
-                    "('transfer_discount_emoji', 'null')," +
-                    "('transfer_discount_detail', 'null')");
-            db.execSQL("UPDATE " + TABLE_DASHBOARD + " SET id = 'bounty' WHERE id = 'new_year'");
-            db.execSQL("UPDATE " + TABLE_DASHBOARD + " SET id = 'bounty_notification' WHERE id = 'new_year_notification'");
-        }
-
-        // 版本59：修改一下图片资源的ID
-        if (oldVersion < 59) {
-            db.execSQL("UPDATE " + TABLE_DATA_STATION + " SET content = 'DataImageResourcesVersionCode' WHERE content = 'DataImagesVersionCode'");
-            db.execSQL("UPDATE " + TABLE_DATA_STATION + " SET content = 'CurrentUpdateLogImageResources' WHERE content = 'CurrentUpdateLogImage'");
-        }
-
-        // 版本62：将默认界面风格切换为素雅-扁平
-        if (oldVersion < 62) {
-            db.execSQL("UPDATE " + TABLE_SETTINGS + " SET value = '素雅-扁平' WHERE content = '界面风格'");
-        }
-
-        // 版本63：新增“App通知”
-        if (oldVersion < 63) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DASHBOARD + " (id, content) " +
-                    "VALUES ('global_notification_is_show', 'null')," +
-                    "('global_notification_title', 'null')," +
-                    "('global_notification_content', 'null')");
-        }
-
-        // 版本64：新增DownloadedApkFileVersionCode
-        if (oldVersion < 64) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_DATA_STATION + " (content, value) " +
-                    "VALUES ('DownloadedApkFileVersionCode', '0')");
-        }
-
         // 版本78：settings表增加”跟随系统字体大小““自定义字体大小”设置
         if (oldVersion < 78) {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
@@ -263,6 +122,12 @@ public class DBHelper extends SQLiteOpenHelper {
         // 版本81：删除dashboard表
         if (oldVersion < 81) {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_DASHBOARD);
+        }
+
+        // 版本90：settings表增加“提示语设置-仪表盘刷新完成”设置
+        if (oldVersion < 90) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('提示语显示-仪表盘刷新完成', 'true')");
         }
     }
 
