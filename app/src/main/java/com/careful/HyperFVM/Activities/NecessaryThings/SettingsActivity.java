@@ -55,7 +55,7 @@ public class SettingsActivity extends BaseActivity {
 
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX = "提示语显示-防御卡全能数据库";
     public static final String CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST = "提示语显示-增幅卡名单";
-    public static final String CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER = "提示语显示-数据图查看器";
+    public static final String CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD = "提示语显示-仪表盘刷新完成";
 
     public static final String CONTENT_IS_BIOMETRIC_AUTH = "安全-生物认证";
 
@@ -253,13 +253,13 @@ public class SettingsActivity extends BaseActivity {
         // Toast显示设置开关
         boolean toastIsVisibleCardDataIndex = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
         boolean toastIsVisibleCardDataAuxiliaryList = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST);
-        boolean toastIsVisibleDataImageViewer = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER);
+        boolean toastIsVisibleRefreshDashboard = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD);
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);
         materialSwitch.setChecked(toastIsVisibleCardDataIndex);
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
         materialSwitch.setChecked(toastIsVisibleCardDataAuxiliaryList);
-        materialSwitch = findViewById(R.id.Switch_isVisible_DataImageViewer);
-        materialSwitch.setChecked(toastIsVisibleDataImageViewer);
+        materialSwitch = findViewById(R.id.Switch_isVisible_RefreshDashboard);
+        materialSwitch.setChecked(toastIsVisibleRefreshDashboard);
         // 生物认证开关
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
         if (BiometricAuthHelper.isBiometricAvailable(this)) {
@@ -330,9 +330,9 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST, isChecked ? "true" : "false"));
-        materialSwitch = findViewById(R.id.Switch_isVisible_DataImageViewer);
+        materialSwitch = findViewById(R.id.Switch_isVisible_RefreshDashboard);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
-                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_DATA_IMAGE_VIEWER, isChecked ? "true" : "false"));
+                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD, isChecked ? "true" : "false"));
         // 生物认证开关
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
         MaterialSwitch finalMaterialSwitch = materialSwitch;

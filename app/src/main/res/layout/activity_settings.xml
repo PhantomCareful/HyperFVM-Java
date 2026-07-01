@@ -559,11 +559,11 @@
                                 tools:ignore="ContentDescription" />
 
                             <com.google.android.material.materialswitch.MaterialSwitch
-                                android:id="@+id/Switch_isVisible_DataImageViewer"
+                                android:id="@+id/Switch_isVisible_RefreshDashboard"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="@string/label_settings_switch_data_image_viewer"
+                                android:text="@string/label_settings_switch_refresh_dashboard"
                                 android:textSize="20sp"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
 

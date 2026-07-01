@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Fragments.Dashboard;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_BIOMETRIC_AUTH;
+import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -345,7 +346,9 @@ public class DashboardFragment extends Fragment {
                             buttonRefreshDashboard.setEnabled(true);
 
                             // 提示刷新完成
-                            Toast.makeText(requireContext(), "刷新完成~", Toast.LENGTH_SHORT).show();
+                            if (dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD)) {
+                                Toast.makeText(requireContext(), "刷新完成~", Toast.LENGTH_SHORT).show();
+                            }
 
                             // 停止按钮旋转动画
                             isLoadDone[0] = true;

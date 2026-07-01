@@ -115,6 +115,8 @@ public class DatabaseInfo {
      * 删除dashboard表
      * DB_VERSION = 82 - 89
      * 改造+更新普通卡数据库
+     * DB_VERSION = 90
+     * settings表增加“提示语设置-仪表盘刷新完成”设置
      */
-    public static final int DB_VERSION = 89;
+    public static final int DB_VERSION = 90;
 }
