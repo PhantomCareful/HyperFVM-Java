@@ -62,6 +62,11 @@ public class DashboardFragment extends Fragment {
 
     private View root;
 
+    // 缓存数据和加载状态
+    private static List<Map<String, String>> sCachedData = null;
+    private static boolean sDataLoaded = false;
+    private static boolean isShowWorldBossCard = false;
+
     private LinearLayout dashboardContainer;
 
     // 刷新按钮
@@ -240,6 +245,10 @@ public class DashboardFragment extends Fragment {
 
         // 刷新仪表盘按钮
         buttonRefreshDashboard.setOnClickListener(v -> {
+            // 清除缓存，强制重新加载
+            sDataLoaded = false;
+            sCachedData = null;
+
             // 刷新仪表盘结果并显示
             loadDashboardData();
 
@@ -264,6 +273,16 @@ public class DashboardFragment extends Fragment {
      */
     @SuppressLint("SetTextI18n")
     private void loadDashboardData() {
+        // 如果已有缓存，直接显示，不重新请求
+        if (sDataLoaded && sCachedData != null) {
+            displayDashboardData(sCachedData);
+            if (isShowWorldBossCard) {
+                root.findViewById(R.id.card_world_boss_container).setVisibility(View.VISIBLE);
+            } else {
+                root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
+            }
+            return;
+        }
 
         final List<Map<String, String>> data = new ArrayList<>(Collections.nCopies(1, null));
 
@@ -310,6 +329,10 @@ public class DashboardFragment extends Fragment {
                 // 执行每日任务（耗时操作放子线程）
                 ExecuteDailyTask executeDailyTask = new ExecuteDailyTask(requireContext());
                 executeDailyTask.executeDashboardTask(result -> {
+                    // 缓存数据
+                    sCachedData = Collections.singletonList(result);
+                    sDataLoaded = true;
+
                     data.set(0, result);
 
                     // 切回主线程更新UI：读取数据 + 恢复按钮
@@ -663,9 +686,11 @@ public class DashboardFragment extends Fragment {
                         if (root.findViewById(R.id.card_world_boss_container).getVisibility() == View.GONE) {
                             TransitionManager.beginDelayedTransition(dashboardContainer, transition);
                             root.findViewById(R.id.card_world_boss_container).setVisibility(View.VISIBLE);
+                            isShowWorldBossCard = true;
                         } else {
                             TransitionManager.beginDelayedTransition(dashboardContainer, transition);
                             root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
+                            isShowWorldBossCard = false;
                         }
                     }
             );
@@ -678,6 +703,7 @@ public class DashboardFragment extends Fragment {
 
             TransitionManager.beginDelayedTransition(dashboardContainer, transition);
             root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
+            isShowWorldBossCard = false;
         }
 
         // 读取二转打折活动结果
