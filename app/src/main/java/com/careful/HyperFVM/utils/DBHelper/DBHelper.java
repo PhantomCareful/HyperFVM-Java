@@ -818,8 +818,51 @@ public class DBHelper extends SQLiteOpenHelper {
         return suggestions;
     }
 
+    // 模糊查询星座卡/生肖卡/金卡名称和对应图片ID
+    public List<CardSearchSuggestion> searchAnimalAndGoldenCards(String keyword) {
+        List<CardSearchSuggestion> suggestions = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        // 同时查询name和image_id两列
+        Cursor cursor = db.rawQuery(
+                "SELECT name, image_id, table_name FROM " + TABLE_CARD_DATA_INDEX + " WHERE name LIKE ?",
+                new String[]{"%" + keyword + "%"});
+
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(0);
+                String imageId = cursor.getString(1);
+                String tableName = cursor.getString(2);
+                // 过滤空名称或空图片ID（可选，根据业务需求调整）
+                if (name != null && !name.isEmpty()) {
+                    int lastNum = Character.getNumericValue(imageId.charAt(imageId.length() - 1));
+                    int tableNameNum = Character.getNumericValue(tableName.charAt(tableName.length() - 1));
+                    if (tableNameNum == 4) {
+                        String transferCategory = switch (lastNum) {
+                            case 0 -> "不转形态";
+                            case 1 -> "一转形态";
+                            case 2 -> "二转形态";
+                            default -> null;
+                        };
+                        suggestions.add(new CardSearchSuggestion(name, transferCategory, imageId));
+                    } else if (tableNameNum == 3) {
+                        String transferCategory = switch (lastNum) {
+                            case 0 -> "不转形态";
+                            case 1 -> "三转形态";
+                            case 2 -> "四转形态";
+                            case 3 -> "终转形态";
+                            default -> null;
+                        };
+                        suggestions.add(new CardSearchSuggestion(name, transferCategory, imageId));
+                    }
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return suggestions;
+    }
+
     // 获取卡片对应的表名
-    public String getCardTable(String cardName) {
+    public String getCardTableName(String cardName) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
                 "SELECT table_name FROM " + TABLE_CARD_DATA_INDEX + " WHERE name = ?",

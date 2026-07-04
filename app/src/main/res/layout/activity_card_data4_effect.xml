@@ -960,7 +960,7 @@
                     android:id="@+id/Card_Decompose_and_Get"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="10dp"
                     app:cardBackgroundColor="@color/card_background_color_effect"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp">
@@ -1384,6 +1384,58 @@
 
                         </HorizontalScrollView>
 
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    app:cardBackgroundColor="@color/card_background_color_effect"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:id="@+id/Card_Decompose_and_Get_Calculator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_decompose_and_get_calculator"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_decompose_and_get_calculator"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <!-- 右侧卡片 -->
+                        <ImageView
+                            android:id="@+id/Card_Decompose_and_Get_Calculator_Image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/god_stone"
+                            tools:ignore="ContentDescription" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>

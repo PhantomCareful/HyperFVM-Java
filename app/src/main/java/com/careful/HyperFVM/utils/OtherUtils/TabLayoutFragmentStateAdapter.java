@@ -19,20 +19,10 @@ public class TabLayoutFragmentStateAdapter extends FragmentStateAdapter {
         super(activity);
     }
 
-    //针对在Fragment建立顶栏分类
-    public TabLayoutFragmentStateAdapter(@NonNull Fragment fragment) {
-        super(fragment);
-    }
-
     //添加Fragment和对应的标题
     public void addFragment(Fragment fragment, String title) {
         fragmentList.add(fragment);
         titleList.add(title);
-    }
-
-    // 获取指定索引的Fragment
-    public Fragment getFragment(int position) {
-        return fragmentList.get(position);
     }
 
     @NonNull

@@ -102,6 +102,8 @@ public class MainActivity extends BaseActivity {
 
         // 防御卡数据查询按钮
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
+        // 分解兑换计算器查询按钮
+        findViewById(R.id.FloatButton_CardDataDecomposeAndGetSearch_Container).setOnClickListener(v -> DialogBuilderManager.showDecomposeAndGetQueryDialog(this));
     }
 
     /**

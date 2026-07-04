@@ -42,6 +42,8 @@ import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData1Activi
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData2Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData3Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData4Activity;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForAnimalCardActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForGoldenCardActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
@@ -62,7 +64,7 @@ public class CardDataHelper {
                 Toast.makeText(context, "请输入卡片名称", Toast.LENGTH_SHORT).show();
                 return;
             }
-            tableName = dbHelper.getCardTable(cardName);
+            tableName = dbHelper.getCardTableName(cardName);
             baseName = dbHelper.getCardBaseName(cardName);
         }
 
@@ -735,6 +737,21 @@ public class CardDataHelper {
                 CardCorresponding.setVisibility(View.GONE);
             }
         }
+    }
+
+    @SuppressLint("Range")
+    public static void selectDecomposeAndGetData(Context context, String decomposeItemName, String[] imageIdsArray, int[] decomposeDataArray, int[] getDataArray) {
+        Intent intent;
+        if (decomposeItemName.equals("神谕之石")) {
+            intent = new Intent(context, DecomposeAndGetCalculatorForGoldenCardActivity.class);
+        } else {
+            intent = new Intent(context, DecomposeAndGetCalculatorForAnimalCardActivity.class);
+        }
+        intent.putExtra("decompose_item_name", decomposeItemName);
+        intent.putExtra("image_ids", imageIdsArray);
+        intent.putExtra("decompose_data", decomposeDataArray);
+        intent.putExtra("get_data", getDataArray);
+        context.startActivity(intent);
     }
 
     // 辅助方法：从游标获取字符串（处理空值）

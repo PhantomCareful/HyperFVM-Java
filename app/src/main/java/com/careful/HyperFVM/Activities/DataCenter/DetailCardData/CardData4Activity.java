@@ -455,6 +455,73 @@ public class CardData4Activity extends BaseActivity {
             setTextToView(R.id.get_transfer_2_b, CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b"));
             setTextToView(R.id.get_transfer_2_c, CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c"));
 
+            // 分解兑换计算器
+            // 先整理出三个数组：图片id、分解数据、兑换数据
+            String[] imageIdsArray = {
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_1")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_2")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_3")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_4")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_a")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_b")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_b")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_c")),
+            };
+
+            int[] decomposeDataArray = {
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c")),
+            };
+
+            int[] getDataArray = {
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c")),
+            };
+
+            imageView = findViewById(R.id.Card_Decompose_and_Get_Calculator_Image);
+            String decomposeItemName = cursor.getString(cursor.getColumnIndex("decompose_item"));
+            if (decomposeItemName.equals("生肖宝珠")) {
+                imageResId = getResources().getIdentifier(
+                        "animal_pearl",
+                        "drawable",
+                        getPackageName()
+                );
+                imageView.setImageResource(imageResId);
+            } else if (decomposeItemName.equals("星座碎片")) {
+                imageResId = getResources().getIdentifier(
+                        "yellow_crystal",
+                        "drawable",
+                        getPackageName()
+                );
+                imageView.setImageResource(imageResId);
+            }
+
+            findViewById(R.id.Card_Decompose_and_Get_Calculator).setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(this, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
+
             // 其他信息
             if (CardDataHelper.getStringFromCursor(cursor, "additional_info").equals("无")) {
                 findViewById(R.id.card_data_other_title).setVisibility(View.GONE);

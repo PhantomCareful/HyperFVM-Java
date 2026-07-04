@@ -34,6 +34,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="upside_down_cake">
         <activity
+            android:name=".Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForGoldenCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForAnimalCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.DataCenter.IcuFraudActivity"
             android:exported="false" />
         <activity

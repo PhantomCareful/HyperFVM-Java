@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,7 +70,7 @@ public class DashboardFragment extends Fragment {
     private LinearLayout dashboardContainer;
 
     // 刷新按钮
-    private ImageButton buttonRefreshDashboard;
+    private MaterialCardView floatButtonRefreshContainer;
 
     // 仪表盘部分
     private TextView dashboardLastDayOfMonth;
@@ -162,7 +161,7 @@ public class DashboardFragment extends Fragment {
         preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         // 初始化仪表盘组件
-        buttonRefreshDashboard = root.findViewById(R.id.FloatButton_Refresh);
+        floatButtonRefreshContainer = root.findViewById(R.id.FloatButton_Refresh_Container);
 
         dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
 
@@ -245,7 +244,7 @@ public class DashboardFragment extends Fragment {
         getLatestBilibiliAnnouncement();
 
         // 刷新仪表盘按钮
-        buttonRefreshDashboard.setOnClickListener(v -> {
+        floatButtonRefreshContainer.setOnClickListener(v -> {
             // 清除缓存，强制重新加载
             sDataLoaded = false;
             sCachedData = null;
@@ -288,7 +287,7 @@ public class DashboardFragment extends Fragment {
         final List<Map<String, String>> data = new ArrayList<>(Collections.nCopies(1, null));
 
         // 1. 主线程先更新UI：禁用按钮、显示“请等待”
-        buttonRefreshDashboard.setEnabled(false);
+        floatButtonRefreshContainer.setEnabled(false);
 
         // 加载按钮旋转动画
         final boolean[] isLoadDone = {false};
@@ -298,7 +297,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void run() {
                 if (!isLoadDone[0]) {
-                    buttonRefreshDashboard.startAnimation(rotateAnim);
+                    floatButtonRefreshContainer.startAnimation(rotateAnim);
                     handler.postDelayed(this, 1000); // 1秒后再判断
                 }
             }
@@ -343,7 +342,7 @@ public class DashboardFragment extends Fragment {
                             displayDashboardData(data);
 
                             // 恢复按钮
-                            buttonRefreshDashboard.setEnabled(true);
+                            floatButtonRefreshContainer.setEnabled(true);
 
                             // 提示刷新完成
                             if (dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD)) {
@@ -359,7 +358,7 @@ public class DashboardFragment extends Fragment {
                 // 捕获其他异常（如数据库/任务执行异常）
                 requireActivity().runOnUiThread(() -> {
                     isLoadDone[0] = true;
-                    buttonRefreshDashboard.setEnabled(true);
+                    floatButtonRefreshContainer.setEnabled(true);
                     Toast.makeText(requireContext(), "刷新失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
             }
