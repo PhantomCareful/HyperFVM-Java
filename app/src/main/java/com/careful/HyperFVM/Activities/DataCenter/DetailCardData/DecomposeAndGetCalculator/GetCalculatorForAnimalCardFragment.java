@@ -21,6 +21,8 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 
 public class GetCalculatorForAnimalCardFragment extends Fragment {
+    private static final String KEY_CALCULATION_STATES = "calculation_states";
+
     private View root;
 
     private String getItemName;
@@ -245,74 +247,95 @@ public class GetCalculatorForAnimalCardFragment extends Fragment {
         get_calculator_for_animal_card_card_1_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_card_1_checkbox.setChecked(!get_calculator_for_animal_card_card_1_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_card_2_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_card_2_checkbox.setChecked(!get_calculator_for_animal_card_card_2_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_card_3_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_card_3_checkbox.setChecked(!get_calculator_for_animal_card_card_3_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_skill_1_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_skill_1_checkbox.setChecked(!get_calculator_for_animal_card_skill_1_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_skill_2_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_skill_2_checkbox.setChecked(!get_calculator_for_animal_card_skill_2_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_skill_3_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_skill_3_checkbox.setChecked(!get_calculator_for_animal_card_skill_3_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_skill_4_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_skill_4_checkbox.setChecked(!get_calculator_for_animal_card_skill_4_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_transfer_1_a_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_transfer_1_a_checkbox.setChecked(!get_calculator_for_animal_card_transfer_1_a_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_transfer_1_b_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_transfer_1_b_checkbox.setChecked(!get_calculator_for_animal_card_transfer_1_b_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_transfer_2_a_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_transfer_2_a_checkbox.setChecked(!get_calculator_for_animal_card_transfer_2_a_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_transfer_2_b_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_transfer_2_b_checkbox.setChecked(!get_calculator_for_animal_card_transfer_2_b_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
 
         get_calculator_for_animal_card_transfer_2_c_container.setOnClickListener(v -> {
             get_calculator_for_animal_card_transfer_2_c_checkbox.setChecked(!get_calculator_for_animal_card_transfer_2_c_checkbox.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-            calculateResult();
+            calculateGetResult();
         });
+
+        // recreate后恢复
+        if (savedInstanceState != null) {
+            boolean[] states = savedInstanceState.getBooleanArray(KEY_CALCULATION_STATES);
+            if (states != null && states.length == 12) {
+                get_calculator_for_animal_card_card_1_checkbox.setChecked(states[0]);
+                get_calculator_for_animal_card_card_2_checkbox.setChecked(states[1]);
+                get_calculator_for_animal_card_card_3_checkbox.setChecked(states[2]);
+                get_calculator_for_animal_card_skill_1_checkbox.setChecked(states[3]);
+                get_calculator_for_animal_card_skill_2_checkbox.setChecked(states[4]);
+                get_calculator_for_animal_card_skill_3_checkbox.setChecked(states[5]);
+                get_calculator_for_animal_card_skill_4_checkbox.setChecked(states[6]);
+                get_calculator_for_animal_card_transfer_1_a_checkbox.setChecked(states[7]);
+                get_calculator_for_animal_card_transfer_1_b_checkbox.setChecked(states[8]);
+                get_calculator_for_animal_card_transfer_2_a_checkbox.setChecked(states[9]);
+                get_calculator_for_animal_card_transfer_2_b_checkbox.setChecked(states[10]);
+                get_calculator_for_animal_card_transfer_2_c_checkbox.setChecked(states[11]);
+                // 重新计算结果并更新文本
+                calculateGetResult();
+            }
+        }
 
         return root;
     }
@@ -352,7 +375,7 @@ public class GetCalculatorForAnimalCardFragment extends Fragment {
     }
 
     @SuppressLint("SetTextI18n")
-    private void calculateResult() {
+    private void calculateGetResult() {
         int getResult = 0;
         if (get_calculator_for_animal_card_card_1_checkbox.isChecked()) {
             getResult += getDataArray[0];
@@ -419,4 +442,23 @@ public class GetCalculatorForAnimalCardFragment extends Fragment {
         blurUtil.setBlur(root.findViewById(R.id.blurViewResult), root.findViewById(R.id.targetView));
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        boolean[] states = new boolean[12];
+        states[0] = get_calculator_for_animal_card_card_1_checkbox.isChecked();
+        states[1] = get_calculator_for_animal_card_card_2_checkbox.isChecked();
+        states[2] = get_calculator_for_animal_card_card_3_checkbox.isChecked();
+        states[3] = get_calculator_for_animal_card_skill_1_checkbox.isChecked();
+        states[4] = get_calculator_for_animal_card_skill_2_checkbox.isChecked();
+        states[5] = get_calculator_for_animal_card_skill_3_checkbox.isChecked();
+        states[6] = get_calculator_for_animal_card_skill_4_checkbox.isChecked();
+        states[7] = get_calculator_for_animal_card_transfer_1_a_checkbox.isChecked();
+        states[8] = get_calculator_for_animal_card_transfer_1_b_checkbox.isChecked();
+        states[9] = get_calculator_for_animal_card_transfer_2_a_checkbox.isChecked();
+        states[10] = get_calculator_for_animal_card_transfer_2_b_checkbox.isChecked();
+        states[11] = get_calculator_for_animal_card_transfer_2_c_checkbox.isChecked();
+        outState.putBooleanArray(KEY_CALCULATION_STATES, states);
+    }
 }
