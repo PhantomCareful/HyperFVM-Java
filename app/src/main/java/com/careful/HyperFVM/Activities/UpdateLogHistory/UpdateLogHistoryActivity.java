@@ -82,6 +82,7 @@ public class UpdateLogHistoryActivity extends BaseActivity {
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
         InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
+            Log.d("height", "height in UpdateLogHistoryActivity = " + height);
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) tabLayoutContainer.getLayoutParams();
             params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
             tabLayoutContainer.setLayoutParams(params);
