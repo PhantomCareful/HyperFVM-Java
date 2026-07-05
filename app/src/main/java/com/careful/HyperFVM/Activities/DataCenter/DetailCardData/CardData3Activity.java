@@ -658,7 +658,7 @@ public class CardData3Activity extends BaseActivity {
             };
 
             String decomposeItemName = cursor.getString(cursor.getColumnIndex("decompose_item"));
-            findViewById(R.id.Card_Decompose_and_Get_Calculator).setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(this, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
+            findViewById(R.id.Card_Decompose_and_Get_Calculator).setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(this, cardName, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
 
             // 其他信息
             if (CardDataHelper.getStringFromCursor(cursor, "additional_info").equals("无")) {

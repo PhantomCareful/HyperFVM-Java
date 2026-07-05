@@ -520,7 +520,7 @@ public class CardData4Activity extends BaseActivity {
                 imageView.setImageResource(imageResId);
             }
 
-            findViewById(R.id.Card_Decompose_and_Get_Calculator).setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(this, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
+            findViewById(R.id.Card_Decompose_and_Get_Calculator).setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(this, cardName, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
 
             // 其他信息
             if (CardDataHelper.getStringFromCursor(cursor, "additional_info").equals("无")) {

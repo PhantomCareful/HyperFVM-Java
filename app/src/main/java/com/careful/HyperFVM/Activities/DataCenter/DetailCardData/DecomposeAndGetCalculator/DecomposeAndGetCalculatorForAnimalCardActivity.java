@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -25,6 +26,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity {
 
+    private String cardName;
     private String decomposeItemName;
     private String[] imageIdsArray;
     private int[] decomposeDataArray;
@@ -44,6 +46,7 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
         setContentView(R.layout.activity_decompose_and_get_calculator_for_animal_card);
 
         // 从 Intent 取出数据
+        cardName = getIntent().getStringExtra("card_name");
         decomposeItemName = getIntent().getStringExtra("decompose_item_name");
         imageIdsArray = getIntent().getStringArrayExtra("image_ids");
         decomposeDataArray = getIntent().getIntArrayExtra("decompose_data");
@@ -86,6 +89,7 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
         MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
+        MaterialCardView floatButtonDetailContainer = findViewById(R.id.FloatButton_Detail_Container);
         LinearLayout tabLayoutContainer = findViewById(R.id.TabLayout_Container);
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
@@ -103,6 +107,10 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
             params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
             params.topMargin = height;
             topBarContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonDetailContainer.getLayoutParams();
+            params.topMargin = height;
+            floatButtonDetailContainer.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         ConstraintLayout decompose_and_get_calculator_for_animal_card_container = findViewById(R.id.decompose_and_get_calculator_for_animal_card_container);
@@ -112,9 +120,9 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
             params.leftMargin = layout_marginHorizontal;
             floatButtonBackContainer.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            topBarContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonDetailContainer.getLayoutParams();
+            params.rightMargin = layout_marginHorizontal;
+            floatButtonDetailContainer.setLayoutParams(params);
         });
 
         // 添加模糊材质
@@ -128,10 +136,12 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
         BlurUtil blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonDetail));
         blurUtil.setBlur(findViewById(R.id.blurViewTabLayout));
 
         // 顺便设置按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+        findViewById(R.id.FloatButton_Detail_Container).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, cardName));
     }
 
 }

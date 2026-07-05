@@ -1444,7 +1444,7 @@ public class DialogBuilderManager {
                                         CardDataHelper.getStringFromCursor(cursor, "get_compose").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_compose")),
                                 };
 
-                                suggestion_card_search_container.setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(context, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
+                                suggestion_card_search_container.setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(context, baseName, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
                             }
 
                             suggestion_list.addView(cardView);

@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="vertical"
-                android:paddingTop="190dp"
+                android:paddingTop="180dp"
                 android:paddingBottom="50dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
@@ -969,7 +969,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="110dp"
         android:layout_marginHorizontal="20dp"
         android:clickable="true"
         app:cardBackgroundColor="@android:color/transparent"

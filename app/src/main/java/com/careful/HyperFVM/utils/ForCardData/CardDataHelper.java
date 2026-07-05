@@ -740,13 +740,14 @@ public class CardDataHelper {
     }
 
     @SuppressLint("Range")
-    public static void selectDecomposeAndGetData(Context context, String decomposeItemName, String[] imageIdsArray, int[] decomposeDataArray, int[] getDataArray) {
+    public static void selectDecomposeAndGetData(Context context, String cardName, String decomposeItemName, String[] imageIdsArray, int[] decomposeDataArray, int[] getDataArray) {
         Intent intent;
         if (decomposeItemName.equals("神谕之石")) {
             intent = new Intent(context, DecomposeAndGetCalculatorForGoldenCardActivity.class);
         } else {
             intent = new Intent(context, DecomposeAndGetCalculatorForAnimalCardActivity.class);
         }
+        intent.putExtra("card_name", cardName);
         intent.putExtra("decompose_item_name", decomposeItemName);
         intent.putExtra("image_ids", imageIdsArray);
         intent.putExtra("decompose_data", decomposeDataArray);
