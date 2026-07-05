@@ -539,11 +539,11 @@
     <string name="label_about_app_see_update_log_history_1">历史版本更新日志</string>
     <string name="label_about_app_see_update_log_history_2">一个无人在意的小角落</string>
     <string name="top_bar_update_log_history">🍯历史更新日志</string>
-    <string name="label_version_0">1.0.0以前的版本</string>
-    <string name="label_version_1">1.X.X版本</string>
-    <string name="label_version_2">2.X.X版本</string>
-    <string name="label_version_3">3.X.X版本</string>
-    <string name="label_version_4">4.X.X版本</string>
+    <string name="label_version_0">0.X.X</string>
+    <string name="label_version_1">1.X.X</string>
+    <string name="label_version_2">2.X.X</string>
+    <string name="label_version_3">3.X.X</string>
+    <string name="label_version_4">4.X.X</string>
     <string name="many_n">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
 
     <!--卡片名字写最后，方便查找-->

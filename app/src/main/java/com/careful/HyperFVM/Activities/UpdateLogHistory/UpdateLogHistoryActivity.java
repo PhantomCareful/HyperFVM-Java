@@ -15,6 +15,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.TabLayoutFragmentStateAdapter;
@@ -79,6 +80,12 @@ public class UpdateLogHistoryActivity extends BaseActivity {
         MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
         LinearLayout tabLayoutContainer = findViewById(R.id.TabLayout_Container);
         View rootView = findViewById(android.R.id.content);
+        // 动态获取导航栏高度（小白条/三键导航）
+        InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) tabLayoutContainer.getLayoutParams();
+            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            tabLayoutContainer.setLayoutParams(params);
+        });
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
@@ -100,12 +107,6 @@ public class UpdateLogHistoryActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             topBarContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) tabLayoutContainer.getLayoutParams();
-            params.topMargin = layout_marginHorizontal;
-            params.leftMargin = layout_marginHorizontal;
-            params.rightMargin = layout_marginHorizontal;
-            tabLayoutContainer.setLayoutParams(params);
         });
 
         // 添加模糊材质
