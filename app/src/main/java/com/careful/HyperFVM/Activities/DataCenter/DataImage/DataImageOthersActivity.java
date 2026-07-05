@@ -3,29 +3,23 @@ package com.careful.HyperFVM.Activities.DataCenter.DataImage;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_DARK_MODE;
 
 import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
-import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
-import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
-
-import java.io.File;
 
 public class DataImageOthersActivity extends BaseActivity {
 
@@ -63,59 +57,23 @@ public class DataImageOthersActivity extends BaseActivity {
 
     private void setupContainer(int viewId, String imageName, boolean isDynamic) {
         LinearLayout container = findViewById(viewId);
-        container.setOnClickListener(v -> {
-            File dir = new File(getFilesDir(), "data_images");
-            File imageFile;
-            if (isDynamic) {
-                try(DBHelper dbHelper = new DBHelper(this)) {
-                    // 根据深色模式动态加载对应的图片
-                    int currentNightMode;
-                    String darkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
-                    currentNightMode = switch (darkMode) {
-                        case "总是开启\uD83C\uDF1A" -> Configuration.UI_MODE_NIGHT_YES;
-                        case "总是关闭\uD83C\uDF1D" -> Configuration.UI_MODE_NIGHT_NO;
-                        default -> getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                    };
-                    imageFile = (currentNightMode == Configuration.UI_MODE_NIGHT_YES) ?
-                            new File(dir, imageName + "_dark.png") :
-                            new File(dir, imageName + "_light.png");
-                }
-            } else {
-                imageFile = new File(dir, imageName + ".png");
+
+        if (isDynamic) {
+            try(DBHelper dbHelper = new DBHelper(this)) {
+                // 根据深色模式动态加载对应的图片
+                int currentNightMode;
+                String darkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
+                currentNightMode = switch (darkMode) {
+                    case "总是开启\uD83C\uDF1A" -> Configuration.UI_MODE_NIGHT_YES;
+                    case "总是关闭\uD83C\uDF1D" -> Configuration.UI_MODE_NIGHT_NO;
+                    default -> getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                };
+                imageName = (currentNightMode == Configuration.UI_MODE_NIGHT_YES) ? imageName + "_dark.png" : imageName + "_light.png";
             }
+        }
 
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        this,
-                        getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        this,
-                        getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
-        });
+        String finalImageName = imageName;
+        container.setOnClickListener(v -> DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(this, finalImageName));
     }
 
     /**

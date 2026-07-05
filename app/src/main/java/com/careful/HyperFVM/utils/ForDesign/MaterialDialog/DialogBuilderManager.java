@@ -4,7 +4,6 @@ import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeS
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -25,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
-import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
@@ -34,16 +32,16 @@ import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
+import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
-import com.careful.HyperFVM.utils.ForCardSearch.CardSearchSuggestion;
+import com.careful.HyperFVM.utils.ForCardData.CardSearchSuggestion;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
@@ -266,54 +264,19 @@ public class DialogBuilderManager {
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
         buttonAction.setOnClickListener(v -> {
-            // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
-            // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
+            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
             if (imageName.isEmpty()) {
                 context.startActivity(new Intent(context, DataImageTiramisuActivity.class));
                 return;
             }
 
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, imageName + ".png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, imageName);
         });
 
         // 添加背景模糊
@@ -353,7 +316,6 @@ public class DialogBuilderManager {
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
         buttonAction1.setOnClickListener(v -> {
-            // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
             // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
             if (localVersionCode == 0 || localVersionCode == 1) {
@@ -361,40 +323,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_2_5.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_2_5");
         });
 
         buttonAction2.setOnClickListener(v -> {
@@ -528,7 +457,6 @@ public class DialogBuilderManager {
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
         buttonAction.setOnClickListener(v -> {
-            // 对于某些有多张图片的活动（如大赛、消费），只能跳转到米鼠的图，自行选择要查看哪一张图片
             // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
             if (localVersionCode == 0 || localVersionCode == 1) {
@@ -536,41 +464,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, imageName + ".png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, imageName);
         });
 
         // 添加背景模糊
@@ -699,41 +593,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_2_3_1.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_2_3_1");
         });
 
         buttonWeek2.setOnClickListener(v -> {
@@ -744,41 +604,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_2_3_2.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_2_3_2");
         });
 
         buttonWeek3.setOnClickListener(v -> {
@@ -789,41 +615,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_2_3_3.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_2_3_3");
         });
 
         buttonWeek4.setOnClickListener(v -> {
@@ -834,41 +626,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_2_3_4.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_2_3_4");
         });
 
         buttonReward.setOnClickListener(v -> {
@@ -879,41 +637,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_2_3.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_2_3");
         });
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
@@ -960,41 +684,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_1_3_1.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_1_3_1");
         });
 
         buttonConsumption2.setOnClickListener(v -> {
@@ -1005,41 +695,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_1_3_2.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_1_3_2");
         });
 
         buttonConsumption3.setOnClickListener(v -> {
@@ -1050,41 +706,7 @@ public class DialogBuilderManager {
                 return;
             }
 
-            // 到这里就说明本地确实有图片了
-            File dir = new File(context.getFilesDir(), "data_images");
-            File imageFile = new File(dir, "tiramisu_image_1_3_3.png");
-
-            if (!imageFile.exists()) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-                return;
-            }
-
-            Uri imageUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", imageFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(imageUri, "image/*");
-
-            // 授予临时读取权限
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                DialogBuilderManager.showDialog(
-                        context,
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
-                        "❌",
-                        context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
-                        true,
-                        "好的"
-                );
-            }
+            DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(context, "tiramisu_image_1_3_3");
         });
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
