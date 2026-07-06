@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_marginHorizontal="20dp"
         android:paddingTop="120dp"
-        android:paddingBottom="50dp">
+        android:paddingBottom="150dp">
 
         <TextView
             android:id="@+id/about_app_history_update_log_2"
