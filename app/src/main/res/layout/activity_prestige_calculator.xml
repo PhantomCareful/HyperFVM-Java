@@ -1088,7 +1088,9 @@
                 android:text="总储备：0"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground" />
 
         </eightbitlab.com.blurview.BlurView>
 

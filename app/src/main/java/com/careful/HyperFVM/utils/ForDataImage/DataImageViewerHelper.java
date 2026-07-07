@@ -69,7 +69,7 @@ public class DataImageViewerHelper {
                 Log.d("ACTION_VIEW", "当前遍历的App：" + pkg);
 
                 // 使用各家系统图库包名的关键词进行判断，找到第一个匹配的就跳出循环
-                if (pkg.contains("gallery") || pkg.contains("photo")) {
+                if (pkg.contains("gallery") || pkg.contains("photo") || pkg.contains("media")) {
                     targetPackageName = pkg;
 
                     Log.d("ACTION_VIEW", "匹配到图片查看器：" + targetPackageName);
