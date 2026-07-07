@@ -77,6 +77,58 @@
         layout="@layout/card_card_data_index_1_3_3" />
 
     <include
+        android:id="@+id/card_card_data_index_1_3_4"
+        layout="@layout/card_card_data_index_1_3_4" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_5"
+        layout="@layout/card_card_data_index_1_3_5" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_6"
+        layout="@layout/card_card_data_index_1_3_6" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_7"
+        layout="@layout/card_card_data_index_1_3_7" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_8"
+        layout="@layout/card_card_data_index_1_3_8" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_9"
+        layout="@layout/card_card_data_index_1_3_9" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_10"
+        layout="@layout/card_card_data_index_1_3_10" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_11"
+        layout="@layout/card_card_data_index_1_3_11" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_12"
+        layout="@layout/card_card_data_index_1_3_12" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_3_13"
+        layout="@layout/card_card_data_index_1_3_13" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_4_1"
+        layout="@layout/card_card_data_index_1_4_1" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_4_2"
+        layout="@layout/card_card_data_index_1_4_2" />
+
+    <include
+        android:id="@+id/card_card_data_index_1_4_3"
+        layout="@layout/card_card_data_index_1_4_3" />
+
+    <include
         android:id="@+id/card_card_data_index_3_1_2"
         layout="@layout/card_card_data_index_3_1_2" />
 
@@ -103,58 +155,6 @@
     <include
         android:id="@+id/card_card_data_index_10_4_2"
         layout="@layout/card_card_data_index_10_4_2" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_1"
-        layout="@layout/card_card_data_index_11_1_1" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_2"
-        layout="@layout/card_card_data_index_11_1_2" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_3"
-        layout="@layout/card_card_data_index_11_1_3" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_4"
-        layout="@layout/card_card_data_index_11_1_4" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_5"
-        layout="@layout/card_card_data_index_11_1_5" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_6"
-        layout="@layout/card_card_data_index_11_1_6" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_7"
-        layout="@layout/card_card_data_index_11_1_7" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_8"
-        layout="@layout/card_card_data_index_11_1_8" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_9"
-        layout="@layout/card_card_data_index_11_1_9" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_10"
-        layout="@layout/card_card_data_index_11_1_10" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_11"
-        layout="@layout/card_card_data_index_11_1_11" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_12"
-        layout="@layout/card_card_data_index_11_1_12" />
-
-    <include
-        android:id="@+id/card_card_data_index_11_1_13"
-        layout="@layout/card_card_data_index_11_1_13" />
 
     <include
         android:id="@+id/card_card_data_index_11_2_1"

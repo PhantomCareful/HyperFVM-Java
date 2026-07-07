@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText,TooManyViews">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -78,6 +78,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:text="@string/text_data_images_index_card_1_3"
+                    android:textSize="15sp"
+                    app:cornerRadius="25dp" />
+
+                <Button
+                    android:id="@+id/button_card_category_index_1_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/text_data_images_index_card_1_4"
                     android:textSize="15sp"
                     app:cornerRadius="25dp" />
 
@@ -535,15 +544,6 @@
                 app:alignItems="flex_start"
                 app:alignContent="flex_start"
                 app:justifyContent="flex_start">
-
-                <Button
-                    android:id="@+id/button_card_category_index_11_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/text_data_images_index_card_11_1"
-                    android:textSize="15sp"
-                    app:cornerRadius="25dp" />
 
                 <Button
                     android:id="@+id/button_card_category_index_11_2"

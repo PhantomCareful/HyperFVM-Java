@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.utils.ForDataImage;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -46,7 +47,7 @@ public class DataImageViewerHelper {
             // 优先使用系统自带的相册/图库App进行查看，如果没找到，再弹出选择窗口
             // 先查询所有能处理此Intent的Activity列表
             PackageManager packageManager = context.getPackageManager();
-            List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            @SuppressLint("QueryPermissionsNeeded") List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 
             Log.d("ACTION_VIEW", resolveInfos.toString());
 
@@ -79,6 +80,7 @@ public class DataImageViewerHelper {
 
             // 结束循环后，检查是否匹配到包名
             if (targetPackageName != null) {
+                Log.d("ACTION_VIEW", "最终使用的图片查看器：" + targetPackageName);
                 intent.setPackage(targetPackageName);
             }
 

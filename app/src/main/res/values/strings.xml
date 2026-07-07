@@ -151,11 +151,12 @@
     <string name="text_data_images_index_card_1">1.管线类</string>
     <string name="text_data_images_index_card_1_1">水管类</string>
     <string name="text_data_images_index_card_1_2">三线类</string>
-    <string name="text_data_images_index_card_1_3">枪塔类</string>
+    <string name="text_data_images_index_card_1_3">传统直线类</string>
+    <string name="text_data_images_index_card_1_4">枪塔类</string>
     <string name="text_data_images_index_card_2">2.投掷类</string>
-    <string name="text_data_images_index_card_2_1">大型投手</string>
-    <string name="text_data_images_index_card_2_2">中型投手</string>
-    <string name="text_data_images_index_card_2_3">小型投手</string>
+    <string name="text_data_images_index_card_2_1">多线投手</string>
+    <string name="text_data_images_index_card_2_2">单线投手</string>
+    <string name="text_data_images_index_card_2_3">灼烧投手</string>
     <string name="text_data_images_index_card_3">3.(类)海星类&amp;竞技类</string>
     <string name="text_data_images_index_card_3_1">海星类</string>
     <string name="text_data_images_index_card_3_2">类海星类</string>
@@ -182,17 +183,16 @@
     <string name="text_data_images_index_card_9_3">散点追踪</string>
     <string name="text_data_images_index_card_9_4">特殊追踪</string>
     <string name="text_data_images_index_card_10">10.杂项类</string>
-    <string name="text_data_images_index_card_10_1">浮空三锅</string>
-    <string name="text_data_images_index_card_10_2">吞噬类</string>
+    <string name="text_data_images_index_card_10_1">吞噬类</string>
+    <string name="text_data_images_index_card_10_2">连携类</string>
     <string name="text_data_images_index_card_10_3">近战类</string>
     <string name="text_data_images_index_card_10_4">衍生类</string>
     <string name="text_data_images_index_card_11">11.直线射击类</string>
-    <string name="text_data_images_index_card_11_1">小笼包&amp;咖啡家族</string>
     <string name="text_data_images_index_card_11_2">特殊直线类</string>
     <string name="text_data_images_index_card_11_3">A型穿透类(不可过火、不可反弹)</string>
     <string name="text_data_images_index_card_11_4">B型穿透类(可过火)</string>
     <string name="text_data_images_index_card_12">12.灰烬类</string>
-    <string name="text_data_images_index_card_12_1">常驻型</string>
+    <string name="text_data_images_index_card_12_1">轰炸型</string>
     <string name="text_data_images_index_card_12_2">常规标准型</string>
     <string name="text_data_images_index_card_12_3">击杀产能型</string>
     <string name="text_data_images_index_card_12_">12\'.非灰烬类</string>
@@ -594,14 +594,54 @@
     <string name="name_card_data_index_1_2_7_1">炙烤辣灯笼鱼–炙烤五香灯笼鱼</string>
 
 
-    <string name="name_card_data_index_1_3_3_0">仙人掌刺身</string>
-    <string name="name_card_data_index_1_3_3_1">仙人球刺身–仙人掌花刺身</string>
+    <string name="name_card_data_index_1_3_1_0">小笼包</string>
 
-    <string name="name_card_data_index_1_3_1_0">枪塔喵</string>
-    <string name="name_card_data_index_1_3_1_1">榴弹枪塔喵–射线枪塔喵</string>
+    <string name="name_card_data_index_1_3_2_0">双层小笼包</string>
 
-    <string name="name_card_data_index_1_3_2_0">弩箭牛</string>
-    <string name="name_card_data_index_1_3_2_1">精英弩箭牛–暴力弩箭牛</string>
+    <string name="name_card_data_index_1_3_3_0">三向小笼包</string>
+
+    <string name="name_card_data_index_1_3_4_0">机枪小笼包</string>
+    <string name="name_card_data_index_1_3_4_1">竹筒机枪小笼包–格林机枪笼包</string>
+
+    <string name="name_card_data_index_1_3_5_0">冰冻小笼包</string>
+
+    <string name="name_card_data_index_1_3_6_0">双层冰冻小笼包</string>
+
+    <string name="name_card_data_index_1_3_7_0">三向冰冻小笼包</string>
+
+    <string name="name_card_data_index_1_3_8_0">机枪冰冻小笼包</string>
+
+    <string name="name_card_data_index_1_3_9_0">国王小笼包</string>
+    <string name="name_card_data_index_1_3_9_1">红心国王小笼包–黑心国王小笼包</string>
+
+    <string name="name_card_data_index_1_3_10_0">三向国王小笼包</string>
+    <string name="name_card_data_index_1_3_10_1">红心三向国王小笼包–黑心三向国王小笼包</string>
+
+    <string name="name_card_data_index_1_3_11_0">贵族小笼包</string>
+
+    <string name="name_card_data_index_1_3_12_0">玉蜀黍</string>
+    <string name="name_card_data_index_1_3_12_1">奶油玉米机枪–加农玉米机枪</string>
+
+    <string name="name_card_data_index_1_3_13_0">包包龙</string>
+    <string name="name_card_data_index_1_3_13_1">懵懂包包龙–觉醒包包龙</string>
+
+    <string name="name_card_data_index_1_3_14_0">咖啡杯</string>
+    <string name="name_card_data_index_1_3_14_1">花纹咖啡杯–骨瓷咖啡杯</string>
+
+    <string name="name_card_data_index_1_3_15_0">水上茶杯</string>
+
+    <string name="name_card_data_index_1_3_16_0">激光汪</string>
+    <string name="name_card_data_index_1_3_16_1">高频激光汪–超频激光汪</string>
+
+
+    <string name="name_card_data_index_1_4_1_0">枪塔喵</string>
+    <string name="name_card_data_index_1_4_1_1">榴弹枪塔喵–射线枪塔喵</string>
+
+    <string name="name_card_data_index_1_4_2_0">弩箭牛</string>
+    <string name="name_card_data_index_1_4_2_1">精英弩箭牛–暴力弩箭牛</string>
+
+    <string name="name_card_data_index_1_4_3_0">仙人掌刺身</string>
+    <string name="name_card_data_index_1_4_3_1">仙人球刺身–仙人掌花刺身</string>
 
 
     <string name="name_card_data_index_2_1_1_0">勺勺兔</string>
@@ -662,18 +702,36 @@
     <string name="name_card_data_index_2_2_13_0">钵钵鸡</string>
     <string name="name_card_data_index_2_2_13_1">飘香钵钵鸡–川香钵钵鸡</string>
 
+    <string name="name_card_data_index_2_2_14_0">色拉投手</string>
+    <string name="name_card_data_index_2_2_14_1">果蔬色拉投手–凯撒色拉投手</string>
 
-    <string name="name_card_data_index_2_3_1_0">色拉投手</string>
-    <string name="name_card_data_index_2_3_1_1">果蔬色拉投手–凯撒色拉投手</string>
+    <string name="name_card_data_index_2_2_15_0">巧克力投手</string>
+    <string name="name_card_data_index_2_2_15_1">浓情巧克力投手–脆心巧克力投手</string>
 
-    <string name="name_card_data_index_2_3_2_0">巧克力投手</string>
-    <string name="name_card_data_index_2_3_2_1">浓情巧克力投手–脆心巧克力投手</string>
+    <string name="name_card_data_index_2_2_16_0">臭豆腐投手</string>
+    <string name="name_card_data_index_2_2_16_1">什锦臭豆腐投手–铁板臭豆腐投手</string>
 
-    <string name="name_card_data_index_2_3_3_0">臭豆腐投手</string>
-    <string name="name_card_data_index_2_3_3_1">什锦臭豆腐投手–铁板臭豆腐投手</string>
+    <string name="name_card_data_index_2_2_17_0">8周年蛋糕</string>
+    <string name="name_card_data_index_2_2_17_1">8周年慕斯–8周年红丝绒</string>
 
-    <string name="name_card_data_index_2_3_4_0">8周年蛋糕</string>
-    <string name="name_card_data_index_2_3_4_1">8周年慕斯–8周年红丝绒</string>
+
+    <string name="name_card_data_index_2_3_1_0">生煎锅</string>
+    <string name="name_card_data_index_2_3_1_1">水煎包锅–驴肉火烧锅</string>
+
+    <string name="name_card_data_index_2_3_2_0">铛铛虎</string>
+    <string name="name_card_data_index_2_3_2_1">速热铛铛虎–微波铛铛虎</string>
+
+    <string name="name_card_data_index_2_3_3_0">祝融神使</string>
+    <string name="name_card_data_index_2_3_3_1">祝融圣神–赤帝·祝融–至尊赤帝</string>
+
+    <string name="name_card_data_index_2_3_4_0">糖炒栗子</string>
+    <string name="name_card_data_index_2_3_4_1">开口笑栗子–焦香烤栗子</string>
+
+    <string name="name_card_data_index_2_3_5_0">霜霜蛇</string>
+    <string name="name_card_data_index_2_3_5_1">雪花霜霜蛇–玄冰霜霜蛇</string>
+
+    <string name="name_card_data_index_2_3_6_0">马卡龙烤箱</string>
+    <string name="name_card_data_index_2_3_6_1">抹茶马卡龙烤箱–幻彩马卡龙烤箱</string>
 
 
     <string name="name_card_data_index_3_1_1_0">炭烧海星</string>
@@ -946,6 +1004,12 @@
     <string name="name_card_data_index_8_1_4_0">赫斯提亚神使</string>
     <string name="name_card_data_index_8_1_4_1">赫斯提亚圣神–圣火女神·赫斯提亚–至尊圣火女神</string>
 
+    <string name="name_card_data_index_8_1_5_0">肥牛火锅</string>
+    <string name="name_card_data_index_8_1_5_1">酸汤肥牛锅–海鲜肥牛锅</string>
+
+    <string name="name_card_data_index_8_1_6_0">麻辣香锅</string>
+    <string name="name_card_data_index_8_1_6_1">孜然羊肉锅–酱香鱿鱼锅</string>
+
 
     <string name="name_card_data_index_8_2_1_0">旋转咖啡喷壶</string>
     <string name="name_card_data_index_8_2_1_1">节能旋转咖啡壶–原子咖啡壶</string>
@@ -1048,44 +1112,29 @@
     <string name="name_card_data_index_9_4_8_1">嘟嘟萌海马–咕噜萌海马</string>
 
 
-    <string name="name_card_data_index_10_1_1_0">肥牛火锅</string>
-    <string name="name_card_data_index_10_1_1_1">酸汤肥牛锅–海鲜肥牛锅</string>
+    <string name="name_card_data_index_10_1_1_0">汉堡包</string>
+    <string name="name_card_data_index_10_1_1_1">天椒双层堡–牛肉双黑汉堡</string>
 
-    <string name="name_card_data_index_10_1_2_0">麻辣香锅</string>
-    <string name="name_card_data_index_10_1_2_1">孜然羊肉锅–酱香鱿鱼锅</string>
+    <string name="name_card_data_index_10_1_2_0">贪食蛙</string>
 
-    <string name="name_card_data_index_10_1_3_0">生煎锅</string>
-    <string name="name_card_data_index_10_1_3_1">水煎包锅–驴肉火烧锅</string>
+    <string name="name_card_data_index_10_1_3_0">吞噬龙</string>
+    <string name="name_card_data_index_10_1_3_1">幼年吞噬龙–成年吞噬龙</string>
 
-    <string name="name_card_data_index_10_1_4_0">铛铛虎</string>
-    <string name="name_card_data_index_10_1_4_1">速热铛铛虎–微波铛铛虎</string>
+    <string name="name_card_data_index_10_1_4_0">香辣年糕蟹</string>
+    <string name="name_card_data_index_10_1_4_1">中辣年糕蟹–厨神年糕蟹</string>
 
-    <string name="name_card_data_index_10_1_5_0">祝融神使</string>
-    <string name="name_card_data_index_10_1_5_1">祝融圣神–赤帝·祝融–至尊赤帝</string>
-
-    <string name="name_card_data_index_10_1_6_0">糖炒栗子</string>
-    <string name="name_card_data_index_10_1_6_1">开口笑栗子–焦香烤栗子</string>
-
-    <string name="name_card_data_index_10_1_7_0">霜霜蛇</string>
-    <string name="name_card_data_index_10_1_7_1">雪花霜霜蛇–玄冰霜霜蛇</string>
-
-    <string name="name_card_data_index_10_1_8_0">马卡龙烤箱</string>
-    <string name="name_card_data_index_10_1_8_1">抹茶马卡龙烤箱–幻彩马卡龙烤箱</string>
+    <string name="name_card_data_index_10_1_5_0">混沌神使</string>
+    <string name="name_card_data_index_10_1_5_1">混沌圣神–上古神·混沌-至尊上古神</string>
 
 
-    <string name="name_card_data_index_10_2_1_0">汉堡包</string>
-    <string name="name_card_data_index_10_2_1_1">天椒双层堡–牛肉双黑汉堡</string>
+    <string name="name_card_data_index_10_2_1_0">雷电长棍面包</string>
+    <string name="name_card_data_index_10_2_1_1">节能面包–负离子面包</string>
 
-    <string name="name_card_data_index_10_2_2_0">贪食蛙</string>
+    <string name="name_card_data_index_10_2_2_0">三指兔</string>
+    <string name="name_card_data_index_10_2_2_1">开罗三指兔–胡夫三指兔</string>
 
-    <string name="name_card_data_index_10_2_3_0">吞噬龙</string>
-    <string name="name_card_data_index_10_2_3_1">幼年吞噬龙–成年吞噬龙</string>
-
-    <string name="name_card_data_index_10_2_4_0">香辣年糕蟹</string>
-    <string name="name_card_data_index_10_2_4_1">中辣年糕蟹–厨神年糕蟹</string>
-
-    <string name="name_card_data_index_10_2_5_0">混沌神使</string>
-    <string name="name_card_data_index_10_2_5_1">混沌圣神–上古神·混沌</string>
+    <string name="name_card_data_index_10_2_3_0">结界马</string>
+    <string name="name_card_data_index_10_2_3_1">虚空结界马–镜反结界马</string>
 
 
     <string name="name_card_data_index_10_3_1_0">新疆炒面</string>
@@ -1114,46 +1163,6 @@
 
     <string name="name_card_data_index_10_4_2_0">糖人马</string>
     <string name="name_card_data_index_10_4_2_1">香芋糖人马–缤纷糖人马</string>
-
-
-    <string name="name_card_data_index_11_1_1_0">小笼包</string>
-
-    <string name="name_card_data_index_11_1_2_0">双层小笼包</string>
-
-    <string name="name_card_data_index_11_1_3_0">三向小笼包</string>
-
-    <string name="name_card_data_index_11_1_4_0">机枪小笼包</string>
-    <string name="name_card_data_index_11_1_4_1">竹筒机枪小笼包–格林机枪笼包</string>
-
-    <string name="name_card_data_index_11_1_5_0">冰冻小笼包</string>
-
-    <string name="name_card_data_index_11_1_6_0">双层冰冻小笼包</string>
-
-    <string name="name_card_data_index_11_1_7_0">三向冰冻小笼包</string>
-
-    <string name="name_card_data_index_11_1_8_0">机枪冰冻小笼包</string>
-
-    <string name="name_card_data_index_11_1_9_0">国王小笼包</string>
-    <string name="name_card_data_index_11_1_9_1">红心国王小笼包–黑心国王小笼包</string>
-
-    <string name="name_card_data_index_11_1_10_0">三向国王小笼包</string>
-    <string name="name_card_data_index_11_1_10_1">红心三向国王小笼包–黑心三向国王小笼包</string>
-
-    <string name="name_card_data_index_11_1_11_0">贵族小笼包</string>
-
-    <string name="name_card_data_index_11_1_12_0">玉蜀黍</string>
-    <string name="name_card_data_index_11_1_12_1">奶油玉米机枪–加农玉米机枪</string>
-
-    <string name="name_card_data_index_11_1_13_0">包包龙</string>
-    <string name="name_card_data_index_11_1_13_1">懵懂包包龙–觉醒包包龙</string>
-
-    <string name="name_card_data_index_11_1_14_0">咖啡杯</string>
-    <string name="name_card_data_index_11_1_14_1">花纹咖啡杯–骨瓷咖啡杯</string>
-
-    <string name="name_card_data_index_11_1_15_0">水上茶杯</string>
-
-    <string name="name_card_data_index_11_1_16_0">激光汪</string>
-    <string name="name_card_data_index_11_1_16_1">高频激光汪–超频激光汪</string>
 
 
     <string name="name_card_data_index_11_2_1_0">阴阳蛇</string>
@@ -1237,23 +1246,14 @@
     <string name="name_card_data_index_11_4_10_1">后羿圣神–宗布神·后羿–至尊宗布神</string>
 
 
-    <string name="name_card_data_index_12_1_1_0">雷电长棍面包</string>
-    <string name="name_card_data_index_12_1_1_1">节能面包–负离子面包</string>
+    <string name="name_card_data_index_12_1_1_0">巧克力大炮</string>
+    <string name="name_card_data_index_12_1_1_1">节能巧克力大炮–死神大炮</string>
 
-    <string name="name_card_data_index_12_1_2_0">三指兔</string>
-    <string name="name_card_data_index_12_1_2_1">开罗三指兔–胡夫三指兔</string>
+    <string name="name_card_data_index_12_1_2_0">导弹蛇</string>
+    <string name="name_card_data_index_12_1_2_1">舰地导弹蛇–洲际导弹蛇</string>
 
-    <string name="name_card_data_index_12_1_3_0">结界马</string>
-    <string name="name_card_data_index_12_1_3_1">虚空结界马–镜反结界马</string>
-
-    <string name="name_card_data_index_12_1_4_0">巧克力大炮</string>
-    <string name="name_card_data_index_12_1_4_1">节能巧克力大炮–死神大炮</string>
-
-    <string name="name_card_data_index_12_1_5_0">导弹蛇</string>
-    <string name="name_card_data_index_12_1_5_1">舰地导弹蛇–洲际导弹蛇</string>
-
-    <string name="name_card_data_index_12_1_6_0">盖亚神使</string>
-    <string name="name_card_data_index_12_1_6_1">盖亚圣神–大地女神·盖亚–至尊大地女神</string>
+    <string name="name_card_data_index_12_1_3_0">盖亚神使</string>
+    <string name="name_card_data_index_12_1_3_1">盖亚圣神–大地女神·盖亚–至尊大地女神</string>
 
 
     <string name="name_card_data_index_12_2_1_0">可乐炸弹</string>

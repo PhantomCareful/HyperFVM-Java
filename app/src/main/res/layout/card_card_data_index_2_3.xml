@@ -20,6 +20,10 @@
 
         <include layout="@layout/card_card_data_index_2_3_4" />
 
+        <include layout="@layout/card_card_data_index_2_3_5" />
+
+        <include layout="@layout/card_card_data_index_2_3_6" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

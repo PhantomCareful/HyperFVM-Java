@@ -62,12 +62,12 @@
         layout="@layout/card_card_data_index_8_1_4" />
 
     <include
-        android:id="@+id/card_card_data_index_10_1_1"
-        layout="@layout/card_card_data_index_10_1_1" />
+        android:id="@+id/card_card_data_index_8_1_5"
+        layout="@layout/card_card_data_index_8_1_5" />
 
     <include
-        android:id="@+id/card_card_data_index_10_1_2"
-        layout="@layout/card_card_data_index_10_1_2" />
+        android:id="@+id/card_card_data_index_8_1_6"
+        layout="@layout/card_card_data_index_8_1_6" />
 
     <include
         android:id="@+id/card_card_data_index_9_4_5"

@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.ForCardSearch.CardSearchSuggestion;
+import com.careful.HyperFVM.utils.ForCardData.CardSearchSuggestion;
 import com.opencsv.CSVReader;
 
 import java.io.File;

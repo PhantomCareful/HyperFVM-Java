@@ -64,6 +64,17 @@
                 <include layout="@layout/card_card_data_index_1_3"/>
 
                 <TextView
+                    android:id="@+id/title_card_data_index_1_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="15sp"/>
+
+                <include layout="@layout/card_card_data_index_1_4"/>
+
+                <TextView
                     android:id="@+id/title_card_data_index_2_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -337,17 +348,6 @@
                     android:textSize="15sp"/>
 
                 <include layout="@layout/card_card_data_index_10_4"/>
-
-                <TextView
-                    android:id="@+id/title_card_data_index_11_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="15sp"/>
-
-                <include layout="@layout/card_card_data_index_11_1"/>
 
                 <TextView
                     android:id="@+id/title_card_data_index_11_2"

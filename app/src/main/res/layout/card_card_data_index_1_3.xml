@@ -18,6 +18,32 @@
 
         <include layout="@layout/card_card_data_index_1_3_3" />
 
+        <include layout="@layout/card_card_data_index_1_3_4" />
+
+        <include layout="@layout/card_card_data_index_1_3_5" />
+
+        <include layout="@layout/card_card_data_index_1_3_6" />
+
+        <include layout="@layout/card_card_data_index_1_3_7" />
+
+        <include layout="@layout/card_card_data_index_1_3_8" />
+
+        <include layout="@layout/card_card_data_index_1_3_9" />
+
+        <include layout="@layout/card_card_data_index_1_3_10" />
+
+        <include layout="@layout/card_card_data_index_1_3_11" />
+
+        <include layout="@layout/card_card_data_index_1_3_12" />
+
+        <include layout="@layout/card_card_data_index_1_3_13" />
+
+        <include layout="@layout/card_card_data_index_1_3_14" />
+
+        <include layout="@layout/card_card_data_index_1_3_15" />
+
+        <include layout="@layout/card_card_data_index_1_3_16" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

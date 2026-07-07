@@ -99,7 +99,7 @@
         layout="@layout/card_card_data_index_1_1_8" />
 
     <include
-        android:id="@+id/card_card_data_index_1_3_2"
-        layout="@layout/card_card_data_index_1_3_2" />
+        android:id="@+id/card_card_data_index_1_4_2"
+        layout="@layout/card_card_data_index_1_4_2" />
 
 </LinearLayout>

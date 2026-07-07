@@ -5,6 +5,10 @@
     android:orientation="vertical">
 
     <include
+        android:id="@+id/card_card_data_index_2_3_6"
+        layout="@layout/card_card_data_index_2_3_6" />
+
+    <include
         android:id="@+id/card_card_data_index_9_2_2"
         layout="@layout/card_card_data_index_9_2_2" />
 
@@ -41,11 +45,7 @@
         layout="@layout/card_card_data_index_9_2_1" />
 
     <include
-        android:id="@+id/card_card_data_index_12_1_4"
-        layout="@layout/card_card_data_index_12_1_5" />
-
-    <include
-        android:id="@+id/card_card_data_index_10_1_8"
-        layout="@layout/card_card_data_index_10_1_8" />
+        android:id="@+id/card_card_data_index_12_1_2"
+        layout="@layout/card_card_data_index_12_1_2" />
 
 </LinearLayout>

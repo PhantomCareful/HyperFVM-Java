@@ -94,6 +94,7 @@ public class AuxiliaryList5Activity extends BaseActivity {
         findViewById(R.id.card_data_index_background_images_1_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "塔利亚神使"));
 
         // 增幅名单
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex236.cardDataIndex236.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "马卡龙烤箱"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "章鱼烧"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巨蟹座精灵"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "忍忍鸡"));
@@ -103,11 +104,10 @@ public class AuxiliaryList5Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex944.cardDataIndex944.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex946.cardDataIndex946.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex1216.cardDataIndex1216.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex1213.cardDataIndex1213.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex923.cardDataIndex923.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火箭猪"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex1215.cardDataIndex1215.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex1212.cardDataIndex1212.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex1135.cardDataIndex1135.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "御风马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex1018.cardDataIndex1018.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "马卡龙烤箱"));
         // 四转追加
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex922.cardDataIndex922.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雅典娜守护"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex924.cardDataIndex924.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "宙斯神使"));

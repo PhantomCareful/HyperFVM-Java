@@ -108,6 +108,7 @@ public class AuxiliaryList6EffectActivity extends BaseActivity {
         findViewById(R.id.card_data_index_background_images_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "精灵龙"));
 
         // 增幅名单
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex236.cardDataIndex236.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "马卡龙烤箱"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex922.cardDataIndex922.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "雅典娜守护"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex924.cardDataIndex924.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "宙斯神使"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex931.cardDataIndex931.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "魔法猪"));
@@ -117,8 +118,7 @@ public class AuxiliaryList6EffectActivity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex935.cardDataIndex935.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰晶龙"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex921.cardDataIndex921.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "咖喱龙虾炮"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex1214.cardDataIndex1215.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex1018.cardDataIndex1018.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "马卡龙烤箱"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList6).cardCardDataIndex1212.cardDataIndex1212.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "导弹蛇"));
 
     }
 

@@ -102,7 +102,7 @@ public class AuxiliaryList4Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex944.cardDataIndex944.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex946.cardDataIndex946.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex1216.cardDataIndex1216.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex1213.cardDataIndex1213.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex923.cardDataIndex923.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火箭猪"));
 
     }
