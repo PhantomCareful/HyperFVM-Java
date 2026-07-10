@@ -481,7 +481,7 @@ public class DashboardFragment extends Fragment {
                                 requireContext(),
                                 getResources().getString(R.string.title_dashboard_three_islands),
                                 threeIslandsEmoji.isEmpty() ? "❌" : threeIslandsEmoji,
-                                contentDetail,
+                                contentStatus,
                                 contentDetail,
                                 "去看米鼠的图",
                                 "tiramisu_image_2_1"
@@ -562,7 +562,7 @@ public class DashboardFragment extends Fragment {
                                 requireContext(),
                                 getResources().getString(R.string.title_dashboard_happy_holiday),
                                 happyHolidayEmoji.isEmpty() ? "null" : happyHolidayEmoji,
-                                contentDetail,
+                                contentStatus,
                                 contentDetail,
                                 "去看米鼠的图",
                                 "tiramisu_image_1_7"
