@@ -161,7 +161,7 @@ public class CardDataHelper {
                 }
                 context.startActivity(intent);
                 break;
-            case "音盒马":
+            case "固定轨迹增幅卡":
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList9EffectActivity.class);
                 } else {
@@ -193,6 +193,9 @@ public class CardDataHelper {
                 break;
             case "加速榨汁机", "魔杖蛇", "塔拉萨神使":
                 selectAuxiliaryCardByName(context, "喷壶增幅卡");
+                break;
+            case "音盒马", "浮生茶":
+                selectAuxiliaryCardByName(context, "固定轨迹增幅卡");
                 break;
             default:
                 selectAuxiliaryCardByName(context, cardName);
@@ -396,7 +399,7 @@ public class CardDataHelper {
                 Objects.equals(cardName, "金牛座精灵") || Objects.equals(cardName, "暖炉汪") || Objects.equals(cardName, "能量喵") ||
                         Objects.equals(cardName, "坩埚蛇") || Objects.equals(cardName, "猪猪加强器") || Objects.equals(cardName, "香料虎") ||
                         Objects.equals(cardName, "精灵龙") || Objects.equals(cardName, "五行蛇") || Objects.equals(cardName, "魔杖蛇") ||
-                        Objects.equals(cardName, "音盒马") || Objects.equals(cardName, "炎焱兔")
+                        Objects.equals(cardName, "音盒马") || Objects.equals(cardName, "浮生茶") || Objects.equals(cardName, "炎焱兔")
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;

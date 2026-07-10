@@ -16,7 +16,7 @@
     <string name="title_data_center_data_images_index">数据图合集</string>
     <string name="label_data_center_data_images_index">😈目标是打造成最全面的数据图合集\n👉点击去查看</string>
     <string name="card_data_search_title">防御卡数据查询</string>
-    <string name="card_data_search_data_version">数据库版本：20260702</string>
+    <string name="card_data_search_data_version">数据库版本：20260709</string>
     <string name="card_data_search_tips1">👉卡片冷却默认7秒，体力默认50👈\n如有不同会单独标出</string>
     <string name="card_data_search_tips2">👇点击卡片即可进入数据详情页👇</string>
     <string name="card_data_search_input_tips">请输入防御卡名称</string>
@@ -853,11 +853,14 @@
     <string name="name_card_data_index_4_2_11_0">塔拉萨神使</string>
     <string name="name_card_data_index_4_2_11_1">塔拉萨圣神–海洋女神·塔拉萨-至尊海洋女神</string>
 
-    <string name="name_card_data_index_4_2_12_0">炎焱兔</string>
-    <string name="name_card_data_index_4_2_12_1">火火炎焱兔–燚燚炎焱兔</string>
+    <string name="name_card_data_index_4_2_12_0">音盒马</string>
+    <string name="name_card_data_index_4_2_12_1">叮咚音盒马–玲珑音盒马</string>
 
-    <string name="name_card_data_index_4_2_13_0">音盒马</string>
-    <string name="name_card_data_index_4_2_13_1">叮咚音盒马–玲珑音盒马</string>
+    <string name="name_card_data_index_4_2_13_0">浮生茶</string>
+    <string name="name_card_data_index_4_2_13_1">清心浮生茶–忘忧浮生茶</string>
+
+    <string name="name_card_data_index_4_2_14_0">炎焱兔</string>
+    <string name="name_card_data_index_4_2_14_1">火火炎焱兔–燚燚炎焱兔</string>
 
 
     <string name="name_card_data_index_4_3_1_0">11周年美食盒子</string>
@@ -1102,14 +1105,17 @@
     <string name="name_card_data_index_9_4_5_0">金刚马</string>
     <string name="name_card_data_index_9_4_5_1">魔铃金刚马–梵音金刚马</string>
 
-    <string name="name_card_data_index_9_4_6_0">归元马</string>
-    <string name="name_card_data_index_9_4_6_1">时空归元马–幻境归元马</string>
+    <string name="name_card_data_index_9_4_6_0">红柳烤串机</string>
+    <string name="name_card_data_index_9_4_6_1">茴香红柳烤串机–星火红柳烤串机</string>
 
-    <string name="name_card_data_index_9_4_7_0">蜜糖陷阱</string>
-    <string name="name_card_data_index_9_4_7_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
+    <string name="name_card_data_index_9_4_7_0">归元马</string>
+    <string name="name_card_data_index_9_4_7_1">时空归元马–幻境归元马</string>
 
-    <string name="name_card_data_index_9_4_8_0">萌海马</string>
-    <string name="name_card_data_index_9_4_8_1">嘟嘟萌海马–咕噜萌海马</string>
+    <string name="name_card_data_index_9_4_8_0">蜜糖陷阱</string>
+    <string name="name_card_data_index_9_4_8_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
+
+    <string name="name_card_data_index_9_4_9_0">萌海马</string>
+    <string name="name_card_data_index_9_4_9_1">嘟嘟萌海马–咕噜萌海马</string>
 
 
     <string name="name_card_data_index_10_1_1_0">汉堡包</string>
@@ -1213,6 +1219,9 @@
 
     <string name="name_card_data_index_11_3_13_0">炎凰马</string>
     <string name="name_card_data_index_11_3_13_1">白炽炎凰马–焚天炎凰马</string>
+
+    <string name="name_card_data_index_11_3_14_0">灯影花糕</string>
+    <string name="name_card_data_index_11_3_14_1">初见灯影花糕–梦境灯影花糕</string>
 
 
     <string name="name_card_data_index_11_4_1_0">焦油喷壶</string>
@@ -1389,6 +1398,9 @@
 
     <string name="name_card_data_index_13_2_8_0">巴德尔神使</string>
     <string name="name_card_data_index_13_2_8_1">巴德尔圣神–光明神·巴德尔-至尊光明神</string>
+
+    <string name="name_card_data_index_13_2_9_0">桥头米线</string>
+    <string name="name_card_data_index_13_2_9_1">灵泉桥头米线–金汤桥头米线</string>
 
 
     <string name="name_card_data_index_13_3_1_0">冰桶炸弹</string>
@@ -1617,5 +1629,8 @@
 
     <string name="name_card_data_index_16_1_10_0">脆心死神大炮</string>
     <string name="name_card_data_index_16_1_10_1">霸王死神大炮–乾坤死神大炮</string>
+
+    <string name="name_card_data_index_16_1_11_0">仙人球海星刺身</string>
+    <string name="name_card_data_index_16_1_11_1">奶油海星刺身–王冠海星刺身</string>
 
 </resources>

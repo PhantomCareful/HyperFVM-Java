@@ -105,6 +105,7 @@ public class AuxiliaryList7Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex322.cardDataIndex322.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "星星兔"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex323.cardDataIndex323.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "坚果爆炒机"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex324.cardDataIndex324.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "里格神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex16111.cardDataIndex16111.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "仙人球海星刺身"));
         // 龙须面二转后追加
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex3251.cardDataIndex325.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "怪味鱿鱼"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList7).cardCardDataIndex16131.cardDataIndex1613.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火影怪味鱿鱼"));

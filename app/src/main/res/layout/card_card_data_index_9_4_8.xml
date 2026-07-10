@@ -34,19 +34,19 @@
 
     <!-- 右侧卡片 -->
     <ImageView
-        android:id="@+id/card_data_index_9_4_5_0"
+        android:id="@+id/card_data_index_9_4_8_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_9_4_8_0"
         tools:ignore="ContentDescription" />
     <ImageView
-        android:id="@+id/card_data_index_9_4_5_1"
+        android:id="@+id/card_data_index_9_4_8_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_9_4_8_1"
         tools:ignore="ContentDescription" />
     <ImageView
-        android:id="@+id/card_data_index_9_4_5_2"
+        android:id="@+id/card_data_index_9_4_8_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/card_data_index_9_4_8_2"

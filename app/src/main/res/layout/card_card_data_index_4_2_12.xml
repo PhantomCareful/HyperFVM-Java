@@ -20,14 +20,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name_card_data_index_4_2_13_0"
+            android:text="@string/name_card_data_index_4_2_12_0"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="20sp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name_card_data_index_4_2_13_1"
+            android:text="@string/name_card_data_index_4_2_12_1"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="11sp" />
     </LinearLayout>

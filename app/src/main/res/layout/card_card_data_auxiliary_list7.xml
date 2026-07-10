@@ -36,6 +36,10 @@
         android:id="@+id/card_card_data_index_3_2_4"
         layout="@layout/card_card_data_index_3_2_4" />
 
+    <include
+        android:id="@+id/card_card_data_index_16_1_11"
+        layout="@layout/card_card_data_index_16_1_11" />
+
     <TextView
         android:id="@+id/title_card_data_auxiliary_list_6_1"
         android:layout_width="match_parent"

@@ -117,8 +117,8 @@ public class DatabaseInfo {
      * 改造+更新普通卡数据库
      * DB_VERSION = 90
      * settings表增加“提示语设置-仪表盘刷新完成”设置
-     * DB_VERSION = 91 - 93
+     * DB_VERSION = 91 - 94
      * 改造+更新普通卡数据库
      */
-    public static final int DB_VERSION = 93;
+    public static final int DB_VERSION = 94;
 }

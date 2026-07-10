@@ -131,7 +131,8 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_4_2_11_2_big", "塔拉萨神使", "card_data_3"},
             {"card_data_index_4_2_11_3_big", "塔拉萨神使", "card_data_3"},
             {"card_data_index_4_2_12_2_big", "音盒马", "card_data_4"},
-            {"card_data_index_4_2_13_2_big", "炎焱兔", "card_data_4"},
+            {"card_data_index_4_2_13_2_big", "浮生茶", "card_data_1"},
+            {"card_data_index_4_2_14_2_big", "炎焱兔", "card_data_4"},
 
             {"card_data_index_4_3_1_0_big", "11周年美食盒子", "card_data_1"},
             {"card_data_index_4_3_2_2_big", "战旗马", "card_data_4"},
@@ -232,9 +233,10 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_9_4_3_2_big", "电流虎", "card_data_4"},
             {"card_data_index_9_4_4_2_big", "霹雳马", "card_data_4"},
             {"card_data_index_9_4_5_2_big", "金刚马", "card_data_4"},
-            {"card_data_index_9_4_6_2_big", "归元马", "card_data_4"},
-            {"card_data_index_9_4_7_2_big", "蜜糖陷阱", "card_data_1"},
-            {"card_data_index_9_4_8_2_big", "萌海马", "card_data_4"},
+            {"card_data_index_9_4_6_2_big", "红柳烤串机", "card_data_1"},
+            {"card_data_index_9_4_7_2_big", "归元马", "card_data_4"},
+            {"card_data_index_9_4_8_2_big", "蜜糖陷阱", "card_data_1"},
+            {"card_data_index_9_4_9_2_big", "萌海马", "card_data_4"},
 
             {"card_data_index_10_1_1_2_big", "汉堡包", "card_data_1"},
             {"card_data_index_10_1_2_0_big", "贪食娃", "card_data_1"},
@@ -276,6 +278,7 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_11_3_12_2_big", "鲁班神使", "card_data_3"},
             {"card_data_index_11_3_12_3_big", "鲁班神使", "card_data_3"},
             {"card_data_index_11_3_13_2_big", "炎凰马", "card_data_4"},
+            {"card_data_index_11_3_14_2_big", "灯影花糕", "card_data_1"},
 
             {"card_data_index_11_4_1_2_big", "焦油喷壶", "card_data_1"},
             {"card_data_index_11_4_2_2_big", "喷壶汪", "card_data_4"},
@@ -349,6 +352,7 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_13_2_7_2_big", "龙珠果", "card_data_4"},
             {"card_data_index_13_2_8_2_big", "巴德尔神使", "card_data_3"},
             {"card_data_index_13_2_8_3_big", "巴德尔神使", "card_data_3"},
+            {"card_data_index_13_2_9_2_big", "桥头米线", "card_data_1"},
 
             {"card_data_index_13_3_1_2_big", "冰桶炸弹", "card_data_1"},
             {"card_data_index_13_3_2_2_big", "冰弹喵", "card_data_4"},
@@ -439,6 +443,7 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_16_1_8_3_big", "机枪咖啡杯", "card_data_2"},
             {"card_data_index_16_1_9_3_big", "葡萄味软糖", "card_data_2"},
             {"card_data_index_16_1_10_3_big", "脆心死神大炮", "card_data_2"},
+            {"card_data_index_16_1_11_3_big", "仙人球海星刺身", "card_data_2"},
     };
 
     /**

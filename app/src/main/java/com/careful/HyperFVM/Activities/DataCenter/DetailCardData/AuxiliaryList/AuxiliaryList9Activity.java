@@ -91,12 +91,14 @@ public class AuxiliaryList9Activity extends BaseActivity {
     private void initCardImages() {
         // 增幅卡
         findViewById(R.id.card_data_index_background_images_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "音盒马"));
+        findViewById(R.id.card_data_index_background_images_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "浮生茶"));
 
         // 增幅名单
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11310.cardDataIndex11310.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赖皮蛇"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11311.cardDataIndex11311.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "迷你披萨炉"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11312.cardDataIndex11312.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11313.cardDataIndex11313.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11314.cardDataIndex11314.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "灯影花糕"));
 
     }
 }
