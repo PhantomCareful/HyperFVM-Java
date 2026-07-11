@@ -18,8 +18,8 @@ configure<ApplicationExtension> {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
         targetSdk = 37
-        versionCode = 106
-        versionName = "4.2.4"
+        versionCode = 107
+        versionName = "4.2.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -135,4 +135,6 @@ dependencies {
 
     //这个布局内的组件，一行放不下时会自动换行
     implementation(libs.flexbox)
+
+    //debugImplementation(libs.leakcanary.android)
 }
