@@ -7,11 +7,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityAuxiliaryList8Binding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -27,6 +29,7 @@ import java.util.Objects;
 public class AuxiliaryList8Activity extends BaseActivity {
     private ActivityAuxiliaryList8Binding binding;
     private DBHelper dbHelper;
+    private BlurUtil blurUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class AuxiliaryList8Activity extends BaseActivity {
         setContentView(root);
 
         // 初始化数据库
-        dbHelper = new DBHelper(this);
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 初始化各种装饰效果
         initDecoration();
@@ -78,7 +81,7 @@ public class AuxiliaryList8Activity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
@@ -115,5 +118,19 @@ public class AuxiliaryList8Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList8).cardCardDataIndex1123.cardDataIndex1123.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弹珠汽水"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList8).cardCardDataIndex1136.cardDataIndex1136.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "云霞马"));
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        super.onDestroy();
     }
 }

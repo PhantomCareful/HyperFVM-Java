@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
         }).start();
 
         // 应用主题（必须在super.onCreate前）
-        DarkModeManager.applyDarkMode(this);
+        DarkModeManager.applyDarkMode();
         ThemeManager.applyTheme(this);
 
         super.onCreate(savedInstanceState);

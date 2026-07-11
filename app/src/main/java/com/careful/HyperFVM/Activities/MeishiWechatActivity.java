@@ -12,11 +12,11 @@ import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
 import com.careful.HyperFVM.BaseActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityMeishiWechatBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -55,6 +56,7 @@ public class MeishiWechatActivity extends BaseActivity {
     private ActivityMeishiWechatBinding binding;
 
     private DBHelper dbHelper;
+    private BlurUtil blurUtil;
     private LinearLayout accountListContainer;
     private TextView accountCountText;
 
@@ -88,7 +90,7 @@ public class MeishiWechatActivity extends BaseActivity {
         mainHandler = new Handler(Looper.getMainLooper());
 
         // 初始化数据库
-        dbHelper = new DBHelper(this);
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 初始化视图
         initViews();
@@ -327,7 +329,7 @@ public class MeishiWechatActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonAdd));
@@ -347,8 +349,15 @@ public class MeishiWechatActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
         super.onDestroy();
-        Log.d("onDestroy", "onDestroy");
-        dbHelper.close();
     }
 }

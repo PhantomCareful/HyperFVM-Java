@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.MeishiWechatActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDashboardBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -155,8 +156,8 @@ public class DashboardFragment extends Fragment {
         FragmentDashboardBinding binding = FragmentDashboardBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
-        // 初始化数据库类
-        dbHelper = new DBHelper(requireContext());
+        // 初始化数据库
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
@@ -327,7 +328,7 @@ public class DashboardFragment extends Fragment {
         new Thread(() -> {
             try {
                 // 执行每日任务（耗时操作放子线程）
-                ExecuteDailyTask executeDailyTask = new ExecuteDailyTask(requireContext());
+                ExecuteDailyTask executeDailyTask = new ExecuteDailyTask();
                 executeDailyTask.executeDashboardTask(result -> {
                     // 缓存数据
                     sCachedData = Collections.singletonList(result);

@@ -86,4 +86,17 @@ public class InsetsUtil {
     public interface Consumer<T> {
         void accept(T t);
     }
+
+    /**
+     * 移除指定 View 上注册的 WindowInsets 监听器，防止内存泄漏
+     * @param view 通常是 Activity 的根容器 (findViewById(android.R.id.content))
+     */
+    public static void removeListener(View view) {
+        if (view != null) {
+            // 移除 ViewCompat 的监听器
+            ViewCompat.setOnApplyWindowInsetsListener(view, null);
+            // 从静态 Map 中移除
+            sListenerMap.remove(view);
+        }
+    }
 }

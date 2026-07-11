@@ -1,7 +1,6 @@
 package com.careful.HyperFVM.utils.ForDashboard.FromGame.MeishiWechat;
 
-import android.content.Context;
-
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
 import java.util.ArrayList;
@@ -10,11 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class GiftFetcher {
-    private final DBHelper dbHelper;
+    private final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
     private final GiftFetchHelper giftHelper;
 
-    public GiftFetcher(Context context) {
-        this.dbHelper = new DBHelper(context);
+    public GiftFetcher() {
         this.giftHelper = new GiftFetchHelper();
     }
 

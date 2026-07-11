@@ -12,8 +12,8 @@ import eightbitlab.com.blurview.BlurTarget;
 import eightbitlab.com.blurview.BlurView;
 
 public class BlurUtil {
-    private final Context context;
-    private final Window window; // 用于获取DecorView
+    private Context context;
+    private Window window;
     private final float radius = 20f;
 
     public BlurUtil(Context context) {
@@ -22,6 +22,7 @@ public class BlurUtil {
     }
 
     public void setBlur(BlurView blurViewId) {
+        if (context == null || window == null) return;  // 加防护
         View decorView = window.getDecorView();
         BlurTarget target = ((Activity) context).findViewById(R.id.target);
         Drawable windowBackground = decorView.getBackground();
@@ -33,6 +34,7 @@ public class BlurUtil {
     }
 
     public void setBlur(BlurView blurViewId, BlurTarget blurTarget) {
+        if (context == null || window == null) return;  // 加防护
         View decorView = window.getDecorView();
         Drawable windowBackground = decorView.getBackground();
 
@@ -40,5 +42,13 @@ public class BlurUtil {
                 .setFrameClearDrawable(windowBackground)
                 .setBlurRadius(radius)
                 .setBlurAutoUpdate(true);
+    }
+
+    /**
+     * 释放对 Context 和 Window 的引用，防止 Activity 泄漏
+     */
+    public void release() {
+        context = null;
+        window = null;
     }
 }

@@ -1,7 +1,5 @@
 package com.careful.HyperFVM.utils.ForDashboard;
 
-import android.content.Context;
-
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.Activity.ActivityCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.FertilizationTask.FertilizationTaskCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.MeishiWechat.GiftFetcher;
@@ -22,8 +20,8 @@ public class ExecuteDailyTask {
     private final NewYearCatcher newYearCatcher;
     private final DashboardGitCatcher dashboardGitCatcher;
 
-    public ExecuteDailyTask(Context context) {
-        giftFetcher = new GiftFetcher(context);
+    public ExecuteDailyTask() {
+        giftFetcher = new GiftFetcher();
         activityCatcher = new ActivityCatcher();
         fertilizationTaskCatcher = new FertilizationTaskCatcher();
         newYearCatcher = new NewYearCatcher();

@@ -1,23 +1,34 @@
-package com.careful.HyperFVM.Activities.ThanksList;
+package com.careful.HyperFVM.Activities.Thanks;
+
+import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
-import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 
-public class ThanksAppActivity extends BaseActivity {
+public class CoContributorTeamActivity extends BaseActivity {
+    private BlurUtil blurUtil;
+
+    private LinearLayout CoContributorTeamContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,38 +41,29 @@ public class ThanksAppActivity extends BaseActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_thanks_app);
+        setContentView(R.layout.activity_co_contributor_team);
 
         // 初始化各种装饰效果
         initDecoration();
 
-        //跳转浏览器，前往miuix仓库
-        findViewById(R.id.thanks_list_container_app_1).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                this,
-                ContextCompat.getDrawable(this, R.drawable.ic_github),
-                0,
-                getResources().getString(R.string.dialog_title_github),
-                getResources().getString(R.string.dialog_sub_title_thanks_list_app_1),
-                getResources().getString(R.string.dialog_url_thanks_list_app_1)));
+        TextView CoContributorTeamTop = findViewById(R.id.CoContributorTeam_Top_Content);
+        TextView CoContributorTeamContent = findViewById(R.id.CoContributorTeam_Content_Content);
 
-        //跳转浏览器，前往HyperCeiler仓库
-        findViewById(R.id.thanks_list_container_app_2).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                this,
-                ContextCompat.getDrawable(this, R.drawable.ic_github),
-                0,
-                getResources().getString(R.string.dialog_title_github),
-                getResources().getString(R.string.dialog_sub_title_thanks_list_app_2),
-                getResources().getString(R.string.dialog_url_thanks_list_app_2)));
+        getContentFromAssets(this, CoContributorTeamTop, "CoContributorTeamTop.txt");
+        getContentFromAssets(this, CoContributorTeamContent, "CoContributorTeamContent.txt");
 
-        //跳转浏览器，前往BlurView仓库
-        findViewById(R.id.thanks_list_container_app_3).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                this,
-                ContextCompat.getDrawable(this, R.drawable.ic_github),
-                0,
-                getResources().getString(R.string.dialog_title_github),
-                getResources().getString(R.string.dialog_sub_title_thanks_list_app_3),
-                getResources().getString(R.string.dialog_url_thanks_list_app_3)));
+        // 初始化动画效果
+        TransitionSet transition = new TransitionSet();
+        transition.addTransition(new Fade()); // 淡入淡出
+        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
+        transition.setDuration(300); // 动画时长300ms
 
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            TransitionManager.beginDelayedTransition(CoContributorTeamContainer, transition);
+            findViewById(R.id.CoContributorTeam_Top_Container).setVisibility(View.VISIBLE);
+            findViewById(R.id.CoContributorTeam_Content_Container).setVisibility(View.VISIBLE);
+            findViewById(R.id.placeholder).setVisibility(View.GONE);
+        }, 300);
     }
 
     /**
@@ -82,12 +84,12 @@ public class ThanksAppActivity extends BaseActivity {
             floatButtonBackContainer.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
-        LinearLayout CoContributorTeam_Container = findViewById(R.id.CoContributorTeam_Container);
-        InsetsUtil.setMarginHorizontal(this, CoContributorTeam_Container, layout_marginHorizontal -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) CoContributorTeam_Container.getLayoutParams();
+        CoContributorTeamContainer = findViewById(R.id.CoContributorTeam_Container);
+        InsetsUtil.setMarginHorizontal(this, CoContributorTeamContainer, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) CoContributorTeamContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
-            CoContributorTeam_Container.setLayoutParams(params);
+            CoContributorTeamContainer.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
@@ -102,10 +104,24 @@ public class ThanksAppActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        super.onDestroy();
     }
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +30,8 @@ import com.google.android.material.card.MaterialCardView;
 import java.io.IOException;
 
 public class TodayLuckyActivity extends BaseActivity {
+    private BlurUtil blurUtil;
+
     //圆角半径，单位：像素
     private static final int CORNER_RADIUS_DP = 50;
     private int cornerRadiusPx;//转换后的像素值
@@ -163,7 +166,7 @@ public class TodayLuckyActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
@@ -198,5 +201,19 @@ public class TodayLuckyActivity extends BaseActivity {
         // 添加按压动画
         findViewById(R.id.Button_ControlGif).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        super.onDestroy();
     }
 }

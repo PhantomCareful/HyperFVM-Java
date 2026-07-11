@@ -11,6 +11,7 @@ import android.transition.TransitionSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DataImagesIndexActivity extends BaseActivity {
+    private BlurUtil blurUtil;
     private final String TAG = "DataImagesIndexActivity";
 
     private final String DATA_IMAGES_URL = "https://raw.giteeusercontent.com/phantom-careful/hyper-fvm-updater/raw/main/DataImages/DataImagesUrl.m3u";
@@ -496,7 +498,7 @@ public class DataImagesIndexActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
 
@@ -504,11 +506,17 @@ public class DataImagesIndexActivity extends BaseActivity {
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
-    /**
-     * 销毁活动时需要关闭下载
-     */
     @Override
     protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
         super.onDestroy();
         isActivityDestroyed = true;
         if (downloadExecutor != null) {

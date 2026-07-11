@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.BaseActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -35,8 +37,8 @@ import java.io.File;
 import java.util.Objects;
 
 public class CheckUpdateActivity extends BaseActivity {
-
     private DBHelper dbHelper;
+    private BlurUtil blurUtil;
 
     private AppUpdaterUtil appUpdaterUtil;
 
@@ -67,10 +69,10 @@ public class CheckUpdateActivity extends BaseActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
 
-        // 重置计数器
+        // 初始化数据库
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 初始化工具类
-        dbHelper = new DBHelper(this);
         appUpdaterUtil = AppUpdaterUtil.getInstance();
 
         initViews();
@@ -453,7 +455,7 @@ public class CheckUpdateActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonUpdate));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonJoin));
@@ -464,6 +466,15 @@ public class CheckUpdateActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
         super.onDestroy();
         // 取消下载
         if (isDownloading) {

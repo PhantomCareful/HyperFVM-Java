@@ -1,8 +1,9 @@
-package com.careful.HyperFVM.Activities.ThanksList;
+package com.careful.HyperFVM.Activities.Thanks;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -17,7 +18,8 @@ import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 
-public class ThanksGameActivity extends BaseActivity {
+public class ThanksAppActivity extends BaseActivity {
+    private BlurUtil blurUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,41 +32,38 @@ public class ThanksGameActivity extends BaseActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_thanks_game);
+        setContentView(R.layout.activity_thanks_app);
 
         // 初始化各种装饰效果
         initDecoration();
 
-        // 跳转浏览器，前往陌路的哔哩哔哩主页
-        findViewById(R.id.thanks_list_container_fvm_1).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+        //跳转浏览器，前往miuix仓库
+        findViewById(R.id.thanks_list_container_app_1).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                ContextCompat.getDrawable(this, R.drawable.ic_bilibili),
+                ContextCompat.getDrawable(this, R.drawable.ic_github),
                 0,
-                getResources().getString(R.string.dialog_title_bilibili),
-                getResources().getString(R.string.dialog_sub_title_thanks_list_fvm_1),
-                getResources().getString(R.string.dialog_url_thanks_list_fvm_1)));
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_app_1),
+                getResources().getString(R.string.dialog_url_thanks_list_app_1)));
 
-        // 跳转浏览器，前往夏夜的哔哩哔哩主页
-        findViewById(R.id.thanks_list_container_fvm_2).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+        //跳转浏览器，前往HyperCeiler仓库
+        findViewById(R.id.thanks_list_container_app_2).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                ContextCompat.getDrawable(this, R.drawable.ic_bilibili),
+                ContextCompat.getDrawable(this, R.drawable.ic_github),
                 0,
-                getResources().getString(R.string.dialog_title_bilibili),
-                getResources().getString(R.string.dialog_sub_title_thanks_list_fvm_2),
-                getResources().getString(R.string.dialog_url_thanks_list_fvm_2)));
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_app_2),
+                getResources().getString(R.string.dialog_url_thanks_list_app_2)));
 
-        // 跳转浏览器，前往高清图楼帖子
-        findViewById(R.id.thanks_list_container_fvm_3).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+        //跳转浏览器，前往BlurView仓库
+        findViewById(R.id.thanks_list_container_app_3).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 this,
-                ContextCompat.getDrawable(this, R.drawable.ic_tieba),
+                ContextCompat.getDrawable(this, R.drawable.ic_github),
                 0,
-                getResources().getString(R.string.dialog_title_thanks_list_fvm_3),
-                getResources().getString(R.string.dialog_sub_title_thanks_list_fvm_3),
-                getResources().getString(R.string.dialog_url_thanks_list_fvm_3)));
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_app_3),
+                getResources().getString(R.string.dialog_url_thanks_list_app_3)));
 
-        // 跳转浏览器，前往查黑系统网站
-        findViewById(R.id.thanks_list_container_fvm_4).setOnClickListener(v ->
-                DialogBuilderManager.showIcuQQInputDialog(this));
     }
 
     /**
@@ -105,10 +104,24 @@ public class ThanksGameActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        super.onDestroy();
     }
 }

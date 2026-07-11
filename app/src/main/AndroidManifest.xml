@@ -121,10 +121,10 @@
             android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1EffectActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ThanksList.ThanksAppActivity"
+            android:name=".Activities.Thanks.ThanksAppActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ThanksList.ThanksGameActivity"
+            android:name=".Activities.Thanks.ThanksGameActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.DataCenter.CardDataIndexActivity"
@@ -136,7 +136,7 @@
             android:name=".Activities.CheckUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.CoContributorTeamActivity"
+            android:name=".Activities.Thanks.CoContributorTeamActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.NecessaryThings.UsingInstructionActivity"

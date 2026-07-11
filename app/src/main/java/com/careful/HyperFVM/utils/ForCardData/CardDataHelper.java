@@ -44,12 +44,16 @@ import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData3Activi
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData4Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForAnimalCardActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForGoldenCardActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
 import java.util.Objects;
 
 public class CardDataHelper {
+    @SuppressLint("StaticFieldLeak")
+    private static final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
+
     /**
      * 给定卡片名称，查询对应的卡片
      * @param context 上下文
@@ -59,14 +63,12 @@ public class CardDataHelper {
         String tableName;
         String baseName;
 
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            if (cardName.isEmpty()) {
-                Toast.makeText(context, "请输入卡片名称", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            tableName = dbHelper.getCardTableName(cardName);
-            baseName = dbHelper.getCardBaseName(cardName);
+        if (cardName.isEmpty()) {
+            Toast.makeText(context, "请输入卡片名称", Toast.LENGTH_SHORT).show();
+            return;
         }
+        tableName = dbHelper.getCardTableName(cardName);
+        baseName = dbHelper.getCardBaseName(cardName);
 
         if (tableName == null) {
             Toast.makeText(context, "未找到该卡片", Toast.LENGTH_SHORT).show();
@@ -91,9 +93,7 @@ public class CardDataHelper {
 
     public static void selectAuxiliaryCardByName(Context context, String cardName) {
         boolean isDynamicBackground;
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
-        }
+        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
 
         Intent intent;
         switch (cardName) {
@@ -222,9 +222,7 @@ public class CardDataHelper {
         int imageResId;
 
         boolean isDynamicBackground;
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
-        }
+        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
 
         // 相关卡片 - 金卡
         String correspondingGoldenCardName = getStringFromCursor(cursor, "corresponding_golden_card_name");
@@ -503,9 +501,7 @@ public class CardDataHelper {
         int imageResId;
 
         boolean isDynamicBackground;
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
-        }
+        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
 
         // 相关卡片 - 增幅卡
         String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
@@ -634,9 +630,7 @@ public class CardDataHelper {
         int imageResId;
 
         boolean isDynamicBackground;
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
-        }
+        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
 
         // 相关卡片 - 增幅卡
         String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -29,8 +31,8 @@ import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.slider.Slider;
 
 public class SettingsActivity extends BaseActivity {
-
     private DBHelper dbHelper;
+    private BlurUtil blurUtil;
 
     private static final String CONTENT_IS_DYNAMIC_COLOR = "主题-是否动态取色";
     private static final String CONTENT_APP_THEME = "主题-自定义主题色";
@@ -76,7 +78,7 @@ public class SettingsActivity extends BaseActivity {
         setContentView(R.layout.activity_settings);
 
         // 初始化数据库
-        dbHelper = new DBHelper(this);
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 初始化各种装饰效果
         initDecoration();
@@ -407,7 +409,7 @@ public class SettingsActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonRestart));
@@ -433,12 +435,16 @@ public class SettingsActivity extends BaseActivity {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        // 关闭数据库连接
-        if (dbHelper != null) {
-            dbHelper.close();
+    protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
         }
-    }
 
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        super.onDestroy();
+    }
 }

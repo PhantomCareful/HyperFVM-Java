@@ -3,6 +3,7 @@ package com.careful.HyperFVM.utils.ForDesign.ThemeManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
@@ -21,8 +22,12 @@ public class ThemeManager {
      * @param activity 目标Activity
      */
     public static void applyTheme(Activity activity) {
-        // 1. 获取数据库实例（使用Activity的Context）
-        dbHelper = new DBHelper(activity);
+        // 1. 从 Application 获取全局 DBHelper
+        dbHelper = HyperFVMApplication.getDBHelper();
+        if (dbHelper == null) {
+            // 若为空，说明 Application 未正确初始化（防御）
+            return;
+        }
 
         // 2. 读取主题设置
         boolean isDynamicColor = dbHelper.getSettingBooleanValue(KEY_IS_DYNAMIC_COLOR);

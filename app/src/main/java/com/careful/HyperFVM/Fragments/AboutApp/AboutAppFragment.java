@@ -14,11 +14,11 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
-import com.careful.HyperFVM.Activities.CoContributorTeamActivity;
+import com.careful.HyperFVM.Activities.Thanks.CoContributorTeamActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity;
 import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
-import com.careful.HyperFVM.Activities.ThanksList.ThanksAppActivity;
-import com.careful.HyperFVM.Activities.ThanksList.ThanksGameActivity;
+import com.careful.HyperFVM.Activities.Thanks.ThanksAppActivity;
+import com.careful.HyperFVM.Activities.Thanks.ThanksGameActivity;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;

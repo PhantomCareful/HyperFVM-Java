@@ -12,7 +12,7 @@ public class TileTaskNotificationRefreshReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (ACTION_REFRESH.equals(intent.getAction())) {
             TileTaskNotificationManager tileTaskNotificationManager = new TileTaskNotificationManager(context);
-            TileTaskHelper.executeTileTasks(context, tileTaskNotificationManager);
+            TileTaskHelper.executeTileTasks(tileTaskNotificationManager);
         }
     }
 }

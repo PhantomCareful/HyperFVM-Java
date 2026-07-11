@@ -22,6 +22,7 @@ import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 
 public class DecomposeCalculatorForAnimalCardFragment extends Fragment {
     private static final String KEY_CALCULATION_STATES = "calculation_states";
+    private BlurUtil blurUtil;
 
     private View root;
 
@@ -438,7 +439,7 @@ public class DecomposeCalculatorForAnimalCardFragment extends Fragment {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(requireContext());
+        blurUtil = new BlurUtil(requireContext());
         blurUtil.setBlur(root.findViewById(R.id.blurViewResult), root.findViewById(R.id.targetView));
     }
 
@@ -460,5 +461,15 @@ public class DecomposeCalculatorForAnimalCardFragment extends Fragment {
         states[10] = decompose_calculator_for_animal_card_transfer_2_b_checkbox.isChecked();
         states[11] = decompose_calculator_for_animal_card_transfer_2_c_checkbox.isChecked();
         outState.putBooleanArray(KEY_CALCULATION_STATES, states);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        super.onDestroy();
     }
 }

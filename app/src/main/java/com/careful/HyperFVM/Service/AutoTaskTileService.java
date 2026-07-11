@@ -12,7 +12,7 @@ public class AutoTaskTileService extends TileService {
         super.onClick();
 
         TileTaskNotificationManager tileTaskNotificationManager = new TileTaskNotificationManager(getApplicationContext());
-        TileTaskHelper.executeTileTasks(getApplicationContext(), tileTaskNotificationManager);
+        TileTaskHelper.executeTileTasks(tileTaskNotificationManager);
 
     }
 

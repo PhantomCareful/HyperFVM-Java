@@ -1,17 +1,14 @@
 package com.careful.HyperFVM.utils.ForDashboard.NotificationManager;
 
-import android.content.Context;
-
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTask;
 
 public class TileTaskHelper {
     public static void executeTileTasks(
-            Context context,
             TileTaskNotificationManager tileTaskNotificationManager
     ) {
         tileTaskNotificationManager.createNotificationChannel();
 
-        ExecuteDailyTask executeDailyTask = new ExecuteDailyTask(context);
+        ExecuteDailyTask executeDailyTask = new ExecuteDailyTask();
 
         // 存放结果
         final String[] giftResult = {""};

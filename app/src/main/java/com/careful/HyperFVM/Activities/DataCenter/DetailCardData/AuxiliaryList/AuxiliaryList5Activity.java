@@ -7,11 +7,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityAuxiliaryList5Binding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -26,6 +28,7 @@ import java.util.Objects;
 
 public class AuxiliaryList5Activity extends BaseActivity {
     private ActivityAuxiliaryList5Binding binding;
+    private BlurUtil blurUtil;
     private DBHelper dbHelper;
 
     @Override
@@ -46,7 +49,7 @@ public class AuxiliaryList5Activity extends BaseActivity {
         setContentView(root);
 
         // 初始化数据库
-        dbHelper = new DBHelper(this);
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 初始化各种装饰效果
         initDecoration();
@@ -78,7 +81,7 @@ public class AuxiliaryList5Activity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
 
         // 顺便设置返回按钮的功能
@@ -121,5 +124,19 @@ public class AuxiliaryList5Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex714Auxiliary.cardDataIndex714Auxiliary.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "至尊大力神"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList5).cardCardDataIndex727.cardDataIndex727.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "埃罗斯神使"));
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        super.onDestroy();
     }
 }

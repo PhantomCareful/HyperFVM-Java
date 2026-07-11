@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class PrestigeCalculatorActivity extends BaseActivity {
+    private BlurUtil blurUtil;
 
     // 存储所有输入框和对应币值（顺序需与输入框一一对应）
     private final List<TextInputEditText> inputEditTexts = new ArrayList<>();
@@ -187,7 +189,7 @@ public class PrestigeCalculatorActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewTextTotal));
@@ -196,4 +198,17 @@ public class PrestigeCalculatorActivity extends BaseActivity {
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
+    @Override
+    protected void onDestroy() {
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        super.onDestroy();
+    }
 }

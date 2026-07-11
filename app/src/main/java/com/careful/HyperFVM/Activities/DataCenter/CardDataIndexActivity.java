@@ -6,7 +6,6 @@ import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeS
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +22,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.careful.HyperFVM.BaseActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
@@ -41,7 +43,10 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CardDataIndexActivity extends BaseActivity {
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private DBHelper dbHelper;
+    private BlurUtil blurUtil;
+    private ValueAnimator scrollAnimator;
 
     private ScrollView scrollView;
     private View backgroundImage1;
@@ -67,7 +72,7 @@ public class CardDataIndexActivity extends BaseActivity {
         setContentView(R.layout.activity_card_data_index);
 
         // 初始化数据库
-        dbHelper = new DBHelper(this);
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 恢复之前保存的滚动位置
         if (savedInstanceState != null) {
@@ -89,7 +94,7 @@ public class CardDataIndexActivity extends BaseActivity {
         initCardCategoryTitle();
 
         // 给所有防御卡组件设置点击事件，以实现点击查询其数据
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+        mainHandler.postDelayed(() -> {
             initCardComponents();
             if (dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX)) {
                 Toast.makeText(this, "点击卡片可查看其数据\n此弹窗可在设置内关闭", Toast.LENGTH_SHORT).show();
@@ -329,7 +334,7 @@ public class CardDataIndexActivity extends BaseActivity {
                 // 当前滚动位置
                 int currentScrollY = scrollView.getScrollY();
                 // 初始化值动画：实现从当前位置 → 目标位置的渐变滚动
-                ValueAnimator scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
+                scrollAnimator = ValueAnimator.ofInt(currentScrollY, targetScrollY);
                 // 滚动时长（核心：控制顺滑度，300-500ms是安卓舒适区间，值越大越慢越丝滑）
                 scrollAnimator.setDuration(500);
                 // 核心插值器（决定滚动的速度变化规律，这是平滑的关键！）
@@ -936,7 +941,11 @@ public class CardDataIndexActivity extends BaseActivity {
             for (int i = 0; i < 6; i++) {
                 int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
                 if (resId != 0) {
-                    cardDataIndexBackgroundImages[i].setImageResource(resId);
+                    Glide.with(this)
+                            .load(resId)
+                            .override(200, 175)
+                            .centerCrop()
+                            .into(cardDataIndexBackgroundImages[i]);
                 }
             }
 
@@ -1005,7 +1014,11 @@ public class CardDataIndexActivity extends BaseActivity {
             for (int i = 0; i < 7; i++) {
                 int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
                 if (resId != 0) {
-                    cardDataIndexBackgroundImages[i].setImageResource(resId);
+                    Glide.with(this)
+                            .load(resId)
+                            .override(200, 175)
+                            .centerCrop()
+                            .into(cardDataIndexBackgroundImages[i]);
                 }
             }
 
@@ -1055,7 +1068,7 @@ public class CardDataIndexActivity extends BaseActivity {
      * 添加模糊效果
      */
     private void setupBlurEffect() {
-        BlurUtil blurUtil = new BlurUtil(this);
+        blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
@@ -1063,13 +1076,6 @@ public class CardDataIndexActivity extends BaseActivity {
 
         // 顺便设置返回按钮的功能
         findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
-    }
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // 重新构建布局
-        recreate();
     }
 
     @Override
@@ -1084,4 +1090,29 @@ public class CardDataIndexActivity extends BaseActivity {
         outState.putInt("scrollY", savedScrollY);
     }
 
+    @Override
+    protected void onDestroy() {
+        if (mainHandler != null) {
+            mainHandler.removeCallbacksAndMessages(null);
+        }
+
+        if (scrollAnimator != null && scrollAnimator.isRunning()) {
+            scrollAnimator.cancel();
+            scrollAnimator.removeAllUpdateListeners();
+            scrollAnimator = null;
+        }
+
+        if (blurUtil != null) {
+            blurUtil.release();
+            blurUtil = null;
+        }
+
+        View rootView = findViewById(android.R.id.content);
+        InsetsUtil.removeListener(rootView);
+        setContentView(new FrameLayout(this));
+
+        Glide.get(this).clearMemory();
+
+        super.onDestroy();
+    }
 }
