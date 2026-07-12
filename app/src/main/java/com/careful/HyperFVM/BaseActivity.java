@@ -34,20 +34,37 @@ public class BaseActivity extends AppCompatActivity {
      * 修改Configuration，固定fontScale=1.0
      */
     protected Context setFontScale(Context context) {
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            // 获取当前配置
-            Configuration configuration = context.getResources().getConfiguration();
+        DBHelper dbHelper = HyperFVMApplication.getDBHelper();
 
-            // 先获取系统原始的fontScale（关键：从系统配置中拿未被修改的值）
-            Configuration systemConfig = Resources.getSystem().getConfiguration();
-            float originalFontScale = systemConfig.fontScale;
+        // 获取当前配置
+        Configuration configuration = context.getResources().getConfiguration();
 
-            if (!dbHelper.getSettingBooleanValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE)) {
-                // 开关关闭：读取自定义字体大小
-                configuration.fontScale = dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE);
+        // 先获取系统原始的fontScale（关键：从系统配置中拿未被修改的值）
+        Configuration systemConfig = Resources.getSystem().getConfiguration();
+        float originalFontScale = systemConfig.fontScale;
 
+        if (!dbHelper.getSettingBooleanValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE)) {
+            // 开关关闭：读取自定义字体大小
+            configuration.fontScale = dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE);
+
+            // Android 8.0以后，Configuration不可变，需要新建对象
+            configuration = new Configuration(configuration);
+
+            // 更新上下文配置
+            context = context.createConfigurationContext(configuration);
+
+            // 同步更新DisplayMetrics（防止部分组件读取旧的值）
+            context.getResources().getDisplayMetrics().scaledDensity =
+                    context.getResources().getDisplayMetrics().density * configuration.fontScale;
+        } else {
+            // 开关关闭：恢复系统原始fontScale
+
+            if (configuration.fontScale != originalFontScale) {
                 // Android 8.0以后，Configuration不可变，需要新建对象
                 configuration = new Configuration(configuration);
+
+                // 跟随系统设置的大小
+                configuration.fontScale = originalFontScale;
 
                 // 更新上下文配置
                 context = context.createConfigurationContext(configuration);
@@ -55,25 +72,9 @@ public class BaseActivity extends AppCompatActivity {
                 // 同步更新DisplayMetrics（防止部分组件读取旧的值）
                 context.getResources().getDisplayMetrics().scaledDensity =
                         context.getResources().getDisplayMetrics().density * configuration.fontScale;
-            } else {
-                // 开关关闭：恢复系统原始fontScale
-
-                if (configuration.fontScale != originalFontScale) {
-                    // Android 8.0以后，Configuration不可变，需要新建对象
-                    configuration = new Configuration(configuration);
-
-                    // 跟随系统设置的大小
-                    configuration.fontScale = originalFontScale;
-
-                    // 更新上下文配置
-                    context = context.createConfigurationContext(configuration);
-
-                    // 同步更新DisplayMetrics（防止部分组件读取旧的值）
-                    context.getResources().getDisplayMetrics().scaledDensity =
-                            context.getResources().getDisplayMetrics().density * configuration.fontScale;
-                }
             }
         }
+
         return context;
     }
 

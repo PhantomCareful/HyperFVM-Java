@@ -269,7 +269,7 @@ public class DialogBuilderManager {
 
         buttonAction.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -321,7 +321,7 @@ public class DialogBuilderManager {
 
         buttonAction1.setOnClickListener(v -> {
             // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -460,7 +460,7 @@ public class DialogBuilderManager {
 
         buttonAction.setOnClickListener(v -> {
             // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -587,7 +587,7 @@ public class DialogBuilderManager {
 
         buttonWeek1.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -598,7 +598,7 @@ public class DialogBuilderManager {
 
         buttonWeek2.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -609,7 +609,7 @@ public class DialogBuilderManager {
 
         buttonWeek3.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -620,7 +620,7 @@ public class DialogBuilderManager {
 
         buttonWeek4.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -631,7 +631,7 @@ public class DialogBuilderManager {
 
         buttonReward.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -678,7 +678,7 @@ public class DialogBuilderManager {
 
         buttonConsumption1.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -689,7 +689,7 @@ public class DialogBuilderManager {
 
         buttonConsumption2.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;
@@ -700,7 +700,7 @@ public class DialogBuilderManager {
 
         buttonConsumption3.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(context);
+            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
                 context.startActivity(new Intent(context, DataImagesIndexActivity.class));
                 return;

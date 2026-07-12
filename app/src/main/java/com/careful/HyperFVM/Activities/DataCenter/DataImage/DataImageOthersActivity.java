@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
@@ -59,19 +60,17 @@ public class DataImageOthersActivity extends BaseActivity {
 
     private void setupContainer(int viewId, String imageName, boolean isDynamic) {
         LinearLayout container = findViewById(viewId);
-
+        DBHelper dbHelper = HyperFVMApplication.getDBHelper();
         if (isDynamic) {
-            try(DBHelper dbHelper = new DBHelper(this)) {
-                // 根据深色模式动态加载对应的图片
-                int currentNightMode;
-                String darkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
-                currentNightMode = switch (darkMode) {
-                    case "总是开启\uD83C\uDF1A" -> Configuration.UI_MODE_NIGHT_YES;
-                    case "总是关闭\uD83C\uDF1D" -> Configuration.UI_MODE_NIGHT_NO;
-                    default -> getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                };
-                imageName = (currentNightMode == Configuration.UI_MODE_NIGHT_YES) ? imageName + "_dark.png" : imageName + "_light.png";
-            }
+            // 根据深色模式动态加载对应的图片
+            int currentNightMode;
+            String darkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
+            currentNightMode = switch (darkMode) {
+                case "总是开启\uD83C\uDF1A" -> Configuration.UI_MODE_NIGHT_YES;
+                case "总是关闭\uD83C\uDF1D" -> Configuration.UI_MODE_NIGHT_NO;
+                default -> getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            };
+            imageName = (currentNightMode == Configuration.UI_MODE_NIGHT_YES) ? imageName + "_dark" : imageName + "_light";
         }
 
         String finalImageName = imageName;

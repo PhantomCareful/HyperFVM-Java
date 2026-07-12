@@ -1,14 +1,19 @@
 package com.careful.HyperFVM.utils.ForUpdate;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
 /**
  * 本地版本号工具类
  */
 public class LocalVersionUtil {
+    @SuppressLint("StaticFieldLeak")
+    private static final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
+
     /**
      * 获取App的versionCode
      */
@@ -41,12 +46,10 @@ public class LocalVersionUtil {
     /**
      * 获取图片资源的本地版本号
      */
-    public static long getImageResourcesVersionCode(Context context) {
+    public static long getImageResourcesVersionCode() {
         String localImageResourcesVersionStr;
         long localImageResourcesVersionCode = 0;
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            localImageResourcesVersionStr = dbHelper.getDataStationValue("DataImageResourcesVersionCode");
-        }
+        localImageResourcesVersionStr = dbHelper.getDataStationValue("DataImageResourcesVersionCode");
 
         if (localImageResourcesVersionStr != null) {
             localImageResourcesVersionCode = Long.parseLong(localImageResourcesVersionStr);
@@ -58,9 +61,7 @@ public class LocalVersionUtil {
     /**
      * 更新图片资源的本地版本号
      */
-    public static void setImageResourcesVersionCode(Context context, long newLocalImageResourcesVersionCode) {
-        try (DBHelper dbHelper = new DBHelper(context)) {
-            dbHelper.updateDataStationValue("DataImageResourcesVersionCode", String.valueOf(newLocalImageResourcesVersionCode));
-        }
+    public static void setImageResourcesVersionCode(long newLocalImageResourcesVersionCode) {
+        dbHelper.updateDataStationValue("DataImageResourcesVersionCode", String.valueOf(newLocalImageResourcesVersionCode));
     }
 }

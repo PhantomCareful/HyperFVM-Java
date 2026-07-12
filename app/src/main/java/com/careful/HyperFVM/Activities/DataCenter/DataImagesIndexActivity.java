@@ -150,7 +150,7 @@ public class DataImagesIndexActivity extends BaseActivity {
                         data_images_index_delete_title.setText("删除完成🎉🎉🎉");
                         data_images_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
 
-                        LocalVersionUtil.setImageResourcesVersionCode(DataImagesIndexActivity.this, 1);
+                        LocalVersionUtil.setImageResourcesVersionCode(1);
                         mainHandler.post(() -> {
                             setAllCardViewEnabled(false);
                             data_images_index_delete_container.setEnabled(true);
@@ -187,7 +187,7 @@ public class DataImagesIndexActivity extends BaseActivity {
                 // 如果是第一次使用，则数据库存储的versionCode为0，自然所有图片都需要更新
 
                 // 获取本地版本号
-                localVersionCode = LocalVersionUtil.getImageResourcesVersionCode(DataImagesIndexActivity.this);
+                localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
 
                 // 如果localVersionCode == 0，则需要将入口卡片的enable值设为false，因为此时还没有存储任何图片，打开会报错。
                 if (localVersionCode == 0) {
@@ -384,7 +384,7 @@ public class DataImagesIndexActivity extends BaseActivity {
                                                 newestVersion = info.getVersion();
                                             }
                                         }
-                                        LocalVersionUtil.setImageResourcesVersionCode(this, newestVersion);
+                                        LocalVersionUtil.setImageResourcesVersionCode(newestVersion);
 
                                     } else {
                                         data_images_index_update_info_description.setText(
