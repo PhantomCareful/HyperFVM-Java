@@ -441,9 +441,11 @@ public class CheckUpdateActivity extends BaseActivity {
             floatButtonBackContainer.setLayoutParams(params);
             params = (ViewGroup.MarginLayoutParams) floatButtonUpdateContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
             floatButtonUpdateContainer.setLayoutParams(params);
             params = (ViewGroup.MarginLayoutParams) floatButtonJoinContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
             floatButtonJoinContainer.setLayoutParams(params);
         });
 
