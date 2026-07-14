@@ -297,6 +297,7 @@
                                 android:src="@drawable/card_data_index_3_2_5_2"/>
 
                             <TextView
+                                android:id="@+id/plus_1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -313,6 +314,7 @@
                                 android:src="@drawable/card_data_index_9_1_1_2"/>
 
                             <TextView
+                                android:id="@+id/equal_1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -347,6 +349,7 @@
                                 android:src="@drawable/card_data_index_16_1_3_1"/>
 
                             <TextView
+                                android:id="@+id/plus_2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -363,6 +366,7 @@
                                 android:src="@drawable/card_data_index_1_1_1_2"/>
 
                             <TextView
+                                android:id="@+id/equal_2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -397,6 +401,7 @@
                                 android:src="@drawable/card_data_index_16_1_3_2"/>
 
                             <TextView
+                                android:id="@+id/plus_3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -413,6 +418,7 @@
                                 android:src="@drawable/card_data_index_3_2_3_2"/>
 
                             <TextView
+                                android:id="@+id/equal_3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"

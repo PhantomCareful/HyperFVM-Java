@@ -471,6 +471,29 @@ public class CardData2Activity extends BaseActivity {
                 ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_2_Container, scrollY, imageViewCardBig2ContainerMaxScroll);
             });
         }
+
+        // 部分Android12系统不支持显示🟰符号，需要进行特别处理
+        TextView equal1 = findViewById(R.id.equal_1);
+        TextView equal2 = findViewById(R.id.equal_2);
+        TextView equal3 = findViewById(R.id.equal_3);
+        TextView plus1 = findViewById(R.id.plus_1);
+        TextView plus2 = findViewById(R.id.plus_2);
+        TextView plus3 = findViewById(R.id.plus_3);
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.S) {
+            equal1.setText("=");
+            equal2.setText("=");
+            equal3.setText("=");
+            plus1.setText("+");
+            plus2.setText("+");
+            plus3.setText("+");
+        } else {
+            equal1.setText("🟰");
+            equal2.setText("🟰");
+            equal3.setText("🟰");
+            plus1.setText("➕");
+            plus2.setText("➕");
+            plus3.setText("➕");
+        }
     }
 
     /**

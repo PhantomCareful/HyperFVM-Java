@@ -153,7 +153,7 @@
                     <LinearLayout
                         android:id="@+id/card_data_container"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
                         android:paddingTop="480dp"
@@ -295,7 +295,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="20dp"
                     android:paddingTop="120dp"
@@ -347,6 +347,7 @@
                                     android:src="@drawable/card_data_index_3_2_5_2"/>
 
                                 <TextView
+                                    android:id="@+id/plus_1"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -363,6 +364,7 @@
                                     android:src="@drawable/card_data_index_9_1_1_2"/>
 
                                 <TextView
+                                    android:id="@+id/equal_1"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -397,6 +399,7 @@
                                     android:src="@drawable/card_data_index_16_1_3_1"/>
 
                                 <TextView
+                                    android:id="@+id/plus_2"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -413,6 +416,7 @@
                                     android:src="@drawable/card_data_index_1_1_1_2"/>
 
                                 <TextView
+                                    android:id="@+id/equal_2"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -447,6 +451,7 @@
                                     android:src="@drawable/card_data_index_16_1_3_2"/>
 
                                 <TextView
+                                    android:id="@+id/plus_3"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -463,6 +468,7 @@
                                     android:src="@drawable/card_data_index_3_2_3_2"/>
 
                                 <TextView
+                                    android:id="@+id/equal_3"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
