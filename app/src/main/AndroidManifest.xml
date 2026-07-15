@@ -34,6 +34,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="upside_down_cake">
         <activity
+            android:name=".Activities.DataCenter.DetailCardData.CardDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DetailCardData.CardDaraDetailActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            tools:ignore="DiscouragedApi" />
+        <activity
             android:name=".Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForGoldenCardActivity"
             android:exported="false" />
         <activity
@@ -144,18 +152,7 @@
         <activity
             android:name=".Activities.NecessaryThings.SettingsActivity"
             android:exported="false" />
-        <activity
-            android:name=".Activities.DataCenter.DetailCardData.CardData1Activity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.DataCenter.DetailCardData.CardData2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.DataCenter.DetailCardData.CardData3Activity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.DataCenter.DetailCardData.CardData4Activity"
-            android:exported="false" /> <!-- fileprovider用于获取私有目录下的文件，用于查看数据图和升级App -->
+        <!-- fileprovider用于获取私有目录下的文件，用于查看数据图和升级App -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

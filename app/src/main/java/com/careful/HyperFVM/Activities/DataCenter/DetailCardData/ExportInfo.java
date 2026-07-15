@@ -1,17 +1,15 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
-import android.widget.ImageView;
-
 public class ExportInfo {
-    private ImageView imageView;
+    private String drawableResName;
     private String fileName;
 
-    public ImageView getImageView() {
-        return imageView;
+    public String getDrawableResName() {
+        return drawableResName;
     }
 
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
+    public void setDrawableResName(String drawableResName) {
+        this.drawableResName = drawableResName;
     }
 
     public String getFileName() {

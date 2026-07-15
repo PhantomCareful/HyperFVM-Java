@@ -38,10 +38,7 @@ import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.A
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData1Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData2Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData3Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardData4Activity;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardDataActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForAnimalCardActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForGoldenCardActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
@@ -76,19 +73,10 @@ public class CardDataHelper {
         }
 
         // 跳转详情页
-        Intent intent = switch (tableName) {
-            case "card_data_1" -> new Intent(context, CardData1Activity.class);
-            case "card_data_2" -> new Intent(context, CardData2Activity.class);
-            case "card_data_3" -> new Intent(context, CardData3Activity.class);
-            case "card_data_4" -> new Intent(context, CardData4Activity.class);
-            default -> null;
-        };
-
-        if (intent != null) {
-            intent.putExtra("name", baseName);
-            intent.putExtra("table", tableName);
-            context.startActivity(intent);
-        }
+        Intent intent = new Intent(context, CardDataActivity.class);
+        intent.putExtra("cardName", baseName);
+        intent.putExtra("tableName", tableName);
+        context.startActivity(intent);
     }
 
     public static void selectAuxiliaryCardByName(Context context, String cardName) {
@@ -210,14 +198,10 @@ public class CardDataHelper {
      * @param container 相关卡片CardView内部的组件，每个组件装一个卡片信息
      * @param cursor 从数据库取出的当前卡片的信息，需要用这个来读取相关卡片信息
      * @param cardName 当前卡片的名字，主要是【自己就是增幅卡】这里需要用到
-     * @param titleCardDataCorrespondingInfo 如果没有相关卡片内容时，需要对标题TextView进行隐藏
      * @param CardCorresponding 如果没有相关卡片内容时，需要对内容CardView进行隐藏
      */
     @SuppressLint({"Range", "DiscouragedApi", "CutPasteId"})
-    public static void addCorrespondingCardForGeneralAndAnimalCard(
-            Context context, LinearLayout container, Cursor cursor, String cardName,
-            TextView titleCardDataCorrespondingInfo, CardView CardCorresponding
-    ) {
+    public static void addCorrespondingCardForGeneralAndAnimalCard(Context context, LinearLayout container, Cursor cursor, String cardName, CardView CardCorresponding) {
         String imageIdStr = "";
         int imageResId;
 
@@ -444,11 +428,11 @@ public class CardDataHelper {
         } else {
             // 没有任何相关卡片的话，隐藏标题和CardView
             if (correspondingGoldenCardName.equals("无") && correspondingFusionCardName.equals("无") && correspondingAuxiliaryCardName.equals("无")) {
-                titleCardDataCorrespondingInfo.setVisibility(View.GONE);
                 CardCorresponding.setVisibility(View.GONE);
             }
         }
 
+        // 能量喵有两个增幅名单
         if (Objects.equals(cardName, "能量喵")) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
@@ -488,15 +472,10 @@ public class CardDataHelper {
      * @param container 相关卡片CardView内部的组件，每个组件装一个卡片信息
      * @param cursor 从数据库取出的当前卡片的信息，需要用这个来读取相关卡片信息
      * @param cardName 当前卡片的名字，主要是【自己就是增幅卡】这里需要用到
-     * @param titleCardDataCorrespondingInfo 如果没有相关卡片内容时，需要对标题TextView进行隐藏
      * @param CardCorresponding 如果没有相关卡片内容时，需要对内容CardView进行隐藏
-     * @param hasSubCard 这张金卡是否可以合成，用于判断最终是否隐藏相关卡片标题TextView
      */
     @SuppressLint({"Range", "DiscouragedApi", "CutPasteId"})
-    public static void addCorrespondingCardForGoldenCard(
-            Context context, LinearLayout container, Cursor cursor, String cardName,
-            TextView titleCardDataCorrespondingInfo, CardView CardCorresponding, boolean hasSubCard
-    ) {
+    public static void addCorrespondingCardForGoldenCard(Context context, LinearLayout container, Cursor cursor, String cardName, CardView CardCorresponding) {
         String imageIdStr = "";
         int imageResId;
 
@@ -604,10 +583,6 @@ public class CardDataHelper {
             // 没有任何相关卡片的话，隐藏标题和CardView
             if (correspondingAuxiliaryCardName.equals("无")) {
                 CardCorresponding.setVisibility(View.GONE);
-
-                if (!hasSubCard) {
-                    titleCardDataCorrespondingInfo.setVisibility(View.GONE);
-                }
             }
         }
     }
@@ -622,10 +597,7 @@ public class CardDataHelper {
      * @param CardCorresponding 如果没有相关卡片内容时，需要对内容CardView进行隐藏
      */
     @SuppressLint({"Range", "DiscouragedApi", "CutPasteId"})
-    public static void addCorrespondingCardForFusionCard(
-            Context context, LinearLayout container, Cursor cursor, String cardName,
-            CardView CardCorresponding
-    ) {
+    public static void addCorrespondingCardForFusionCard(Context context, LinearLayout container, Cursor cursor, String cardName, CardView CardCorresponding) {
         String imageIdStr = "";
         int imageResId;
 

@@ -22,6 +22,9 @@
     <string name="card_data_search_input_tips">请输入防御卡名称</string>
     <string name="top_bar_card_data_index">🍔数据库</string>
     <string name="top_bar_card_data_index_pad">🍔防御卡全能数据库</string>
+    <string name="title_card_data_base">基础</string>
+    <string name="title_card_data_data">数值</string>
+    <string name="title_card_data_other">属性</string>
     <string name="title_decompose_and_get_calculator">分解兑换计算器</string>
     <string name="description_decompose_and_get_calculator">顾名思义，自助求和</string>
     <string name="dialog_tips_decompose_and_get_calculator">👇点击卡片即可进入详情页👇</string>
@@ -1632,5 +1635,7 @@
 
     <string name="name_card_data_index_16_1_11_0">仙人球海星刺身</string>
     <string name="name_card_data_index_16_1_11_1">奶油海星刺身–王冠海星刺身</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
