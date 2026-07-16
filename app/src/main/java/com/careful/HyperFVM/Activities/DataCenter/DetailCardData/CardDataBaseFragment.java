@@ -462,6 +462,29 @@ public class CardDataBaseFragment extends Fragment {
                 root.findViewById(R.id.Image_View_Card_2_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), name2_2));
                 root.findViewById(R.id.Image_View_Card_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), name3_2));
 
+                // 部分Android12系统不支持显示🟰符号，需要进行特别处理
+                TextView equal1 = root.findViewById(R.id.equal_1);
+                TextView equal2 = root.findViewById(R.id.equal_2);
+                TextView equal3 = root.findViewById(R.id.equal_3);
+                TextView plus1 = root.findViewById(R.id.plus_1);
+                TextView plus2 = root.findViewById(R.id.plus_2);
+                TextView plus3 = root.findViewById(R.id.plus_3);
+                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.S) {
+                    equal1.setText("=");
+                    equal2.setText("=");
+                    equal3.setText("=");
+                    plus1.setText("+");
+                    plus2.setText("+");
+                    plus3.setText("+");
+                } else {
+                    equal1.setText("🟰");
+                    equal2.setText("🟰");
+                    equal3.setText("🟰");
+                    plus1.setText("➕");
+                    plus2.setText("➕");
+                    plus3.setText("➕");
+                }
+
                 // 显示对应的卡片
                 root.findViewById(R.id.Card_Corresponding_SubCard_Fusion).setVisibility(View.VISIBLE);
             } else if (tableId == 3) {
