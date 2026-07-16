@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGe
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDecomposeCalculatorForGoldenCardBinding;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 public class DecomposeCalculatorForGoldenCardFragment extends Fragment {
     private static final String KEY_CALCULATION_STATES = "calculation_states";
@@ -591,6 +593,21 @@ public class DecomposeCalculatorForGoldenCardFragment extends Fragment {
      */
     @SuppressLint("DiscouragedApi")
     private void initDecoration() {
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout decompose_calculator_for_golden_card_container = root.findViewById(R.id.decompose_calculator_for_golden_card_container);
+        CardView decompose_calculator_for_golden_card_result_container = root.findViewById(R.id.decompose_calculator_for_golden_card_result_container);
+        InsetsUtil.setMarginHorizontal(requireActivity(), decompose_calculator_for_golden_card_container, layout_marginHorizontal -> {
+            Log.d("updateLog", String.valueOf(layout_marginHorizontal));
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) decompose_calculator_for_golden_card_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            decompose_calculator_for_golden_card_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) decompose_calculator_for_golden_card_result_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            decompose_calculator_for_golden_card_result_container.setLayoutParams(params);
+        });
         // 添加模糊材质
         setupBlurEffect();
     }

@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGe
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentGetCalculatorForAnimalCardBinding;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 public class GetCalculatorForAnimalCardFragment extends Fragment {
     private static final String KEY_CALCULATION_STATES = "calculation_states";
@@ -431,6 +433,21 @@ public class GetCalculatorForAnimalCardFragment extends Fragment {
      */
     @SuppressLint("DiscouragedApi")
     private void initDecoration() {
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout get_calculator_for_animal_card_container = root.findViewById(R.id.get_calculator_for_animal_card_container);
+        CardView get_calculator_for_animal_card_result_container = root.findViewById(R.id.get_calculator_for_animal_card_result_container);
+        InsetsUtil.setMarginHorizontal(requireActivity(), get_calculator_for_animal_card_container, layout_marginHorizontal -> {
+            Log.d("updateLog", String.valueOf(layout_marginHorizontal));
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) get_calculator_for_animal_card_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            get_calculator_for_animal_card_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) get_calculator_for_animal_card_result_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            get_calculator_for_animal_card_result_container.setLayoutParams(params);
+        });
         // 添加模糊材质
         setupBlurEffect();
     }
