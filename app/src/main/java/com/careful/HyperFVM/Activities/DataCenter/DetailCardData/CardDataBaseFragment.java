@@ -343,11 +343,18 @@ public class CardDataBaseFragment extends Fragment {
                 }
             }
 
-            // 三个固定的属性
-            String contentBaseInfo3 = "- 所属分类：" + CardDataHelper.getStringFromCursor(cursor, "category") + "\n" +
+            // 5个固定的属性
+            String contentBaseInfo3_1 = "### 体力\n- " + CardDataHelper.getStringFromCursor(cursor, "strength");
+            getContent(requireContext(), root.findViewById(R.id.base_info_3_1), contentBaseInfo3_1);
+
+            String contentBaseInfo3_2 = CardDataHelper.getStringFromCursor(cursor, "cooldown");
+            contentBaseInfo3_2 = "### 冷却时间\n- " + ((contentBaseInfo3_2.equals("可强化") || contentBaseInfo3_2.equals("技能可提升")) ? contentBaseInfo3_2 : contentBaseInfo3_2 + "秒");
+            getContent(requireContext(), root.findViewById(R.id.base_info_3_2), contentBaseInfo3_2);
+
+            String contentBaseInfo4 = "- 所属分类：" + CardDataHelper.getStringFromCursor(cursor, "category") + "\n" +
                     "- 耗能：" + CardDataHelper.getStringFromCursor(cursor, "price") + "\n" +
                     "- 作为副卡：" + CardDataHelper.getStringFromCursor(cursor, "sub_card");
-            getContent(requireContext(), root.findViewById(R.id.base_info_3), contentBaseInfo3);
+            getContent(requireContext(), root.findViewById(R.id.base_info_4), contentBaseInfo4);
 
             // 人话解释
             String contentTransferChange = CardDataHelper.getStringFromCursor(cursor, "transfer_change");

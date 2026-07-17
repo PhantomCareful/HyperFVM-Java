@@ -836,7 +836,7 @@ public class DialogBuilderManager {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_card_data, null);
         TextInputEditText cardName = dialogView.findViewById(R.id.textInputEditText);
-        TextView content_tips2 = dialogView.findViewById(R.id.content_tips2);
+        TextView content_tips2 = dialogView.findViewById(R.id.content_tips);
         LinearLayout suggestion_list = dialogView.findViewById(R.id.suggestion_list);
         Button buttonClose = dialogView.findViewById(R.id.button_close);
 
@@ -916,7 +916,7 @@ public class DialogBuilderManager {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_decompose_and_get_calculator, null);
         TextInputEditText cardName = dialogView.findViewById(R.id.textInputEditText);
-        TextView content_tips2 = dialogView.findViewById(R.id.content_tips2);
+        TextView content_tips2 = dialogView.findViewById(R.id.content_tips);
         LinearLayout suggestion_list = dialogView.findViewById(R.id.suggestion_list);
         Button buttonClose = dialogView.findViewById(R.id.button_close);
 

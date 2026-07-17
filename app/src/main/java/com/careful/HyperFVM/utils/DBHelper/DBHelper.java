@@ -175,6 +175,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "image_id TEXT, " +
                 "base_info TEXT, " +
                 "transfer_certificate_info TEXT, " +
+                "strength TEXT, cooldown TEXT, " +
                 "category TEXT, " +
                 "price TEXT, " +
                 "sub_card TEXT, " +
@@ -212,6 +213,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "corresponding_auxiliary_card_name TEXT, " +
                 "corresponding_auxiliary_card_image_id TEXT, " +
                 "base_info TEXT, " +
+                "strength TEXT, cooldown TEXT, " +
                 "category TEXT, " +
                 "price TEXT, " +
                 "sub_card TEXT, " +
@@ -252,6 +254,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "corresponding_auxiliary_card_name TEXT, " +
                 "corresponding_auxiliary_card_image_id TEXT, " +
                 "base_info TEXT, " +
+                "strength TEXT, cooldown TEXT, " +
                 "category TEXT, " +
                 "price TEXT, " +
                 "sub_card TEXT, " +
@@ -308,6 +311,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "corresponding_auxiliary_card_name TEXT, " +
                 "corresponding_auxiliary_card_image_id TEXT, " +
                 "base_info TEXT, " +
+                "strength TEXT, cooldown TEXT, " +
                 "category TEXT, " +
                 "price TEXT, " +
                 "sub_card TEXT, " +
@@ -399,12 +403,12 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "corresponding_golden_card_name, corresponding_golden_card_image_id, " +
                                             "corresponding_fusion_card_name, corresponding_fusion_card_image_id, " +
                                             "corresponding_auxiliary_card_name, corresponding_auxiliary_card_image_id, " +
-                                            "base_info, transfer_certificate_info, category, price, sub_card, star, star_detail, " +
+                                            "base_info, transfer_certificate_info, strength, cooldown, category, price, sub_card, star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
                                             "skill, skill_detail, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
                                             "transfer_change, additional_info) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -416,7 +420,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[35], rowData[36], rowData[37], rowData[38], rowData[39],
                                             rowData[40], rowData[41], rowData[42], rowData[43], rowData[44],
                                             rowData[45], rowData[46], rowData[47], rowData[48], rowData[49],
-                                            rowData[50]
+                                            rowData[50], rowData[51], rowData[52]
                                     });
                             importedCount++;
                         } catch (Exception e) {
@@ -433,7 +437,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "name_2_2, image_id_2_2, image_result_id_2, " +
                                             "name_3_2, image_id_3_2, image_result_id_3, " +
                                             "corresponding_auxiliary_card_name, corresponding_auxiliary_card_image_id, " +
-                                            "base_info, " +
+                                            "base_info, strength, cooldown, " +
                                             "category, price, sub_card, " +
                                             "star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
@@ -443,7 +447,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "star_fusion_10, star_fusion_11, star_fusion_12, star_fusion_13, star_fusion_14, star_fusion_15, star_fusion_16, star_fusion_M, star_fusion_U, " +
                                             "skill, skill_detail, skill_0, skill_1, skill_2, skill_3, skill_4, skill_5, skill_6, skill_7, skill_8, " +
                                             "transfer_change, additional_info) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -459,7 +463,8 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[55], rowData[56], rowData[57], rowData[58], rowData[59],
                                             rowData[60], rowData[61], rowData[62], rowData[63], rowData[64],
                                             rowData[65], rowData[66], rowData[67], rowData[68], rowData[69],
-                                            rowData[70], rowData[71], rowData[72], rowData[73], rowData[74]
+                                            rowData[70], rowData[71], rowData[72], rowData[73], rowData[74],
+                                            rowData[75], rowData[76]
                                     });
                             importedCount++;
                         } catch (Exception e) {
@@ -475,7 +480,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "image_id_0, image_id_1, image_id_2, image_id_3, " +
                                             "name_1_1, image_id_1_1, name_1_2, image_id_1_2, " +
                                             "corresponding_auxiliary_card_name, corresponding_auxiliary_card_image_id, " +
-                                            "base_info, category, price, sub_card, " +
+                                            "base_info, strength, cooldown, category, price, sub_card, " +
                                             "star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
@@ -501,7 +506,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "decompose_image_id_transfer_2_a, decompose_image_id_transfer_2_b, decompose_image_id_transfer_2_c, " +
                                             "decompose_image_id_transfer_3_a, decompose_image_id_transfer_3_b, decompose_image_id_transfer_3_c, " +
                                             "decompose_image_id_compose) " +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4],
                                             rowData[5], rowData[6], rowData[7], rowData[8], rowData[9],
@@ -524,7 +529,8 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[90], rowData[91], rowData[92], rowData[93], rowData[94],
                                             rowData[95], rowData[96], rowData[97], rowData[98], rowData[99],
                                             rowData[100], rowData[101], rowData[102], rowData[103], rowData[104],
-                                            rowData[105], rowData[106], rowData[107], rowData[108]
+                                            rowData[105], rowData[106], rowData[107], rowData[108], rowData[109],
+                                            rowData[110]
                                     });
                             importedCount++;
                         } catch (Exception e) {
@@ -540,7 +546,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "corresponding_golden_card_name, corresponding_golden_card_image_id, " +
                                             "corresponding_fusion_card_name, corresponding_fusion_card_image_id, " +
                                             "corresponding_auxiliary_card_name, corresponding_auxiliary_card_image_id, " +
-                                            "base_info, category, price, sub_card, " +
+                                            "base_info, strength, cooldown, category, price, sub_card, " +
                                             "star, star_detail, " +
                                             "star_0, star_1, star_2, star_3, star_4, star_5, star_6, star_7, star_8, star_9, " +
                                             "star_10, star_11, star_12, star_13, star_14, star_15, star_16, star_M, star_U, " +
@@ -559,7 +565,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             "decompose_image_id_skill_1, decompose_image_id_skill_2, decompose_image_id_skill_3, decompose_image_id_skill_4, " +
                                             "decompose_image_id_transfer_1_a, decompose_image_id_transfer_1_b, " +
                                             "decompose_image_id_transfer_2_a, decompose_image_id_transfer_2_b, decompose_image_id_transfer_2_c)" +
-                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                     new String[]{
                                             rowData[0], rowData[1], rowData[2], rowData[3], rowData[4], rowData[5],
                                             rowData[6], rowData[7], rowData[8], rowData[9], rowData[10], rowData[11],
@@ -575,7 +581,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                             rowData[66], rowData[67], rowData[68], rowData[69], rowData[70], rowData[71],
                                             rowData[72], rowData[73], rowData[74], rowData[75], rowData[76], rowData[77],
                                             rowData[78], rowData[79], rowData[80], rowData[81], rowData[82], rowData[83],
-                                            rowData[84], rowData[85], rowData[86]
+                                            rowData[84], rowData[85], rowData[86], rowData[87], rowData[88]
                                     });
                             importedCount++;
                         } catch (Exception e) {
