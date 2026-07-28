@@ -31,7 +31,6 @@ import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -91,14 +90,6 @@ public class MainActivity extends BaseActivity {
 
         // 初始化各种装饰效果
         initDecoration();
-
-        // 注册返回键回调，主界面返回直接退出App
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                finish();
-            }
-        });
 
         // 防御卡数据查询按钮
         findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
