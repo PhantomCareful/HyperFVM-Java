@@ -110,7 +110,7 @@ public class CardDataOtherFragment extends Fragment {
                     ImageView cookery_image = cardView.findViewById(R.id.cookery_image);
 
                     cookery_title.setText("😋食神谱：" + additionalInfoArray[i].split("- ")[1].split("；")[0]);
-                    cookery_description.setText(additionalInfoArray[i].split("- ")[1].split("；")[1]);
+                    getContentForMultiView(requireContext(), cookery_description, "- " + additionalInfoArray[i].split("- ")[1].split("；")[1]);
 
                     String imageIdStr = additionalInfoArray[i].split("- ")[1].split("；")[2].replace("\n", "");
                     // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
