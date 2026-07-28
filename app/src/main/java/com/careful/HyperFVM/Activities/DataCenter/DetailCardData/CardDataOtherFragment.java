@@ -1,7 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
-import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
+import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentForMultiView;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
@@ -9,14 +9,17 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.careful.HyperFVM.HyperFVMApplication;
@@ -27,6 +30,7 @@ import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 public class CardDataOtherFragment extends Fragment {
     private final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
+    private boolean isDynamicBackground;
 
     private View root;
 
@@ -52,7 +56,7 @@ public class CardDataOtherFragment extends Fragment {
         }
 
         // 是否启用动态背景
-        boolean isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
+        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
 
         if (isDynamicBackground) {
             root = inflater.inflate(R.layout.fragment_card_data_other_effect, container, false);
@@ -74,7 +78,7 @@ public class CardDataOtherFragment extends Fragment {
         return root;
     }
 
-    @SuppressLint({"Range", "DiscouragedApi"})
+    @SuppressLint({"Range", "DiscouragedApi", "SetTextI18n"})
     private void queryAndShowCardData() {
         try (Cursor cursor = dbHelper.getCardData(tableName, cardName)) {
             if (cursor == null || !cursor.moveToFirst()) {
@@ -84,7 +88,57 @@ public class CardDataOtherFragment extends Fragment {
             }
 
             // 其他信息
-            getContent(requireContext(), root.findViewById(R.id.additional_info), CardDataHelper.getStringFromCursor(cursor, "additional_info"));
+            String[] additionalInfoArray = CardDataHelper.getStringFromCursor(cursor, "additional_info").split("## ");
+
+            LayoutInflater layoutInflater = LayoutInflater.from(requireContext());
+            LinearLayout card_data_other_container = root.findViewById(R.id.card_data_other_container);
+
+            card_data_other_container.removeAllViews();
+
+            for (int i = 1; i < additionalInfoArray.length; i++) {
+                CardView cardView;
+                if (additionalInfoArray[i].contains("😋食神谱")) {
+                    if (isDynamicBackground) {
+                        cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_cookery_container_effect, card_data_other_container, false);
+                    } else {
+                        cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_cookery_container, card_data_other_container, false);
+                    }
+
+                    // 绑定好需要用到的组件
+                    TextView cookery_title = cardView.findViewById(R.id.cookery_title);
+                    TextView cookery_description = cardView.findViewById(R.id.cookery_description);
+                    ImageView cookery_image = cardView.findViewById(R.id.cookery_image);
+
+                    cookery_title.setText("😋食神谱：" + additionalInfoArray[i].split("- ")[1].split("；")[0]);
+                    cookery_description.setText(additionalInfoArray[i].split("- ")[1].split("；")[1]);
+
+                    String imageIdStr = additionalInfoArray[i].split("- ")[1].split("；")[2].replace("\n", "");
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    int imageResId = getResources().getIdentifier(
+                            imageIdStr,
+                            "drawable",
+                            requireContext().getPackageName()
+                    );
+                    cookery_image.setImageResource(imageResId);
+
+                } else {
+                    if (isDynamicBackground) {
+                        cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container_effect, card_data_other_container, false);
+                    } else {
+                        cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container, card_data_other_container, false);
+                    }
+
+                    // 绑定好需要用到的组件
+                    TextView additional_info_title = cardView.findViewById(R.id.additional_info_title);
+                    TextView additional_info = cardView.findViewById(R.id.additional_info);
+
+                    additional_info_title.setText(additionalInfoArray[i].split("\n")[0]);
+                    getContentForMultiView(requireContext(), additional_info, additionalInfoArray[i].split("\n", 2)[1]);
+                }
+
+                card_data_other_container.addView(cardView);
+            }
+
         } catch (Exception e) {
             Log.e("Data", "捕捉到异常：" + e.getMessage());
             Toast.makeText(requireContext(), "数据加载失败", Toast.LENGTH_SHORT).show();

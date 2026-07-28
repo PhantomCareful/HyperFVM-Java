@@ -1,19 +1,12 @@
 package com.careful.HyperFVM.utils.ForDesign.Markdown;
 
 import android.content.Context;
-import android.media.Image;
-import android.text.style.ImageSpan;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
 import com.careful.HyperFVM.utils.OtherUtils.UpdateLogReader;
 
-import io.noties.markwon.AbstractMarkwonPlugin;
 import io.noties.markwon.Markwon;
-import io.noties.markwon.MarkwonSpansFactory;
-import io.noties.markwon.core.MarkwonTheme;
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 import io.noties.markwon.ext.tables.TablePlugin;
 import io.noties.markwon.html.HtmlPlugin;
@@ -30,6 +23,19 @@ public class MarkdownUtil {
                 .usePlugin(HtmlPlugin.create())// 启用HTML插件
                 .build();
         markwon.setMarkdown(textView, content);
+    }
+
+    public static void getContentForMultiView(Context context, TextView textView, String content) {
+        // 读取成功，展示到TextView
+        Markwon markwon = Markwon.builder(context)
+                .usePlugin(StrikethroughPlugin.create())// 启用删除线支持
+                .usePlugin(TablePlugin.create(context))// 启用表格支持
+                .usePlugin(GlideImagesPlugin.create(context))// 启用图片支持
+                .usePlugin(HtmlPlugin.create())// 启用HTML插件
+                .build();
+        markwon.setMarkdown(textView, content);
+
+        textView.setMovementMethod(null);
     }
 
     public static void getContentFromAssets(Context context, TextView textView, String filename) {
