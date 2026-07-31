@@ -211,4 +211,13 @@
         </service>
     </application>
 
+    <!-- 添加 queries 元素以允许查询能处理图片查看的 Intent -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:mimeType="image/*" />
+        </intent>
+        <!-- 如果将来还需要查询其他 Intent（如安装 APK 等），也可以在这里添加 -->
+    </queries>
+
 </manifest>
