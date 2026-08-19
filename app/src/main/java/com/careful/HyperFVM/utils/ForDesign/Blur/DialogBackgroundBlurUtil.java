@@ -3,6 +3,7 @@ package com.careful.HyperFVM.utils.ForDesign.Blur;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -31,7 +32,11 @@ public class DialogBackgroundBlurUtil {
 
         // 设置渐变模糊动画
         @SuppressLint("Recycle") ValueAnimator animator = ValueAnimator.ofInt(0, blurRadius);
-        animator.setDuration(300);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.BAKLAVA) {
+            animator.setDuration(100);
+        } else {
+            animator.setDuration(300);
+        }
         animator.addUpdateListener(animation -> {
             float fraction = animation.getAnimatedFraction();
 
