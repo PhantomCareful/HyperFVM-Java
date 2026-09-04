@@ -58,7 +58,8 @@ configure<ApplicationExtension> {
             signingConfig = signingConfigs.getByName("release")
             // 混淆配置
             isMinifyEnabled = true // 启用代码混淆
-            isShrinkResources = false // 启用资源缩减（移除无用资源）
+            //noinspection NotShrinkingResources
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

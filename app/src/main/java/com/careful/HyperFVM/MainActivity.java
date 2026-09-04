@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mainHandler = new Handler(Looper.getMainLooper()); // 初始化主线程 Handler
-        dbHelper = new DBHelper(this);
+        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 启动时进行签名校验
         new Thread(() -> {
@@ -239,7 +239,5 @@ public class MainActivity extends BaseActivity {
 
         // 取消绑定
         binding = null;
-
-        dbHelper.close();
     }
 }

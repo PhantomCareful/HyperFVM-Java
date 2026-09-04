@@ -286,7 +286,7 @@ public class SettingsActivity extends BaseActivity {
         // 动态取色开关
         materialSwitch = findViewById(R.id.Switch_isDynamicColor);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, isChecked ? "true" : "false");
+            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, Boolean.toString(isChecked));
             if (!isChecked) {
                 // 动态取色关闭：允许点击
                 themeSelectorContainer.setOnClickListener(v -> showThemeSelectionDialog());
@@ -299,7 +299,7 @@ public class SettingsActivity extends BaseActivity {
         // 跟随系统字体大小开关
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, isChecked ? "true" : "false");
+            dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, Boolean.toString(isChecked));
             fontScaleSlider.setEnabled(!isChecked);
             Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
         });
@@ -322,19 +322,19 @@ public class SettingsActivity extends BaseActivity {
         // 动态背景开关
         materialSwitch = findViewById(R.id.Switch_isDynamicBackground);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_BACKGROUND, isChecked ? "true" : "false");
+            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_BACKGROUND, Boolean.toString(isChecked));
             Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
         });
         // Toast显示设置开关
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
-                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX, isChecked ? "true" : "false"));
+                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX, Boolean.toString(isChecked)));
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
-                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST, isChecked ? "true" : "false"));
+                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST, Boolean.toString(isChecked)));
         materialSwitch = findViewById(R.id.Switch_isVisible_RefreshDashboard);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
-                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD, isChecked ? "true" : "false"));
+                dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD, Boolean.toString(isChecked)));
         // 生物认证开关
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
         MaterialSwitch finalMaterialSwitch = materialSwitch;
@@ -343,7 +343,7 @@ public class SettingsActivity extends BaseActivity {
             BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
                     getResources().getString(R.string.biometric_auth_sub_title), () -> {
                         // 验证成功
-                        dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, !isChecked ? "true" : "false");
+                        dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, Boolean.toString(!isChecked));
                         isPermitSwitchChanging = true;
                         finalMaterialSwitch.setChecked(!isChecked);
             });
