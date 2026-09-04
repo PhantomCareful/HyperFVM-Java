@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 防御卡目录页 RecyclerView 的分节标题行（样式与原 title_card_data_index_* 一致），
+     标题与下方卡片组的间距由标题自带 marginBottom 提供，
+     上一组卡片与标题的间距由 item_card_catalog_group 的 paddingBottom 还原 -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="10dp"
+    android:textColor="?attr/colorOnSurface"
+    android:textSize="15sp" />

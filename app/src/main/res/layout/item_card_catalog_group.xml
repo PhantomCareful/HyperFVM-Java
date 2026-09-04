@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 防御卡目录页 RecyclerView 的分节卡片组行容器：
+     占位后由 Adapter 在绑定时将原始分节布局（card_card_data_index_*，根为带
+     ?attr/GeneralCardViewBackground 圆角背景的 CardView）整组 inflate 进来，
+     以保证卡片分组背景、圆角与间距和旧页面完全一致。
+     paddingBottom 用于还原原分节 CardView 自带的 25dp 底部间距。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_catalog_group_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="25dp" />

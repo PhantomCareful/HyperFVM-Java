@@ -1,13 +1,11 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -38,8 +36,6 @@ public class DataCenterFragment extends Fragment {
         // ------------------------------ 设置点击事件 ------------------------------
         // 防御卡全能数据库
         root.findViewById(R.id.DataCenter_CardDataIndex_Container).setOnClickListener(v -> {
-            TextView DataCenter_CardDataIndex_Content = root.findViewById(R.id.DataCenter_CardDataIndex_Content);
-            DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index_loading));
             Intent intent = new Intent(requireActivity(), CardDataIndexActivity.class);
             startActivity(intent);
         });
@@ -139,18 +135,6 @@ public class DataCenterFragment extends Fragment {
         });
 
         return root;
-    }
-
-    /**
-     * 在onResume阶段还原卡片状态，确保从二级界面返回后文案是恢复了的
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    public void onResume() {
-        super.onResume();
-        // 还原卡片状态
-        TextView DataCenter_CardDataIndex_Content = root.findViewById(R.id.DataCenter_CardDataIndex_Content);
-        DataCenter_CardDataIndex_Content.setText(getResources().getString(R.string.label_data_center_card_data_index));
     }
 
     /**
