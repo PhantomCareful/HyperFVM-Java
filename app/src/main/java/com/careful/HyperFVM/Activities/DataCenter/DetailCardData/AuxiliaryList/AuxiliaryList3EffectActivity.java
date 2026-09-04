@@ -118,9 +118,9 @@ public class AuxiliaryList3EffectActivity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex944.cardDataIndex944.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex947.cardDataIndex947.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex949.cardDataIndex949.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex954.cardDataIndex954.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex955.cardDataIndex955.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex958.cardDataIndex958.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList3).cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
 
     }

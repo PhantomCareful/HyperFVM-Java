@@ -221,95 +221,99 @@ public class CardDataIndexActivity extends BaseActivity {
             runFastScroll(24);
             dialog.dismiss();
         });
-
-        dialogView.findViewById(R.id.button_card_category_index_10_1).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_9_5).setOnClickListener(v -> {
             runFastScroll(25);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_10_2).setOnClickListener(v -> {
+
+        dialogView.findViewById(R.id.button_card_category_index_10_1).setOnClickListener(v -> {
             runFastScroll(26);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_10_3).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_10_2).setOnClickListener(v -> {
             runFastScroll(27);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_10_4).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_10_3).setOnClickListener(v -> {
             runFastScroll(28);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_10_4).setOnClickListener(v -> {
+            runFastScroll(29);
             dialog.dismiss();
         });
 
         dialogView.findViewById(R.id.button_card_category_index_11_2).setOnClickListener(v -> {
-            runFastScroll(29);
-            dialog.dismiss();
-        });
-        dialogView.findViewById(R.id.button_card_category_index_11_3).setOnClickListener(v -> {
             runFastScroll(30);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_11_4).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_11_3).setOnClickListener(v -> {
             runFastScroll(31);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_11_4).setOnClickListener(v -> {
+            runFastScroll(32);
             dialog.dismiss();
         });
 
         dialogView.findViewById(R.id.button_card_category_index_12_1).setOnClickListener(v -> {
-            runFastScroll(32);
-            dialog.dismiss();
-        });
-        dialogView.findViewById(R.id.button_card_category_index_12_2).setOnClickListener(v -> {
             runFastScroll(33);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_12_3).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_12_2).setOnClickListener(v -> {
             runFastScroll(34);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_12_3).setOnClickListener(v -> {
+            runFastScroll(35);
             dialog.dismiss();
         });
 
         dialogView.findViewById(R.id.button_card_category_index_12__1).setOnClickListener(v -> {
-            runFastScroll(35);
-            dialog.dismiss();
-        });
-        dialogView.findViewById(R.id.button_card_category_index_12__2).setOnClickListener(v -> {
             runFastScroll(36);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_12__3).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_12__2).setOnClickListener(v -> {
             runFastScroll(37);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_12__4).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_12__3).setOnClickListener(v -> {
             runFastScroll(38);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_12__4).setOnClickListener(v -> {
+            runFastScroll(39);
             dialog.dismiss();
         });
 
         dialogView.findViewById(R.id.button_card_category_index_13_1).setOnClickListener(v -> {
-            runFastScroll(39);
-            dialog.dismiss();
-        });
-        dialogView.findViewById(R.id.button_card_category_index_13_2).setOnClickListener(v -> {
             runFastScroll(40);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_13_3).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_13_2).setOnClickListener(v -> {
             runFastScroll(41);
             dialog.dismiss();
         });
-        dialogView.findViewById(R.id.button_card_category_index_13_4).setOnClickListener(v -> {
+        dialogView.findViewById(R.id.button_card_category_index_13_3).setOnClickListener(v -> {
             runFastScroll(42);
+            dialog.dismiss();
+        });
+        dialogView.findViewById(R.id.button_card_category_index_13_4).setOnClickListener(v -> {
+            runFastScroll(43);
             dialog.dismiss();
         });
 
         dialogView.findViewById(R.id.button_card_category_index_14_1).setOnClickListener(v -> {
-            runFastScroll(43);
+            runFastScroll(44);
             dialog.dismiss();
         });
         dialogView.findViewById(R.id.button_card_category_index_14_2).setOnClickListener(v -> {
-            runFastScroll(44);
+            runFastScroll(45);
             dialog.dismiss();
         });
 
         dialogView.findViewById(R.id.button_card_category_index_15_1).setOnClickListener(v -> {
-            runFastScroll(45);
+            runFastScroll(46);
             dialog.dismiss();
         });
 
@@ -382,27 +386,28 @@ public class CardDataIndexActivity extends BaseActivity {
             case 22 -> R.id.title_card_data_index_9_2;
             case 23 -> R.id.title_card_data_index_9_3;
             case 24 -> R.id.title_card_data_index_9_4;
-            case 25 -> R.id.title_card_data_index_10_1;
-            case 26 -> R.id.title_card_data_index_10_2;
-            case 27 -> R.id.title_card_data_index_10_3;
-            case 28 -> R.id.title_card_data_index_10_4;
-            case 29 -> R.id.title_card_data_index_11_2;
-            case 30 -> R.id.title_card_data_index_11_3;
-            case 31 -> R.id.title_card_data_index_11_4;
-            case 32 -> R.id.title_card_data_index_12_1;
-            case 33 -> R.id.title_card_data_index_12_2;
-            case 34 -> R.id.title_card_data_index_12_3;
-            case 35 -> R.id.title_card_data_index_13_1;
-            case 36 -> R.id.title_card_data_index_13_2;
-            case 37 -> R.id.title_card_data_index_13_3;
-            case 38 -> R.id.title_card_data_index_13_4;
-            case 39 -> R.id.title_card_data_index_14_1;
-            case 40 -> R.id.title_card_data_index_14_2;
-            case 41 -> R.id.title_card_data_index_14_3;
-            case 42 -> R.id.title_card_data_index_14_4;
-            case 43 -> R.id.title_card_data_index_15_1;
-            case 44 -> R.id.title_card_data_index_15_2;
-            case 45 -> R.id.title_card_data_index_16_1;
+            case 25 -> R.id.title_card_data_index_9_5;
+            case 26 -> R.id.title_card_data_index_10_1;
+            case 27 -> R.id.title_card_data_index_10_2;
+            case 28 -> R.id.title_card_data_index_10_3;
+            case 29 -> R.id.title_card_data_index_10_4;
+            case 30 -> R.id.title_card_data_index_11_2;
+            case 31 -> R.id.title_card_data_index_11_3;
+            case 32 -> R.id.title_card_data_index_11_4;
+            case 33 -> R.id.title_card_data_index_12_1;
+            case 34 -> R.id.title_card_data_index_12_2;
+            case 35 -> R.id.title_card_data_index_12_3;
+            case 36 -> R.id.title_card_data_index_13_1;
+            case 37 -> R.id.title_card_data_index_13_2;
+            case 38 -> R.id.title_card_data_index_13_3;
+            case 39 -> R.id.title_card_data_index_13_4;
+            case 40 -> R.id.title_card_data_index_14_1;
+            case 41 -> R.id.title_card_data_index_14_2;
+            case 42 -> R.id.title_card_data_index_14_3;
+            case 43 -> R.id.title_card_data_index_14_4;
+            case 44 -> R.id.title_card_data_index_15_1;
+            case 45 -> R.id.title_card_data_index_15_2;
+            case 46 -> R.id.title_card_data_index_16_1;
             default -> -1;
         };
     }
@@ -472,6 +477,8 @@ public class CardDataIndexActivity extends BaseActivity {
         textView.setText(getResources().getString(R.string.text_data_images_index_card_9) + " - " + getResources().getString(R.string.text_data_images_index_card_9_3));
         textView = findViewById(R.id.title_card_data_index_9_4);
         textView.setText(getResources().getString(R.string.text_data_images_index_card_9) + " - " + getResources().getString(R.string.text_data_images_index_card_9_4));
+        textView = findViewById(R.id.title_card_data_index_9_5);
+        textView.setText(getResources().getString(R.string.text_data_images_index_card_9) + " - " + getResources().getString(R.string.text_data_images_index_card_9_5));
 
         textView = findViewById(R.id.title_card_data_index_10_1);
         textView.setText(getResources().getString(R.string.text_data_images_index_card_10) + " - " + getResources().getString(R.string.text_data_images_index_card_10_1));
@@ -599,9 +606,11 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_3_2_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "星星兔"));
         findViewById(R.id.card_data_index_3_2_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "坚果爆炒机"));
         findViewById(R.id.card_data_index_3_2_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "里格神使"));
-        findViewById(R.id.card_data_index_3_2_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "怪味鱿鱼"));
-        findViewById(R.id.card_data_index_3_2_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烟花虎"));
-        findViewById(R.id.card_data_index_3_2_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "风车龙"));
+        findViewById(R.id.card_data_index_3_2_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "邪恶牛油果"));
+        findViewById(R.id.card_data_index_3_2_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "怪味鱿鱼"));
+        findViewById(R.id.card_data_index_3_2_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烟花虎"));
+        findViewById(R.id.card_data_index_3_2_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "风车龙"));
+        findViewById(R.id.card_data_index_3_2_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元宝饺子鼎"));
         findViewById(R.id.card_data_index_3_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲈鱼"));
         findViewById(R.id.card_data_index_3_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "便便汪"));
         findViewById(R.id.card_data_index_3_3_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烧鸡"));
@@ -705,15 +714,17 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_9_3_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "典伊神使"));
         findViewById(R.id.card_data_index_9_3_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰晶龙"));
         findViewById(R.id.card_data_index_9_3_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
-        findViewById(R.id.card_data_index_9_4_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鼠鼠蛋糕空投器"));
-        findViewById(R.id.card_data_index_9_4_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "风力空投猪"));
-        findViewById(R.id.card_data_index_9_4_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "电流虎"));
-        findViewById(R.id.card_data_index_9_4_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
-        findViewById(R.id.card_data_index_9_4_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "金刚马"));
-        findViewById(R.id.card_data_index_9_4_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红柳烤串机"));
-        findViewById(R.id.card_data_index_9_4_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
-        findViewById(R.id.card_data_index_9_4_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蜜糖陷阱"));
-        findViewById(R.id.card_data_index_9_4_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
+        findViewById(R.id.card_data_index_9_4_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "金刚马"));
+        findViewById(R.id.card_data_index_9_4_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红柳烤串机"));
+        findViewById(R.id.card_data_index_9_4_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "俱吠罗神使"));
+        findViewById(R.id.card_data_index_9_5_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鼠鼠蛋糕空投器"));
+        findViewById(R.id.card_data_index_9_5_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "风力空投猪"));
+        findViewById(R.id.card_data_index_9_5_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "电流虎"));
+        findViewById(R.id.card_data_index_9_5_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
+        findViewById(R.id.card_data_index_9_5_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
+        findViewById(R.id.card_data_index_9_5_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "蜜糖陷阱"));
+        findViewById(R.id.card_data_index_9_5_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "仙笛马"));
+        findViewById(R.id.card_data_index_9_5_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
         findViewById(R.id.card_data_index_10_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "汉堡包"));
         findViewById(R.id.card_data_index_10_1_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "贪食蛙"));
         findViewById(R.id.card_data_index_10_1_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "吞噬龙"));
@@ -810,6 +821,8 @@ public class CardDataIndexActivity extends BaseActivity {
         findViewById(R.id.card_data_index_13_2_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "龙珠果"));
         findViewById(R.id.card_data_index_13_2_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巴德尔神使"));
         findViewById(R.id.card_data_index_13_2_9).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "桥头米线"));
+        findViewById(R.id.card_data_index_13_2_10).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "泡椒春笋"));
+        findViewById(R.id.card_data_index_13_2_11).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "奇门马"));
         findViewById(R.id.card_data_index_13_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰桶炸弹"));
         findViewById(R.id.card_data_index_13_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰弹喵"));
         findViewById(R.id.card_data_index_13_3_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰兔菓子"));

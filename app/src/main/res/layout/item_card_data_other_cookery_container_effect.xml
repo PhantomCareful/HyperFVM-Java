@@ -11,6 +11,7 @@
     app:cardElevation="0dp">
 
     <LinearLayout
+        android:id="@+id/cookery_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="16dp"

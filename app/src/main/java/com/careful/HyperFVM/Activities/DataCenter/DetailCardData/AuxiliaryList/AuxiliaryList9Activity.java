@@ -102,6 +102,8 @@ public class AuxiliaryList9Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11312.cardDataIndex11312.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11313.cardDataIndex11313.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11314.cardDataIndex11314.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "灯影花糕"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex13211.cardDataIndex13211.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "奇门马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex329.cardDataIndex329.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元宝饺子鼎"));
 
     }
 

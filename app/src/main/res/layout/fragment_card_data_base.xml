@@ -395,7 +395,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitStart"
-                            android:src="@drawable/card_data_index_3_2_5_2"/>
+                            android:src="@drawable/card_data_index_3_2_6_2"/>
 
                         <TextView
                             android:id="@+id/plus_1"

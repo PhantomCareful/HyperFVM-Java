@@ -54,8 +54,8 @@
         android:background="?attr/selectableItemBackground"/>
 
     <include
-        android:id="@+id/card_card_data_index_3_2_5_1"
-        layout="@layout/card_card_data_index_3_2_5" />
+        android:id="@+id/card_card_data_index_3_2_6_1"
+        layout="@layout/card_card_data_index_3_2_6" />
 
     <include
         android:id="@+id/card_card_data_index_16_1_3_1"
@@ -83,20 +83,20 @@
         layout="@layout/card_card_data_index_11_3_8" />
 
     <include
-        android:id="@+id/card_card_data_index_3_2_5_2"
-        layout="@layout/card_card_data_index_3_2_5" />
+        android:id="@+id/card_card_data_index_3_2_6_2"
+        layout="@layout/card_card_data_index_3_2_6" />
 
     <include
         android:id="@+id/card_card_data_index_16_1_3_2"
         layout="@layout/card_card_data_index_16_1_3" />
 
     <include
-        android:id="@+id/card_card_data_index_3_2_6"
-        layout="@layout/card_card_data_index_3_2_6" />
-
-    <include
         android:id="@+id/card_card_data_index_3_2_7"
         layout="@layout/card_card_data_index_3_2_7" />
+
+    <include
+        android:id="@+id/card_card_data_index_3_2_8"
+        layout="@layout/card_card_data_index_3_2_8" />
 
     <include
         android:id="@+id/card_card_data_index_1_1_8"

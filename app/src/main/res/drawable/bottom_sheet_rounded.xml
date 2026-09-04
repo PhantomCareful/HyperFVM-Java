@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners
+        android:topLeftRadius="20dp"
+        android:topRightRadius="20dp" />
+    <!-- 在这里直接定义颜色，就不需要在 Layout 里重复设置了 -->
+    <solid android:color="?attr/colorSurface" />
+</shape>

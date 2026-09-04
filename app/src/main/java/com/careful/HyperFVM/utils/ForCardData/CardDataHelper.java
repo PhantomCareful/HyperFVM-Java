@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1EffectActivity;
@@ -39,6 +40,64 @@ import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.A
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardDataActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_1;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_2;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_3;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_4;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_5;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_6;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_7;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_1;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_2;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_3;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_4;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_5;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_6;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_7;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_2_8;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_1;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_10;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_11;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_12;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_13;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_14;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_15;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_16;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_17;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_18;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_19;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_2;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_20;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_21;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_22;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_23;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_24;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_25;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_26;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_27;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_28;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_29;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_3;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_30;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_31;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_32;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_33;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_34;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_35;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_36;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_37;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_38;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_39;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_4;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_40;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_41;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_42;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_43;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_5;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_6;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_7;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_8;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_9;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForAnimalCardActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.DecomposeAndGetCalculator.DecomposeAndGetCalculatorForGoldenCardActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
@@ -722,6 +781,359 @@ public class CardDataHelper {
         intent.putExtra("decompose_data", decomposeDataArray);
         intent.putExtra("get_data", getDataArray);
         context.startActivity(intent);
+    }
+
+    public static void selectCookeryByName(String cookeryName, LinearLayout container, FragmentManager fragmentManager) {
+        switch (cookeryName) {
+            case "南翔小笼包":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_1_1 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_1();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "咖啡奶茶":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_1_2 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_2();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "美食豪华套餐":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_1_3 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_3();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "冰镇西瓜":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_1_4 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_4();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "麻辣烫":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_1_5 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_5();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "葡式蛋挞":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_1_6 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_6();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "菠萝布丁":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_1_7 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_7();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "王府井包子":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_1 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_1();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "猫屎咖啡":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_2 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_2();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "酒蒸鸡":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_3 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_3();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "劲爆鸡米花":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_4 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_4();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "葡萄美酒":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_5 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_5();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "巧克力雪球":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_6 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_6();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "冷烤火鸡":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_7 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_7();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "麻婆豆腐":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_2_8 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_8();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "狗不理包子":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_1 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_1();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "鸡丝银鱼汤":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_2 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_2();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "毛血旺":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_3 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_3();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "番茄炒蛋":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_4 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_4();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "面包家族":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_5 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_5();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "关东煮":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_6 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_6();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "茶叶蛋":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_7 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_7();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "拉菲限量版":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_8 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_8();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "圣诞姜饼":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_9 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_9();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "水煮鱼":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_10 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_10();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "钻石风味香槟":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_11 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_11();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "川香冒菜":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_12 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_12();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "咖喱鱼蛋":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_13 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_13();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "海鲜烧烤":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_14 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_14();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "海星拉面":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_15 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_15();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "老北京涮锅":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_16 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_16();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "菲丽水":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_17 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_17();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "汉帝茅台":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_18 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_18();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "怀石料理":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_19 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_19();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "复活节彩蛋":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_20 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_20();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "铁板鱿鱼":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_21 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_21();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "法式焗海螺":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_22 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_22();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "普罗旺斯鱼汤":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_23 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_23();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "锤子肉片":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_24 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_24();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "幻露流光":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_25 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_25();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "椰子西米露":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_26 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_26();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "明炉炭烧":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_27 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_27();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "冰糖葫芦":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_28 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_28();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "海鲜大咖":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_29 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_29();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "沙坑羊排":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_30 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_30();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "雷城全家桶":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_31 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_31();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "奇境下午茶":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_32 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_32();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "M双层堡":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_33 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_33();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "太阳饼":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_34 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_34();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "杏仁芝麻茶":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_35 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_35();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "冰摇桃桃":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_36 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_36();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "烈焰熔岩蛋糕":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_37 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_37();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "火焰冰淇淋":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_38 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_38();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "营地炖肉":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_39 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_39();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "星云奶茶":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_40 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_40();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "多元料理":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_41 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_41();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "印度飞饼":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_42 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_42();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+            case "暴打柠檬茶":
+                container.setOnClickListener(v -> {
+                    CookeryBottomSheetFragment_3_43 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_43();
+                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
+                });
+                break;
+        }
     }
 
     // 辅助方法：从游标获取字符串（处理空值）

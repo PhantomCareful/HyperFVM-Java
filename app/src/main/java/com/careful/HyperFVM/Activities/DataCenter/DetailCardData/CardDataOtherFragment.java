@@ -105,6 +105,7 @@ public class CardDataOtherFragment extends Fragment {
                     }
 
                     // 绑定好需要用到的组件
+                    LinearLayout cookery_container = cardView.findViewById(R.id.cookery_container);
                     TextView cookery_title = cardView.findViewById(R.id.cookery_title);
                     TextView cookery_description = cardView.findViewById(R.id.cookery_description);
                     ImageView cookery_image = cardView.findViewById(R.id.cookery_image);
@@ -121,6 +122,24 @@ public class CardDataOtherFragment extends Fragment {
                     );
                     cookery_image.setImageResource(imageResId);
 
+                    CardDataHelper.selectCookeryByName(additionalInfoArray[i].split("- ")[1].split("；")[0], cookery_container, getParentFragmentManager());
+
+                } else if (additionalInfoArray[i].contains("🔥秒产说明")) {
+                    if (isDynamicBackground) {
+                        cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container_effect, card_data_other_container, false);
+                    } else {
+                        cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container, card_data_other_container, false);
+                    }
+
+                    // 绑定好需要用到的组件
+                    TextView additional_info_title = cardView.findViewById(R.id.additional_info_title);
+                    TextView additional_info = cardView.findViewById(R.id.additional_info);
+
+                    additional_info_title.setText(additionalInfoArray[i].split("\n")[0] + "\n" + additionalInfoArray[i + 1].split("\n")[0] + "\n" + additionalInfoArray[i + 2].split("\n")[0]);
+                    String additional_info_str = additionalInfoArray[i + 2].split("\n", 2)[1];
+                    getContentForMultiView(requireContext(), additional_info, additional_info_str);
+
+                    i = i + 2;
                 } else {
                     if (isDynamicBackground) {
                         cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container_effect, card_data_other_container, false);
@@ -133,7 +152,12 @@ public class CardDataOtherFragment extends Fragment {
                     TextView additional_info = cardView.findViewById(R.id.additional_info);
 
                     additional_info_title.setText(additionalInfoArray[i].split("\n")[0]);
-                    getContentForMultiView(requireContext(), additional_info, additionalInfoArray[i].split("\n", 2)[1]);
+                    String additional_info_str = additionalInfoArray[i].split("\n", 2)[1];
+                    if (!additional_info_str.isEmpty()) {
+                        getContentForMultiView(requireContext(), additional_info, additional_info_str);
+                    } else {
+                        additional_info.setVisibility(View.GONE);
+                    }
                 }
 
                 card_data_other_container.addView(cardView);

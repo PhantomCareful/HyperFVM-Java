@@ -114,7 +114,8 @@ public class DataImageCardActivity extends BaseActivity {
                 getResources().getString(R.string.text_data_images_index_card_9_1) + "、" +
                 getResources().getString(R.string.text_data_images_index_card_9_2) + "、" +
                 getResources().getString(R.string.text_data_images_index_card_9_3) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_9_4)
+                getResources().getString(R.string.text_data_images_index_card_9_4) + "、" +
+                getResources().getString(R.string.text_data_images_index_card_9_5)
         );
 
         textView = findViewById(R.id.data_images_index_card_10_description);

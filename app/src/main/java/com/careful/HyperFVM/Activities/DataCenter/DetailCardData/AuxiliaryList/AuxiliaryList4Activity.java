@@ -103,9 +103,9 @@ public class AuxiliaryList4Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex944.cardDataIndex944.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex947.cardDataIndex947.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex949.cardDataIndex949.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex954.cardDataIndex954.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex955.cardDataIndex955.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex958.cardDataIndex958.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex1213.cardDataIndex1213.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "盖亚神使"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList4).cardCardDataIndex923.cardDataIndex923.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "火箭猪"));
 

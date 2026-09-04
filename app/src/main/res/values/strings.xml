@@ -16,7 +16,7 @@
     <string name="title_data_center_data_images_index">数据图合集</string>
     <string name="label_data_center_data_images_index">😈目标是打造成最全面的数据图合集\n👉点击去查看</string>
     <string name="card_data_search_title">防御卡数据查询</string>
-    <string name="card_data_search_data_version">数据库版本：20260711</string>
+    <string name="card_data_search_data_version">数据库版本：20260827</string>
     <string name="card_data_search_tips">👇点击卡片即可进入数据详情页👇</string>
     <string name="card_data_search_input_tips">请输入防御卡名称</string>
     <string name="top_bar_card_data_index">🍔数据库</string>
@@ -183,7 +183,8 @@
     <string name="text_data_images_index_card_9_1">飞镖追踪</string>
     <string name="text_data_images_index_card_9_2">群轰追踪</string>
     <string name="text_data_images_index_card_9_3">散点追踪</string>
-    <string name="text_data_images_index_card_9_4">特殊追踪</string>
+    <string name="text_data_images_index_card_9_4">直线追踪</string>
+    <string name="text_data_images_index_card_9_5">特殊追踪</string>
     <string name="text_data_images_index_card_10">10.杂项类</string>
     <string name="text_data_images_index_card_10_1">吞噬类</string>
     <string name="text_data_images_index_card_10_2">连携类</string>
@@ -305,7 +306,9 @@
     <string name="title_card_data_auxiliary_list_5_2_2">仅终转可被增幅</string>
     <string name="title_card_data_auxiliary_list_7_1">👇龙须面二转后追加👇</string>
     <string name="title_card_data_auxiliary_list_7_2">👇丰饶神三转后追加👇</string>
-    <string name="title_card_data_auxiliary_list_8_1">魔杖蛇和海洋女神\n👇还可增幅本行的这些卡片👇</string>
+    <string name="title_card_data_auxiliary_list_8_1">以下卡片\n👇榨汁机3×3/3×3/5×5范围内增幅👇\n👇魔杖蛇3×3/5×5/5×5范围内增幅👇\n👇海洋女神5×5范围内增幅👇</string>
+    <string name="title_card_data_auxiliary_list_8_2">以下卡片\n👇魔杖蛇3×3/5×5/5×5范围内增幅👇\n👇海洋女神5×1范围内增幅👇</string>
+    <string name="title_card_data_auxiliary_list_8_3">以下卡片\n👇魔杖蛇和海洋女神本行增幅👇</string>
     <!--防御卡数据库-->
     <string name="title_card_data_base_info">基础信息</string>
     <string name="title_card_data_transfer_change">人话解释</string>
@@ -433,8 +436,8 @@
     <string name="label_settings_option_interface_style">界面风格</string>
     <string name="label_settings_is_fixed_font_scale">跟随系统字体大小</string>
     <string name="label_settings_switch_font_scale_description">自定义字体大小</string>
-    <string name="label_settings_switch_is_dynamic_background">动态背景</string>
-    <string name="label_settings_switch_is_dynamic_background_description">👉启用后，App的关于页、防御卡数据详情页、增幅卡名单页将使用带混色的流动背景。\n👉此功能需要Android13+系统支持。</string>
+    <string name="label_settings_switch_is_dynamic_background">动态流光背景</string>
+    <string name="label_settings_switch_is_dynamic_background_description">👉启用后，部分界面将使用带混色的流动背景，卡片背景也将调整为半透明。\n👉此功能需要Android13及以上底层支持。\n⚠️本功能为高负载功能，如您在使用过程中出现卡顿，可尝试关闭本功能。</string>
     <string name="title_settings_toast">提示语显示</string>
     <string name="label_settings_switch_card_data_index">防御卡全能数据库</string>
     <string name="label_settings_switch_card_data_auxiliary_list">增幅卡名单</string>
@@ -548,7 +551,7 @@
     <string name="label_version_4">4.X.X</string>
     <string name="many_n">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</string>
 
-    <!--卡片名字写最后，方便查找-->
+    <!--防御卡名称部分-->
     <string name="name_card_data_index_1_1_1_0">双向水管</string>
     <string name="name_card_data_index_1_1_1_1">控温双向水管–合金水管</string>
 
@@ -764,14 +767,20 @@
     <string name="name_card_data_index_3_2_4_0">里格神使</string>
     <string name="name_card_data_index_3_2_4_1">里格圣神–守护神·里格–至尊守护神</string>
 
-    <string name="name_card_data_index_3_2_5_0">怪味鱿鱼</string>
-    <string name="name_card_data_index_3_2_5_1">爆汁怪味鱿鱼–天椒怪味鱿鱼</string>
+    <string name="name_card_data_index_3_2_5_0">邪恶牛油果</string>
+    <string name="name_card_data_index_3_2_5_1">沙沙牛油果–桑巴牛油果</string>
 
-    <string name="name_card_data_index_3_2_6_0">烟花虎</string>
-    <string name="name_card_data_index_3_2_6_1">冷光烟花虎–礼炮烟花虎</string>
+    <string name="name_card_data_index_3_2_6_0">怪味鱿鱼</string>
+    <string name="name_card_data_index_3_2_6_1">爆汁怪味鱿鱼–天椒怪味鱿鱼</string>
 
-    <string name="name_card_data_index_3_2_7_0">风车龙</string>
-    <string name="name_card_data_index_3_2_7_1">暴击风车龙–迅猛风车龙</string>
+    <string name="name_card_data_index_3_2_7_0">烟花虎</string>
+    <string name="name_card_data_index_3_2_7_1">冷光烟花虎–礼炮烟花虎</string>
+
+    <string name="name_card_data_index_3_2_8_0">风车龙</string>
+    <string name="name_card_data_index_3_2_8_1">暴击风车龙–迅猛风车龙</string>
+
+    <string name="name_card_data_index_3_2_9_0">元宝饺子鼎</string>
+    <string name="name_card_data_index_3_2_9_1">四喜饺子鼎–八珍饺子鼎</string>
 
 
     <string name="name_card_data_index_3_3_1_0">鲈鱼</string>
@@ -1092,32 +1101,39 @@
     <string name="name_card_data_index_9_3_6_1">低温冷萃机–迅捷冷萃机</string>
 
 
-    <string name="name_card_data_index_9_4_1_0">鼠鼠蛋糕空投器</string>
-    <string name="name_card_data_index_9_4_1_1">喵博士蛋糕空投器</string>
+    <string name="name_card_data_index_9_4_1_0">金刚马</string>
+    <string name="name_card_data_index_9_4_1_1">魔铃金刚马–梵音金刚马</string>
 
-    <string name="name_card_data_index_9_4_2_0">风力空投猪</string>
-    <string name="name_card_data_index_9_4_2_1">导弹空投猪–涡轮空投猪</string>
+    <string name="name_card_data_index_9_4_2_0">红柳烤串机</string>
+    <string name="name_card_data_index_9_4_2_1">茴香红柳烤串机–星火红柳烤串机</string>
 
-    <string name="name_card_data_index_9_4_3_0">电流虎</string>
-    <string name="name_card_data_index_9_4_3_1">磁铁电流虎–氢能电流虎</string>
+    <string name="name_card_data_index_9_4_3_0">俱吠罗神使</string>
+    <string name="name_card_data_index_9_4_3_1">俱吠罗圣神–护法神·俱吠罗-至尊护法神</string>
 
-    <string name="name_card_data_index_9_4_4_0">霹雳马</string>
-    <string name="name_card_data_index_9_4_4_1">闪电霹雳马–雷霆霹雳马</string>
 
-    <string name="name_card_data_index_9_4_5_0">金刚马</string>
-    <string name="name_card_data_index_9_4_5_1">魔铃金刚马–梵音金刚马</string>
+    <string name="name_card_data_index_9_5_1_0">鼠鼠蛋糕空投器</string>
+    <string name="name_card_data_index_9_5_1_1">喵博士蛋糕空投器</string>
 
-    <string name="name_card_data_index_9_4_6_0">红柳烤串机</string>
-    <string name="name_card_data_index_9_4_6_1">茴香红柳烤串机–星火红柳烤串机</string>
+    <string name="name_card_data_index_9_5_2_0">风力空投猪</string>
+    <string name="name_card_data_index_9_5_2_1">导弹空投猪–涡轮空投猪</string>
 
-    <string name="name_card_data_index_9_4_7_0">归元马</string>
-    <string name="name_card_data_index_9_4_7_1">时空归元马–幻境归元马</string>
+    <string name="name_card_data_index_9_5_3_0">电流虎</string>
+    <string name="name_card_data_index_9_5_3_1">磁铁电流虎–氢能电流虎</string>
 
-    <string name="name_card_data_index_9_4_8_0">蜜糖陷阱</string>
-    <string name="name_card_data_index_9_4_8_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
+    <string name="name_card_data_index_9_5_4_0">霹雳马</string>
+    <string name="name_card_data_index_9_5_4_1">闪电霹雳马–雷霆霹雳马</string>
 
-    <string name="name_card_data_index_9_4_9_0">萌海马</string>
-    <string name="name_card_data_index_9_4_9_1">嘟嘟萌海马–咕噜萌海马</string>
+    <string name="name_card_data_index_9_5_5_0">归元马</string>
+    <string name="name_card_data_index_9_5_5_1">时空归元马–幻境归元马</string>
+
+    <string name="name_card_data_index_9_5_6_0">蜜糖陷阱</string>
+    <string name="name_card_data_index_9_5_6_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
+
+    <string name="name_card_data_index_9_5_7_0">仙笛马</string>
+    <string name="name_card_data_index_9_5_7_1">悠扬仙笛马–天籁仙笛马</string>
+
+    <string name="name_card_data_index_9_5_8_0">萌海马</string>
+    <string name="name_card_data_index_9_5_8_1">嘟嘟萌海马–咕噜萌海马</string>
 
 
     <string name="name_card_data_index_10_1_1_0">汉堡包</string>
@@ -1404,6 +1420,12 @@
     <string name="name_card_data_index_13_2_9_0">桥头米线</string>
     <string name="name_card_data_index_13_2_9_1">灵泉桥头米线–金汤桥头米线</string>
 
+    <string name="name_card_data_index_13_2_10_0">泡椒春笋</string>
+    <string name="name_card_data_index_13_2_10_1">火辣泡椒笋–望乡泡椒笋</string>
+
+    <string name="name_card_data_index_13_2_11_0">奇门马</string>
+    <string name="name_card_data_index_13_2_11_1">玄妙奇门马–神术奇门马</string>
+
 
     <string name="name_card_data_index_13_3_1_0">冰桶炸弹</string>
     <string name="name_card_data_index_13_3_1_1">酸橙冰桶炸弹–杂果冰桶炸弹</string>
@@ -1634,7 +1656,385 @@
 
     <string name="name_card_data_index_16_1_11_0">仙人球海星刺身</string>
     <string name="name_card_data_index_16_1_11_1">奶油海星刺身–王冠海星刺身</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <!--食神谱部分-->
+    <string name="title_card_data_cookery_base_info">基础信息</string>
+    <string name="title_card_data_cookery_get_info">获取途径(不含各种返利活动)</string>
+    <string name="title_card_data_cookery_compose_info">合成材料</string>
+
+    <string name="category_card_data_cookery_1">上等佳肴</string>
+    <string name="category_card_data_cookery_2">秘制佳肴</string>
+    <string name="category_card_data_cookery_3">极品佳肴</string>
+
+    <string name="title_get_card_data_cookery_map">地图掉落</string>
+
+    <string name="title_get_card_data_cookery_copper_box">铜食神宝箱</string>
+    <string name="description_get_card_data_cookery_copper_box">前往火山遗迹-果仁瀑布/榛子瀑布，收集铜食神宝箱菜谱碎片，集齐10个碎片可前往假期特惠-长期兑换版块兑换铜食神宝箱</string>
+    <string name="title_get_card_data_cookery_silver_box">银食神宝箱</string>
+    <string name="description_get_card_data_cookery_silver_box">前往火山遗迹-黑提丛林/蓝莓丛林，收集银食神宝箱菜谱碎片，集齐25个碎片可前往假期特惠-长期兑换版块兑换银食神宝箱</string>
+    <string name="title_get_card_data_cookery_gold_box">金食神宝箱</string>
+    <string name="description_get_card_data_cookery_gold_box">前往火山遗迹-奶昔基地/圣代基地，收集金食神宝箱菜谱碎片，集齐50个碎片可前往假期特惠-长期兑换版块兑换金食神宝箱</string>
+
+    <string name="title_get_card_data_cookery_million_consumption">食神谱碎片</string>
+    <string name="description_get_card_data_cookery_million_consumption_10">可在限时送礼(百万消费)活动中，消费指定数量的点券后可获得食神谱碎片，使用10个碎片进行兑换</string>
+    <string name="description_get_card_data_cookery_million_consumption_20">可在限时送礼(百万消费)活动中，消费指定数量的点券后可获得食神谱碎片，使用20个碎片进行兑换</string>
+
+    <string name="title_get_card_data_cookery_d">点券兑换</string>
+    <string name="description_get_card_data_cookery_d">可前往假期特惠-节日兑换版块，使用15000点券+50幸运金币进行兑换</string>
+
+    <string name="title_get_card_data_cookery_yellow_crystal">星座碎片</string>
+    <string name="description_get_card_data_cookery_yellow_crystal">分解星座相关卡片和道具获得星座碎片，使用95个星座碎片进行兑换</string>
+
+    <string name="title_get_card_data_cookery_star_energy">星能碎片</string>
+
+    <string name="title_get_card_data_cookery_point">深渊/海神宝箱</string>
+    <string name="description_get_card_data_cookery_point">每充值100点券可获得1积分，可在积分商城-神秘商人版块中，使用50积分进行兑换(部分时间打折，35积分)，需注意积分月底清零</string>
+
+    <string name="name_card_data_cookery_1_1">南翔小笼包</string>
+    <string name="description_card_data_cookery_1_1">南翔小笼包，百年历史风味小吃，深受顾客欢迎</string>
+    <string name="reward_card_data_cookery_1_1">奖励40食神点</string>
+    <string name="description_get_card_data_cookery_map_1_1">玛奇朵港(击败BOSS)、吉拉朵港(击败BOSS)</string>
+    <string name="auxiliary_card_data_cookery_1_1_1">开启此食神谱后，以下卡片体力提升20%</string>
+
+    <string name="name_card_data_cookery_1_2">咖啡奶茶</string>
+    <string name="description_card_data_cookery_1_2">奶茶妹子与咖啡小哥的香浓结晶</string>
+    <string name="reward_card_data_cookery_1_2">奖励80食神点</string>
+    <string name="auxiliary_card_data_cookery_1_2_1">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_1_3">美食豪华套餐</string>
+    <string name="description_card_data_cookery_1_3">必备快餐，挽救了不少早上要迟到的少年少女</string>
+    <string name="reward_card_data_cookery_1_3">奖励50食神点</string>
+    <string name="description_get_card_data_cookery_map_1_3">玛奇朵港(击败BOSS)、吉拉朵港(击败BOSS)</string>
+    <string name="auxiliary_card_data_cookery_1_3_1">开启此食神谱后，以下卡片体力提升40%</string>
+
+    <string name="name_card_data_cookery_1_4">冰镇西瓜</string>
+    <string name="description_card_data_cookery_1_4">夏季常食水果，饱满多汁清爽可口</string>
+    <string name="reward_card_data_cookery_1_4">奖励100食神点</string>
+    <string name="description_get_card_data_cookery_map_1_4">雪顶火山(击败BOSS)</string>
+    <string name="auxiliary_card_data_cookery_1_4_1">开启此食神谱后，以下卡片体力提升20%</string>
+
+    <string name="name_card_data_cookery_1_5">麻辣烫</string>
+    <string name="description_card_data_cookery_1_5">看上去娇嫩欲滴，越吃越辣，食后意犹未尽</string>
+    <string name="reward_card_data_cookery_1_5">奖励50食神点</string>
+    <string name="description_get_card_data_cookery_map_1_5">雪顶火山(击败BOSS)</string>
+    <string name="auxiliary_card_data_cookery_1_5_1">开启此食神谱后，以下卡片体力提升20%</string>
+
+    <string name="name_card_data_cookery_1_6">葡式蛋挞</string>
+    <string name="description_card_data_cookery_1_6">精致圆润的挞皮，金黄的蛋液，香酥松软</string>
+    <string name="reward_card_data_cookery_1_6">奖励60食神点</string>
+    <string name="auxiliary_card_data_cookery_1_6_1">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_1_7">菠萝布丁</string>
+    <string name="description_card_data_cookery_1_7">菠萝口味，口感甜滑，回味无穷</string>
+    <string name="reward_card_data_cookery_1_7">奖励50食神点</string>
+    <string name="auxiliary_card_data_cookery_1_7_1">开启此食神谱后，以下卡片体力提升40%</string>
+
+    <string name="name_card_data_cookery_2_1">王府井包子</string>
+    <string name="description_card_data_cookery_2_1">王府井包子历史悠久，包子个儿大馅多，鲜美无比</string>
+    <string name="reward_card_data_cookery_2_1">奖励150食神点</string>
+    <string name="auxiliary_card_data_cookery_2_1_1">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_2_2">猫屎咖啡</string>
+    <string name="description_card_data_cookery_2_2">别看名字俗气，实为世界上最贵的咖啡</string>
+    <string name="reward_card_data_cookery_2_2">奖励450食神点</string>
+    <string name="auxiliary_card_data_cookery_2_2_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_2_3">酒蒸鸡</string>
+    <string name="description_card_data_cookery_2_3">据闻是喝醉了酒的童子鸡掉进蒸锅里制成</string>
+    <string name="reward_card_data_cookery_2_3">奖励250食神点</string>
+    <string name="auxiliary_card_data_cookery_2_3_1">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_2_4">劲爆鸡米花</string>
+    <string name="description_card_data_cookery_2_4">口感酥脆的鸡肉爆米花，快餐店常备食物</string>
+    <string name="reward_card_data_cookery_2_4">奖励300食神点</string>
+    <string name="auxiliary_card_data_cookery_2_4_1">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+    <string name="auxiliary_card_data_cookery_2_4_2">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_2_5">葡萄美酒</string>
+    <string name="description_card_data_cookery_2_5">葡萄美酒夜光杯，欲饮琵琶马上催</string>
+    <string name="reward_card_data_cookery_2_5">奖励900食神点</string>
+    <string name="auxiliary_card_data_cookery_2_5_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_2_6">巧克力雪球</string>
+    <string name="description_card_data_cookery_2_6">外观甜美诱人，巧克力味浓郁</string>
+    <string name="reward_card_data_cookery_2_6">奖励400食神点</string>
+    <string name="auxiliary_card_data_cookery_2_6_1">开启此食神谱后，以下卡片攻击间隔减少1秒，冷却时间减少2秒</string>
+
+    <string name="name_card_data_cookery_2_7">冷烤火鸡</string>
+    <string name="description_card_data_cookery_2_7">历经冰火两重天的鸡肉，油而不腻飘香千里</string>
+    <string name="reward_card_data_cookery_2_7">奖励400食神点</string>
+    <string name="auxiliary_card_data_cookery_2_7_1">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_2_8">麻婆豆腐</string>
+    <string name="description_card_data_cookery_2_8">特色在于麻辣烫香酥嫩鲜活，称之为八字箴言</string>
+    <string name="reward_card_data_cookery_2_8">奖励150食神点</string>
+    <string name="auxiliary_card_data_cookery_2_8_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_1">狗不理包子</string>
+    <string name="description_card_data_cookery_3_1">狗不理是因为一旦理了就吃不下别的东西了</string>
+    <string name="reward_card_data_cookery_3_1">奖励600食神点</string>
+    <string name="auxiliary_card_data_cookery_3_1_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_2">鸡丝银鱼汤</string>
+    <string name="description_card_data_cookery_3_2">地上跑的水里游的都有，汤汁清澈味道鲜美</string>
+    <string name="reward_card_data_cookery_3_2">奖励850食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_2">通过每日充值(日氪)收集星能碎片，使用400个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_2_1">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_3_3">毛血旺</string>
+    <string name="description_card_data_cookery_3_3">如果没有与辣椒花椒比拼的勇气，谨吃慎食</string>
+    <string name="reward_card_data_cookery_3_3">奖励750食神点</string>
+    <string name="auxiliary_card_data_cookery_3_3_1">开启此食神谱后，以下卡片增幅倍率提升10%</string>
+    <string name="title_auxiliary_card_data_cookery_3_3_1_tips">🚨实际数据为增幅倍率提升0.1</string>
+
+    <string name="name_card_data_cookery_3_4">番茄炒蛋</string>
+    <string name="description_card_data_cookery_3_4">家常小炒菜，虽说简单却色香味俱全</string>
+    <string name="reward_card_data_cookery_3_4">奖励800食神点</string>
+    <string name="auxiliary_card_data_cookery_3_4_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_5">面包家族</string>
+    <string name="description_card_data_cookery_3_5">面包是世界上食用群体最广的食物，种类繁多</string>
+    <string name="reward_card_data_cookery_3_5">奖励480食神点</string>
+    <string name="auxiliary_card_data_cookery_3_5_1">开启此食神谱后，以下卡片体力提升20%，攻击间隔减少1.5秒</string>
+    <string name="auxiliary_card_data_cookery_3_5_2">开启此食神谱后，以下卡片体力提升20%</string>
+
+    <string name="name_card_data_cookery_3_6">关东煮</string>
+    <string name="description_card_data_cookery_3_6">食过后口齿生香，回味绵长，品尝一次欲罢不能</string>
+    <string name="reward_card_data_cookery_3_6">奖励950食神点</string>
+    <string name="auxiliary_card_data_cookery_3_6_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_7">茶叶蛋</string>
+    <string name="description_card_data_cookery_3_7">做法简单，携带方便，物美价廉</string>
+    <string name="reward_card_data_cookery_3_7">奖励880食神点</string>
+    <string name="auxiliary_card_data_cookery_3_7_1">开启此食神谱后，以下卡片攻速提升10%</string>
+    <string name="auxiliary_card_data_cookery_3_7_2">开启此食神谱后，以下卡片冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_3_8">拉菲限量版</string>
+    <string name="description_card_data_cookery_3_8">法国拉菲庄园的限量版葡萄酒，堪称酒王</string>
+    <string name="reward_card_data_cookery_3_8">奖励450食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_8">通过每日充值(日氪)收集星能碎片，使用400个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_8_1">开启此食神谱后，以下卡片攻速提升5%</string>
+    <string name="title_auxiliary_card_data_cookery_3_8_1_tips">该食神谱无实际效果🚫</string>
+    <string name="description_auxiliary_card_data_cookery_3_8_1_tips">实际加成为3%，攻速缩减量小于1帧，因此无加成(你游20帧游戏这一块🙄)</string>
+
+    <string name="name_card_data_cookery_3_9">圣诞姜饼</string>
+    <string name="description_card_data_cookery_3_9">美味镇圣诞节专用小吃，谁吃谁知道！</string>
+    <string name="reward_card_data_cookery_3_9">奖励450食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_9">通过每日充值(日氪)收集星能碎片，使用300个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_9_1">开启此食神谱后，以下卡片攻速提升5%</string>
+
+    <string name="name_card_data_cookery_3_10">水煮鱼</string>
+    <string name="description_card_data_cookery_3_10">满目的辣椒红亮养眼，辣而不燥，麻而不苦，可谓“麻上头，辣过瘾”</string>
+    <string name="reward_card_data_cookery_3_10">奖励990食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_10">通过每日充值(日氪)收集星能碎片，使用400个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_10_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_11">钻石风味香槟</string>
+    <string name="description_card_data_cookery_3_11">世上最棒（贵）的香槟，佐餐时能无限激发食物的美味</string>
+    <string name="reward_card_data_cookery_3_11">奖励1020食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_11">通过每日充值(日氪)收集星能碎片，使用600个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_11_1">开启此食神谱后，以下卡片攻击力提升10%，攻速提升5%</string>
+
+    <string name="name_card_data_cookery_3_12">川香冒菜</string>
+    <string name="description_card_data_cookery_3_12">火爆的川味小吃，平衡了酸甜苦辣咸，各种味道都刚刚好</string>
+    <string name="reward_card_data_cookery_3_12">奖励850食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_12">通过每日充值(日氪)收集星能碎片，使用600个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_12_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_13">咖喱鱼蛋</string>
+    <string name="description_card_data_cookery_3_13">口感Q弹的鱼蛋，吃下去之后让人元气满满</string>
+    <string name="reward_card_data_cookery_3_13">奖励1050食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_13">通过每日充值(日氪)收集星能碎片，使用600个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_13_1">开启此食神谱后，以下卡片攻击力提升10%，攻速提升5%</string>
+
+    <string name="name_card_data_cookery_3_14">海鲜烧烤</string>
+    <string name="description_card_data_cookery_3_14">烧烤的方式最能激发海鲜的香味，再简单辅以食盐和辛料而佐之，就是顶级的人间美味了</string>
+    <string name="reward_card_data_cookery_3_14">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_14">通过每日充值(日氪)收集星能碎片，使用600个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_14_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_15">海星拉面</string>
+    <string name="description_card_data_cookery_3_15">刺客忍者最爱的食物。加入海星调味后，更是鲜美无比，让食客们发挥无限潜能</string>
+    <string name="reward_card_data_cookery_3_15">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_15">通过每日充值(日氪)收集星能碎片，使用2600个星能碎片进行兑换</string>
+    <string name="title_get_card_data_cookery_mingshen_auxiliary_box">冥神辅助礼包</string>
+    <string name="description_get_card_data_cookery_mingshen_auxiliary_box">礼包内包含本食神谱，可通过周氪、贵宾返利等途径获得</string>
+    <string name="auxiliary_card_data_cookery_3_15_1">开启此食神谱后，以下卡片攻击力提升12%</string>
+    <string name="auxiliary_card_data_cookery_3_15_2">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_16">老北京涮锅</string>
+    <string name="description_card_data_cookery_3_16">高端的食材往往只需要采用最朴素的烹饪方式，清水涮羊肉便是其中之一</string>
+    <string name="reward_card_data_cookery_3_16">奖励830食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_16">通过每日充值(日氪)收集星能碎片，使用600个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_16_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_17">菲丽水</string>
+    <string name="description_card_data_cookery_3_17">使用世界上最昂贵的水，可以喷出世界上威力最大的水子弹</string>
+    <string name="reward_card_data_cookery_3_17">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_17_1">开启此食神谱后，以下卡片攻击力提升25%</string>
+
+    <string name="name_card_data_cookery_3_18">汉帝茅台</string>
+    <string name="description_card_data_cookery_3_18">美食国的珍贵国酒，可以让食物发挥无限潜能</string>
+    <string name="reward_card_data_cookery_3_18">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_18_1">开启此食神谱后，以下卡片攻击力提升20%，攻速提升5%</string>
+
+    <string name="name_card_data_cookery_3_19">怀石料理</string>
+    <string name="description_card_data_cookery_3_19">能够治愈人心的顶级盛宴</string>
+    <string name="reward_card_data_cookery_3_19">奖励1240食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_19">通过每日充值(日氪)收集星能碎片，使用2600个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_19_1">开启此食神谱后，以下卡片攻击间隔减少2秒，冷却时间减少2秒，攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_20">复活节彩蛋</string>
+    <string name="description_card_data_cookery_3_20">复活节当日制作的彩绘鸡蛋，食用后可以投掷出威力更大的子弹</string>
+    <string name="reward_card_data_cookery_3_20">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_20_1">开启此食神谱后，以下卡片攻击力提升15%，攻速提升5%</string>
+
+    <string name="name_card_data_cookery_3_21">铁板鱿鱼</string>
+    <string name="description_card_data_cookery_3_21">充满烟火气的街边小吃，最能抚慰凡人的心灵</string>
+    <string name="reward_card_data_cookery_3_21">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_21_1">开启此食神谱后，以下卡片冷却时间减少20秒，攻速提升5%</string>
+
+    <string name="name_card_data_cookery_3_22">法式焗海螺</string>
+    <string name="description_card_data_cookery_3_22">美味的蔬菜焗海螺在浪漫的法式餐具装点下，更加香气四溢了</string>
+    <string name="reward_card_data_cookery_3_22">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_22_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+
+    <string name="name_card_data_cookery_3_23">普罗旺斯鱼汤</string>
+    <string name="description_card_data_cookery_3_23">将八分熟的灯笼鱼片淋上撒着辣椒粉的热汤，口感层次丰富，回味无穷</string>
+    <string name="reward_card_data_cookery_3_23">奖励1240食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_23">通过每日充值(日氪)收集星能碎片，使用2600个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_23_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+    <string name="auxiliary_card_data_cookery_3_23_2">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_24">锤子肉片</string>
+    <string name="description_card_data_cookery_3_24">锤薄的肉片烫熟后，加上调味品并淋上热油，最后放一勺灵魂辣椒酱，鲜嫩爽口</string>
+    <string name="reward_card_data_cookery_3_24">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_24_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+    <string name="auxiliary_card_data_cookery_3_24_2">开启此食神谱后，以下卡片攻击力提升10%</string>
+
+    <string name="name_card_data_cookery_3_25">幻露流光</string>
+    <string name="description_card_data_cookery_3_25">源自神仙秘境的至臻饮品，蕴含无尽魔力与祝福。同时象征着纯净、不朽的力量</string>
+    <string name="reward_card_data_cookery_3_25">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_25_1">开启此食神谱后，以下卡片攻击力提升80%，冷却时间减少13秒</string>
+    <string name="auxiliary_card_data_cookery_3_25_2">开启此食神谱后，以下卡片攻击力提升50%</string>
+
+    <string name="name_card_data_cookery_3_26">椰子西米露</string>
+    <string name="description_card_data_cookery_3_26">巧妙地将Q弹的西米和浓郁的椰汁完美结合，除了清凉解暑之外，还能为食用者补充能量</string>
+    <string name="reward_card_data_cookery_3_26">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_26_1">开启此食神谱后，以下卡片体力提升22%，冷却时间减少3秒</string>
+    <string name="auxiliary_card_data_cookery_3_26_2">开启此食神谱后，以下卡片体力提升18%</string>
+    <string name="auxiliary_card_data_cookery_3_26_3">开启此食神谱后，以下卡片体力提升10%，冷却时间减少5秒</string>
+
+    <string name="name_card_data_cookery_3_27">明炉炭烧</string>
+    <string name="description_card_data_cookery_3_27">肉片在烤盘上滋滋作响，油脂与炭火交织出美妙的旋律，香气四溢，令人垂涎欲滴</string>
+    <string name="reward_card_data_cookery_3_27">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_27_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+
+    <string name="name_card_data_cookery_3_28">冰糖葫芦</string>
+    <string name="description_card_data_cookery_3_28">颗颗饱满的红山楂，裹上一层晶莹剔透的冰糖外壳，是冬日里的一抹甜蜜记忆！</string>
+    <string name="reward_card_data_cookery_3_28">奖励1180食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_28">通过每日充值(日氪)收集星能碎片，使用2450个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_28_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+
+    <string name="name_card_data_cookery_3_29">海鲜大咖</string>
+    <string name="description_card_data_cookery_3_29">海鲜的鲜美与特制酱料的醇香完美融合，经过精心烹饪后，散发出令人难以抗拒的香气</string>
+    <string name="reward_card_data_cookery_3_29">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_29">通过每日充值(日氪)收集星能碎片，使用900个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_29_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+    <string name="auxiliary_card_data_cookery_3_29_2">开启此食神谱后，以下卡片攻击力提升20%</string>
+
+    <string name="name_card_data_cookery_3_30">沙坑羊排</string>
+    <string name="description_card_data_cookery_3_30">经过酱料腌制的上等羊排，在沙坑中慢烤至外皮金黄酥脆，咬上一口，外焦里嫩，香气四溢</string>
+    <string name="reward_card_data_cookery_3_30">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_30">通过每日充值(日氪)收集星能碎片，使用650个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_30_1">开启此食神谱后，以下卡片攻击力提升10%</string>
+    <string name="auxiliary_card_data_cookery_3_30_2">开启此食神谱后，以下卡片攻击力提升15%</string>
+
+    <string name="name_card_data_cookery_3_31">雷城全家桶</string>
+    <string name="description_card_data_cookery_3_31">一份满足全家口味的欢乐盛宴！无论是炸灯笼鱼条还是莓果味小甜品，每一口都是对味蕾的极致诱惑</string>
+    <string name="reward_card_data_cookery_3_31">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_31">通过每日充值(日氪)收集星能碎片，使用680个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_31_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+    <string name="auxiliary_card_data_cookery_3_31_2">开启此食神谱后，以下卡片冷却时间减少3秒</string>
+
+    <string name="name_card_data_cookery_3_32">奇境下午茶</string>
+    <string name="description_card_data_cookery_3_32">精致的餐盘飘散出缕缕茶香，酥脆的炸蘑菇再配上精致的三明治或是口感丰富的怪味鱿鱼，让人在忙碌的生活中找到一丝安宁与惬意</string>
+    <string name="reward_card_data_cookery_3_32">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_32">通过每日充值(日氪)收集星能碎片，使用950个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_32_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+    <string name="auxiliary_card_data_cookery_3_32_2">开启此食神谱后，以下卡片体力提升20%，冷却时间减少1秒</string>
+
+    <string name="name_card_data_cookery_3_33">M双层堡</string>
+    <string name="description_card_data_cookery_3_33">焦香的洋葱裹挟着炙烤安格斯牛肉，一口咬下之后，黑松露酱的浓郁香味在味蕾上绽放</string>
+    <string name="reward_card_data_cookery_3_33">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_33_1">开启此食神谱后，以下卡片攻击力提升65%</string>
+    <string name="auxiliary_card_data_cookery_3_33_2">开启此食神谱后，以下卡片攻击力提升25%</string>
+    <string name="auxiliary_card_data_cookery_3_33_3">开启此食神谱后，以下卡片攻击力提升15%</string>
+
+    <string name="name_card_data_cookery_3_34">太阳饼</string>
+    <string name="description_card_data_cookery_3_34">一口咬下，金黄酥皮层层掉落，内里麦芽糖心甜而不腻，是阳光下最甜蜜的酥脆滋味</string>
+    <string name="reward_card_data_cookery_3_34">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_34_1">开启此食神谱后，以下卡片生产时间减少2秒，火苗产量提升25%</string>
+    <string name="auxiliary_card_data_cookery_3_34_2">开启此食神谱后，以下卡片生产时间减少2秒，火苗产量提升35%</string>
+    <string name="auxiliary_card_data_cookery_3_34_3">开启此食神谱后，以下卡片火苗产量提升30%</string>
+
+    <string name="name_card_data_cookery_3_35">杏仁芝麻茶</string>
+    <string name="description_card_data_cookery_3_35">白色杏仁茶中加入香浓黑芝麻糊，在节庆或宴席中，此类阴阳调和的搭配也寓意“和谐圆满”</string>
+    <string name="reward_card_data_cookery_3_35">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_35_1">开启此食神谱后，以下卡片攻击力提升65%，冷却时间减少14秒</string>
+    <string name="auxiliary_card_data_cookery_3_35_2">开启此食神谱后，以下卡片攻击力提升65%，冷却时间减少30秒</string>
+
+    <string name="name_card_data_cookery_3_36">冰摇桃桃</string>
+    <string name="description_card_data_cookery_3_36">把阳光下的蜜桃和碎冰一起摇匀倒入杯中，每一口都能品尝到微风穿过果园的清凉</string>
+    <string name="reward_card_data_cookery_3_36">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_36_1">开启此食神谱后，以下卡片攻击力提升55%</string>
+    <string name="auxiliary_card_data_cookery_3_36_2">开启此食神谱后，以下卡片攻击力提升35%</string>
+    <string name="auxiliary_card_data_cookery_3_36_3">开启此食神谱后，以下卡片攻击力提升25%</string>
+
+    <string name="name_card_data_cookery_3_37">烈焰熔岩蛋糕</string>
+    <string name="description_card_data_cookery_3_37">巧克力蛋糕切开后，香浓的棕色流心如岩浆般涌出，入口先苦后甜</string>
+    <string name="reward_card_data_cookery_3_37">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_37_1">开启此食神谱后，以下卡片攻击力提升40%</string>
+    <string name="auxiliary_card_data_cookery_3_37_2">开启此食神谱后，以下卡片攻击力提升30%</string>
+
+    <string name="name_card_data_cookery_3_38">火焰冰淇淋</string>
+    <string name="description_card_data_cookery_3_38">绵密的牛奶冰淇淋，浇上朗姆酒并点燃，呈现冰火两重天的口感</string>
+    <string name="reward_card_data_cookery_3_38">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_38_1">开启此食神谱后，以下卡片攻击力提升30%</string>
+    <string name="auxiliary_card_data_cookery_3_38_2">开启此食神谱后，以下卡片攻击力提升35%</string>
+
+    <string name="name_card_data_cookery_3_39">营地炖肉</string>
+    <string name="description_card_data_cookery_3_39">香浓的肉味、柴火的烟熏味和香料交织在一起，顺着晚风钻进鼻腔</string>
+    <string name="reward_card_data_cookery_3_39">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_39">通过每日充值(日氪)收集星能碎片，使用599个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_39_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+    <string name="auxiliary_card_data_cookery_3_39_2">开启此食神谱后，以下卡片冷却时间减少3秒</string>
+
+    <string name="name_card_data_cookery_3_40">星云奶茶</string>
+    <string name="description_card_data_cookery_3_40">茶叶来自汉堡王星的零重力茶园，带着淡淡的月桂与蜂蜜的香气</string>
+    <string name="reward_card_data_cookery_3_40">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_40">通过每日充值(日氪)收集星能碎片，使用700个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_40_1">开启此食神谱后，以下卡片攻击力提升15%</string>
+    <string name="auxiliary_card_data_cookery_3_40_2">开启此食神谱后，以下卡片攻击力提升20%</string>
+
+    <string name="name_card_data_cookery_3_41">多元料理</string>
+    <string name="description_card_data_cookery_3_41">如果有让你不知如何下筷的美食，那一定是这份五花八门的料理</string>
+    <string name="reward_card_data_cookery_3_41">奖励950食神点</string>
+    <string name="description_get_card_data_cookery_star_energy_3_41">通过每日充值(日氪)收集星能碎片，使用650个星能碎片进行兑换</string>
+    <string name="auxiliary_card_data_cookery_3_41_1">开启此食神谱后，以下卡片攻击力提升20%</string>
+
+    <string name="name_card_data_cookery_3_42">印度飞饼</string>
+    <string name="description_card_data_cookery_3_42">薄如蝉翼的面皮在厨师指尖飞舞，成就了香脆交织的独特口感</string>
+    <string name="reward_card_data_cookery_3_42">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_42_1">开启此食神谱后，以下卡片攻击力提升30%</string>
+    <string name="auxiliary_card_data_cookery_3_42_2">开启此食神谱后，以下卡片攻击力提升35%</string>
+
+    <string name="name_card_data_cookery_3_43">暴打柠檬茶</string>
+    <string name="description_card_data_cookery_3_43">在杯中大力捶打搅拌，使柠檬的酸味和香气充分释放</string>
+    <string name="reward_card_data_cookery_3_43">奖励1240食神点</string>
+    <string name="auxiliary_card_data_cookery_3_43_1">开启此食神谱后，以下卡片增幅倍率提升1.2</string>
+    <string name="auxiliary_card_data_cookery_3_43_2">开启此食神谱后，以下卡片增幅倍率提升1.5</string>
 
 </resources>

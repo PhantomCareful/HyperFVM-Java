@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <!-- 1. mask 用于限制涟漪绘制区域（必须） -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp" />
+            <!-- 颜色可以是任意不透明颜色，只用于裁剪 -->
+            <solid android:color="?attr/colorSurface" />
+        </shape>
+    </item>
+    <!-- 2. 实际内容背景（透明，让父布局背景透出） -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp" />
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+</ripple>
