@@ -1,12 +1,9 @@
 package com.careful.HyperFVM.utils.ForCardData;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -139,13 +136,12 @@ public class CardDataHelper {
     }
 
     public static void selectAuxiliaryCardByName(Context context, String cardName) {
-        boolean isDynamicBackground;
-        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        boolean isDynamicBackground = HyperFVMApplication.isContentDynamicBackgroundEnabled();
 
         Intent intent;
         switch (cardName) {
             case "平射增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList1EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList1Activity.class);
@@ -153,7 +149,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "投手增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList2EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList2Activity.class);
@@ -161,7 +157,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "莓果点心":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList3EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList3Activity.class);
@@ -169,7 +165,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "香料虎":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList4EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList4Activity.class);
@@ -177,7 +173,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "塔利亚神使", "宴飨女神·塔利亚":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList5EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList5Activity.class);
@@ -185,7 +181,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "精灵龙":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList6EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList6Activity.class);
@@ -193,7 +189,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "五向增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList7EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList7Activity.class);
@@ -201,7 +197,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "喷壶增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList8EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList8Activity.class);
@@ -209,7 +205,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "固定轨迹增幅卡":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList9EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList9Activity.class);
@@ -217,7 +213,7 @@ public class CardDataHelper {
                 context.startActivity(intent);
                 break;
             case "炎焱兔":
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     intent = new Intent(context, AuxiliaryList10EffectActivity.class);
                 } else {
                     intent = new Intent(context, AuxiliaryList10Activity.class);
@@ -264,15 +260,14 @@ public class CardDataHelper {
         String imageIdStr = "";
         int imageResId;
 
-        boolean isDynamicBackground;
-        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        boolean isDynamicBackground = HyperFVMApplication.isContentDynamicBackgroundEnabled();
 
         // 相关卡片 - 金卡
         String correspondingGoldenCardName = getStringFromCursor(cursor, "corresponding_golden_card_name");
         Log.d("correspondingCard", "cardName: " + cardName + ", correspondingGoldenCardName: " + correspondingGoldenCardName);
         if (!correspondingGoldenCardName.equals("无")) {
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+            if (isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {
@@ -323,7 +318,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个融合卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -394,7 +389,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -444,7 +439,7 @@ public class CardDataHelper {
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+            if (isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {
@@ -538,8 +533,7 @@ public class CardDataHelper {
         String imageIdStr = "";
         int imageResId;
 
-        boolean isDynamicBackground;
-        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        boolean isDynamicBackground = HyperFVMApplication.isContentDynamicBackgroundEnabled();
 
         // 相关卡片 - 增幅卡
         String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
@@ -561,7 +555,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -606,7 +600,7 @@ public class CardDataHelper {
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+            if (isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {
@@ -660,8 +654,7 @@ public class CardDataHelper {
         String imageIdStr = "";
         int imageResId;
 
-        boolean isDynamicBackground;
-        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        boolean isDynamicBackground = HyperFVMApplication.isContentDynamicBackgroundEnabled();
 
         // 相关卡片 - 增幅卡
         String correspondingAuxiliaryCardName = getStringFromCursor(cursor, "corresponding_auxiliary_card_name");
@@ -683,7 +676,7 @@ public class CardDataHelper {
 
                 // 4. Inflate单个增幅卡片的布局（每次循环新建一个布局，避免复用导致的问题）
                 LinearLayout correspondingCardContainer;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+                if (isDynamicBackground) {
                     correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                             .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
                 } else {
@@ -727,7 +720,7 @@ public class CardDataHelper {
         ) {
             // 1. Inflate单个增幅卡片的布局
             LinearLayout correspondingCardContainer;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+            if (isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
                         .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
             } else {

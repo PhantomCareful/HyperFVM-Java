@@ -1,11 +1,9 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentForMultiView;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +28,6 @@ import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 public class CardDataOtherFragment extends Fragment {
     private final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
-    private boolean isDynamicBackground;
 
     private View root;
 
@@ -56,9 +53,8 @@ public class CardDataOtherFragment extends Fragment {
         }
 
         // 是否启用动态背景
-        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
 
-        if (isDynamicBackground) {
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
             root = inflater.inflate(R.layout.fragment_card_data_other_effect, container, false);
         } else {
             root = inflater.inflate(R.layout.fragment_card_data_other, container, false);
@@ -98,7 +94,7 @@ public class CardDataOtherFragment extends Fragment {
             for (int i = 1; i < additionalInfoArray.length; i++) {
                 CardView cardView;
                 if (additionalInfoArray[i].contains("😋食神谱")) {
-                    if (isDynamicBackground) {
+                    if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
                         cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_cookery_container_effect, card_data_other_container, false);
                     } else {
                         cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_cookery_container, card_data_other_container, false);
@@ -125,7 +121,7 @@ public class CardDataOtherFragment extends Fragment {
                     CardDataHelper.selectCookeryByName(additionalInfoArray[i].split("- ")[1].split("；")[0], cookery_container, getParentFragmentManager());
 
                 } else if (additionalInfoArray[i].contains("🔥秒产说明")) {
-                    if (isDynamicBackground) {
+                    if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
                         cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container_effect, card_data_other_container, false);
                     } else {
                         cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container, card_data_other_container, false);
@@ -141,7 +137,7 @@ public class CardDataOtherFragment extends Fragment {
 
                     i = i + 2;
                 } else {
-                    if (isDynamicBackground) {
+                    if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
                         cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container_effect, card_data_other_container, false);
                     } else {
                         cardView = (CardView) layoutInflater.inflate(R.layout.item_card_data_other_container, card_data_other_container, false);

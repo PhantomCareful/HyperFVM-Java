@@ -1,12 +1,10 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -56,10 +54,7 @@ public class CardDataDataFragment extends Fragment {
             savedScrollY = savedInstanceState.getInt("scrollY", 0);
         }
 
-        // 是否启用动态背景
-        boolean isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
-
-        if (isDynamicBackground) {
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
             root = inflater.inflate(R.layout.fragment_card_data_data_effect, container, false);
         } else {
             root = inflater.inflate(R.layout.fragment_card_data_data, container, false);

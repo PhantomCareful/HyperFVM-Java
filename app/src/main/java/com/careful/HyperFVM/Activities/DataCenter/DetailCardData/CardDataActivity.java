@@ -1,10 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
-
 import android.annotation.SuppressLint;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,7 +40,6 @@ public class CardDataActivity extends BaseActivity {
     private BlurUtil blurUtil;
 
     private BgEffectController bgEffectController;
-    private boolean isDynamicBackground;
 
     private String cardName;// 待查询的防御卡名称
     private String tableName;// 待查询的防御卡所在的数据表名称
@@ -79,9 +75,6 @@ public class CardDataActivity extends BaseActivity {
 
         // 获取需要导出的图片清单
         generateExportInfoList();
-
-        // 是否启用动态背景
-        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager2 viewPager2 = findViewById(R.id.View_Page2);
@@ -291,7 +284,7 @@ public class CardDataActivity extends BaseActivity {
         topBar.setText(cardName);
 
         // 加载动态背景
-        if (isDynamicBackground) {
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
             View bgView = findViewById(R.id.bgEffectView);
             if (bgView != null) {
                 bgEffectController = new BgEffectController(bgView);

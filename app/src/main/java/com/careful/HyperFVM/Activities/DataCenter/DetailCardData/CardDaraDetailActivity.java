@@ -1,9 +1,6 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
-
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +13,6 @@ import androidx.activity.EdgeToEdge;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
@@ -27,11 +23,9 @@ import com.google.android.material.card.MaterialCardView;
 
 @SuppressWarnings("SuspiciousNameCombination")
 public class CardDaraDetailActivity extends BaseActivity {
-    private final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
     private BlurUtil blurUtil;
 
     private BgEffectController bgEffectController;
-    private boolean isDynamicBackground;
 
     private String cardName;
     private int tableId;
@@ -50,7 +44,6 @@ public class CardDaraDetailActivity extends BaseActivity {
         ThemeManager.applyTheme(this);
 
         // 是否启用动态背景
-        isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
 
         super.onCreate(savedInstanceState);
 
@@ -59,7 +52,7 @@ public class CardDaraDetailActivity extends BaseActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
             setContentView(R.layout.activity_card_dara_detail_effect);
         } else {
             setContentView(R.layout.activity_card_dara_detail);
@@ -204,7 +197,7 @@ public class CardDaraDetailActivity extends BaseActivity {
         TextView topBar = findViewById(R.id.topBar);
         topBar.setText(cardName + " - 数据横屏展示");
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
             View bgView = findViewById(R.id.bgEffectView);
             if (bgView != null) {
                 bgEffectController = new BgEffectController(bgView);

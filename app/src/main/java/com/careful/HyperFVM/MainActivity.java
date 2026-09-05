@@ -1,10 +1,7 @@
 package com.careful.HyperFVM;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
-
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,7 +14,6 @@ import com.careful.HyperFVM.Fragments.AboutApp.AboutAppEffectFragment;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.Dashboard.DashboardFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
-import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.NoPaddingBottomNavigationView.NoPaddingBottomNavigationView;
@@ -42,7 +38,6 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding binding;
-    private DBHelper dbHelper;
     private List<Integer> menuOrder; // 导航菜单顺序
     private BottomNavigationView navView;
 
@@ -53,7 +48,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mainHandler = new Handler(Looper.getMainLooper()); // 初始化主线程 Handler
-        dbHelper = HyperFVMApplication.getDBHelper();
 
         // 启动时进行签名校验
         new Thread(() -> {
@@ -111,9 +105,7 @@ public class MainActivity extends BaseActivity {
             // 添加Fragment
             viewPagerAdapter.addFragment(new DashboardFragment(), getResources().getString(R.string.top_bar_dashboard));
             viewPagerAdapter.addFragment(new DataCenterFragment(), getResources().getString(R.string.top_bar_data_center));
-            // 是否启用动态背景
-            boolean isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && isDynamicBackground) {
+            if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
                 viewPagerAdapter.addFragment(new AboutAppEffectFragment(), getResources().getString(R.string.top_bar_about_app));
             } else {
                 viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));

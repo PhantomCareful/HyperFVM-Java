@@ -243,7 +243,7 @@ public class SettingsActivity extends BaseActivity {
         fontScale = dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE);
         fontScaleSlider.setValue(fontScale);
         // 动态背景开关
-        boolean isDynamicBackground = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_BACKGROUND);
+        boolean isDynamicBackground = HyperFVMApplication.isContentDynamicBackgroundEnabled();
         materialSwitch = findViewById(R.id.Switch_isDynamicBackground);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             materialSwitch.setEnabled(true);
@@ -323,6 +323,8 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_isDynamicBackground);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_BACKGROUND, Boolean.toString(isChecked));
+            // 同步更新 Application 中的缓存值，保证新打开的页面无需重启也能读取到最新设置
+            HyperFVMApplication.setContentIsDynamicBackground(isChecked);
             Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
         });
         // Toast显示设置开关
