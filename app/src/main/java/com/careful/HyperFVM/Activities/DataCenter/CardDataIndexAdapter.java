@@ -53,7 +53,7 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
     private static final int GROUP_CORNER_RADIUS_DP = 20;
 
     private final Context context;
-    /** 47 个分节的标题文案（顺序与 CardDataCatalogData.PREFIXES 一致） */
+    /** 47 个分节的标题文案（顺序与 CardDataCatalogData.SECTION_PREFIXES 一致） */
     private final List<String> sectionTitles;
     /** 单卡布局缓存：布局名 -> 资源 id */
     private final Map<String, Integer> cellLayoutCache = new HashMap<>();
@@ -120,11 +120,11 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
      * 绑定一个分节卡片组：分节变化时重新组装整组，否则直接复用（点击事件已在组装时挂好）。
      */
     private void bindGroup(ViewHolder holder, int sectionIndex) {
-        if (sectionIndex < 0 || sectionIndex >= CardDataCatalogData.PREFIXES.length) {
+        if (sectionIndex < 0 || sectionIndex >= CardDataCatalogData.SECTION_PREFIXES.length) {
             Log.w(TAG, "找不到分节卡片组 sectionIndex=" + sectionIndex);
             return;
         }
-        String prefix = CardDataCatalogData.PREFIXES[sectionIndex];
+        String prefix = CardDataCatalogData.SECTION_PREFIXES[sectionIndex];
 
         View groupView = holder.groupContainer.getChildAt(0);
         if (groupView == null || !prefix.equals(holder.lastInflatedPrefix)) {
@@ -138,7 +138,7 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
     /**
      * 创建与原始分节容器同款外观的卡片组：圆角 CardView
      * （?attr/GeneralCardViewBackground 背景 + 20dp 圆角）内竖向排列该分节全部单卡，
-     * 单卡数量与顺序以 CardDataCatalogData.NAMES 为准，并给每张卡绑定唯一点击事件。
+     * 单卡数量与顺序以 CardDataCatalogData.SECTION_NAMES 为准，并给每张卡绑定唯一点击事件。
      */
     private View buildSectionCardGroup(int sectionIndex) {
         // 分组容器：样式与原先 card_card_data_index_X_Y.xml 根 CardView 保持一致
@@ -156,8 +156,8 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
         groupCard.addView(innerLayout, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        String prefix = CardDataCatalogData.PREFIXES[sectionIndex];
-        String[] cardNames = CardDataCatalogData.NAMES[sectionIndex];
+        String prefix = CardDataCatalogData.SECTION_PREFIXES[sectionIndex];
+        String[] cardNames = CardDataCatalogData.SECTION_NAMES[sectionIndex];
         for (int row = 0; row < cardNames.length; row++) {
             View cellView = layoutInflater.inflate(
                     resolveCellLayoutRes(prefix, row + 1), innerLayout, false);
@@ -210,7 +210,7 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
 
     @Override
     public int getItemCount() {
-        return CardDataCatalogData.PREFIXES.length * 2 + 1;
+        return CardDataCatalogData.SECTION_PREFIXES.length * 2 + 1;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

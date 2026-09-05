@@ -41,8 +41,6 @@ import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class CardDataIndexActivity extends BaseActivity {
@@ -59,59 +57,6 @@ public class CardDataIndexActivity extends BaseActivity {
     private int savedScrollY = 0;            // 用于保存/恢复的滚动位置
     private int backgroundImageMaxScroll1;   // 判定完全消失的滚动距离（dp 转 px）
     private int backgroundImageMaxScroll2;   // 判定完全消失的滚动距离（dp 转 px）
-
-    /**
-     * 标题导航弹窗按钮 id（顺序与分节顺序严格一致，供循环绑定点击事件）
-     */
-    private static final int[] TITLE_NAVIGATION_BUTTON_IDS = {
-            R.id.button_card_category_index_1_1,
-            R.id.button_card_category_index_1_2,
-            R.id.button_card_category_index_1_3,
-            R.id.button_card_category_index_1_4,
-            R.id.button_card_category_index_2_1,
-            R.id.button_card_category_index_2_2,
-            R.id.button_card_category_index_2_3,
-            R.id.button_card_category_index_3_1,
-            R.id.button_card_category_index_3_2,
-            R.id.button_card_category_index_3_3,
-            R.id.button_card_category_index_4_1,
-            R.id.button_card_category_index_4_2,
-            R.id.button_card_category_index_4_3,
-            R.id.button_card_category_index_5_1,
-            R.id.button_card_category_index_5_2,
-            R.id.button_card_category_index_6_1,
-            R.id.button_card_category_index_6_2,
-            R.id.button_card_category_index_7_1,
-            R.id.button_card_category_index_7_2,
-            R.id.button_card_category_index_8_1,
-            R.id.button_card_category_index_8_2,
-            R.id.button_card_category_index_9_1,
-            R.id.button_card_category_index_9_2,
-            R.id.button_card_category_index_9_3,
-            R.id.button_card_category_index_9_4,
-            R.id.button_card_category_index_9_5,
-            R.id.button_card_category_index_10_1,
-            R.id.button_card_category_index_10_2,
-            R.id.button_card_category_index_10_3,
-            R.id.button_card_category_index_10_4,
-            R.id.button_card_category_index_11_2,
-            R.id.button_card_category_index_11_3,
-            R.id.button_card_category_index_11_4,
-            R.id.button_card_category_index_12_1,
-            R.id.button_card_category_index_12_2,
-            R.id.button_card_category_index_12_3,
-            R.id.button_card_category_index_12__1,
-            R.id.button_card_category_index_12__2,
-            R.id.button_card_category_index_12__3,
-            R.id.button_card_category_index_12__4,
-            R.id.button_card_category_index_13_1,
-            R.id.button_card_category_index_13_2,
-            R.id.button_card_category_index_13_3,
-            R.id.button_card_category_index_13_4,
-            R.id.button_card_category_index_14_1,
-            R.id.button_card_category_index_14_2,
-            R.id.button_card_category_index_15_1
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,68 +111,10 @@ public class CardDataIndexActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        adapter = new CardDataIndexAdapter(this, buildSectionTitles());
+        adapter = new CardDataIndexAdapter(this, CardDataCatalogData.buildSectionTitles(this));
         recyclerView.setAdapter(adapter);
         // 注意：滚动位置恢复不在这里执行——必须在滚动监听器注册完成后才能恢复
         // （详见 initDecoration 末尾），保证恢复动作能经由 onScrolled 的 dy 累计出真实偏移。
-    }
-
-    /**
-     * 构建 47 个分节的标题文案（按顺序逐条罗列，增删分节时直接在此增删即可）。
-     * 注意：13_x 分节历史归类在 text_data_images_index_card_12_ 下，
-     * 子标题名为 text_data_images_index_card_12__n；16_1 分节只有一个独立标题。
-     */
-    @SuppressLint("SetTextI18n")
-    private List<String> buildSectionTitles() {
-        List<String> titles = new ArrayList<>(47);
-        titles.add(getString(R.string.text_data_images_index_card_1) + " - " + getString(R.string.text_data_images_index_card_1_1));
-        titles.add(getString(R.string.text_data_images_index_card_1) + " - " + getString(R.string.text_data_images_index_card_1_2));
-        titles.add(getString(R.string.text_data_images_index_card_1) + " - " + getString(R.string.text_data_images_index_card_1_3));
-        titles.add(getString(R.string.text_data_images_index_card_1) + " - " + getString(R.string.text_data_images_index_card_1_4));
-        titles.add(getString(R.string.text_data_images_index_card_2) + " - " + getString(R.string.text_data_images_index_card_2_1));
-        titles.add(getString(R.string.text_data_images_index_card_2) + " - " + getString(R.string.text_data_images_index_card_2_2));
-        titles.add(getString(R.string.text_data_images_index_card_2) + " - " + getString(R.string.text_data_images_index_card_2_3));
-        titles.add(getString(R.string.text_data_images_index_card_3) + " - " + getString(R.string.text_data_images_index_card_3_1));
-        titles.add(getString(R.string.text_data_images_index_card_3) + " - " + getString(R.string.text_data_images_index_card_3_2));
-        titles.add(getString(R.string.text_data_images_index_card_3) + " - " + getString(R.string.text_data_images_index_card_3_3));
-        titles.add(getString(R.string.text_data_images_index_card_4) + " - " + getString(R.string.text_data_images_index_card_4_1));
-        titles.add(getString(R.string.text_data_images_index_card_4) + " - " + getString(R.string.text_data_images_index_card_4_2));
-        titles.add(getString(R.string.text_data_images_index_card_4) + " - " + getString(R.string.text_data_images_index_card_4_3));
-        titles.add(getString(R.string.text_data_images_index_card_5) + " - " + getString(R.string.text_data_images_index_card_5_1));
-        titles.add(getString(R.string.text_data_images_index_card_5) + " - " + getString(R.string.text_data_images_index_card_5_2));
-        titles.add(getString(R.string.text_data_images_index_card_6) + " - " + getString(R.string.text_data_images_index_card_6_1));
-        titles.add(getString(R.string.text_data_images_index_card_6) + " - " + getString(R.string.text_data_images_index_card_6_2));
-        titles.add(getString(R.string.text_data_images_index_card_7) + " - " + getString(R.string.text_data_images_index_card_7_1));
-        titles.add(getString(R.string.text_data_images_index_card_7) + " - " + getString(R.string.text_data_images_index_card_7_2));
-        titles.add(getString(R.string.text_data_images_index_card_8) + " - " + getString(R.string.text_data_images_index_card_8_1));
-        titles.add(getString(R.string.text_data_images_index_card_8) + " - " + getString(R.string.text_data_images_index_card_8_2));
-        titles.add(getString(R.string.text_data_images_index_card_9) + " - " + getString(R.string.text_data_images_index_card_9_1));
-        titles.add(getString(R.string.text_data_images_index_card_9) + " - " + getString(R.string.text_data_images_index_card_9_2));
-        titles.add(getString(R.string.text_data_images_index_card_9) + " - " + getString(R.string.text_data_images_index_card_9_3));
-        titles.add(getString(R.string.text_data_images_index_card_9) + " - " + getString(R.string.text_data_images_index_card_9_4));
-        titles.add(getString(R.string.text_data_images_index_card_9) + " - " + getString(R.string.text_data_images_index_card_9_5));
-        titles.add(getString(R.string.text_data_images_index_card_10) + " - " + getString(R.string.text_data_images_index_card_10_1));
-        titles.add(getString(R.string.text_data_images_index_card_10) + " - " + getString(R.string.text_data_images_index_card_10_2));
-        titles.add(getString(R.string.text_data_images_index_card_10) + " - " + getString(R.string.text_data_images_index_card_10_3));
-        titles.add(getString(R.string.text_data_images_index_card_10) + " - " + getString(R.string.text_data_images_index_card_10_4));
-        titles.add(getString(R.string.text_data_images_index_card_11) + " - " + getString(R.string.text_data_images_index_card_11_2));
-        titles.add(getString(R.string.text_data_images_index_card_11) + " - " + getString(R.string.text_data_images_index_card_11_3));
-        titles.add(getString(R.string.text_data_images_index_card_11) + " - " + getString(R.string.text_data_images_index_card_11_4));
-        titles.add(getString(R.string.text_data_images_index_card_12) + " - " + getString(R.string.text_data_images_index_card_12_1));
-        titles.add(getString(R.string.text_data_images_index_card_12) + " - " + getString(R.string.text_data_images_index_card_12_2));
-        titles.add(getString(R.string.text_data_images_index_card_12) + " - " + getString(R.string.text_data_images_index_card_12_3));
-        titles.add(getString(R.string.text_data_images_index_card_12_) + " - " + getString(R.string.text_data_images_index_card_12__1));
-        titles.add(getString(R.string.text_data_images_index_card_12_) + " - " + getString(R.string.text_data_images_index_card_12__2));
-        titles.add(getString(R.string.text_data_images_index_card_12_) + " - " + getString(R.string.text_data_images_index_card_12__3));
-        titles.add(getString(R.string.text_data_images_index_card_12_) + " - " + getString(R.string.text_data_images_index_card_12__4));
-        titles.add(getString(R.string.text_data_images_index_card_13) + " - " + getString(R.string.text_data_images_index_card_13_1));
-        titles.add(getString(R.string.text_data_images_index_card_13) + " - " + getString(R.string.text_data_images_index_card_13_2));
-        titles.add(getString(R.string.text_data_images_index_card_13) + " - " + getString(R.string.text_data_images_index_card_13_3));
-        titles.add(getString(R.string.text_data_images_index_card_13) + " - " + getString(R.string.text_data_images_index_card_13_4));
-        titles.add(getString(R.string.text_data_images_index_card_14) + " - " + getString(R.string.text_data_images_index_card_14_1));
-        titles.add(getString(R.string.text_data_images_index_card_14) + " - " + getString(R.string.text_data_images_index_card_14_2));
-        titles.add(getString(R.string.text_data_images_index_card_15));
-        return titles;
     }
 
     /**
@@ -243,9 +130,9 @@ public class CardDataIndexActivity extends BaseActivity {
                 .create();
 
         // 循环绑定：弹窗按钮顺序与分节顺序一一对应，点击后滚动到对应标题
-        for (int i = 0; i < TITLE_NAVIGATION_BUTTON_IDS.length; i++) {
+        for (int i = 0; i < CardDataCatalogData.SECTION_BUTTON_RES_IDS.length; i++) {
             final int sectionIndex = i;
-            dialogView.findViewById(TITLE_NAVIGATION_BUTTON_IDS[i]).setOnClickListener(v -> {
+            dialogView.findViewById(CardDataCatalogData.SECTION_BUTTON_RES_IDS[i]).setOnClickListener(v -> {
                 runFastScroll(sectionIndex);
                 dialog.dismiss();
             });
@@ -263,7 +150,7 @@ public class CardDataIndexActivity extends BaseActivity {
      */
     private void runFastScroll(int sectionIndex) {
         if (recyclerView == null || adapter == null || sectionIndex < 0
-                || sectionIndex >= CardDataCatalogData.PREFIXES.length) {
+                || sectionIndex >= CardDataCatalogData.SECTION_PREFIXES.length) {
             return;
         }
         int headerPosition = adapter.getHeaderPosition(sectionIndex);
