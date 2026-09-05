@@ -58,6 +58,9 @@ public class CardDataIndexActivity extends BaseActivity {
     private int backgroundImageMaxScroll1;   // 判定完全消失的滚动距离（dp 转 px）
     private int backgroundImageMaxScroll2;   // 判定完全消失的滚动距离（dp 转 px）
 
+    /** 背景随机图清单（每行 {drawable 名, 卡名}）：重建时沿用原图，仅全新进入才重新随机 */
+    private String[][] backgroundCardImageFileInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -79,6 +82,9 @@ public class CardDataIndexActivity extends BaseActivity {
         // 恢复之前保存的滚动位置
         if (savedInstanceState != null) {
             savedScrollY = savedInstanceState.getInt("scrollY", 0);
+            // 重建（深色模式切换、小窗等）时沿用重建前的背景随机图；完全销毁后重新进入才重新随机
+            backgroundCardImageFileInfo =
+                    (String[][]) savedInstanceState.getSerializable("backgroundCardImageFileInfo");
         }
 
         // 装配虚拟化目录列表（分节标题 + 367 张卡片，按需创建与解码）
@@ -256,7 +262,12 @@ public class CardDataIndexActivity extends BaseActivity {
                     findViewById(R.id.card_data_index_background_image_6),
             };
 
-            String[][] cardImageFileInfoArray = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(6);
+            // 全新进入才重新随机（重建时 onCreate 已从 savedInstanceState 恢复出原清单）
+            if (backgroundCardImageFileInfo == null || backgroundCardImageFileInfo.length != 6) {
+                backgroundCardImageFileInfo = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(6);
+            }
+            // final 别名：下方匿名监听器/lambda 只能捕获 effectively final 的局部变量
+            final String[][] cardImageFileInfoArray = backgroundCardImageFileInfo;
 
             // 展示随机图片
             for (int i = 0; i < 6; i++) {
@@ -328,7 +339,12 @@ public class CardDataIndexActivity extends BaseActivity {
                     findViewById(R.id.card_data_index_background_image_7),
             };
 
-            String[][] cardImageFileInfoArray = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(7);
+            // 全新进入才重新随机（重建时 onCreate 已从 savedInstanceState 恢复出原清单）
+            if (backgroundCardImageFileInfo == null || backgroundCardImageFileInfo.length != 7) {
+                backgroundCardImageFileInfo = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(7);
+            }
+            // final 别名：下方匿名监听器/lambda 只能捕获 effectively final 的局部变量
+            final String[][] cardImageFileInfoArray = backgroundCardImageFileInfo;
 
             for (int i = 0; i < 7; i++) {
                 int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
@@ -414,6 +430,9 @@ public class CardDataIndexActivity extends BaseActivity {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("scrollY", savedScrollY);
+        if (backgroundCardImageFileInfo != null) {
+            outState.putSerializable("backgroundCardImageFileInfo", backgroundCardImageFileInfo);
+        }
     }
 
     @Override
