@@ -249,7 +249,8 @@ public class IcuHelper {
             isFraud = in.readByte() != 0;
             qq = in.readString();
             recordTime = in.readString();
-            victims = in.readArrayList(VictimInfo.class.getClassLoader());
+            // createTypedArrayList 按 CREATOR 逐项反序列化，返回带正确泛型的列表，避免 unchecked 警告
+            victims = in.createTypedArrayList(VictimInfo.CREATOR);
             fraudCount = in.readInt();
             fraudAmount = in.readString();
             uncertainAmountCount = in.readInt();
@@ -261,7 +262,8 @@ public class IcuHelper {
             dest.writeByte((byte) (isFraud ? 1 : 0));
             dest.writeString(qq);
             dest.writeString(recordTime);
-            dest.writeList(victims);
+            // 与读取端的 createTypedArrayList 成对使用（同格式：空列表/-1 标记均兼容）
+            dest.writeTypedList(victims);
             dest.writeInt(fraudCount);
             dest.writeString(fraudAmount);
             dest.writeInt(uncertainAmountCount);
