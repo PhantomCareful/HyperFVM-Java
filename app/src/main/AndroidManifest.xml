@@ -176,9 +176,6 @@
             android:name=".Activities.TodayLuckyActivity"
             android:exported="false" />
         <activity
-            android:name=".BuildingActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
