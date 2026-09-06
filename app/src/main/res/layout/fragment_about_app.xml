@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ContentDescription,TooManyViews">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/targetView"
@@ -37,7 +38,8 @@
                     android:layout_marginVertical="10dp"
                     android:text="@string/title_about_app_check_update_1"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -58,8 +60,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_arrow_up_circle"
-                            app:tint="?attr/VectorGraphicColorOnImportantCardView"
-                            tools:ignore="ContentDescription" />
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -92,8 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="?attr/VectorGraphicColorOnImportantCardView"
-                            tools:ignore="ContentDescription" />
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                     </LinearLayout>
 
@@ -106,7 +106,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/title_about_app_developer_name"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -135,8 +136,7 @@
                                 android:adjustViewBounds="true"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/phantom_careful"
-                                android:layout_gravity="start|center_vertical"
-                                tools:ignore="ContentDescription" />
+                                android:layout_gravity="start|center_vertical" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -167,8 +167,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_github"
-                                app:tint="?attr/VectorGraphicColorOnImportantCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                         </LinearLayout>
 
@@ -184,8 +183,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_account_group"
-                                app:tint="?attr/VectorGraphicColorOnImportantCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -216,8 +214,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnImportantCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                         </LinearLayout>
 
@@ -233,7 +230,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/title_about_app_thanks_list"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/about_app_thanks_list_container"
@@ -260,8 +258,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_account_multiple"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -283,7 +280,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_thanks_list_fvm_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
                             </LinearLayout>
@@ -292,8 +289,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -309,8 +305,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_github"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -332,7 +327,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_thanks_list_app_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp" />
 
                             </LinearLayout>
@@ -341,8 +336,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -358,7 +352,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/label_some_necessary_things"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/about_app_some_necessary_things_container"
@@ -388,8 +383,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_notebook"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -410,7 +404,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_using_instruction_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -420,8 +414,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -440,8 +433,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_settings_normal"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -462,7 +454,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_settings_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -472,8 +464,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -489,7 +480,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/label_more"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/about_app_more_container"
@@ -520,8 +512,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_github"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -542,7 +533,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_github_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -552,8 +543,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -572,8 +562,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_cloud_download"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -594,7 +583,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_get_update_123pan_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -604,8 +593,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -624,8 +612,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_bilibili"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -646,7 +633,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_bilibili_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -656,8 +643,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -676,8 +662,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_qq"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -698,7 +683,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_tencent_channel_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -708,8 +693,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -728,8 +712,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_qq"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -750,7 +733,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_tencent_group_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -760,8 +743,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -780,8 +762,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_pencil"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -802,7 +783,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_see_update_log_history_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
                             </LinearLayout>
@@ -812,8 +793,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -838,8 +818,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/app_icon_in"
-                android:layout_gravity="center"
-                tools:ignore="ContentDescription" />
+                android:layout_gravity="center" />
 
             <TextView
                 android:id="@+id/about_app_name"
@@ -859,7 +838,7 @@
                 android:layout_gravity="center"
                 android:text="@string/version_info"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"/>
+                android:textColor="?attr/colorOnSurfaceVariant"/>
 
         </LinearLayout>
 

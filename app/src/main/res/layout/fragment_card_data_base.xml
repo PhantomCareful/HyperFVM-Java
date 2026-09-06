@@ -161,7 +161,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_base_info"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"/>
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/Card_BaseInfo_1"
@@ -322,7 +323,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_transfer_change"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface" />
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/Card_TransferChange"
@@ -361,7 +363,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_corresponding_info"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface"
                 android:visibility="gone"/>
 
             <!--融合卡专属-->
@@ -590,7 +593,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/title_card_data_corresponding_info_demo"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                 android:textSize="15sp" />
                         </LinearLayout>
 
@@ -634,7 +637,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/title_card_data_corresponding_info_demo"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                 android:textSize="15sp" />
                         </LinearLayout>
 

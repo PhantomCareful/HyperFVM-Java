@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:text="@string/title_dashboard_cross_server_team_up"
-                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                 android:textSize="15sp"/>
 
             <TextView

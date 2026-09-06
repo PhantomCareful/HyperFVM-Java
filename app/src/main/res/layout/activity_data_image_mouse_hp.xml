@@ -48,6 +48,56 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/tips_data_image_mouse_hp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_bulb"
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tips_data_images_index_mouse_hp_title"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tips_data_images_index_mouse_hp_description"
+                                android:textSize="15sp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
@@ -65,46 +115,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_1"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_1_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_1_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -114,46 +144,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_2"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_2_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_2_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -163,46 +173,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_3"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_3_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_3_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -212,46 +202,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_4"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_4_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_4_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -261,46 +231,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_5"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_5_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_5_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -310,46 +260,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_6"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_6_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_6_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -359,46 +289,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_7"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_7_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_7_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -408,46 +318,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_8"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_8_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_8_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -457,46 +347,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_9"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_9_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_9_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -506,46 +376,26 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:background="?attr/selectableItemBackground">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_water"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
-
-                            <LinearLayout
+                            <!-- 左侧文字 -->
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_mouse_hp_10"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_10_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_mouse_hp_10_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
-
-                            </LinearLayout>
-
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -572,7 +422,7 @@
     <View
         android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:background="@drawable/status_bar_gradient_no_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -28,8 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name_card_data_index_11_4_7_1"
-            android:textColor="?attr/TextViewColorOnGeneralCardView"
-            android:textSize="11sp" />
+            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <!-- 右侧卡片 -->

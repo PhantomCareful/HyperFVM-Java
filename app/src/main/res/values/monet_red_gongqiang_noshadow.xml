@@ -10,10 +10,14 @@
         <!--一般CardView-->
         <!--卡片颜色-->
         <item name="GeneralCardViewBackground">?attr/colorSurfaceContainer</item>
+        <!--标题文字颜色-->
+        <item name="TitleTextViewColorOnSurface">?attr/colorPrimary</item>
         <!--文字颜色-->
-        <item name="TextViewColorOnGeneralCardView">?attr/colorPrimary</item>
+        <item name="TextViewColorOnGeneralCardView">?attr/colorOnSurface</item>
+        <!--次要文字颜色-->
+        <item name="SummaryTextViewColorOnGeneralCardView">?attr/colorOnSurfaceVariant</item>
         <!--矢量图颜色-->
-        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorPrimary</item>
+        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorOnSurface</item>
 
         <!--重要CardView-->
         <!--卡片颜色-->

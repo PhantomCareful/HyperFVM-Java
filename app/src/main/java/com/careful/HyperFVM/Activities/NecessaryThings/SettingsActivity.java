@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.NecessaryThings;
 
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -64,6 +68,8 @@ public class SettingsActivity extends BaseActivity {
     // 使用标志位来防止循环调用
     private boolean isPermitSwitchChanging = false;
 
+    private int savedScrollY = 0;// 用于保存/恢复的滚动位置
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 设置主题（必须在super.onCreate前调用才有效）
@@ -76,6 +82,11 @@ public class SettingsActivity extends BaseActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
         setContentView(R.layout.activity_settings);
+
+        // 恢复之前保存的滚动位置（切换深浅色模式重建等场景）
+        if (savedInstanceState != null) {
+            savedScrollY = savedInstanceState.getInt("scrollY", 0);
+        }
 
         // 初始化数据库
         dbHelper = HyperFVMApplication.getDBHelper();
@@ -273,8 +284,8 @@ public class SettingsActivity extends BaseActivity {
             materialSwitch.setChecked(false);
             materialSwitch.setEnabled(false);
             TextView BiometricAuthDescription = findViewById(R.id.TextView_BiometricAuth_Description);
-            BiometricAuthDescription.setText(getResources().getString(R.string.label_settings_biometric_auth_description_not_support) + "\n" +
-                    getResources().getString(R.string.label_settings_biometric_auth_description));
+            BiometricAuthDescription.setText(getResources().getString(R.string.description_settings_biometric_auth_description_not_support) + "\n" +
+                    getResources().getString(R.string.description_settings_biometric_auth));
         }
     }
 
@@ -366,6 +377,7 @@ public class SettingsActivity extends BaseActivity {
      * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
@@ -394,17 +406,33 @@ public class SettingsActivity extends BaseActivity {
             params.rightMargin = layout_marginHorizontal;
             settings_container.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            topBarContainer.setLayoutParams(params);
-
             params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             floatButtonBackContainer.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonRestartContainer.getLayoutParams();
+            params.rightMargin = layout_marginHorizontal;
+            floatButtonRestartContainer.setLayoutParams(params);
         });
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 保存/恢复滚动位置（切换深浅色模式重建时保持上次位置）
+        ScrollView scrollView = findViewById(R.id.ScrollView);
+        if (scrollView != null) {
+            scrollView.post(() -> scrollView.setScrollY(savedScrollY));// 还原当前滚动位置
+            scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->
+                    savedScrollY = scrollY);// 实时记录当前滚动位置
+        }
+
+        // 添加按压动画
+        findViewById(R.id.tips_theme).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.tips_dynamic_background).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.tips_toast).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**
@@ -434,6 +462,12 @@ public class SettingsActivity extends BaseActivity {
         super.onResume();
         // 检查权限授予状态
         checkPermissionStates();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("scrollY", savedScrollY);
     }
 
     @Override

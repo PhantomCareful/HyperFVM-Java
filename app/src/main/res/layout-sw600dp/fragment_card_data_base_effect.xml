@@ -168,6 +168,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_base_info"
                 android:textSize="15sp"
+                android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"/>
 
             <androidx.cardview.widget.CardView
@@ -334,6 +335,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_transfer_change"
                 android:textSize="15sp"
+                android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface" />
 
             <androidx.cardview.widget.CardView
@@ -374,6 +376,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_corresponding_info"
                 android:textSize="15sp"
+                android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
                 android:visibility="gone"/>
 
@@ -604,7 +607,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/title_card_data_corresponding_info_demo"
-                                android:textColor="?attr/colorOnSurface"
+                                android:textColor="?attr/colorOnSurfaceVariant"
                                 android:textSize="15sp" />
                         </LinearLayout>
 
@@ -648,7 +651,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/title_card_data_corresponding_info_demo"
-                                android:textColor="?attr/colorOnSurface"
+                                android:textColor="?attr/colorOnSurfaceVariant"
                                 android:textSize="15sp" />
                         </LinearLayout>
 

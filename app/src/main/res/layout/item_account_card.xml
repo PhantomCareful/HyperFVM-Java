@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
         <!-- 角色ID -->
@@ -29,8 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="?attr/TextViewColorOnGeneralCardView"
-            android:layout_marginTop="5dp" />
+            android:textStyle="bold"
+            android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
         <!-- openid（可设为较小字体或隐藏） -->
         <TextView
@@ -38,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textColor="?attr/TextViewColorOnGeneralCardView"
+            android:textStyle="bold"
+            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
             android:layout_marginTop="5dp" />
 
     </LinearLayout>

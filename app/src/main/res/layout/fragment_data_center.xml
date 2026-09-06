@@ -40,7 +40,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/label_tools_made_by_xiaye"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -69,7 +70,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/label_tools_made_by_phantom_careful"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <include layout="@layout/card_today_lucky"/>
                 <include layout="@layout/card_prestige_calculator"/>

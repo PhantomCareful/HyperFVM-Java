@@ -81,8 +81,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -129,8 +129,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -177,8 +177,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -242,8 +242,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -290,8 +290,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -338,8 +338,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -386,8 +386,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -451,8 +451,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -499,8 +499,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -547,8 +547,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -595,8 +595,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->
@@ -643,8 +643,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="11sp" />
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
                             </LinearLayout>
 
                             <!-- 右侧卡片 -->

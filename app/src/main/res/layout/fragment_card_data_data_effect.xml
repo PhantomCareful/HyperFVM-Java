@@ -29,6 +29,7 @@
             android:layout_marginBottom="10dp"
             android:text="强化提升：攻击力"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="?attr/colorOnSurface"/>
 
         <androidx.cardview.widget.CardView
@@ -427,8 +428,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="10dp"
-            android:text="🌟金卡援护"
+            android:text="金卡援护"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="?attr/colorOnSurface"
             android:visibility="gone"/>
 
@@ -479,6 +481,7 @@
             android:layout_marginBottom="10dp"
             android:text="品阶提升：攻击附加"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="?attr/colorOnSurface"
             android:visibility="gone"/>
 
@@ -846,6 +849,7 @@
             android:layout_marginBottom="10dp"
             android:text="技能提升：攻击间隔"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="?attr/colorOnSurface"/>
 
         <androidx.cardview.widget.CardView
@@ -1100,6 +1104,7 @@
             android:layout_marginBottom="10dp"
             android:text="@string/title_card_data_decompose_and_get_info_golden"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="?attr/colorOnSurface"/>
 
         <androidx.cardview.widget.CardView
@@ -1752,7 +1757,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/description_decompose_and_get_calculator"
-                        android:textColor="?attr/colorOnSurface"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="15sp" />
                 </LinearLayout>
 

@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="10dp"
-                    android:paddingTop="120dp"
+                    android:paddingTop="100dp"
                     android:paddingBottom="50dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
@@ -568,8 +568,9 @@
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_card_data_auxiliary_list_content"
-                        android:textColor="?attr/colorOnSurface"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"

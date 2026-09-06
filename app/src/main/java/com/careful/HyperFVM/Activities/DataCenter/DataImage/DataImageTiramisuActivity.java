@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter.DataImage;
 
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -109,6 +112,10 @@ public class DataImageTiramisuActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.tips_data_image_tiramisu).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

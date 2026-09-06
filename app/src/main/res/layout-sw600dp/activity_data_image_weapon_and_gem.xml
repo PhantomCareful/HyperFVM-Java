@@ -53,7 +53,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -66,48 +66,42 @@
                             android:id="@+id/data_images_index_weapon_and_gem_0_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_chevron_triple_up"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:background="?attr/selectableItemBackground">
 
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginStart="16dp"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:gravity="center_vertical"
+                                android:layout_marginEnd="16dp"
                                 android:orientation="vertical">
 
+                                <!-- 左侧文字 -->
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_weapon_and_gem_0_1_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:text="@string/title_data_images_index_weapon_and_gem_0_1"
                                     android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/text_data_images_index_weapon_and_gem_0_1_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="15sp" />
+                                    android:text="@string/description_data_images_index_weapon_and_gem_0_1"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                             </LinearLayout>
 
+                            <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -141,7 +135,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -154,35 +148,28 @@
                             android:id="@+id/data_images_index_weapon_and_gem_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_gun"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:background="?attr/selectableItemBackground">
 
                             <!-- 左侧文字 -->
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
                                 android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_1"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_weapon_and_gem_1"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -190,35 +177,28 @@
                             android:id="@+id/data_images_index_weapon_and_gem_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_shield_half_full"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:background="?attr/selectableItemBackground">
 
                             <!-- 左侧文字 -->
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
                                 android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_2"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_weapon_and_gem_2"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -226,35 +206,28 @@
                             android:id="@+id/data_images_index_weapon_and_gem_3_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_magic"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:background="?attr/selectableItemBackground">
 
                             <!-- 左侧文字 -->
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
                                 android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_3"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_weapon_and_gem_3"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -262,87 +235,57 @@
                             android:id="@+id/data_images_index_weapon_and_gem_4_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_palette"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:background="?attr/selectableItemBackground">
 
                             <!-- 左侧文字 -->
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
                                 android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_4"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_weapon_and_gem_4"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/data_images_index_weapon_and_gem_5_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_recycle"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:background="?attr/selectableItemBackground">
 
                             <!-- 左侧文字 -->
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
                                 android:layout_weight="1"
-                                android:text="@string/text_data_images_index_weapon_and_gem_5"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_data_images_index_weapon_and_gem_5"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                             <!-- 右侧箭头 -->
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/ic_chevron_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView"
-                                tools:ignore="ContentDescription" />
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -369,7 +312,7 @@
     <View
         android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:background="@drawable/status_bar_gradient_no_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

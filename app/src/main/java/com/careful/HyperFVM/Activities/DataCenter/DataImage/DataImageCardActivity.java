@@ -48,13 +48,13 @@ public class DataImageCardActivity extends BaseActivity {
         TextView textView;
 
         textView = findViewById(R.id.data_images_index_card_0_1_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_0_1_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_1));
         textView = findViewById(R.id.data_images_index_card_0_2_1_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_0_2_1_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_2_1));
         textView = findViewById(R.id.data_images_index_card_0_2_2_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_0_2_2_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_2_2));
         textView = findViewById(R.id.data_images_index_card_0_3_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_0_3_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_3));
 
         textView = findViewById(R.id.data_images_index_card_1_description);
         textView.setText("包含：" +
@@ -163,13 +163,13 @@ public class DataImageCardActivity extends BaseActivity {
         );
 
         textView = findViewById(R.id.data_images_index_card_15_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_15_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_15));
         textView = findViewById(R.id.data_images_index_card_16_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_16_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_16));
         textView = findViewById(R.id.data_images_index_card_17_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_17_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_17));
         textView = findViewById(R.id.data_images_index_card_18_description);
-        textView.setText(getResources().getString(R.string.text_data_images_index_card_18_1));
+        textView.setText(getResources().getString(R.string.description_data_images_index_card_18));
 
         // 防御卡数据图
         setupContainer(R.id.data_images_index_card_0_1_container, "data_image_card_0_1");

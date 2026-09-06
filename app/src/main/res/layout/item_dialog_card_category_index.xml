@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_1"
+                android:text="@string/title_data_images_index_card_1"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -98,7 +98,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_2"
+                android:text="@string/title_data_images_index_card_2"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -148,7 +148,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_3"
+                android:text="@string/title_data_images_index_card_3"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -198,7 +198,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_4"
+                android:text="@string/title_data_images_index_card_4"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -248,7 +248,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_5"
+                android:text="@string/title_data_images_index_card_5"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -289,7 +289,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_6"
+                android:text="@string/title_data_images_index_card_6"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -330,7 +330,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_7"
+                android:text="@string/title_data_images_index_card_7"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -371,7 +371,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_8"
+                android:text="@string/title_data_images_index_card_8"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -412,7 +412,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_9"
+                android:text="@string/title_data_images_index_card_9"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -480,7 +480,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_10"
+                android:text="@string/title_data_images_index_card_10"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -539,7 +539,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_11"
+                android:text="@string/title_data_images_index_card_11"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -589,7 +589,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_12"
+                android:text="@string/title_data_images_index_card_12"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -639,7 +639,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_12_"
+                android:text="@string/title_data_images_index_card_12_"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -698,7 +698,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_13"
+                android:text="@string/title_data_images_index_card_13"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -757,7 +757,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_14"
+                android:text="@string/title_data_images_index_card_14"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 
@@ -798,7 +798,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/text_data_images_index_card_15"
+                android:text="@string/title_data_images_index_card_15"
                 android:textSize="15sp"
                 android:textColor="?attr/colorOnSurface"/>
 

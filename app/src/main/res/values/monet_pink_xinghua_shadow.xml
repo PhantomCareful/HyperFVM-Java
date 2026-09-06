@@ -9,8 +9,12 @@
         <!--一般CardView-->
         <!--卡片颜色-->
         <item name="GeneralCardViewBackground">?attr/colorPrimaryContainer</item>
+        <!--标题文字颜色-->
+        <item name="TitleTextViewColorOnSurface">?attr/colorOnSurface</item>
         <!--文字颜色-->
         <item name="TextViewColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
+        <!--次要文字颜色-->
+        <item name="SummaryTextViewColorOnGeneralCardView">?attr/colorPrimary</item>
         <!--矢量图颜色-->
         <item name="VectorGraphicColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
 

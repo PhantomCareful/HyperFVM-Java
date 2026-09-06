@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter.DataImage;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_DARK_MODE;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
@@ -17,6 +18,7 @@ import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -119,6 +121,10 @@ public class DataImageOthersActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.tips_data_image_others).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_recycle"
+                    android:src="@drawable/ic_recycle_big"
                     android:stateListAnimator="@null"
                     android:clickable="false"
                     app:tint="?attr/colorPrimary"

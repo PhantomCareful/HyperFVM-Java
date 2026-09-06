@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_card_data_corresponding_info_demo"
-            android:textColor="?attr/colorOnSurface"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="15sp" />
     </LinearLayout>
 

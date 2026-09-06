@@ -110,9 +110,11 @@
                 </GridLayout>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/tips_data_image_dashboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:clickable="true"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
@@ -121,38 +123,35 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="16dp"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground">
+                        android:gravity="center">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_bulb"
-                            app:tint="?attr/VectorGraphicColorOnImportantCardView"
-                            tools:ignore="ContentDescription" />
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical"
-                            android:layout_marginStart="16dp">
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="?attr/TextViewColorOnImportantCardView"
                                 android:text="@string/title_dashboard_tips"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="?attr/TextViewColorOnImportantCardView"
                                 android:text="@string/content_dashboard_tips"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
 
                         </LinearLayout>
 

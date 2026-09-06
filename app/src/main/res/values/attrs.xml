@@ -5,8 +5,12 @@
     <!--一般CardView-->
     <!--卡片颜色-->
     <attr name="GeneralCardViewBackground" format="color" />
+    <!--标题文字颜色-->
+    <attr name="TitleTextViewColorOnSurface" format="color" />
     <!--文字颜色-->
     <attr name="TextViewColorOnGeneralCardView" format="color" />
+    <!--次要文字颜色-->
+    <attr name="SummaryTextViewColorOnGeneralCardView" format="color" />
     <!--矢量图颜色-->
     <attr name="VectorGraphicColorOnGeneralCardView" format="color" />
 

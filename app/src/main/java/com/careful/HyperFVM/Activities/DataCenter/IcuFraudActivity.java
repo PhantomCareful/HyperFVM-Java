@@ -84,9 +84,9 @@ public class IcuFraudActivity extends BaseActivity {
                     TextView victim_info_amount = cardView.findViewById(R.id.victim_info_amount);
                     TextView victim_info_remark = cardView.findViewById(R.id.victim_info_remark);
 
-                    victim_info_qq.setText("QQ号：" + victims.get(i).victim);
-                    victim_info_platform.setText("所在平台：" + victims.get(i).platform);
-                    victim_info_server.setText("所在区服：" + victims.get(i).server);
+                    victim_info_qq.setText("受害者QQ：" + victims.get(i).victim);
+                    victim_info_platform.setText("受害者所在平台：" + victims.get(i).platform);
+                    victim_info_server.setText("受害者所在区服：" + victims.get(i).server);
                     victim_info_fraud_time.setText("被骗日期：" + victims.get(i).fraudTime);
                     victim_info_amount.setText("被骗金额：" + victims.get(i).amount);
                     victim_info_remark.setText("备注：" + victims.get(i).remark);

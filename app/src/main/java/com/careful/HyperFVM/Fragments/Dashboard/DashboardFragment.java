@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Fragments.Dashboard;
 
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_BIOMETRIC_AUTH;
 import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -38,6 +39,7 @@ import com.careful.HyperFVM.databinding.FragmentDashboardBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTask;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
@@ -948,6 +950,10 @@ public class DashboardFragment extends Fragment {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        root.findViewById(R.id.tips_data_image_dashboard).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

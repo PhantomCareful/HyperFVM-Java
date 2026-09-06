@@ -54,7 +54,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/title_icu_fraud_info"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -146,7 +147,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/title_icu_victim_info"
                     android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"/>
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <LinearLayout
                     android:id="@+id/icu_victim_info_container"

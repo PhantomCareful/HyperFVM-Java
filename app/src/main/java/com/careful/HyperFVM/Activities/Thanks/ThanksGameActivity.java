@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities.Thanks;
 
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -101,6 +104,10 @@ public class ThanksGameActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.tips_thanks_game).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

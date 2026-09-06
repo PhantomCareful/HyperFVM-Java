@@ -2,7 +2,6 @@ package com.careful.HyperFVM.Activities;
 
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
-import android.annotation.SuppressLint;
 import android.graphics.ImageDecoder;
 import android.graphics.Outline;
 import android.graphics.drawable.AnimatedImageDrawable;
@@ -160,6 +159,10 @@ public class TodayLuckyActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.Button_ControlGif).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**
@@ -189,18 +192,6 @@ public class TodayLuckyActivity extends BaseActivity {
         if (animatedDrawable != null) {
             animatedDrawable.stop();
         }
-    }
-
-    /**
-     * 在onResume阶段设置按压反馈动画
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 添加按压动画
-        findViewById(R.id.Button_ControlGif).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     @Override

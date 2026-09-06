@@ -28,8 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_card_data_auxiliary_list_5_2_2"
-            android:textColor="?attr/TextViewColorOnGeneralCardView"
-            android:textSize="11sp" />
+            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <!-- 右侧卡片 -->

@@ -18,29 +18,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
+        android:gravity="center"
         android:background="?attr/selectableItemBackground">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
+            android:orientation="vertical">
 
             <!-- 左侧文字 -->
             <TextView
                 android:id="@+id/suggestion_name_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/TextViewColorOnGeneralCardView"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
             <TextView
                 android:id="@+id/suggestion_name_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/TextViewColorOnGeneralCardView"
-                android:textSize="13sp"/>
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
         </LinearLayout>
 

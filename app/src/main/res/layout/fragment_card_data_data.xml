@@ -29,7 +29,8 @@
             android:layout_marginBottom="10dp"
             android:text="强化提升：攻击力"
             android:textSize="15sp"
-            android:textColor="?attr/colorOnSurface"/>
+            android:textStyle="bold"
+            android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -425,9 +426,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="10dp"
-            android:text="🌟金卡援护"
+            android:text="金卡援护"
             android:textSize="15sp"
-            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold"
+            android:textColor="?attr/TitleTextViewColorOnSurface"
             android:visibility="gone"/>
 
         <androidx.cardview.widget.CardView
@@ -476,7 +478,8 @@
             android:layout_marginBottom="10dp"
             android:text="品阶提升：攻击附加"
             android:textSize="15sp"
-            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold"
+            android:textColor="?attr/TitleTextViewColorOnSurface"
             android:visibility="gone"/>
 
         <androidx.cardview.widget.CardView
@@ -842,7 +845,8 @@
             android:layout_marginBottom="10dp"
             android:text="技能提升：攻击间隔"
             android:textSize="15sp"
-            android:textColor="?attr/colorOnSurface"/>
+            android:textStyle="bold"
+            android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Card_Skill"
@@ -1065,7 +1069,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:text="数据横屏展示"
-            android:textSize="30sp"
+            android:textSize="20sp"
             app:cornerRadius="20dp"/>
 
         <TextView
@@ -1076,7 +1080,8 @@
             android:layout_marginBottom="10dp"
             android:text="@string/title_card_data_decompose_and_get_info_golden"
             android:textSize="15sp"
-            android:textColor="?attr/colorOnSurface"/>
+            android:textStyle="bold"
+            android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Card_Decompose_and_Get"
@@ -1726,7 +1731,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/description_decompose_and_get_calculator"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                         android:textSize="15sp" />
                 </LinearLayout>
 

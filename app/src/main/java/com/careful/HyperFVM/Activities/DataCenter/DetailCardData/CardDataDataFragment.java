@@ -89,7 +89,7 @@ public class CardDataDataFragment extends Fragment {
             }
 
             // 星级信息
-            setTextToView(R.id.star, "\uD83C\uDF1F强化提升：" + CardDataHelper.getStringFromCursor(cursor, "star"));
+            setTextToView(R.id.star, "强化提升：" + CardDataHelper.getStringFromCursor(cursor, "star"));
             setTextToView(R.id.star_detail, CardDataHelper.getStringFromCursor(cursor, "star_detail"));
             setTextToView(R.id.star_0, CardDataHelper.getStringFromCursor(cursor, "star_0"));
             setTextToView(R.id.star_1, CardDataHelper.getStringFromCursor(cursor, "star_1"));
@@ -126,7 +126,7 @@ public class CardDataDataFragment extends Fragment {
             // 融合卡专属
             if (tableId == 2) {
                 // 品阶信息
-                setTextToView(R.id.star_fusion, "\uD83C\uDF1F品阶提升：" + "\n" + CardDataHelper.getStringFromCursor(cursor, "star_fusion"));
+                setTextToView(R.id.star_fusion, "品阶提升：" + "\n" + CardDataHelper.getStringFromCursor(cursor, "star_fusion"));
                 setTextToView(R.id.star_fusion_detail, CardDataHelper.getStringFromCursor(cursor, "star_fusion_detail"));
                 setTextToView(R.id.star_fusion_1, CardDataHelper.getStringFromCursor(cursor, "star_fusion_1"));
                 setTextToView(R.id.star_fusion_2, CardDataHelper.getStringFromCursor(cursor, "star_fusion_2"));
@@ -153,7 +153,7 @@ public class CardDataDataFragment extends Fragment {
             }
 
             // 技能信息
-            setTextToView(R.id.skill, "\uD83C\uDF1F技能提升：" + CardDataHelper.getStringFromCursor(cursor, "skill"));
+            setTextToView(R.id.skill, "技能提升：" + CardDataHelper.getStringFromCursor(cursor, "skill"));
             if (!CardDataHelper.getStringFromCursor(cursor, "skill").equals("该防御卡不支持技能")) {
                 setTextToView(R.id.skill_detail, CardDataHelper.getStringFromCursor(cursor, "skill_detail"));
                 setTextToView(R.id.skill_0, CardDataHelper.getStringFromCursor(cursor, "skill_0"));
@@ -251,7 +251,7 @@ public class CardDataDataFragment extends Fragment {
 
             // 分解兑换信息
             if (tableId == 3 || tableId == 4) {
-                setTextToView(R.id.decompose_and_get, "\uD83C\uDF1F分解&兑换：" + CardDataHelper.getStringFromCursor(cursor, "decompose_item"));
+                setTextToView(R.id.decompose_and_get, "分解&兑换：" + CardDataHelper.getStringFromCursor(cursor, "decompose_item"));
 
                 ImageView imageView = root.findViewById(R.id.decompose_image_id_card_1);
                 String imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1"));

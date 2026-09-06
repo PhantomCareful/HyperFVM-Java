@@ -15,7 +15,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="75dp"
             android:alpha="0.2"
             android:adjustViewBounds="true"
             android:src="@drawable/phantom_careful"
@@ -36,17 +36,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnImportantCardView"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/dashboard_GlobalNotification_Content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnImportantCardView"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
 
         </LinearLayout>
 

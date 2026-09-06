@@ -1,5 +1,7 @@
 package com.careful.HyperFVM.Activities;
 
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +15,7 @@ import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -183,6 +186,10 @@ public class PrestigeCalculatorActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.tips_prestige_calculator).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

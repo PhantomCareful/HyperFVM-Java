@@ -27,9 +27,9 @@ public class DataImageViewerHelper {
         if (!imageFile.exists()) {
             DialogBuilderManager.showDialog(
                     context,
-                    context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_title),
+                    context.getResources().getString(R.string.title_dialog_data_images_index_open_failed_file_not_found),
                     "❌",
-                    context.getResources().getString(R.string.text_data_images_index_open_failed_file_not_found_dialog_content),
+                    context.getResources().getString(R.string.content_dialog_data_images_index_open_failed_file_not_found),
                     true,
                     "好的"
             );
@@ -89,9 +89,9 @@ public class DataImageViewerHelper {
         } catch (ActivityNotFoundException e) {
             DialogBuilderManager.showDialog(
                     context,
-                    context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_title),
+                    context.getResources().getString(R.string.title_dialog_data_images_index_open_failed_app_not_found),
                     "❌",
-                    context.getResources().getString(R.string.text_data_images_index_open_failed_app_not_found_dialog_content),
+                    context.getResources().getString(R.string.content_dialog_data_images_index_open_failed_app_not_found),
                     true,
                     "好的"
             );

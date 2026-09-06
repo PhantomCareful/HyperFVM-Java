@@ -74,22 +74,6 @@
 
     </ScrollView>
 
-    <!-- 顶部渐变层：覆盖顶部 -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="top"
-        android:background="@drawable/scrollview_top_gradient"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <!-- 底部渐变层：覆盖底部 -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/scrollview_bottom_gradient"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
     <Button
         android:id="@+id/button_close"
         android:layout_width="0dp"
