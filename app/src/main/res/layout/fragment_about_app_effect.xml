@@ -59,17 +59,18 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="16dp"
+                    android:gravity="center"
                     android:background="?attr/selectableItemBackground">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_arrow_up_circle"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_update"
                         app:tint="?attr/colorOnSurface" />
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center_vertical"
@@ -96,8 +97,8 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_chevron_right"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right"
                         app:tint="?attr/colorOnSurface" />
 
                 </LinearLayout>
@@ -133,12 +134,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:id="@+id/Image_View_Phantom_Careful"
                             android:layout_width="50dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="50dp"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:src="@drawable/phantom_careful"
@@ -146,7 +148,7 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:layout_marginStart="16dp"
@@ -171,7 +173,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_github"
                             app:tint="?attr/colorOnSurface" />
 
@@ -183,17 +185,18 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_account_group"
                             app:tint="?attr/colorOnSurface" />
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center_vertical"
@@ -218,8 +221,8 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -259,20 +262,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_account_multiple"
                             app:tint="?attr/colorOnSurface" />
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:layout_marginStart="16dp"
@@ -298,8 +301,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -310,20 +313,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_github"
                             app:tint="?attr/colorOnSurface" />
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:layout_marginStart="16dp"
@@ -349,8 +352,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -390,15 +393,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_notebook"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_notes"
                             app:tint="?attr/colorOnSurface" />
 
                         <LinearLayout
@@ -428,8 +431,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -440,15 +443,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_settings_normal"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_settings"
                             app:tint="?attr/colorOnSurface" />
 
                         <LinearLayout
@@ -478,8 +481,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -519,15 +522,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_github"
                             app:tint="?attr/colorOnSurface" />
 
@@ -558,8 +561,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -570,15 +573,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_cloud_download"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_download"
                             app:tint="?attr/colorOnSurface" />
 
                         <LinearLayout
@@ -608,8 +611,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -620,14 +623,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_bilibili"
                             app:tint="?attr/colorOnSurface" />
 
@@ -658,8 +661,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -670,14 +673,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_qq"
                             app:tint="?attr/colorOnSurface" />
 
@@ -708,8 +711,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -720,14 +723,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/ic_qq"
                             app:tint="?attr/colorOnSurface" />
 
@@ -758,8 +761,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>
@@ -770,15 +773,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
                         android:padding="16dp"
+                        android:gravity="center"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_pencil"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_notes"
                             app:tint="?attr/colorOnSurface" />
 
                         <LinearLayout
@@ -808,8 +811,8 @@
                         <!-- 右侧箭头 -->
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_chevron_right"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/colorOnSurface" />
 
                     </LinearLayout>

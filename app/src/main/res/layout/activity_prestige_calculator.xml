@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText,TooManyViews">
+    tools:ignore="HardcodedText,TooManyViews,contentDescription">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
@@ -47,7 +47,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_bulb"
+                            android:src="@drawable/ic_create"
                             app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                         <LinearLayout
@@ -1010,7 +1010,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_arrow_left"
+                android:src="@drawable/ic_back_big"
                 android:stateListAnimator="@null"
                 android:clickable="false"
                 app:elevation="0dp"

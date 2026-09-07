@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="TooManyViews,MissingConstraints">
+    tools:ignore="TooManyViews,MissingConstraints,contentDescription">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
@@ -21,7 +21,7 @@
             <LinearLayout
                 android:id="@+id/data_images_index_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
@@ -94,7 +94,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_chevron_right"
+                            android:src="@drawable/ic_arrow_right"
                             app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
                     </LinearLayout>
@@ -151,7 +151,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -194,7 +194,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -237,7 +237,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -296,7 +296,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -339,7 +339,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -382,7 +382,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -425,7 +425,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -468,7 +468,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -511,7 +511,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -554,7 +554,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -597,7 +597,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -640,7 +640,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -683,7 +683,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -726,7 +726,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -769,7 +769,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -812,7 +812,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -855,7 +855,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -898,7 +898,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -957,7 +957,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -1000,7 +1000,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -1043,7 +1043,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -1086,7 +1086,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_chevron_right"
+                                android:src="@drawable/ic_arrow_right"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -1145,7 +1145,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
                 android:clickable="false"
-                android:src="@drawable/ic_arrow_left"
+                android:src="@drawable/ic_back_big"
                 android:stateListAnimator="@null"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"

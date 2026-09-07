@@ -105,7 +105,7 @@ public class AboutAppEffectFragment extends Fragment {
         // 跳转浏览器，获取软件更新
         root.findViewById(R.id.about_app_get_update_123pan_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
-                ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud_download),
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_download),
                 0,
                 getResources().getString(R.string.dialog_title_123pan_dialog),
                 getResources().getString(R.string.dialog_sub_title_123pan_dialog),

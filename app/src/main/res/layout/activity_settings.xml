@@ -306,7 +306,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_menu_swap"
+                                android:src="@drawable/ic_arrow_up_down"
                                 app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -362,7 +362,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_menu_swap"
+                                android:src="@drawable/ic_arrow_up_down"
                                 app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -418,7 +418,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_menu_swap"
+                                android:src="@drawable/ic_arrow_up_down"
                                 app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
@@ -953,7 +953,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_arrow_left"
+                android:src="@drawable/ic_back_big"
                 android:stateListAnimator="@null"
                 android:clickable="false"
                 app:elevation="0dp"
@@ -1024,7 +1024,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_refresh"
+                android:src="@drawable/ic_refresh_big"
                 android:stateListAnimator="@null"
                 android:clickable="false"
                 app:elevation="0dp"

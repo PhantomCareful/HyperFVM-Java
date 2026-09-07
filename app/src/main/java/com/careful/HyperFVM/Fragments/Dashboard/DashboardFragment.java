@@ -918,6 +918,7 @@ public class DashboardFragment extends Fragment {
      * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView topBarContainer = root.findViewById(R.id.TopBar_Container);
