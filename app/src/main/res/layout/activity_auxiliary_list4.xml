@@ -198,6 +198,7 @@
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
                 app:rippleColor="@android:color/transparent"
+                app:tint="?attr/colorOnSurface"
                 tools:ignore="ContentDescription" />
 
         </eightbitlab.com.blurview.BlurView>

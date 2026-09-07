@@ -64,7 +64,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:src="@drawable/ic_bell"
+                            android:src="@drawable/ic_reply"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         <!-- 左侧文字 -->
@@ -122,7 +122,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:src="@drawable/ic_tools"
+                            android:src="@drawable/ic_file"
                             app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                         <!-- 左侧文字 -->
@@ -959,6 +959,7 @@
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
                 app:rippleColor="@android:color/transparent"
+                app:tint="?attr/colorOnSurface"
                 tools:ignore="ContentDescription" />
 
         </eightbitlab.com.blurview.BlurView>

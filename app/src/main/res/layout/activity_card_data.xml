@@ -64,6 +64,7 @@
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
                 app:rippleColor="@android:color/transparent"
+                app:tint="?attr/colorOnSurface"
                 tools:ignore="ContentDescription" />
 
         </eightbitlab.com.blurview.BlurView>
@@ -130,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_export"
+                android:src="@drawable/ic_move_file"
                 android:stateListAnimator="@null"
                 android:clickable="false"
                 app:elevation="0dp"
