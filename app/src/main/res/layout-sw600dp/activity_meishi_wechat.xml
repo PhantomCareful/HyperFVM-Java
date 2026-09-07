@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="MissingConstraints,ContentDescription,TooManyViews,TooDeepLayout">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/Tools_Pad"
@@ -18,7 +18,6 @@
             android:layout_height="match_parent"
             android:baselineAligned="false"
             android:orientation="horizontal"
-            tools:ignore="MissingConstraints,UselessParent"
             android:clipChildren="false"
             android:clipToPadding="false">
 
@@ -33,7 +32,7 @@
                 <LinearLayout
                     android:id="@+id/MeishiWechatContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="10dp"
                     android:paddingTop="120dp"
@@ -50,7 +49,8 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_meishi_wechat_account_saved"
                         android:textSize="15sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                     <!--账号列表容器，用于动态添加卡片-->
                     <LinearLayout
@@ -88,143 +88,609 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_meishi_wechat_rules"
                         android:textSize="15sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/MeishiWechatInstructionsContainer"
+                        android:id="@+id/content_meishi_wechat_rules_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
                         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/content_meishi_wechat_rules_1"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/content_meishi_wechat_rules_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/content_meishi_wechat_rules_2"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/content_meishi_wechat_rules_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/content_meishi_wechat_rules_3"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/tips_meishi_wechat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/colorErrorContainer"
                         app:cardCornerRadius="20dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
 
-                            <TextView
-                                android:id="@+id/TextMeishiWechatInstructions"
-                                android:layout_width="match_parent"
+                            <ImageView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                android:clickable="true"
-                                android:background="?attr/selectableItemBackground"/>
+                                android:src="@drawable/ic_bulb"
+                                app:tint="?attr/colorOnErrorContainer" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tips_meishi_wechat_rules_title"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnErrorContainer" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tips_meishi_wechat_rules_content"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/colorOnErrorContainer" />
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/TitleMeishiWechatGiftContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_meishi_wechat_get_gift_rules"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/content_meishi_wechat_get_gift_rules_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/content_meishi_wechat_get_gift_rules_1"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/content_meishi_wechat_get_gift_rules_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/content_meishi_wechat_get_gift_rules_2"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/content_meishi_wechat_get_gift_rules_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/content_meishi_wechat_get_gift_rules_3"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
                         android:text="@string/title_meishi_wechat_gift"
                         android:textSize="15sp"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/MeishiWechatGiftContentContainer"
+                        android:id="@+id/meishi_wechat_gift_item_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
                         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                         app:cardCornerRadius="20dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
 
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:scrollbars="none">
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="16dp">
+                                    android:text="@string/title_meishi_wechat_gift_item_1"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_1"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_2h_double_item"
-                                        tools:ignore="ContentDescription,TooDeepLayout" />
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_crystal"
-                                        tools:ignore="ContentDescription" />
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_spice_2"
-                                        tools:ignore="ContentDescription" />
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_spice_3"
-                                        tools:ignore="ContentDescription" />
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_spice_4"
-                                        tools:ignore="ContentDescription" />
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_four_leaf_clover_1"
-                                        tools:ignore="ContentDescription" />
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_four_leaf_clover_2"
-                                        tools:ignore="ContentDescription" />
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:adjustViewBounds="true"
-                                        android:scaleType="fitStart"
-                                        android:src="@drawable/item_four_leaf_clover_3"
-                                        tools:ignore="ContentDescription" />
+                            </LinearLayout>
 
-                                </LinearLayout>
-
-                            </HorizontalScrollView>
-
-                            <TextView
-                                android:id="@+id/TextMeishiWechatGiftContent"
-                                android:layout_width="match_parent"
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:textSize="20sp"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                android:clickable="true"
-                                android:background="?attr/selectableItemBackground"/>
+                                android:src="@drawable/item_2h_double_item"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/meishi_wechat_gift_item_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_meishi_wechat_gift_item_2"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_2"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/item_crystal"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/meishi_wechat_gift_item_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_meishi_wechat_gift_item_3"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_3"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/item_spice_2"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/meishi_wechat_gift_item_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_meishi_wechat_gift_item_4"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_4"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/item_spice_3"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/meishi_wechat_gift_item_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_meishi_wechat_gift_item_5"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_5"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/item_spice_4"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/meishi_wechat_gift_item_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_meishi_wechat_gift_item_6"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_6"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/item_four_leaf_clover_1"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/meishi_wechat_gift_item_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_meishi_wechat_gift_item_7"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_7"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/item_four_leaf_clover_2"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/meishi_wechat_gift_item_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_meishi_wechat_gift_item_8"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_meishi_wechat_gift_item_8"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/item_four_leaf_clover_3"
+                                tools:ignore="ContentDescription" />
+
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -241,7 +707,7 @@
     <View
         android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:background="@drawable/status_bar_gradient_no_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -276,8 +742,7 @@
                 android:clickable="false"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
-                app:rippleColor="@android:color/transparent"
-                tools:ignore="ContentDescription" />
+                app:rippleColor="@android:color/transparent" />
 
         </eightbitlab.com.blurview.BlurView>
 
@@ -288,12 +753,12 @@
         android:layout_height="50dp"
         android:layout_width="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
         app:strokeWidth="0dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="@android:color/transparent"
-        app:layout_constraintLeft_toRightOf="@+id/FloatButton_Back_Container"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <eightbitlab.com.blurview.BlurView
@@ -349,8 +814,7 @@
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
                 app:rippleColor="@android:color/transparent"
-                app:tint="?attr/colorOnSurface"
-                tools:ignore="ContentDescription" />
+                app:tint="?attr/colorOnSurface" />
 
         </eightbitlab.com.blurview.BlurView>
 

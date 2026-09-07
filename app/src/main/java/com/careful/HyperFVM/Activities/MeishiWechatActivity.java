@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities;
 
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -30,9 +31,9 @@ import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityMeishiWechatBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
-import com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -53,7 +54,6 @@ import okhttp3.Request; // 正确导入OkHttp的Request
 import okhttp3.Response;
 
 public class MeishiWechatActivity extends BaseActivity {
-    private ActivityMeishiWechatBinding binding;
 
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
@@ -82,7 +82,7 @@ public class MeishiWechatActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMeishiWechatBinding.inflate(getLayoutInflater());
+        ActivityMeishiWechatBinding binding = ActivityMeishiWechatBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
         setContentView(root);
 
@@ -94,32 +94,18 @@ public class MeishiWechatActivity extends BaseActivity {
 
         // 初始化视图
         initViews();
+
         // 加载已保存的账号
         loadAccountList();
 
         // 初始化各种装饰效果
         initDecoration();
-
-        Runnable transitionRunnable = () -> {
-            TransitionManager.beginDelayedTransition(MeishiWechatContainer, transition);
-            binding.TitleMeishiWechatInstructions.setVisibility(View.VISIBLE);
-            binding.MeishiWechatInstructionsContainer.setVisibility(View.VISIBLE);
-            binding.TitleMeishiWechatGiftContent.setVisibility(View.VISIBLE);
-            binding.MeishiWechatGiftContentContainer.setVisibility(View.VISIBLE);
-        };
-
-        // 执行延迟任务
-        root.postDelayed(transitionRunnable, 300);
     }
 
     private void initViews() {
         // 账号数量文本和列表容器
         accountCountText = findViewById(R.id.TitleMeishiWechatSavedAccount);
         accountListContainer = findViewById(R.id.LinearLayout_AccountList);
-
-        // 获取Markdown文本
-        MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatInstructions), "MeishiWechatInstructions.txt");
-        MarkdownUtil.getContentFromAssets(this, findViewById(R.id.TextMeishiWechatGiftContent), "MeishiWechatGiftContent.txt");
 
         // 初始化动画效果
         MeishiWechatContainer = findViewById(R.id.MeishiWechatContainer);
@@ -202,8 +188,8 @@ public class MeishiWechatActivity extends BaseActivity {
         TextView playerText = cardView.findViewById(R.id.TextView_PlayerId);
         TextView openidText = cardView.findViewById(R.id.TextView_Openid);
 
-        serverText.setText("区服：" + (info.serverName != null ? info.serverName : "未知区服"));
-        playerText.setText("角色：" + (info.playerId != null ? info.playerId : "未知角色"));
+        serverText.setText("所在区服：" + (info.serverName != null ? info.serverName : "未知区服"));
+        playerText.setText("角色ID：" + (info.playerId != null ? info.playerId : "未知角色"));
         openidText.setText("openid：" + info.openid);
 
         // 长按删除逻辑
@@ -300,6 +286,7 @@ public class MeishiWechatActivity extends BaseActivity {
      * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
@@ -323,6 +310,38 @@ public class MeishiWechatActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.content_meishi_wechat_rules_1).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.content_meishi_wechat_rules_2).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.content_meishi_wechat_rules_3).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.tips_meishi_wechat).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.content_meishi_wechat_get_gift_rules_1).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.content_meishi_wechat_get_gift_rules_2).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.content_meishi_wechat_get_gift_rules_3).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_1).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_2).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_3).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_4).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_5).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_6).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_7).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.meishi_wechat_gift_item_8).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**
