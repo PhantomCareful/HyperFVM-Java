@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 圆形水波纹背景：mask 为与按钮（55dp×55dp）同内切的正圆（半径 27.5dp）。
+     涟漪显示区域 = 扩散圆 ∩ mask 圆，边界全部为圆弧，任意触点均无直边/矩形感。
+     注意：四角必须用统一 radius（android:radius），否则 GradientDrawable 无法生成圆角 Outline，mask 会回退成矩形 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <!-- 1. mask 用于限制涟漪绘制区域（必须） -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="27.5dp" />
+            <!-- 颜色任意不透明即可，只用于裁剪 -->
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+</ripple>

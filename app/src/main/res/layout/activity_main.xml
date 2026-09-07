@@ -25,6 +25,7 @@
             android:overScrollMode="never" />
 
     </eightbitlab.com.blurview.BlurTarget>
+
     <LinearLayout
         android:id="@+id/navigation_bar_container"
         android:layout_width="wrap_content"
@@ -38,7 +39,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="180dp"
+            android:layout_width="190dp"
             android:layout_height="55dp"
             android:layout_marginEnd="10dp"
             app:strokeWidth="0dp"
@@ -59,11 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
-                    app:tabMode="fixed"
-                    app:tabGravity="center"
-                    app:tabMinWidth="0dp"
-                    app:tabPaddingStart="5dp"
-                    app:tabPaddingEnd="5dp"
+                    app:tabPaddingStart="0dp"
+                    app:tabPaddingEnd="0dp"
                     app:tabIndicatorHeight="0dp"
                     app:tabRippleColor="@android:color/transparent" />
 
@@ -95,8 +93,7 @@
                         android:id="@+id/FloatButton_CardDataSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:backgroundTint="@android:color/transparent"
-                        android:background="?attr/selectableItemBackground"
+                        android:background="@drawable/ripple_circle"
                         android:src="@drawable/ic_search_big"
                         app:tint="?attr/colorOnSurface"
                         app:elevation="0dp" />
@@ -114,8 +111,7 @@
                         android:id="@+id/FloatButton_CardDataDecomposeAndGetSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:backgroundTint="@android:color/transparent"
-                        android:background="?attr/selectableItemBackground"
+                        android:background="@drawable/ripple_circle"
                         android:src="@drawable/ic_recycle_big"
                         app:tint="?attr/colorOnSurface"
                         app:elevation="0dp" />
