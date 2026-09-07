@@ -1,6 +1,5 @@
 package com.careful.HyperFVM.utils.ForUpdate;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -11,17 +10,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 /**
- * 给BottomNavigationView或纯图片TabLayout的指定Tab添加小红点的工具类
+ * 给纯图片TabLayout的指定Tab添加小红点的工具类（主界面底栏更新提醒）
  */
 public class BadgeDotUtil {
     private static final String TAG = "BadgeDot";
     // 小红点的尺寸（dp）
-    private static final int DOT_SIZE_DP = 16;
+    private static final int DOT_SIZE_DP = 8;
+    // 红点View的Tag标记（用于可靠识别小红点，避免误删其他View）
+    private static final String RED_DOT_TAG = "red_dot";
 
     // 定义回调接口
     public interface OnUpdateCheckComplete {
@@ -32,26 +31,17 @@ public class BadgeDotUtil {
      * 检查更新然后返回是否显示小红点
      */
     public static void checkUpdateAndShowRedDot(Context context, OnUpdateCheckComplete callback) {
-        final boolean[] isShowRedDot = {false};
-
         long localAppVersionCode = LocalVersionUtil.getAppLocalVersionCode(context);
 
         Log.d(TAG, "localAppVersionCode = " + localAppVersionCode);
 
-        // 调用UpdaterUtil检查App更新
+        // 调用AppUpdaterUtil检查App更新（其内部回调已切回主线程，可直接操作UI）
         AppUpdaterUtil appUpdaterUtil = AppUpdaterUtil.getInstance();
         appUpdaterUtil.checkServerVersion(new AppUpdaterUtil.OnVersionCheckCallback() {
             @Override
             public void onVersionCheckSuccess(long serverVersion, String updateLog) {
                 Log.d(TAG, "serverAppVersionCode = " + serverVersion);
-
-                try {
-                    isShowRedDot[0] = serverVersion > localAppVersionCode;
-                } catch (Exception e) {
-                    isShowRedDot[0] = false;
-                }
-
-                callback.onComplete(isShowRedDot[0]);
+                callback.onComplete(serverVersion > localAppVersionCode);
             }
 
             @Override
@@ -66,45 +56,6 @@ public class BadgeDotUtil {
                 callback.onComplete(false);
             }
         });
-    }
-
-    /**
-     * 给指定位置的BottomNavigationItem添加小红点
-     * @param navigationView 自定义的NoPaddingBottomNavigationView
-     * @param position 目标Item的位置（从0开始）
-     */
-    public static void showRedDot(BottomNavigationView navigationView, int position) {
-        // 1. 确保导航栏已加载完成，获取目标Item的View
-        @SuppressLint("RestrictedApi") BottomNavigationItemView itemView = getBottomNavigationItemView(navigationView, position);
-        if (itemView == null) return;
-
-        // 2. 先移除已存在的小红点（避免重复添加）
-        removeRedDot(itemView);
-
-        // 3. 创建小红点View
-        View redDotView = createRedDotView(navigationView.getContext());
-
-        // 4. 设置小红点的布局参数（位置：右上角）
-        int dotSize = DensityUtil.dpToPx(navigationView.getContext(), DOT_SIZE_DP);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dotSize, dotSize);
-        // 调整margin控制红点与图标的偏移（可根据需求修改）
-        params.gravity = Gravity.TOP | Gravity.END;
-        params.topMargin = DensityUtil.dpToPx(navigationView.getContext(), 12);
-        params.rightMargin = DensityUtil.dpToPx(navigationView.getContext(), 12);
-
-        // 6. 将小红点添加到ItemView中
-        itemView.addView(redDotView, params);
-    }
-
-    /**
-     * 移除指定位置的小红点
-     * @param navigationView 自定义的NoPaddingBottomNavigationView
-     * @param position 目标Item的位置（从0开始）
-     */
-    public static void hideRedDot(BottomNavigationView navigationView, int position) {
-        @SuppressLint("RestrictedApi") BottomNavigationItemView itemView = getBottomNavigationItemView(navigationView, position);
-        if (itemView == null) return;
-        removeRedDot(itemView);
     }
 
     /**
@@ -125,8 +76,11 @@ public class BadgeDotUtil {
         int dotSize = DensityUtil.dpToPx(tabLayout.getContext(), DOT_SIZE_DP);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dotSize, dotSize);
         params.gravity = Gravity.TOP | Gravity.END;
-        params.topMargin = DensityUtil.dpToPx(tabLayout.getContext(), 6);
-        params.rightMargin = DensityUtil.dpToPx(tabLayout.getContext(), 6);
+        // 红点挂在Tab容器（约106dp宽×60dp高）的右上角，40dp图标居中放置，故需用margin把红点从角落收向图标：
+        // - rightMargin：距容器右缘，越大红点越靠左（贴向图标右缘）
+        // - topMargin：距容器顶部，越大红点越靠下（压住图标上缘）
+        params.topMargin = DensityUtil.dpToPx(tabLayout.getContext(), 10);
+        params.rightMargin = DensityUtil.dpToPx(tabLayout.getContext(), 14);
         container.addView(redDotView, params);
     }
 
@@ -163,6 +117,8 @@ public class BadgeDotUtil {
         redDotShape.getPaint().setColor(0xFFba1a1a);
         View redDotView = new View(context);
         redDotView.setBackground(redDotShape);
+        // 打上Tag标记，供removeRedDot可靠识别
+        redDotView.setTag(RED_DOT_TAG);
         return redDotView;
     }
 
@@ -172,29 +128,12 @@ public class BadgeDotUtil {
     private static void removeRedDot(ViewGroup container) {
         for (int i = 0; i < container.getChildCount(); i++) {
             View child = container.getChildAt(i);
-            // 通过背景类型判断是否是小红点（避免误删其他View）
-            if (child.getBackground() instanceof ShapeDrawable) {
+            // 通过Tag标记识别小红点（避免误删其他View）
+            if (RED_DOT_TAG.equals(child.getTag())) {
                 container.removeView(child);
                 break;
             }
         }
-    }
-
-    /**
-     * 获取指定位置的BottomNavigationItemView
-     */
-    @SuppressLint("RestrictedApi")
-    private static BottomNavigationItemView getBottomNavigationItemView(BottomNavigationView navigationView, int position) {
-        // BottomNavigationView的子View是FrameLayout，再往下是LinearLayout（包含所有Item）
-        ViewGroup navigationMenuView = (ViewGroup) navigationView.getChildAt(0);
-        if (navigationMenuView.getChildCount() <= position) {
-            return null;
-        }
-        View itemView = navigationMenuView.getChildAt(position);
-        if (itemView instanceof BottomNavigationItemView) {
-            return (BottomNavigationItemView) itemView;
-        }
-        return null;
     }
 
 }
