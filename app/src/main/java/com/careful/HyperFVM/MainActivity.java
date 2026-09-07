@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppEffectFragment;
@@ -16,15 +17,14 @@ import com.careful.HyperFVM.Fragments.Dashboard.DashboardFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
-import com.careful.HyperFVM.utils.ForDesign.NoPaddingBottomNavigationView.NoPaddingBottomNavigationView;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
-import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.ForSafety.SignatureChecker;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -33,15 +33,22 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.careful.HyperFVM.databinding.ActivityMainBinding;
 import com.careful.HyperFVM.utils.OtherUtils.TabLayoutFragmentStateAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends BaseActivity {
-    private ActivityMainBinding binding;
-    private List<Integer> menuOrder; // 导航菜单顺序
-    private BottomNavigationView navView;
+    // 底栏 Tab 的图标资源（必须与添加 Fragment 的顺序一一对应）
+    private static final int[] BOTTOM_TAB_ICON_RES = {
+            R.drawable.ic_dashboard,
+            R.drawable.ic_data_center,
+            R.drawable.ic_about_app
+    };
+    // 底栏 Tab 的无障碍描述资源（纯图片 Tab 需要它来朗读含义）
+    private static final int[] BOTTOM_TAB_DESCRIPTION_RES = {
+            R.string.label_dashboard_navigation,
+            R.string.label_data_center_navigation,
+            R.string.label_about_app_navigation
+    };
 
-    private ViewPager2 viewPager;
+    private ActivityMainBinding binding;
+    private TabLayout tabLayout;
 
     private Handler mainHandler;
 
@@ -73,12 +80,6 @@ public class MainActivity extends BaseActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 初始化菜单顺序（必须与bottom_nav_menu.xml的item顺序一致）
-        menuOrder = new ArrayList<>();
-        menuOrder.add(R.id.navigation_dashboard);
-        menuOrder.add(R.id.navigation_data_station);
-        menuOrder.add(R.id.navigation_about_app);
-
         // 确保视图加载完成后初始化ViewPager（避免空指针）
         setupViewPager();
 
@@ -86,18 +87,19 @@ public class MainActivity extends BaseActivity {
         initDecoration();
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
+        findViewById(R.id.FloatButton_CardDataSearch).setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
         // 分解兑换计算器查询按钮
-        findViewById(R.id.FloatButton_CardDataDecomposeAndGetSearch_Container).setOnClickListener(v -> DialogBuilderManager.showDecomposeAndGetQueryDialog(this));
+        findViewById(R.id.FloatButton_CardDataDecomposeAndGetSearch).setOnClickListener(v -> DialogBuilderManager.showDecomposeAndGetQueryDialog(this));
     }
 
     /**
-     * 初始化ViewPager2
+     * 初始化ViewPager2，并通过TabLayoutMediator与底栏纯图片TabLayout双向绑定
+     * （点击Tab切换页面、页面切换同步选中Tab均由Mediator完成）
      */
     private void setupViewPager() {
         try {
-            viewPager = findViewById(R.id.viewPager);
-            navView = findViewById(R.id.nav_view);
+            ViewPager2 viewPager = findViewById(R.id.viewPager);
+            tabLayout = findViewById(R.id.tabLayout);
 
             // 初始化适配器
             TabLayoutFragmentStateAdapter viewPagerAdapter = new TabLayoutFragmentStateAdapter(this);
@@ -115,35 +117,41 @@ public class MainActivity extends BaseActivity {
             // 禁用预加载相邻页面（可选，减少内存使用）
             viewPager.setOffscreenPageLimit(2);
 
-            // 禁用ViewPager2的滚动动画（如果需要）
-            viewPager.setUserInputEnabled(false); // 如果不想让用户滑动
+            // 禁用ViewPager2的滚动动画（如果不想让用户滑动）
+            viewPager.setUserInputEnabled(false);
 
-            // 设置ViewPager2页面变化监听
-            viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            // 图标高亮依赖自定义视图内 ImageView 的 selected 状态（驱动tab_icon_tint着色），
+            // TabLayout 不会自动同步它，因此监听器必须先于 attach() 注册
+            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
-                public void onPageSelected(int position) {
-                    super.onPageSelected(position);
-                    // 同步底部导航栏状态
-                    int selectedId = menuOrder.get(position);
-                    navView.setSelectedItemId(selectedId);
+                public void onTabSelected(TabLayout.Tab tab) {
+                    setTabIconSelected(tab, true);
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+                    setTabIconSelected(tab, false);
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+                    // 无需处理
                 }
             });
 
-            // 设置底部导航栏点击监听
-            navView.setOnItemSelectedListener(item -> {
-                int itemId = item.getItemId();
-                int targetPosition = menuOrder.indexOf(itemId);
+            // 为每个Tab组装纯图片自定义视图
+            new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+                View customView = getLayoutInflater().inflate(R.layout.view_main_bottom_tab, tabLayout, false);
+                ImageView tabIcon = customView.findViewById(R.id.tab_icon);
+                tabIcon.setImageResource(BOTTOM_TAB_ICON_RES[position]);
+                tab.setCustomView(customView);
+                tab.setContentDescription(getResources().getString(BOTTOM_TAB_DESCRIPTION_RES[position]));
+            }).attach();
 
-                if (targetPosition != -1 && targetPosition != viewPager.getCurrentItem()) {
-                    // 添加平滑滚动动画
-                    viewPager.setCurrentItem(targetPosition, true);
-                    return true;
-                }
-                return false;
-            });
-
-            // 设置默认选中项
-            navView.setSelectedItemId(R.id.navigation_dashboard);
+            // 首次进入时若尚无选中的Tab，手动选中第0个以触发图标高亮
+            if (tabLayout.getTabCount() > 0 && tabLayout.getSelectedTabPosition() == -1) {
+                tabLayout.selectTab(tabLayout.getTabAt(0));
+            }
 
         } catch (Exception e) {
             Log.e("ViewPagerSetup", "ViewPager初始化失败", e);
@@ -151,16 +159,28 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
+     * 同步Tab自定义视图内图标的选中状态，驱动tab_icon_tint的着色切换
+     */
+    private void setTabIconSelected(TabLayout.Tab tab, boolean selected) {
+        View customView = tab.getCustomView();
+        if (customView == null) return;
+        ImageView tabIcon = customView.findViewById(R.id.tab_icon);
+        if (tabIcon != null) {
+            tabIcon.setSelected(selected);
+        }
+    }
+
+    /**
      * 检查App更新和图片资源更新，如果其中任何一个有更新，则在底栏的图标上添加小红点
      */
     private void checkUpdate() {
-        NoPaddingBottomNavigationView bottomNav = findViewById(R.id.nav_view);
+        TabLayout bottomTabLayout = findViewById(R.id.tabLayout);
 
         BadgeDotUtil.checkUpdateAndShowRedDot(this, isShowRedDot -> {
             if (isShowRedDot) {
-                BadgeDotUtil.showRedDot(bottomNav, 2);
+                BadgeDotUtil.showRedDot(bottomTabLayout, 2);
             } else {
-                BadgeDotUtil.hideRedDot(bottomNav, 2);
+                BadgeDotUtil.hideRedDot(bottomTabLayout, 2);
             }
         });
     }
@@ -180,7 +200,7 @@ public class MainActivity extends BaseActivity {
         InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
             Log.d("height", "height in MainActivity = " + height);
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) navigationBarContainer.getLayoutParams();
-            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            params.bottomMargin = height;
             navigationBarContainer.setLayoutParams(params);
         });
 

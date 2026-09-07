@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主界面底栏的纯图片 Tab 自定义视图：
+     外层用 FrameLayout 容器，便于在右上角叠加更新小红点；
+     图标着色交给 tab_icon_tint（依赖 ImageView 自身的 selected 状态，由代码同步切换） -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/tab_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        app:tint="@color/tab_icon_tint" />
+
+</FrameLayout>

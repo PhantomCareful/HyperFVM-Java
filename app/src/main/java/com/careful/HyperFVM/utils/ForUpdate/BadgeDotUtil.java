@@ -13,9 +13,10 @@ import android.widget.FrameLayout;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 /**
- * 给BottomNavigationView添加小红点的工具类
+ * 给BottomNavigationView或纯图片TabLayout的指定Tab添加小红点的工具类
  */
 public class BadgeDotUtil {
     private static final String TAG = "BadgeDot";
@@ -80,15 +81,10 @@ public class BadgeDotUtil {
         // 2. 先移除已存在的小红点（避免重复添加）
         removeRedDot(itemView);
 
-        // 3. 创建小红点的Shape（圆形、红色）
-        ShapeDrawable redDotShape = new ShapeDrawable(new OvalShape());
-        redDotShape.getPaint().setColor(0xFFba1a1a);
+        // 3. 创建小红点View
+        View redDotView = createRedDotView(navigationView.getContext());
 
-        // 4. 封装小红点为View
-        View redDotView = new View(navigationView.getContext());
-        redDotView.setBackground(redDotShape);
-
-        // 5. 设置小红点的布局参数（位置：右上角，尺寸：8dp）
+        // 4. 设置小红点的布局参数（位置：右上角）
         int dotSize = DensityUtil.dpToPx(navigationView.getContext(), DOT_SIZE_DP);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dotSize, dotSize);
         // 调整margin控制红点与图标的偏移（可根据需求修改）
@@ -112,14 +108,73 @@ public class BadgeDotUtil {
     }
 
     /**
-     * 移除单个ItemView内的小红点
+     * 给指定位置的纯图片Tab添加小红点
+     * （挂载在Tab的customView容器上：要求自定义视图根布局为FrameLayout）
+     * @param tabLayout 纯图片TabLayout（主界面底栏）
+     * @param position 目标Tab的位置（从0开始）
      */
-    private static void removeRedDot(@SuppressLint("RestrictedApi") BottomNavigationItemView itemView) {
-        for (int i = 0; i < itemView.getChildCount(); i++) {
-            View child = itemView.getChildAt(i);
+    public static void showRedDot(TabLayout tabLayout, int position) {
+        FrameLayout container = getTabDotContainer(tabLayout, position);
+        if (container == null) return;
+
+        // 先移除已存在的小红点（避免重复添加）
+        removeRedDot(container);
+
+        // 创建小红点View并叠加到容器右上角
+        View redDotView = createRedDotView(tabLayout.getContext());
+        int dotSize = DensityUtil.dpToPx(tabLayout.getContext(), DOT_SIZE_DP);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dotSize, dotSize);
+        params.gravity = Gravity.TOP | Gravity.END;
+        params.topMargin = DensityUtil.dpToPx(tabLayout.getContext(), 6);
+        params.rightMargin = DensityUtil.dpToPx(tabLayout.getContext(), 6);
+        container.addView(redDotView, params);
+    }
+
+    /**
+     * 移除指定位置Tab上的小红点
+     * @param tabLayout 纯图片TabLayout（主界面底栏）
+     * @param position 目标Tab的位置（从0开始）
+     */
+    public static void hideRedDot(TabLayout tabLayout, int position) {
+        FrameLayout container = getTabDotContainer(tabLayout, position);
+        if (container == null) return;
+        removeRedDot(container);
+    }
+
+    /**
+     * 获取Tab的自定义视图容器（纯图片Tab的自定义视图根布局为FrameLayout）
+     */
+    private static FrameLayout getTabDotContainer(TabLayout tabLayout, int position) {
+        if (tabLayout == null) return null;
+        TabLayout.Tab tab = tabLayout.getTabAt(position);
+        if (tab == null) return null;
+        View customView = tab.getCustomView();
+        if (customView instanceof FrameLayout) {
+            return (FrameLayout) customView;
+        }
+        return null;
+    }
+
+    /**
+     * 创建小红点View（圆形、红色）
+     */
+    private static View createRedDotView(Context context) {
+        ShapeDrawable redDotShape = new ShapeDrawable(new OvalShape());
+        redDotShape.getPaint().setColor(0xFFba1a1a);
+        View redDotView = new View(context);
+        redDotView.setBackground(redDotShape);
+        return redDotView;
+    }
+
+    /**
+     * 移除指定容器内的小红点
+     */
+    private static void removeRedDot(ViewGroup container) {
+        for (int i = 0; i < container.getChildCount(); i++) {
+            View child = container.getChildAt(i);
             // 通过背景类型判断是否是小红点（避免误删其他View）
             if (child.getBackground() instanceof ShapeDrawable) {
-                itemView.removeView(child);
+                container.removeView(child);
                 break;
             }
         }

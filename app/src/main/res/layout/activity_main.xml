@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    tools:ignore="MissingConstraints,contentDescription">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
@@ -25,11 +25,10 @@
             android:overScrollMode="never" />
 
     </eightbitlab.com.blurview.BlurTarget>
-
     <LinearLayout
         android:id="@+id/navigation_bar_container"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -39,9 +38,8 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="180dp"
+            android:layout_height="55dp"
             android:layout_marginEnd="10dp"
             app:strokeWidth="0dp"
             app:cardPreventCornerOverlap="false"
@@ -53,94 +51,78 @@
                 android:id="@+id/blurViewNavView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipChildren="false"
-                android:clipToPadding="false"
                 app:blurOverlayColor="@color/blur_overlay_color">
 
-                <!-- 底栏：移到中间内容之后（层级更高），设透明背景 -->
-                <com.careful.HyperFVM.utils.ForDesign.NoPaddingBottomNavigationView.NoPaddingBottomNavigationView
-                    android:id="@+id/nav_view"
+                <!-- 底栏：纯图片 TabLayout，移到中间内容之后（层级更高），设透明背景 -->
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingHorizontal="5dp"
-                    android:clickable="true"
-                    android:background="?attr/selectableItemBackground"
-                    app:itemIconSize="40dp"
-                    app:itemIconTint="@null"
-                    app:itemActiveIndicatorStyle="@null"
-                    app:itemRippleColor="@android:color/transparent"
-                    app:labelVisibilityMode="unlabeled"
-                    app:itemTextColor="?attr/colorOnSurface"
-                    app:menu="@menu/bottom_nav_menu" />
+                    android:background="@android:color/transparent"
+                    app:tabMode="fixed"
+                    app:tabGravity="center"
+                    app:tabMinWidth="0dp"
+                    app:tabPaddingStart="5dp"
+                    app:tabPaddingEnd="5dp"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabRippleColor="@android:color/transparent" />
 
             </eightbitlab.com.blurview.BlurView>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/FloatButton_CardDataSearch_Container"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="10dp"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
             app:strokeWidth="0dp"
             app:cardCornerRadius="40dp"
             app:cardElevation="10dp"
             app:cardBackgroundColor="@android:color/transparent">
 
-            <eightbitlab.com.blurview.BlurView
-                android:id="@+id/blurViewButtonSearch"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:blurOverlayColor="@color/blur_overlay_color">
+                android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/FloatButton_CardDataSearch"
-                    android:layout_width="match_parent"
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurViewButtonSearch"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_search_big"
-                    android:stateListAnimator="@null"
-                    android:clickable="false"
-                    app:tint="?attr/colorPrimary"
-                    app:elevation="0dp"
-                    app:pressedTranslationZ="0dp"
-                    app:rippleColor="@android:color/transparent"
-                    tools:ignore="ContentDescription" />
+                    android:layout_weight="1"
+                    app:blurOverlayColor="@color/blur_overlay_color">
 
-            </eightbitlab.com.blurview.BlurView>
+                    <ImageButton
+                        android:id="@+id/FloatButton_CardDataSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@android:color/transparent"
+                        android:background="?attr/selectableItemBackground"
+                        android:src="@drawable/ic_search_big"
+                        app:tint="?attr/colorOnSurface"
+                        app:elevation="0dp" />
 
-        </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/FloatButton_CardDataDecomposeAndGetSearch_Container"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:strokeWidth="0dp"
-            app:cardCornerRadius="40dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@android:color/transparent">
-
-            <eightbitlab.com.blurview.BlurView
-                android:id="@+id/blurViewButtonDecomposeAndGetSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:blurOverlayColor="@color/blur_overlay_color">
-
-                <ImageButton
-                    android:id="@+id/FloatButton_CardDataDecomposeAndGetSearch"
-                    android:layout_width="match_parent"
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurViewButtonDecomposeAndGetSearch"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_recycle_big"
-                    android:stateListAnimator="@null"
-                    android:clickable="false"
-                    app:tint="?attr/colorPrimary"
-                    app:elevation="0dp"
-                    app:pressedTranslationZ="0dp"
-                    app:rippleColor="@android:color/transparent"
-                    tools:ignore="ContentDescription" />
+                    android:layout_weight="1"
+                    app:blurOverlayColor="@color/blur_overlay_color">
 
-            </eightbitlab.com.blurview.BlurView>
+                    <ImageButton
+                        android:id="@+id/FloatButton_CardDataDecomposeAndGetSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@android:color/transparent"
+                        android:background="?attr/selectableItemBackground"
+                        android:src="@drawable/ic_recycle_big"
+                        app:tint="?attr/colorOnSurface"
+                        app:elevation="0dp" />
+
+                </eightbitlab.com.blurview.BlurView>
+
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
