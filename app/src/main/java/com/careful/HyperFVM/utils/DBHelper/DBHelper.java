@@ -1,6 +1,6 @@
 package com.careful.HyperFVM.utils.DBHelper;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_INTERFACE_STYLE;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_INTERFACE_STYLE;
 import static com.careful.HyperFVM.utils.DBHelper.DatabaseInfo.DB_VERSION;
 
 import android.content.ContentValues;

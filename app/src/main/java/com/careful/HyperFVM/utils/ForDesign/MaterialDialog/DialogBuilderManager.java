@@ -28,7 +28,7 @@ import androidx.cardview.widget.CardView;
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.IcuFraudActivity;
-import com.careful.HyperFVM.Activities.NecessaryThings.UsingInstructionActivity;
+import com.careful.HyperFVM.Activities.Necessary.UsingInstruction.UsingInstructionActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;

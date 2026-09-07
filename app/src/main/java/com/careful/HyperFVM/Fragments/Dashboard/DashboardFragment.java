@@ -1,7 +1,7 @@
 package com.careful.HyperFVM.Fragments.Dashboard;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_BIOMETRIC_AUTH;
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_IS_BIOMETRIC_AUTH;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;

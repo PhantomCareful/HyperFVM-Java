@@ -73,7 +73,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/description_thanks_list_fvm"
+                                android:text="@string/tips_thanks_list_fvm_description"
                                 android:textSize="15sp"
                                 android:textColor="?attr/TextViewColorOnImportantCardView" />
 
@@ -84,7 +84,6 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/thanks_list_container_fvm_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
@@ -102,8 +101,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground">
 
@@ -153,8 +152,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground">
 
@@ -204,8 +203,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground">
 
@@ -255,8 +254,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground">
 
@@ -306,8 +305,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center"
                             android:padding="16dp"
+                            android:gravity="center"
                             android:clickable="true"
                             android:background="?attr/selectableItemBackground">
 

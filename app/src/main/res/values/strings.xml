@@ -477,14 +477,27 @@
     <string name="label_about_app_developer_name_2">QQ空间1–8服·喵帕斯赛高</string>
     <string name="dialog_sub_title_developer">Phantom_Careful</string>
     <string name="dialog_url_about_app_developer">https://github.com/PhantomCareful</string>
-    <string name="label_about_app_co_construction_team_1">共建团</string>
-    <string name="label_about_app_co_construction_team_2">HyperFVM也是这些同学们的作品</string>
+    <string name="title_about_app_co_construction_team">共建团</string>
+    <string name="description_about_app_co_construction_team">HyperFVM也是这些同学们的作品</string>
+    <string name="tips_co_construction_team_description">感谢以下同学为HyperFVM的开发提供了不同程度的帮助🥰（排名顺序为时间先后顺序）</string>
+    <string name="title_co_construction_team_list_1">QQ空间1–8服·飛飛</string>
+    <string name="description_co_construction_team_list_1">感谢提出在主界面添加防御卡数据查询按钮的建议</string>
+    <string name="title_co_construction_team_list_2">QQ空间1–8服·HS灬缄默</string>
+    <string name="description_co_construction_team_list_2">感谢提出在图鉴防御卡数据中展示超清大图的建议</string>
+    <string name="title_co_construction_team_list_3">4399 2–6服·早睡日氪一元</string>
+    <string name="description_co_construction_team_list_3">感谢提出防御卡数据整合的建议\n感谢提出相关防御卡跳转查询的建议\n感谢帮助检查防御卡全能数据库中的错误</string>
+    <string name="title_co_construction_team_list_4">哔哩哔哩·失眠小羊-ovo</string>
+    <string name="description_co_construction_team_list_4">感谢提出图片导出功能的建议</string>
+    <string name="title_co_construction_team_list_5">QQ空间1–8服·darg1</string>
+    <string name="description_co_construction_team_list_5">感谢帮助修复部分低质大图</string>
+    <string name="title_co_construction_team_list_6">QQ空间1–8服·司康饼的午后</string>
+    <string name="description_co_construction_team_list_6">感谢帮助修复部分低质大图</string>
     <string name="title_about_app_thanks_list">致谢</string>
     <string name="label_about_app_thanks_list_fvm_1">游戏相关</string>
     <string name="label_about_app_thanks_list_fvm_2">HyperFVM使用了这些老师们的作品</string>
     <string name="label_about_app_thanks_list_app_1">App相关</string>
     <string name="label_about_app_thanks_list_app_2">HyperFVM使用了这些开源项目</string>
-    <string name="description_thanks_list_fvm">HyperFVM 在开发过程中使用了这些老师们的作品，在此表示衷心感谢🥰（排名顺序不分先后）</string>
+    <string name="tips_thanks_list_fvm_description">HyperFVM 在开发过程中使用了这些老师们的作品，在此表示衷心感谢🥰（排名顺序不分先后）</string>
     <string name="title_thanks_list_fvm_1">So陌路の</string>
     <string name="description_thanks_list_fvm_1">综合数据表作者</string>
     <string name="dialog_sub_title_thanks_list_fvm_1">So陌路の</string>
@@ -502,7 +515,7 @@
     <string name="description_thanks_list_fvm_4_2">查黑系统作者</string>
     <string name="title_thanks_list_fvm_5_1">哪片花火</string>
     <string name="description_thanks_list_fvm_5_2">部分数据图作者</string>
-    <string name="title_thanks_list_app">HyperFVM 在开发过程中使用了这些优秀的开源项目或辅助工具，在此表示衷心感谢🥰（排名顺序不分先后）</string>
+    <string name="tips_thanks_list_app_description">HyperFVM 在开发过程中使用了这些优秀的开源项目或辅助工具，在此表示衷心感谢🥰（排名顺序不分先后）</string>
     <string name="title_thanks_list_app_1">YuKongA/miuix</string>
     <string name="description_thanks_list_app_1">一个Compose Multiplatform的组件库，提供了一系列小米澎湃OS风格的组件\nHyperFVM当前使用View构建界面，因此无法直接使用，仅借鉴了其界面布局设计</string>
     <string name="dialog_sub_title_thanks_list_app_1">miuix</string>
@@ -517,10 +530,24 @@
     <string name="dialog_url_thanks_list_app_3">https://github.com/Dimezis/BlurView</string>
     <string name="title_thanks_list_app_4">DeepSeek-V4-Flash</string>
     <string name="description_thanks_list_app_4">辅助编写代码</string>
-    <string name="label_some_necessary_things">一些必要的东西</string>
-    <string name="label_using_instruction_1">使用说明</string>
-    <string name="label_using_instruction_2">阅读以快速了解HyperFVM</string>
+    <string name="title_some_necessary_things">一些必要的东西</string>
+    <string name="title_using_instruction">使用说明</string>
+    <string name="description_using_instruction">阅读以快速上手HyperFVM</string>
     <string name="top_bar_using_instruction">🍼使用说明</string>
+    <string name="tips_using_instruction_title">写在最前面</string>
+    <string name="tips_using_instruction_description">这个App是我计划了很久的作品，承诺永久免费，纯净无广，希望大家能够喜欢🥰🥰🥰\n如果您是第一次使用HyperFVM，或者对其中的某些功能不太了解，可以阅读这里的使用说明来获取帮助。</string>
+    <string name="title_using_instruction_1">仪表盘</string>
+    <string name="description_using_instruction_1">不需要进入游戏，便可以在这里查看各种重要信息</string>
+    <string name="title_using_instruction_2">数据相关功能</string>
+    <string name="description_using_instruction_2">所有和游戏数据相关的内容都在这里</string>
+    <string name="title_using_instruction_3">美食数据站</string>
+    <string name="description_using_instruction_3">这里是一些实用网站的入口，点击相应的卡片即可快捷跳转浏览器访问</string>
+    <string name="title_using_instruction_4">实用功能</string>
+    <string name="description_using_instruction_4">包含一些有趣的小功能</string>
+    <string name="title_using_instruction_5">版本号</string>
+    <string name="description_using_instruction_5">介绍每一位分别表示什么意思</string>
+    <string name="title_using_instruction_6">问题反馈</string>
+    <string name="description_using_instruction_6">遇到Bug/有好的想法，如何反馈</string>
     <string name="label_settings_1">App设置</string>
     <string name="label_settings_2">个性化您的HyperFVM</string>
     <string name="label_more">更多</string>
@@ -1664,7 +1691,6 @@
 
     <string name="name_card_data_index_16_1_11_0">仙人球海星刺身</string>
     <string name="name_card_data_index_16_1_11_1">奶油海星刺身–王冠海星刺身</string>
-
 
 
     <!--食神谱部分-->

@@ -6,26 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    tools:ignore="MissingConstraints,contentDescription">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
             android:clipChildren="false"
-            android:clipToPadding="false"
-            tools:ignore="UselessParent">
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:id="@+id/CoContributorTeam_Container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
                 android:paddingBottom="50dp"
@@ -34,55 +33,226 @@
                 android:clipToPadding="false">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/CoContributorTeam_Top_Container"
+                    android:id="@+id/tips_co_contributor_team"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:clickable="true"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                    app:cardCornerRadius="20dp"
-                    android:visibility="gone">
+                    app:cardCornerRadius="20dp">
 
-                    <TextView
-                        android:id="@+id/CoContributorTeam_Top_Content"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
+                        android:orientation="horizontal"
                         android:padding="16dp"
-                        android:textColor="?attr/TextViewColorOnImportantCardView"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_heart"
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_about_app_thanks_list"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tips_co_construction_team_description"
+                                android:textSize="15sp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/CoContributorTeam_Content_Container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="25dp"
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp"
-                    android:visibility="gone">
+                    app:cardCornerRadius="20dp">
 
-                    <TextView
-                        android:id="@+id/CoContributorTeam_Content_Content"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:textSize="20sp"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground"/>
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_co_construction_team_list_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_co_construction_team_list_1"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_co_construction_team_list_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_co_construction_team_list_2"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_co_construction_team_list_3"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_co_construction_team_list_3"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_co_construction_team_list_4"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_co_construction_team_list_4"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_co_construction_team_list_5"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_co_construction_team_list_5"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_co_construction_team_list_6"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_co_construction_team_list_6"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/placeholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/many_n"
-                    android:textSize="40sp"
-                    android:visibility="visible"/>
 
             </LinearLayout>
 
@@ -94,7 +264,7 @@
     <View
         android:id="@+id/status_bar_gradient"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:background="@drawable/status_bar_gradient_no_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -129,8 +299,7 @@
                 android:clickable="false"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"
-                app:rippleColor="@android:color/transparent"
-                tools:ignore="ContentDescription" />
+                app:rippleColor="@android:color/transparent" />
 
         </eightbitlab.com.blurview.BlurView>
 

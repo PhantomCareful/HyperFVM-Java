@@ -1,6 +1,6 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST;
 
 import android.os.Bundle;
 import android.os.Handler;

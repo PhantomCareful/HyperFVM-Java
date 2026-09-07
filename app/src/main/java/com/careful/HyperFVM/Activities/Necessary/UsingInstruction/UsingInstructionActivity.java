@@ -1,24 +1,20 @@
-package com.careful.HyperFVM.Activities.NecessaryThings;
+package com.careful.HyperFVM.Activities.Necessary.UsingInstruction;
 
-import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -46,42 +42,37 @@ public class UsingInstructionActivity extends BaseActivity {
         // 初始化各种装饰效果
         initDecoration();
 
-        TextView overview_top = findViewById(R.id.using_instruction_top);
-        TextView overview1 = findViewById(R.id.using_instruction1);
-        TextView overview2 = findViewById(R.id.using_instruction2);
-        TextView overview3 = findViewById(R.id.using_instruction3);
-        TextView overview4 = findViewById(R.id.using_instruction4);
-        TextView overview5 = findViewById(R.id.using_instruction5);
-        TextView overview6 = findViewById(R.id.using_instruction6);
-        TextView overview7 = findViewById(R.id.using_instruction7);
-
-        getContentFromAssets(this, overview_top, "QATop.txt");
-        getContentFromAssets(this, overview1, "QA1.txt");
-        getContentFromAssets(this, overview2, "QA2.txt");
-        getContentFromAssets(this, overview3, "QA3.txt");
-        getContentFromAssets(this, overview4, "QA4.txt");
-        getContentFromAssets(this, overview5, "QA5.txt");
-        getContentFromAssets(this, overview6, "QA6.txt");
-        getContentFromAssets(this, overview7, "QA7.txt");
-
-        // 初始化动画效果
-        TransitionSet transition = new TransitionSet();
-        transition.addTransition(new Fade()); // 淡入淡出
-        transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
-        transition.setDuration(300); // 动画时长300ms
-
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            TransitionManager.beginDelayedTransition(using_instruction_container, transition);
-            findViewById(R.id.using_instruction_top_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction1_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction2_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction3_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction4_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction5_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction6_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.using_instruction7_container).setVisibility(View.VISIBLE);
-            findViewById(R.id.placeholder).setVisibility(View.GONE);
-        }, 300);
+        // 设置点击事件：均跳转UsingInstructionDetailActivity，但是要传递不同的QA文件名
+        findViewById(R.id.using_instruction_1).setOnClickListener(v -> {
+            Intent intent = new Intent(this, UsingInstructionDetailActivity.class);
+            intent.putExtra("QAFileName", "QA1.txt");
+            startActivity(intent);
+        });
+        findViewById(R.id.using_instruction_2).setOnClickListener(v -> {
+            Intent intent = new Intent(this, UsingInstructionDetailActivity.class);
+            intent.putExtra("QAFileName", "QA2.txt");
+            startActivity(intent);
+        });
+        findViewById(R.id.using_instruction_3).setOnClickListener(v -> {
+            Intent intent = new Intent(this, UsingInstructionDetailActivity.class);
+            intent.putExtra("QAFileName", "QA3.txt");
+            startActivity(intent);
+        });
+        findViewById(R.id.using_instruction_4).setOnClickListener(v -> {
+            Intent intent = new Intent(this, UsingInstructionDetailActivity.class);
+            intent.putExtra("QAFileName", "QA4.txt");
+            startActivity(intent);
+        });
+        findViewById(R.id.using_instruction_5).setOnClickListener(v -> {
+            Intent intent = new Intent(this, UsingInstructionDetailActivity.class);
+            intent.putExtra("QAFileName", "QA5.txt");
+            startActivity(intent);
+        });
+        findViewById(R.id.using_instruction_6).setOnClickListener(v -> {
+            Intent intent = new Intent(this, UsingInstructionDetailActivity.class);
+            intent.putExtra("QAFileName", "QA6.txt");
+            startActivity(intent);
+        });
     }
 
     /**
@@ -91,6 +82,7 @@ public class UsingInstructionActivity extends BaseActivity {
      * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
@@ -125,6 +117,10 @@ public class UsingInstructionActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.tips_using_instruction).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

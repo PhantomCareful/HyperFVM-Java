@@ -202,7 +202,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_about_app_co_construction_team_1"
+                                android:text="@string/title_about_app_co_construction_team"
                                 android:textColor="?attr/colorOnSurface"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
@@ -210,7 +210,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_about_app_co_construction_team_2"
+                                android:text="@string/description_about_app_co_construction_team"
                                 android:textColor="?attr/colorOnSurfaceVariant"
                                 android:textSize="15sp" />
 
@@ -365,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/label_some_necessary_things"
+                android:text="@string/title_some_necessary_things"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"/>
@@ -412,14 +412,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_using_instruction_1"
+                                android:text="@string/title_using_instruction"
                                 android:textColor="?attr/colorOnSurface"
                                 android:textSize="20sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/label_using_instruction_2"
+                                android:text="@string/description_using_instruction"
                                 android:textColor="?attr/colorOnSurfaceVariant"
                                 android:textSize="15sp"/>
 

@@ -1,29 +1,26 @@
-package com.careful.HyperFVM.Activities.Thanks;
+package com.careful.HyperFVM.Activities.Necessary.UsingInstruction;
 
-import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
+import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 
-public class CoContributorTeamActivity extends BaseActivity {
+public class UsingInstructionDetailActivity extends BaseActivity {
     private BlurUtil blurUtil;
-
-    private LinearLayout CoContributorTeamContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +33,17 @@ public class CoContributorTeamActivity extends BaseActivity {
         if(NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_co_contributor_team);
+        setContentView(R.layout.activity_using_instruction_detail);
 
         // 初始化各种装饰效果
         initDecoration();
 
+        // 拿到传递进来的QA文件名
+        String QAFileName = getIntent().getStringExtra("QAFileName");
+
+        // 调用Markdown工具展示内容
+        TextView content_using_instruction_detail = findViewById(R.id.content_using_instruction_detail);
+        getContentFromAssets(this, content_using_instruction_detail, QAFileName);
     }
 
     /**
@@ -61,25 +64,9 @@ public class CoContributorTeamActivity extends BaseActivity {
             params.topMargin = height;
             floatButtonBackContainer.setLayoutParams(params);
         });
-        // 动态调整侧边距（手机/PAD）
-        CoContributorTeamContainer = findViewById(R.id.CoContributorTeam_Container);
-        InsetsUtil.setMarginHorizontal(this, CoContributorTeamContainer, layout_marginHorizontal -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) CoContributorTeamContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            params.rightMargin = layout_marginHorizontal;
-            CoContributorTeamContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            floatButtonBackContainer.setLayoutParams(params);
-        });
 
         // 添加模糊材质
         setupBlurEffect();
-
-        // 添加按压动画
-        findViewById(R.id.tips_co_contributor_team).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.careful.HyperFVM.Activities.DataCenter.DataImage;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_DARK_MODE;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_DARK_MODE;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
@@ -86,7 +86,7 @@ public class DataImageOthersActivity extends BaseActivity {
      * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
-    @SuppressLint("DiscouragedApi")
+    @SuppressLint({"DiscouragedApi", "ClickableViewAccessibility"})
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);

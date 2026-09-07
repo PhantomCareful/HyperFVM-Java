@@ -1,7 +1,7 @@
 package com.careful.HyperFVM;
 
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_DIY_FONT_SCALE;
-import static com.careful.HyperFVM.Activities.NecessaryThings.SettingsActivity.CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_DIY_FONT_SCALE;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE;
 
 import android.content.Context;
 import android.content.res.Configuration;
