@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -305,14 +306,32 @@ public class SettingsActivity extends BaseActivity {
                 // 动态取色开启：禁用点击
                 themeSelectorContainer.setOnClickListener(null);
             }
-            Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
+        });
+        MaterialSwitch finalMaterialSwitch1 = materialSwitch;
+        findViewById(R.id.Switch_isDynamicColor_Container).setOnClickListener(v -> {
+            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, Boolean.toString(finalMaterialSwitch1.isChecked()));
+            if (!finalMaterialSwitch1.isChecked()) {
+                // 动态取色关闭：允许点击
+                themeSelectorContainer.setOnClickListener(view -> showThemeSelectionDialog());
+            } else {
+                // 动态取色开启：禁用点击
+                themeSelectorContainer.setOnClickListener(null);
+            }
+            finalMaterialSwitch1.setChecked(!finalMaterialSwitch1.isChecked());
+            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         });
         // 跟随系统字体大小开关
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, Boolean.toString(isChecked));
             fontScaleSlider.setEnabled(!isChecked);
-            Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
+        });
+        MaterialSwitch finalMaterialSwitch2 = materialSwitch;
+        findViewById(R.id.Switch_isFixedFontScale_Container).setOnClickListener(v -> {
+            dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, Boolean.toString(finalMaterialSwitch2.isChecked()));
+            fontScaleSlider.setEnabled(!finalMaterialSwitch2.isChecked());
+            finalMaterialSwitch2.setChecked(!finalMaterialSwitch2.isChecked());
+            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         });
         // 自定义字体大小滑条
         fontScaleSlider.addOnChangeListener((slider, v, b) -> {
@@ -327,45 +346,80 @@ public class SettingsActivity extends BaseActivity {
 
             @Override
             public void onStopTrackingTouch(@NonNull Slider slider) {
-                Toast.makeText(SettingsActivity.this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
+                // 啥也不做
             }
         });
         // 动态背景开关
         materialSwitch = findViewById(R.id.Switch_isDynamicBackground);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_BACKGROUND, Boolean.toString(isChecked));
-            // 同步更新 Application 中的缓存值，保证新打开的页面无需重启也能读取到最新设置
             HyperFVMApplication.setContentIsDynamicBackground(isChecked);
-            Toast.makeText(this, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
+        });
+        MaterialSwitch finalMaterialSwitch3 = materialSwitch;
+        findViewById(R.id.Switch_isDynamicBackground_Container).setOnClickListener(v -> {
+            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_BACKGROUND, Boolean.toString(finalMaterialSwitch3.isChecked()));
+            finalMaterialSwitch3.setChecked(!finalMaterialSwitch3.isChecked());
+            // 同步更新 Application 中的缓存值，保证新打开的页面无需重启也能读取到最新设置
+            HyperFVMApplication.setContentIsDynamicBackground(finalMaterialSwitch3.isChecked());
+            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         });
         // Toast显示设置开关
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataIndex);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX, Boolean.toString(isChecked)));
+        MaterialSwitch finalMaterialSwitch4 = materialSwitch;
+        findViewById(R.id.Switch_isVisible_CardDataIndex_Container).setOnClickListener(v -> {
+            dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX, Boolean.toString(finalMaterialSwitch4.isChecked()));
+            finalMaterialSwitch4.setChecked(!finalMaterialSwitch4.isChecked());
+            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+        });
         materialSwitch = findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST, Boolean.toString(isChecked)));
+        MaterialSwitch finalMaterialSwitch5 = materialSwitch;
+        findViewById(R.id.Switch_isVisible_CardDataAuxiliaryList_Container).setOnClickListener(v -> {
+            dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_AUXILIARY_LIST, Boolean.toString(finalMaterialSwitch5.isChecked()));
+            finalMaterialSwitch5.setChecked(!finalMaterialSwitch5.isChecked());
+            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+        });
         materialSwitch = findViewById(R.id.Switch_isVisible_RefreshDashboard);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
                 dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD, Boolean.toString(isChecked)));
+        MaterialSwitch finalMaterialSwitch6 = materialSwitch;
+        findViewById(R.id.Switch_isVisible_RefreshDashboard_Container).setOnClickListener(v -> {
+            dbHelper.updateSettingValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD, Boolean.toString(finalMaterialSwitch6.isChecked()));
+            finalMaterialSwitch6.setChecked(!finalMaterialSwitch6.isChecked());
+            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+        });
         // 生物认证开关
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
-        MaterialSwitch finalMaterialSwitch = materialSwitch;
+        MaterialSwitch finalMaterialSwitch7 = materialSwitch;
         materialSwitch.setOnClickListener(v -> {
-            boolean isChecked = finalMaterialSwitch.isChecked();
+            boolean isChecked = finalMaterialSwitch7.isChecked();
             BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
                     getResources().getString(R.string.biometric_auth_sub_title), () -> {
                         // 验证成功
                         dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, Boolean.toString(!isChecked));
                         isPermitSwitchChanging = true;
-                        finalMaterialSwitch.setChecked(!isChecked);
+                        finalMaterialSwitch7.setChecked(!isChecked);
             });
+        });
+        findViewById(R.id.Switch_BiometricAuth_Container).setOnClickListener(v -> {
+            boolean isChecked = finalMaterialSwitch7.isChecked();
+            BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
+                    getResources().getString(R.string.biometric_auth_sub_title), () -> {
+                        // 验证成功
+                        dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, Boolean.toString(!isChecked));
+                        isPermitSwitchChanging = true;
+                        finalMaterialSwitch7.setChecked(!isChecked);
+                    });
+            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         });
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isPermitSwitchChanging) {
                 isPermitSwitchChanging = false;
             } else {
-                finalMaterialSwitch.setChecked(!isChecked);
+                finalMaterialSwitch7.setChecked(!isChecked);
             }
         });
     }

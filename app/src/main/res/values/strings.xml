@@ -351,7 +351,7 @@
     <string name="title_dashboard_tips">小贴士</string>
     <string name="content_dashboard_tips">点击仪表盘的卡片可查看其详细内容</string>
     <!--美食数据站-->
-    <string name="label_tools_made_by_xiaye">美食数据站🥰</string>
+    <string name="label_tools_made_by_xiaye">美食数据站</string>
     <string name="title_tools_tiramisu">提拉米鼠(By 夏夜浅酌)</string>
     <string name="label_tools_tiramisu">🥰功能众多，简单易用的QQ机器人\n👉点击跳转使用指南</string>
     <string name="dialog_title_tiramisu">提拉米鼠使用指南</string>
@@ -394,7 +394,7 @@
     <string name="dialog_title_tools_gem_calculator">宝石最优路径计算器</string>
     <string name="dialog_url_gem_calculator">https://app.msdzls.cn/gem_co</string>
     <!--实用功能-->
-    <string name="label_tools_made_by_phantom_careful">实用功能😈</string>
+    <string name="label_tools_made_by_phantom_careful">实用功能</string>
     <string name="title_tools_today_lucky">今日运势</string>
     <string name="label_tools_today_lucky">😈一个快速播放不同星级海星的GIF动图\n👉点击开始使用</string>
     <string name="label_tools_today_lucky_choose_your_lucky">选取你的运势</string>
