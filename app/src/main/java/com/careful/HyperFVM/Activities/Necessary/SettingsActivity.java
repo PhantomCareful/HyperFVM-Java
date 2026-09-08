@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -76,6 +77,9 @@ public class SettingsActivity extends BaseActivity {
     private boolean isPermitSwitchChanging = false;
 
     private int savedScrollY = 0;// 用于保存/恢复的滚动位置
+
+    // 记录最近一次触摸按下时的横向位置，供下拉菜单跟随手指弹出（-1 表示尚未触摸过）
+    private float lastTouchDownX = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +199,10 @@ public class SettingsActivity extends BaseActivity {
         currentInterfaceStyle = dbHelper.getSettingStringValue(CONTENT_INTERFACE_STYLE);
         interfaceStyleCurrentSelection.setText(currentInterfaceStyle);
 
+        // 记录触摸位置，使下拉菜单跟随手指横向弹出
+        bindDropdownRowTouch(themeSelectorContainer);
+        bindDropdownRowTouch(darkModeSelectorContainer);
+        bindDropdownRowTouch(interfaceStyleSelectorContainer);
         // 设置点击事件（动态取色开启时主题行不可点击）
         setThemeRowClickable(!dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR));
         // 设置深色模式点击事件
@@ -227,27 +235,34 @@ public class SettingsActivity extends BaseActivity {
     }
 
     /**
+     * 记录点击设置行时的横向触摸位置，供下拉菜单跟随手指横向弹出
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    private void bindDropdownRowTouch(View container) {
+        container.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                lastTouchDownX = event.getX();
+            }
+            return false;// 不消费事件，保持原有按压反馈与点击行为
+        });
+    }
+
+    /**
      * 以设置行为锚点，就地弹出简洁的下拉选项菜单（替代原先的中央列表弹窗）。
-     * 菜单宽度自适应选项内容（wrap_content），选中项以单选标记高亮，点击行外区域自动关闭。
+     * 菜单宽度自适应选项内容（wrap_content）且跟随手指横向弹出，选中项右侧显示√，点击行外区域自动关闭。
      */
     private void showRowDropdown(View anchor, int arrayId, String currentContent, String dbHelperUpdateContent,
                                  TextView currentSelection, Consumer<String> onSelected) {
         String[] entries = getResources().getStringArray(arrayId);
-        int selectedIndex = 0;
-        for (int i = 0; i < entries.length; i++) {
-            if (entries[i].equals(currentContent)) {
-                selectedIndex = i;
-                break;
-            }
-        }
-
+        ArrayAdapter<String> adapter = getStringArrayAdapter(currentContent, entries);
         // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果），高度用于限制总高避免超屏。
-        // ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_index_selection_single_choice, entries);
+        // ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置。
+        // getView 的 parent 形参标注 @NonNull：这里传一个仅用于生成 LayoutParams 的空容器（不挂载子视图），避免传 null
+        ViewGroup measureParent = new FrameLayout(this);
         int contentWidth = 0;
         int itemHeight = 0;
         for (int i = 0; i < entries.length; i++) {
-            View itemView = adapter.getView(i, null, null);
+            View itemView = adapter.getView(i, null, measureParent);
             itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
             contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
@@ -263,11 +278,19 @@ public class SettingsActivity extends BaseActivity {
         int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - verticalOffset;
         int popupHeight = Math.min(itemHeight * entries.length, Math.max(spaceBelow, itemHeight * 2));
 
+        // 横向弹出位置跟随手指按下的位置，越界时自动收回到屏幕内
+        int horizontalOffset = 0;
+        if (lastTouchDownX >= 0) {
+            int maxOffset = anchor.getRootView().getWidth() - contentWidth - location[0];
+            horizontalOffset = Math.max(0, Math.min((int) lastTouchDownX, maxOffset));
+        }
+
         ListPopupWindow popup = new ListPopupWindow(this);
         popup.setAnchorView(anchor);
         popup.setWidth(contentWidth);
         popup.setHeight(popupHeight);
         popup.setVerticalOffset(verticalOffset);
+        popup.setHorizontalOffset(horizontalOffset);
         popup.setModal(true);
         popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
         popup.setAdapter(adapter);
@@ -278,16 +301,42 @@ public class SettingsActivity extends BaseActivity {
             // 使用回调，将selectedEntries传回调用方（同步成员变量）
             onSelected.accept(selectedEntries);
             popup.dismiss();
-            Toast.makeText(this, "重启App后生效哦🧰", Toast.LENGTH_SHORT).show();
         });
 
         popup.show();
-        // 弹出后为列表启用单选模式并勾选当前项，保持与原弹窗一致的选中态
+        // 弹出后隐藏滚动条（选中态由 adapter 渲染右侧对勾，无需 ListView 单选模式）
         ListView listView = popup.getListView();
         if (listView != null) {
-            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            listView.setItemChecked(selectedIndex, true);
+            listView.setVerticalScrollBarEnabled(false);
         }
+    }
+
+    @NonNull
+    private ArrayAdapter<String> getStringArrayAdapter(String currentContent, String[] entries) {
+        int selectedIndex = 0;
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i].equals(currentContent)) {
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果），高度用于限制总高避免超屏。
+        // ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置
+        final int currentSelectedIndex = selectedIndex;
+        return new ArrayAdapter<>(SettingsActivity.this, R.layout.item_dropdown_selection, entries) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View row = convertView != null ? convertView
+                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
+                ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
+                // 仅当前选中项右侧显示对勾，其余不显示
+                row.findViewById(R.id.option_check)
+                        .setVisibility(position == currentSelectedIndex ? View.VISIBLE : View.GONE);
+                return row;
+            }
+        };
     }
 
     /**
