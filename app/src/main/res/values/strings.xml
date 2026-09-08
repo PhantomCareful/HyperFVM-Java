@@ -349,7 +349,7 @@
     <string name="title_dashboard_cry_stone_discount">结晶强化打折</string>
     <string name="title_dashboard_wedding_discount">豪华婚礼打折</string>
     <string name="title_dashboard_tips">小贴士</string>
-    <string name="content_dashboard_tips">点击仪表盘的卡片可查看其详细内容</string>
+    <string name="content_dashboard_tips">点击每个卡片可以查看更详细的内容\n点击右上角的按钮可以手动刷新一次数据</string>
     <!--美食数据站-->
     <string name="label_tools_made_by_xiaye">美食数据站</string>
     <string name="title_tools_tiramisu">提拉米鼠(By 夏夜浅酌)</string>

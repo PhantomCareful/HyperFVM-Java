@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingTop="120dp"
-                android:paddingBottom="100dp"
                 android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
@@ -173,7 +172,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="50dp" />
+                    android:layout_height="150dp" />
 
             </LinearLayout>
 
