@@ -10,14 +10,17 @@ import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.ListPopupWindow;
 import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
@@ -26,7 +29,6 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
-import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -34,6 +36,8 @@ import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.slider.Slider;
+
+import java.util.function.Consumer;
 
 public class SettingsActivity extends BaseActivity {
     private DBHelper dbHelper;
@@ -44,6 +48,8 @@ public class SettingsActivity extends BaseActivity {
     private String currentTheme;
     private View themeSelectorContainer;
     private TextView themeCurrentSelection;
+    private View darkModeSelectorContainer;
+    private View interfaceStyleSelectorContainer;
 
     public static final String CONTENT_DARK_MODE = "主题-深色主题";
     private String currentDarkMode;
@@ -175,9 +181,9 @@ public class SettingsActivity extends BaseActivity {
         themeCurrentSelection = findViewById(R.id.theme_current_selection);
         themeSelectorContainer = findViewById(R.id.theme_selector_container);
         darkModeCurrentSelection = findViewById(R.id.dark_mode_current_selection);
-        View darkModeSelectorContainer = findViewById(R.id.dark_mode_selector_container);
+        darkModeSelectorContainer = findViewById(R.id.dark_mode_selector_container);
         interfaceStyleCurrentSelection = findViewById(R.id.interface_style_current_selection);
-        View interfaceStyleSelectorContainer = findViewById(R.id.interface_style_selector_container);
+        interfaceStyleSelectorContainer = findViewById(R.id.interface_style_selector_container);
 
         // 从数据库获取当前主题值
         currentTheme = dbHelper.getSettingStringValue(CONTENT_APP_THEME);
@@ -189,33 +195,99 @@ public class SettingsActivity extends BaseActivity {
         currentInterfaceStyle = dbHelper.getSettingStringValue(CONTENT_INTERFACE_STYLE);
         interfaceStyleCurrentSelection.setText(currentInterfaceStyle);
 
-        // 设置点击事件
-        if (!dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR)) {
-            // 动态取色关闭：允许点击
-            themeSelectorContainer.setOnClickListener(v -> showThemeSelectionDialog());
-        } else {
-            // 动态取色开启：禁用点击
-            themeSelectorContainer.setOnClickListener(null);
-        }
+        // 设置点击事件（动态取色开启时主题行不可点击）
+        setThemeRowClickable(!dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR));
         // 设置深色模式点击事件
-        darkModeSelectorContainer.setOnClickListener(v -> showDarkModeSelectionDialog());
+        darkModeSelectorContainer.setOnClickListener(v -> showDarkModeDropdown());
         // 设置界面风格点击事件
-        interfaceStyleSelectorContainer.setOnClickListener(v -> showInterfaceStyleSelectionDialog());
+        interfaceStyleSelectorContainer.setOnClickListener(v -> showInterfaceStyleDropdown());
     }
 
-    private void showThemeSelectionDialog() {
-        DialogBuilderManager.showSelectionDialog(this, R.array.theme_entries, currentTheme, "🎨设置主题", CONTENT_APP_THEME, themeCurrentSelection,
-                selectedEntries -> currentTheme = selectedEntries);
+    private void showThemeDropdown() {
+        showRowDropdown(themeSelectorContainer, R.array.theme_entries, currentTheme, CONTENT_APP_THEME,
+                themeCurrentSelection, selectedEntries -> currentTheme = selectedEntries);
     }
 
-    private void showDarkModeSelectionDialog() {
-        DialogBuilderManager.showSelectionDialog(this, R.array.dark_mode_entries, currentDarkMode, "\uD83C\uDF1D\uD83C\uDF1A设置深色模式", CONTENT_DARK_MODE, darkModeCurrentSelection,
-                selectedEntries -> currentDarkMode = selectedEntries);
+    private void showDarkModeDropdown() {
+        showRowDropdown(darkModeSelectorContainer, R.array.dark_mode_entries, currentDarkMode, CONTENT_DARK_MODE,
+                darkModeCurrentSelection, selectedEntries -> currentDarkMode = selectedEntries);
     }
 
-    private void showInterfaceStyleSelectionDialog() {
-        DialogBuilderManager.showSelectionDialog(this, R.array.interface_style_entries, currentInterfaceStyle, "🥕设置界面风格", CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection,
+    private void showInterfaceStyleDropdown() {
+        showRowDropdown(interfaceStyleSelectorContainer, R.array.interface_style_entries, currentInterfaceStyle,
+                CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection,
                 selectedEntries -> currentInterfaceStyle = selectedEntries);
+    }
+
+    /**
+     * 主题行是否可点击（动态取色开启时禁用）
+     */
+    private void setThemeRowClickable(boolean clickable) {
+        themeSelectorContainer.setOnClickListener(clickable ? v -> showThemeDropdown() : null);
+    }
+
+    /**
+     * 以设置行为锚点，就地弹出简洁的下拉选项菜单（替代原先的中央列表弹窗）。
+     * 菜单宽度自适应选项内容（wrap_content），选中项以单选标记高亮，点击行外区域自动关闭。
+     */
+    private void showRowDropdown(View anchor, int arrayId, String currentContent, String dbHelperUpdateContent,
+                                 TextView currentSelection, Consumer<String> onSelected) {
+        String[] entries = getResources().getStringArray(arrayId);
+        int selectedIndex = 0;
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i].equals(currentContent)) {
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果），高度用于限制总高避免超屏。
+        // ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_index_selection_single_choice, entries);
+        int contentWidth = 0;
+        int itemHeight = 0;
+        for (int i = 0; i < entries.length; i++) {
+            View itemView = adapter.getView(i, null, null);
+            itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
+            itemHeight = itemView.getMeasuredHeight();
+        }
+        // 极端大字体下限制菜单宽度不超出屏幕
+        contentWidth = Math.min(contentWidth, anchor.getRootView().getWidth());
+
+        // 锚点下方剩余空间不足时收缩菜单高度
+        int verticalOffset = (int) (4 * getResources().getDisplayMetrics().density);
+        int[] location = new int[2];
+        anchor.getLocationInWindow(location);
+        int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - verticalOffset;
+        int popupHeight = Math.min(itemHeight * entries.length, Math.max(spaceBelow, itemHeight * 2));
+
+        ListPopupWindow popup = new ListPopupWindow(this);
+        popup.setAnchorView(anchor);
+        popup.setWidth(contentWidth);
+        popup.setHeight(popupHeight);
+        popup.setVerticalOffset(verticalOffset);
+        popup.setModal(true);
+        popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
+        popup.setAdapter(adapter);
+        popup.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedEntries = entries[position];
+            dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
+            currentSelection.setText(selectedEntries);
+            // 使用回调，将selectedEntries传回调用方（同步成员变量）
+            onSelected.accept(selectedEntries);
+            popup.dismiss();
+            Toast.makeText(this, "重启App后生效哦🧰", Toast.LENGTH_SHORT).show();
+        });
+
+        popup.show();
+        // 弹出后为列表启用单选模式并勾选当前项，保持与原弹窗一致的选中态
+        ListView listView = popup.getListView();
+        if (listView != null) {
+            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            listView.setItemChecked(selectedIndex, true);
+        }
     }
 
     /**
@@ -299,24 +371,13 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch = findViewById(R.id.Switch_isDynamicColor);
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, Boolean.toString(isChecked));
-            if (!isChecked) {
-                // 动态取色关闭：允许点击
-                themeSelectorContainer.setOnClickListener(v -> showThemeSelectionDialog());
-            } else {
-                // 动态取色开启：禁用点击
-                themeSelectorContainer.setOnClickListener(null);
-            }
+            // 动态取色开启时禁用主题行点击，关闭时恢复
+            setThemeRowClickable(!isChecked);
         });
         MaterialSwitch finalMaterialSwitch1 = materialSwitch;
         findViewById(R.id.Switch_isDynamicColor_Container).setOnClickListener(v -> {
             dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, Boolean.toString(finalMaterialSwitch1.isChecked()));
-            if (!finalMaterialSwitch1.isChecked()) {
-                // 动态取色关闭：允许点击
-                themeSelectorContainer.setOnClickListener(view -> showThemeSelectionDialog());
-            } else {
-                // 动态取色开启：禁用点击
-                themeSelectorContainer.setOnClickListener(null);
-            }
+            setThemeRowClickable(!finalMaterialSwitch1.isChecked());
             finalMaterialSwitch1.setChecked(!finalMaterialSwitch1.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         });

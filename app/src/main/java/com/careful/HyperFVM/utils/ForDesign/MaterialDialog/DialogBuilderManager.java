@@ -15,11 +15,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -1250,61 +1248,6 @@ public class DialogBuilderManager {
             DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
             dialog.show();
         }
-    }
-
-    /**
-     * 通用的列表弹窗的构建方法
-     */
-    public static void showSelectionDialog(Context context, int arrayId, String currentContent, String dialogTitle, String dbHelperUpdateContent, TextView currentSelection,
-                                           SettingsSelectionDialogCallBack callBack) {
-        ListView listView;
-        Dialog dialog;
-        String[] entries = context.getResources().getStringArray(arrayId);
-        int selectedIndex = 0;
-        for (int i = 0; i < entries.length; i++) {
-            if (entries[i].equals(currentContent)) {
-                selectedIndex = i;
-                break;
-            }
-        }
-
-        // 加载自定义布局
-        View dialogView = LayoutInflater.from(context).inflate(R.layout.item_dialog_selection, null);
-        listView = dialogView.findViewById(R.id.dialog_list);
-        if (entries.length <= 10) {
-            dialogView.findViewById(R.id.dialog_list_top_gradient).setVisibility(View.GONE);
-            dialogView.findViewById(R.id.dialog_list_bottom_gradient).setVisibility(View.GONE);
-        }
-
-        // 设置列表
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.item_index_selection_single_choice, entries);
-        listView.setAdapter(adapter);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setItemChecked(selectedIndex, true);
-
-        // 构建Dialog
-        dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
-                .setTitle(dialogTitle)
-                .setView(dialogView)
-                .setNegativeButton("关闭", null)
-                .create();
-
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-
-        // 列表点击事件
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedEntries = entries[position];
-            dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
-            currentSelection.setText(selectedEntries);
-            // 使用回调，将selectedEntries传回SettingsActivity
-            callBack.onResult(selectedEntries);
-            dialog.dismiss();
-            Toast.makeText(context, "重启App后生效哦\uD83E\uDEF0", Toast.LENGTH_SHORT).show();
-        });
-
-        listView.setTag(dialog); // 传递Dialog引用
-        dialog.show();
     }
 
     /**
