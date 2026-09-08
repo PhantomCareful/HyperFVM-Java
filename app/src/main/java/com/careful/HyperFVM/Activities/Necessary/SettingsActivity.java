@@ -81,6 +81,10 @@ public class SettingsActivity extends BaseActivity {
     // 记录最近一次触摸按下时的横向位置，供下拉菜单跟随手指弹出（-1 表示尚未触摸过）
     private float lastTouchDownX = -1;
 
+    // 页面内容左右边距（手机/PAD 由 InsetsUtil 动态计算）。下拉菜单最右缘沿用此值，
+    // 保证菜单不贴屏幕右缘，而是与页面内容右缘对齐
+    private int pageContentSideMarginPx = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 设置主题（必须在super.onCreate前调用才有效）
@@ -278,10 +282,10 @@ public class SettingsActivity extends BaseActivity {
         int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - verticalOffset;
         int popupHeight = Math.min(itemHeight * entries.length, Math.max(spaceBelow, itemHeight * 2));
 
-        // 横向弹出位置跟随手指按下的位置，越界时自动收回到屏幕内
+        // 横向弹出位置跟随手指按下的位置；最右不得超过屏幕右缘减页面边距，使菜单右缘与页面内容右缘对齐
         int horizontalOffset = 0;
         if (lastTouchDownX >= 0) {
-            int maxOffset = anchor.getRootView().getWidth() - contentWidth - location[0];
+            int maxOffset = anchor.getRootView().getWidth() - contentWidth - location[0] - pageContentSideMarginPx;
             horizontalOffset = Math.max(0, Math.min((int) lastTouchDownX, maxOffset));
         }
 
@@ -577,6 +581,9 @@ public class SettingsActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonRestartContainer.getLayoutParams();
             params.rightMargin = layout_marginHorizontal;
             floatButtonRestartContainer.setLayoutParams(params);
+
+            // 同步页面边距给下拉菜单：菜单最右缘与页面内容右缘对齐，统一在此处管理
+            pageContentSideMarginPx = layout_marginHorizontal;
         });
 
         // 添加模糊材质
