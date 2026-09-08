@@ -68,6 +68,9 @@ public class DashboardFragment extends Fragment {
     private static final String FIRST_RUN_KEY = "first_run";
     // 保存/恢复滚动位置的key，用于深浅色切换等界面重建后恢复顶部栏透明度状态
     private static final String STATE_SCROLL_Y = "state_dashboard_scroll_y";
+    // 顶部栏渐变过渡区间（dp）：该界面经实测50dp最合适
+    private static final int TOP_BAR_FADE_RANGE_DP = 50;
+
 
     private View root;
 
@@ -967,7 +970,8 @@ public class DashboardFragment extends Fragment {
         setupBlurEffect();
 
         // 添加顶部栏滚动联动：上滑时大标题淡出、悬浮小标题与模糊层淡入
-        nestedScrollUtil = NestedScrollUtil.attach(root, R.id.topBarBottom, R.id.topBar, R.id.blurViewTopBar);
+        nestedScrollUtil = NestedScrollUtil.attach(root, R.id.scrollView, R.id.topBarBottom,
+                R.id.topBar, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP);
 
         // 添加按压动画
         root.findViewById(R.id.tips_data_image_dashboard).setOnTouchListener((v, event) ->
