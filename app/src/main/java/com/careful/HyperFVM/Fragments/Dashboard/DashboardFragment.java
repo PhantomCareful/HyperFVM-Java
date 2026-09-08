@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,9 +45,9 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import eightbitlab.com.blurview.BlurView;
 
 public class DashboardFragment extends Fragment {
     private DBHelper dbHelper;
@@ -73,7 +76,7 @@ public class DashboardFragment extends Fragment {
     private LinearLayout dashboardContainer;
 
     // 刷新按钮
-    private MaterialCardView floatButtonRefreshContainer;
+    private ImageButton floatButtonRefresh;
 
     // 仪表盘部分
     private TextView dashboardLastDayOfMonth;
@@ -164,7 +167,7 @@ public class DashboardFragment extends Fragment {
         preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         // 初始化仪表盘组件
-        floatButtonRefreshContainer = root.findViewById(R.id.FloatButton_Refresh_Container);
+        floatButtonRefresh = root.findViewById(R.id.FloatButton_Refresh);
 
         dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
 
@@ -247,7 +250,7 @@ public class DashboardFragment extends Fragment {
         getLatestBilibiliAnnouncement();
 
         // 刷新仪表盘按钮
-        floatButtonRefreshContainer.setOnClickListener(v -> {
+        floatButtonRefresh.setOnClickListener(v -> {
             // 清除缓存，强制重新加载
             sDataLoaded = false;
             sCachedData = null;
@@ -290,7 +293,7 @@ public class DashboardFragment extends Fragment {
         final List<Map<String, String>> data = new ArrayList<>(Collections.nCopies(1, null));
 
         // 1. 主线程先更新UI：禁用按钮、显示“请等待”
-        floatButtonRefreshContainer.setEnabled(false);
+        floatButtonRefresh.setEnabled(false);
 
         // 加载按钮旋转动画
         final boolean[] isLoadDone = {false};
@@ -300,7 +303,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void run() {
                 if (!isLoadDone[0]) {
-                    floatButtonRefreshContainer.startAnimation(rotateAnim);
+                    floatButtonRefresh.startAnimation(rotateAnim);
                     handler.postDelayed(this, 1000); // 1秒后再判断
                 }
             }
@@ -345,7 +348,7 @@ public class DashboardFragment extends Fragment {
                             displayDashboardData(data);
 
                             // 恢复按钮
-                            floatButtonRefreshContainer.setEnabled(true);
+                            floatButtonRefresh.setEnabled(true);
 
                             // 提示刷新完成
                             if (dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD)) {
@@ -361,7 +364,7 @@ public class DashboardFragment extends Fragment {
                 // 捕获其他异常（如数据库/任务执行异常）
                 requireActivity().runOnUiThread(() -> {
                     isLoadDone[0] = true;
-                    floatButtonRefreshContainer.setEnabled(true);
+                    floatButtonRefresh.setEnabled(true);
                     Toast.makeText(requireContext(), "刷新失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
             }
@@ -921,17 +924,22 @@ public class DashboardFragment extends Fragment {
     @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView topBarContainer = root.findViewById(R.id.TopBar_Container);
-        MaterialCardView floatButtonRefreshContainer = root.findViewById(R.id.FloatButton_Refresh_Container);
+        BlurView blurViewTopBar = root.findViewById(R.id.blurViewTopBar);
+        TextView topBar = root.findViewById(R.id.topBar);
+        ImageButton floatButtonRefresh = root.findViewById(R.id.FloatButton_Refresh);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(requireContext(), 50);
+            blurViewTopBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonRefreshContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            floatButtonRefreshContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonRefresh.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(requireContext(), 5);
+            floatButtonRefresh.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         InsetsUtil.setMarginHorizontal(requireContext(), dashboardContainer, layout_marginHorizontal -> {
@@ -940,13 +948,9 @@ public class DashboardFragment extends Fragment {
             params.rightMargin = layout_marginHorizontal;
             dashboardContainer.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            topBarContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) floatButtonRefreshContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) floatButtonRefresh.getLayoutParams();
             params.rightMargin = layout_marginHorizontal;
-            floatButtonRefreshContainer.setLayoutParams(params);
+            floatButtonRefresh.setLayoutParams(params);
         });
 
         // 添加模糊材质
@@ -962,7 +966,6 @@ public class DashboardFragment extends Fragment {
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(requireContext());
-        blurUtil.setBlur(root.findViewById(R.id.blurViewButtonRefresh), root.findViewById(R.id.targetView));
         blurUtil.setBlur(root.findViewById(R.id.blurViewTopBar), root.findViewById(R.id.targetView));
     }
 }
