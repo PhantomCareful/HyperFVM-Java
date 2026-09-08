@@ -380,7 +380,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_palette_swatch"
+                                android:src="@drawable/ic_album"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <!-- 左侧文字 -->
@@ -451,7 +451,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_format_size"
+                                android:src="@drawable/ic_expand_more"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <!-- 左侧文字 -->
@@ -502,7 +502,7 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_format_size"
+                                    android:src="@drawable/ic_expand_more"
                                     app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                                 <!-- 左侧文字 -->
@@ -700,7 +700,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_eye"
+                                android:src="@drawable/ic_show"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <!-- 左侧文字 -->
@@ -746,7 +746,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_eye"
+                                android:src="@drawable/ic_show"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <!-- 左侧文字 -->
@@ -792,7 +792,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_eye"
+                                android:src="@drawable/ic_show"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <!-- 左侧文字 -->
@@ -864,7 +864,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_shield_lock"
+                                android:src="@drawable/ic_lock"
                                 app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                             <!-- 左侧文字 -->

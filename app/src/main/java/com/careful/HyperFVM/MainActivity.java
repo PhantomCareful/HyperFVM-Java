@@ -37,8 +37,8 @@ public class MainActivity extends BaseActivity {
     // 底栏 Tab 的图标资源（必须与添加 Fragment 的顺序一一对应）
     private static final int[] BOTTOM_TAB_ICON_RES = {
             R.drawable.ic_dashboard,
-            R.drawable.ic_data_center,
-            R.drawable.ic_about_app
+            R.drawable.ic_horizontal_split,
+            R.drawable.ic_notes
     };
     // 底栏 Tab 的无障碍描述资源（纯图片 Tab 需要它来朗读含义）
     private static final int[] BOTTOM_TAB_DESCRIPTION_RES = {

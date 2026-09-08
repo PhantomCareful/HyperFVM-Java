@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_data_center"
+                android:src="@drawable/ic_album"
                 android:stateListAnimator="@null"
                 android:clickable="false"
                 app:elevation="0dp"
