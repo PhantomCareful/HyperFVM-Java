@@ -18,19 +18,8 @@
             android:id="@+id/about_app_history_update_log_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/many_n"
             android:textSize="15sp"
             android:textColor="?attr/colorOnSurface"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/copyright"
-            android:textSize="20sp"
-            android:textColor="?attr/colorOnSurface"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"/>
 
     </LinearLayout>
 

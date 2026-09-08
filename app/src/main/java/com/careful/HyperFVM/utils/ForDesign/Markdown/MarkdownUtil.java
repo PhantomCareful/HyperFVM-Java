@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.careful.HyperFVM.utils.OtherUtils.UpdateLogReader;
+import com.careful.HyperFVM.utils.OtherUtils.AssetsTextFileReader;
 
 import io.noties.markwon.Markwon;
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
@@ -40,10 +40,10 @@ public class MarkdownUtil {
 
     public static void getContentFromAssets(Context context, TextView textView, String filename) {
         // 调用工具类异步读取
-        UpdateLogReader.readAssetsTxtAsync(
+        AssetsTextFileReader.readAssetsTextAsync(
                 context,
                 filename, // assets下的文件名
-                new UpdateLogReader.ReadCallback() {
+                new AssetsTextFileReader.ReadCallback() {
                     @Override
                     public void onReadSuccess(String content) {
                         // 读取成功，展示到TextView

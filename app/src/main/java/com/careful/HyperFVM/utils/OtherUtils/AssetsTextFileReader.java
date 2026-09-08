@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  * 读取assets目录下更新日志（.txt）的工具类
  * 封装读取逻辑，解耦Activity/Fragment
  */
-public class UpdateLogReader {
+public class AssetsTextFileReader {
     // 回调接口：返回读取结果（异步读取用）
     public interface ReadCallback {
         // 读取成功，返回文本内容
@@ -65,7 +65,7 @@ public class UpdateLogReader {
      * @param fileName 文件名
      * @param callback 读取结果回调（主线程执行）
      */
-    public static void readAssetsTxtAsync(Context context, String fileName, ReadCallback callback) {
+    public static void readAssetsTextAsync(Context context, String fileName, ReadCallback callback) {
         // 子线程执行读取
         new Thread(() -> {
             String content = readAssetsTxtSync(context, fileName);
