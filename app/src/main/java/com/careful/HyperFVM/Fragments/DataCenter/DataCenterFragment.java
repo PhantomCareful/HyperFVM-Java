@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -19,11 +21,22 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
-import com.google.android.material.card.MaterialCardView;
+
+import eightbitlab.com.blurview.BlurView;
 
 public class DataCenterFragment extends Fragment {
+    // 保存/恢复滚动位置的key，用于深浅色切换等界面重建后恢复顶部栏透明度状态
+    private static final String STATE_SCROLL_Y = "state_data_center_scroll_y";
+    // 顶部栏渐变过渡区间（dp）：暂与Dashboard一致为50dp，待实测调整
+    private static final int TOP_BAR_FADE_RANGE_DP = 50;
+
     private View root;
+
+    // 顶部栏滚动联动
+    private NestedScrollUtil nestedScrollUtil;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -146,12 +159,17 @@ public class DataCenterFragment extends Fragment {
      */
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView topBarContainer = root.findViewById(R.id.TopBar_Container);
+        BlurView blurViewTopBar = root.findViewById(R.id.blurViewTopBar);
+        TextView topBar = root.findViewById(R.id.topBar);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(requireContext(), 50);
+            blurViewTopBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout dataCenterContainer = root.findViewById(R.id.DataCenter_Container);
@@ -160,14 +178,14 @@ public class DataCenterFragment extends Fragment {
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
             dataCenterContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            topBarContainer.setLayoutParams(params);
         });
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加顶部栏滚动联动：上滑时大标题淡出、悬浮小标题与模糊层淡入
+        nestedScrollUtil = NestedScrollUtil.attach(root, R.id.scrollView, R.id.topBarBottom,
+                R.id.topBar, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP);
     }
 
     /**
@@ -176,5 +194,23 @@ public class DataCenterFragment extends Fragment {
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(requireContext());
         blurUtil.setBlur(root.findViewById(R.id.blurViewTopBar), root.findViewById(R.id.targetView));
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // 保存滚动位置，供界面重建（旋转/深浅色切换等）后恢复顶部栏透明度状态
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
+        }
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        // 恢复滚动位置并同步透明度（内部会在首帧绘制前按最终滚动位置同步，避免突变回初始状态）
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
+        }
     }
 }

@@ -180,11 +180,12 @@
 
     </eightbitlab.com.blurview.BlurTarget>
 
-    <!-- 状态栏渐变遮罩层 -->
+    <!-- 状态栏模糊遮罩层 -->
     <eightbitlab.com.blurview.BlurView
         android:id="@+id/blurViewTopBar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:clickable="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

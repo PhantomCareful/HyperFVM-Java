@@ -87,10 +87,6 @@ public class DashboardFragment extends Fragment {
     // 顶部栏滚动联动
     private NestedScrollUtil nestedScrollUtil;
 
-    // 顶栏组件（状态栏高度适配用）
-    private TextView topBar;
-    private BlurView blurViewTopBar;
-
     // 仪表盘部分
     private TextView dashboardLastDayOfMonth;
 
@@ -937,8 +933,8 @@ public class DashboardFragment extends Fragment {
     @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
-        blurViewTopBar = root.findViewById(R.id.blurViewTopBar);
-        topBar = root.findViewById(R.id.topBar);
+        BlurView blurViewTopBar = root.findViewById(R.id.blurViewTopBar);
+        TextView topBar = root.findViewById(R.id.topBar);
         ImageButton floatButtonRefresh = root.findViewById(R.id.FloatButton_Refresh);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
