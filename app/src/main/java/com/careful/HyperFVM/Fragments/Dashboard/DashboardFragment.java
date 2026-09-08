@@ -19,13 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +43,7 @@ import com.careful.HyperFVM.utils.ForDashboard.FromGame.EveryMonthAndEveryWeek.E
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -82,10 +81,11 @@ public class DashboardFragment extends Fragment {
     // 刷新按钮
     private ImageButton floatButtonRefresh;
 
-    // 顶部栏滚动联动组件
-    private ScrollView scrollView;
+    // 顶部栏滚动联动
+    private NestedScrollUtil nestedScrollUtil;
+
+    // 顶栏组件（状态栏高度适配用）
     private TextView topBar;
-    private TextView topBarBottom;
     private BlurView blurViewTopBar;
 
     // 仪表盘部分
@@ -966,29 +966,12 @@ public class DashboardFragment extends Fragment {
         // 添加模糊材质
         setupBlurEffect();
 
-        // 添加顶部栏滚动联动：blurViewTopBar与topBar初始完全透明
-        scrollView = root.findViewById(R.id.scrollView);
-        topBarBottom = root.findViewById(R.id.topBarBottom);
-        syncTopBarAlpha();
-        scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> syncTopBarAlpha());
+        // 添加顶部栏滚动联动：上滑时大标题淡出、悬浮小标题与模糊层淡入
+        nestedScrollUtil = NestedScrollUtil.attach(root, R.id.topBarBottom, R.id.topBar, R.id.blurViewTopBar);
 
         // 添加按压动画
         root.findViewById(R.id.tips_data_image_dashboard).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
-    }
-
-    /**
-     * 根据ScrollView的滚动位置同步顶部栏透明度：
-     * 滑动0~100dp的过程中，topBarBottom透明度由1渐变为0，
-     * blurViewTopBar与topBar透明度由0渐变为1
-     */
-    private void syncTopBarAlpha() {
-        if (scrollView == null) return;
-        float fadeRangePx = DensityUtil.dpToPx(requireContext(), 50);
-        float progress = Math.min(1f, scrollView.getScrollY() / fadeRangePx);
-        topBarBottom.setAlpha(1f - progress);
-        blurViewTopBar.setAlpha(progress);
-        topBar.setAlpha(progress);
     }
 
     /**
@@ -1003,33 +986,18 @@ public class DashboardFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         // 保存滚动位置，供界面重建（旋转/深浅色切换等）后恢复顶部栏透明度状态
-        if (scrollView != null) {
-            outState.putInt(STATE_SCROLL_Y, scrollView.getScrollY());
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
         }
     }
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-        if (scrollView == null) return;
-        // 兜底：若系统未恢复滚动位置，则按上次保存值显式恢复
-        if (savedInstanceState != null) {
-            int savedScrollY = savedInstanceState.getInt(STATE_SCROLL_Y, -1);
-            if (savedScrollY > 0) {
-                scrollView.setScrollY(savedScrollY);
-            }
+        // 恢复滚动位置并同步透明度（内部会在首帧绘制前按最终滚动位置同步，避免突变回初始状态）
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
         }
-        // 系统恢复滚动位置发生在本回调之后、首帧绘制之前，因此这里读到的scrollY可能尚未恢复；
-        // 注册一次性预绘制监听，等滚动位置最终确定后再同步透明度，
-        // 避免重建后透明度停留在初始状态、直到用户滚动才突变回正确状态
-        scrollView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                scrollView.getViewTreeObserver().removeOnPreDrawListener(this);
-                syncTopBarAlpha();
-                return true;
-            }
-        });
     }
 
 }
