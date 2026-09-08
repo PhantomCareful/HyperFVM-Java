@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -23,26 +24,33 @@ import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
-import android.widget.ScrollView;
 
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
-import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
+import eightbitlab.com.blurview.BlurView;
+
 public class AboutAppFragment extends Fragment {
+    // 保存/恢复滚动位置的key，用于深浅色切换等界面重建后恢复顶部栏透明度状态
+    private static final String STATE_SCROLL_Y = "state_about_app_scroll_y";
+    // 顶部栏渐变过渡区间（dp）：暂与Dashboard一致为50dp，待实测调整
+    private static final int TOP_BAR_FADE_RANGE_DP = 250;
+
     private View root;
 
     private View logoView;                  // about_app_icon
     private TextView appNameText;           // about_app_name
     private TextView versionInfoText;       // about_app_version_info
 
-    private int savedScrollY = 0;           // 用于保存/恢复的滚动位置
+    // 顶部栏滚动联动
+    private NestedScrollUtil nestedScrollUtil;
 
     private int logoMaxScroll;              // 判定完全消失的滚动距离（dp 转 px）
     private int appNameMaxScroll;           // 判定完全消失的滚动距离（dp 转 px）
@@ -51,11 +59,6 @@ public class AboutAppFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentAboutAppBinding binding = FragmentAboutAppBinding.inflate(inflater, container, false);
         root = binding.getRoot();
-
-        // 恢复之前保存的滚动位置
-        if (savedInstanceState != null) {
-            savedScrollY = savedInstanceState.getInt("scrollY", 0);
-        }
 
         // 初始化各种装饰效果
         initDecoration();
@@ -191,12 +194,17 @@ public class AboutAppFragment extends Fragment {
      */
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView topBarContainer = root.findViewById(R.id.TopBar_Container);
+        BlurView blurViewTopBar = root.findViewById(R.id.blurViewTopBar);
+        TextView topBar = root.findViewById(R.id.topBar);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(requireContext(), 50);
+            blurViewTopBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout aboutAppContainer = root.findViewById(R.id.AboutApp_container);
@@ -205,10 +213,6 @@ public class AboutAppFragment extends Fragment {
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
             aboutAppContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            topBarContainer.setLayoutParams(params);
         });
 
         // 获取需要渐隐的元素
@@ -216,42 +220,32 @@ public class AboutAppFragment extends Fragment {
         appNameText = root.findViewById(R.id.about_app_name);
         versionInfoText = root.findViewById(R.id.about_app_version_info);
 
-        // 获取滚动视图ScrollView
-        ScrollView scrollView = root.findViewById(R.id.ScrollView);
-
         // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
         logoMaxScroll = DensityUtil.dpToPx(requireContext(), 200);
         appNameMaxScroll = DensityUtil.dpToPx(requireContext(), 100);
         appVersionMaxScroll = DensityUtil.dpToPx(requireContext(), 50);
 
-        // 监听滚动
-        if (scrollView != null) {
-            scrollView.post(() -> {
-                scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
-                // 手动触发一次效果更新，让透明度与恢复的滚动位置同步
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, savedScrollY, logoMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, savedScrollY, appNameMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, savedScrollY, appVersionMaxScroll);
-
-                // 给LOGO设置点击彩蛋
-                // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
-                ScrollEffectForBackgroundItem.updateBackgroundLogoClickable(requireContext(), logoView);
-            });
-
-            scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-                savedScrollY = scrollY;// 实时记录当前滚动位置
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, scrollY, logoMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, scrollY, appNameMaxScroll);
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, scrollY, appVersionMaxScroll);
-
-                // 给LOGO设置点击彩蛋
-                // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
-                ScrollEffectForBackgroundItem.updateBackgroundLogoClickable(requireContext(), logoView);
-            });
-        }
-
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加顶部栏滚动联动：上滑时悬浮小标题与模糊层淡入（本页无大标题topBarBottom，传0跳过淡出）
+        // 页面自身的元素渐隐效果经滚动回调一并驱动，与顶部栏联动共用同一滚动监听
+        nestedScrollUtil = NestedScrollUtil.attach(root, R.id.ScrollView,
+                0, R.id.topBar, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP,
+                this::applyBackgroundScrollEffect);
+    }
+
+    /**
+     * 内容区顶部元素（logo/应用名/版本号）的滚动渐隐效果，随滚动位置实时更新
+     */
+    private void applyBackgroundScrollEffect(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, scrollY, logoMaxScroll);
+        ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, scrollY, appNameMaxScroll);
+        ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, scrollY, appVersionMaxScroll);
+
+        // 给LOGO设置点击彩蛋
+        // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
+        ScrollEffectForBackgroundItem.updateBackgroundLogoClickable(requireContext(), logoView);
     }
 
     /**
@@ -265,7 +259,19 @@ public class AboutAppFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("scrollY", savedScrollY);
+        // 保存滚动位置，供界面重建（旋转/深浅色切换等）后恢复顶部栏透明度状态
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
+        }
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        // 恢复滚动位置并同步透明度与页面渐隐效果（首帧绘制前按最终滚动位置同步，避免突变回初始状态）
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
+        }
     }
 
     @Override

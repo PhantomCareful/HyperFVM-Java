@@ -2,8 +2,6 @@ package com.careful.HyperFVM.utils.ForDesign.Scroll;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 
 import androidx.annotation.IdRes;
@@ -23,6 +21,10 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
  * 便于不同页面按自身布局组合使用。
  * 渐变区间 fadeRangeDp 无内置默认值，需按各界面实际效果传入（如50dp）。
  * <p>
+ * 若页面另有自己的滚动效果（如内容元素渐隐），须通过带 pageScrollListener 的 attach 重载
+ * 一并传入，由本类与顶部栏联动共用同一滚动监听（View 的 setOnScrollChangeListener 是
+ * 覆盖语义，页面不能各自注册），重建恢复滚动位置后也会一并触发该回调。
+ * <p>
  * 用法示例（Fragment）：
  * 在 onCreateView 中：
  *     nestedScrollUtil = NestedScrollUtil.attach(root,
@@ -41,14 +43,17 @@ public class NestedScrollUtil {
     private final View topBar;            // 悬浮的小标题（可为null）
     private final View blurViewTopBar;    // 悬浮的模糊背景层（可为null）
     private final int fadeRangePx;        // 渐变过渡区间（px）
+    private final View.OnScrollChangeListener pageScrollListener; // 页面附加的滚动效果回调（可为null）
 
     private NestedScrollUtil(View scrollContainer, View topBarBottom, View topBar,
-                             View blurViewTopBar, int fadeRangePx) {
+                             View blurViewTopBar, int fadeRangePx,
+                             @Nullable View.OnScrollChangeListener pageScrollListener) {
         this.scrollContainer = scrollContainer;
         this.topBarBottom = topBarBottom;
         this.topBar = topBar;
         this.blurViewTopBar = blurViewTopBar;
         this.fadeRangePx = fadeRangePx;
+        this.pageScrollListener = pageScrollListener;
     }
 
     /**
@@ -65,6 +70,21 @@ public class NestedScrollUtil {
     public static NestedScrollUtil attach(View root, @IdRes int scrollContainerId,
                                           @IdRes int topBarBottomId, @IdRes int topBarId,
                                           @IdRes int blurViewTopBarId, int fadeRangeDp) {
+        return attach(root, scrollContainerId, topBarBottomId, topBarId, blurViewTopBarId,
+                fadeRangeDp, null);
+    }
+
+    /**
+     * 带页面附加滚动回调的版本：当页面还有自己的滚动效果（如内容元素渐隐）时，
+     * 传入回调与本工具类共用同一个滚动监听（View 的滚动监听是覆盖语义，不能各自注册），
+     * 滚动位置变化及界面重建恢复时都会回调
+     *
+     * @param pageScrollListener 页面附加滚动回调，可传null
+     */
+    public static NestedScrollUtil attach(View root, @IdRes int scrollContainerId,
+                                          @IdRes int topBarBottomId, @IdRes int topBarId,
+                                          @IdRes int blurViewTopBarId, int fadeRangeDp,
+                                          @Nullable View.OnScrollChangeListener pageScrollListener) {
         if (root == null) {
             throw new IllegalArgumentException("root 不能为 null");
         }
@@ -79,38 +99,7 @@ public class NestedScrollUtil {
                 findViewOrThrow(root, topBarBottomId, "topBarBottom"),
                 findViewOrThrow(root, topBarId, "topBar"),
                 findViewOrThrow(root, blurViewTopBarId, "blurViewTopBar"),
-                fadeRangeDp);
-    }
-
-    /**
-     * 为根视图启用顶部栏滚动联动（自动定位滚动容器）
-     * <p>
-     * 滚动容器定位规则：优先从 topBarBottom 的父级链向上查找；
-     * 未提供 topBarBottom（传0）时，在 root 的视图树中深度优先查找第一个 ScrollView/NestedScrollView。
-     *
-     * @param root              根视图（Fragment的root或Activity的内容视图）
-     * @param topBarBottomId    滚动容器内大标题的id，无该组件则传0
-     * @param topBarId          悬浮小标题的id，无该组件则传0
-     * @param blurViewTopBarId  悬浮模糊背景层的id，无该组件则传0
-     * @param fadeRangeDp       渐变过渡区间（dp），滚动该距离后顶栏完全显现，按界面自定
-     * @return NestedScrollUtil 实例，需持有用于配合状态保存/恢复
-     */
-    public static NestedScrollUtil attach(View root, @IdRes int topBarBottomId,
-                                          @IdRes int topBarId, @IdRes int blurViewTopBarId,
-                                          int fadeRangeDp) {
-        if (root == null) {
-            throw new IllegalArgumentException("root 不能为 null");
-        }
-        View topBarBottom = findViewOrThrow(root, topBarBottomId, "topBarBottom");
-        View scrollContainer = findScrollContainer(root, topBarBottom);
-        if (scrollContainer == null) {
-            throw new IllegalArgumentException("未找到滚动容器：请确认 topBarBottom 位于"
-                    + " ScrollView/NestedScrollView 内，或改用显式指定滚动容器id的attach重载");
-        }
-        return attach(scrollContainer, topBarBottom,
-                findViewOrThrow(root, topBarId, "topBar"),
-                findViewOrThrow(root, blurViewTopBarId, "blurViewTopBar"),
-                fadeRangeDp);
+                fadeRangeDp, pageScrollListener);
     }
 
     /**
@@ -126,6 +115,19 @@ public class NestedScrollUtil {
     public static NestedScrollUtil attach(View scrollContainer, @Nullable View topBarBottom,
                                           @Nullable View topBar, @Nullable View blurViewTopBar,
                                           int fadeRangeDp) {
+        return attach(scrollContainer, topBarBottom, topBar, blurViewTopBar, fadeRangeDp, null);
+    }
+
+    /**
+     * 带页面附加滚动回调的版本（核心实现）：内置透明度联动与页面附加效果共用同一滚动监听，
+     * 避免各自 setOnScrollChangeListener 互相覆盖；重建恢复滚动位置后回调也会一并触发
+     *
+     * @param pageScrollListener 页面附加滚动回调，可传null
+     */
+    public static NestedScrollUtil attach(View scrollContainer, @Nullable View topBarBottom,
+                                          @Nullable View topBar, @Nullable View blurViewTopBar,
+                                          int fadeRangeDp,
+                                          @Nullable View.OnScrollChangeListener pageScrollListener) {
         if (scrollContainer == null) {
             throw new IllegalArgumentException("scrollContainer 不能为 null");
         }
@@ -136,11 +138,17 @@ public class NestedScrollUtil {
             throw new IllegalArgumentException("fadeRangeDp 必须大于0，当前：" + fadeRangeDp);
         }
         NestedScrollUtil util = new NestedScrollUtil(scrollContainer, topBarBottom, topBar,
-                blurViewTopBar, DensityUtil.dpToPx(scrollContainer.getContext(), fadeRangeDp));
+                blurViewTopBar, DensityUtil.dpToPx(scrollContainer.getContext(), fadeRangeDp),
+                pageScrollListener);
         // 同步初始透明度（未滚动：大标题全显、顶栏全透明）
         util.syncAlpha();
-        // 滚动联动
-        scrollContainer.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> util.syncAlpha());
+        // 滚动联动：内置透明度渐变与页面附加效果共用同一监听，避免覆盖彼此
+        scrollContainer.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            util.syncAlpha();
+            if (pageScrollListener != null) {
+                pageScrollListener.onScrollChange(v, scrollX, scrollY, oldScrollX, oldScrollY);
+            }
+        });
         return util;
     }
 
@@ -188,6 +196,12 @@ public class NestedScrollUtil {
             public boolean onPreDraw() {
                 scrollContainer.getViewTreeObserver().removeOnPreDrawListener(this);
                 syncAlpha();
+                // 滚动位置恢复后，一并同步页面附加的滚动效果（如内容元素渐隐）
+                if (pageScrollListener != null) {
+                    pageScrollListener.onScrollChange(scrollContainer,
+                            scrollContainer.getScrollX(), scrollContainer.getScrollY(),
+                            scrollContainer.getScrollX(), scrollContainer.getScrollY());
+                }
                 return true;
             }
         });
@@ -206,41 +220,6 @@ public class NestedScrollUtil {
                     + "（若该页面确实没有此组件，请传0）");
         }
         return view;
-    }
-
-    /**
-     * 定位滚动容器：优先从 topBarBottom 的父级链向上查找（兼容 ScrollView 与 NestedScrollView）；
-     * topBarBottom 为null或未找到时，在 root 的视图树内深度优先查找第一个滚动容器
-     */
-    private static View findScrollContainer(View root, @Nullable View topBarBottom) {
-        if (topBarBottom != null) {
-            ViewParent parent = topBarBottom.getParent();
-            while (parent instanceof View view) {
-                if (view instanceof android.widget.ScrollView || view instanceof NestedScrollView) {
-                    return view;
-                }
-                parent = view.getParent();
-            }
-        }
-        return findScrollContainerInTree(root);
-    }
-
-    private static View findScrollContainerInTree(View view) {
-        if (view == null) {
-            return null;
-        }
-        if (isScrollContainer(view)) {
-            return view;
-        }
-        if (view instanceof ViewGroup viewGroup) {
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                View found = findScrollContainerInTree(viewGroup.getChildAt(i));
-                if (found != null) {
-                    return found;
-                }
-            }
-        }
-        return null;
     }
 
     private static boolean isScrollContainer(View view) {
