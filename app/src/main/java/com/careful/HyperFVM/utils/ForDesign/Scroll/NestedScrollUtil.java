@@ -8,6 +8,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 
@@ -25,6 +26,11 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
  * 一并传入，由本类与顶部栏联动共用同一滚动监听（View 的 setOnScrollChangeListener 是
  * 覆盖语义，页面不能各自注册），重建恢复滚动位置后也会一并触发该回调。
  * <p>
+ * 滚动容器同样支持 RecyclerView（垂直列表）：RecyclerView 不更新 View 的 scrollY（恒为0），
+ * 本类内部以 addOnScrollListener 注册监听（add 语义，可与页面自有效果监听共存，无需
+ * pageScrollListener），偏移按滚动增量累计并以列表首行做几何自纠（不用滚动条估算 API，
+ * 避免行高不均的列表上渐变进度跳变），重建恢复走 post + scrollBy（须等列表布局完成）。
+ * <p>
  * 用法示例（Fragment）：
  * 在 onCreateView 中：
  *     nestedScrollUtil = NestedScrollUtil.attach(root,
@@ -38,12 +44,13 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
  *     onViewStateRestored 中：nestedScrollUtil.restoreScrollY(savedInstanceState, "key");
  */
 public class NestedScrollUtil {
-    private final View scrollContainer;   // ScrollView 或 NestedScrollView
+    private final View scrollContainer;   // ScrollView / NestedScrollView / RecyclerView
     private final View topBarBottom;      // 滚动容器内的大标题（可为null）
     private final View topBar;            // 悬浮的小标题（可为null）
     private final View blurViewTopBar;    // 悬浮的模糊背景层（可为null）
     private final int fadeRangePx;        // 渐变过渡区间（px）
     private final View.OnScrollChangeListener pageScrollListener; // 页面附加的滚动效果回调（可为null）
+    private int lastScrollOffset; // RecyclerView 场景的真实滚动偏移（onScrolled 中按增量累计并经首行几何自纠）
 
     private NestedScrollUtil(View scrollContainer, View topBarBottom, View topBar,
                              View blurViewTopBar, int fadeRangePx,
@@ -60,7 +67,7 @@ public class NestedScrollUtil {
      * 为根视图启用顶部栏滚动联动（显式指定滚动容器与渐变区间）
      *
      * @param root              根视图（Fragment的root或Activity的内容视图）
-     * @param scrollContainerId 滚动容器的id（必传，须为 ScrollView/NestedScrollView）
+     * @param scrollContainerId 滚动容器的id（必传，须为 ScrollView/NestedScrollView/RecyclerView）
      * @param topBarBottomId    滚动容器内大标题的id，无该组件则传0
      * @param topBarId          悬浮小标题的id，无该组件则传0
      * @param blurViewTopBarId  悬浮模糊背景层的id，无该组件则传0
@@ -105,7 +112,7 @@ public class NestedScrollUtil {
     /**
      * 为滚动容器启用顶部栏滚动联动（直接传入组件View）
      *
-     * @param scrollContainer 滚动容器，须为 ScrollView/NestedScrollView
+     * @param scrollContainer 滚动容器，须为 ScrollView/NestedScrollView/RecyclerView
      * @param topBarBottom    滚动容器内的大标题，可为null
      * @param topBar          悬浮的小标题，可为null
      * @param blurViewTopBar  悬浮的模糊背景层，可为null
@@ -132,7 +139,7 @@ public class NestedScrollUtil {
             throw new IllegalArgumentException("scrollContainer 不能为 null");
         }
         if (!isScrollContainer(scrollContainer)) {
-            throw new IllegalArgumentException("scrollContainer 必须是 ScrollView 或 NestedScrollView");
+            throw new IllegalArgumentException("scrollContainer 必须是 ScrollView、NestedScrollView 或 RecyclerView");
         }
         if (fadeRangeDp <= 0) {
             throw new IllegalArgumentException("fadeRangeDp 必须大于0，当前：" + fadeRangeDp);
@@ -143,12 +150,25 @@ public class NestedScrollUtil {
         // 同步初始透明度（未滚动：大标题全显、顶栏全透明）
         util.syncAlpha();
         // 滚动联动：内置透明度渐变与页面附加效果共用同一监听，避免覆盖彼此
-        scrollContainer.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            util.syncAlpha();
-            if (pageScrollListener != null) {
-                pageScrollListener.onScrollChange(v, scrollX, scrollY, oldScrollX, oldScrollY);
-            }
-        });
+        if (scrollContainer instanceof RecyclerView) {
+            // RecyclerView：监听为 add 语义可与其他监听共存，页面自带滚动效果直接注册即可
+            ((RecyclerView) scrollContainer).addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
+                    util.updateLastScrollOffset(rv, dy);
+                    util.syncAlpha();
+                }
+            });
+        } else {
+            // ScrollView/NestedScrollView：setOnScrollChangeListener 是覆盖语义，
+            // 页面附加效果必须经 pageScrollListener 共用此监听
+            scrollContainer.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                util.syncAlpha();
+                if (pageScrollListener != null) {
+                    pageScrollListener.onScrollChange(v, scrollX, scrollY, oldScrollX, oldScrollY);
+                }
+            });
+        }
         return util;
     }
 
@@ -158,7 +178,7 @@ public class NestedScrollUtil {
      * topBar与blurViewTopBar透明度由0渐变为1；缺失的组件自动跳过
      */
     public void syncAlpha() {
-        float progress = Math.min(1f, scrollContainer.getScrollY() / (float) fadeRangePx);
+        float progress = Math.min(1f, getScrollOffset() / (float) fadeRangePx);
         if (topBarBottom != null) {
             topBarBottom.setAlpha(1f - progress);
         }
@@ -175,7 +195,7 @@ public class NestedScrollUtil {
      * 请在宿主的 onSaveInstanceState 中调用
      */
     public void saveScrollY(@NonNull Bundle outState, @NonNull String key) {
-        outState.putInt(key, scrollContainer.getScrollY());
+        outState.putInt(key, getScrollOffset());
     }
 
     /**
@@ -189,7 +209,12 @@ public class NestedScrollUtil {
         // 兜底：若系统未恢复滚动位置，则按上次保存值显式恢复
         int savedScrollY = savedInstanceState.getInt(key, -1);
         if (savedScrollY > 0) {
-            scrollContainer.setScrollY(savedScrollY);
+            if (scrollContainer instanceof RecyclerView) {
+                // RecyclerView 的 setScrollY 无效，须等列表布局完成后按增量滚动（与页面 post 恢复同款）
+                scrollContainer.post(() -> scrollContainer.scrollBy(0, savedScrollY));
+            } else {
+                scrollContainer.setScrollY(savedScrollY);
+            }
         }
         scrollContainer.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
@@ -222,7 +247,42 @@ public class NestedScrollUtil {
         return view;
     }
 
+    /**
+     * 维护 RecyclerView 的真实滚动偏移（等价于 ScrollView 的 scrollY）：
+     * 以列表首行（内容坐标恒为0）为锚做几何测量，该值在任何滚动方式下都精确；
+     * 首行已被回收（滚出很远）时按滚动增量累计维护，滚回顶部时首行必然重新可见，
+     * 会回到几何分支自动纠偏。
+     * 不使用 computeVerticalScrollOffset：它是滚动条估算（按可见行平均高度外推），
+     * 在行高不均的列表上会因可见行切换产生跳变，导致渐变进度突变
+     */
+    private void updateLastScrollOffset(@NonNull RecyclerView rv, int dy) {
+        if (rv.getLayoutManager() == null) return;
+        View firstRow = rv.getLayoutManager().findViewByPosition(0);
+        if (firstRow != null) {
+            // 几何测量：首行随列表平移，其屏幕 top = paddingTop - 真实偏移
+            lastScrollOffset = Math.max(0, rv.getPaddingTop() - firstRow.getTop());
+        } else {
+            // 首行已回收：仅按增量累计；真正滚回顶部时首行必然可见，会走上面的几何分支归零
+            lastScrollOffset = rv.canScrollVertically(-1) ? Math.max(0, lastScrollOffset + dy) : 0;
+        }
+    }
+
     private static boolean isScrollContainer(View view) {
-        return view instanceof android.widget.ScrollView || view instanceof NestedScrollView;
+        return view instanceof android.widget.ScrollView
+                || view instanceof NestedScrollView
+                || view instanceof RecyclerView;
+    }
+
+    /**
+     * 读取滚动容器当前的垂直滚动偏移：
+     * ScrollView/NestedScrollView 直接读 getScrollY；
+     * RecyclerView 不更新 View 的 scrollY（恒为0），须用滚动条偏移 API 获取真实偏移
+     */
+    private int getScrollOffset() {
+        if (scrollContainer instanceof RecyclerView) {
+            // RecyclerView 场景：偏移由 onScrolled 维护（增量累计 + 首行几何自纠），见 updateLastScrollOffset
+            return lastScrollOffset;
+        }
+        return scrollContainer.getScrollY();
     }
 }

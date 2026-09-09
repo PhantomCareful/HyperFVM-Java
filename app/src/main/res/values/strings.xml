@@ -16,8 +16,8 @@
     <string name="card_data_search_data_version">数据库版本：20260827</string>
     <string name="card_data_search_tips">👇点击卡片即可进入数据详情页👇</string>
     <string name="card_data_search_input_tips">请输入防御卡名称</string>
-    <string name="top_bar_card_data_index">🍔数据库</string>
-    <string name="top_bar_card_data_index_pad">🍔防御卡全能数据库</string>
+    <string name="top_bar_card_data_index">防御卡全能数据库</string>
+    <string name="top_bar_card_data_index_pad">防御卡全能数据库</string>
     <string name="title_card_data_base">基础</string>
     <string name="title_card_data_data">数值</string>
     <string name="title_card_data_other">属性</string>
@@ -300,7 +300,6 @@
     <string name="title_dashboard_double_explosion_rate">双爆信息</string>
     <string name="title_dashboard_meishi_wechat">温馨礼包</string>
     <string name="top_bar_meishi_wechat">温馨礼包链接管理</string>
-    <string name="top_bar_meishi_wechat_pad">温馨礼包链接管理</string>
     <string name="title_meishi_wechat_account_saved">已保存的账号</string>
     <string name="title_meishi_wechat_rules">使用说明</string>
     <string name="content_meishi_wechat_rules_1">点击右上角的添加按钮，输入您从微信公众号-美食中心复制过来的链接。</string>

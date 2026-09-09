@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity {
         initDecoration();
 
         // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch).setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
+        findViewById(R.id.FloatButton_Search).setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
         // 分解兑换计算器查询按钮
         findViewById(R.id.FloatButton_CardDataDecomposeAndGetSearch).setOnClickListener(v -> DialogBuilderManager.showDecomposeAndGetQueryDialog(this));
     }
@@ -213,9 +213,9 @@ public class MainActivity extends BaseActivity {
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewNavView));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonDecomposeAndGetSearch));
+        blurUtil.setBlur(findViewById(R.id.blurViewNavView), 0f);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch), 0f);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonDecomposeAndGetSearch), 0f);
     }
 
     @Override

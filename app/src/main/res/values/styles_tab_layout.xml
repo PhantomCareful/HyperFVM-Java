@@ -3,8 +3,5 @@
     <style name="MyTabTextAppearance" parent="TextAppearance.Design.Tab">
         <!-- 在这里设置你想要的文字大小 -->
         <item name="android:textSize">20sp</item>
-        <!-- 可选：也可以在这里设置字体、颜色等 -->
-        <!-- <item name="android:textColor">@color/your_color</item> -->
-        <!-- <item name="android:fontFamily">@font/your_font</item> -->
     </style>
 </resources>

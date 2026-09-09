@@ -20,6 +20,7 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 import com.careful.HyperFVM.utils.OtherUtils.TabLayoutFragmentStateAdapter;
+import com.careful.HyperFVM.utils.OtherUtils.TabLayoutUtil;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -49,6 +50,9 @@ public class UpdateLogHistoryActivity extends BaseActivity {
         viewPager2.setAdapter(adapter);
         viewPager2.setUserInputEnabled(false);
         viewPager2.setOffscreenPageLimit(4);
+
+        // 设置Tab文字颜色：选中=colorOnSurface，未选中=其50%半透明（文字颜色不受TextAppearance控制，见MyTabTextAppearance注释）
+        TabLayoutUtil.setOnSurfaceTextColors(this, tabLayout);
 
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) ->
                 tab.setText(adapter.getPageTitle(position))

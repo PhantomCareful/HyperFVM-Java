@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -33,17 +35,20 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundI
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
 
+import eightbitlab.com.blurview.BlurView;
+
 public class CardDataIndexActivity extends BaseActivity {
+    private static final int TOP_BAR_FADE_RANGE_DP = 150; // 顶栏模糊层渐显区间（滚动该距离后完全显现）
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
@@ -92,14 +97,6 @@ public class CardDataIndexActivity extends BaseActivity {
 
         // 初始化各种装饰效果
         initDecoration();
-
-        // 防御卡目录按钮
-        findViewById(R.id.FloatButton_CardDataIndex_Container).setOnClickListener(v ->
-                showTitleNavigationDialog());
-
-        // 防御卡数据查询按钮
-        findViewById(R.id.FloatButton_CardDataSearch_Container).setOnClickListener(v ->
-                DialogBuilderManager.showCardQueryDialog(this));
 
         // 进入提示弹窗（与旧逻辑一致：延迟片刻后弹出）
         mainHandler.postDelayed(() -> {
@@ -227,29 +224,39 @@ public class CardDataIndexActivity extends BaseActivity {
     @SuppressLint("DiscouragedApi")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
-        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
-        MaterialCardView floatButtonCardDataIndexContainer = findViewById(R.id.FloatButton_CardDataIndex_Container);
-        MaterialCardView floatButtonCardDataSearchContainer = findViewById(R.id.FloatButton_CardDataSearch_Container);
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        ImageButton floatButtonIndex = findViewById(R.id.FloatButton_Index);
+        ImageButton floatButtonSearch = findViewById(R.id.FloatButton_Search);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonCardDataIndexContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonCardDataIndexContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonCardDataSearchContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonCardDataSearchContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonIndex.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonIndex.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonSearch.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonSearch.setLayoutParams(params);
         });
+
+        // 顺便设置按钮的功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
+        floatButtonIndex.setOnClickListener(v -> showTitleNavigationDialog());
+        floatButtonSearch.setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
 
         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
             // ==================== 手机版：两组背景容器，每组三张图 ====================
@@ -396,6 +403,13 @@ public class CardDataIndexActivity extends BaseActivity {
         // 添加模糊材质
         setupBlurEffect();
 
+        // 接入顶部栏滚动联动：本页只联动模糊背景层（topBarBottom/topBar 传0跳过）。
+        // 滚动位置保存与恢复沿用页面自有机制——下方 post + scrollBy 恢复会经由 onScrolled
+        // 驱动本工具类同步透明度，故不再调用工具类的 saveScrollY/restoreScrollY，避免双重恢复
+        // 顶部栏滚动联动（仅模糊层参与；滚动位置由页面自有机制保存/恢复）
+        NestedScrollUtil.attach(rootView,
+                R.id.RecyclerView, 0, 0, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP);
+
         // 恢复上次的滚动位置（必须在滚动监听器全部注册完成后执行）：
         // 先清零 savedScrollY，让 scrollBy 触发的 onScrolled 用 dy 重新累计出真实偏移，
         // 从而保证背景渐隐效果与列表当前位置严格同步。
@@ -411,13 +425,7 @@ public class CardDataIndexActivity extends BaseActivity {
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonIndex));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonSearch));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
-
-        // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
     }
 
     @Override
