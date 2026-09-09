@@ -77,9 +77,8 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical"
-                            android:layout_marginStart="16dp">
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/about_app_check_update_title_1"
@@ -155,9 +154,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
+                                android:layout_marginHorizontal="16dp"
+                                android:orientation="vertical">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -203,9 +201,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="16dp">
+                                android:layout_marginHorizontal="16dp"
+                                android:orientation="vertical">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -282,9 +279,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
+                                android:layout_marginHorizontal="16dp"
+                                android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
                                 <TextView
@@ -333,9 +329,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp"
-                                android:gravity="center_vertical">
+                                android:layout_marginHorizontal="16dp"
+                                android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
                                 <TextView
@@ -413,7 +408,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
@@ -463,7 +458,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
@@ -543,7 +538,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
@@ -593,7 +588,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
@@ -643,7 +638,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
@@ -693,7 +688,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
@@ -743,7 +738,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
@@ -793,7 +788,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:layout_marginStart="16dp"
+                                android:layout_marginHorizontal="16dp"
                                 android:orientation="vertical">
 
                                 <!-- 左侧文字 -->
