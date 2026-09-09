@@ -1144,7 +1144,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
                 android:clickable="false"
-                android:src="@drawable/ic_back_big"
+                android:src="@drawable/ic_back"
                 android:stateListAnimator="@null"
                 app:elevation="0dp"
                 app:pressedTranslationZ="0dp"

@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_back_big"
+                android:src="@drawable/ic_back"
                 android:stateListAnimator="@null"
                 android:clickable="false"
                 app:elevation="0dp"
