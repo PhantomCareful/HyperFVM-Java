@@ -244,7 +244,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -295,7 +295,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
 

@@ -103,7 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_arrow_right"
-                            app:tint="?attr/colorOnSurface" />
+                            app:tint="?attr/colorOnSurfaceVariant" />
 
                     </LinearLayout>
 
@@ -225,7 +225,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -304,7 +304,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -354,7 +354,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -433,7 +433,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -483,7 +483,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -563,7 +563,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -613,7 +613,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -663,7 +663,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -713,7 +713,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -763,7 +763,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
@@ -813,7 +813,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="?attr/colorOnSurface" />
+                                app:tint="?attr/colorOnSurfaceVariant" />
 
                         </LinearLayout>
 
