@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText,ContentDescription">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/target"
@@ -13,6 +13,7 @@
         tools:ignore="MissingConstraints">
 
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
@@ -24,29 +25,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="100dp"
+                android:paddingTop="120dp"
                 android:paddingBottom="50dp"
                 android:layout_marginHorizontal="10dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
                 <TextView
+                    android:id="@+id/topBarBottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="五向增幅卡"
-                    android:textSize="25sp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/top_bar_card_data_auxiliary_list_7"
+                    android:textSize="32sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/colorPrimary"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="🔥全阵容🔥"
-                    android:textSize="65sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorPrimary"/>
+                    android:textColor="?attr/colorOnSurface"
+                    android:visibility="visible"/>
 
                 <!-- 展示各增幅卡的大图 -->
                 <LinearLayout
@@ -439,7 +434,7 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_data_auxiliary_list_content"
+                    android:text="@string/title_card_data_auxiliary_list"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="?attr/TitleTextViewColorOnSurface"/>
@@ -457,14 +452,9 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/copyright"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="center"/>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
 
             </LinearLayout>
 
@@ -472,50 +462,41 @@
 
     </eightbitlab.com.blurview.BlurTarget>
 
-    <!-- 状态栏渐变遮罩层 -->
-    <View
-        android:id="@+id/status_bar_gradient"
+    <!-- 状态栏模糊遮罩层 -->
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewTopBar"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/status_bar_gradient_no_title"
+        android:layout_height="100dp"
+        android:clickable="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/FloatButton_Back_Container"
-        android:layout_width="50dp"
+    <TextView
+        android:id="@+id/topBar"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/top_bar_card_data_auxiliary_list_7"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/FloatButton_Back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
         android:layout_marginStart="10dp"
-        app:strokeWidth="0dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="10dp"
-        app:cardBackgroundColor="@android:color/transparent"
+        android:background="@drawable/ripple_circle"
+        android:src="@drawable/ic_back"
+        app:tint="?attr/colorOnSurface"
+        app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-        <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurViewButtonBack"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/FloatButton_Back"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_back"
-                android:stateListAnimator="@null"
-                android:clickable="false"
-                app:elevation="0dp"
-                app:pressedTranslationZ="0dp"
-                app:rippleColor="@android:color/transparent"
-                app:tint="?attr/colorOnSurface"
-                tools:ignore="ContentDescription" />
-
-        </eightbitlab.com.blurview.BlurView>
-
-    </com.google.android.material.card.MaterialCardView>
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

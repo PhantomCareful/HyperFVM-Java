@@ -9,9 +9,12 @@ import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.careful.HyperFVM.BaseActivity;
@@ -22,19 +25,30 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
+import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
 
+import eightbitlab.com.blurview.BlurView;
+
 @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
 public class AuxiliaryList5EffectActivity extends BaseActivity {
+    // 顶部栏滚动联动的状态保存键与渐变区间
+    private static final String STATE_SCROLL_Y = "state_auxiliary_list5_scroll_y";
+    private static final String STATE_SCROLL_Y_PAD_1 = "state_auxiliary_list5_scroll_y_pad_1";// PAD 左栏（scrollView1 大图栏）滚动位置保存键：PAD 不接入联动，但 ScrollView 不自存滚动状态，需重建后恢复
+    private static final String STATE_SCROLL_Y_PAD_2 = "state_auxiliary_list5_scroll_y_pad_2";// PAD 右栏（scrollView2 名单栏）滚动位置保存键：同上
+    private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+
     private ActivityAuxiliaryList5EffectBinding binding;
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
     private BgEffectController bgEffectController;
+    private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（仅手机单栏布局接入，PAD 双栏布局不接入）
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +82,37 @@ public class AuxiliaryList5EffectActivity extends BaseActivity {
     }
 
     private void initDecoration() {
-        // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        // 适配状态栏高度（顶栏模糊层/悬浮标题/返回按钮，与卡片数据详情页同构）
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
         View rootView = findViewById(android.R.id.content);
-        // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
         });
+
+        // 设置返回按钮功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
+
+        // 接入顶部栏滚动联动：滚动时模糊层与悬浮标题联动显现（topBarBottom 滚出后顶栏显现）
+        if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
+            nestedScrollUtil = NestedScrollUtil.attach(
+                    findViewById(R.id.scrollView),
+                    findViewById(R.id.topBarBottom),
+                    topBar,
+                    blurViewTopBar,
+                    TOP_BAR_FADE_RANGE_DP);
+        }
 
         // 初始化流光背景
         View bgView = findViewById(R.id.bgEffectView);
@@ -97,10 +133,7 @@ public class AuxiliaryList5EffectActivity extends BaseActivity {
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
-
-        // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar), 0f);
     }
 
     /**
@@ -147,6 +180,53 @@ public class AuxiliaryList5EffectActivity extends BaseActivity {
 
         if (bgEffectController != null) {
             bgEffectController.startDetailGoldenCardDataBgEffect();
+        }
+    }
+
+    /**
+     * 保存顶部栏滚动联动的滚动位置，界面重建（深浅色切换等）后恢复
+     */
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
+        } else {
+            // PAD 双栏：不接入联动，仅保存两栏滚动位置（滚动容器按 id 存在性处理，各页 PAD 布局栏数不同）
+            View scrollView1 = findViewById(R.id.scrollView1);
+            if (scrollView1 != null) {
+                outState.putInt(STATE_SCROLL_Y_PAD_1, scrollView1.getScrollY());
+            }
+            View scrollView2 = findViewById(R.id.scrollView2);
+            if (scrollView2 != null) {
+                outState.putInt(STATE_SCROLL_Y_PAD_2, scrollView2.getScrollY());
+            }
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
+            return;
+        }
+
+        if (SmallestWidthUtil.getSmallestWidthDp() >= 600) {
+            View scrollView1 = findViewById(R.id.scrollView1);
+            if (scrollView1 != null) {
+                int scrollY = savedInstanceState.getInt(STATE_SCROLL_Y_PAD_1, 0);
+                if (scrollY > 0) {
+                    scrollView1.setScrollY(scrollY);
+                }
+            }
+            View scrollView2 = findViewById(R.id.scrollView2);
+            if (scrollView2 != null) {
+                int scrollY = savedInstanceState.getInt(STATE_SCROLL_Y_PAD_2, 0);
+                if (scrollY > 0) {
+                    scrollView2.setScrollY(scrollY);
+                }
+            }
         }
     }
 
