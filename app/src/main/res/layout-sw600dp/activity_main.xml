@@ -51,8 +51,7 @@
             <eightbitlab.com.blurview.BlurView
                 android:id="@+id/blurViewNavView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:blurOverlayColor="@color/blur_overlay_color">
+                android:layout_height="match_parent">
 
                 <!-- 底栏：纯图片 TabLayout，移到中间内容之后（层级更高），设透明背景 -->
                 <com.google.android.material.tabs.TabLayout
@@ -86,8 +85,7 @@
                     android:id="@+id/blurViewButtonSearch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:blurOverlayColor="@color/blur_overlay_color">
+                    android:layout_weight="1">
 
                     <ImageButton
                         android:id="@+id/FloatButton_CardDataSearch"
@@ -104,8 +102,7 @@
                     android:id="@+id/blurViewButtonDecomposeAndGetSearch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:blurOverlayColor="@color/blur_overlay_color">
+                    android:layout_weight="1">
 
                     <ImageButton
                         android:id="@+id/FloatButton_CardDataDecomposeAndGetSearch"

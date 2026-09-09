@@ -186,8 +186,7 @@
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewButtonBack"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:blurOverlayColor="@color/blur_overlay_color">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/FloatButton_Back"

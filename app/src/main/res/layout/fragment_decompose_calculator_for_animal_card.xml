@@ -704,8 +704,7 @@
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewResult"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:blurOverlayColor="@color/blur_overlay_color">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/decompose_calculator_for_animal_card_result"

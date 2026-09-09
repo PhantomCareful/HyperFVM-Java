@@ -140,8 +140,7 @@
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewButtonBack"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:blurOverlayColor="@color/blur_overlay_color">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/FloatButton_Back"
@@ -177,8 +176,7 @@
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewTopBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:blurOverlayColor="@color/blur_overlay_color">
+            android:layout_height="match_parent">
 
             <!-- 顶栏 -->
             <TextView
@@ -213,8 +211,7 @@
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewButtonIndex"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:blurOverlayColor="@color/blur_overlay_color">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/FloatButton_CardDataIndex"
@@ -250,8 +247,7 @@
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurViewButtonSearch"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:blurOverlayColor="@color/blur_overlay_color">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/FloatButton_CardDataSearch"

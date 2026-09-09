@@ -5,9 +5,6 @@
     <color name="ic_launcher_background">@android:color/system_accent1_100</color>
     <color name="splash_color">@color/material_dynamic_primary100</color>
 
-    <!--Blur叠加色-->
-    <color name="blur_overlay_color">#3FFFFFFF</color>
-
     <!--底栏和按钮描边颜色-->
     <color name="bottom_navigation_view_stroke_color">#3FFFFFFF</color>
 
