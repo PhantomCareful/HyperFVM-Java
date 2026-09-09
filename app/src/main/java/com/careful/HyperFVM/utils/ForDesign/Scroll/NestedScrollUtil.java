@@ -260,8 +260,19 @@ public class NestedScrollUtil {
         int savedScrollY = savedInstanceState.getInt(key, -1);
         if (savedScrollY > 0) {
             if (scrollContainer instanceof RecyclerView) {
-                // RecyclerView 的 setScrollY 无效，须等列表布局完成后按增量滚动（与页面 post 恢复同款）
-                scrollContainer.post(() -> scrollContainer.scrollBy(0, savedScrollY));
+                // 调用本方法即表示由页面接管滚动恢复，须先关闭系统对 RecyclerView 的自动保存/恢复
+                // （LayoutManager 锚点会在重建时自动恢复，与这里的全量滚动叠加会超调）
+                scrollContainer.setSaveEnabled(false);
+                // RecyclerView 的 setScrollY 无效，须等列表布局完成后按增量滚动；不能用 post：此刻视图
+                // 可能尚未 attach/布局（无子视图时 scrollBy 被忽略），GlobalLayout 回调发生在布局完成后、
+                // 同帧绘制前，一次性滚动后首帧即呈现最终状态
+                scrollContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        scrollContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        scrollContainer.scrollBy(0, savedScrollY);
+                    }
+                });
             } else {
                 scrollContainer.setScrollY(savedScrollY);
             }
