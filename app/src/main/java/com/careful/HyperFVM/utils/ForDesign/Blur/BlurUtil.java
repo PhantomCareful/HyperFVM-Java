@@ -26,6 +26,15 @@ public class BlurUtil {
     }
 
     public void setBlur(BlurView blurViewId) {
+        setBlur(blurViewId, OVERLAY_ALPHA);
+    }
+
+    /**
+     * 设置模糊效果（target 为 Activity 内 id=target 的组件），叠加色透明度可自定义
+     *
+     * @param overlayAlpha 叠加色透明度（0~1，如0.5 = 50%）
+     */
+    public void setBlur(BlurView blurViewId, float overlayAlpha) {
         if (context == null || window == null) return;  // 加防护
         View decorView = window.getDecorView();
         BlurTarget target = ((Activity) context).findViewById(R.id.target);
@@ -35,11 +44,20 @@ public class BlurUtil {
                 .setFrameClearDrawable(windowBackground)
                 .setBlurRadius(radius)
                 .setBlurAutoUpdate(true);
-        // 统一叠加色：主题 colorSurface 的 50% alpha 版本
-        applySurfaceOverlayColor(blurViewId);
+        // 统一叠加色：主题 colorSurface 叠加指定 alpha
+        applySurfaceOverlayColor(blurViewId, overlayAlpha);
     }
 
     public void setBlur(BlurView blurViewId, BlurTarget blurTarget) {
+        setBlur(blurViewId, blurTarget, OVERLAY_ALPHA);
+    }
+
+    /**
+     * 设置模糊效果（target 自定义），叠加色透明度可自定义
+     *
+     * @param overlayAlpha 叠加色透明度（0~1，如0.5 = 50%）
+     */
+    public void setBlur(BlurView blurViewId, BlurTarget blurTarget, float overlayAlpha) {
         if (context == null || window == null) return;  // 加防护
         View decorView = window.getDecorView();
         Drawable windowBackground = decorView.getBackground();
@@ -48,20 +66,20 @@ public class BlurUtil {
                 .setFrameClearDrawable(windowBackground)
                 .setBlurRadius(radius)
                 .setBlurAutoUpdate(true);
-        // 统一叠加色：主题 colorSurface 的 50% alpha 版本
-        applySurfaceOverlayColor(blurViewId);
+        // 统一叠加色：主题 colorSurface 叠加指定 alpha
+        applySurfaceOverlayColor(blurViewId, overlayAlpha);
     }
 
     /**
-     * 从当前主题解析 colorSurface 并叠加 50% alpha 后设为模糊叠加色
+     * 从当前主题解析 colorSurface 并叠加指定 alpha 后设为模糊叠加色
      */
-    private void applySurfaceOverlayColor(BlurView blurView) {
+    private void applySurfaceOverlayColor(BlurView blurView, float overlayAlpha) {
         TypedValue typedValue = new TypedValue();
         if (context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorSurface, typedValue, true)
                 && typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT
                 && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) {
             int color = typedValue.data;
-            int alpha = Math.round(Color.alpha(color) * OVERLAY_ALPHA);
+            int alpha = Math.round(Color.alpha(color) * overlayAlpha);
             blurView.setOverlayColor((color & 0x00FFFFFF) | (alpha << 24));
         }
     }
