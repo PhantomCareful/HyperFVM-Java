@@ -230,7 +230,7 @@ public class AboutAppFragment extends Fragment {
 
         // 添加顶部栏滚动联动：上滑时悬浮小标题与模糊层淡入（本页无大标题topBarBottom，传0跳过淡出）
         // 页面自身的元素渐隐效果经滚动回调一并驱动，与顶部栏联动共用同一滚动监听
-        nestedScrollUtil = NestedScrollUtil.attach(root, R.id.ScrollView,
+        nestedScrollUtil = NestedScrollUtil.attach(root, R.id.scrollView,
                 0, R.id.topBar, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP,
                 this::applyBackgroundScrollEffect);
     }

@@ -31,6 +31,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 
@@ -46,6 +47,10 @@ public class CardDataBaseFragment extends Fragment {
     private int savedScrollY = 0;// 用于保存/恢复的滚动位置
     private int imageViewCardBig1ContainerMaxScroll;// 判定完全消失的滚动距离（dp 转 px）
     private int imageViewCardBig2ContainerMaxScroll;// 判定完全消失的滚动距离（dp 转 px）
+
+    private static final int TOP_BAR_FADE_RANGE_DP = 250;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+    private static final int TOP_BAR_FADE_ANIM_MS = 250;// 切换页面时模糊遮罩层过渡动画时长（ms）
+    private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（模糊层在宿主 Activity，随当前选中 Fragment 切换生效）
 
     private TransitionSet transition;
     private LinearLayout bigImageContainer;
@@ -584,15 +589,15 @@ public class CardDataBaseFragment extends Fragment {
     }
 
     /**
-     * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
-     * 1.模糊材质
-     * 2.背景动态流光
-     * 3.背景组件滑动渐隐渐显
+     * 此方法用于完成当前界面的各种装饰，比如
+     * 1.背景组件滑动渐隐渐显
+     * 2.大图淡入过渡动画
      * 等等等等
+     * 注：页面顶部的模糊遮罩已统一由宿主 Activity（CardDataActivity）实现
      */
     private void initDecoration() {
         // 获取滚动视图ScrollView
-        ScrollView scrollView = root.findViewById(R.id.ScrollView);
+        ScrollView scrollView = root.findViewById(R.id.scrollView);
 
         // 初始化大图片的淡入动画
         transition = new TransitionSet();
@@ -620,13 +625,40 @@ public class CardDataBaseFragment extends Fragment {
                 }
             });
 
-            scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-                savedScrollY = scrollY;// 实时记录当前滚动位置
-                if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
-                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_1_Container, scrollY, imageViewCardBig1ContainerMaxScroll);
-                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_2_Container, scrollY, imageViewCardBig2ContainerMaxScroll);
-                }
-            });
+            // 顶部栏滚动联动：模糊层 blurViewTopBar 悬浮于宿主 Activity 中，跨视图树直接传入 View；
+            // 页面自身的图片渐隐效果经 pageScrollListener 与联动共用同一滚动监听（覆盖语义不能各自注册）
+            nestedScrollUtil = NestedScrollUtil.attach(scrollView, null, null,
+                    requireActivity().findViewById(R.id.blurViewTopBar),
+                    TOP_BAR_FADE_RANGE_DP,
+                    (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                        savedScrollY = scrollY;// 实时记录当前滚动位置
+                        if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
+                            ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_1_Container, scrollY, imageViewCardBig1ContainerMaxScroll);
+                            ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(Image_View_Card_Big_2_Container, scrollY, imageViewCardBig2ContainerMaxScroll);
+                        }
+                    });
+            // 共享的模糊层同时被多个 Fragment 持有：非当前可见页先关闭写入，待 onResume 启用后再仲裁
+            nestedScrollUtil.setSyncEnabled(false);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 成为当前可见页时启用本页写入权；仲裁须 post 延迟：同一批次内其他 Fragment 的 attach
+        // 初始同步（scrollY=0 写0）晚于本页 onResume 执行，延迟到消息队列可保证仲裁在最后、不被覆盖
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.setSyncEnabled(true);
+            root.post(() -> nestedScrollUtil.animateSyncAlpha(TOP_BAR_FADE_ANIM_MS));
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // 离开当前可见页后关闭本页写入权，避免不可见页的滚动/位置恢复影响当前页的模糊层
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.setSyncEnabled(false);
         }
     }
 

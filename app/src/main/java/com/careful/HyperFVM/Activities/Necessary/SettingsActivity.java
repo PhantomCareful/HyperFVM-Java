@@ -590,7 +590,7 @@ public class SettingsActivity extends BaseActivity {
         setupBlurEffect();
 
         // 保存/恢复滚动位置（切换深浅色模式重建时保持上次位置）
-        ScrollView scrollView = findViewById(R.id.ScrollView);
+        ScrollView scrollView = findViewById(R.id.scrollView);
         if (scrollView != null) {
             scrollView.post(() -> scrollView.setScrollY(savedScrollY));// 还原当前滚动位置
             scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->

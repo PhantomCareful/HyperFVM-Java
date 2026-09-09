@@ -24,6 +24,7 @@ import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 public class CardDataOtherFragment extends Fragment {
@@ -35,6 +36,10 @@ public class CardDataOtherFragment extends Fragment {
     private String tableName;
 
     private int savedScrollY = 0;// 用于保存/恢复的滚动位置
+
+    private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+    private static final int TOP_BAR_FADE_ANIM_MS = 250;// 切换页面时模糊遮罩层过渡动画时长（ms）
+    private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（模糊层在宿主 Activity，随当前选中 Fragment 切换生效）
 
     public CardDataOtherFragment newInstance(String cardName, String tableName) {
         CardDataOtherFragment fragment = new CardDataOtherFragment();
@@ -183,7 +188,7 @@ public class CardDataOtherFragment extends Fragment {
         });
 
         // 获取滚动视图ScrollView
-        ScrollView scrollView = root.findViewById(R.id.ScrollView);
+        ScrollView scrollView = root.findViewById(R.id.scrollView);
 
         // 监听滚动
         if (scrollView != null) {
@@ -191,9 +196,36 @@ public class CardDataOtherFragment extends Fragment {
                 scrollView.setScrollY(savedScrollY);// 还原当前滚动位置
             });
 
-            scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-                savedScrollY = scrollY;// 实时记录当前滚动位置
-            });
+            // 顶部栏滚动联动：模糊层 blurViewTopBar 悬浮于宿主 Activity 中，跨视图树直接传入 View；
+            // 页面自身的滚动位置记录经 pageScrollListener 与联动共用同一滚动监听（覆盖语义不能各自注册）
+            nestedScrollUtil = NestedScrollUtil.attach(scrollView, null, null,
+                    requireActivity().findViewById(R.id.blurViewTopBar),
+                    TOP_BAR_FADE_RANGE_DP,
+                    (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                        savedScrollY = scrollY;// 实时记录当前滚动位置
+                    });
+            // 共享的模糊层同时被多个 Fragment 持有：非当前可见页先关闭写入，待 onResume 启用后再仲裁
+            nestedScrollUtil.setSyncEnabled(false);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 成为当前可见页时启用本页写入权；仲裁须 post 延迟：同一批次内其他 Fragment 的 attach
+        // 初始同步（scrollY=0 写0）晚于本页 onResume 执行，延迟到消息队列可保证仲裁在最后、不被覆盖
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.setSyncEnabled(true);
+            root.post(() -> nestedScrollUtil.animateSyncAlpha(TOP_BAR_FADE_ANIM_MS));
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // 离开当前可见页后关闭本页写入权，避免不可见页的滚动/位置恢复影响当前页的模糊层
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.setSyncEnabled(false);
         }
     }
 

@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +32,8 @@ import com.careful.HyperFVM.utils.OtherUtils.TabLayoutUtil;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import eightbitlab.com.blurview.BlurView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -245,47 +247,56 @@ public class CardDataActivity extends BaseActivity {
     @SuppressLint("NewApi")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
-        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
-        MaterialCardView floatButtonExportContainer = findViewById(R.id.FloatButton_Export_Container);
-        LinearLayout tabLayoutContainer = findViewById(R.id.TabLayout_Container);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        ImageButton floatButtonExport = findViewById(R.id.FloatButton_Export);
+        MaterialCardView tabLayoutContainer = findViewById(R.id.tabLayoutContainer);
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
         InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) tabLayoutContainer.getLayoutParams();
-            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            params.bottomMargin = height;
             tabLayoutContainer.setLayoutParams(params);
         });
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonExportContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonExportContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonExport.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonExport.setLayoutParams(params);
+
+            // 顶栏模糊遮罩高度 = 状态栏高度 + 50dp
+            params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         ConstraintLayout decompose_and_get_calculator_for_animal_card_container = findViewById(R.id.decompose_and_get_calculator_for_animal_card_container);
         InsetsUtil.setMarginHorizontal(this, decompose_and_get_calculator_for_animal_card_container, layout_marginHorizontal -> {
             Log.d("updateLog", String.valueOf(layout_marginHorizontal));
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
-            floatButtonBackContainer.setLayoutParams(params);
+            floatButtonBack.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonExportContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) floatButtonExport.getLayoutParams();
             params.rightMargin = layout_marginHorizontal;
-            floatButtonExportContainer.setLayoutParams(params);
+            floatButtonExport.setLayoutParams(params);
         });
 
         // 设置顶栏标题
-        TextView topBar = findViewById(R.id.topBar);
         topBar.setText(cardName);
+
+        // 顺便设置按钮的功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
+        floatButtonExport.setOnClickListener(v -> exportAllImages(exportInfoList));
 
         // 加载动态背景
         if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
@@ -328,14 +339,8 @@ public class CardDataActivity extends BaseActivity {
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
-        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonExport));
         blurUtil.setBlur(findViewById(R.id.blurViewTabLayout), 0f);
-
-        // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
-        findViewById(R.id.FloatButton_Export_Container).setOnClickListener(v -> exportAllImages(exportInfoList));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar), HyperFVMApplication.isContentDynamicBackgroundEnabled() ? 0f : 0.5f);
     }
 
     /**

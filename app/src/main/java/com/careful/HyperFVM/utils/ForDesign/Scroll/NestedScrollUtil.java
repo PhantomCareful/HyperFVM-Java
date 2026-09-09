@@ -51,6 +51,7 @@ public class NestedScrollUtil {
     private final int fadeRangePx;        // 渐变过渡区间（px）
     private final View.OnScrollChangeListener pageScrollListener; // 页面附加的滚动效果回调（可为null）
     private int lastScrollOffset; // RecyclerView 场景的真实滚动偏移（onScrolled 中按增量累计并经首行几何自纠）
+    private boolean syncEnabled = true;// 联动组件写入开关：多宿主共享同一联动组件时，非当前宿主应关闭，防止不可见页的滚动/位置恢复影响当前页
 
     private NestedScrollUtil(View scrollContainer, View topBarBottom, View topBar,
                              View blurViewTopBar, int fadeRangePx,
@@ -175,10 +176,14 @@ public class NestedScrollUtil {
     /**
      * 按当前滚动位置同步透明度：
      * 滑动0~fadeRangeDp的过程中，topBarBottom透明度由1渐变为0，
-     * topBar与blurViewTopBar透明度由0渐变为1；缺失的组件自动跳过
+     * topBar与blurViewTopBar透明度由0渐变为1；缺失的组件自动跳过。
+     * 写入开关关闭时（setSyncEnabled(false)）直接跳过
      */
     public void syncAlpha() {
-        float progress = Math.min(1f, getScrollOffset() / (float) fadeRangePx);
+        if (!syncEnabled) return;
+        // 滚动期间的连续直接写：先取消可能残留的仲裁过渡动画，避免被其逐帧覆盖
+        cancelAlphaAnimations();
+        float progress = computeProgress();
         if (topBarBottom != null) {
             topBarBottom.setAlpha(1f - progress);
         }
@@ -188,6 +193,51 @@ public class NestedScrollUtil {
         if (topBar != null) {
             topBar.setAlpha(progress);
         }
+    }
+
+    /**
+     * 按当前滚动位置以动画过渡方式同步透明度（页面切换仲裁等需要平滑过渡的场景）：
+     * 目标透明度与 syncAlpha 一致，但从各组件当前值以 durationMs 时长的动画渐变过去；
+     * 动画进行中若发生滚动（syncAlpha 直接写）或新的仲裁（再次调用本方法），
+     * 会取消本次动画，分别改为直接落定或从当前值向新目标渐变
+     */
+    public void animateSyncAlpha(long durationMs) {
+        if (!syncEnabled) return;
+        float progress = computeProgress();
+        animateAlphaTo(topBarBottom, 1f - progress, durationMs);
+        animateAlphaTo(blurViewTopBar, progress, durationMs);
+        animateAlphaTo(topBar, progress, durationMs);
+    }
+
+    private float computeProgress() {
+        return Math.min(1f, getScrollOffset() / (float) fadeRangePx);
+    }
+
+    private void cancelAlphaAnimations() {
+        if (topBarBottom != null) topBarBottom.animate().cancel();
+        if (blurViewTopBar != null) blurViewTopBar.animate().cancel();
+        if (topBar != null) topBar.animate().cancel();
+    }
+
+    private void animateAlphaTo(View view, float targetAlpha, long durationMs) {
+        if (view == null) return;
+        view.animate().cancel();// 停掉可能残留的动画（如上一切换页发起的过渡）
+        if (Math.abs(view.getAlpha() - targetAlpha) < 0.01f) {
+            view.setAlpha(targetAlpha);// 目标与当前一致：直接落定，避免多余的动画
+            return;
+        }
+        view.animate().alpha(targetAlpha).setDuration(durationMs).start();
+    }
+
+    /**
+     * 设置是否允许本实例写入联动组件的透明度。
+     * 默认开启，与单页面接入完全兼容。
+     * 当多个滚动容器共享同一个联动组件时（如多个 Fragment 共用一个悬浮于宿主 Activity 的模糊层），
+     * 只有当前可见的页面应开启写入：页面不可见时 setSyncEnabled(false)，
+     * 重新可见时先 setSyncEnabled(true) 再 syncAlpha()，由当前页按自身滚动状态仲裁共享组件
+     */
+    public void setSyncEnabled(boolean syncEnabled) {
+        this.syncEnabled = syncEnabled;
     }
 
     /**
