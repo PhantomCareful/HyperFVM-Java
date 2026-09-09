@@ -39,7 +39,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
             app:strokeWidth="0dp"
@@ -50,17 +50,15 @@
 
             <eightbitlab.com.blurview.BlurView
                 android:id="@+id/blurViewNavView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
                 <!-- 底栏：纯图片 TabLayout，移到中间内容之后（层级更高），设透明背景 -->
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
-                    app:tabPaddingStart="0dp"
-                    app:tabPaddingEnd="0dp"
                     app:tabIndicatorHeight="0dp"
                     app:tabRippleColor="@android:color/transparent" />
 
