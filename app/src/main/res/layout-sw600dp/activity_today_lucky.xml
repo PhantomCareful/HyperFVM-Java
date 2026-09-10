@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_tools_today_lucky_choose_your_lucky"
+                android:text="@string/title_today_lucky_choose_your_lucky"
                 android:textSize="50sp"
                 android:textColor="?attr/colorOnSurface"
                 android:gravity="center"/>

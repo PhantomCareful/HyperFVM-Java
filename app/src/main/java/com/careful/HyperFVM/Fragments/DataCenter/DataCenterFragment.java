@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -113,10 +114,6 @@ public class DataCenterFragment extends Fragment {
                 "",
                 getResources().getString(R.string.dialog_url_strategy_world_boss)));
 
-        // FVM查黑系统
-        root.findViewById(R.id.card_icu_container).setOnClickListener(v ->
-                DialogBuilderManager.showIcuQQInputDialog(requireContext()));
-
         // 强卡最优路径计算器
         root.findViewById(R.id.card_card_calculator_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
@@ -131,7 +128,7 @@ public class DataCenterFragment extends Fragment {
                 requireContext(),
                 ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_gem_calculator),
                 25,
-                getResources().getString(R.string.dialog_title_tools_gem_calculator),
+                getResources().getString(R.string.dialog_title_gem_calculator),
                 "",
                 getResources().getString(R.string.dialog_url_gem_calculator)));
 
@@ -161,6 +158,7 @@ public class DataCenterFragment extends Fragment {
         // 适配状态栏高度
         BlurView blurViewTopBar = root.findViewById(R.id.blurViewTopBar);
         TextView topBar = root.findViewById(R.id.topBar);
+        ImageButton floatButtonIcu = root.findViewById(R.id.FloatButton_Icu);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
@@ -170,6 +168,10 @@ public class DataCenterFragment extends Fragment {
             params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
             topBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonIcu.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(requireContext(), 5);
+            floatButtonIcu.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout dataCenterContainer = root.findViewById(R.id.DataCenter_Container);
@@ -179,6 +181,10 @@ public class DataCenterFragment extends Fragment {
             params.rightMargin = layout_marginHorizontal;
             dataCenterContainer.setLayoutParams(params);
         });
+
+        // 顺便设置按钮的功能
+        // FVM查黑系统
+        floatButtonIcu.setOnClickListener(v -> DialogBuilderManager.showIcuQQInputDialog(requireContext()));
 
         // 添加模糊材质
         setupBlurEffect();

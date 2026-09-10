@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Activities;
 
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
+import android.annotation.SuppressLint;
 import android.graphics.ImageDecoder;
 import android.graphics.Outline;
 import android.graphics.drawable.AnimatedImageDrawable;
@@ -135,8 +136,8 @@ public class TodayLuckyActivity extends BaseActivity {
     //更新按钮文本
     private void updateButtonText() {
         button.setText(isPlaying ?
-                getString(R.string.label_tools_today_lucky_pause_gif) :
-                getString(R.string.label_tools_today_lucky_play_gif));
+                getString(R.string.text_today_lucky_pause_gif) :
+                getString(R.string.text_today_lucky_play_gif));
     }
 
     /**
@@ -146,6 +147,7 @@ public class TodayLuckyActivity extends BaseActivity {
      * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
