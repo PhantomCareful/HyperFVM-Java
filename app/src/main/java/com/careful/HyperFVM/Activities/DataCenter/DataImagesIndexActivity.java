@@ -61,7 +61,7 @@ import eightbitlab.com.blurview.BlurView;
 public class DataImagesIndexActivity extends BaseActivity {
     // 顶部栏滚动联动的状态保存键与渐变区间
     private static final String STATE_SCROLL_Y = "state_data_images_index_scroll_y";
-    private static final int TOP_BAR_FADE_RANGE_DP = 25;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+    private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
 
     private BlurUtil blurUtil;
     private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（大标题/悬浮标题/模糊层三组件全联动）
