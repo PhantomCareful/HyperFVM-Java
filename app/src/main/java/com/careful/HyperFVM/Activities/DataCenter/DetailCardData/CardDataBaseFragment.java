@@ -49,7 +49,7 @@ public class CardDataBaseFragment extends Fragment {
     private int imageViewCardBig2ContainerMaxScroll;// 判定完全消失的滚动距离（dp 转 px）
 
     private static final int TOP_BAR_FADE_RANGE_DP = 250;// 顶部模糊遮罩层完整显现的滚动区间（dp）-手机端
-    private static final int TOP_BAR_FADE_RANGE_DP_PAD = 250;// 顶部模糊遮罩层完整显现的滚动区间（dp）-PAD端
+    private static final int TOP_BAR_FADE_RANGE_DP_PAD = 25;// 顶部模糊遮罩层完整显现的滚动区间（dp）-PAD端
     private static final int TOP_BAR_FADE_ANIM_MS = 250;// 切换页面时模糊遮罩层过渡动画时长（ms）
     private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（模糊层在宿主 Activity，随当前选中 Fragment 切换生效）
 

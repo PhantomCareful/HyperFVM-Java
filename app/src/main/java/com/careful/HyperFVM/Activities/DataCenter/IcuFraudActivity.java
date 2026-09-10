@@ -6,25 +6,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.IcuHelper;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
+import eightbitlab.com.blurview.BlurView;
+
 public class IcuFraudActivity extends BaseActivity {
+    // 顶部栏滚动联动的状态保存键与渐变区间
+    private static final String STATE_SCROLL_Y = "state_icu_fraud_scroll_y";
+    private static final int TOP_BAR_FADE_RANGE_DP = 25;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+
     private BlurUtil blurUtil;
+
+    private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（本页仅联动模糊层）
 
     private TextView fraud_info_qq;
     private TextView fraud_info_record_time;
@@ -119,18 +130,23 @@ public class IcuFraudActivity extends BaseActivity {
     @SuppressLint("DiscouragedApi")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
-        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout icu_fraud_container = findViewById(R.id.icu_fraud_container);
@@ -140,14 +156,17 @@ public class IcuFraudActivity extends BaseActivity {
             params.rightMargin = layout_marginHorizontal;
             icu_fraud_container.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
-            floatButtonBackContainer.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
-            params.leftMargin = layout_marginHorizontal;
-            topBarContainer.setLayoutParams(params);
+            floatButtonBack.setLayoutParams(params);
         });
+
+        // 顺便设置按钮的功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
+
+        // 接入顶部栏滚动联动：本页只联动模糊背景层（topBarBottom/topBar 传0跳过）
+        nestedScrollUtil = NestedScrollUtil.attach(rootView,
+                R.id.scrollView, 0, 0, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP);
 
         // 添加模糊材质
         setupBlurEffect();
@@ -158,11 +177,26 @@ public class IcuFraudActivity extends BaseActivity {
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
+    }
 
-        // 顺便设置按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+    /**
+     * 保存顶部栏滚动联动的滚动位置，界面重建（深浅色切换等）后恢复
+     */
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
+        }
     }
 
     @Override
