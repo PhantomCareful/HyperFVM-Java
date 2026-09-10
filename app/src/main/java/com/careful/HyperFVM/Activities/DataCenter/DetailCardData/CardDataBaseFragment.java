@@ -48,7 +48,8 @@ public class CardDataBaseFragment extends Fragment {
     private int imageViewCardBig1ContainerMaxScroll;// 判定完全消失的滚动距离（dp 转 px）
     private int imageViewCardBig2ContainerMaxScroll;// 判定完全消失的滚动距离（dp 转 px）
 
-    private static final int TOP_BAR_FADE_RANGE_DP = 250;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+    private static final int TOP_BAR_FADE_RANGE_DP = 250;// 顶部模糊遮罩层完整显现的滚动区间（dp）-手机端
+    private static final int TOP_BAR_FADE_RANGE_DP_PAD = 250;// 顶部模糊遮罩层完整显现的滚动区间（dp）-PAD端
     private static final int TOP_BAR_FADE_ANIM_MS = 250;// 切换页面时模糊遮罩层过渡动画时长（ms）
     private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（模糊层在宿主 Activity，随当前选中 Fragment 切换生效）
 
@@ -629,7 +630,7 @@ public class CardDataBaseFragment extends Fragment {
             // 页面自身的图片渐隐效果经 pageScrollListener 与联动共用同一滚动监听（覆盖语义不能各自注册）
             nestedScrollUtil = NestedScrollUtil.attach(scrollView, null, null,
                     requireActivity().findViewById(R.id.blurViewTopBar),
-                    TOP_BAR_FADE_RANGE_DP,
+                    SmallestWidthUtil.getSmallestWidthDp() <= 600 ? TOP_BAR_FADE_RANGE_DP : TOP_BAR_FADE_RANGE_DP_PAD,
                     (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
                         savedScrollY = scrollY;// 实时记录当前滚动位置
                         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
