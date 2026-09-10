@@ -59,13 +59,13 @@
     <string name="title_decompose_and_get_calculator_for_golden_card_transfer_3_b">终转凭证B</string>
     <string name="title_decompose_and_get_calculator_for_golden_card_transfer_3_c">终转凭证C</string>
     <string name="title_decompose_and_get_calculator_for_golden_card_compose">进化凭证</string>
-    <string name="top_bar_data_images_index">🥪数据图合集</string>
-    <string name="top_bar_data_images_index_tiramisu_image">🍨米鼠的图</string>
-    <string name="top_bar_data_images_index_card">🥐防御卡数据图</string>
-    <string name="top_bar_data_images_index_weapon_and_gem">🍗武器宝石数据图</string>
-    <string name="top_bar_data_images_index_decompose_and_get">🧁分解兑换数据图</string>
-    <string name="top_bar_data_images_index_mouse_hp">🧀老鼠血量数据图</string>
-    <string name="top_bar_data_images_index_others">🥚其他数据图</string>
+    <string name="top_bar_data_images_index">数据图合集</string>
+    <string name="top_bar_data_images_index_tiramisu_image">米鼠的图</string>
+    <string name="top_bar_data_images_index_card">防御卡数据图</string>
+    <string name="top_bar_data_images_index_weapon_and_gem">武器宝石数据图</string>
+    <string name="top_bar_data_images_index_decompose_and_get">分解兑换数据图</string>
+    <string name="top_bar_data_images_index_mouse_hp">老鼠血量数据图</string>
+    <string name="top_bar_data_images_index_others">其他数据图</string>
     <string name="title_data_images_index_tiramisu">米鼠的图</string>
     <string name="author_data_images_index_tiramisu">By 夏夜浅酌</string>
     <string name="tips_data_images_index_tiramisu_title">一个小提示</string>
@@ -409,8 +409,8 @@
     <string name="description_data_center_gem_calculator">为您提供相对更佳的宝石强化方案</string>
     <string name="dialog_title_gem_calculator">宝石最优路径计算器</string>
     <string name="dialog_url_gem_calculator">https://app.msdzls.cn/gem_co</string>
-    <!--实用功能-->
-    <string name="title_data_center_made_by_phantom_careful">实用功能</string>
+    <!--实用小工具-->
+    <string name="title_data_center_made_by_phantom_careful">实用小工具</string>
     <string name="title_data_center_today_lucky">今日运势</string>
     <string name="description_data_center_today_lucky">一个快速播放不同星级海星的GIF动图</string>
     <string name="title_today_lucky_choose_your_lucky">选取你的运势</string>
