@@ -388,6 +388,7 @@ public class SettingsActivity extends BaseActivity {
         } else {
             materialSwitch.setEnabled(false);
             materialSwitch.setChecked(false);
+            findViewById(R.id.Switch_isDynamicBackground_Container).setEnabled(false);
         }
         // Toast显示设置开关
         boolean toastIsVisibleCardDataIndex = dbHelper.getSettingBooleanValue(CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX);
@@ -409,6 +410,7 @@ public class SettingsActivity extends BaseActivity {
             // 设备不支持生物认证
             materialSwitch.setChecked(false);
             materialSwitch.setEnabled(false);
+            findViewById(R.id.Switch_BiometricAuth_Container).setEnabled(false);
             TextView BiometricAuthDescription = findViewById(R.id.TextView_BiometricAuth_Description);
             BiometricAuthDescription.setText(getResources().getString(R.string.description_settings_biometric_auth_description_not_support) + "\n" +
                     getResources().getString(R.string.description_settings_biometric_auth));
