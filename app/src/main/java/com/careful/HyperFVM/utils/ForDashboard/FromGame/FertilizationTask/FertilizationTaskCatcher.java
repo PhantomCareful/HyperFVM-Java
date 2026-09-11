@@ -6,7 +6,6 @@ import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -104,11 +103,12 @@ public class FertilizationTaskCatcher {
                 callBack.onResult(
                         generateMap("获取失败", "❌失败", "❌", "出错了呢", "时间戳转换异常，请联系开发者并提交此界面截图")
                 );
-            } catch (ParseException e) {
-                Log.e(TAG, "catchFertilizationTaskInfo: 日期解析异常：" + e.getMessage(), e);
+            } catch (Exception e) {
+                // 兜底捕获所有异常（含受检的ParseException与TimeUtil包装的RuntimeException）
+                Log.e(TAG, "catchFertilizationTaskInfo: 数据/日期解析异常：" + e.getMessage(), e);
 
                 callBack.onResult(
-                        generateMap("获取失败", "❌失败", "❌", "出错了呢", "日期解析异常，请联系开发者并提交此界面截图")
+                        generateMap("获取失败", "❌失败", "❌", "出错了呢", "数据/日期解析异常，请联系开发者并提交此界面截图")
                 );
             }
         }).start();

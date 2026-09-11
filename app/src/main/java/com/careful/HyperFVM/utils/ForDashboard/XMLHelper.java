@@ -46,15 +46,16 @@ public class XMLHelper {
 
     /**
      * 从指定网络链接获取XML字符串内容
+     * 获取失败（网络异常、响应异常、内容为空）时统一返回null，调用方只需判断null即可
      * @param url XML文件的网络链接
      * @return XML字符串内容，获取失败返回null
-     * @throws IOException 网络异常/IO异常（交给调用方处理）
+     * @throws IOException 网络异常/IO异常（声明保留，当前实现内部已兜底为返回null）
      */
     public static String getContentFromUrl(String url) throws IOException {
         // 1. 参数校验
         if (url == null || url.trim().isEmpty()) {
             Log.e(TAG, "获取xml的url为空");
-            return "获取xml的url为空";
+            return null;
         }
 
         // 1.5 处理url链接，防止缓存
@@ -95,8 +96,9 @@ public class XMLHelper {
 
             return XMLContent;
         } catch (IOException e) {
+            // 网络异常时必须返回null：不能把异常信息当作有效内容返回给调用方解析
             Log.e(TAG, "getContentFromUrl: 捕获异常：" + e.getMessage(), e);
-            return e.getMessage() + "\n" + e;
+            return null;
         }
     }
 

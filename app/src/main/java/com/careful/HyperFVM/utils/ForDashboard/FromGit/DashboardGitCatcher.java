@@ -9,7 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +40,11 @@ public class DashboardGitCatcher {
 
                 // 第1步：先从给定链接获取JSON字符串
                 String JSONArrayStr = XMLHelper.getContentFromUrl(GIT_URL);
+                if (JSONArrayStr == null) {
+                    Log.e(TAG, "catchGitDashboardInfo: 内容获取失败（网络异常或响应异常）");
+                    callBack.onResult(buildFailResult());
+                    return;
+                }
 
                 // 第2步：将JSON字符串转换成JSON数组
                 JSONArray jsonArray = new JSONArray(JSONArrayStr);
@@ -62,10 +66,78 @@ public class DashboardGitCatcher {
 
                 // 第4步，将Map回调出去
                 callBack.onResult(result);
-            } catch (IOException | JSONException e) {
-                Log.e(TAG, "捕获异常：" + e.getMessage());
+            } catch (Exception e) {
+                // 必须回调失败结果：否则聚合器（ExecuteDailyTask）永远等不到本任务完成，界面会一直处于等待状态
+                Log.e(TAG, "catchGitDashboardInfo: 捕获异常：" + e.getMessage(), e);
+                callBack.onResult(buildFailResult());
             }
         }).start();
+    }
+
+    /**
+     * 构建内容获取失败时的兜底结果
+     * 必须包含本类所有输出key：调用方会直接读取这些key做判空/判等处理，缺失key会导致NullPointerException
+     */
+    public static Map<String, String> buildFailResult() {
+        Map<String, String> failResult = new HashMap<>();
+
+        // 简要信息统一显示为网络异常
+        putKeys(failResult, "网络异常",
+                "resultDailyRechargeSimple", "resultHappyHolidaySimple", "resultServerTeamUpSimple",
+                "resultThreeIslandsSimple", "resultFoodContestSimple", "resultTransferDiscountSimple",
+                "resultCampTaskSimple", "resultWeddingDiscountSimple", "resultCryStoneDiscountSimple");
+
+        // Emoji统一使用错误表情
+        putKeys(failResult, "❌",
+                "resultDailyRechargeEmoji", "resultHappyHolidayEmoji", "resultServerTeamUpEmoji",
+                "resultThreeIslandsEmoji", "resultFoodContestEmoji", "resultTransferDiscountEmoji",
+                "resultCampTaskEmoji", "resultWeddingDiscountEmoji", "resultCryStoneDiscountEmoji");
+
+        // 状态统一为出错了呢
+        putKeys(failResult, "出错了呢",
+                "resultDailyRechargeContentStatus", "resultHappyHolidayContentStatus",
+                "resultServerTeamUpContentStatus", "resultThreeIslandsContentStatus",
+                "resultFoodContestContentStatus", "resultTransferDiscountContentStatus",
+                "resultCampTaskContentStatus", "resultWeddingDiscountContentStatus",
+                "resultCryStoneDiscountContentStatus");
+
+        // 详细信息统一提示网络问题
+        putKeys(failResult, "内容获取失败，请检查网络后重试",
+                "resultDailyRechargeContentDetail", "resultHappyHolidayContentDetail",
+                "resultServerTeamUpContentDetail", "resultThreeIslandsContentDetail",
+                "resultFoodContestContentDetail", "resultTransferDiscountContentDetail",
+                "resultCampTaskContentDetail", "resultWeddingDiscountContentDetail",
+                "resultCryStoneDiscountContentDetail");
+
+        // 卡片列表置为空字符串（调用方会执行split，不能为null）
+        putKeys(failResult, "",
+                "resultHappyHolidayCardList", "resultThreeIslandsCardList",
+                "resultFoodContestCardList", "resultTransferDiscountCardList");
+
+        // App通知不展示
+        putKeys(failResult, "", "resultGlobalNotificationTitle", "resultGlobalNotificationContent");
+        failResult.put("resultGlobalNotificationIsShow", "false");
+
+        // 世界BOSS不展示（若为true，调用方会解析日期，空日期会抛异常）
+        putKeys(failResult, "",
+                "resultWorldBossTitle", "resultWorldBossContentDetail", "resultWorldBossContentStatus",
+                "resultWorldBossStartDate", "resultWorldBossChallengeDate", "resultWorldBossSettlementDate",
+                "resultWorldBossEndDate", "resultWorldBossUrlRule", "resultWorldBossUrlReward");
+        failResult.put("resultWorldBossIsShow", "false");
+
+        // 营地任务链接置为空字符串
+        failResult.put("resultCampTaskUrl", "");
+
+        return failResult;
+    }
+
+    /**
+     * 批量填充key，减少重复代码
+     */
+    private static void putKeys(Map<String, String> map, String value, String... keys) {
+        for (String key : keys) {
+            map.put(key, value);
+        }
     }
 
     /**

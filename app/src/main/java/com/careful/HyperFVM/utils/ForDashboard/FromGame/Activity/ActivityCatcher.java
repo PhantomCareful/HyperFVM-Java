@@ -140,13 +140,19 @@ public class ActivityCatcher {
                     // 查找下一个全天双倍双爆日期，并计算距离下一个全天双倍双爆的天数
                     Pair<String, Integer> result = findNextFullDoubleDay(dateContentMap, todayDate);
                     if (result == null) {
-                        Log.e(TAG, "catchTodayActivityInfo: result = null");
+                        errorMsg = "未找到下一个全天双倍双爆日期，请联系开发者并提交此界面截图";
+                        Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
+
+                        callBack.onResult(
+                                generateMap("解析失败", "❌失败", "❌", "出错了呢", errorMsg)
+                        );
+
                         return;
                     }
                     nextFullDoubleDay = result.first;
                     numDaysToNextFullDoubleDay = result.second;
                     if (nextFullDoubleDay == null) {
-                        contentDetail = targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n⚠️请注意⚠️\n今年已经没有全天双倍双爆了";
+                        contentDetail = extractDetailPrefix(targetContent) + "\n\n⚠️请注意⚠️\n今年已经没有全天双倍双爆了";
 
                         callBack.onResult(
                                 generateMap("限时双爆", "限时", "⏳", "限时双倍双爆", contentDetail)
@@ -171,23 +177,17 @@ public class ActivityCatcher {
                     }
 
                     // 生成结果文本
-                    contentDetail = targetContent.split("。")[0] + "\n" + targetContent.split("。")[1] + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到\n" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
+                    contentDetail = extractDetailPrefix(targetContent) + "\n\n下一个全天双倍双爆日期为" + nextFullDoubleDay + "\n还有" + numDaysToNextFullDoubleDay + "天\n该全天双倍双爆将持续到\n" + endDayKeepFullDoubleDay + "\n共" + numDaysKeepFullDoubleDay + "天";
 
                     callBack.onResult(
                             generateMap("限时双爆", "限时", "⏳", "限时双倍双爆", contentDetail)
                     );
                 }
 
-            } catch (IOException e) {
+            } catch (Exception e) {
+                // 兜底捕获所有异常（含TimeUtil包装的RuntimeException）：必须回调失败结果，否则聚合器永远等不到本任务完成
                 errorMsg = "网络/解析异常，请联系开发者并提交此界面截图。\n" + e.getMessage();
                 Log.e(TAG, "catchTodayActivityInfo: 解析活动内容异常：" + e.getMessage(), e);
-
-                callBack.onResult(
-                        generateMap("解析失败", "❌失败", "❌", "出错了呢", errorMsg)
-                );
-            } catch (ParseException e) {
-                errorMsg = "日期解析失败，请联系开发者并提交此界面截图。\n" + e.getMessage();
-                Log.e(TAG, "catchTodayActivityInfo: 日期解析失败：" + e.getMessage(), e);
 
                 callBack.onResult(
                         generateMap("解析失败", "❌失败", "❌", "出错了呢", errorMsg)
@@ -199,7 +199,7 @@ public class ActivityCatcher {
     /**
      * 获取今日原始Content（单独抽离，避免解析器复用问题）
      */
-    private String getTodayRawContent() throws IOException {
+    private String getTodayRawContent() {
         XmlPullParser parser = XMLHelper.getXmlPullParser(cachedXmlContent);
         if (parser == null) {
             return null;
@@ -240,6 +240,19 @@ public class ActivityCatcher {
         }
 
         return secondPart;
+    }
+
+    /**
+     * 安全提取content中两个句号分段的前两段文本（缺少句号时不会越界）
+     * @param targetContent 原始content内容
+     * @return 拼接后的前缀文本
+     */
+    private String extractDetailPrefix(String targetContent) {
+        String[] contentParts = targetContent.split("。");
+        if (contentParts.length > 1) {
+            return contentParts[0] + "\n" + contentParts[1];
+        }
+        return contentParts[0];
     }
 
     /**
@@ -402,7 +415,7 @@ public class ActivityCatcher {
      * @param startDate 起始日期（格式：yyyy-MM-dd）
      * @return 第一个全天双倍双爆日期，无匹配返回null
      */
-    private Pair<String, Integer> findNextFullDoubleDay(Map<String, String> dateContentMap, String startDate) throws ParseException {
+    private Pair<String, Integer> findNextFullDoubleDay(Map<String, String> dateContentMap, String startDate) {
         if (dateContentMap == null || dateContentMap.isEmpty() || startDate == null || startDate.trim().isEmpty()) {
             Log.e(TAG, "findNextFullDoubleDay: 输入参数无效");
             return null;

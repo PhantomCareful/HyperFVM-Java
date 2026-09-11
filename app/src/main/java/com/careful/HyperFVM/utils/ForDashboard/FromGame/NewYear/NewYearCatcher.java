@@ -5,7 +5,6 @@ import android.util.Log;
 import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +35,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "❌失败", "出错了呢", "❌", errorMsg)
+                            generateMap("获取失败", "❌失败", "❌", "出错了呢", errorMsg)
                     );
 
                     return;
@@ -148,8 +147,13 @@ public class NewYearCatcher {
                     );
                 }
 
-            } catch (IOException e) {
-                Log.e(TAG, "捕获异常：" + e.getMessage());
+            } catch (Exception e) {
+                // 必须回调失败结果：否则聚合器（ExecuteDailyTask）永远等不到本任务完成，界面会一直处于等待状态
+                Log.e(TAG, "捕获异常：" + e.getMessage(), e);
+
+                callBack.onResult(
+                        generateMap("获取失败", "❌失败", "❌", "出错了呢", "网络异常\n请检查网络后重试")
+                );
             }
         }).start();
     }
@@ -284,8 +288,13 @@ public class NewYearCatcher {
                     );
                 }
 
-            } catch (IOException e) {
-                Log.e(TAG, "捕获异常：" + e.getMessage());
+            } catch (Exception e) {
+                // 必须回调失败结果：否则聚合器（ExecuteDailyTask）永远等不到本任务完成，界面会一直处于等待状态
+                Log.e(TAG, "捕获异常：" + e.getMessage(), e);
+
+                callBack.onResult(
+                        generateMap("获取失败", "", "❌", "出错了呢", "网络异常\n请检查网络后重试")
+                );
             }
         }).start();
     }
@@ -393,8 +402,13 @@ public class NewYearCatcher {
                         generateMap("暂无", "", "⏳", "等等等等", contentDetail.toString())
                 );
 
-            } catch (IOException e) {
-                Log.e(TAG, "捕获异常：" + e.getMessage());
+            } catch (Exception e) {
+                // 必须回调失败结果：否则聚合器（ExecuteDailyTask）永远等不到本任务完成，界面会一直处于等待状态
+                Log.e(TAG, "捕获异常：" + e.getMessage(), e);
+
+                callBack.onResult(
+                        generateMap("获取失败", "", "❌", "出错了呢", "网络异常\n请检查网络后重试")
+                );
             }
         }).start();
     }

@@ -36,9 +36,8 @@ public class TimeUtil {
      * 将时间戳转换为yyyy-MM-dd格式的日期字符串
      * @param timeStamp 时间戳（秒级，需确认XML中时间戳单位）
      * @return 格式化后的日期字符串
-     * @throws ParseException 解析异常
      */
-    public static String convertTimeStampToDate(long timeStamp) throws ParseException {
+    public static String convertTimeStampToDate(long timeStamp) {
         // 若时间戳为秒级，需转换为毫秒级
         Date date = new Date(timeStamp * 1000);
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);

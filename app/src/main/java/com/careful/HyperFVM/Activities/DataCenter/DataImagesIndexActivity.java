@@ -267,6 +267,11 @@ public class DataImagesIndexActivity extends BaseActivity {
             try {
                 // 第1步：从给定的链接获取JSON字符串
                 String JSONArrayStr = XMLHelper.getContentFromUrl(DATA_IMAGES_URL);
+                if (JSONArrayStr == null) {
+                    // 网络异常/内容获取失败：必须主动回调失败，避免JSONArray构造抛出NPE导致线程静默死亡
+                    callBack.onFailed(new IOException("内容获取失败，请检查网络后重试"));
+                    return;
+                }
 
                 // 第2步：将JSON字符串转换成JSON数组
                 JSONArray jsonArray = new JSONArray(JSONArrayStr);
