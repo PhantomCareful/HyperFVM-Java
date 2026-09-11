@@ -23,6 +23,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -96,6 +97,7 @@ public class DashboardFragment extends Fragment {
 
     private FrameLayout dashboardMeishiWechatContainer;
     private TextView dashboardMeishiWechat;
+    private ImageView meishiWechatIcon;
 
     private TextView dashboardBilibiliFVM;
     private FrameLayout dashboardBilibiliFVMContainer;
@@ -178,17 +180,18 @@ public class DashboardFragment extends Fragment {
         // 初始化仪表盘组件
         floatButtonRefresh = root.findViewById(R.id.FloatButton_Refresh);
 
-        dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
+        dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
+        dashboardMeishiWechatContainer = root.findViewById(R.id.dashboard_MeishiWechat_Container);
+        meishiWechatIcon = root.findViewById(R.id.dashboard_MeishiWechat_Icon);
 
         dashboardDoubleExplosionRate = root.findViewById(R.id.dashboard_DoubleExplosionRate);
         dashboardDoubleExplosionRateContainer = root.findViewById(R.id.dashboard_DoubleExplosionRate_Container);
 
-        dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
-        dashboardMeishiWechatContainer = root.findViewById(R.id.dashboard_MeishiWechat_Container);
-
         dashboardBilibiliFVM = root.findViewById(R.id.dashboard_WeeklyRecharge);
         dashboardBilibiliFVMContainer = root.findViewById(R.id.dashboard_WeeklyRecharge_Container);
         dashboardBilibiliFVMContainer.setEnabled(false);
+
+        dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
 
         dashboardEveryday = root.findViewById(R.id.dashboard_Everyday);
         dashboardEverydayContainer = root.findViewById(R.id.dashboard_Everyday_Container);
@@ -199,41 +202,41 @@ public class DashboardFragment extends Fragment {
         dashboardBounty = root.findViewById(R.id.dashboard_NewYearBounty);
         dashboardBountyContainer = root.findViewById(R.id.dashboard_NewYearBounty_Container);
 
-        dashboardMillionConsumption = root.findViewById(R.id.dashboard_NewYearMillionConsumption);
-        dashboardMillionConsumptionContainer = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Container);
-
-        dashboardDailyRecharge = root.findViewById(R.id.dashboard_DailyRecharge);
-        dashboardDailyRechargeContainer = root.findViewById(R.id.dashboard_DailyRecharge_Container);
-
-        dashboardHappyHoliday = root.findViewById(R.id.dashboard_HappyHoliday);
-        dashboardHappyHolidayContainer = root.findViewById(R.id.dashboard_HappyHoliday_Container);
-
-        dashboardFoodContest = root.findViewById(R.id.dashboard_FoodContest);
-        dashboardFoodContestContainer = root.findViewById(R.id.dashboard_FoodContest_Container);
-
-        dashboardThreeIslands = root.findViewById(R.id.dashboard_ThreeIslands);
-        dashboardThreeIslandsContainer = root.findViewById(R.id.dashboard_ThreeIslands_Container);
+        dashboardLuckyMoney = root.findViewById(R.id.dashboard_NewYearLuckyMoney);
+        dashboardLuckyMoneyContainer = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Container);
 
         dashboardCrossServerTeamUp = root.findViewById(R.id.dashboard_CrossServerTeamUp);
         dashboardCrossServerTeamUpContainer = root.findViewById(R.id.dashboard_CrossServerTeamUp_Container);
 
-        dashboardTransferDiscount = root.findViewById(R.id.dashboard_TransferDiscount);
-        dashboardTransferDiscountContainer = root.findViewById(R.id.dashboard_TransferDiscount_Container);
+        dashboardThreeIslands = root.findViewById(R.id.dashboard_ThreeIslands);
+        dashboardThreeIslandsContainer = root.findViewById(R.id.dashboard_ThreeIslands_Container);
 
-        dashboardLuckyMoney = root.findViewById(R.id.dashboard_NewYearLuckyMoney);
-        dashboardLuckyMoneyContainer = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Container);
+        dashboardFoodContest = root.findViewById(R.id.dashboard_FoodContest);
+        dashboardFoodContestContainer = root.findViewById(R.id.dashboard_FoodContest_Container);
+
+        dashboardCampTaskContainer = root.findViewById(R.id.dashboard_CampTask_Container);
+        dashboardCampTask = root.findViewById(R.id.dashboard_CampTask);
+
+        dashboardHappyHoliday = root.findViewById(R.id.dashboard_HappyHoliday);
+        dashboardHappyHolidayContainer = root.findViewById(R.id.dashboard_HappyHoliday_Container);
+
+        dashboardDailyRecharge = root.findViewById(R.id.dashboard_DailyRecharge);
+        dashboardDailyRechargeContainer = root.findViewById(R.id.dashboard_DailyRecharge_Container);
+
+        dashboardMillionConsumption = root.findViewById(R.id.dashboard_NewYearMillionConsumption);
+        dashboardMillionConsumptionContainer = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Container);
 
         dashboardWorldBossContainer = root.findViewById(R.id.dashboard_WorldBoss_Container);
         dashboardWorldBoss = root.findViewById(R.id.dashboard_WorldBoss);
+
+        dashboardTransferDiscount = root.findViewById(R.id.dashboard_TransferDiscount);
+        dashboardTransferDiscountContainer = root.findViewById(R.id.dashboard_TransferDiscount_Container);
 
         dashboardCryStoneDiscountContainer = root.findViewById(R.id.dashboard_CryStoneDiscount_Container);
         dashboardCryStoneDiscount = root.findViewById(R.id.dashboard_CryStoneDiscount);
 
         dashboardWeddingDiscountContainer = root.findViewById(R.id.dashboard_WeddingDiscount_Container);
         dashboardWeddingDiscount = root.findViewById(R.id.dashboard_WeddingDiscount);
-
-        dashboardCampTaskContainer = root.findViewById(R.id.dashboard_CampTask_Container);
-        dashboardCampTask = root.findViewById(R.id.dashboard_CampTask);
 
         // 初始化仪表盘工具类
         everyMonthAndEveryWeek = new EveryMonthAndEveryWeek();
@@ -319,25 +322,28 @@ public class DashboardFragment extends Fragment {
         };
         handler.post(animTask);
 
-        dashboardDoubleExplosionRate.setText("请等待...");
         dashboardMeishiWechat.setText("请等待...");
+        meishiWechatIcon.setImageResource(R.drawable.ic_timer);
+
+        dashboardDoubleExplosionRate.setText("请等待...");
         dashboardBilibiliFVM.setText("请等待...");
         dashboardBilibiliFVMContainer.setEnabled(false);
+
         dashboardEveryday.setText("请等待...");
         dashboardFertilizationTask.setText("请等待...");
         dashboardBounty.setText("请等待...");
-        dashboardMillionConsumption.setText("请等待...");
-        dashboardDailyRecharge.setText("请等待...");
-        dashboardHappyHoliday.setText("请等待...");
-        dashboardFoodContest.setText("请等待...");
-        dashboardThreeIslands.setText("请等待...");
-        dashboardCrossServerTeamUp.setText("请等待...");
-        dashboardTransferDiscount.setText("请等待...");
         dashboardLuckyMoney.setText("请等待...");
+        dashboardCrossServerTeamUp.setText("请等待...");
+        dashboardThreeIslands.setText("请等待...");
+        dashboardFoodContest.setText("请等待...");
+        dashboardCampTask.setText("请等待...");
+        dashboardHappyHoliday.setText("请等待...");
+        dashboardDailyRecharge.setText("请等待...");
+        dashboardMillionConsumption.setText("请等待...");
         dashboardWorldBoss.setText("请等待...");
+        dashboardTransferDiscount.setText("请等待...");
         dashboardCryStoneDiscount.setText("请等待...");
         dashboardWeddingDiscount.setText("请等待...");
-        dashboardCampTask.setText("请等待...");
 
         new Thread(() -> {
             try {
@@ -403,6 +409,9 @@ public class DashboardFragment extends Fragment {
         // 读取温馨礼包领取结果
         String meishiWechatResult = data.get(0).get("resultMeishiWechatInfoSimple");
         dashboardMeishiWechat.setText(meishiWechatResult);
+        meishiWechatIcon.setImageResource(Objects.requireNonNull(meishiWechatResult).equals("领取失败") || meishiWechatResult.equals("领取异常") ?
+                R.drawable.ic_round_remove_circle_outline : R.drawable.ic_round_check_circle_outline);
+
         // 设置点击打开详情弹窗
         dashboardMeishiWechatContainer.setOnClickListener(v -> {
             if (dbHelper.getSettingBooleanValue(CONTENT_IS_BIOMETRIC_AUTH)) {

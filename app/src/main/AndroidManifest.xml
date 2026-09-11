@@ -48,7 +48,7 @@
             android:name=".Activities.DataCenter.DetailCardData.CardDataActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DataCenter.DetailCardData.CardDaraDetailActivity"
+            android:name=".Activities.DataCenter.DetailCardData.CardDataDetailActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi" />

@@ -239,7 +239,7 @@ public class CardDataDataFragment extends Fragment {
                         CardDataHelper.getStringFromCursor(cursor, "skill_8"),
                 };
                 root.findViewById(R.id.Button_SeeCardDataDetail).setOnClickListener(v -> {
-                    Intent intent = new Intent(requireActivity(), CardDaraDetailActivity.class);
+                    Intent intent = new Intent(requireActivity(), CardDataDetailActivity.class);
                     intent.putExtra("cardName", cardName);
                     intent.putExtra("tableId", tableId);
                     intent.putExtra("starDataDetail", starDataDetail);

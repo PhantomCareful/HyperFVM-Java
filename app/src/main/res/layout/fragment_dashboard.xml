@@ -42,6 +42,34 @@
                     android:visibility="visible"/>
 
                 <include layout="@layout/card_global_notification"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <include layout="@layout/card_dashboard_meishi_wechat"/>
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/card_dashboard_double_explosion"/>
+
+                        <include layout="@layout/card_dashboard_weekly_recharge"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
                 <include layout="@layout/card_last_day_of_month"/>
 
                 <GridLayout
@@ -49,15 +77,9 @@
                     android:layout_height="wrap_content"
                     android:columnCount="5">
 
-                    <include layout="@layout/card_dashboard_double_explosion"/>
-
-                    <Space android:layout_width="10dp" />
-
-                    <include layout="@layout/card_dashboard_meishi_wechat"/>
-
-                    <Space android:layout_width="10dp" />
-
                     <include layout="@layout/card_dashboard_everyday"/>
+
+                    <Space android:layout_width="10dp" />
 
                     <include layout="@layout/card_dashboard_fertilization_task"/>
 
@@ -65,9 +87,9 @@
 
                     <include layout="@layout/card_dashboard_new_year_bounty"/>
 
-                    <Space android:layout_width="10dp" />
-
                     <include layout="@layout/card_dashboard_new_year_lucky_money"/>
+
+                    <Space android:layout_width="10dp" />
 
                     <include layout="@layout/card_dashboard_cross_server_team_up"/>
 
@@ -75,15 +97,21 @@
 
                     <include layout="@layout/card_dashboard_three_islands"/>
 
-                    <Space android:layout_width="10dp" />
-
                     <include layout="@layout/card_dashboard_food_contest"/>
+
+                    <Space android:layout_width="10dp" />
 
                     <include layout="@layout/card_dashboard_camp_task"/>
 
                     <Space android:layout_width="10dp" />
 
                     <include layout="@layout/card_dashboard_happy_holiday"/>
+
+                    <include layout="@layout/card_dashboard_daily_recharge"/>
+
+                    <Space android:layout_width="10dp" />
+
+                    <include layout="@layout/card_dashboard_new_year_million_consumption"/>
 
                     <Space android:layout_width="10dp" />
 
@@ -107,16 +135,6 @@
                     <Space android:layout_width="10dp" />
 
                     <include layout="@layout/card_dashboard_wedding_discount"/>
-
-                    <include layout="@layout/card_dashboard_weekly_recharge"/>
-
-                    <Space android:layout_width="10dp" />
-
-                    <include layout="@layout/card_dashboard_daily_recharge"/>
-
-                    <Space android:layout_width="10dp" />
-
-                    <include layout="@layout/card_dashboard_new_year_million_consumption"/>
 
                 </GridLayout>
 

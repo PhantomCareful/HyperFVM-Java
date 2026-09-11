@@ -44,13 +44,13 @@ public class GiftFetcher {
                     @Override
                     public void onResult(int successCount) {
                         callback.onResult(
-                                generateMap(successCount + "个✅", successCount + "个已领取")
+                                generateMap(successCount + "个已领取", successCount + "个已领取")
                         );
                     }
 
                     @Override
                     public void onError() {
-                        String resultSimple = "失败";
+                        String resultSimple = "领取失败";
                         String resultNotification = "❌服务器";
 
                         callback.onResult(

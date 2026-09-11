@@ -25,7 +25,7 @@ import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 import eightbitlab.com.blurview.BlurView;
 
-public class CardDaraDetailActivity extends BaseActivity {
+public class CardDataDetailActivity extends BaseActivity {
     // 顶部栏滚动联动的状态保存键与渐变区间
     private static final String STATE_SCROLL_Y = "state_card_dara_detail_scroll_y";
     private static final int TOP_BAR_FADE_RANGE_DP = 25;// 顶部模糊遮罩层完整显现的滚动区间（dp）
