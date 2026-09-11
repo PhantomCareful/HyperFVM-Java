@@ -421,13 +421,13 @@ Made By Phantom Careful 😈</string>
     <!--实用小工具-->
     <string name="title_data_center_made_by_phantom_careful">实用小工具</string>
     <string name="title_data_center_today_lucky">今日运势</string>
-    <string name="description_data_center_today_lucky">一个快速播放不同星级海星的GIF动图</string>
+    <string name="description_data_center_today_lucky">多个快速播放不同星级海星的动图</string>
     <string name="top_bar_today_lucky">选取您的运势</string>
     <string name="text_today_lucky_pause_gif">🙏求求好运🙏</string>
     <string name="text_today_lucky_play_gif">🙏再来一次🙏</string>
     <string name="title_data_center_prestige_calculator">威望储备计算器</string>
     <string name="description_data_center_prestige_calculator">威望币留着没开的同学很适合这个功能</string>
-    <string name="top_bar_prestige_calculator">🍞威望储备计算器</string>
+    <string name="top_bar_prestige_calculator">威望储备计算器</string>
     <string name="tips_prestige_calculator_top_title">一个小提示</string>
     <string name="tips_prestige_calculator_top_content">请根据提示输入您在游戏中拥有的对应物品的数量，输入后将自动计算出结果。</string>
     <string name="tips_prestige_calculator_balance">威望商城余额</string>
