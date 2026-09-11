@@ -29,6 +29,12 @@ public class FrameSequenceView extends View {
     private float speed = 1f;
     // 图片绘制区域的圆角半径（像素），0 表示直角
     private float cornerRadiusPx;
+    // 图片绘制区域的描边宽度（像素），0 表示不描边
+    private float strokeWidthPx;
+    // 描边与图片边缘的间距（像素，描边位于图片外侧）
+    private float strokeGapPx;
+    // 描边颜色
+    private int strokeColor;
 
     private boolean playing;        // 是否处于播放状态
     private boolean frameScheduled; // Choreographer 回调是否已排队
@@ -44,6 +50,10 @@ public class FrameSequenceView extends View {
     private final Matrix shaderMatrix = new Matrix();
     private BitmapShader bitmapShader;
     private Bitmap shaderBitmap;
+
+    // 描边绘制
+    private final Paint strokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final RectF strokeRect = new RectF();
 
     private final Choreographer.FrameCallback frameCallback = new Choreographer.FrameCallback() {
         @Override
@@ -100,6 +110,14 @@ public class FrameSequenceView extends View {
         invalidate();
     }
 
+    /** 设置图片外侧的描边（宽度、与图片边缘的间距、颜色；宽度 <= 0 时取消描边） */
+    public void setStroke(float widthPx, float gapPx, int color) {
+        this.strokeWidthPx = Math.max(0f, widthPx);
+        this.strokeGapPx = Math.max(0f, gapPx);
+        this.strokeColor = color;
+        invalidate();
+    }
+
     /** 开始播放；已暂停时从暂停位置继续 */
     public void start() {
         if (frameSequence == null) return;
@@ -115,6 +133,25 @@ public class FrameSequenceView extends View {
             frameScheduled = false;
         }
         lastTickMs = 0;
+    }
+
+    /** 获取当前显示的帧下标（暂停后即定格帧；尚未确定时按素材时间计算，无帧序列表时返回 -1） */
+    public int getCurrentFrame() {
+        if (currentFrame >= 0) return currentFrame;
+        if (frameSequence == null) return -1;
+        return frameSequence.getFrameIndex(materialTimeMs);
+    }
+
+    /** 获取当前已播放的素材时间（毫秒），用于界面重建后的状态恢复 */
+    public long getMaterialTimeMs() {
+        return materialTimeMs;
+    }
+
+    /** 设置素材播放时间（毫秒）：重算当前帧并刷新显示，用于界面重建后的状态恢复 */
+    public void setMaterialTimeMs(long timeMs) {
+        this.materialTimeMs = Math.max(0, timeMs);
+        this.currentFrame = -1;
+        invalidate();
     }
 
     private void scheduleFrame() {
@@ -208,6 +245,7 @@ public class FrameSequenceView extends View {
         if (cornerRadiusPx <= 0) {
             bitmapPaint.setShader(null);
             canvas.drawBitmap(bitmap, srcRect, dstRect, bitmapPaint);
+            drawStroke(canvas, 0f);
             return;
         }
 
@@ -224,5 +262,26 @@ public class FrameSequenceView extends View {
 
         float radius = Math.min(cornerRadiusPx, Math.min(drawWidth, drawHeight) / 2f);
         canvas.drawRoundRect(dstRect, radius, radius, bitmapPaint);
+        drawStroke(canvas, radius);
+    }
+
+    // 沿图片绘制区域外侧描边（宽度 <= 0 时不绘制；radius > 0 时与圆角边缘保持同心）
+    private void drawStroke(Canvas canvas, float radius) {
+        if (strokeWidthPx <= 0) return;
+        strokePaint.setStyle(Paint.Style.STROKE);
+        strokePaint.setStrokeWidth(strokeWidthPx);
+        strokePaint.setColor(strokeColor);
+
+        // 描边路径居中于“间距 + 半个线宽”的外扩偏移处：描边整体位于图片外侧（需父布局允许子视图溢出绘制）
+        float inset = -(strokeGapPx + strokeWidthPx / 2f);
+        strokeRect.set(dstRect);
+        strokeRect.inset(inset, inset);
+        if (radius > 0) {
+            // 半径同步外扩，保证描边与圆角边缘同心
+            float strokeRadius = radius - inset;
+            canvas.drawRoundRect(strokeRect, strokeRadius, strokeRadius, strokePaint);
+        } else {
+            canvas.drawRect(strokeRect, strokePaint);
+        }
     }
 }
