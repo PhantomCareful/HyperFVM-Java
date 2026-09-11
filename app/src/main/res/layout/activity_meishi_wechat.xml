@@ -18,8 +18,7 @@
             android:layout_height="match_parent"
             android:scrollbars="none"
             android:clipChildren="false"
-            android:clipToPadding="false"
-            tools:ignore="MissingConstraints">
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:id="@+id/MeishiWechatContainer"

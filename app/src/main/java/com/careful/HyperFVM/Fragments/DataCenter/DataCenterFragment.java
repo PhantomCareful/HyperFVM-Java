@@ -73,7 +73,7 @@ public class DataCenterFragment extends Fragment {
         root.findViewById(R.id.card_molu_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
                 ContextCompat.getDrawable(requireContext(), R.drawable.data_center_image_molu),
-                0,
+                100,
                 getResources().getString(R.string.dialog_title_molu),
                 "",
                 getResources().getString(R.string.dialog_url_molu)));

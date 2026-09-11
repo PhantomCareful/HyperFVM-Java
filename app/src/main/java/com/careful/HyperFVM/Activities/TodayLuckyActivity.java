@@ -3,42 +3,44 @@ package com.careful.HyperFVM.Activities;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
-import android.graphics.ImageDecoder;
-import android.graphics.Outline;
-import android.graphics.drawable.AnimatedImageDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Animation.FrameSequence;
+import com.careful.HyperFVM.utils.ForDesign.Animation.FrameSequenceView;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.card.MaterialCardView;
 
-import java.io.IOException;
+import eightbitlab.com.blurview.BlurView;
 
 public class TodayLuckyActivity extends BaseActivity {
-    private BlurUtil blurUtil;
+    // 4 个动图视图的播放速率（1f 为素材原始速度）
+    private static final float[] PLAY_SPEEDS = {0.5f, 1f, 2f, 4f};
+    // 帧序列所在的 assets 目录
+    private static final String FRAME_ASSETS_DIR = "today_lucky_frames";
 
     //圆角半径，单位：像素
-    private static final int CORNER_RADIUS_DP = 50;
+    private static final int CORNER_RADIUS_DP = 25;
     private int cornerRadiusPx;//转换后的像素值
 
-    private ImageView gifImageView;
-    private AnimatedImageDrawable animatedDrawable;
-    private Button button;
+    private BlurUtil blurUtil;
+    private FrameSequence frameSequence;
+    private FrameSequenceView[] frameAnimViews;
+    private Button Button_ControlGif;
     private boolean isPlaying;
 
     @Override
@@ -60,14 +62,12 @@ public class TodayLuckyActivity extends BaseActivity {
         // 将dp值转换为像素
         cornerRadiusPx = DensityUtil.dpToPx(this, CORNER_RADIUS_DP);
 
-        this.gifImageView = findViewById(R.id.Gif_Image_View);
-        this.button = findViewById(R.id.Button_ControlGif);
         isPlaying = true;
 
-        //加载Gif动图
-        loadAnimatedImage();
+        //加载动图帧序列（4个视图共享同一序列，以不同速率播放）
+        loadFrameSequence();
 
-        //应用Gif圆角
+        //应用动图圆角
         applyRoundedCorners();
 
         //加载控制Gif的按钮
@@ -75,38 +75,46 @@ public class TodayLuckyActivity extends BaseActivity {
 
     }
 
-    //加载Gif动图
-    private void loadAnimatedImage() {
-        try {
-            // 使用ImageDecoder加载GIF
-            ImageDecoder.Source source = ImageDecoder.createSource(getResources(), R.drawable.today_lucky);
+    //加载动图帧序列
+    private void loadFrameSequence() {
+        frameAnimViews = new FrameSequenceView[]{
+                findViewById(R.id.Frame_Anim_View_1),
+                findViewById(R.id.Frame_Anim_View_2),
+                findViewById(R.id.Frame_Anim_View_3),
+                findViewById(R.id.Frame_Anim_View_4)
+        };
 
-            // 创建AnimatedImageDrawable
-            Drawable decodedDrawable = ImageDecoder.decodeDrawable(source);
-
-            if (decodedDrawable instanceof AnimatedImageDrawable) {
-                animatedDrawable = (AnimatedImageDrawable) decodedDrawable;
-                gifImageView.setImageDrawable(animatedDrawable);
-
-                // 自动开始播放
-                animatedDrawable.start();
+        // 4 个视图共享同一帧序列，以不同速率播放
+        frameSequence = FrameSequence.load(this, FRAME_ASSETS_DIR);
+        if (frameSequence != null) {
+            for (int i = 0; i < frameAnimViews.length; i++) {
+                frameAnimViews[i].setFrameSequence(frameSequence);
+                frameAnimViews[i].setSpeed(PLAY_SPEEDS[i]);
             }
-        } catch (
-        IOException e) {
-            // 错误处理：显示静态图片
-            gifImageView.setImageResource(R.drawable.today_lucky);
+        }
+
+        // 自动开始播放
+        updatePlayState();
+    }
+
+    //统一同步4个动图的播放/暂停状态
+    private void updatePlayState() {
+        if (frameAnimViews == null) return;
+        for (FrameSequenceView view : frameAnimViews) {
+            if (isPlaying) {
+                view.start();
+            } else {
+                view.stop();
+            }
         }
     }
 
-    // 应用圆角效果
+    // 应用圆角效果（由视图对图片实际绘制区域裁剪，视图留白时同样生效）
     private void applyRoundedCorners() {
-        gifImageView.setClipToOutline(true);
-        gifImageView.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), cornerRadiusPx);
-            }
-        });
+        if (frameAnimViews == null) return;
+        for (FrameSequenceView view : frameAnimViews) {
+            view.setCornerRadius(cornerRadiusPx);
+        }
     }
 
     //加载控制Gif的按钮
@@ -114,19 +122,12 @@ public class TodayLuckyActivity extends BaseActivity {
         //初始状态：播放中
         updateButtonText();
 
-        button.setOnClickListener(v -> {
-            if (animatedDrawable == null) return;
+        Button_ControlGif.setOnClickListener(v -> {
+            if (frameSequence == null) return;
 
             // 切换播放状态
             isPlaying = !isPlaying;
-
-            if (isPlaying) {
-                // 播放GIF
-                animatedDrawable.start();
-            } else {
-                // 暂停GIF
-                animatedDrawable.stop();
-            }
+            updatePlayState();
 
             // 更新按钮文本
             updateButtonText();
@@ -135,7 +136,7 @@ public class TodayLuckyActivity extends BaseActivity {
 
     //更新按钮文本
     private void updateButtonText() {
-        button.setText(isPlaying ?
+        Button_ControlGif.setText(isPlaying ?
                 getString(R.string.text_today_lucky_pause_gif) :
                 getString(R.string.text_today_lucky_play_gif));
     }
@@ -150,49 +151,68 @@ public class TodayLuckyActivity extends BaseActivity {
     @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        Button_ControlGif = findViewById(R.id.Button_ControlGif);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
+        });
+        // 动态调整侧边距（手机/PAD）
+        LinearLayout today_lucky_container = findViewById(R.id.today_lucky_container);
+        InsetsUtil.setMarginHorizontal(this, today_lucky_container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) today_lucky_container.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            today_lucky_container.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            floatButtonBack.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) Button_ControlGif.getLayoutParams();
+            params.leftMargin = layout_marginHorizontal;
+            params.rightMargin = layout_marginHorizontal;
+            Button_ControlGif.setLayoutParams(params);
         });
 
-        // 添加模糊材质
-        setupBlurEffect();
+        // 顺便设置按钮的功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
 
         // 添加按压动画
         findViewById(R.id.Button_ControlGif).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
-    /**
-     * 添加模糊效果
-     */
-    private void setupBlurEffect() {
-        blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
-
-        // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
         // 当Activity重新可见时，恢复播放状态
-        if (isPlaying && animatedDrawable != null) {
-            animatedDrawable.start();
+        if (isPlaying) {
+            updatePlayState();
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        // 当Activity不可见时，暂停GIF以节省资源
-        if (animatedDrawable != null) {
-            animatedDrawable.stop();
+        // 当Activity不可见时，暂停动图以节省资源
+        if (frameAnimViews != null) {
+            for (FrameSequenceView view : frameAnimViews) {
+                view.stop();
+            }
         }
     }
 
