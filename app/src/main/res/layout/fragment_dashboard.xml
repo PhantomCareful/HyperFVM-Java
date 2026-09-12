@@ -43,6 +43,8 @@
 
                 <include layout="@layout/card_global_notification"/>
 
+                <include layout="@layout/card_last_day_of_month"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,11 +72,10 @@
 
                 </LinearLayout>
 
-                <include layout="@layout/card_last_day_of_month"/>
-
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:columnCount="5">
 
                     <include layout="@layout/card_dashboard_everyday"/>
@@ -85,17 +86,66 @@
 
                     <Space android:layout_width="10dp" />
 
-                    <include layout="@layout/card_dashboard_new_year_bounty"/>
+                    <include layout="@layout/card_dashboard_birthday_activity"/>
 
-                    <include layout="@layout/card_dashboard_new_year_lucky_money"/>
+                </GridLayout>
 
-                    <Space android:layout_width="10dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_dashboard_about_bounty"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
-                    <include layout="@layout/card_dashboard_cross_server_team_up"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-                    <Space android:layout_width="10dp" />
+                    <include layout="@layout/card_dashboard_new_year_bounty_double"/>
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/card_dashboard_new_year_bounty"/>
+
+                        <include layout="@layout/card_dashboard_new_year_lucky_money"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_dashboard_about_many_things"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="5">
 
                     <include layout="@layout/card_dashboard_three_islands"/>
+
+                    <Space android:layout_width="10dp" />
 
                     <include layout="@layout/card_dashboard_food_contest"/>
 
@@ -103,15 +153,11 @@
 
                     <include layout="@layout/card_dashboard_camp_task"/>
 
+                    <include layout="@layout/card_dashboard_cross_server_team_up"/>
+
                     <Space android:layout_width="10dp" />
 
                     <include layout="@layout/card_dashboard_happy_holiday"/>
-
-                    <include layout="@layout/card_dashboard_daily_recharge"/>
-
-                    <Space android:layout_width="10dp" />
-
-                    <include layout="@layout/card_dashboard_new_year_million_consumption"/>
 
                     <Space android:layout_width="10dp" />
 
@@ -121,20 +167,68 @@
 
                 <include layout="@layout/card_world_boss"/>
 
-                <GridLayout
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnCount="5">
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_dashboard_about_discount"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
                     <include layout="@layout/card_dashboard_transfer_discount"/>
 
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/card_dashboard_cry_stone_discount"/>
+
+                        <include layout="@layout/card_dashboard_wedding_discount"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_dashboard_about_money"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3">
+
+                    <include layout="@layout/card_dashboard_daily_recharge"/>
+
                     <Space android:layout_width="10dp" />
 
-                    <include layout="@layout/card_dashboard_cry_stone_discount"/>
-
-                    <Space android:layout_width="10dp" />
-
-                    <include layout="@layout/card_dashboard_wedding_discount"/>
+                    <include layout="@layout/card_dashboard_new_year_million_consumption"/>
 
                 </GridLayout>
 
@@ -142,7 +236,7 @@
                     android:id="@+id/tips_data_image_dashboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="10dp"
                     android:clickable="true"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">

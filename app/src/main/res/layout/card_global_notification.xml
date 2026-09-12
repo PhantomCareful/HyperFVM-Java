@@ -1,50 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ContentDescription">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_global_notification_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:visibility="gone"
         android:clickable="true"
+        android:visibility="gone"
         app:cardBackgroundColor="?attr/ImportantCardViewBackground"
         app:cardCornerRadius="20dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:alpha="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/phantom_careful"
-            android:scaleType="fitCenter"
-            android:layout_gravity="end|bottom"
-            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:clickable="false"
-            android:background="?attr/selectableItemBackground"
-            android:padding="10dp">
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center">
 
-            <TextView
-                android:id="@+id/dashboard_GlobalNotification_Title"
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/TextViewColorOnImportantCardView"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:src="@drawable/ic_promotions"
+                app:tint="?attr/VectorGraphicColorOnImportantCardView" />
 
-            <TextView
-                android:id="@+id/dashboard_GlobalNotification_Content"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/TextViewColorOnImportantCardView"
-                android:textSize="15sp"/>
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dashboard_GlobalNotification_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                <TextView
+                    android:id="@+id/dashboard_GlobalNotification_Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

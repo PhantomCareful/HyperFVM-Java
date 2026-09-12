@@ -5,28 +5,28 @@
     tools:ignore="ContentDescription,RtlSymmetry">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/dashboard_TransferDiscount_Container"
+        android:id="@+id/dashboard_NewYearBountyDouble_Container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_marginBottom="10dp"
+        android:clickable="true"
         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
         app:cardCornerRadius="20dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="false"
-            android:background="?attr/selectableItemBackground">
+            android:clickable="false">
 
             <ImageView
-                android:id="@+id/dashboard_TransferDiscount_Icon"
+                android:id="@+id/dashboard_NewYearBountyDouble_Icon"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginEnd="-35dp"
                 android:layout_marginBottom="-35dp"
                 android:layout_gravity="end|bottom"
-                android:src="@drawable/ic_baseline_arrow_circle_down"
+                android:src="@drawable/ic_round_check_circle_outline"
                 app:tint="?attr/TitleTextViewColorOnSurface" />
 
             <LinearLayout
@@ -40,12 +40,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-                    android:text="@string/title_dashboard_transfer_discount"
+                    android:text="@string/title_dashboard_new_year_bounty_double"
                     android:textSize="15sp"
                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                 <TextView
-                    android:id="@+id/dashboard_TransferDiscount"
+                    android:id="@+id/dashboard_NewYearBountyDouble_IsDouble"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -55,7 +55,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/dashboard_TransferDiscount_CardNum"
+                android:id="@+id/dashboard_NewYearBountyDouble_DayMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|bottom"
@@ -63,7 +63,7 @@
                 android:layout_marginBottom="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
         </FrameLayout>
 

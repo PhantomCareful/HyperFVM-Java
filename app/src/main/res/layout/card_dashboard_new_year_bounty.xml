@@ -5,9 +5,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/dashboard_NewYearBounty_Container"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
         android:layout_marginBottom="10dp"
         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
         app:cardCornerRadius="20dp">

@@ -316,8 +316,7 @@ Made By Phantom Careful 😈</string>
     <string name="title_card_data_decompose_and_get_info_golden">分解&amp;兑换：神谕之石</string>
     <!--工具箱-->
     <!--仪表盘-->
-    <string name="text_dashboard_last_day_of_month">月末了，请注意清空积分和金券⚠️</string>
-    <string name="title_dashboard_double_explosion_rate">双爆信息</string>
+    <string name="text_dashboard_last_day_of_month">月末了，请注意清空积分和金券</string>
     <string name="title_dashboard_meishi_wechat">温馨礼包</string>
     <string name="top_bar_meishi_wechat">温馨礼包链接管理</string>
     <string name="title_meishi_wechat_account_saved">已保存的账号</string>
@@ -350,23 +349,30 @@ Made By Phantom Careful 😈</string>
     <string name="description_meishi_wechat_gift_item_8">提高强化成功率1.7倍</string>
     <string name="dialog_title_meishi_wechat_add_url">添加链接</string>
     <string name="dialog_tips_meishi_wechat_add_url">请输入链接，形如：\nhttp://meishi.wechat.123u.com/meishi/index?openid=XXXXX</string>
-    <string name="title_dashboard_everyday">每日签到</string>
-    <string name="title_dashboard_fertilization_task">施肥活动</string>
+    <string name="title_dashboard_double_explosion_rate">双爆信息</string>
     <string name="title_dashboard_weekly_recharge">更新公告</string>
     <string name="dialog_sub_title_bilibili_fvm">美食官号最新更新公告</string>
+    <string name="title_dashboard_everyday">每日签到</string>
+    <string name="title_dashboard_fertilization_task">施肥活动</string>
+    <string name="title_dashboard_birthday_activity">福利打卡</string>
+    <string name="title_dashboard_about_bounty">悬赏专区</string>
+    <string name="title_dashboard_new_year_bounty_double">声望翻倍</string>
     <string name="title_dashboard_new_year_bounty">美食悬赏</string>
-    <string name="title_dashboard_new_year_million_consumption">百万消费</string>
-    <string name="title_dashboard_daily_recharge">日氪</string>
-    <string name="title_dashboard_happy_holiday">欢乐假期</string>
-    <string name="title_dashboard_food_contest">美食大赛</string>
-    <string name="title_dashboard_three_islands">三岛福利</string>
-    <string name="title_dashboard_cross_server_team_up">助人为乐</string>
-    <string name="title_dashboard_transfer_discount">二转打折</string>
     <string name="title_dashboard_new_year_lucky_money">抢红包</string>
-    <string name="title_dashboard_world_boss">巅峰对决</string>
+    <string name="title_dashboard_about_many_things">肝帝专区</string>
+    <string name="title_dashboard_three_islands">三岛福利</string>
+    <string name="title_dashboard_food_contest">美食大赛</string>
     <string name="title_dashboard_camp_task">营地任务</string>
+    <string name="title_dashboard_cross_server_team_up">助人为乐</string>
+    <string name="title_dashboard_happy_holiday">欢乐假期</string>
+    <string name="title_dashboard_world_boss">巅峰对决</string>
+    <string name="title_dashboard_about_discount">打折专区</string>
+    <string name="title_dashboard_transfer_discount">二转打折</string>
     <string name="title_dashboard_cry_stone_discount">结晶强化打折</string>
     <string name="title_dashboard_wedding_discount">豪华婚礼打折</string>
+    <string name="title_dashboard_about_money">氪金专区</string>
+    <string name="title_dashboard_new_year_million_consumption">百万消费</string>
+    <string name="title_dashboard_daily_recharge">日氪</string>
     <string name="title_dashboard_tips">小贴士</string>
     <string name="content_dashboard_tips">点击每个卡片可以查看更详细的内容\n点击右上角的按钮可以手动刷新一次数据</string>
     <!--美食数据站-->

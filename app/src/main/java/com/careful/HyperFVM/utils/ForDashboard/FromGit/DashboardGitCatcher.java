@@ -21,9 +21,13 @@ import java.util.Map;
  * 3. 助人为乐
  * 4. 三岛
  * 5. 美食大赛
- * 6. 二转打折
- * 7. App置顶公告
- * 8. 世界BOSS
+ * 6. 营地任务
+ * 7. 豪华婚礼
+ * 8. App通知
+ * 9. 世界BOSS
+ * 10. 结晶打折
+ * 11. 福利打卡
+ * 12. 二转打折
  */
 public class DashboardGitCatcher {
     private static final String TAG = "DashboardGitCatcher";
@@ -55,13 +59,7 @@ public class DashboardGitCatcher {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     // 提取单个JSON对象
                     itemObj = jsonArray.getJSONObject(i);
-
-                    // 把二转打折的内容放在最后一个位置，方便处理
-                    if (i == jsonArray.length() - 1) {
-                        catchTransferDiscountInfo(itemObj);
-                    } else {
-                        catchOtherActivityInfo(itemObj);
-                    }
+                    catchAllActivityInfo(itemObj);
                 }
 
                 // 第4步，将Map回调出去
@@ -150,6 +148,7 @@ public class DashboardGitCatcher {
      */
     private void catchTransferDiscountInfo(JSONObject itemObj) throws JSONException {
         String simple;
+        String cardNum;
         String emoji;
         String contentStatus;
         String contentDetail;
@@ -167,12 +166,14 @@ public class DashboardGitCatcher {
         if (today.before(start)) {
             Log.d(TAG, "二转打折：活动尚未开始");
             simple = "尚未开始";
+            cardNum = cardListArr.length + "张";
             emoji = "⏳";
             contentStatus = "等等等等";
             contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n以下卡片保险金仅需1500D";
         } else if (today.after(end)) {
             Log.d(TAG, "二转打折：活动已结束");
             simple = "暂无";
+            cardNum = "";
             emoji = "⏳";
             contentStatus = "空空如也";
             contentDetail = "众所周知打折活动不会间断，因此大概率是作者还没更新，建议去速速催促\uD83D\uDE21\uD83D\uDE21\uD83D\uDE21";
@@ -181,6 +182,7 @@ public class DashboardGitCatcher {
             if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10) {
                 Log.d(TAG, "二转打折：活动已结束");
                 simple = "暂无";
+                cardNum = "";
                 emoji = "⏳";
                 contentStatus = "空空如也";
                 contentDetail = "众所周知打折活动不会间断，因此大概率是作者还没更新，建议去速速催促\uD83D\uDE21\uD83D\uDE21\uD83D\uDE21";
@@ -189,7 +191,8 @@ public class DashboardGitCatcher {
                 int duringCount = TimeUtil.calculateDaysBetween(startDate, todayDate);
                 int length = TimeUtil.calculateDaysBetween(startDate, endDate) - 1;
 
-                simple = cardListArr.length + "张";
+                simple = duringCount + "/" + length;
+                cardNum = cardListArr.length + "张";
                 emoji = "😍";
                 contentStatus = "第" + duringCount + "天/持续" + length + "天";
                 contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n以下卡片保险金仅需1500D";
@@ -198,6 +201,7 @@ public class DashboardGitCatcher {
 
         Log.d("resultTransferDiscountContentStatus", "resultTransferDiscountContentStatus = " + contentStatus);
         result.put("resultTransferDiscountSimple", simple);
+        result.put("resultTransferDiscountCardNum", cardNum);
         result.put("resultTransferDiscountEmoji", emoji);
         result.put("resultTransferDiscountContentStatus", contentStatus);
         result.put("resultTransferDiscountContentDetail", contentDetail);
@@ -386,6 +390,80 @@ public class DashboardGitCatcher {
     }
 
     /**
+     * 获取福利打卡的内容
+     * 示例内容
+     * "name": "福利打卡",
+     * "startDate": "2026-07-30",
+     * "endDate": "2026-08-13",
+     * "closeDate": "2026-09-03",
+     * "newCardName": "邪恶牛油果",
+     * "requiredDatasetVersion": "20260730"
+     */
+    private void catchBirthdayActivityInfo(JSONObject itemObj) throws JSONException {
+        String simple;
+        String emoji;
+        String contentStatus;
+        String contentDetail;
+
+        String startDate = itemObj.getString("startDate");
+        String endDate = itemObj.getString("endDate");
+        String closeDate = itemObj.getString("closeDate");
+        String newCardName = itemObj.getString("newCardName");
+        String requiredDatabaseVersion = itemObj.getString("requiredDatabaseVersion");
+
+        // 判断today和start、end之间的前后关系
+        String todayDate = TimeUtil.getCurrentDate();
+        Date today = TimeUtil.transformStringToDate(todayDate);
+        Date start = TimeUtil.transformStringToDate(startDate);
+        Date end = TimeUtil.transformStringToDate(endDate);
+        Date close = TimeUtil.transformStringToDate(closeDate);
+        if (today.before(start)) {
+            Log.d(TAG, "福利打卡：活动尚未开始");
+            simple = "尚未开始";
+            emoji = "⏳";
+            contentStatus = "等等等等";
+            contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n页面关闭：" + closeDate + "\n\n👇本期新卡👇";
+        } else if (today.after(end) && today.before(close)) {
+            Log.d(TAG, "福利打卡：领奖期");
+            simple = "领奖期";
+            emoji = "🎁";
+            contentStatus = "领奖期";
+            contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n页面关闭：" + closeDate + "\n\n👇本期新卡👇";
+        } else if (today.after(close)) {
+            Log.d(TAG, "福利打卡：活动已结束");
+            simple = "暂无";
+            emoji = "⏳";
+            contentStatus = "空空如也";
+            contentDetail = "还没有新的活动呢";
+        } else {
+            // 如果在结束当天过了上午10点，则也视为活动结束
+            if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10) {
+                Log.d(TAG, "福利打卡：活动已结束");
+                simple = "暂无";
+                emoji = "⏳";
+                contentStatus = "空空如也";
+                contentDetail = "还没有新的活动呢";
+            } else {
+                Log.d(TAG, "福利打卡：活动正在进行中");
+                int duringCount = TimeUtil.calculateDaysBetween(startDate, todayDate);
+                int length = TimeUtil.calculateDaysBetween(startDate, endDate);
+
+                simple = duringCount + "/" + length;
+                emoji = "✊";
+                contentStatus = "第" + duringCount + "天/持续" + length + "天";
+                contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n页面关闭：" + closeDate + "\n\n👇本期新卡👇";
+            }
+        }
+
+        result.put("resultBirthdayActivitySimple", simple);
+        result.put("resultBirthdayActivityEmoji", emoji);
+        result.put("resultBirthdayActivityContentStatus", contentStatus);
+        result.put("resultBirthdayActivityContentDetail", contentDetail);
+        result.put("resultBirthdayActivityNewCardName", newCardName);
+        result.put("resultBirthdayActivityRequiredDatabaseVersion", requiredDatabaseVersion);
+    }
+
+    /**
      * 获取其他活动内容
      * 示例内容
      * {
@@ -431,7 +509,7 @@ public class DashboardGitCatcher {
      * "endDate": "2026-08-27"
      * },
      */
-    private void catchOtherActivityInfo(JSONObject itemObj) throws JSONException {
+    private void catchAllActivityInfo(JSONObject itemObj) throws JSONException {
         String resultSimple;
         String resultEmoji;
         String resultContentStatus;
@@ -449,6 +527,12 @@ public class DashboardGitCatcher {
                 return;
             case "美食大赛":
                 catchFoodContestInfo(itemObj);
+                return;
+            case "福利打卡":
+                catchBirthdayActivityInfo(itemObj);
+                return;
+            case "二转打折":
+                catchTransferDiscountInfo(itemObj);
                 return;
         }
 

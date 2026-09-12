@@ -725,7 +725,7 @@ public class DialogBuilderManager {
     @SuppressLint({"Range", "DiscouragedApi", "SetTextI18n"})
     public static void showDashboardTransferDiscountDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, List<String> discountList) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_transfer_discount, null);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_card_list, null);
 
         TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
@@ -814,6 +814,122 @@ public class DialogBuilderManager {
                 suggestion_list_transfer_discount.addView(cardView);
             }
         }
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 仪表盘：展示福利打卡详细信息的弹窗，并可以直接跳转新卡片详情页（要求数据库不低于指定版本）
+     * @param title         弹窗标题
+     * @param emoji         弹窗中的大表情
+     * @param contentStatus 状态内容
+     * @param contentDetail 详细内容
+     * @param newCardName   打折名单
+     * @param requiredDatabaseVersion 超过这个版本后，数据库中才能有这张新卡
+     */
+    @SuppressLint({"Range", "DiscouragedApi", "SetTextI18n"})
+    public static void showDashboardBirthdayActivityDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, String newCardName, int requiredDatabaseVersion) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_card_list, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+
+        // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
+        LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
+        if (Integer.parseInt(context.getString(R.string.card_data_search_data_version).split("：")[1]) >= requiredDatabaseVersion) {
+            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
+            // 绑定好需要用到的组件
+            LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
+            TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
+            TextView suggestion_name_2_transfer_discount = cardView.findViewById(R.id.suggestion_name_2);
+            ImageView suggestion_image_0_transfer_discount = cardView.findViewById(R.id.suggestion_image_0);
+            ImageView suggestion_image_1_transfer_discount = cardView.findViewById(R.id.suggestion_image_1);
+            ImageView suggestion_image_2_transfer_discount = cardView.findViewById(R.id.suggestion_image_2);
+            ImageView suggestion_image_3_transfer_discount = cardView.findViewById(R.id.suggestion_image_3);
+
+            // 先通过名字得到tableName和不转名称
+            String tableName = dbHelper.getCardTableName(newCardName);
+            String baseName = dbHelper.getCardBaseName(newCardName);
+
+            if (tableName == null) {
+                return;
+            }
+
+            // 通过数据库得到卡片名称、图片id
+            try (Cursor cursor = dbHelper.getCardData(tableName, baseName)) {
+                if (cursor == null || !cursor.moveToFirst()) {
+                    return;
+                }
+
+                String imageIdStr0 = cursor.getString(cursor.getColumnIndex("image_id_0"));
+                // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                int imageResId = context.getResources().getIdentifier(
+                        imageIdStr0,
+                        "drawable",
+                        context.getPackageName()
+                );
+                suggestion_image_0_transfer_discount.setImageResource(imageResId);
+                String imageIdStr1 = cursor.getString(cursor.getColumnIndex("image_id_1"));
+                // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                imageResId = context.getResources().getIdentifier(
+                        imageIdStr1.equals("无") ? "card_data_x" : imageIdStr1,
+                        "drawable",
+                        context.getPackageName()
+                );
+                suggestion_image_1_transfer_discount.setImageResource(imageResId);
+                String imageIdStr2 = cursor.getString(cursor.getColumnIndex("image_id_2"));
+                // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                imageResId = context.getResources().getIdentifier(
+                        imageIdStr2.equals("无") ? "card_data_x" : imageIdStr2,
+                        "drawable",
+                        context.getPackageName()
+                );
+                suggestion_image_2_transfer_discount.setImageResource(imageResId);
+                if (tableName.equals("card_data_3")) {
+                    String imageIdStr3 = cursor.getString(cursor.getColumnIndex("image_id_3"));
+                    // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
+                    imageResId = context.getResources().getIdentifier(
+                            imageIdStr3.equals("无") ? "card_data_x" : imageIdStr3,
+                            "drawable",
+                            context.getPackageName()
+                    );
+                    suggestion_image_3_transfer_discount.setImageResource(imageResId);
+                } else {
+                    suggestion_image_3_transfer_discount.setVisibility(View.GONE);
+                }
+
+                suggestion_name_1_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name")));
+                if (tableName.equals("card_data_3")) {
+                    suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")) + "-" + cursor.getString(cursor.getColumnIndex("name_3")));
+                } else {
+                    suggestion_name_2_transfer_discount.setText(cursor.getString(cursor.getColumnIndex("name_1")) + "-" + cursor.getString(cursor.getColumnIndex("name_2")));
+                }
+
+                // 设置点击事件，跳转数据详情页
+                suggestion_card_transfer_discount_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
+
+                suggestion_list_transfer_discount.addView(cardView);
+            }
+        } else {
+            contentDetail = contentDetail + "\n\n" + newCardName + "\n\n当前数据库尚未包含此卡片\n请更新数据库版本到" + requiredDatabaseVersion;
+        }
+
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setView(dialogView)

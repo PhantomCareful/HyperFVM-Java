@@ -110,44 +110,50 @@ public class DashboardFragment extends Fragment {
     private TextView dashboardFertilizationTask;
     private String fertilizationTaskEmoji;
 
+    private FrameLayout dashboardBirthdayActivityContainer;
+    private TextView dashboardBirthdayActivity;
+    private String birthdayActivityEmoji;
+
+    private TextView dashboardBountyDoubleIsDouble;
+    private TextView dashboardBountyDoubleDayMax;
+    private ImageView bountyDoubleIcon;
+
     private FrameLayout dashboardBountyContainer;
     private TextView dashboardBounty;
     private String bountyEmoji;
-
-    private FrameLayout dashboardMillionConsumptionContainer;
-    private TextView dashboardMillionConsumption;
-    private String millionConsumptionEmoji;
-
-    private FrameLayout dashboardDailyRechargeContainer;
-    private TextView dashboardDailyRecharge;
-    private String dailyRechargeEmoji;
-
-    private FrameLayout dashboardHappyHolidayContainer;
-    private TextView dashboardHappyHoliday;
-    private String happyHolidayEmoji;
-
-    private FrameLayout dashboardFoodContestContainer;
-    private TextView dashboardFoodContest;
-    private String foodContestEmoji;
-
-    private FrameLayout dashboardThreeIslandsContainer;
-    private TextView dashboardThreeIslands;
-    private String threeIslandsEmoji;
-
-    private FrameLayout dashboardCrossServerTeamUpContainer;
-    private TextView dashboardCrossServerTeamUp;
-    private String crossServerTeamUpEmoji;
-
-    private FrameLayout dashboardTransferDiscountContainer;
-    private TextView dashboardTransferDiscount;
-    private String transferDiscountEmoji;
 
     private FrameLayout dashboardLuckyMoneyContainer;
     private TextView dashboardLuckyMoney;
     private String luckyMoneyEmoji;
 
+    private FrameLayout dashboardThreeIslandsContainer;
+    private TextView dashboardThreeIslands;
+    private String threeIslandsEmoji;
+
+    private FrameLayout dashboardFoodContestContainer;
+    private TextView dashboardFoodContest;
+    private String foodContestEmoji;
+
+    private FrameLayout dashboardCampTaskContainer;
+    private TextView dashboardCampTask;
+    private String campTaskEmoji;
+
+    private FrameLayout dashboardCrossServerTeamUpContainer;
+    private TextView dashboardCrossServerTeamUp;
+    private String crossServerTeamUpEmoji;
+
+    private FrameLayout dashboardHappyHolidayContainer;
+    private TextView dashboardHappyHoliday;
+    private String happyHolidayEmoji;
+
     private FrameLayout dashboardWorldBossContainer;
     private TextView dashboardWorldBoss;
+
+    private FrameLayout dashboardTransferDiscountContainer;
+    private TextView dashboardTransferDiscount;
+    private TextView dashboardTransferDiscountCardNum;
+    private ImageView transferDiscountIcon;
+    private String transferDiscountEmoji;
 
     private FrameLayout dashboardCryStoneDiscountContainer;
     private TextView dashboardCryStoneDiscount;
@@ -157,9 +163,13 @@ public class DashboardFragment extends Fragment {
     private TextView dashboardWeddingDiscount;
     private String weddingDiscountEmoji;
 
-    private FrameLayout dashboardCampTaskContainer;
-    private TextView dashboardCampTask;
-    private String campTaskEmoji;
+    private FrameLayout dashboardDailyRechargeContainer;
+    private TextView dashboardDailyRecharge;
+    private String dailyRechargeEmoji;
+
+    private FrameLayout dashboardMillionConsumptionContainer;
+    private TextView dashboardMillionConsumption;
+    private String millionConsumptionEmoji;
 
     // 仪表盘工具类
     private EveryMonthAndEveryWeek everyMonthAndEveryWeek;
@@ -180,6 +190,8 @@ public class DashboardFragment extends Fragment {
         // 初始化仪表盘组件
         floatButtonRefresh = root.findViewById(R.id.FloatButton_Refresh);
 
+        dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
+
         dashboardMeishiWechat = root.findViewById(R.id.dashboard_MeishiWechat);
         dashboardMeishiWechatContainer = root.findViewById(R.id.dashboard_MeishiWechat_Container);
         meishiWechatIcon = root.findViewById(R.id.dashboard_MeishiWechat_Icon);
@@ -191,22 +203,24 @@ public class DashboardFragment extends Fragment {
         dashboardBilibiliFVMContainer = root.findViewById(R.id.dashboard_WeeklyRecharge_Container);
         dashboardBilibiliFVMContainer.setEnabled(false);
 
-        dashboardLastDayOfMonth = root.findViewById(R.id.dashboard_LastDayOfMonth);
-
         dashboardEveryday = root.findViewById(R.id.dashboard_Everyday);
         dashboardEverydayContainer = root.findViewById(R.id.dashboard_Everyday_Container);
 
         dashboardFertilizationTask = root.findViewById(R.id.dashboard_FertilizationTask);
         dashboardFertilizationTaskContainer = root.findViewById(R.id.dashboard_FertilizationTask_Container);
 
+        dashboardBirthdayActivity = root.findViewById(R.id.dashboard_BirthdayActivity);
+        dashboardBirthdayActivityContainer = root.findViewById(R.id.dashboard_BirthdayActivity_Container);
+
+        dashboardBountyDoubleIsDouble = root.findViewById(R.id.dashboard_NewYearBountyDouble_IsDouble);
+        dashboardBountyDoubleDayMax = root.findViewById(R.id.dashboard_NewYearBountyDouble_DayMax);
+        bountyDoubleIcon = root.findViewById(R.id.dashboard_NewYearBountyDouble_Icon);
+
         dashboardBounty = root.findViewById(R.id.dashboard_NewYearBounty);
         dashboardBountyContainer = root.findViewById(R.id.dashboard_NewYearBounty_Container);
 
         dashboardLuckyMoney = root.findViewById(R.id.dashboard_NewYearLuckyMoney);
         dashboardLuckyMoneyContainer = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Container);
-
-        dashboardCrossServerTeamUp = root.findViewById(R.id.dashboard_CrossServerTeamUp);
-        dashboardCrossServerTeamUpContainer = root.findViewById(R.id.dashboard_CrossServerTeamUp_Container);
 
         dashboardThreeIslands = root.findViewById(R.id.dashboard_ThreeIslands);
         dashboardThreeIslandsContainer = root.findViewById(R.id.dashboard_ThreeIslands_Container);
@@ -217,26 +231,31 @@ public class DashboardFragment extends Fragment {
         dashboardCampTaskContainer = root.findViewById(R.id.dashboard_CampTask_Container);
         dashboardCampTask = root.findViewById(R.id.dashboard_CampTask);
 
+        dashboardCrossServerTeamUp = root.findViewById(R.id.dashboard_CrossServerTeamUp);
+        dashboardCrossServerTeamUpContainer = root.findViewById(R.id.dashboard_CrossServerTeamUp_Container);
+
         dashboardHappyHoliday = root.findViewById(R.id.dashboard_HappyHoliday);
         dashboardHappyHolidayContainer = root.findViewById(R.id.dashboard_HappyHoliday_Container);
-
-        dashboardDailyRecharge = root.findViewById(R.id.dashboard_DailyRecharge);
-        dashboardDailyRechargeContainer = root.findViewById(R.id.dashboard_DailyRecharge_Container);
-
-        dashboardMillionConsumption = root.findViewById(R.id.dashboard_NewYearMillionConsumption);
-        dashboardMillionConsumptionContainer = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Container);
 
         dashboardWorldBossContainer = root.findViewById(R.id.dashboard_WorldBoss_Container);
         dashboardWorldBoss = root.findViewById(R.id.dashboard_WorldBoss);
 
         dashboardTransferDiscount = root.findViewById(R.id.dashboard_TransferDiscount);
+        dashboardTransferDiscountCardNum = root.findViewById(R.id.dashboard_TransferDiscount_CardNum);
         dashboardTransferDiscountContainer = root.findViewById(R.id.dashboard_TransferDiscount_Container);
+        transferDiscountIcon = root.findViewById(R.id.dashboard_TransferDiscount_Icon);
 
         dashboardCryStoneDiscountContainer = root.findViewById(R.id.dashboard_CryStoneDiscount_Container);
         dashboardCryStoneDiscount = root.findViewById(R.id.dashboard_CryStoneDiscount);
 
         dashboardWeddingDiscountContainer = root.findViewById(R.id.dashboard_WeddingDiscount_Container);
         dashboardWeddingDiscount = root.findViewById(R.id.dashboard_WeddingDiscount);
+
+        dashboardDailyRecharge = root.findViewById(R.id.dashboard_DailyRecharge);
+        dashboardDailyRechargeContainer = root.findViewById(R.id.dashboard_DailyRecharge_Container);
+
+        dashboardMillionConsumption = root.findViewById(R.id.dashboard_NewYearMillionConsumption);
+        dashboardMillionConsumptionContainer = root.findViewById(R.id.dashboard_NewYearMillionConsumption_Container);
 
         // 初始化仪表盘工具类
         everyMonthAndEveryWeek = new EveryMonthAndEveryWeek();
@@ -331,19 +350,29 @@ public class DashboardFragment extends Fragment {
 
         dashboardEveryday.setText("请等待...");
         dashboardFertilizationTask.setText("请等待...");
+        dashboardBirthdayActivity.setText("请等待...");
+
+        dashboardBountyDoubleIsDouble.setText("请等待...");
+        dashboardBountyDoubleDayMax.setText("");
+        bountyDoubleIcon.setImageResource(R.drawable.ic_timer);
         dashboardBounty.setText("请等待...");
         dashboardLuckyMoney.setText("请等待...");
-        dashboardCrossServerTeamUp.setText("请等待...");
+
         dashboardThreeIslands.setText("请等待...");
         dashboardFoodContest.setText("请等待...");
         dashboardCampTask.setText("请等待...");
+        dashboardCrossServerTeamUp.setText("请等待...");
         dashboardHappyHoliday.setText("请等待...");
-        dashboardDailyRecharge.setText("请等待...");
-        dashboardMillionConsumption.setText("请等待...");
         dashboardWorldBoss.setText("请等待...");
+
         dashboardTransferDiscount.setText("请等待...");
+        dashboardTransferDiscountCardNum.setText("");
+        transferDiscountIcon.setImageResource(R.drawable.ic_timer);
         dashboardCryStoneDiscount.setText("请等待...");
         dashboardWeddingDiscount.setText("请等待...");
+
+        dashboardDailyRecharge.setText("请等待...");
+        dashboardMillionConsumption.setText("请等待...");
 
         new Thread(() -> {
             try {
@@ -391,27 +420,26 @@ public class DashboardFragment extends Fragment {
      */
     @SuppressLint("SetTextI18n")
     private void displayDashboardData(List<Map<String, String>> data) {
-        // 读取双倍双爆结果
-        String activityResult = data.get(0).get("resultTodayActivityInfoSimple");
-        doubleExplosionRateEmoji = data.get(0).get("resultTodayActivityInfoEmoji");
-        dashboardDoubleExplosionRate.setText(activityResult);
-        // 设置点击打开详情弹窗
-        dashboardDoubleExplosionRateContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialog(
-                        requireContext(),
-                        getResources().getString(R.string.title_dashboard_double_explosion_rate),
-                        doubleExplosionRateEmoji.isEmpty() ? "❌" : doubleExplosionRateEmoji,
-                        data.get(0).get("resultTodayActivityInfoContentStatus"),
-                        data.get(0).get("resultTodayActivityInfoContentDetail")
-                )
-        );
+        // 读取App通知
+        if (Objects.equals(data.get(0).get("resultGlobalNotificationIsShow"), "true")) {
+            String dashboardGlobalNotificationTitle = data.get(0).get("resultGlobalNotificationTitle");
+            String dashboardGlobalNotificationContent = data.get(0).get("resultGlobalNotificationContent");
+            TextView title = root.findViewById(R.id.dashboard_GlobalNotification_Title);
+            TextView content = root.findViewById(R.id.dashboard_GlobalNotification_Content);
+            title.setText(dashboardGlobalNotificationTitle);
+            content.setText(dashboardGlobalNotificationContent);
+            TransitionManager.beginDelayedTransition(dashboardContainer, transition);
+            root.findViewById(R.id.card_global_notification_container).setVisibility(View.VISIBLE);
+        } else {
+            TransitionManager.beginDelayedTransition(dashboardContainer, transition);
+            root.findViewById(R.id.card_global_notification_container).setVisibility(View.GONE);
+        }
 
         // 读取温馨礼包领取结果
         String meishiWechatResult = data.get(0).get("resultMeishiWechatInfoSimple");
         dashboardMeishiWechat.setText(meishiWechatResult);
         meishiWechatIcon.setImageResource(Objects.requireNonNull(meishiWechatResult).equals("领取失败") || meishiWechatResult.equals("领取异常") ?
                 R.drawable.ic_round_remove_circle_outline : R.drawable.ic_round_check_circle_outline);
-
         // 设置点击打开详情弹窗
         dashboardMeishiWechatContainer.setOnClickListener(v -> {
             if (dbHelper.getSettingBooleanValue(CONTENT_IS_BIOMETRIC_AUTH)) {
@@ -429,6 +457,21 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        // 读取双倍双爆结果
+        String activityResult = data.get(0).get("resultTodayActivityInfoSimple");
+        doubleExplosionRateEmoji = data.get(0).get("resultTodayActivityInfoEmoji");
+        dashboardDoubleExplosionRate.setText(activityResult);
+        // 设置点击打开详情弹窗
+        dashboardDoubleExplosionRateContainer.setOnClickListener(v ->
+                DialogBuilderManager.showDashboardDetailDialog(
+                        requireContext(),
+                        getResources().getString(R.string.title_dashboard_double_explosion_rate),
+                        doubleExplosionRateEmoji.isEmpty() ? "❌" : doubleExplosionRateEmoji,
+                        data.get(0).get("resultTodayActivityInfoContentStatus"),
+                        data.get(0).get("resultTodayActivityInfoContentDetail")
+                )
+        );
+
         // 读取施肥活动结果
         String fertilizationTaskResult = data.get(0).get("resultFertilizationTaskInfoSimple");
         fertilizationTaskEmoji = data.get(0).get("resultFertilizationTaskInfoEmoji");
@@ -444,21 +487,45 @@ public class DashboardFragment extends Fragment {
                 )
         );
 
-        // 读取抢红包活动结果
-        String luckyMoneyResult = data.get(0).get("resultLuckyConsumptionInfoSimple");
-        luckyMoneyEmoji = data.get(0).get("resultLuckyConsumptionInfoEmoji");
-        dashboardLuckyMoney.setText(Objects.requireNonNull(luckyMoneyResult).isEmpty() ? "null" : luckyMoneyResult);
+        // 读取福利打卡活动结果
+        String birthdayActivityResult = data.get(0).get("resultBirthdayActivitySimple");
+        birthdayActivityEmoji = data.get(0).get("resultBirthdayActivityEmoji");
+        dashboardBirthdayActivity.setText(Objects.requireNonNull(birthdayActivityResult).isEmpty() ? "null" : birthdayActivityResult);
         // 设置点击打开详情弹窗
-        dashboardLuckyMoneyContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialog(
+        dashboardBirthdayActivityContainer.setOnClickListener(v -> {
+            String contentStatus = data.get(0).get("resultBirthdayActivityContentStatus");
+            String contentDetail = data.get(0).get("resultBirthdayActivityContentDetail");
+            String newCardName = data.get(0).get("resultBirthdayActivityNewCardName");
+            int requiredDatabaseVersion = Integer.parseInt(Objects.requireNonNull(data.get(0).get("resultBirthdayActivityRequiredDatabaseVersion")));
+            if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
+                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
                         requireContext(),
-                        getResources().getString(R.string.title_dashboard_new_year_lucky_money),
-                        luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji,
-                        data.get(0).get("resultLuckyConsumptionInfoContentStatus"),
-                        data.get(0).get("resultLuckyConsumptionInfoContentDetail")
-                )
-        );
+                        getResources().getString(R.string.title_dashboard_birthday_activity),
+                        birthdayActivityEmoji.isEmpty() ? "❌" : birthdayActivityEmoji,
+                        contentStatus,
+                        contentDetail,
+                        "新卡名称",
+                        newCardName
+                );
+            } else {
+                DialogBuilderManager.showDashboardBirthdayActivityDialog(
+                        requireContext(),
+                        getResources().getString(R.string.title_dashboard_birthday_activity),
+                        birthdayActivityEmoji.isEmpty() ? "❌" : birthdayActivityEmoji,
+                        contentStatus,
+                        contentDetail,
+                        newCardName,
+                        requiredDatabaseVersion
+                );
+            }
+        });
 
+        // 读取美食悬赏声望翻倍结果
+        boolean bountyDoubleIsDouble = Boolean.parseBoolean(data.get(0).get("resultBountyInfoIsDouble"));
+        String bountyDoubleDayMax = data.get(0).get("resultBountyInfoDayMax");
+        dashboardBountyDoubleIsDouble.setText(bountyDoubleIsDouble ? "已开启" : "未开启");
+        dashboardBountyDoubleDayMax.setText(bountyDoubleDayMax);
+        bountyDoubleIcon.setImageResource(bountyDoubleIsDouble ? R.drawable.ic_baseline_celebration : R.drawable.ic_round_remove_circle_outline);
         // 读取美食悬赏活动结果
         String bountyResult = data.get(0).get("resultBountyInfoSimple");
         bountyEmoji = data.get(0).get("resultBountyInfoEmoji");
@@ -476,18 +543,18 @@ public class DashboardFragment extends Fragment {
                 )
         );
 
-        // 读取跨服助人为乐活动结果
-        String crossServerTeamUpResult = data.get(0).get("resultServerTeamUpSimple");
-        crossServerTeamUpEmoji = data.get(0).get("resultServerTeamUpEmoji");
-        dashboardCrossServerTeamUp.setText(Objects.requireNonNull(crossServerTeamUpResult).isEmpty() ? "null" : crossServerTeamUpResult);
+        // 读取抢红包活动结果
+        String luckyMoneyResult = data.get(0).get("resultLuckyConsumptionInfoSimple");
+        luckyMoneyEmoji = data.get(0).get("resultLuckyConsumptionInfoEmoji");
+        dashboardLuckyMoney.setText(Objects.requireNonNull(luckyMoneyResult).isEmpty() ? "null" : luckyMoneyResult);
         // 设置点击打开详情弹窗
-        dashboardCrossServerTeamUpContainer.setOnClickListener(v ->
+        dashboardLuckyMoneyContainer.setOnClickListener(v ->
                 DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
-                        getResources().getString(R.string.title_dashboard_cross_server_team_up),
-                        crossServerTeamUpEmoji.isEmpty() ? "❌" : crossServerTeamUpEmoji,
-                        data.get(0).get("resultServerTeamUpContentStatus"),
-                        data.get(0).get("resultServerTeamUpContentDetail")
+                        getResources().getString(R.string.title_dashboard_new_year_lucky_money),
+                        luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji,
+                        data.get(0).get("resultLuckyConsumptionInfoContentStatus"),
+                        data.get(0).get("resultLuckyConsumptionInfoContentDetail")
                 )
         );
 
@@ -569,6 +636,21 @@ public class DashboardFragment extends Fragment {
                         data.get(0).get("resultCampTaskContentStatus"),
                         data.get(0).get("resultCampTaskContentDetail"),
                         data.get(0).get("resultCampTaskUrl")
+                )
+        );
+
+        // 读取跨服助人为乐活动结果
+        String crossServerTeamUpResult = data.get(0).get("resultServerTeamUpSimple");
+        crossServerTeamUpEmoji = data.get(0).get("resultServerTeamUpEmoji");
+        dashboardCrossServerTeamUp.setText(Objects.requireNonNull(crossServerTeamUpResult).isEmpty() ? "null" : crossServerTeamUpResult);
+        // 设置点击打开详情弹窗
+        dashboardCrossServerTeamUpContainer.setOnClickListener(v ->
+                DialogBuilderManager.showDashboardDetailDialog(
+                        requireContext(),
+                        getResources().getString(R.string.title_dashboard_cross_server_team_up),
+                        crossServerTeamUpEmoji.isEmpty() ? "❌" : crossServerTeamUpEmoji,
+                        data.get(0).get("resultServerTeamUpContentStatus"),
+                        data.get(0).get("resultServerTeamUpContentDetail")
                 )
         );
 
@@ -734,8 +816,11 @@ public class DashboardFragment extends Fragment {
 
         // 读取二转打折活动结果
         String transferDiscountResult = data.get(0).get("resultTransferDiscountSimple");
+        String transferDiscountCardNum = data.get(0).get("resultTransferDiscountCardNum");
         transferDiscountEmoji = data.get(0).get("resultTransferDiscountEmoji");
         dashboardTransferDiscount.setText(Objects.requireNonNull(transferDiscountResult).isEmpty() ? "null" : transferDiscountResult);
+        dashboardTransferDiscountCardNum.setText(transferDiscountCardNum);
+        transferDiscountIcon.setImageResource(Objects.requireNonNull(transferDiscountCardNum).contains("张") ? R.drawable.ic_baseline_arrow_circle_down : R.drawable.ic_round_remove_circle_outline);
         // 设置点击打开详情弹窗
         dashboardTransferDiscountContainer.setOnClickListener(v -> {
             String contentStatus = data.get(0).get("resultTransferDiscountContentStatus");
@@ -825,21 +910,6 @@ public class DashboardFragment extends Fragment {
                         data.get(0).get("resultMillionConsumptionInfoContentDetail")
                 )
         );
-
-        // 读取App通知
-        if (Objects.equals(data.get(0).get("resultGlobalNotificationIsShow"), "true")) {
-            String dashboardGlobalNotificationTitle = data.get(0).get("resultGlobalNotificationTitle");
-            String dashboardGlobalNotificationContent = data.get(0).get("resultGlobalNotificationContent");
-            TextView title = root.findViewById(R.id.dashboard_GlobalNotification_Title);
-            TextView content = root.findViewById(R.id.dashboard_GlobalNotification_Content);
-            title.setText(dashboardGlobalNotificationTitle);
-            content.setText(dashboardGlobalNotificationContent);
-            TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-            root.findViewById(R.id.card_global_notification_container).setVisibility(View.VISIBLE);
-        } else {
-            TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-            root.findViewById(R.id.card_global_notification_container).setVisibility(View.GONE);
-        }
     }
 
     /**
@@ -874,7 +944,7 @@ public class DashboardFragment extends Fragment {
         CardView card_dashboard_LastDayOfMonth = root.findViewById(R.id.card_last_day_of_month_container);
         if (everyMonthAndEveryWeek.isLastDayOfMonth()) {
             card_dashboard_LastDayOfMonth.setVisibility(View.VISIBLE);
-            dashboardLastDayOfMonth.setText("⚠️月末了，请注意清空积分和金券");
+            dashboardLastDayOfMonth.setText(getString(R.string.text_dashboard_last_day_of_month));
         } else {
             card_dashboard_LastDayOfMonth.setVisibility(View.GONE);
         }
@@ -979,6 +1049,12 @@ public class DashboardFragment extends Fragment {
                 R.id.topBar, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP);
 
         // 添加按压动画
+        root.findViewById(R.id.card_global_notification_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        root.findViewById(R.id.card_last_day_of_month_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        root.findViewById(R.id.dashboard_NewYearBountyDouble_Container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.TILT));
         root.findViewById(R.id.tips_data_image_dashboard).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }

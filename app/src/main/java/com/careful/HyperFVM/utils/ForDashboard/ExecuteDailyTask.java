@@ -242,6 +242,8 @@ public class ExecuteDailyTask {
                 result.put("resultBountyInfoEmoji", catchBountyInfoResult.get(0).get("resultEmoji"));
                 result.put("resultBountyInfoContentStatus", catchBountyInfoResult.get(0).get("resultContentStatus"));
                 result.put("resultBountyInfoContentDetail", catchBountyInfoResult.get(0).get("resultContentDetail"));
+                result.put("resultBountyInfoIsDouble", catchBountyInfoResult.get(0).get("resultIsDouble"));
+                result.put("resultBountyInfoDayMax", catchBountyInfoResult.get(0).get("resultDayMax"));
 
                 // 百万消费
                 result.put("resultMillionConsumptionInfoSimple", catchMillionConsumptionInfoResult.get(0).get("resultSimple"));
@@ -290,6 +292,7 @@ public class ExecuteDailyTask {
 
                 // 二转打折
                 result.put("resultTransferDiscountSimple", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountSimple"));
+                result.put("resultTransferDiscountCardNum", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountCardNum"));
                 result.put("resultTransferDiscountEmoji", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountEmoji"));
                 result.put("resultTransferDiscountContentStatus", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountContentStatus"));
                 result.put("resultTransferDiscountContentDetail", catchGitDashboardInfoResult.get(0).get("resultTransferDiscountContentDetail"));
@@ -330,6 +333,14 @@ public class ExecuteDailyTask {
                 result.put("resultCryStoneDiscountEmoji", catchGitDashboardInfoResult.get(0).get("resultCryStoneDiscountEmoji"));
                 result.put("resultCryStoneDiscountContentStatus", catchGitDashboardInfoResult.get(0).get("resultCryStoneDiscountContentStatus"));
                 result.put("resultCryStoneDiscountContentDetail", catchGitDashboardInfoResult.get(0).get("resultCryStoneDiscountContentDetail"));
+
+                // 福利打卡
+                result.put("resultBirthdayActivitySimple", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivitySimple"));
+                result.put("resultBirthdayActivityEmoji", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivityEmoji"));
+                result.put("resultBirthdayActivityContentStatus", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivityContentStatus"));
+                result.put("resultBirthdayActivityContentDetail", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivityContentDetail"));
+                result.put("resultBirthdayActivityNewCardName", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivityNewCardName"));
+                result.put("resultBirthdayActivityRequiredDatabaseVersion", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivityRequiredDatabaseVersion"));
 
                 timer.cancel();
                 callBack.onResult(result);

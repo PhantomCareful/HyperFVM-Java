@@ -35,7 +35,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "❌失败", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌失败", "❌", "出错了呢", errorMsg, false, -1)
                     );
 
                     return;
@@ -48,7 +48,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "获取XML内容失败");
 
                     callBack.onResult(
-                            generateMap("获取失败", "❌失败", "❌", "出错了呢", "获取内容失败，请联系开发者并提交此界面截图。")
+                            generateMap("获取失败", "❌失败", "❌", "出错了呢", "获取内容失败，请联系开发者并提交此界面截图。", false, -1)
                     );
 
                     return;
@@ -61,7 +61,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "❌失败", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌失败", "❌", "出错了呢", errorMsg, false, -1)
                     );
 
                     return;
@@ -109,20 +109,24 @@ public class NewYearCatcher {
                 startDate = TimeUtil.generateFormattedDate(startYear, startMonth, startDay);
                 endDate = TimeUtil.generateFormattedDate(endYear, endMonth, endDay);
 
-                // 第5步：开始判断todayDate和startDate、endDate之间的关系，并向数据库写入结果
-                // 先转换成Date类型，方便比较
+                // 第5步：将日期转换成Date类型
                 String todayDate = TimeUtil.getCurrentDate();
                 Date today = TimeUtil.transformStringToDate(todayDate);
                 Date start = TimeUtil.transformStringToDate(startDate);
                 Date end = TimeUtil.transformStringToDate(endDate);
 
+                // 第6步：获取当前活动的单日可获取的最大声望值，判断是否已开启声望翻倍
+                int dayMax = Integer.parseInt(cachedXmlContent.split("dayMax=\"")[1].split("\"")[0]);
+                boolean isDouble = dayMax > 220;
+
+                // 第7步：开始判断todayDate和startDate、endDate之间的关系，并生成结果
                 if (today.before(start)) {
                     Log.d(TAG, "活动尚未开始");
                     contentStatus = "等等等等";
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate;
 
                     callBack.onResult(
-                            generateMap("尚未开始", "暂无", "⏳", contentStatus, contentDetail)
+                            generateMap("尚未开始", "暂无", "⏳", contentStatus, contentDetail, isDouble, dayMax)
                     );
                 } else if (today.after(end)) {
                     Log.d(TAG, "活动已结束");
@@ -130,7 +134,7 @@ public class NewYearCatcher {
                     contentDetail = "还没有新的活动呢";
 
                     callBack.onResult(
-                            generateMap("暂无", "暂无", "⏳", contentStatus, contentDetail)
+                            generateMap("暂无", "暂无", "⏳", contentStatus, contentDetail, isDouble, dayMax)
                     );
                 } else {
                     Log.d(TAG, "活动正在进行中");
@@ -143,16 +147,15 @@ public class NewYearCatcher {
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate;
 
                     callBack.onResult(
-                            generateMap(duringCount + "/" + length, duringCount + "/" + length, "✊", contentStatus, contentDetail)
+                            generateMap(duringCount + "/" + length, duringCount + "/" + length, "✊", contentStatus, contentDetail, isDouble, dayMax)
                     );
                 }
-
             } catch (Exception e) {
                 // 必须回调失败结果：否则聚合器（ExecuteDailyTask）永远等不到本任务完成，界面会一直处于等待状态
                 Log.e(TAG, "捕获异常：" + e.getMessage(), e);
 
                 callBack.onResult(
-                        generateMap("获取失败", "❌失败", "❌", "出错了呢", "网络异常\n请检查网络后重试")
+                        generateMap("获取失败", "❌失败", "❌", "出错了呢", "网络异常\n请检查网络后重试", false, -1)
                 );
             }
         }).start();
@@ -176,7 +179,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
                     );
 
                     return;
@@ -190,7 +193,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "获取XML内容失败");
 
                     callBack.onResult(
-                            generateMap("获取失败", "", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
                     );
 
                     return;
@@ -203,7 +206,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchTodayActivityInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
                     );
 
                     return;
@@ -263,7 +266,7 @@ public class NewYearCatcher {
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n活动还没开始呢";
 
                     callBack.onResult(
-                            generateMap("尚未开始", "", "⏳", contentStatus, contentDetail)
+                            generateMap("尚未开始", "⏳", contentStatus, contentDetail)
                     );
                 } else if (today.after(end)) {
                     Log.d(TAG, "活动已结束");
@@ -271,7 +274,7 @@ public class NewYearCatcher {
                     contentDetail = "还没有新的活动呢";
 
                     callBack.onResult(
-                            generateMap("暂无", "", "⏳", contentStatus, contentDetail)
+                            generateMap("暂无", "⏳", contentStatus, contentDetail)
                     );
                 } else {
                     Log.d(TAG, "活动正在进行中");
@@ -284,7 +287,7 @@ public class NewYearCatcher {
                     contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n\n🚨温馨提示🚨\n适度游戏，理性消费";
 
                     callBack.onResult(
-                            generateMap(duringCount + "/" + length, "", "\uD83D\uDCB8", contentStatus, contentDetail)
+                            generateMap(duringCount + "/" + length, "\uD83D\uDCB8", contentStatus, contentDetail)
                     );
                 }
 
@@ -293,7 +296,7 @@ public class NewYearCatcher {
                 Log.e(TAG, "捕获异常：" + e.getMessage(), e);
 
                 callBack.onResult(
-                        generateMap("获取失败", "", "❌", "出错了呢", "网络异常\n请检查网络后重试")
+                        generateMap("获取失败", "❌", "出错了呢", "网络异常\n请检查网络后重试")
                 );
             }
         }).start();
@@ -316,7 +319,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchLuckyConsumptionInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
                     );
 
                     return;
@@ -330,7 +333,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchLuckyConsumptionInfo：获取XML内容失败");
 
                     callBack.onResult(
-                            generateMap("获取失败", "", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
                     );
 
                     return;
@@ -343,7 +346,7 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchLuckyConsumptionInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "", "❌", "出错了呢", errorMsg)
+                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
                     );
 
                     return;
@@ -376,7 +379,7 @@ public class NewYearCatcher {
                         contentDetail = new StringBuilder("今天13点到15点抢红包\n具体时刻请在游戏内查看");
 
                         callBack.onResult(
-                                generateMap("恭喜发财", "", "\uD83E\uDDE7", "恭喜发财", contentDetail.toString())
+                                generateMap("恭喜发财", "\uD83E\uDDE7", "恭喜发财", contentDetail.toString())
                         );
 
                         return;
@@ -399,7 +402,7 @@ public class NewYearCatcher {
                 }
 
                 callBack.onResult(
-                        generateMap("暂无", "", "⏳", "等等等等", contentDetail.toString())
+                        generateMap("暂无", "⏳", "等等等等", contentDetail.toString())
                 );
 
             } catch (Exception e) {
@@ -407,7 +410,7 @@ public class NewYearCatcher {
                 Log.e(TAG, "捕获异常：" + e.getMessage(), e);
 
                 callBack.onResult(
-                        generateMap("获取失败", "", "❌", "出错了呢", "网络异常\n请检查网络后重试")
+                        generateMap("获取失败", "❌", "出错了呢", "网络异常\n请检查网络后重试")
                 );
             }
         }).start();
@@ -420,15 +423,39 @@ public class NewYearCatcher {
      * @param resultEmoji 显示在主界面和弹窗上的表情
      * @param resultContentStatus 显示在弹窗上的状态信息
      * @param resultContentDetail 显示在弹窗上的详细信息
+     * @param isDouble 是否开启声望翻倍
+     * @param dayMax 当前单日可获得的最大声望值
      * @return 生成的Map格式的数据
      */
-    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultContentStatus, String resultContentDetail) {
+    private Map<String, String> generateMap(String resultSimple, String resultNotification, String resultEmoji, String resultContentStatus, String resultContentDetail, boolean isDouble, int dayMax) {
         Map<String, String> result = new HashMap<>();
 
         result.put("resultSimple", resultSimple);
         if (!resultNotification.isEmpty()) {
             result.put("resultNotification", resultNotification);
         }
+        result.put("resultEmoji", resultEmoji);
+        result.put("resultContentStatus", resultContentStatus);
+        result.put("resultContentDetail", resultContentDetail);
+        result.put("resultIsDouble", String.valueOf(isDouble));
+        result.put("resultDayMax", String.valueOf(dayMax));
+
+        return result;
+    }
+
+    /**
+     * 保存结果到Map，用于及时输出数据
+     *
+     * @param resultSimple        显示在主界面的简要信息
+     * @param resultEmoji         显示在主界面和弹窗上的表情
+     * @param resultContentStatus 显示在弹窗上的状态信息
+     * @param resultContentDetail 显示在弹窗上的详细信息
+     * @return 生成的Map格式的数据
+     */
+    private Map<String, String> generateMap(String resultSimple, String resultEmoji, String resultContentStatus, String resultContentDetail) {
+        Map<String, String> result = new HashMap<>();
+
+        result.put("resultSimple", resultSimple);
         result.put("resultEmoji", resultEmoji);
         result.put("resultContentStatus", resultContentStatus);
         result.put("resultContentDetail", resultContentDetail);
