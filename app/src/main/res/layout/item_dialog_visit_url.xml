@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:ignore="HardcodedText" >
+    tools:ignore="HardcodedText,ContentDescription" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
-                tools:ignore="ContentDescription" />
+                app:tint="?attr/colorOnPrimaryContainer" />
 
             <TextView
                 android:id="@+id/visit_title"
