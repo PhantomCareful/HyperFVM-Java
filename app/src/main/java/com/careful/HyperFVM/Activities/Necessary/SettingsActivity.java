@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,19 +30,28 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.slider.Slider;
 
 import java.util.function.Consumer;
 
+import eightbitlab.com.blurview.BlurView;
+
 public class SettingsActivity extends BaseActivity {
+    // 顶部栏滚动联动的状态保存键与渐变区间
+    private static final String STATE_SCROLL_Y = "state_settings_scroll_y";
+    private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
+
+    private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（大标题/悬浮标题/模糊层三组件全联动）
 
     private static final String CONTENT_IS_DYNAMIC_COLOR = "主题-是否动态取色";
     private static final String CONTENT_APP_THEME = "主题-自定义主题色";
@@ -76,8 +85,6 @@ public class SettingsActivity extends BaseActivity {
     // 使用标志位来防止循环调用
     private boolean isPermitSwitchChanging = false;
 
-    private int savedScrollY = 0;// 用于保存/恢复的滚动位置
-
     // 记录最近一次触摸按下时的横向位置，供下拉菜单跟随手指弹出（-1 表示尚未触摸过）
     private float lastTouchDownX = -1;
 
@@ -97,11 +104,6 @@ public class SettingsActivity extends BaseActivity {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
         setContentView(R.layout.activity_settings);
-
-        // 恢复之前保存的滚动位置（切换深浅色模式重建等场景）
-        if (savedInstanceState != null) {
-            savedScrollY = savedInstanceState.getInt("scrollY", 0);
-        }
 
         // 初始化数据库
         dbHelper = HyperFVMApplication.getDBHelper();
@@ -550,23 +552,28 @@ public class SettingsActivity extends BaseActivity {
     @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
-        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
-        MaterialCardView floatButtonRestartContainer = findViewById(R.id.FloatButton_Restart_Container);
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        ImageButton floatButtonRestart = findViewById(R.id.FloatButton_Restart);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonRestartContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonRestartContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonRestart.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonRestart.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout settings_container = findViewById(R.id.settings_container);
@@ -576,28 +583,36 @@ public class SettingsActivity extends BaseActivity {
             params.rightMargin = layout_marginHorizontal;
             settings_container.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
-            floatButtonBackContainer.setLayoutParams(params);
+            floatButtonBack.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonRestartContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) floatButtonRestart.getLayoutParams();
             params.rightMargin = layout_marginHorizontal;
-            floatButtonRestartContainer.setLayoutParams(params);
+            floatButtonRestart.setLayoutParams(params);
 
             // 同步页面边距给下拉菜单：菜单最右缘与页面内容右缘对齐，统一在此处管理
             pageContentSideMarginPx = layout_marginHorizontal;
         });
 
+        // 顺便设置按钮的功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
+        floatButtonRestart.setOnClickListener(v -> {
+            Toast.makeText(this, "重启App⏳⏳⏳", Toast.LENGTH_SHORT).show();
+            // 重启App
+            restartApp();
+        });
+
+        // 接入顶部栏滚动联动：滚动时模糊层与悬浮标题联动显现（topBarBottom 滚出后顶栏显现）
+        nestedScrollUtil = NestedScrollUtil.attach(
+                findViewById(R.id.scrollView),
+                findViewById(R.id.topBarBottom),
+                topBar,
+                blurViewTopBar,
+                TOP_BAR_FADE_RANGE_DP);
+
         // 添加模糊材质
         setupBlurEffect();
-
-        // 保存/恢复滚动位置（切换深浅色模式重建时保持上次位置）
-        ScrollView scrollView = findViewById(R.id.scrollView);
-        if (scrollView != null) {
-            scrollView.post(() -> scrollView.setScrollY(savedScrollY));// 还原当前滚动位置
-            scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->
-                    savedScrollY = scrollY);// 实时记录当前滚动位置
-        }
 
         // 添加按压动画
         findViewById(R.id.tips_theme).setOnTouchListener((v, event) ->
@@ -613,17 +628,7 @@ public class SettingsActivity extends BaseActivity {
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonRestart));
-
-        // 顺便设置按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
-        findViewById(R.id.FloatButton_Restart_Container).setOnClickListener(v -> {
-            Toast.makeText(this, "重启App⏳⏳⏳", Toast.LENGTH_SHORT).show();
-            // 重启App
-            restartApp();
-        });
     }
 
     /**
@@ -637,10 +642,23 @@ public class SettingsActivity extends BaseActivity {
         checkPermissionStates();
     }
 
+    /**
+     * 保存顶部栏滚动联动的滚动位置，界面重建（深浅色切换等）后恢复
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("scrollY", savedScrollY);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
+        }
     }
 
     @Override

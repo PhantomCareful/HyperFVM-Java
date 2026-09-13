@@ -454,7 +454,7 @@ Made By Phantom Careful 😈</string>
     <string name="tips_prestige_calculator_month_card_gift">月卡礼包的数量</string>
     <string name="tips_prestige_calculator_luxury_welfare_gift">豪华福利礼包的数量</string>
     <!--设置-->
-    <string name="top_bar_settings">App设置</string>
+    <string name="top_bar_settings">设置</string>
     <string name="title_settings_permission">授权检查</string>
     <string name="title_settings_permission_notification">通知推送权限</string>
     <string name="description_settings_permission_notification">授予通知权限后，可在设备的控制中心添加HyperFVM磁贴，点击磁贴即可领取温馨礼包，并向您推送部分重要的仪表盘数据</string>
@@ -568,7 +568,7 @@ Made By Phantom Careful 😈</string>
     <string name="title_some_necessary_things">一些必要的东西</string>
     <string name="title_using_instruction">使用说明</string>
     <string name="description_using_instruction">阅读以快速上手HyperFVM</string>
-    <string name="top_bar_using_instruction">🍼使用说明</string>
+    <string name="top_bar_using_instruction">使用说明</string>
     <string name="tips_using_instruction_title">写在最前面</string>
     <string name="tips_using_instruction_description">这个App是我计划了很久的作品，承诺永久免费，纯净无广，希望大家能够喜欢🥰🥰🥰\n如果您是第一次使用HyperFVM，或者对其中的某些功能不太了解，可以阅读这里的使用说明来获取帮助。</string>
     <string name="title_using_instruction_1">仪表盘</string>

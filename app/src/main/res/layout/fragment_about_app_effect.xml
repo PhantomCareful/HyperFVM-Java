@@ -35,7 +35,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingTop="360dp"
-                android:paddingBottom="100dp"
                 android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
@@ -820,6 +819,10 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp" />
 
             </LinearLayout>
 
