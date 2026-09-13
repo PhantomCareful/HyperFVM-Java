@@ -131,44 +131,36 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:id="@+id/TabLayout_Container"
-        android:layout_width="match_parent"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tabLayoutContainer"
         android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:clipChildren="false"
-        android:clipToPadding="false"
+        app:strokeWidth="0dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_height="wrap_content"
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewTabLayout"
             android:layout_width="wrap_content"
-            app:strokeWidth="0dp"
-            app:cardCornerRadius="40dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@android:color/transparent">
+            android:layout_height="wrap_content">
 
-            <eightbitlab.com.blurview.BlurView
-                android:id="@+id/blurViewTabLayout"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:tabMode="scrollable"
+                app:tabIndicatorHeight="0dp"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabTextAppearance="@style/MyTabTextAppearance" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    app:tabTextAppearance="@style/MyTabTextAppearance"
-                    app:tabMode="scrollable" />
+        </eightbitlab.com.blurview.BlurView>
 
-            </eightbitlab.com.blurview.BlurView>
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

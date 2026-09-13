@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -96,7 +95,7 @@ public class DecomposeAndGetCalculatorForGoldenCardActivity extends BaseActivity
         MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
         MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
         MaterialCardView floatButtonDetailContainer = findViewById(R.id.FloatButton_Detail_Container);
-        LinearLayout tabLayoutContainer = findViewById(R.id.TabLayout_Container);
+        MaterialCardView tabLayoutContainer = findViewById(R.id.tabLayoutContainer);
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
         InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
