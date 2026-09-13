@@ -493,8 +493,9 @@ Made By Phantom Careful 😈</string>
     <string name="biometric_auth_sub_title">🫰验证您的指纹以继续操作🫰</string>
     <!--关于软件-->
     <string name="version_info">0</string>
-    <string name="title_about_app_check_update_1">检查更新</string>
-    <string name="title_about_app_check_update_2">给App升级的地方</string>
+    <string name="title_about_app_check_update">检查更新</string>
+    <string name="description_about_app_check_update">给App升级的地方</string>
+    <string name="top_bar_check_update">软件更新</string>
     <string name="label_check_update_status_checking">⏳正在检查更新⏳</string>
     <string name="label_check_update_status_current">✅已经是最新版本✅</string>
     <string name="label_check_update_status_need_update">👆发现新版本👆</string>
