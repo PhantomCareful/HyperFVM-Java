@@ -7,23 +7,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.card.MaterialCardView;
+
+import eightbitlab.com.blurview.BlurView;
 
 public class CoContributorTeamActivity extends BaseActivity {
+    // 顶部栏滚动联动的状态保存键与渐变区间
+    private static final String STATE_SCROLL_Y = "state_co_contributor_team_scroll_y";
+    private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+
     private BlurUtil blurUtil;
 
-    private LinearLayout CoContributorTeamContainer;
+    private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（大标题/悬浮标题/模糊层三组件全联动）
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,26 +63,47 @@ public class CoContributorTeamActivity extends BaseActivity {
     @SuppressLint("ClickableViewAccessibility")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
-        CoContributorTeamContainer = findViewById(R.id.CoContributorTeam_Container);
-        InsetsUtil.setMarginHorizontal(this, CoContributorTeamContainer, layout_marginHorizontal -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) CoContributorTeamContainer.getLayoutParams();
+        LinearLayout coContributorTeamContainer = findViewById(R.id.CoContributorTeam_Container);
+        InsetsUtil.setMarginHorizontal(this, coContributorTeamContainer, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) coContributorTeamContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
-            CoContributorTeamContainer.setLayoutParams(params);
+            coContributorTeamContainer.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
-            floatButtonBackContainer.setLayoutParams(params);
+            floatButtonBack.setLayoutParams(params);
         });
+
+        // 顺便设置返回按钮的功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
+
+        // 接入顶部栏滚动联动：滚动时模糊层与悬浮标题联动显现（topBarBottom 滚出后顶栏显现）
+        nestedScrollUtil = NestedScrollUtil.attach(
+                findViewById(R.id.scrollView),
+                findViewById(R.id.topBarBottom),
+                topBar,
+                blurViewTopBar,
+                TOP_BAR_FADE_RANGE_DP);
 
         // 添加模糊材质
         setupBlurEffect();
@@ -87,10 +118,26 @@ public class CoContributorTeamActivity extends BaseActivity {
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar), 0.5f);
+    }
 
-        // 顺便设置返回按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
+    /**
+     * 保存顶部栏滚动联动的滚动位置，界面重建（深浅色切换等）后恢复
+     */
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (nestedScrollUtil != null) {
+            nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
+        }
     }
 
     @Override
