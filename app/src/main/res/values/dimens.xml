@@ -7,4 +7,8 @@
     <dimen name="dialog_input_padding">16dp</dimen>
     <dimen name="dialog_input_margin">16dp</dimen>
     <dimen name="dialog_input_corner_radius">20dp</dimen>
+
+    <!-- BottomSheet 顶部圆角尺寸（单一来源）：由 bottom_sheet_rounded
+         及 Widget.HyperFVMJava.BottomSheet.Modal 的 shapeAppearanceOverlay 共同引用，改一处即可全链路同步 -->
+    <dimen name="bottom_sheet_top_corner_radius">40dp</dimen>
 </resources>

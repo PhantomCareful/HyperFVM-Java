@@ -9,6 +9,9 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!--BottomSheetDialog内部背景层透明化，使圆角/颜色/透明度由bottom_sheet_rounded控制-->
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.HyperFVMJava.BottomSheetDialog</item>
     </style>
 
     <style name="Base.Theme.HyperFVMJava.Shadow" parent="Base.Theme.HyperFVMJava">

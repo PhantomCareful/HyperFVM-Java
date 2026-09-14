@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 顶部圆角与 Widget.HyperFVMJava.BottomSheet.Modal 同源（dimens），
+         两层形状完全一致后，Material 内部背景层就不会再遮挡这里的圆角；
+         修改圆角请直接在 dimens.xml 中调整 bottom_sheet_top_corner_radius -->
     <corners
-        android:topLeftRadius="20dp"
-        android:topRightRadius="20dp" />
-    <!-- 在这里直接定义颜色，就不需要在 Layout 里重复设置了 -->
+        android:topLeftRadius="@dimen/bottom_sheet_top_corner_radius"
+        android:topRightRadius="@dimen/bottom_sheet_top_corner_radius" />
     <solid android:color="?attr/colorSurface" />
 </shape>

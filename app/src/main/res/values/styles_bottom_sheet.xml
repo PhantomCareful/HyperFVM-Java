@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BottomSheetDialog 主题覆盖：Material 内部还有一层 design_bottom_sheet 背景：
+         ① 平时被各布局的 bottom_sheet_rounded 完全覆盖，仅在全屏时负责状态栏 padding 条的着色（内容被顶到状态栏下方后的空白区域）；
+         ② 其颜色/圆角与 bottom_sheet_rounded 完全一致（圆角尺寸统一取自 dimens），既能自由设置大圆角，又不留色差；
+         ③ 底部系统栏 padding 已关闭（paddingBottomSystemWindowInsets=false），sheet 内容直达屏幕底部，导航栏区域由内容自身着色，实现底部沉浸 -->
+    <style name="ThemeOverlay.HyperFVMJava.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.HyperFVMJava.BottomSheet.Modal</item>
+    </style>
+
+    <style name="Widget.HyperFVMJava.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+        <!-- 与 bottom_sheet_rounded 的 solid 保持一致 -->
+        <item name="backgroundTint">?attr/colorSurface</item>
+        <!-- 与 bottom_sheet_rounded 的 corners 保持一致（同源 dimens：顶部圆角、底部归零） -->
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.HyperFVMJava.BottomSheet</item>
+        <!-- 去掉自带 1dp elevation -->
+        <item name="android:elevation">0dp</item>
+        <!-- 关闭 M3 底部系统栏 padding：sheet 内容直达屏幕底部，导航栏区域由内容自身着色（底部沉浸） -->
+        <item name="paddingBottomSystemWindowInsets">false</item>
+    </style>
+
+    <!-- 内部背景层形状：顶部圆角与内层一致，底部为 0（紧贴屏幕底部） -->
+    <style name="ShapeAppearanceOverlay.HyperFVMJava.BottomSheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/bottom_sheet_top_corner_radius</item>
+        <item name="cornerSizeTopRight">@dimen/bottom_sheet_top_corner_radius</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+</resources>

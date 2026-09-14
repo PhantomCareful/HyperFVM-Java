@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Monet.Red.Gongqiang.Shadow" parent="Base.Theme.HyperFVMJava">
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.HyperFVMJava.BottomSheetDialog</item>
         <!--Button的默认样式-->
         <item name="materialButtonStyle">@style/Button.Shadow</item>
 

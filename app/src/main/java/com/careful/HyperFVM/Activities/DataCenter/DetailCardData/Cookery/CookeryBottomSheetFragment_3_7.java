@@ -12,9 +12,8 @@ import androidx.annotation.Nullable;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class CookeryBottomSheetFragment_3_7 extends BottomSheetDialogFragment {
+public class CookeryBottomSheetFragment_3_7 extends BaseCookeryBottomSheetFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

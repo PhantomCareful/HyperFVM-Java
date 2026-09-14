@@ -1,5 +1,6 @@
 <resources>
     <style name="Monet.Blue.Kongquelan.Shadow" parent="Theme.Material3.Light.NoActionBar">
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.HyperFVMJava.BottomSheetDialog</item>
         <!--Button的默认样式-->
         <item name="materialButtonStyle">@style/Button.Shadow</item>
 
