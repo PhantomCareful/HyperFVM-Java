@@ -279,8 +279,8 @@ public class CardDataActivity extends BaseActivity {
             blurViewTopBar.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
-        ConstraintLayout decompose_and_get_calculator_for_animal_card_container = findViewById(R.id.decompose_and_get_calculator_for_animal_card_container);
-        InsetsUtil.setMarginHorizontal(this, decompose_and_get_calculator_for_animal_card_container, layout_marginHorizontal -> {
+        ConstraintLayout card_data_container = findViewById(R.id.card_data_container);
+        InsetsUtil.setMarginHorizontal(this, card_data_container, layout_marginHorizontal -> {
             Log.d("updateLog", String.valueOf(layout_marginHorizontal));
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
