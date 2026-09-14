@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,6 +26,8 @@ import com.careful.HyperFVM.utils.OtherUtils.TabLayoutUtil;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import eightbitlab.com.blurview.BlurView;
 
 public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity {
     private BlurUtil blurUtil;
@@ -63,7 +67,7 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
 
         viewPager2.setAdapter(adapter);
         viewPager2.setUserInputEnabled(false);
-        viewPager2.setOffscreenPageLimit(2);
+        viewPager2.setOffscreenPageLimit(1);
 
         // 设置Tab文字颜色：选中=colorOnSurface，未选中=其50%半透明（文字颜色不受TextAppearance控制，见MyTabTextAppearance注释）
         TabLayoutUtil.setOnSurfaceTextColors(this, tabLayout);
@@ -92,46 +96,55 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
     @SuppressLint("DiscouragedApi")
     private void initDecoration() {
         // 适配状态栏高度
-        MaterialCardView floatButtonBackContainer = findViewById(R.id.FloatButton_Back_Container);
-        MaterialCardView topBarContainer = findViewById(R.id.TopBar_Container);
-        MaterialCardView floatButtonDetailContainer = findViewById(R.id.FloatButton_Detail_Container);
+        BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        TextView topBar = findViewById(R.id.topBar);
+        ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        ImageButton floatButtonDetail = findViewById(R.id.FloatButton_Detail);
         MaterialCardView tabLayoutContainer = findViewById(R.id.tabLayoutContainer);
         View rootView = findViewById(android.R.id.content);
         // 动态获取导航栏高度（小白条/三键导航）
         InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) tabLayoutContainer.getLayoutParams();
-            params.bottomMargin = DensityUtil.dpToPx(this, 12) + height;
+            params.bottomMargin = height;
             tabLayoutContainer.setLayoutParams(params);
         });
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonBackContainer.setLayoutParams(params);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
+            params.height = height + DensityUtil.dpToPx(this, 50);
+            blurViewTopBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) topBarContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
             params.topMargin = height;
-            topBarContainer.setLayoutParams(params);
+            topBar.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonDetailContainer.getLayoutParams();
-            params.topMargin = height;
-            floatButtonDetailContainer.setLayoutParams(params);
+            params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonBack.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonDetail.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonDetail.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         ConstraintLayout decompose_and_get_calculator_for_animal_card_container = findViewById(R.id.decompose_and_get_calculator_for_animal_card_container);
         InsetsUtil.setMarginHorizontal(this, decompose_and_get_calculator_for_animal_card_container, layout_marginHorizontal -> {
             Log.d("updateLog", String.valueOf(layout_marginHorizontal));
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBackContainer.getLayoutParams();
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
-            floatButtonBackContainer.setLayoutParams(params);
+            floatButtonBack.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonDetailContainer.getLayoutParams();
+            params = (ViewGroup.MarginLayoutParams) floatButtonDetail.getLayoutParams();
             params.rightMargin = layout_marginHorizontal;
-            floatButtonDetailContainer.setLayoutParams(params);
+            floatButtonDetail.setLayoutParams(params);
         });
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 顺便设置按钮的功能
+        floatButtonBack.setOnClickListener(v -> this.finish());
+        floatButtonDetail.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, cardName));
     }
 
     /**
@@ -139,14 +152,8 @@ public class DecomposeAndGetCalculatorForAnimalCardActivity extends BaseActivity
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonBack));
-        blurUtil.setBlur(findViewById(R.id.blurViewTopBar));
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonDetail));
-        blurUtil.setBlur(findViewById(R.id.blurViewTabLayout));
-
-        // 顺便设置按钮的功能
-        findViewById(R.id.FloatButton_Back_Container).setOnClickListener(v -> this.finish());
-        findViewById(R.id.FloatButton_Detail_Container).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, cardName));
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar), 0.5f);
+        blurUtil.setBlur(findViewById(R.id.blurViewTabLayout), 0f);
     }
 
     @Override

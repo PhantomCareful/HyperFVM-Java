@@ -28,8 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:orientation="vertical"
-                android:paddingTop="200dp"
-                android:paddingBottom="150dp"
+                android:paddingTop="190dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -660,15 +659,9 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/copyright"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"/>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp" />
 
             </LinearLayout>
 
