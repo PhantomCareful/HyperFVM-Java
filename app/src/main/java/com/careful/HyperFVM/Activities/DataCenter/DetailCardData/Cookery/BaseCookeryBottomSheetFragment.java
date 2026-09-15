@@ -1,13 +1,17 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery;
 
+import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -25,6 +29,9 @@ import com.google.android.material.shape.ShapeAppearanceModel;
  * 2. 内容不超过半屏时——sheet 高度自适应裹住内容，直接完整显示。
  * 下拉关闭保持 BottomSheetDialog 原生行为。
  *
+ * <p>初始展开模式仅在对话框实例创建时应用一次（切后台回前台时保持用户
+ * 已调整的展开状态，不会被重置；对话框关闭后重新打开会重新应用）。
+ *
  * <p>圆角：顶部圆角在运行时读取设备屏幕的物理圆角（Android 12+ 的 RoundedCorner API），
  * 同步应用到外层 design_bottom_sheet 的 MaterialShapeDrawable 与内容根布局的 bottom_sheet_rounded；
  * 取不到圆角信息（平板/模拟器等无圆角设备）时保持 XML 默认值（40dp）。
@@ -34,8 +41,19 @@ public class BaseCookeryBottomSheetFragment extends BottomSheetDialogFragment {
     /** 半开高度占窗口高度的比例（内容高于该比例时以半开状态打开） */
     private static final float HALF_EXPANDED_RATIO = 0.5f;
 
+    /** 初始展开模式是否已应用（对话框实例存续期间仅一次，回前台不重复应用） */
+    private boolean initialStateApplied;
+
     /** 设备屏幕圆角是否已处理（取不到圆角信息时也会置位，避免反复尝试） */
     private boolean screenCornerHandled;
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // 对话框每次创建（含关闭后重新打开）时重置，保证初始展开模式对新对话框重新生效
+        initialStateApplied = false;
+        return super.onCreateDialog(savedInstanceState);
+    }
 
     @Override
     public void onStart() {
@@ -51,47 +69,63 @@ public class BaseCookeryBottomSheetFragment extends BottomSheetDialogFragment {
             return;
         }
 
-        BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
-
-        // 预测量内容自然高度：矮内容自适应完整显示；高内容半开起步、可上滑展开全屏
-        int windowHeight = getWindowHeight(bottomSheet);
-        int naturalHeight = measureNaturalHeight(content);
-        final boolean halfMode = naturalHeight > (int) (windowHeight * HALF_EXPANDED_RATIO);
-        if (halfMode) {
-            // 半开模式：sheet 全高（内容根设为窗口高度，保证 NestedScrollView 有滚动空间），
-            // 打开停在半屏处，上滑展开为全屏
-            behavior.setFitToContents(false);
-            behavior.setHalfExpandedRatio(HALF_EXPANDED_RATIO);
-            setContentHeight(content, windowHeight);
-            behavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-        } else {
-            // 自适应模式：sheet 高度裹住内容，完整显示
-            behavior.setFitToContents(true);
-            setContentHeight(content, ViewGroup.LayoutParams.WRAP_CONTENT);
-            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        if (!initialStateApplied) {
+            initialStateApplied = true;
+            applyInitialState(bottomSheet, content);
         }
 
         // 尽量提前应用设备屏幕圆角（insets 未就绪时会在全局布局回调中重试）
         screenCornerHandled = false;
         applyScreenCornerRadius(bottomSheet, content);
 
-        // 首帧后：按实际窗口高度校正半开模式的内容高度；补做设备圆角同步
+        // 补做设备圆角同步（首帧前 insets 尚未分发时）
         bottomSheet.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        if (halfMode) {
-                            View parent = (View) bottomSheet.getParent();
-                            if (parent != null && parent.getHeight() > 0) {
-                                setContentHeight(content, parent.getHeight());
-                            }
-                        }
                         applyScreenCornerRadius(bottomSheet, content);
                         if (screenCornerHandled) {
                             bottomSheet.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                         }
                     }
                 });
+    }
+
+    /**
+     * 应用初始展开模式（同一对话框实例仅执行一次；回前台时保持用户调整后的状态）：
+     * 内容高于半屏时以半开状态打开、上滑可展开全屏；内容不超过半屏时高度自适应完整显示。
+     */
+    private void applyInitialState(FrameLayout bottomSheet, View content) {
+        BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+
+        // 预测量内容自然高度：矮内容自适应完整显示；高内容半开起步、可上滑展开全屏
+        int windowHeight = getWindowHeight(bottomSheet);
+        int naturalHeight = measureNaturalHeight(content);
+        if (naturalHeight > (int) (windowHeight * HALF_EXPANDED_RATIO)) {
+            // 半开模式：sheet 全高（内容根设为窗口高度，保证 NestedScrollView 有滚动空间），
+            // 打开停在半屏处，上滑展开为全屏
+            behavior.setFitToContents(false);
+            behavior.setHalfExpandedRatio(HALF_EXPANDED_RATIO);
+            setContentHeight(content, windowHeight);
+            behavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+            // 首帧后按实际窗口高度校正内容高度（此前窗口高度未就绪时曾用屏幕高度估算）
+            bottomSheet.getViewTreeObserver().addOnGlobalLayoutListener(
+                    new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            View parent = (View) bottomSheet.getParent();
+                            if (parent != null && parent.getHeight() > 0) {
+                                setContentHeight(content, parent.getHeight());
+                            }
+                            bottomSheet.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                    });
+        } else {
+            // 自适应模式：sheet 高度裹住内容，完整显示
+            behavior.setFitToContents(true);
+            setContentHeight(content, ViewGroup.LayoutParams.WRAP_CONTENT);
+            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
     }
 
     /** 窗口（父容器）高度；未就绪时退回屏幕高度估算 */
