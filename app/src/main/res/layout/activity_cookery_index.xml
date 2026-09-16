@@ -1,0 +1,3496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:ignore="MissingConstraints,ContentDescription,TooManyViews">
+
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:id="@+id/CookeryIndex_Container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:paddingTop="120dp"
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <TextView
+                    android:id="@+id/topBarBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/top_bar_data_center_cookery_index"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/category_card_data_cookery_1"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_1_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_1_1"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_1_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_1_1"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_1_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_1_2"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_1_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_1_2"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_1_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_1_3"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_1_3"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_1_3"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_1_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_1_4"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_1_4"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_1_4"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_1_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_1_5"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_1_5"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_1_5"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_1_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_1_6"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_1_6"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_1_6"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_1_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_1_7"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_1_7"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_1_7"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/category_card_data_cookery_2"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_1"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_1"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_2"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_2"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_3"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_3"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_3"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_4"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_4"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_4"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_5"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_5"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_5"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_6"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_6"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_6"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_7"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_7"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_7"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_2_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_2_8"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_2_8"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_2_8"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/category_card_data_cookery_3"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_1"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_1"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_1"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_2"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_2"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_2"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_3"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_3"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_3"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_4"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_4"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_4"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_5"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_5"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_5"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_6"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_6"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_6"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_7"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_7"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_7"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_8"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_8"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_8"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_9"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_9"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_9"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_10"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_10"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_10"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_11"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_11"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_11"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_12"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_12"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_12"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_13"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_13"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_13"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_14"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_14"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_14"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_15"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_15"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_15"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_16"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_16"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_16"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_17"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_17"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_17"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_18"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_18"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_18"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_19"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_19"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_19"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_20"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_20"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_20"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_21"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_21"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_21"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_22"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_22"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_22"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_23"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_23"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_23"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_23"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_24"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_24"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_24"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_25"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_25"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_25"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_25"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_26"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_26"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_26"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_26"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_27"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_27"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_27"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_27"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_28"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_28"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_28"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_28"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_29"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_29"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_29"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_29"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_30"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_30"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_30"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_30"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_31"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_31"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_31"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_31"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_32"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_32"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_32"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_32"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_33"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_33"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_33"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_33"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_34"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_34"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_34"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_34"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_35"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_35"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_35"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_35"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_36"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_36"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_36"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_36"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_37"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_37"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_37"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_37"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_38"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_38"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_38"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_38"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_39"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_39"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_39"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_39"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_40"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_40"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_40"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_40"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_41"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_41"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_41"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_41"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_42"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_42"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_42"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_42"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/cookery_index_3_43"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/card_data_cookery_3_43"
+                            android:scaleType="fitCenter" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name_card_data_cookery_3_43"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_card_data_cookery_3_43"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <!-- 状态栏模糊遮罩层 -->
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:clickable="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/topBar"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/top_bar_data_center_cookery_index"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/FloatButton_Back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/ripple_circle"
+        android:src="@drawable/ic_back"
+        app:tint="?attr/colorOnSurface"
+        app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

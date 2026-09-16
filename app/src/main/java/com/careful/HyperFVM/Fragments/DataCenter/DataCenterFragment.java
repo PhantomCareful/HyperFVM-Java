@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
+import com.careful.HyperFVM.Activities.DataCenter.CookeryIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
 import com.careful.HyperFVM.Activities.TodayLuckyActivity;
@@ -57,6 +58,12 @@ public class DataCenterFragment extends Fragment {
         // 数据图合集
         root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), DataImagesIndexActivity.class);
+            startActivity(intent);
+        });
+
+        // 食神谱合集
+        root.findViewById(R.id.DataCenter_CookeryIndex_Container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), CookeryIndexActivity.class);
             startActivity(intent);
         });
 

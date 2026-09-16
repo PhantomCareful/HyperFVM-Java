@@ -776,6 +776,12 @@ public class CardDataHelper {
         context.startActivity(intent);
     }
 
+    /**
+     * 根据食神谱名称展示对应的BottomSheet
+     * @param cookeryName 食神谱名称
+     * @param container 承载点击事件的父容器
+     * @param fragmentManager 承载BottomSheet的FragmentManager（Activity中可通过getSupportFragmentManager()获取）
+     */
     public static void selectCookeryByName(String cookeryName, LinearLayout container, FragmentManager fragmentManager) {
         switch (cookeryName) {
             case "南翔小笼包":
