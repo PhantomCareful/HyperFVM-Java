@@ -4,13 +4,17 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.ListPopupWindow;
+import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
@@ -28,6 +32,8 @@ public class CookeryIndexActivity extends BaseActivity {
     // 顶部栏滚动联动的状态保存键与渐变区间
     private static final String STATE_SCROLL_Y = "state_cookery_index_scroll_y";
     private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
+    // 章节目录跳转的目标分节标题（与 R.array.cookery_index_entries 选项一一对应）
+    private static final int[] SECTION_TITLE_IDS = {R.id.cookery_index_1, R.id.cookery_index_2, R.id.cookery_index_3};
 
     private BlurUtil blurUtil;
 
@@ -118,6 +124,73 @@ public class CookeryIndexActivity extends BaseActivity {
     }
 
     /**
+     * 以目录按钮为锚点弹出章节跳转下拉菜单（样式参照设置页下拉菜单，仅去掉了选中对勾）
+     */
+    private void showIndexDropdown(View anchor) {
+        String[] entries = getResources().getStringArray(R.array.cookery_index_entries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_dropdown_selection, entries) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View row = convertView != null ? convertView
+                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
+                ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
+                // 章节目录不需要选中对勾
+                row.findViewById(R.id.option_check).setVisibility(View.GONE);
+                return row;
+            }
+        };
+
+        // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果）。ListView 在 PopupWindow 中无法
+        // 真正 wrap_content，需自行测量内容宽后按像素设置；getView 的 parent 形参标注 @NonNull，
+        // 这里传一个仅用于生成 LayoutParams 的空容器（不挂载子视图），避免传 null
+        ViewGroup measureParent = new FrameLayout(this);
+        int contentWidth = 0;
+        int itemHeight = 0;
+        for (int i = 0; i < entries.length; i++) {
+            View itemView = adapter.getView(i, null, measureParent);
+            itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
+            itemHeight = itemView.getMeasuredHeight();
+        }
+        // 极端大字体下限制菜单宽度不超出屏幕
+        contentWidth = Math.min(contentWidth, anchor.getRootView().getWidth());
+
+        ListPopupWindow popup = new ListPopupWindow(this);
+        popup.setAnchorView(anchor);
+        popup.setWidth(contentWidth);
+        popup.setHeight(itemHeight * entries.length);
+        popup.setVerticalOffset((int) (4 * getResources().getDisplayMetrics().density));
+        // 菜单右缘与按钮右缘对齐（水平偏移取负值左移），点击行外区域自动关闭
+        popup.setHorizontalOffset(anchor.getWidth() - contentWidth);
+        popup.setModal(true);
+        popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
+        popup.setAdapter(adapter);
+        popup.setOnItemClickListener((parent, view, position, id) -> {
+            popup.dismiss();
+            scrollToSectionTitle(findViewById(SECTION_TITLE_IDS[position]));
+        });
+        popup.show();
+    }
+
+    /**
+     * 平滑滚动到指定分节标题：标题最终停在顶部模糊栏下方（留一点间距），滚动中正常联动顶部栏渐显
+     */
+    private void scrollToSectionTitle(View titleView) {
+        ScrollView scrollView = findViewById(R.id.scrollView);
+        View blurViewTopBar = findViewById(R.id.blurViewTopBar);
+        int[] scrollLocation = new int[2];
+        int[] titleLocation = new int[2];
+        scrollView.getLocationInWindow(scrollLocation);
+        titleView.getLocationInWindow(titleLocation);
+        // 目标位置 = 标题内容坐标 - 顶部模糊栏高度 - 呼吸间距（ScrollView 内部会自行 clamp 边界）
+        int prefixSpace = blurViewTopBar.getHeight() + DensityUtil.dpToPx(this, 10);
+        int targetY = scrollView.getScrollY() + (titleLocation[1] - scrollLocation[1]) - prefixSpace;
+        scrollView.smoothScrollTo(0, targetY);
+    }
+
+    /**
      * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
      * 1.模糊材质
      * 2.背景动态流光
@@ -129,6 +202,7 @@ public class CookeryIndexActivity extends BaseActivity {
         BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
         TextView topBar = findViewById(R.id.topBar);
         ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        ImageButton floatButtonIndex = findViewById(R.id.FloatButton_Index);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
@@ -143,6 +217,10 @@ public class CookeryIndexActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.topMargin = height + DensityUtil.dpToPx(this, 5);
             floatButtonBack.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonIndex.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonIndex.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout cookeryIndexContainer = findViewById(R.id.CookeryIndex_Container);
@@ -155,10 +233,15 @@ public class CookeryIndexActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             floatButtonBack.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonIndex.getLayoutParams();
+            params.rightMargin = layout_marginHorizontal;
+            floatButtonIndex.setLayoutParams(params);
         });
 
-        // 顺便设置返回按钮的功能
+        // 顺便设置按钮的功能
         floatButtonBack.setOnClickListener(v -> this.finish());
+        floatButtonIndex.setOnClickListener(this::showIndexDropdown);
 
         // 接入顶部栏滚动联动：滚动时模糊层与悬浮标题联动显现（topBarBottom 滚出后顶栏显现）
         nestedScrollUtil = NestedScrollUtil.attach(

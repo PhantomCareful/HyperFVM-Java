@@ -30,4 +30,11 @@
         <item>素雅-扁平</item>
     </string-array>
 
+    <!--食神谱图鉴章节目录（与页面三个分节标题一一对应）-->
+    <string-array name="cookery_index_entries">
+        <item>@string/category_card_data_cookery_1</item>
+        <item>@string/category_card_data_cookery_2</item>
+        <item>@string/category_card_data_cookery_3</item>
+    </string-array>
+
 </resources>
