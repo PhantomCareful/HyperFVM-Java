@@ -1,27 +1,28 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
 import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX;
-import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.ListPopupWindow;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,6 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.DisplayBackgroundCardImageHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
-import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
@@ -42,7 +42,6 @@ import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
 
@@ -51,6 +50,7 @@ import eightbitlab.com.blurview.BlurView;
 public class CardDataIndexActivity extends BaseActivity {
     private static final int TOP_BAR_FADE_RANGE_DP = 150; // 顶栏模糊层渐显区间（滚动该距离后完全显现）
     private static final int HEADER_TARGET_TOP_OFFSET_PX = 400; // 目录跳转后分节标题停在距列表顶的像素距离（与原页面视觉一致）
+    private static final float MENU_MAX_WIDTH_SCREEN_RATIO = 0.7f; // 目录菜单宽度上限（占屏幕宽比例），过长标题的条目以省略号结尾
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
@@ -126,31 +126,72 @@ public class CardDataIndexActivity extends BaseActivity {
     }
 
     /**
-     * 弹出标题导航弹窗
-     * 这个弹窗和当前Activity联系非常紧密，为了方便起见，不归到DialogBuilderManager中去
+     * 以目录按钮为锚点弹出分节跳转下拉菜单（样式与食神谱图鉴目录菜单一致，仅无选中对勾）。
+     * 47 个分节标题远超一屏，菜单高度按锚点下方剩余空间收缩，超出部分滚动查看。
      */
-    private void showTitleNavigationDialog() {
-        LayoutInflater layoutInflater = LayoutInflater.from(this);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_card_category_index, null);
+    private void showIndexDropdown(View anchor) {
+        String[] entries = CardDataCatalogData.buildSectionTitles(this).toArray(new String[0]);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_dropdown_selection, entries) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View row = convertView != null ? convertView
+                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
+                ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
+                // 目录菜单不需要选中对勾
+                row.findViewById(R.id.option_check).setVisibility(View.GONE);
+                return row;
+            }
+        };
 
-        Dialog dialog = new MaterialAlertDialogBuilder(this, materialAlertDialogThemeStyleId)
-                .setView(dialogView)
-                .create();
-
-        // 循环绑定：弹窗按钮顺序与分节顺序一一对应，点击后滚动到对应标题
-        for (int i = 0; i < CardDataCatalogData.SECTION_BUTTON_RES_IDS.length; i++) {
-            final int sectionIndex = i;
-            dialogView.findViewById(CardDataCatalogData.SECTION_BUTTON_RES_IDS[i]).setOnClickListener(v -> {
-                runFastScroll(sectionIndex);
-                dialog.dismiss();
-            });
+        // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果）。ListView 在 PopupWindow 中无法
+        // 真正 wrap_content，需自行测量内容宽后按像素设置；getView 的 parent 形参标注 @NonNull，
+        // 这里传一个仅用于生成 LayoutParams 的空容器（不挂载子视图），避免传 null
+        ViewGroup measureParent = new FrameLayout(this);
+        int contentWidth = 0;
+        int itemHeight = 0;
+        for (int i = 0; i < entries.length; i++) {
+            View itemView = adapter.getView(i, null, measureParent);
+            itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
+            itemHeight = itemView.getMeasuredHeight();
         }
+        // 菜单宽度上限：个别分节标题很长（最长的近 24 个全角字符），若完全按最宽条目展示会接近满屏，
+        // 观感差；这里限制为屏幕宽的一定比例，过长条目以省略号结尾（item_dropdown_selection 已配置 ellipsize）
+        int screenWidth = anchor.getRootView().getWidth();
+        contentWidth = Math.min(contentWidth, (int) (screenWidth * MENU_MAX_WIDTH_SCREEN_RATIO));
 
-        dialogView.findViewById(R.id.button_close).setOnClickListener(v -> dialog.dismiss());
+        // 锚点下方剩余空间不足时收缩菜单高度（47 个分节远超一屏，超出部分滚动）
+        int verticalOffset = DensityUtil.dpToPx(this, 4);
+        int[] location = new int[2];
+        anchor.getLocationInWindow(location);
+        int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - verticalOffset;
+        int popupHeight = Math.min(itemHeight * entries.length, Math.max(spaceBelow, itemHeight * 2));
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
-        dialog.show();
+        // 菜单右缘与按钮右缘对齐（水平偏移取负值左移）；极端窄屏/锚点贴边时钳制在屏幕内
+        int horizontalOffset = anchor.getWidth() - contentWidth;
+        horizontalOffset = Math.max(-location[0], Math.min(horizontalOffset, screenWidth - contentWidth - location[0]));
+
+        ListPopupWindow popup = new ListPopupWindow(this);
+        popup.setAnchorView(anchor);
+        popup.setWidth(contentWidth);
+        popup.setHeight(popupHeight);
+        popup.setVerticalOffset(verticalOffset);
+        popup.setHorizontalOffset(horizontalOffset);
+        popup.setModal(true);
+        popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
+        popup.setAdapter(adapter);
+        popup.setOnItemClickListener((parent, view, position, id) -> {
+            popup.dismiss();
+            runFastScroll(position);
+        });
+        popup.show();
+        // 弹出后隐藏滚动条（47 项超一屏可滚动，滚动条影响观感）
+        ListView listView = popup.getListView();
+        if (listView != null) {
+            listView.setVerticalScrollBarEnabled(false);
+        }
     }
 
     /**
@@ -282,7 +323,7 @@ public class CardDataIndexActivity extends BaseActivity {
 
         // 顺便设置按钮的功能
         floatButtonBack.setOnClickListener(v -> this.finish());
-        floatButtonIndex.setOnClickListener(v -> showTitleNavigationDialog());
+        floatButtonIndex.setOnClickListener(this::showIndexDropdown);
         floatButtonSearch.setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
 
         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {

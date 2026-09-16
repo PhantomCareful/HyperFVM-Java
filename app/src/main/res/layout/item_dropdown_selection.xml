@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 设置页下拉菜单的选项项：选中时右侧显示√图标（ic_check），未选中右侧无内容。
+<!-- 下拉菜单通用选项项（设置页、目录跳转等复用）：选中时右侧显示√图标（ic_check），未选中右侧无内容。
      勾与文字的间距由 option_check 的 layout_marginStart 控制（想调整直接改这个值），
-     颜色由 app:tint 控制（ic_check 自带的白色 tint 会被它覆盖为主题色） -->
+     颜色由 app:tint 控制（ic_check 自带的白色 tint 会被它覆盖为主题色）；
+     文字单行显示，菜单宽度受限时超出部分以省略号结尾 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,7 +22,8 @@
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="?attr/colorOnSurface"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:ellipsize="end" />
 
     <ImageView
         android:id="@+id/option_check"

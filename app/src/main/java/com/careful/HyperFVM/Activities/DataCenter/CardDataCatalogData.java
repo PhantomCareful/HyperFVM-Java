@@ -10,15 +10,14 @@ import java.util.List;
 /**
  * 防御卡目录页面的静态数据表。
  * <p>
- * 分节相关的所有静态配置都集中在这里，四个集合长度均为 47、下标即分节号（从 0 开始），
- * 增删分节时四个集合 + 弹窗布局需按同一位置同步增删：
+ * 分节相关的所有静态配置都集中在这里，三个集合长度均为 47、下标即分节号（从 0 开始），
+ * 增删分节时三个集合需按同一位置同步增删：
  * <ul>
  *   <li>SECTION_PREFIXES[i]：第 i 个分节的公共 id 前缀（如 "card_data_index_1_1"）；</li>
  *   <li>SECTION_NAMES[i][j]：该分节第 j+1 张卡片在数据库中对应的卡名（行内连续编号 1..N），
  *       数组顺序即页面显示顺序；</li>
  *   <li>SECTION_TITLE_RES_IDS[i]：该分节标题的字符串资源 id {主标题, 子标题}
- *       （无子标题的分节第二项为 0，目前仅 16_1）；</li>
- *   <li>SECTION_BUTTON_RES_IDS[i]：标题导航弹窗中该分节按钮的 id。</li>
+ *       （无子标题的分节第二项为 0，目前仅 16_1）。</li>
  * </ul>
  * <p>
  * 由此可推导：
@@ -29,8 +28,8 @@ import java.util.List;
  * 注意 1：个别分节不存在（如 11_1），数组中已按真实存在的分节顺序排列，
  * 共 47 个分节、367 张卡片，与原页面点击绑定一一对应。
  * <p>
- * 注意 2：strings.xml 中分节标题资源与弹窗按钮 id 存在历史命名错位
- * （13_x 系资源名为 text_data_images_index_card_12__n / button_card_category_index_12__n，
+ * 注意 2：strings.xml 中分节标题资源存在历史命名错位
+ * （13_x 系资源名为 text_data_images_index_card_12__n，
  * 14_x 系用 13_n、15_x 系用 14_n、16_1 只有 text_data_images_index_card_15 一个主标题），
  * 下列罗列按"真实资源名"照抄，行注释标的是数据表分节号，不要"修正"资源名。
  */
@@ -162,61 +161,6 @@ public final class CardDataCatalogData {
             /* 15_1 */ {R.string.title_data_images_index_card_14, R.string.text_data_images_index_card_14_1},
             /* 15_2 */ {R.string.title_data_images_index_card_14, R.string.text_data_images_index_card_14_2},
             /* 16_1 */ {R.string.title_data_images_index_card_15, 0}
-    };
-
-    /**
-     * 47 个分节在标题导航弹窗中的按钮 id（顺序与 SECTION_PREFIXES 一一对应）。
-     * 按钮 id 与分节号同样存在历史错位（13 系=button_card_category_index_12__n 等），
-     * 行注释为数据表分节号。
-     */
-    public static final int[] SECTION_BUTTON_RES_IDS = {
-            /* 1_1 */ R.id.button_card_category_index_1_1,
-            /* 1_2 */ R.id.button_card_category_index_1_2,
-            /* 1_3 */ R.id.button_card_category_index_1_3,
-            /* 1_4 */ R.id.button_card_category_index_1_4,
-            /* 2_1 */ R.id.button_card_category_index_2_1,
-            /* 2_2 */ R.id.button_card_category_index_2_2,
-            /* 2_3 */ R.id.button_card_category_index_2_3,
-            /* 3_1 */ R.id.button_card_category_index_3_1,
-            /* 3_2 */ R.id.button_card_category_index_3_2,
-            /* 3_3 */ R.id.button_card_category_index_3_3,
-            /* 4_1 */ R.id.button_card_category_index_4_1,
-            /* 4_2 */ R.id.button_card_category_index_4_2,
-            /* 4_3 */ R.id.button_card_category_index_4_3,
-            /* 5_1 */ R.id.button_card_category_index_5_1,
-            /* 5_2 */ R.id.button_card_category_index_5_2,
-            /* 6_1 */ R.id.button_card_category_index_6_1,
-            /* 6_2 */ R.id.button_card_category_index_6_2,
-            /* 7_1 */ R.id.button_card_category_index_7_1,
-            /* 7_2 */ R.id.button_card_category_index_7_2,
-            /* 8_1 */ R.id.button_card_category_index_8_1,
-            /* 8_2 */ R.id.button_card_category_index_8_2,
-            /* 9_1 */ R.id.button_card_category_index_9_1,
-            /* 9_2 */ R.id.button_card_category_index_9_2,
-            /* 9_3 */ R.id.button_card_category_index_9_3,
-            /* 9_4 */ R.id.button_card_category_index_9_4,
-            /* 9_5 */ R.id.button_card_category_index_9_5,
-            /* 10_1 */ R.id.button_card_category_index_10_1,
-            /* 10_2 */ R.id.button_card_category_index_10_2,
-            /* 10_3 */ R.id.button_card_category_index_10_3,
-            /* 10_4 */ R.id.button_card_category_index_10_4,
-            /* 11_2 */ R.id.button_card_category_index_11_2,
-            /* 11_3 */ R.id.button_card_category_index_11_3,
-            /* 11_4 */ R.id.button_card_category_index_11_4,
-            /* 12_1 */ R.id.button_card_category_index_12_1,
-            /* 12_2 */ R.id.button_card_category_index_12_2,
-            /* 12_3 */ R.id.button_card_category_index_12_3,
-            /* 13_1 */ R.id.button_card_category_index_12__1,
-            /* 13_2 */ R.id.button_card_category_index_12__2,
-            /* 13_3 */ R.id.button_card_category_index_12__3,
-            /* 13_4 */ R.id.button_card_category_index_12__4,
-            /* 14_1 */ R.id.button_card_category_index_13_1,
-            /* 14_2 */ R.id.button_card_category_index_13_2,
-            /* 14_3 */ R.id.button_card_category_index_13_3,
-            /* 14_4 */ R.id.button_card_category_index_13_4,
-            /* 15_1 */ R.id.button_card_category_index_14_1,
-            /* 15_2 */ R.id.button_card_category_index_14_2,
-            /* 16_1 */ R.id.button_card_category_index_15_1
     };
 
     /**
