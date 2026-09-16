@@ -36,8 +36,9 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_cookery_base_info"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -59,6 +60,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
                         <!-- 左侧文字 -->
@@ -66,23 +68,23 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/name_card_data_cookery_3_32"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                             android:textSize="30sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                         <TextView
                             android:id="@+id/card_data_cookery_base_info_category_and_reward"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/category_card_data_cookery_3"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
                     </LinearLayout>
 
-                    <!-- 右侧卡片 -->
+                    <!-- 右侧图片 -->
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/card_data_cookery_3_32" />
 
                 </LinearLayout>
@@ -108,8 +110,8 @@
                         android:clickable="true"
                         android:padding="16dp"
                         android:text="@string/description_card_data_cookery_3_32"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:textSize="20sp" />
+                        android:textSize="15sp"
+                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                 </LinearLayout>
 
@@ -121,8 +123,9 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_cookery_get_info"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -134,44 +137,99 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:text="@string/title_get_card_data_cookery_silver_box"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
                             android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
-                        <ImageView
-                            android:layout_width="44dp"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/silver_cookery_box_part" />
-
-                        <ImageView
-                            android:layout_width="44dp"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/silver_box_cookery" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description_get_card_data_cookery_silver_box"
+                            android:textSize="15sp"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/silver_cookery_box_part" />
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/silver_cookery_box" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/description_get_card_data_cookery_silver_box"
-                        android:textSize="15sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:paddingHorizontal="16dp"
-                        android:paddingBottom="16dp"/>
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_get_card_data_cookery_d"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description_get_card_data_cookery_d"
+                            android:textSize="15sp"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/d" />
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/lucky_golden_coin" />
 
                 </LinearLayout>
 
@@ -187,28 +245,40 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="@string/title_get_card_data_cookery_star_energy"
-                        android:textSize="30sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:drawablePadding="16dp"
-                        app:drawableEndCompat="@drawable/star_energy" />
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/description_get_card_data_cookery_star_energy_3_32"
-                        android:textSize="15sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:paddingHorizontal="16dp"
-                        android:paddingBottom="16dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_get_card_data_cookery_star_energy"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description_get_card_data_cookery_star_energy_3_32"
+                            android:textSize="15sp"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/star_energy" />
 
                 </LinearLayout>
 
@@ -220,8 +290,9 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_cookery_compose_info"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -426,8 +497,9 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/auxiliary_card_data_cookery_3_32_1"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -459,8 +531,9 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/auxiliary_card_data_cookery_3_32_2"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

@@ -37,7 +37,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_cookery_base_info"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"/>
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -59,6 +60,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
                         <!-- 左侧文字 -->
@@ -66,23 +68,23 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/name_card_data_cookery_3_15"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView"
                             android:textSize="30sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView" />
 
                         <TextView
                             android:id="@+id/card_data_cookery_base_info_category_and_reward"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/category_card_data_cookery_3"
-                            android:textColor="?attr/TextViewColorOnGeneralCardView"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
                     </LinearLayout>
 
-                    <!-- 右侧卡片 -->
+                    <!-- 右侧图片 -->
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/card_data_cookery_3_15" />
 
                 </LinearLayout>
@@ -105,8 +107,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/description_card_data_cookery_3_15"
-                        android:textSize="20sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                        android:textSize="15sp"
+                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                         android:padding="16dp"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground"/>
@@ -122,7 +124,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_cookery_get_info"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"/>
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -134,28 +137,40 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="@string/title_get_card_data_cookery_mingshen_auxiliary_box"
-                        android:textSize="30sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:drawablePadding="16dp"
-                        app:drawableEndCompat="@drawable/mingshen_auxiliary_box" />
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/description_get_card_data_cookery_mingshen_auxiliary_box"
-                        android:textSize="15sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:paddingHorizontal="16dp"
-                        android:paddingBottom="16dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_get_card_data_cookery_mingshen_auxiliary_box"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description_get_card_data_cookery_mingshen_auxiliary_box"
+                            android:textSize="15sp"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/mingshen_auxiliary_box" />
 
                 </LinearLayout>
 
@@ -171,28 +186,40 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="@string/title_get_card_data_cookery_star_energy"
-                        android:textSize="30sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:drawablePadding="16dp"
-                        app:drawableEndCompat="@drawable/star_energy" />
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/description_get_card_data_cookery_star_energy_3_15"
-                        android:textSize="15sp"
-                        android:textColor="?attr/TextViewColorOnGeneralCardView"
-                        android:paddingHorizontal="16dp"
-                        android:paddingBottom="16dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_get_card_data_cookery_star_energy"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description_get_card_data_cookery_star_energy_3_15"
+                            android:textSize="15sp"
+                            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/star_energy" />
 
                 </LinearLayout>
 
@@ -205,7 +232,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/title_card_data_cookery_compose_info"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"/>
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -374,7 +402,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/auxiliary_card_data_cookery_3_15_1"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"/>
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -401,7 +430,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/auxiliary_card_data_cookery_3_15_2"
                 android:textSize="15sp"
-                android:textColor="?attr/colorOnSurface"/>
+                android:textStyle="bold"
+                android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
