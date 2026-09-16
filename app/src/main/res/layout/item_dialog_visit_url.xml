@@ -40,8 +40,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                app:tint="?attr/colorOnPrimaryContainer" />
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/visit_title"

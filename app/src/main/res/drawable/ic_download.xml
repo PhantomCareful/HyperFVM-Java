@@ -4,7 +4,7 @@
 	android:height="24dp"
 	android:viewportHeight="1310.4"
 	android:viewportWidth="1310.4"
-	android:tint="#FFFFFFFF">
+	android:tint="?attr/colorOnPrimaryContainer">
 
 	<group
 		android:scaleY="-1"
