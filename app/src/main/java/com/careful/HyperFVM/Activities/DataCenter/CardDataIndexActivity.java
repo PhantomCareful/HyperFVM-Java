@@ -50,7 +50,10 @@ import eightbitlab.com.blurview.BlurView;
 public class CardDataIndexActivity extends BaseActivity {
     private static final int TOP_BAR_FADE_RANGE_DP = 150; // 顶栏模糊层渐显区间（滚动该距离后完全显现）
     private static final int HEADER_TARGET_TOP_OFFSET_PX = 400; // 目录跳转后分节标题停在距列表顶的像素距离（与原页面视觉一致）
-    private static final float MENU_MAX_WIDTH_SCREEN_RATIO = 0.7f; // 目录菜单宽度上限（占屏幕宽比例），过长标题的条目以省略号结尾
+    private static final float JUMP_SCROLL_MS_PER_PX = 0.01f; // 目录跳转的滚动速度（每像素毫秒数，越小越快）
+    private static final int JUMP_TAIL_SCROLL_MIN_MS = 120; // 收尾减速动画最短时长（速度调快后避免收尾退化成瞬间突变）
+    private static final float MENU_MAX_WIDTH_SCREEN_RATIO = 0.5f; // 目录菜单宽度上限（占屏幕宽比例），过长标题的条目自动换行
+    private static final float MENU_MAX_HEIGHT_SCREEN_RATIO = 0.5f; // 目录菜单高度上限（占屏幕高比例），超出部分滚动查看
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
@@ -127,7 +130,7 @@ public class CardDataIndexActivity extends BaseActivity {
 
     /**
      * 以目录按钮为锚点弹出分节跳转下拉菜单（样式与食神谱图鉴目录菜单一致，仅无选中对勾）。
-     * 47 个分节标题远超一屏，菜单高度按锚点下方剩余空间收缩，超出部分滚动查看。
+     * 菜单宽高上限各为屏幕的一半（过长条目自动换行），47 个分节远超一屏，超出部分滚动查看。
      */
     private void showIndexDropdown(View anchor) {
         String[] entries = CardDataCatalogData.buildSectionTitles(this).toArray(new String[0]);
@@ -158,16 +161,18 @@ public class CardDataIndexActivity extends BaseActivity {
             itemHeight = itemView.getMeasuredHeight();
         }
         // 菜单宽度上限：个别分节标题很长（最长的近 24 个全角字符），若完全按最宽条目展示会接近满屏，
-        // 观感差；这里限制为屏幕宽的一定比例，过长条目以省略号结尾（item_dropdown_selection 已配置 ellipsize）
+        // 观感差；这里限制为屏幕宽的一半，过长条目自动换行（item_dropdown_selection 已放开多行显示）
         int screenWidth = anchor.getRootView().getWidth();
         contentWidth = Math.min(contentWidth, (int) (screenWidth * MENU_MAX_WIDTH_SCREEN_RATIO));
 
-        // 锚点下方剩余空间不足时收缩菜单高度（47 个分节远超一屏，超出部分滚动）
+        // 锚点下方剩余空间不足时收缩菜单高度（47 个分节远超一屏，超出部分滚动查看）；高度上限取屏幕高的一半
         int verticalOffset = DensityUtil.dpToPx(this, 4);
         int[] location = new int[2];
         anchor.getLocationInWindow(location);
-        int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - verticalOffset;
+        int screenHeight = anchor.getRootView().getHeight();
+        int spaceBelow = screenHeight - location[1] - anchor.getHeight() - verticalOffset;
         int popupHeight = Math.min(itemHeight * entries.length, Math.max(spaceBelow, itemHeight * 2));
+        popupHeight = Math.min(popupHeight, (int) (screenHeight * MENU_MAX_HEIGHT_SCREEN_RATIO));
 
         // 菜单右缘与按钮右缘对齐（水平偏移取负值左移）；极端窄屏/锚点贴边时钳制在屏幕内
         int horizontalOffset = anchor.getWidth() - contentWidth;
@@ -235,7 +240,7 @@ public class CardDataIndexActivity extends BaseActivity {
             }
         });
 
-        // 匀速平滑滚动到目标分节标题：滚动距离远时耗时随之变长，但每一帧都真实驱动
+        // 匀速平滑滚动到目标分节标题（速度见 JUMP_SCROLL_MS_PER_PX，已尽量加快）：每一帧都真实驱动
         // 列表滚动，透明度联动与位置记录不会像布局式跳转那样失去对账
         LinearSmoothScroller smoothScroller = new LinearSmoothScroller(this) {
             @Override
@@ -244,15 +249,16 @@ public class CardDataIndexActivity extends BaseActivity {
                 // 那段若留到 SCROLL_STATE_IDLE 里 scrollBy 会形成可见的瞬移突变，故在此把完整收尾
                 // 距离并入同一次减速动画，从触发点平滑滚到最终位置（内容不足时会被 clamp，与旧逻辑一致）
                 final int delta = targetView.getTop() - HEADER_TARGET_TOP_OFFSET_PX; // 还需滚动的像素量（可正可负）
-                final int time = calculateTimeForDeceleration(Math.abs(delta));
-                if (time > 0) {
+                if (delta != 0) {
+                    // 收尾时间设下限：滚动速度调快后纯计算值会短到形同瞬间突变，保底时长维持“滑入”观感
+                    final int time = Math.max(calculateTimeForDeceleration(Math.abs(delta)), JUMP_TAIL_SCROLL_MIN_MS);
                     action.update(0, delta, time, mDecelerateInterpolator);
                 }
             }
 
             @Override
             protected float calculateSpeedPerPixel(@NonNull DisplayMetrics displayMetrics) {
-                return 0.06f; // ms/px：值越小滚动越快，可按手感调整
+                return JUMP_SCROLL_MS_PER_PX;
             }
         };
         smoothScroller.setTargetPosition(headerPosition);
