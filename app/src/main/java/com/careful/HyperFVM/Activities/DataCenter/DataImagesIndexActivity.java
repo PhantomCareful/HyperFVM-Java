@@ -351,6 +351,7 @@ public class DataImagesIndexActivity extends BaseActivity {
      * @param dataImagesInfoList 需要下载的图片的信息
      *                           全量下载：请传入dataImagesInfoList
      *                           增量下载：请传入needUpdateDataImagesInfoList
+     *                           失败重试：请传入downloadFailedDataImagesInfoList
      */
     @SuppressLint("SetTextI18n")
     private void downloadImages(List<DataImagesInfo> dataImagesInfoList) {
@@ -358,12 +359,15 @@ public class DataImagesIndexActivity extends BaseActivity {
                 this, "二次确认", "\uD83D\uDCE5", "将开始下载图片资源，请注意网络流量消耗。", true,
                 "咱手滑了", "开始下载", () -> {
                     final AtomicInteger completedCount = new AtomicInteger(0);
+                    // 快照本次要下载的图片清单：失败重试时传入的是downloadFailedDataImagesInfoList本身，
+                    // 若直接引用它，下面的clear()会把清单一并清空，导致进度显示0/0且不提交任何下载任务
+                    final List<DataImagesInfo> imagesToDownload = new ArrayList<>(dataImagesInfoList);
 
                     // 清空之前的失败记录
                     downloadFailedDataImagesInfoList.clear();
 
                     TransitionManager.beginDelayedTransition(scrollView, transition);
-                    data_images_index_update_info_title.setText("正在下载，已完成(" + completedCount + "/" + dataImagesInfoList.size() + ")⏳");
+                    data_images_index_update_info_title.setText("正在下载，已完成(" + completedCount + "/" + imagesToDownload.size() + ")⏳");
                     data_images_index_update_info_description.setText("请保持App处于前台状态，并不要退出本界面");
                     // 将卡片点击事件设置为null，防止重复下载
                     data_images_index_update_info_container.setOnClickListener(null);
@@ -371,7 +375,7 @@ public class DataImagesIndexActivity extends BaseActivity {
                     // 下载过程中不能查看图片
                     setAllCardViewEnabled(false);
 
-                    for (DataImagesInfo dataImagesInfo : dataImagesInfoList) {
+                    for (DataImagesInfo dataImagesInfo : imagesToDownload) {
                         downloadExecutor.execute(() -> {
                             boolean success = downloadSingleImage(dataImagesInfo);
                             int current = completedCount.incrementAndGet();
@@ -382,19 +386,20 @@ public class DataImagesIndexActivity extends BaseActivity {
                             }
 
                             // 更新下载进度
-                            mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + dataImagesInfoList.size() + ")⏳"));
+                            mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + imagesToDownload.size() + ")⏳"));
 
                             // 全部完成
-                            if (current == dataImagesInfoList.size() && !isActivityDestroyed) {
+                            if (current == imagesToDownload.size() && !isActivityDestroyed) {
                                 mainHandler.post(() -> {
                                     data_images_index_update_info_title.setText("更新完成🎉🎉🎉");
                                     if (downloadFailedDataImagesInfoList.isEmpty()) {
                                         data_images_index_update_info_description.setText(
-                                                dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败");
+                                                imagesToDownload.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败");
 
-                                        // 更新本地版本号，取图片信息中版本号最大的值
+                                        // 更新本地版本号，取云端全量图片信息中版本号最大的值
+                                        // （失败重试时本次清单只是全量的子集，按子集计算会低估版本号，导致下次进页面误报更新）
                                         long newestVersion = 0;
-                                        for (DataImagesInfo info : dataImagesInfoList) {
+                                        for (DataImagesInfo info : this.dataImagesInfoList) {
                                             if (info.getVersion() > newestVersion) {
                                                 newestVersion = info.getVersion();
                                             }
@@ -403,12 +408,12 @@ public class DataImagesIndexActivity extends BaseActivity {
 
                                     } else {
                                         data_images_index_update_info_description.setText(
-                                                dataImagesInfoList.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败" + "\n" +
+                                                imagesToDownload.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败" + "\n" +
                                                         "点击本卡片可重新下载更新失败的图片"
                                         );
                                         data_images_index_update_info_container.setOnClickListener(v -> downloadImages(downloadFailedDataImagesInfoList));
                                         data_images_index_update_info_container.setOnLongClickListener(v -> {
-                                            downloadImages(dataImagesInfoList);
+                                            downloadImages(imagesToDownload);
                                             return true;
                                         });
                                     }
