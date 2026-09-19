@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.utils.OtherUtils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,14 +9,12 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.ExportInfo;
-import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 
 import java.io.File;
@@ -72,8 +71,7 @@ public class ImageExportUtil {
             // 2. 准备文件名和相对路径
             String fileName = exportInfoList.get(i).getFileName() + ".webp";
             // 相对路径：Pictures/应用名/folderName/
-            String relativePath = Environment.DIRECTORY_PICTURES + File.separator
-                    + context.getResources().getString(R.string.app_name) + File.separator
+            String relativePath = NoMediaFileHelper.getAlbumPath(context) + File.separator
                     + folderName + File.separator;
 
             // 3. 使用 MediaStore 插入文件记录
@@ -125,21 +123,34 @@ public class ImageExportUtil {
             }
         }
 
+        // 全部图片写入完成，弹出成功提示
         DialogBuilderManager.showDialog(
                 context,
                 "导出成功",
                 "🎉",
                 "所有图片已保存到：\nPictures/HyperFVM/" + folderName,
                 true,
-                "好耶");
+                "好耶"
+        );
     }
 
     /**
-     * 批量导出图片
+     * 批量导出图片（导出前自动确保相簿目录及其子目录中存在 .nomedia 文件，导出的图片不会被系统相册展示；
+     * 首次使用需要在弹窗中一次性授权相簿目录）
      * @param exportInfoList 封装好的数据类
      */
     public static void exportAllImages(Context context, String folderName, List<ExportInfo> exportInfoList) {
-        exportAllImagesToPictures(context, folderName, exportInfoList);
+        // 先确保 .nomedia 就位（首次会弹窗引导授权），就位后才开始写入图片：
+        // 相簿根目录与本次即将写入的批次子目录都会放置 .nomedia
+        // （系统媒体库不会把父目录的 .nomedia 递归应用到子目录，子目录没有标记时图片仍会出现在相册中），
+        // 这样即使是首次使用的场景，图片从写入那一刻起就不会被系统相册收录，
+        // 不存在“先被相册收录、授权完成后才隐藏”的可见窗口期
+        if (context instanceof Activity) {
+            NoMediaFileHelper.ensureNoMediaFile((Activity) context, folderName,
+                    () -> exportAllImagesToPictures(context, folderName, exportInfoList));
+        } else {
+            exportAllImagesToPictures(context, folderName, exportInfoList);
+        }
     }
 
     /**

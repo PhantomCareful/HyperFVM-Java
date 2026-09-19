@@ -4,6 +4,7 @@ import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT
 import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
+import com.careful.HyperFVM.utils.OtherUtils.NoMediaFileHelper;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -80,5 +82,12 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 转发给 .nomedia 目录授权流程（非对应请求码会被内部忽略）
+        NoMediaFileHelper.onActivityResult(this, requestCode, resultCode, data);
     }
 }

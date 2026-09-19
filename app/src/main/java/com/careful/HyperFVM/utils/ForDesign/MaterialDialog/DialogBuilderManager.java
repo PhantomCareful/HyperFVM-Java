@@ -133,6 +133,83 @@ public class DialogBuilderManager {
     }
 
     /**
+     * 一般弹窗展示方法，展示内容并带有两个按钮，点击任一按钮都会执行对应回调并关闭弹窗。
+     * 通过点击背景或返回键关闭弹窗时，视为点击了消极按钮
+     * @param context 上下文
+     * @param title 弹窗标题
+     * @param emoji 用表情表示状态
+     * @param content 弹窗内容
+     * @param cancelable 弹窗是否可以通过点击背景关闭
+     * @param negativeButtonTitle 消极按钮标题，比如【暂不】
+     * @param positiveButtonTitle 积极按钮标题，比如【去授权】
+     * @param negativeCallBack 点击消极按钮后的回调
+     * @param positiveCallBack 点击积极按钮后的回调
+     */
+    public static void showDialogWithFullCallBack(
+            Context context, String title, String emoji, String content, boolean cancelable,
+            String negativeButtonTitle, String positiveButtonTitle,
+            PositiveButtonClickCallBack negativeCallBack, PositiveButtonClickCallBack positiveCallBack
+    ) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_general_call_back, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentTextView = dialogView.findViewById(R.id.content);
+        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentTextView.setText(content); // 设置内容文本
+        buttonClose.setText(negativeButtonTitle);
+        buttonAction.setText(positiveButtonTitle);
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .setCancelable(cancelable)
+                .create();
+
+        // 记录回调是否已执行，避免按钮点击触发关闭时与关闭监听重复执行回调
+        boolean[] handled = {false};
+
+        buttonClose.setOnClickListener(v -> {
+            if (handled[0]) {
+                return;
+            }
+            handled[0] = true;
+            dialog.dismiss();
+            if (negativeCallBack != null) {
+                negativeCallBack.onResult();
+            }
+        });
+
+        buttonAction.setOnClickListener(v -> {
+            if (handled[0]) {
+                return;
+            }
+            handled[0] = true;
+            dialog.dismiss();
+            if (positiveCallBack != null) {
+                positiveCallBack.onResult();
+            }
+        });
+
+        // 通过点击背景/返回键关闭弹窗时视为点击了消极按钮
+        dialog.setOnDismissListener(d -> {
+            if (!handled[0]) {
+                handled[0] = true;
+                if (negativeCallBack != null) {
+                    negativeCallBack.onResult();
+                }
+            }
+        });
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
      * 签名校验弹窗
      */
     @SuppressLint("InflateParams")
