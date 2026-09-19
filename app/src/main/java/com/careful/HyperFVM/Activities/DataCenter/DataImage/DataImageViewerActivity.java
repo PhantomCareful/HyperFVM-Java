@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -19,8 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
@@ -47,6 +54,7 @@ import eightbitlab.com.blurview.BlurView;
  * 且内存占用恒定（不随图片总像素数增长）。
  * 查看过程不写入系统媒体库（相册零痕迹、无需存储授权）；仅当用户主动保存时，
  * 才把原图写入系统相册 Pictures/HyperFVM。
+ * 单击图片可切换沉浸模式（隐藏装饰与系统栏、只显示图片，再单击恢复）。
  * <p>
  * 说明：Manifest 为本界面指定黑底专属主题作启动底色（打开瞬间不闪白），
  * 运行时由 ThemeManager 应用全局主题，顶部/底部装饰随主题着色。
@@ -65,6 +73,13 @@ public class DataImageViewerActivity extends BaseActivity {
     private File imageFile;
     // 保存进行中标记：防止连点导致重复写入
     private boolean isSaving;
+
+    // 查看器装饰组件（顶部模糊栏、标题、返回键、底部按钮栏）：沉浸模式下随系统栏一并淡出
+    private final View[] viewerDecorationViews = new View[4];
+    // 是否处于沉浸模式（隐藏装饰与系统栏、只显示图片），单击图片切换
+    private boolean isImmersive;
+    // 沉浸模式下的返回键回调：按返回先退出沉浸模式（与系统相册一致），需随模式动态启停
+    private OnBackPressedCallback immersiveBackCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +180,11 @@ public class DataImageViewerActivity extends BaseActivity {
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
+            // 沉浸模式下系统栏隐藏（insets 归零），装饰正处于淡出/淡入：
+            // 跳过布局更新，避免 0 值兜底逻辑重置装饰位置而造成可见的跳变
+            if (isImmersive) {
+                return;
+            }
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
             params.height = height + DensityUtil.dpToPx(this, 50);
             blurViewTopBar.setLayoutParams(params);
@@ -179,6 +199,11 @@ public class DataImageViewerActivity extends BaseActivity {
         });
         // 动态获取导航栏高度（小白条/三键导航）
         InsetsUtil.setNavigationBarHeight(this, rootView, height -> {
+            // 沉浸模式下系统栏隐藏（insets 归零），装饰正处于淡出/淡入：
+            // 跳过布局更新，避免 0 值兜底逻辑重置装饰位置而造成可见的跳变
+            if (isImmersive) {
+                return;
+            }
             Log.d("height", "height in MainActivity = " + height);
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) bottomBarContainer.getLayoutParams();
             params.bottomMargin = height;
@@ -193,6 +218,37 @@ public class DataImageViewerActivity extends BaseActivity {
         floatButtonSave.setOnClickListener(v -> saveImage());
         floatButtonShare.setOnClickListener(v -> shareImage());
 
+        // 沉浸模式需要整体淡入淡出的装饰组件
+        viewerDecorationViews[0] = blurViewTopBar;
+        viewerDecorationViews[1] = topBar;
+        viewerDecorationViews[2] = floatButtonBack;
+        viewerDecorationViews[3] = bottomBarContainer;
+
+        // 单击图片切换沉浸模式。
+        // 库自身支持双击缩放，单击需等双击判定超时后再触发（onSingleTapConfirmed），避免误判冲突；
+        // OnTouchListener 只旁观手势并返回 false，事件仍由图片组件正常处理（拖动、缩放不受影响）
+        GestureDetector singleTapDetector = new GestureDetector(this,
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
+                        setImmersiveMode(!isImmersive);
+                        return true;
+                    }
+                });
+        imageView.setOnTouchListener((v, event) -> {
+            singleTapDetector.onTouchEvent(event);
+            return false;
+        });
+
+        // 沉浸模式下按返回键先退出沉浸模式（与系统相册一致），而非直接关闭查看器
+        immersiveBackCallback = new OnBackPressedCallback(false) {
+            @Override
+            public void handleOnBackPressed() {
+                setImmersiveMode(false);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, immersiveBackCallback);
+
         // 添加模糊材质
         setupBlurEffect();
     }
@@ -205,6 +261,46 @@ public class DataImageViewerActivity extends BaseActivity {
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar), 0.5f);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonSave), 0f);
         blurUtil.setBlur(findViewById(R.id.blurViewButtonShare), 0f);
+    }
+
+    /**
+     * 设置沉浸模式：隐藏或恢复装饰组件与系统栏（状态栏 + 导航栏），只留图片本身。
+     * 由单击图片触发切换；沉浸模式下滑动屏幕边缘可短暂呼出系统栏（松手自动隐藏）
+     *
+     * @param immersive 是否进入沉浸模式
+     */
+    private void setImmersiveMode(boolean immersive) {
+        isImmersive = immersive;
+        if (immersiveBackCallback != null) {
+            immersiveBackCallback.setEnabled(immersive);
+        }
+
+        // 装饰组件淡入淡出
+        for (View decoration : viewerDecorationViews) {
+            if (decoration == null) {
+                continue;
+            }
+            decoration.animate().cancel();
+            if (immersive) {
+                decoration.animate().alpha(0f).setDuration(200)
+                        .withEndAction(() -> decoration.setVisibility(View.GONE)).start();
+            } else {
+                decoration.setVisibility(View.VISIBLE);
+                decoration.setAlpha(0f);
+                decoration.animate().alpha(1f).setDuration(200).start();
+            }
+        }
+
+        // 系统栏显隐
+        WindowInsetsControllerCompat controller =
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        if (immersive) {
+            // 边缘滑动临时呼出系统栏（半透明浮层），随后自动隐藏
+            controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+            controller.hide(WindowInsetsCompat.Type.systemBars());
+        } else {
+            controller.show(WindowInsetsCompat.Type.systemBars());
+        }
     }
 
     /**
