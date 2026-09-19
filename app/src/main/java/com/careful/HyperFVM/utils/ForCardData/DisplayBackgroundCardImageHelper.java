@@ -452,6 +452,7 @@ public class DisplayBackgroundCardImageHelper {
             {"card_data_index_16_1_9_3_big", "葡萄味软糖", "card_data_2"},
             {"card_data_index_16_1_10_3_big", "脆心死神大炮", "card_data_2"},
             {"card_data_index_16_1_11_3_big", "仙人球海星刺身", "card_data_2"},
+            {"card_data_index_16_1_12_3_big", "觉醒旋转咖啡壶", "card_data_2"},
     };
 
     /**

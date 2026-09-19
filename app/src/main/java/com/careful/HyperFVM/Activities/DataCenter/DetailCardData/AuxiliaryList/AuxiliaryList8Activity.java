@@ -143,6 +143,7 @@ public class AuxiliaryList8Activity extends BaseActivity {
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList8).cardCardDataIndex942.cardDataIndex942.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红柳烤串机"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList8).cardCardDataIndex941.cardDataIndex941.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "金刚马"));
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList8).cardCardDataIndex943.cardDataIndex943.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "俱吠罗神使"));
+        Objects.requireNonNull(binding.cardCardDataAuxiliaryList8).cardCardDataIndex16112.cardDataIndex16112.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红温旋转咖啡壶"));
 
         // 附加类
         Objects.requireNonNull(binding.cardCardDataAuxiliaryList8).cardCardDataIndex1123.cardDataIndex1123.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弹珠汽水"));

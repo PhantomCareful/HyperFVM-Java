@@ -56,6 +56,10 @@
         android:id="@+id/card_card_data_index_9_4_3"
         layout="@layout/card_card_data_index_9_4_3" />
 
+    <include
+        android:id="@+id/card_card_data_index_16_1_12"
+        layout="@layout/card_card_data_index_16_1_12" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -349,7 +349,7 @@ public class CardDataActivity extends BaseActivity {
     private void exportAllImages(List<ExportInfo> exportInfoList) {
         DialogBuilderManager.showDialogWithCallBack(
                 this, "导出所有图片", "📦",
-                "图片将保存到：\nPictures/" + getResources().getString(R.string.app_name) + "/" + cardName, true,
+                "图片将打包保存到：\nDownload/" + getResources().getString(R.string.app_name) + "/" + cardName + ".zip", true,
                 "咱手滑了", "一键导出", () -> ImageExportUtil.exportAllImages(this, cardName, exportInfoList)
         );
     }

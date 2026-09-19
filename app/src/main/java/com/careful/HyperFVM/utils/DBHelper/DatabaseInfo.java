@@ -106,7 +106,7 @@ public class DatabaseInfo {
      * DB_VERSION = 67 - 77
      * 更新防御卡数据
      * DB_VERSION = 78
-     * settings表增加”跟随系统字体大小““自定义字体大小”设置
+     * settings表增加“跟随系统字体大小”“自定义字体大小”设置
      * DB_VERSION = 79
      * 防御卡数据库新增增幅卡相关内容
      * DB_VERSION = 80
@@ -117,8 +117,8 @@ public class DatabaseInfo {
      * 改造+更新普通卡数据库
      * DB_VERSION = 90
      * settings表增加“提示语设置-仪表盘刷新完成”设置
-     * DB_VERSION = 91 - 104
+     * DB_VERSION = 91 - 105
      * 改造+更新普通卡数据库
      */
-    public static final int DB_VERSION = 104;
+    public static final int DB_VERSION = 105;
 }

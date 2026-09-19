@@ -1728,6 +1728,9 @@
     <string name="name_card_data_index_16_1_11_0">仙人球海星刺身</string>
     <string name="name_card_data_index_16_1_11_1">奶油海星刺身–王冠海星刺身</string>
 
+    <string name="name_card_data_index_16_1_12_0">红温旋转咖啡壶</string>
+    <string name="name_card_data_index_16_1_12_1">果味旋转咖啡壶–觉醒旋转咖啡壶</string>
+
 
     <!--食神谱部分-->
     <string name="title_card_data_cookery_base_info">基础信息</string>
