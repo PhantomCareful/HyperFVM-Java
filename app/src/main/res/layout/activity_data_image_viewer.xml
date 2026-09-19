@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 数据图内置查看器：全屏黑底，图片由 SubsamplingScaleImageView 区域解码显示（任意缩放级别原生清晰） -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:id="@+id/data_image_viewer_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- 加载指示器：图片准备显示过程中短暂展示 -->
+    <ProgressBar
+        android:id="@+id/data_image_viewer_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@android:color/white" />
+
+</FrameLayout>

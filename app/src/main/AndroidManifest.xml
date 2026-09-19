@@ -17,15 +17,7 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission
         android:name="android.permission.BIND_QUICK_SETTINGS_TILE"
-        tools:ignore="ProtectedPermissions" /> <!-- 添加 queries 元素以允许查询能处理图片查看的 Intent -->
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-
-            <data android:mimeType="image/*" />
-        </intent>
-        <!-- 如果将来还需要查询其他 Intent（如安装 APK 等），也可以在这里添加 -->
-    </queries>
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".HyperFVMApplication"
@@ -82,6 +74,12 @@
         <activity
             android:name=".Activities.DataCenter.DataImage.DataImageCardActivity"
             android:exported="false" />
+        <activity
+            android:name=".Activities.DataCenter.DataImage.DataImageViewerActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.HyperFVMJava.DataImageViewer"
+            tools:ignore="DiscouragedApi" />
         <activity
             android:name=".Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10EffectActivity"
             android:exported="false" />
@@ -165,7 +163,7 @@
             android:exported="false" />
         <activity
             android:name=".Activities.Necessary.SettingsActivity"
-            android:exported="false" /> <!-- fileprovider用于获取私有目录下的文件，用于查看数据图和升级App -->
+            android:exported="false" /> <!-- fileprovider用于升级App时对外提供私有目录中的APK文件 -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

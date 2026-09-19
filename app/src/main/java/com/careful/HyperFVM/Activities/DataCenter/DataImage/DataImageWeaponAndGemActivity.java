@@ -66,7 +66,7 @@ public class DataImageWeaponAndGemActivity extends BaseActivity {
 
     private void setupContainer(int viewId, String imageName) {
         LinearLayout container = findViewById(viewId);
-        container.setOnClickListener(v -> DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(this, imageName));
+        container.setOnClickListener(v -> DataImageViewerHelper.openDataImage(this, imageName));
     }
 
     /**

@@ -87,7 +87,7 @@ public class DataImageOthersActivity extends BaseActivity {
         }
 
         String finalImageName = imageName;
-        container.setOnClickListener(v -> DataImageViewerHelper.openSystemPhotoViewerToSeeDataImages(this, finalImageName));
+        container.setOnClickListener(v -> DataImageViewerHelper.openDataImage(this, finalImageName));
     }
 
     /**

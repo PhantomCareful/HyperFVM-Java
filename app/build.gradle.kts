@@ -135,4 +135,7 @@ dependencies {
     //这个布局内的组件，一行放不下时会自动换行
     implementation(libs.flexbox)
 
+    //数据图内置查看器：超大图（约6500万像素）区域解码显示
+    implementation(libs.subsampling.scale.image.view)
+
 }

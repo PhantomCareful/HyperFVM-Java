@@ -297,8 +297,7 @@
     <string name="author_data_images_index_others_8">By 哪片花火</string>
     <string name="title_dialog_data_images_index_open_failed_file_not_found">图片文件不存在</string>
     <string name="content_dialog_data_images_index_open_failed_file_not_found">可能的原因如下：\n1.您还没有下载此图片资源；\n2.此图片资源被意外删除；\n3.App升级以后，图片文件名发生了变更。\n\n解决方式：请回到主界面，重新下载全部图片后再尝试查看。若依然提示图片文件不存在，请向开发者反馈。</string>
-    <string name="title_dialog_data_images_index_open_failed_app_not_found">无法查看图片</string>
-    <string name="content_dialog_data_images_index_open_failed_app_not_found">可能的原因：您的设备没有可用的图片查看应用。\n\n解决方式：请确认您的设备上是否有相册/图库类应用。</string>
+    <string name="toast_data_image_viewer_load_failed">图片加载失败，请尝试重新下载图片资源后再查看</string>
     <string name="top_bar_data_center_cookery_index">食神谱合集</string>
     <string name="copyright_and_molu">数据来自：So陌路の\n数据为人工录入，若发现问题可向开发者反馈🫰\n\nHyperFVM\nMade By Phantom Careful 😈</string>
     <string name="copyright">HyperFVM\nMade By Phantom Careful 😈</string>

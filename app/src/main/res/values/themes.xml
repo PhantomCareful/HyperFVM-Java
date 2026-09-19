@@ -14,6 +14,11 @@
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.HyperFVMJava.BottomSheetDialog</item>
     </style>
 
+    <!-- 数据图内置查看器：固定黑底全屏（图片查看场景不随主题/深浅色变化），打开瞬间不闪白 -->
+    <style name="Theme.HyperFVMJava.DataImageViewer" parent="Base.Theme.HyperFVMJava">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
     <style name="Base.Theme.HyperFVMJava.Shadow" parent="Base.Theme.HyperFVMJava">
         <!--Button的默认样式-->
         <item name="materialButtonStyle">@style/Button.Shadow</item>
