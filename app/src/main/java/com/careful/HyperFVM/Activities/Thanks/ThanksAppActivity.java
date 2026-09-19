@@ -80,6 +80,15 @@ public class ThanksAppActivity extends BaseActivity {
                 getResources().getString(R.string.dialog_sub_title_thanks_list_app_3),
                 getResources().getString(R.string.dialog_url_thanks_list_app_3)));
 
+        //跳转浏览器，前往subsampling-scale-image-view仓库
+        findViewById(R.id.thanks_list_container_app_4).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+                this,
+                ContextCompat.getDrawable(this, R.drawable.ic_github),
+                0,
+                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_thanks_list_app_4),
+                getResources().getString(R.string.dialog_url_thanks_list_app_4)));
+
     }
 
     /**

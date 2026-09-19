@@ -16,7 +16,7 @@
     <string name="title_data_center_cookery_index">食神谱合集</string>
     <string name="description_data_center_cookery_index">查询食神谱的详细信息</string>
     <string name="card_data_search_title">防御卡数据查询</string>
-    <string name="card_data_search_data_version">数据库版本：20260827</string>
+    <string name="card_data_search_data_version">数据库版本：20260917</string>
     <string name="card_data_search_tips">👇点击卡片即可进入数据详情页👇</string>
     <string name="card_data_search_input_tips">请输入防御卡名称</string>
     <string name="top_bar_card_data_index">防御卡全能数据库</string>
@@ -561,8 +561,12 @@
     <string name="description_thanks_list_app_3">模糊材质依赖库</string>
     <string name="dialog_sub_title_thanks_list_app_3">BlurView</string>
     <string name="dialog_url_thanks_list_app_3">https://github.com/Dimezis/BlurView</string>
-    <string name="title_thanks_list_app_4">DeepSeek-Flash</string>
-    <string name="description_thanks_list_app_4">辅助编写代码</string>
+    <string name="title_thanks_list_app_4">davemorrissey/subsampling-scale-image-view</string>
+    <string name="description_thanks_list_app_4">高分辨率图片显示依赖库\nHyperFVM使用该依赖库实现了内置的图片查看器</string>
+    <string name="dialog_sub_title_thanks_list_app_4">subsampling-scale-image-view</string>
+    <string name="dialog_url_thanks_list_app_4">https://github.com/davemorrissey/subsampling-scale-image-view</string>
+    <string name="title_thanks_list_app_5">DeepSeek-Flash</string>
+    <string name="description_thanks_list_app_5">辅助编写代码</string>
     <string name="title_some_necessary_things">一些必要的东西</string>
     <string name="title_using_instruction">使用说明</string>
     <string name="description_using_instruction">阅读以快速上手HyperFVM</string>

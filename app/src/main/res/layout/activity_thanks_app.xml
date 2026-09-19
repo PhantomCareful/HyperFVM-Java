@@ -262,9 +262,61 @@
 
                         </LinearLayout>
 
-                        <!-- 第4个选项：DeepSeek -->
+                        <!-- 第4个选项：内置图片查看器 -->
                         <LinearLayout
                             android:id="@+id/thanks_list_container_app_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ic_github"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginHorizontal="16dp"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_thanks_list_app_4"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_thanks_list_app_4"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
+
+                            </LinearLayout>
+
+                            <!-- 右侧箭头 -->
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <!-- 第5个选项：DeepSeek -->
+                        <LinearLayout
+                            android:id="@+id/thanks_list_container_app_5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -292,14 +344,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_thanks_list_app_4"
+                                    android:text="@string/title_thanks_list_app_5"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView"
                                     android:textSize="20sp"
                                     android:textStyle="bold"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_thanks_list_app_4"
+                                    android:text="@string/description_thanks_list_app_5"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                                     android:textSize="15sp"/>
 
