@@ -27,7 +27,18 @@ public class BaseActivity extends AppCompatActivity {
         // 系统配置变化时，重新修正 Activity 的 fontScale
         setFontScale(getBaseContext());
         // 刷新布局（可选，确保配置变化后界面立即更新）
-        recreate();
+        if (shouldRecreateOnConfigurationChanged()) {
+            recreate();
+        }
+    }
+
+    /**
+     * 配置变化时是否重建界面（默认重建，确保配置变化后界面立即更新）。
+     * 子类可覆写为 false 以避免重建（需自行保证配置变化后界面正确适配，
+     * 如查看器需要旋转时保持大图不重新加载）
+     */
+    protected boolean shouldRecreateOnConfigurationChanged() {
+        return true;
     }
 
     /**

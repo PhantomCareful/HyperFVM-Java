@@ -55,6 +55,8 @@ import eightbitlab.com.blurview.BlurView;
  * 查看过程不写入系统媒体库（相册零痕迹、无需存储授权）；仅当用户主动保存时，
  * 才把原图写入系统相册 Pictures/HyperFVM。
  * 单击图片可切换沉浸模式（隐藏装饰与系统栏、只显示图片，再单击恢复）。
+ * 旋转（含物理旋转）不重建界面：大图无需重新加载，查看位置与沉浸状态自然保持；
+ * 深浅色等其他配置变化仍走重建，自动保存并恢复查看位置与沉浸模式，切屏无缝续看。
  * <p>
  * 说明：Manifest 为本界面指定黑底专属主题作启动底色（打开瞬间不闪白），
  * 运行时由 ThemeManager 应用全局主题，顶部/底部装饰随主题着色。
@@ -63,6 +65,12 @@ public class DataImageViewerActivity extends BaseActivity {
 
     // 数据图文件的绝对路径
     public static final String EXTRA_IMAGE_PATH = "extra_data_image_viewer_image_path";
+
+    // 旋转重建时保存/恢复的查看状态键：缩放、视口中心（source 图像坐标）、沉浸模式
+    private static final String STATE_VIEW_SCALE = "state_data_image_viewer_view_scale";
+    private static final String STATE_VIEW_CENTER_X = "state_data_image_viewer_view_center_x";
+    private static final String STATE_VIEW_CENTER_Y = "state_data_image_viewer_view_center_y";
+    private static final String STATE_IMMERSIVE = "state_data_image_viewer_immersive";
 
     private BlurUtil blurUtil;
 
@@ -73,6 +81,11 @@ public class DataImageViewerActivity extends BaseActivity {
     private File imageFile;
     // 保存进行中标记：防止连点导致重复写入
     private boolean isSaving;
+
+    // 旋转重建场景：待恢复的查看位置（onCreate 读取、图片就绪后应用），及是否携带有效位置
+    private float restoredViewScale;
+    private PointF restoredViewCenter;
+    private boolean hasRestoredViewState;
 
     // 查看器装饰组件（顶部模糊栏、标题、返回键、底部按钮栏）：沉浸模式下随系统栏一并淡出
     private final View[] viewerDecorationViews = new View[4];
@@ -94,6 +107,18 @@ public class DataImageViewerActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_data_image_viewer);
 
+        // 旋转重建场景：读取上次保存的查看状态（沉浸模式立即生效，位置待图片就绪后恢复）
+        if (savedInstanceState != null) {
+            isImmersive = savedInstanceState.getBoolean(STATE_IMMERSIVE, false);
+            if (savedInstanceState.containsKey(STATE_VIEW_CENTER_X)) {
+                restoredViewScale = savedInstanceState.getFloat(STATE_VIEW_SCALE);
+                restoredViewCenter = new PointF(
+                        savedInstanceState.getFloat(STATE_VIEW_CENTER_X),
+                        savedInstanceState.getFloat(STATE_VIEW_CENTER_Y));
+                hasRestoredViewState = restoredViewScale > 0f;
+            }
+        }
+
         imageView = findViewById(R.id.data_image_viewer_image);
         loadingView = findViewById(R.id.data_image_viewer_loading);
 
@@ -108,6 +133,11 @@ public class DataImageViewerActivity extends BaseActivity {
         // 初始化各种装饰效果
         initDecoration();
 
+        // 旋转重建且此前处于沉浸模式：直接以沉浸状态呈现（不带动画，避免重建后装饰闪现）
+        if (isImmersive) {
+            setImmersiveMode(true, false);
+        }
+
         initImageView(imageFile);
     }
 
@@ -115,6 +145,16 @@ public class DataImageViewerActivity extends BaseActivity {
      * 初始化大图组件：区域解码显示 + 双击缩放 + 初始宽度适配并定位到顶部
      */
     private void initImageView(File imageFile) {
+        // 加载指示器延迟展示：进程内重建（如深浅色切换）时图片就绪通常很快，
+        // 300ms 内就绪则完全不出现进度动画，避免被误认为“图片重新加载”
+        loadingView.postDelayed(() -> {
+            if (imageView != null && !imageView.isReady()) {
+                loadingView.setVisibility(View.VISIBLE);
+            }
+        }, 300);
+        // 禁用组件自带的 View 状态自动保存：查看位置完全由 Activity 自管（onSaveInstanceState），
+        // 避免两套机制重复恢复
+        imageView.setSaveEnabled(false);
         // 缩放下限：完整显示整张图（区域解码在任何缩放级别都清晰）
         imageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_INSIDE);
         // 双击放大到 1:1 原始像素；已放大到 1:1 及以上时双击还原
@@ -125,15 +165,15 @@ public class DataImageViewerActivity extends BaseActivity {
         imageView.setOnImageEventListener(new SubsamplingScaleImageView.DefaultOnImageEventListener() {
             @Override
             public void onReady() {
-                // 图片信息就绪：隐藏加载指示器，并按“宽度适配、顶部对齐”显示
+                // 图片信息就绪：隐藏加载指示器，恢复查看位置或按初始视图显示
                 loadingView.setVisibility(View.GONE);
                 if (imageView.getWidth() > 0) {
-                    applyInitialView();
+                    restoreOrInitView();
                 } else {
                     // 兜底：极端时序下 onReady 早于首帧布局，等布局完成后再设置
                     imageView.post(() -> {
                         if (imageView.isReady()) {
-                            applyInitialView();
+                            restoreOrInitView();
                         }
                     });
                 }
@@ -148,6 +188,19 @@ public class DataImageViewerActivity extends BaseActivity {
         });
 
         imageView.setImage(ImageSource.uri(Uri.fromFile(imageFile)));
+    }
+
+    /**
+     * 图片就绪后的视图应用：有旋转重建前保存的位置则恢复（缩放 + 视口中心，坐标基于 source 图像，
+     * 与屏幕方向无关），否则按初始视图显示。
+     * 恢复值超出新方向下的缩放范围时由组件自动收敛（如横屏全览切回竖屏后钳制为最小缩放）
+     */
+    private void restoreOrInitView() {
+        if (hasRestoredViewState) {
+            imageView.setScaleAndCenter(restoredViewScale, restoredViewCenter);
+        } else {
+            applyInitialView();
+        }
     }
 
     /**
@@ -259,8 +312,8 @@ public class DataImageViewerActivity extends BaseActivity {
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
         blurUtil.setBlur(findViewById(R.id.blurViewTopBar), 0.5f);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonSave), 0f);
-        blurUtil.setBlur(findViewById(R.id.blurViewButtonShare), 0f);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonSave), 0.5f);
+        blurUtil.setBlur(findViewById(R.id.blurViewButtonShare), 0.5f);
     }
 
     /**
@@ -270,6 +323,16 @@ public class DataImageViewerActivity extends BaseActivity {
      * @param immersive 是否进入沉浸模式
      */
     private void setImmersiveMode(boolean immersive) {
+        setImmersiveMode(immersive, true);
+    }
+
+    /**
+     * 设置沉浸模式（可控制装饰显隐是否带动画）。
+     *
+     * @param immersive 是否进入沉浸模式
+     * @param animate   装饰显隐是否带动画；旋转重建后直接以沉浸状态呈现时传 false，避免装饰闪现
+     */
+    private void setImmersiveMode(boolean immersive, boolean animate) {
         isImmersive = immersive;
         if (immersiveBackCallback != null) {
             immersiveBackCallback.setEnabled(immersive);
@@ -282,12 +345,21 @@ public class DataImageViewerActivity extends BaseActivity {
             }
             decoration.animate().cancel();
             if (immersive) {
-                decoration.animate().alpha(0f).setDuration(200)
-                        .withEndAction(() -> decoration.setVisibility(View.GONE)).start();
+                if (animate) {
+                    decoration.animate().alpha(0f).setDuration(200)
+                            .withEndAction(() -> decoration.setVisibility(View.GONE)).start();
+                } else {
+                    decoration.setAlpha(0f);
+                    decoration.setVisibility(View.GONE);
+                }
             } else {
                 decoration.setVisibility(View.VISIBLE);
-                decoration.setAlpha(0f);
-                decoration.animate().alpha(1f).setDuration(200).start();
+                if (animate) {
+                    decoration.setAlpha(0f);
+                    decoration.animate().alpha(1f).setDuration(200).start();
+                } else {
+                    decoration.setAlpha(1f);
+                }
             }
         }
 
@@ -394,6 +466,34 @@ public class DataImageViewerActivity extends BaseActivity {
         } catch (Exception e) {
             Toast.makeText(this, R.string.toast_data_image_viewer_share_failed, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * 旋转等配置变化时不重建界面：Manifest 已声明对应 configChanges，
+     * 大图无需重新加载，查看位置与沉浸状态自然保持；
+     * 界面适配依赖全屏约束布局与 insets 回调自动完成
+     */
+    @Override
+    protected boolean shouldRecreateOnConfigurationChanged() {
+        return false;
+    }
+
+    /**
+     * 保存查看状态（深浅色等配置变化触发重建时使用）：图片就绪时记录缩放与视口中心
+     * （坐标基于 source 图像，与屏幕方向无关），连同沉浸模式一起，重建后无缝续看
+     */
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (imageView != null && imageView.isReady()) {
+            outState.putFloat(STATE_VIEW_SCALE, imageView.getScale());
+            PointF center = imageView.getCenter();
+            if (center != null) {
+                outState.putFloat(STATE_VIEW_CENTER_X, center.x);
+                outState.putFloat(STATE_VIEW_CENTER_Y, center.y);
+            }
+        }
+        outState.putBoolean(STATE_IMMERSIVE, isImmersive);
     }
 
     @Override

@@ -20,12 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!-- 加载指示器：图片准备显示过程中短暂展示 -->
+        <!-- 加载指示器：默认隐藏，图片准备超过片刻才由代码延时展示（避免快速加载时闪现） -->
         <ProgressBar
             android:id="@+id/data_image_viewer_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:visibility="gone"
             android:indeterminateTint="?attr/colorPrimary"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

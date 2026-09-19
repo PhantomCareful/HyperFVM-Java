@@ -78,6 +78,7 @@
             android:name=".Activities.DataCenter.DataImage.DataImageViewerActivity"
             android:exported="false"
             android:screenOrientation="fullSensor"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden"
             android:theme="@style/Theme.HyperFVMJava.DataImageViewer"
             tools:ignore="DiscouragedApi" />
         <activity
