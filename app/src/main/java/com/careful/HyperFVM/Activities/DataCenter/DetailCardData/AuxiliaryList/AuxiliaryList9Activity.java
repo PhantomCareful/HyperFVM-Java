@@ -19,8 +19,11 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.ActivityAuxiliaryList9Binding;
+import com.careful.HyperFVM.databinding.ActivityAuxiliaryList9EffectBinding;
+import com.careful.HyperFVM.databinding.CardCardDataAuxiliaryList9Binding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
+import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
@@ -40,9 +43,10 @@ public class AuxiliaryList9Activity extends BaseActivity {
     private static final String STATE_SCROLL_Y_PAD_2 = "state_auxiliary_list9_scroll_y_pad_2";// PAD 右栏（scrollView2 名单栏）滚动位置保存键：同上
     private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
 
-    private ActivityAuxiliaryList9Binding binding;
+    private CardCardDataAuxiliaryList9Binding cardListBinding;// 增幅名单卡片列表（普通/流光两种布局的 include 同 id 同类型，合并后共用同一引用）
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
+    private BgEffectController bgEffectController;// 流光背景控制器（仅“动态背景”启用时初始化）
     private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（仅手机单栏布局接入，PAD 双栏布局不接入）
 
     @Override
@@ -55,12 +59,16 @@ public class AuxiliaryList9Activity extends BaseActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_auxiliary_list8);
-
-        // 初始化ViewBinding
-        binding = ActivityAuxiliaryList9Binding.inflate(getLayoutInflater());
-        View root = binding.getRoot();
-        setContentView(root);
+        // 单活动双布局：按“动态背景”总开关选用 带流光背景/不带流光背景 的布局（与卡片数据详情页同构）
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
+            ActivityAuxiliaryList9EffectBinding effectBinding = ActivityAuxiliaryList9EffectBinding.inflate(getLayoutInflater());
+            cardListBinding = Objects.requireNonNull(effectBinding.cardCardDataAuxiliaryList9);
+            setContentView(effectBinding.getRoot());
+        } else {
+            ActivityAuxiliaryList9Binding normalBinding = ActivityAuxiliaryList9Binding.inflate(getLayoutInflater());
+            cardListBinding = Objects.requireNonNull(normalBinding.cardCardDataAuxiliaryList9);
+            setContentView(normalBinding.getRoot());
+        }
 
         // 初始化数据库
         dbHelper = HyperFVMApplication.getDBHelper();
@@ -109,6 +117,16 @@ public class AuxiliaryList9Activity extends BaseActivity {
                     TOP_BAR_FADE_RANGE_DP);
         }
 
+        // 初始化流光背景（仅动态背景启用时布局内存在 bgEffectView）
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
+            View bgView = findViewById(R.id.bgEffectView);
+            if (bgView != null) {
+                bgEffectController = new BgEffectController(bgView);
+                bgEffectController.setDetailAnimalCardDataColorType(this);
+                bgEffectController.startDetailAnimalCardDataBgEffect();
+            }
+        }
+
         // 添加模糊材质
         setupBlurEffect();
     }
@@ -118,7 +136,7 @@ public class AuxiliaryList9Activity extends BaseActivity {
      */
     private void setupBlurEffect() {
         blurUtil = new BlurUtil(this);
-        blurUtil.setBlur(findViewById(R.id.blurViewTopBar), 0.5f);
+        blurUtil.setBlur(findViewById(R.id.blurViewTopBar), HyperFVMApplication.isContentDynamicBackgroundEnabled() ? 0f : 0.5f);
     }
 
     /**
@@ -130,14 +148,25 @@ public class AuxiliaryList9Activity extends BaseActivity {
         findViewById(R.id.card_data_index_background_images_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "浮生茶"));
 
         // 增幅名单
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11310.cardDataIndex11310.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赖皮蛇"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11311.cardDataIndex11311.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "迷你披萨炉"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11312.cardDataIndex11312.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11313.cardDataIndex11313.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex11314.cardDataIndex11314.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "灯影花糕"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex13211.cardDataIndex13211.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "奇门马"));
-        Objects.requireNonNull(binding.cardCardDataAuxiliaryList9).cardCardDataIndex329.cardDataIndex329.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元宝饺子鼎"));
+        cardListBinding.cardCardDataIndex11310.cardDataIndex11310.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赖皮蛇"));
+        cardListBinding.cardCardDataIndex11311.cardDataIndex11311.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "迷你披萨炉"));
+        cardListBinding.cardCardDataIndex11312.cardDataIndex11312.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
+        cardListBinding.cardCardDataIndex11313.cardDataIndex11313.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
+        cardListBinding.cardCardDataIndex11314.cardDataIndex11314.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "灯影花糕"));
+        cardListBinding.cardCardDataIndex13211.cardDataIndex13211.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "奇门马"));
+        cardListBinding.cardCardDataIndex329.cardDataIndex329.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元宝饺子鼎"));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
+            if (bgEffectController != null) {
+                bgEffectController.startDetailAnimalCardDataBgEffect();
+            }
+        }
     }
 
     /**

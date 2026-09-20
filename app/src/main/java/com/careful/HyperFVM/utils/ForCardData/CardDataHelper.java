@@ -17,25 +17,15 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList2Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList2EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList3Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList3EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList4Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList4EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList5Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList5EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList6Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList6EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList7Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList7EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList8Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList8EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList10EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9Activity;
-import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList9EffectActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.CardDataActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_1;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_1_2;
@@ -136,88 +126,46 @@ public class CardDataHelper {
     }
 
     public static void selectAuxiliaryCardByName(Context context, String cardName) {
-        boolean isDynamicBackground = HyperFVMApplication.isContentDynamicBackgroundEnabled();
-
         Intent intent;
         switch (cardName) {
             case "平射增幅卡":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList1EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList1Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList1Activity.class);
                 context.startActivity(intent);
                 break;
             case "投手增幅卡":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList2EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList2Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList2Activity.class);
                 context.startActivity(intent);
                 break;
             case "莓果点心":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList3EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList3Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList3Activity.class);
                 context.startActivity(intent);
                 break;
             case "香料虎":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList4EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList4Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList4Activity.class);
                 context.startActivity(intent);
                 break;
             case "塔利亚神使", "宴飨女神·塔利亚":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList5EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList5Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList5Activity.class);
                 context.startActivity(intent);
                 break;
             case "精灵龙":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList6EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList6Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList6Activity.class);
                 context.startActivity(intent);
                 break;
             case "五向增幅卡":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList7EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList7Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList7Activity.class);
                 context.startActivity(intent);
                 break;
             case "喷壶增幅卡":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList8EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList8Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList8Activity.class);
                 context.startActivity(intent);
                 break;
             case "固定轨迹增幅卡":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList9EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList9Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList9Activity.class);
                 context.startActivity(intent);
                 break;
             case "炎焱兔":
-                if (isDynamicBackground) {
-                    intent = new Intent(context, AuxiliaryList10EffectActivity.class);
-                } else {
-                    intent = new Intent(context, AuxiliaryList10Activity.class);
-                }
+                intent = new Intent(context, AuxiliaryList10Activity.class);
                 context.startActivity(intent);
                 break;
         }
