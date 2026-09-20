@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Fragments.AboutApp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +22,13 @@ import com.careful.HyperFVM.Activities.Necessary.UsingInstruction.UsingInstructi
 import com.careful.HyperFVM.Activities.Thanks.ThanksAppActivity;
 import com.careful.HyperFVM.Activities.Thanks.ThanksGameActivity;
 import com.careful.HyperFVM.Activities.UpdateLogHistory.UpdateLogHistoryActivity;
+import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentAboutAppBinding;
+import com.careful.HyperFVM.databinding.FragmentAboutAppEffectBinding;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
 
+import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
@@ -45,6 +49,8 @@ public class AboutAppFragment extends Fragment {
 
     private View root;
 
+    private BgEffectController bgEffectController;// 流光背景控制器（仅“动态背景”启用时初始化）
+
     private View logoView;                  // about_app_icon
     private TextView appNameText;           // about_app_name
     private TextView versionInfoText;       // about_app_version_info
@@ -57,8 +63,14 @@ public class AboutAppFragment extends Fragment {
     private int appVersionMaxScroll;        // 判定完全消失的滚动距离（dp 转 px）
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentAboutAppBinding binding = FragmentAboutAppBinding.inflate(inflater, container, false);
-        root = binding.getRoot();
+        // 单Fragment双布局：按“动态背景”总开关选用 带流光背景/不带流光背景 的布局（与防御卡列表页同构）
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
+            FragmentAboutAppEffectBinding effectBinding = FragmentAboutAppEffectBinding.inflate(inflater, container, false);
+            root = effectBinding.getRoot();
+        } else {
+            FragmentAboutAppBinding normalBinding = FragmentAboutAppBinding.inflate(inflater, container, false);
+            root = normalBinding.getRoot();
+        }
 
         // 初始化各种装饰效果
         initDecoration();
@@ -215,6 +227,16 @@ public class AboutAppFragment extends Fragment {
             aboutAppContainer.setLayoutParams(params);
         });
 
+        // 初始化流光背景（仅动态背景启用时布局内存在 bgEffectView）
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
+            View bgView = root.findViewById(R.id.bgEffectView);
+            if (bgView != null) {
+                bgEffectController = new BgEffectController(bgView);
+                bgEffectController.setAboutAppColorType(requireContext());
+                bgEffectController.startAboutAppBgEffect();
+            }
+        }
+
         // 获取需要渐隐的元素
         logoView = root.findViewById(R.id.about_app_icon);
         appNameText = root.findViewById(R.id.about_app_name);
@@ -253,7 +275,7 @@ public class AboutAppFragment extends Fragment {
      */
     private void setupBlurEffect() {
         BlurUtil blurUtil = new BlurUtil(requireContext());
-        blurUtil.setBlur(root.findViewById(R.id.blurViewTopBar), root.findViewById(R.id.targetView));
+        blurUtil.setBlur(root.findViewById(R.id.blurViewTopBar), root.findViewById(R.id.targetView), HyperFVMApplication.isContentDynamicBackgroundEnabled() ? 0f : 0.5f);
     }
 
     @Override
@@ -281,6 +303,16 @@ public class AboutAppFragment extends Fragment {
         // 检查更新
         if (root != null) {
             checkUpdate(root);
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // SDK 33 以下不存在流光背景，控制器必为 null；版本判断同时满足 lint 的 API 级别检查
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && bgEffectController != null) {
+            bgEffectController.stop();
+            bgEffectController = null;
         }
     }
 }

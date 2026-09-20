@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.careful.HyperFVM.Fragments.AboutApp.AboutAppEffectFragment;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.Dashboard.DashboardFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
@@ -107,11 +106,7 @@ public class MainActivity extends BaseActivity {
             // 添加Fragment
             viewPagerAdapter.addFragment(new DashboardFragment(), getResources().getString(R.string.top_bar_dashboard));
             viewPagerAdapter.addFragment(new DataCenterFragment(), getResources().getString(R.string.top_bar_data_center));
-            if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
-                viewPagerAdapter.addFragment(new AboutAppEffectFragment(), getResources().getString(R.string.top_bar_about_app));
-            } else {
-                viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));
-            }
+            viewPagerAdapter.addFragment(new AboutAppFragment(), getResources().getString(R.string.top_bar_about_app));
             viewPager.setAdapter(viewPagerAdapter);
 
             // 禁用预加载相邻页面（可选，减少内存使用）
