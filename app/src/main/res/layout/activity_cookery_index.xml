@@ -90,16 +90,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_1_1"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_1_1"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -148,16 +148,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_1_2"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_1_2"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -206,16 +206,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_1_3"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_1_3"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -264,16 +264,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_1_4"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_1_4"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -322,16 +322,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_1_5"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_1_5"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -380,16 +380,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_1_6"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_1_6"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -438,16 +438,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_1_7"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_1_7"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -511,16 +511,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_1"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_1"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -569,16 +569,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_2"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_2"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -627,16 +627,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_3"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_3"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -685,16 +685,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_4"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_4"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -743,16 +743,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_5"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_5"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -801,16 +801,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_6"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_6"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -859,16 +859,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_7"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_7"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -917,16 +917,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_2_8"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_2_8"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -990,16 +990,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_1"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_1"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1048,16 +1048,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_2"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_2"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1106,16 +1106,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_3"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_3"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1164,16 +1164,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_4"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_4"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1222,16 +1222,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_5"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_5"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1280,16 +1280,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_6"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_6"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1338,16 +1338,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_7"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_7"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1396,16 +1396,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_8"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_8"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1454,16 +1454,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_9"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_9"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1512,16 +1512,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_10"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_10"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1570,16 +1570,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_11"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_11"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1628,16 +1628,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_12"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_12"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1686,16 +1686,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_13"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_13"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1744,16 +1744,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_14"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_14"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1802,16 +1802,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_15"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_15"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1860,16 +1860,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_16"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_16"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1918,16 +1918,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_17"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_17"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -1976,16 +1976,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_18"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_18"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2034,16 +2034,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_19"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_19"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2092,16 +2092,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_20"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_20"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2150,16 +2150,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_21"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_21"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2208,16 +2208,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_22"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_22"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2266,16 +2266,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_23"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_23"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2324,16 +2324,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_24"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_24"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2382,16 +2382,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_25"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_25"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2440,16 +2440,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_26"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_26"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2498,16 +2498,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_27"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_27"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2556,16 +2556,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_28"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_28"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2614,16 +2614,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_29"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_29"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2672,16 +2672,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_30"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_30"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2730,16 +2730,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_31"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_31"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2788,16 +2788,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_32"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_32"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2846,16 +2846,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_33"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_33"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2904,16 +2904,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_34"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_34"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -2962,16 +2962,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_35"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_35"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3020,16 +3020,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_36"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_36"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3078,16 +3078,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_37"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_37"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3136,16 +3136,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_38"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_38"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3194,16 +3194,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_39"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_39"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3252,16 +3252,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_40"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_40"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3310,16 +3310,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_41"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_41"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3368,16 +3368,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_42"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_42"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
@@ -3426,16 +3426,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/name_card_data_cookery_3_43"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
                                 android:textSize="20sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_card_data_cookery_3_43"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                         </LinearLayout>
 
