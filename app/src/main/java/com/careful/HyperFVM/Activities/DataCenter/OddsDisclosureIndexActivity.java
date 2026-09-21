@@ -19,6 +19,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -53,6 +54,14 @@ public class OddsDisclosureIndexActivity extends BaseActivity {
         initDecoration();
 
         // 初始化卡片点击事件
+        findViewById(R.id.tips_odds_index_1_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
+                this,
+                null,
+                0,
+                "4399美食大战老鼠",
+                "概率公示说明",
+                "https://my.4399.com/forums/thread-63198880"));
+
         OddsDisclosureHelper.loadIndexItem(this, findViewById(R.id.odds_disclosure_index_item_container));
     }
 

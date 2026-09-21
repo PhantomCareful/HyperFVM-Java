@@ -84,6 +84,7 @@ public class OddsDisclosureHelper {
                 container.setOnClickListener(v -> {
                     Intent intent = new Intent(context, OddsDisclosureInfoActivity.class);
                     intent.putExtra("topBarTitle", indexItem.getTopBarName());
+                    intent.putExtra("description", indexItem.getDescription());
                     intent.putExtra("oddsDisclosureInfo", indexItem.getOddsArray());
                     context.startActivity(intent);
                 });

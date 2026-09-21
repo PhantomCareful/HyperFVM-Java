@@ -87,6 +87,10 @@ public class OddsDisclosureInfoActivity extends BaseActivity {
         topBar.setText(getIntent().getStringExtra("topBarTitle"));
         topBarBottom.setText(getIntent().getStringExtra("topBarTitle"));
 
+        // 说明
+        TextView description = findViewById(R.id.odds_disclosure_description);
+        description.setText(getIntent().getStringExtra("description"));
+
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
@@ -123,7 +127,9 @@ public class OddsDisclosureInfoActivity extends BaseActivity {
         // 添加模糊材质
         setupBlurEffect();
 
-        findViewById(R.id.tips_odds).setOnTouchListener((v, event) ->
+        findViewById(R.id.tips_odds_1).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.tips_odds_2).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 

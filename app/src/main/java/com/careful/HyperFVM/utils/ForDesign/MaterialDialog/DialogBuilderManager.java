@@ -1231,15 +1231,19 @@ public class DialogBuilderManager {
         Button buttonClose = dialogView.findViewById(R.id.button_close);
         Button buttonAction = dialogView.findViewById(R.id.button_action);
 
-        visit_image.setImageDrawable(image);
-        visit_image.setClipToOutline(true);
-        visit_image.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                float radius = DensityUtil.dpToPx(context, imageRadius);
-                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radius);
-            }
-        });
+        if (image != null) {
+            visit_image.setImageDrawable(image);
+            visit_image.setClipToOutline(true);
+            visit_image.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    float radius = DensityUtil.dpToPx(context, imageRadius);
+                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radius);
+                }
+            });
+        } else {
+            visit_image.setVisibility(View.GONE);
+        }
 
         visit_title.setText(title);
         if (subTitle.isEmpty()) {

@@ -19,5 +19,6 @@ public class CategoryArray {
      */
     public static CategoryItem[] array = {
             new CategoryItem(titleArray[0], IndexArray.array0),
+            new CategoryItem(titleArray[1], IndexArray.array1),
     };
 }
