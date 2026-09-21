@@ -54,6 +54,7 @@
                 <include layout="@layout/card_card_data_index"/>
                 <include layout="@layout/card_data_images_index"/>
                 <include layout="@layout/card_cookery_index"/>
+                <include layout="@layout/card_odds_index"/>
 
                 <Space
                     android:layout_width="match_parent"

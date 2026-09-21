@@ -15,6 +15,8 @@
     <string name="description_data_center_data_images_index">目标是打造成最全面的数据图合集</string>
     <string name="title_data_center_cookery_index">食神谱合集</string>
     <string name="description_data_center_cookery_index">查询食神谱的详细信息</string>
+    <string name="title_data_center_odds_index">宝箱概率公示合集</string>
+    <string name="description_data_center_odds_index">展示部分宝箱的概率公示信息</string>
     <string name="card_data_search_title">防御卡数据查询</string>
     <string name="card_data_search_data_version">数据库版本：20260917</string>
     <string name="card_data_search_tips">👇点击卡片即可进入数据详情页👇</string>
@@ -304,6 +306,13 @@
     <string name="toast_data_image_viewer_save_failed">保存失败，请稍后重试</string>
     <string name="toast_data_image_viewer_share_failed">分享失败，请稍后重试</string>
     <string name="top_bar_data_center_cookery_index">食神谱合集</string>
+    <string name="top_bar_data_center_odds_index">宝箱概率公示合集</string>
+    <string name="tips_odds_index_title_1">说明</string>
+    <string name="tips_odds_index_description_1">以下概率公示均获取自官方发布的帖子，部分冷门宝箱未收录，您可以点击本卡片可访问原帖查看完整内容。</string>
+    <string name="tips_odds_index_title_2">勘误预警</string>
+    <string name="tips_odds_index_description_2">本页面所有内容均为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。\n请不要在官方评论区展示本页面的任何内容，尤其是出现勘误的时候，谢谢您的配合。</string>
+    <string name="tips_odds_index_title_3">勘误预警</string>
+    <string name="tips_odds_index_description_3">本概率公示获取自官方发布的帖子。\n内容为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。</string>
     <string name="copyright_and_molu">数据来自：So陌路の\n数据为人工录入，若发现问题可向开发者反馈🫰\n\nHyperFVM\nMade By Phantom Careful 😈</string>
     <string name="copyright">HyperFVM\nMade By Phantom Careful 😈</string>
     <!--防御卡全能数据库-->
@@ -312,7 +321,6 @@
     <string name="title_card_data_corresponding_info">相关卡片</string>
     <string name="title_card_data_corresponding_info_demo">可用于金卡合成</string>
     <string name="title_card_data_decompose_and_get_info_golden">分解&amp;兑换：神谕之石</string>
-    <!--工具箱-->
     <!--仪表盘-->
     <string name="text_dashboard_last_day_of_month">月末了，请注意清空积分和金券</string>
     <string name="title_dashboard_meishi_wechat">温馨礼包</string>
