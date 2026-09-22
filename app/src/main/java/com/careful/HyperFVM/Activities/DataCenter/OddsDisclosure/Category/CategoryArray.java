@@ -7,6 +7,7 @@ public class CategoryArray {
             "普通卡/纪念卡转职宝箱",
             "星座卡相关宝箱",
             "生肖卡相关宝箱",
+            "金卡相关宝箱",
             "武器相关宝箱",
             "日氪相关宝箱",
             "高终级古书箱",
@@ -21,5 +22,8 @@ public class CategoryArray {
             new CategoryItem(titleArray[0], IndexArray.array0),
             new CategoryItem(titleArray[1], IndexArray.array1),
             new CategoryItem(titleArray[2], IndexArray.array2),
+            new CategoryItem(titleArray[3], IndexArray.array3),
+            new CategoryItem(titleArray[4], IndexArray.array4),
+            new CategoryItem(titleArray[5], IndexArray.array5),
     };
 }
