@@ -26,6 +26,8 @@
     <string name="title_card_data_base">基础</string>
     <string name="title_card_data_data">数值</string>
     <string name="title_card_data_other">属性</string>
+    <string name="title_card_data_see_detail">数据横屏展示</string>
+    <string name="description_card_data_see_detail">一屏看全</string>
     <string name="top_bar_card_data_auxiliary_list_1">平射增幅卡全阵容</string>
     <string name="top_bar_card_data_auxiliary_list_2">投手增幅卡全阵容</string>
     <string name="top_bar_card_data_auxiliary_list_3">莓果点心</string>

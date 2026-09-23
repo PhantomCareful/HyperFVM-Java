@@ -171,8 +171,32 @@ public class CardDataDataFragment extends Fragment {
                 setTextToView(R.id.skill_7, CardDataHelper.getStringFromCursor(cursor, "skill_7"));
                 setTextToView(R.id.skill_8, CardDataHelper.getStringFromCursor(cursor, "skill_8"));
 
+                setTextToView(R.id.title_skill_count_1, CardDataHelper.getStringFromCursor(cursor, "skill_count_1") + "+" + CardDataHelper.getStringFromCursor(cursor, "skill_count_2") + "+" + CardDataHelper.getStringFromCursor(cursor, "skill_count_3"));
+                setTextToView(R.id.description_skill_count_1, "Lv0到Lv3总计" + (Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_1")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_2")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_3"))));
+                setTextToView(R.id.title_skill_count_2, CardDataHelper.getStringFromCursor(cursor, "skill_count_4") + "+" + CardDataHelper.getStringFromCursor(cursor, "skill_count_5"));
+                setTextToView(R.id.description_skill_count_2, "Lv3到Lv5总计" + (Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_4")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_5"))));
+                setTextToView(R.id.title_skill_count_3, CardDataHelper.getStringFromCursor(cursor, "skill_count_6") + "+" + CardDataHelper.getStringFromCursor(cursor, "skill_count_7"));
+                setTextToView(R.id.description_skill_count_3, "Lv5到Lv7总计" + (Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_6")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_7"))));
+                setTextToView(R.id.title_skill_count_4, CardDataHelper.getStringFromCursor(cursor, "skill_count_8"));
+                setTextToView(R.id.description_skill_count_4, "Lv7到Lv8总计" + (Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_8"))));
+                setTextToView(R.id.title_skill_count_total, "总计：" + (Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_1")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_2")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_3")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_4")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_5")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_6")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_7")) + Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "skill_count_8"))));
+
+                if (tableId == 1 || tableId == 2) {
+                    setImageToView(R.id.image_skill_count_1, CardDataHelper.getStringFromCursor(cursor, "skill_image_id_1"));
+                    setImageToView(R.id.image_skill_count_2, CardDataHelper.getStringFromCursor(cursor, "skill_image_id_2"));
+                    setImageToView(R.id.image_skill_count_3, CardDataHelper.getStringFromCursor(cursor, "skill_image_id_3"));
+                    setImageToView(R.id.image_skill_count_4, CardDataHelper.getStringFromCursor(cursor, "skill_image_id_4"));
+                } else {
+                    setImageToView(R.id.image_skill_count_1, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_1"));
+                    setImageToView(R.id.image_skill_count_2, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_2"));
+                    setImageToView(R.id.image_skill_count_3, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_3"));
+                    setImageToView(R.id.image_skill_count_4, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_4"));
+                }
+
                 // 显示对应的卡片
                 root.findViewById(R.id.Card_Skill).setVisibility(View.VISIBLE);
+                root.findViewById(R.id.skill_count).setVisibility(View.VISIBLE);
+                root.findViewById(R.id.Card_Skill_Count_Container).setVisibility(View.VISIBLE);
             }
 
             // 横屏查看，仅在手机上使用
@@ -258,176 +282,39 @@ public class CardDataDataFragment extends Fragment {
             if (tableId == 3 || tableId == 4) {
                 setTextToView(R.id.decompose_and_get, "分解&兑换：" + CardDataHelper.getStringFromCursor(cursor, "decompose_item"));
 
-                ImageView imageView = root.findViewById(R.id.decompose_image_id_card_1);
-                String imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1"));
-                int imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_card_2);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_card_3);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
+                setImageToView(R.id.decompose_image_id_card_1, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_card_1"));
+                setImageToView(R.id.decompose_image_id_card_2, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_card_2"));
+                setImageToView(R.id.decompose_image_id_card_3, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_card_3"));
 
                 if (tableId == 3) {
-                    imageView = root.findViewById(R.id.decompose_image_id_card_4);
-                    imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_card_4"));
-                    imageResId = getResources().getIdentifier(
-                            imageIdStr,
-                            "drawable",
-                            requireContext().getPackageName()
-                    );
-                    imageView.setImageResource(imageResId);
+                    setImageToView(R.id.decompose_image_id_card_4, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_card_4"));
                 } else {
                     root.findViewById(R.id.decompose_image_id_card_4).setVisibility(View.GONE);
                 }
 
-                imageView = root.findViewById(R.id.decompose_image_id_skill_1);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_1"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
+                setImageToView(R.id.decompose_image_id_skill_1, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_1"));
+                setImageToView(R.id.decompose_image_id_skill_2, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_2"));
+                setImageToView(R.id.decompose_image_id_skill_3, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_3"));
+                setImageToView(R.id.decompose_image_id_skill_4, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_skill_4"));
 
-                imageView = root.findViewById(R.id.decompose_image_id_skill_2);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_2"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_skill_3);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_3"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_skill_4);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_4"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_transfer_1_a);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_a"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_transfer_1_b);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_b"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
+                setImageToView(R.id.decompose_image_id_transfer_1_a, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_1_a"));
+                setImageToView(R.id.decompose_image_id_transfer_1_b, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_1_b"));
 
                 if (tableId == 3) {
-                    imageView = root.findViewById(R.id.decompose_image_id_transfer_1_c);
-                    imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_c"));
-                    imageResId = getResources().getIdentifier(
-                            imageIdStr,
-                            "drawable",
-                            requireContext().getPackageName()
-                    );
-                    imageView.setImageResource(imageResId);
+                    setImageToView(R.id.decompose_image_id_transfer_1_c, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_1_c"));
                 } else {
                     root.findViewById(R.id.decompose_image_id_transfer_1_c).setVisibility(View.GONE);
                 }
 
-                imageView = root.findViewById(R.id.decompose_image_id_transfer_2_a);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_transfer_2_b);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_b"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
-
-                imageView = root.findViewById(R.id.decompose_image_id_transfer_2_c);
-                imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_c"));
-                imageResId = getResources().getIdentifier(
-                        imageIdStr,
-                        "drawable",
-                        requireContext().getPackageName()
-                );
-                imageView.setImageResource(imageResId);
+                setImageToView(R.id.decompose_image_id_transfer_2_a, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_2_a"));
+                setImageToView(R.id.decompose_image_id_transfer_2_b, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_2_b"));
+                setImageToView(R.id.decompose_image_id_transfer_2_c, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_2_c"));
 
                 if (tableId == 3) {
-                    imageView = root.findViewById(R.id.decompose_image_id_transfer_3_a);
-                    imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_a"));
-                    imageResId = getResources().getIdentifier(
-                            imageIdStr,
-                            "drawable",
-                            requireContext().getPackageName()
-                    );
-                    imageView.setImageResource(imageResId);
-
-                    imageView = root.findViewById(R.id.decompose_image_id_transfer_3_b);
-                    imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_b"));
-                    imageResId = getResources().getIdentifier(
-                            imageIdStr,
-                            "drawable",
-                            requireContext().getPackageName()
-                    );
-                    imageView.setImageResource(imageResId);
-
-                    imageView = root.findViewById(R.id.decompose_image_id_transfer_3_c);
-                    imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_c"));
-                    imageResId = getResources().getIdentifier(
-                            imageIdStr,
-                            "drawable",
-                            requireContext().getPackageName()
-                    );
-                    imageView.setImageResource(imageResId);
-
-                    imageView = root.findViewById(R.id.decompose_image_id_compose);
-                    imageIdStr = cursor.getString(cursor.getColumnIndex("decompose_image_id_compose"));
-                    imageResId = getResources().getIdentifier(
-                            imageIdStr,
-                            "drawable",
-                            requireContext().getPackageName()
-                    );
-                    imageView.setImageResource(imageResId);
+                    setImageToView(R.id.decompose_image_id_transfer_3_a, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_3_a"));
+                    setImageToView(R.id.decompose_image_id_transfer_3_b, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_3_b"));
+                    setImageToView(R.id.decompose_image_id_transfer_3_c, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_transfer_3_c"));
+                    setImageToView(R.id.decompose_image_id_compose, CardDataHelper.getStringFromCursor(cursor, "decompose_image_id_compose"));
                 } else {
                     root.findViewById(R.id.decompose_image_id_transfer_3_a).setVisibility(View.GONE);
                     root.findViewById(R.id.decompose_image_id_transfer_3_b).setVisibility(View.GONE);
@@ -595,34 +482,14 @@ public class CardDataDataFragment extends Fragment {
                         Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c")),
                 };
 
-                imageView = root.findViewById(R.id.Card_Decompose_and_Get_Calculator_Image);
-                String decomposeItemName = cursor.getString(cursor.getColumnIndex("decompose_item"));
-                switch (decomposeItemName) {
-                    case "神谕之石" -> {
-                        imageResId = getResources().getIdentifier(
-                                "god_stone",
-                                "drawable",
-                                requireContext().getPackageName()
-                        );
-                        imageView.setImageResource(imageResId);
-                    }
-                    case "生肖宝珠" -> {
-                        imageResId = getResources().getIdentifier(
-                                "animal_pearl",
-                                "drawable",
-                                requireContext().getPackageName()
-                        );
-                        imageView.setImageResource(imageResId);
-                    }
-                    case "星座碎片" -> {
-                        imageResId = getResources().getIdentifier(
-                                "yellow_crystal",
-                                "drawable",
-                                requireContext().getPackageName()
-                        );
-                        imageView.setImageResource(imageResId);
-                    }
-                }
+                String decomposeItemName = CardDataHelper.getStringFromCursor(cursor, "decompose_item");
+                String calculatorImageName = switch (decomposeItemName) {
+                    case "神谕之石" -> "god_stone";
+                    case "生肖宝珠" -> "animal_pearl";
+                    case "星座碎片" -> "yellow_crystal";
+                    default -> null;
+                };
+                setImageToView(R.id.Card_Decompose_and_Get_Calculator_Image, calculatorImageName);
                 root.findViewById(R.id.Card_Decompose_and_Get_Calculator).setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(requireContext(), cardName, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
             } else {
                 root.findViewById(R.id.decompose_and_get).setVisibility(View.GONE);
@@ -644,6 +511,27 @@ public class CardDataDataFragment extends Fragment {
         TextView textView = root.findViewById(viewId);
         if (textView != null) {
             textView.setText(text);
+        }
+    }
+
+    /**
+     * 辅助方法：根据数据库记录的图片资源名把对应图片显示到控件，避免重复代码
+     * @param viewId 在哪个ImageView上展示图片
+     * @param imageResName 数据库中记录的图片资源名（drawable 名称），无有效资源时跳过
+     */
+    @SuppressLint("DiscouragedApi")
+    private void setImageToView(int viewId, String imageResName) {
+        ImageView imageView = root.findViewById(viewId);
+        if (imageView == null || imageResName == null || imageResName.isEmpty()) {
+            return;
+        }
+        int imageResId = getResources().getIdentifier(
+                imageResName,
+                "drawable",
+                requireContext().getPackageName()
+        );
+        if (imageResId != 0) {
+            imageView.setImageResource(imageResId);
         }
     }
 

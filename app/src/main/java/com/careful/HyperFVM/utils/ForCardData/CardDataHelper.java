@@ -389,34 +389,23 @@ public class CardDataHelper {
             LinearLayout correspondingCardContainer;
             if (isDynamicBackground) {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
-                        .inflate(R.layout.card_card_data_corresponding_card_effect, container, false);
+                        .inflate(R.layout.card_card_data_corresponding_card_self_auxiliary_effect, container, false);
             } else {
                 correspondingCardContainer = (LinearLayout) LayoutInflater.from(context)
-                        .inflate(R.layout.card_card_data_corresponding_card, container, false);
+                        .inflate(R.layout.card_card_data_corresponding_card_self_auxiliary, container, false);
             }
 
             // 2. 绑定当前布局的子控件（必须从当前container查找，避免复用错误）
             TextView correspondingCardName = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_name);
             TextView correspondingCardContent = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_content);
-            ImageView correspondingCardImage = correspondingCardContainer.findViewById(R.id.card_data_index_corresponding_card_image);
 
-            // 3. 设置标题，并隐藏描述和图片
+            // 3. 设置标题和描述
             if (Objects.equals(cardName, "能量喵")) {
                 correspondingCardName.setText("查看此卡片的平射增幅名单");
             } else {
                 correspondingCardName.setText("查看此卡片的增幅名单");
             }
             correspondingCardContent.setText("点击跳转");
-            imageResId = context.getResources().getIdentifier(
-                    "ic_chevron_right",
-                    "drawable",
-                    context.getPackageName()
-            );
-            correspondingCardImage.setImageResource(imageResId);
-            TypedValue typedValue = new TypedValue();
-            context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorOnSurface, typedValue, true);
-            int tintColor = typedValue.data;
-            correspondingCardImage.setColorFilter(tintColor);
 
             // 4. 设置点击事件（点击跳转到对应卡片详情）
             if (Objects.equals(cardName, "能量喵")) {
