@@ -1322,6 +1322,18 @@ public class DialogBuilderManager {
                                     "好的"
                             );
                         }
+
+                        @Override
+                        public void onCertificateError() {
+                            showDialog(
+                                    context,
+                                    "查询失败",
+                                    "🔒",
+                                    "服务器安全证书校验未通过（可能已过期），请稍后再试。",
+                                    true,
+                                    "好的"
+                            );
+                        }
                     });
                 }
             }

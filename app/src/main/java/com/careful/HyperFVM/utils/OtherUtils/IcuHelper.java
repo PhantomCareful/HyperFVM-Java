@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -12,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.security.cert.CertificateException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import javax.net.ssl.SSLHandshakeException;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -149,16 +153,44 @@ public class IcuHelper {
                     mainHandler.post(() -> callback.onSuccess(result));
                 }
             } catch (IOException e) {
-                mainHandler.post(() -> callback.onError("网络异常，请检查网络连接或稍后重试。"));
+                Log.e("IcuHelper", "IOException", e);
+                if (isCertificateError(e)) {
+                    mainHandler.post(callback::onCertificateError);
+                } else {
+                    mainHandler.post(() -> callback.onError("网络异常，请检查网络连接或稍后重试。"));
+                }
             } catch (JSONException e) {
+                Log.e("IcuHelper", "JSONException", e);
                 mainHandler.post(() -> callback.onError("解析数据失败，请稍后重试。"));
             }
         });
     }
 
+    /**
+     * 沿异常链判断是否为 SSL 证书校验失败（如服务器证书过期导致的 Chain validation failed）
+     * @param throwable 顶层异常
+     * @return true 表示证书错误
+     */
+    private static boolean isCertificateError(Throwable throwable) {
+        Throwable current = throwable;
+        while (current != null) {
+            if (current instanceof SSLHandshakeException || current instanceof CertificateException) {
+                return true;
+            }
+            current = current.getCause();
+        }
+        return false;
+    }
+
     public interface QueryCallback {
         void onSuccess(FraudResult result);
         void onError(String message);
+
+        /**
+         * 服务器 SSL 证书校验失败专属回调（如证书过期）
+         * 与普通网络错误区分，便于提示用户稍后再试而非检查网络
+         */
+        void onCertificateError();
     }
 
     /**
