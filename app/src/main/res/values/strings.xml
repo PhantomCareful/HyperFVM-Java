@@ -579,6 +579,8 @@
     <string name="dialog_url_thanks_list_app_4">https://github.com/davemorrissey/subsampling-scale-image-view</string>
     <string name="title_thanks_list_app_5">DeepSeek-Flash</string>
     <string name="description_thanks_list_app_5">辅助编写代码</string>
+    <string name="title_thanks_list_app_6">Xiaomi MiMo-V2.6-Flash</string>
+    <string name="description_thanks_list_app_6">辅助编写代码</string>
     <string name="title_some_necessary_things">一些必要的东西</string>
     <string name="title_using_instruction">使用说明</string>
     <string name="description_using_instruction">阅读以快速上手HyperFVM</string>
