@@ -21,6 +21,9 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OddsDisclosureHelper {
 
     /**
@@ -57,9 +60,12 @@ public class OddsDisclosureHelper {
     /**
      * 在宝箱概率公示合集目录页加载所有类别及其对应的内容
      * @param odds_disclosure_index_item_container 用于承载内容的容器
+     * @return 按添加顺序返回所有分节标题视图（与 CategoryArray.titleArray 一一对应），
+     *         供目录下拉菜单做跳转锚点（标题是动态添加的，没有固定 id 可查）
      */
-    public static void loadIndexItem(Context context, LinearLayout odds_disclosure_index_item_container) {
+    public static List<TextView> loadIndexItem(Context context, LinearLayout odds_disclosure_index_item_container) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
+        List<TextView> sectionTitles = new ArrayList<>();
 
         // 逐个添加每个类别，先添加标题，再添加每个标题对应的内容
         for (CategoryItem categoryItem : CategoryArray.array) {
@@ -68,6 +74,7 @@ public class OddsDisclosureHelper {
             title.setText(categoryItem.getItemTitle());
 
             odds_disclosure_index_item_container.addView(title);
+            sectionTitles.add(title);
 
             // 添加对应的内容
             IndexItem[] indexItemArray = categoryItem.getIndexArray();
@@ -98,5 +105,7 @@ public class OddsDisclosureHelper {
                     LinearLayout.LayoutParams.MATCH_PARENT, DensityUtil.dpToPx(context, 15)));
 
         }
+
+        return sectionTitles;
     }
 }
