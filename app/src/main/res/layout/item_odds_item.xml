@@ -21,7 +21,6 @@
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/card_data_index_13_2_2_transfer_1_a"
             android:scaleType="fitCenter" />
 
         <TextView

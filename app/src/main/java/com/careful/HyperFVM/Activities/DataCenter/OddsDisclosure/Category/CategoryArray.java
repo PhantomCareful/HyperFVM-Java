@@ -25,5 +25,7 @@ public class CategoryArray {
             new CategoryItem(titleArray[3], IndexArray.array3),
             new CategoryItem(titleArray[4], IndexArray.array4),
             new CategoryItem(titleArray[5], IndexArray.array5),
+            new CategoryItem(titleArray[6], IndexArray.array6),
+            new CategoryItem(titleArray[7], IndexArray.array7),
     };
 }
