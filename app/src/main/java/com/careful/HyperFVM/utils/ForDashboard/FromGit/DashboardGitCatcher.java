@@ -322,7 +322,7 @@ public class DashboardGitCatcher {
                 emoji = "✊";
                 contentStatus = "第" + duringCount + "天/持续" + length + "天";
                 contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate;
-                if (length < 29) {
+                if (length < 28) {
                     contentDetail = contentDetail + "\n\n⚠️请注意⚠️\n大赛结束时间要早于第4周周四";
                 }
                 contentDetail = contentDetail + "\n\n本次返场这些卡片";
