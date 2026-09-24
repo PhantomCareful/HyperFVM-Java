@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -103,8 +104,10 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         coinView = findViewById(R.id.coin);
         insuranceView = findViewById(R.id.insurance);
 
-        // 初始执行一次计算（初始全部未选中，输出 成功率：0.00%+0.00%）
+        // 初始执行一次计算（持久化恢复的选中项在此还原，未恢复过则全不选、输出 成功率：0.00%+0.00%）
         recalculate();
+        // 持久化恢复的选中项可能在横排屏幕外（构造时已从 SharedPreferences 恢复），滚动到可见位置
+        scrollSelectorsToSelected();
     }
 
     /**
@@ -409,6 +412,53 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 将各组当前选中项滚动到所在横排的可见区域（仅在进入界面的两条恢复路径各调用一次，
+     * 用户手动点击时不调用，避免刚点完就被滚动）：
+     * MAIN/SUB/四叶草/VIP 等长横排放在 HorizontalScrollView 内，
+     * 持久化或界面重建恢复的选中项可能位于屏幕外，这里定位让它显示出来；
+     * 未选中、或组件不在横向滚动容器内的组（如 SUB_N_CATEGORY 短排）自动跳过
+     */
+    private void scrollSelectorsToSelected() {
+        if (cardSelectors == null) return;
+        for (StrokeSingleSelector selector : cardSelectors) {
+            View selectedView = selector.getSelectedView();
+            if (selectedView == null) continue;
+            HorizontalScrollView scrollView = findAncestorScrollView(selectedView);
+            if (scrollView == null) continue;
+            // 此刻尚未布局、坐标无效，post 到首帧布局完成后按实际位置定位
+            scrollView.post(() -> scrollSelectedIntoView(scrollView, selectedView));
+        }
+    }
+
+    /** 从组件本身向上找包裹它的 HorizontalScrollView（没有则返回 null，视为不在横排内） */
+    private static HorizontalScrollView findAncestorScrollView(View view) {
+        for (View current = view; current != null; ) {
+            if (current instanceof HorizontalScrollView scrollView) return scrollView;
+            current = current.getParent() instanceof View parent ? parent : null;
+        }
+        return null;
+    }
+
+    /** 选中项已完整可见时不动作（保留滚动容器自身恢复的位置），否则滚动到水平居中并受内容边界钳制 */
+    private static void scrollSelectedIntoView(HorizontalScrollView scrollView, View selected) {
+        int[] scrollLoc = new int[2];
+        int[] selectedLoc = new int[2];
+        scrollView.getLocationInWindow(scrollLoc);
+        selected.getLocationInWindow(selectedLoc);
+        // 选中项左右边界相对滚动内容的横坐标（窗口坐标差 + 当前 scrollX）
+        int viewportLeft = scrollView.getScrollX();
+        int contentLeft = selectedLoc[0] - scrollLoc[0] + viewportLeft;
+        int contentRight = contentLeft + selected.getWidth();
+        int viewportRight = viewportLeft + scrollView.getWidth();
+        if (contentLeft >= viewportLeft && contentRight <= viewportRight) return;
+
+        int targetX = contentLeft - (scrollView.getWidth() - selected.getWidth()) / 2;
+        View content = scrollView.getChildAt(0);
+        int maxScrollX = content == null ? 0 : Math.max(0, content.getWidth() - scrollView.getWidth());
+        scrollView.scrollTo(Math.max(0, Math.min(targetX, maxScrollX)), 0);
+    }
+
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -423,6 +473,8 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             }
             // 恢复完成后按恢复出的选中项重新计算一次（restoreState 不触发变更监听）
             recalculate();
+            // 界面重建恢复的选中项同样可能在横排屏幕外，滚动到可见位置
+            scrollSelectorsToSelected();
         }
     }
 
