@@ -152,7 +152,10 @@
         </provider>
 
         <activity
-            android:name=".Activities.PrestigeCalculatorActivity"
+            android:name=".Activities.Tools.CardOddsCalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Tools.PrestigeCalculatorActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.MeishiWechatActivity"
@@ -161,7 +164,7 @@
             android:name=".Activities.UpdateLogHistory.UpdateLogHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.TodayLuckyActivity"
+            android:name=".Activities.Tools.TodayLuckyActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

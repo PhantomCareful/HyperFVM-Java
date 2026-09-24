@@ -1,4 +1,4 @@
-package com.careful.HyperFVM.Activities;
+package com.careful.HyperFVM.Activities.Tools;
 
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 

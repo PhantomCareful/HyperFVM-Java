@@ -184,6 +184,7 @@
                         android:clipToPadding="false">
 
                         <include layout="@layout/card_today_lucky"/>
+                        <include layout="@layout/card_card_odds_calculator"/>
 
                     </LinearLayout>
 

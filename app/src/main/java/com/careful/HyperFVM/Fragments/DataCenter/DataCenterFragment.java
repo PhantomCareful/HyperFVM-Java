@@ -18,8 +18,9 @@ import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.CookeryIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.OddsDisclosureIndexActivity;
-import com.careful.HyperFVM.Activities.PrestigeCalculatorActivity;
-import com.careful.HyperFVM.Activities.TodayLuckyActivity;
+import com.careful.HyperFVM.Activities.Tools.CardOddsCalculatorActivity;
+import com.careful.HyperFVM.Activities.Tools.PrestigeCalculatorActivity;
+import com.careful.HyperFVM.Activities.Tools.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -155,6 +156,12 @@ public class DataCenterFragment extends Fragment {
         // 威望计算器
         root.findViewById(R.id.card_prestige_calculator_container).setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), PrestigeCalculatorActivity.class);
+            startActivity(intent);
+        });
+
+        // 威望计算器
+        root.findViewById(R.id.card_card_odds_calculator_container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), CardOddsCalculatorActivity.class);
             startActivity(intent);
         });
 

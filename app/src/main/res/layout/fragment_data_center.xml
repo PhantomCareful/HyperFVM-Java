@@ -105,6 +105,7 @@
 
                 <include layout="@layout/card_today_lucky"/>
                 <include layout="@layout/card_prestige_calculator"/>
+                <include layout="@layout/card_card_odds_calculator"/>
 
                 <Space
                     android:layout_width="match_parent"

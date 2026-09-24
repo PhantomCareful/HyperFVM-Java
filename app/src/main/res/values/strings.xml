@@ -461,6 +461,19 @@
     <string name="tips_prestige_calculator_10000">威望币10000的数量</string>
     <string name="tips_prestige_calculator_month_card_gift">月卡礼包的数量</string>
     <string name="tips_prestige_calculator_luxury_welfare_gift">豪华福利礼包的数量</string>
+    <string name="title_data_center_card_odds_calculator">强卡成功率计算器</string>
+    <string name="description_data_center_card_odds_calculator">可以快捷计算不同星级组合的强卡成功率，不能模拟上卡哦</string>
+    <string name="top_bar_data_center_card_odds_calculator">强卡成功率计算器</string>
+    <string name="title_card_odds_calculator_choose_main_card">选择主卡</string>
+    <string name="title_card_odds_calculator_choose_sub_card_1">选择副卡1</string>
+    <string name="title_card_odds_calculator_choose_sub_card_2">选择副卡2</string>
+    <string name="title_card_odds_calculator_choose_sub_card_3">选择副卡3</string>
+    <string name="title_card_odds_calculator_choose_four_leaf_clover">选择四叶草</string>
+    <string name="title_card_odds_calculator_choose_vip">选择VIP等级</string>
+    <string name="title_card_odds_calculator_choose_consortia">选择公会合成屋等级</string>
+    <string name="title_card_odds_calculator_category_0">差卡</string>
+    <string name="title_card_odds_calculator_category_1">中卡</string>
+    <string name="title_card_odds_calculator_category_2">好卡</string>
     <!--设置-->
     <string name="top_bar_settings">设置</string>
     <string name="title_settings_permission">授权检查</string>
