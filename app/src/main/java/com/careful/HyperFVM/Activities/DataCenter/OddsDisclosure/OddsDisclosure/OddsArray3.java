@@ -124,16 +124,16 @@ public class OddsArray3 {
     };
 
     /**
-     * 祝融幸运大宝箱
+     * 101幸运大宝箱
      */
     public static OddsItem[] array5 = {
-            new OddsItem("大地女神盖亚进化凭证", 1, R.drawable.card_data_index_2_3_3_compose, true, 0.00001),
-            new OddsItem("大地女神(三转凭证A)", 1, R.drawable.card_data_index_2_3_3_transfer_1_a, true, 0.00001),
-            new OddsItem("大地女神(三转凭证B)", 1, R.drawable.card_data_index_2_3_3_transfer_1_b, true, 0.00001),
-            new OddsItem("大地女神(三转凭证C)", 1, R.drawable.card_data_index_2_3_3_transfer_1_b, true, 0.00001),
-            new OddsItem("大地女神(四转凭证A)", 1, R.drawable.card_data_index_2_3_3_transfer_2_a, true, 0.00001),
-            new OddsItem("大地女神(四转凭证B)", 1, R.drawable.card_data_index_2_3_3_transfer_2_b, true, 0.00001),
-            new OddsItem("大地女神(四转凭证C)", 1, R.drawable.card_data_index_2_3_3_transfer_2_c, true, 0.00001),
+            new OddsItem("大地女神盖亚进化凭证", 1, R.drawable.card_data_index_12_1_3_compose, true, 0.00001),
+            new OddsItem("大地女神(三转凭证A)", 1, R.drawable.card_data_index_12_1_3_transfer_1_a, true, 0.00001),
+            new OddsItem("大地女神(三转凭证B)", 1, R.drawable.card_data_index_12_1_3_transfer_1_b, true, 0.00001),
+            new OddsItem("大地女神(三转凭证C)", 1, R.drawable.card_data_index_12_1_3_transfer_1_b, true, 0.00001),
+            new OddsItem("大地女神(四转凭证A)", 1, R.drawable.card_data_index_12_1_3_transfer_2_a, true, 0.00001),
+            new OddsItem("大地女神(四转凭证B)", 1, R.drawable.card_data_index_12_1_3_transfer_2_b, true, 0.00001),
+            new OddsItem("大地女神(四转凭证C)", 1, R.drawable.card_data_index_12_1_3_transfer_2_c, true, 0.00001),
             new OddsItem("月神狄安娜进化凭证", 1, R.drawable.card_data_index_9_1_4_compose, false, 0.00001),
             new OddsItem("曙光女神盖亚进化凭证", 1, R.drawable.card_data_index_4_1_10_compose, false, 0.00001),
             new OddsItem("水神忒提丝进化凭证", 1, R.drawable.card_data_index_6_1_5_compose, false, 0.00001),
