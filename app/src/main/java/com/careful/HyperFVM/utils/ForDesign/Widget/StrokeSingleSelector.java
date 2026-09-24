@@ -14,6 +14,7 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
  * 再次点击已选中组件可取消选中，本组可处于无任何选中状态（下标 -1）。
  * <p>
  * 每个卡片组独立 new 一个实例，选中下标统一通过 {@link #getSelected()} 查询，
+ * 选中项的组件视图通过 {@link #getSelectedView()} 获取（供调用方同步选中图片等），
  * 并通过 saveState/restoreState 随界面重建（深浅色切换等）保存恢复，
  * 调用方无需再为某一组单独写查询方法。
  * <p>
@@ -38,6 +39,8 @@ public class StrokeSingleSelector {
     private final String stateKey;
     // 本组各卡片（按传入 id 顺序，下标即选中下标；id 解析不到的槽位为 null）
     private final StrokeCardView[] cards;
+    // 本组各组件本身（按传入 id 顺序，下标即选中下标；供调用方读取选中项的内容视图）
+    private final View[] views;
     // 描边参数（像素）与颜色
     private final float strokeWidthPx;
     private final float strokeGapPx;
@@ -69,8 +72,11 @@ public class StrokeSingleSelector {
         this.strokeGapPx = DensityUtil.dpToPx(activity, STROKE_GAP_DP);
 
         this.cards = new StrokeCardView[viewIds.length];
+        this.views = new View[viewIds.length];
         for (int i = 0; i < viewIds.length; i++) {
-            StrokeCardView card = resolveCard(activity.findViewById(viewIds[i]));
+            View view = activity.findViewById(viewIds[i]);
+            views[i] = view;
+            StrokeCardView card = resolveCard(view);
             if (card == null) continue;
             cards[i] = card;
             final int index = i;
@@ -103,6 +109,12 @@ public class StrokeSingleSelector {
     /** 当前选中的下标（-1 表示当前无选中，初始即为此状态）；本类即各组选中状态的统一查询入口 */
     public int getSelected() {
         return selected;
+    }
+
+    /** 当前选中项的组件视图（未选中、下标越界或 id 解析不到时返回 null），供调用方读取选中项内容 */
+    public View getSelectedView() {
+        if (selected < 0 || selected >= views.length) return null;
+        return views[selected];
     }
 
     /** 注册选中变更监听：本组每次选中/取消选中（{@link #select(int)}）后回调一次 */

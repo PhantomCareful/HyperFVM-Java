@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -60,6 +61,17 @@ public class CardOddsCalculatorActivity extends BaseActivity {
     // 成功率结果展示组件
     private TextView totalView;
 
+    // 选中组件的图片展示位：MAIN/SUB_1/SUB_2/SUB_3/FOUR_LEAF_CLOVER 选中项图片分别同步到这 5 个 ImageView
+    private ImageView displayStarMain;
+    private ImageView displayStarSub1;
+    private ImageView displayStarSub2;
+    private ImageView displayStarSub3;
+    private ImageView displayFourLeafClover;
+
+    // MAIN 选中项对应的金币/保险金文案展示位
+    private TextView coinView;
+    private TextView insuranceView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 设置主题（必须在super.onCreate前调用才有效）
@@ -80,7 +92,16 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         setupCardSelectors();
 
         // 成功率结果展示组件
-        totalView = findViewById(R.id.total);
+        totalView = findViewById(R.id.total_top);
+
+        // 选中组件图片展示位与金币/保险金文案展示位
+        displayStarMain = findViewById(R.id.display_star_main);
+        displayStarSub1 = findViewById(R.id.display_star_sub_1);
+        displayStarSub2 = findViewById(R.id.display_star_sub_2);
+        displayStarSub3 = findViewById(R.id.display_star_sub_3);
+        displayFourLeafClover = findViewById(R.id.display_four_leaf_clover);
+        coinView = findViewById(R.id.coin);
+        insuranceView = findViewById(R.id.insurance);
 
         // 初始执行一次计算（初始全部未选中，输出 成功率：0.00%+0.00%）
         recalculate();
@@ -152,7 +173,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
      * 取出 SUB_1/2/3 三路数据（任一依赖未选中则该路不取数），按第 5 步规则合并为结果1
      * （超过 100% 时直接取 100%），再乘 FOUR_LEAF_CLOVER 对应倍率（未选为 1.0）
      * 并再次钳制到 100%，最后叠加 VIP 与 Consortia 加成得到结果2，
-     * 输出 成功率：结果1%+结果2%
+     * 输出 结果1%+结果2%=总和%
      */
     private void recalculate() {
         if (cardSelectors == null || totalView == null) return;
@@ -200,9 +221,68 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         }
         double result2 = result1 * bonus;
 
-        // 需求 7：输出 成功率：结果1%+结果2%
-        totalView.setText(String.format(Locale.CHINA, "成功率：%s%%+%s%%",
-                formatPercent(result1), formatPercent(result2)));
+        // 需求 7：输出 成功率：A%+B%=C%，C 为 A、B 两个显示值之和（按显示值相加保证画面上 A+B 恒等于 C）
+        String percentA = formatPercent(result1);
+        String percentB = formatPercent(result2);
+        String percentC = new BigDecimal(percentA).add(new BigDecimal(percentB)).toPlainString();
+        totalView.setText(String.format(Locale.CHINA, "%s%%+%s%%=%s%%",
+                percentA, percentB, percentC));
+
+        // 同步展示区：各组选中项图片 + MAIN 对应的金币/保险金文案（覆盖初始/点击/恢复三处触发点）
+        refreshDisplay();
+    }
+
+    /**
+     * 展示区刷新（每次重算末尾统一调用）：
+     * 1. 将 MAIN/SUB_1/SUB_2/SUB_3/FOUR_LEAF_CLOVER 各组当前选中项的图片
+     *    分别同步到对应 display ImageView，未选中时显示 card_data_x；
+     * 2. 按 MAIN 选中下标取 Coin/Insurance 对应数据写入 coin/insurance，
+     *    未选中（或下标越界）时不显示任何内容
+     */
+    private void refreshDisplay() {
+        // 各组在 cardSelectors 中的下标：MAIN=0、SUB_1=1、SUB_2=3、SUB_3=5、FOUR_LEAF_CLOVER=7
+        updateDisplayImage(displayStarMain, cardSelectors[0]);
+        updateDisplayImage(displayStarSub1, cardSelectors[1]);
+        updateDisplayImage(displayStarSub2, cardSelectors[3]);
+        updateDisplayImage(displayStarSub3, cardSelectors[5]);
+        updateDisplayImage(displayFourLeafClover, cardSelectors[7]);
+        updateCoinInsurance();
+    }
+
+    /**
+     * 将本组选中项的图片同步到展示位：
+     * 未选中（或组件缺失）显示 card_data_x；
+     * 选中项是 ImageView 时共享其 drawable（同一资源两个视图共用实例）；
+     * 选中项是第 0 项的文本卡（"0"，本身无图片）时取展示位默认的 star_image_0
+     */
+    private void updateDisplayImage(ImageView display, StrokeSingleSelector selector) {
+        if (display == null || selector == null) return;
+        View selectedView = selector.getSelectedView();
+        if (selectedView == null) {
+            display.setImageResource(R.drawable.card_data_x);
+        } else if (selectedView instanceof ImageView imageView && imageView.getDrawable() != null) {
+            display.setImageDrawable(imageView.getDrawable());
+        } else {
+            display.setImageResource(R.drawable.star_image_0);
+        }
+    }
+
+    /**
+     * 按 MAIN 选中下标取 Coin/Insurance 对应位置数据写入两个文案位，
+     * 格式为 "需金币：XXX" / "保险金：XXX"；未选中或下标越界时清空（什么都不显示）
+     */
+    @SuppressLint("SetTextI18n")
+    private void updateCoinInsurance() {
+        if (coinView == null || insuranceView == null) return;
+        int mainSelected = cardSelectors[0].getSelected();
+        if (mainSelected >= 0 && mainSelected < CardOddsData.Coin.length
+                && mainSelected < CardOddsData.Insurance.length) {
+            coinView.setText("需金币：" + CardOddsData.Coin[mainSelected]);
+            insuranceView.setText("保险金：" + CardOddsData.Insurance[mainSelected]);
+        } else {
+            coinView.setText("");
+            insuranceView.setText("");
+        }
     }
 
     /**
@@ -281,12 +361,12 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             floatButtonBack.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
-        LinearLayout coContributorTeamContainer = findViewById(R.id.CoContributorTeam_Container);
-        InsetsUtil.setMarginHorizontal(this, coContributorTeamContainer, layout_marginHorizontal -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) coContributorTeamContainer.getLayoutParams();
+        LinearLayout cardOddsCalculatorContainer = findViewById(R.id.CardOddsCalculator_Container);
+        InsetsUtil.setMarginHorizontal(this, cardOddsCalculatorContainer, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) cardOddsCalculatorContainer.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
-            coContributorTeamContainer.setLayoutParams(params);
+            cardOddsCalculatorContainer.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;

@@ -75,4 +75,14 @@ public class CardOddsData {
     public static final double[] Consortia = {
             0.01, 0.03, 0.05, 0.08, 0.12, 0.16
     };
+
+    // 需金币
+    public static final int[] Coin = {
+            298, 298, 298, 298, 298, 398, 398, 698, 698, 1298, 3298, 6298, 12298, 24298, 48298, 96598
+    };
+
+    // 保险金
+    public static final int[] Insurance = {
+            0, 2, 5, 10, 25, 50, 200, 400, 1200, 5000, 15000, 25000, 35000, 45000, 55000, 75000
+    };
 }
