@@ -118,9 +118,6 @@ dependencies {
     //CSV解析库
     implementation(libs.opencsv)
 
-    //后台任务需要用的
-    implementation(libs.androidx.work.runtime)
-
     //支持显示MarkDown笔记
     implementation(libs.core)
     implementation(libs.ext.tables)
