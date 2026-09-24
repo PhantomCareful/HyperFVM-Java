@@ -37,13 +37,14 @@ public class IndexArray {
     };
 
     public static final IndexItem[] array2 = {
-            new IndexItem("猪年卡片随机宝箱", R.drawable.pig_box, "猪年卡片随机宝箱", "道具均绑定。", OddsArray2.array0),
+            new IndexItem("猪年卡片随机宝箱", R.drawable.box_pig, "猪年卡片随机宝箱", "道具均绑定。", OddsArray2.array0),
             new IndexItem("璀璨花火宝箱", R.drawable.lucky_box_5_1_10_ultra, "璀璨花火宝箱", "道具均绑定。", OddsArray2.array1),
             new IndexItem("神奇百变宝箱", R.drawable.lucky_box_14_1_6_ultra, "神奇百变宝箱", "道具均绑定。", OddsArray2.array2),
             new IndexItem("赤幡傀儡宝箱", R.drawable.lucky_box_4_3_2_ultra, "赤幡傀儡宝箱", "道具均绑定。", OddsArray2.array3),
             new IndexItem("仙笛灵韵宝箱", R.drawable.lucky_box_9_5_7, "仙笛灵韵宝箱", "道具均绑定。", OddsArray2.array4),
             new IndexItem("幻幻鸡幸运大宝箱", R.drawable.lucky_box_14_1_5, "幻幻鸡幸运大宝箱", "道具均绑定。", OddsArray2.array5),
             new IndexItem("花火龙幸运大宝箱", R.drawable.lucky_box_5_1_10, "花火龙幸运大宝箱", "道具均绑定。", OddsArray2.array6),
+            new IndexItem("绝品龙马宝箱", R.drawable.lucky_box_horse, "绝品龙马宝箱", "道具均绑定。", OddsArray2.array7),
     };
 
     public static final IndexItem[] array3 = {
@@ -52,6 +53,7 @@ public class IndexArray {
             new IndexItem("金卡四转套餐宝箱", R.drawable.lucky_box_golden_card_transfer_4, "金卡四转套餐宝箱", "道具均绑定。", OddsArray3.array2),
             new IndexItem("宙斯幸运大宝箱", R.drawable.lucky_box_9_2_4, "宙斯幸运大宝箱", "宙斯相关道具不绑定，其他道具均绑定。", OddsArray3.array3),
             new IndexItem("祝融幸运大宝箱", R.drawable.bag_golden_card, "祝融幸运大宝箱", "道具均绑定。", OddsArray3.array4),
+            new IndexItem("101幸运大宝箱", R.drawable.bag_golden_card, "101幸运大宝箱", "道具均绑定。", OddsArray3.array5),
     };
 
     public static final IndexItem[] array4 = {
@@ -59,6 +61,7 @@ public class IndexArray {
             new IndexItem("神器幸运宝箱", R.drawable.lucky_box_weapon_2, "神器幸运宝箱", "此宝箱多见于塔罗寻宝活动的2500积分奖励。\n官方给出的概率公示为“纯随机，概率均等”。为方便起见，本页面将每个道具的获取概率显示为总概率除以道具数量，结果经过四舍五入处理。\n武器不绑定，其他道具均绑定。", OddsArray4.array1),
             new IndexItem("荆棘玫瑰宝箱", R.drawable.lucky_box_weapon_1, "荆棘玫瑰宝箱", "此宝箱多见于塔罗寻宝活动的3000积分奖励。\n官方仅提供了荆棘玫瑰宝箱的概率公示，但可以据此推测“星之神杖宝箱”和“神灯宝箱”拥有同样的概率分布。\n武器不绑定，其他道具均绑定。", OddsArray4.array2),
             new IndexItem("高级强化宝箱", R.drawable.lucky_box_crystal_pro, "高级强化宝箱", "道具均绑定。", OddsArray4.array3),
+            new IndexItem("永久神器随机宝箱", R.drawable.lucky_box_weapon_4, "永久神器随机宝箱", "道具不绑定。", OddsArray4.array4),
     };
 
     public static final IndexItem[] array5 = {

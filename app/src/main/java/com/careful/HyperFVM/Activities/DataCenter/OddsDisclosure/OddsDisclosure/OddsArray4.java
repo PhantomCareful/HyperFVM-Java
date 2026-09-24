@@ -68,4 +68,13 @@ public class OddsArray4 {
             new OddsItem("高级强化水晶", 300, R.drawable.item_crystal_pro, false, 0.010),
             new OddsItem("高级强化水晶", 500, R.drawable.item_crystal_pro, false, 0.005),
     };
+
+    /**
+     * 永久神器随机宝箱
+     */
+    public static OddsItem[] array4 = {
+            new OddsItem("海神镖枪(永久)", 1, R.drawable.weapon_index_1_21, false, 0.35),
+            new OddsItem("死神镰刀(永久)", 1, R.drawable.weapon_index_3_11, false, 0.35),
+            new OddsItem("诸神之盾(永久)", 1, R.drawable.weapon_index_2_10, false, 0.30),
+    };
 }

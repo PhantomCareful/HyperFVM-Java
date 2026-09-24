@@ -118,4 +118,24 @@ public class OddsArray2 {
             new OddsItem("花火龙一转套餐", 1, R.drawable.bag, true, 0.00020),
             new OddsItem("花火龙二转套餐", 1, R.drawable.bag, true, 0.00001),
     };
+
+    /**
+     * 绝品龙马宝箱
+     */
+    public static OddsItem[] array7 = {
+            new OddsItem("百变蛇(0星，30天)", 1, R.drawable.card_data_index_14_1_6_0, true, 0.07),
+            new OddsItem("傀儡马(0星，30天)", 1, R.drawable.card_data_index_14_3_8_0, true, 0.07),
+            new OddsItem("战旗马(0星，30天)", 1, R.drawable.card_data_index_4_3_2_0, true, 0.07),
+            new OddsItem("花火龙(0星，30天)", 1, R.drawable.card_data_index_5_1_10_0, false, 0.07),
+            new OddsItem("幻影蛇(0星，30天)", 1, R.drawable.card_data_index_2_1_4_0, false, 0.07),
+            new OddsItem("双刃蛇(0星，30天)", 1, R.drawable.card_data_index_11_3_3_0, false, 0.07),
+            new OddsItem("魔杖蛇(0星，30天)", 1, R.drawable.card_data_index_4_2_10_0, false, 0.07),
+            new OddsItem("金乌马(0星，30天)", 1, R.drawable.card_data_index_2_1_6_0, false, 0.08),
+            new OddsItem("星穹马(0星，30天)", 1, R.drawable.card_data_index_14_1_12_0, false, 0.07),
+            new OddsItem("金刚马(0星，30天)", 1, R.drawable.card_data_index_9_4_1_0, false, 0.08),
+            new OddsItem("御风马(0星，30天)", 1, R.drawable.card_data_index_11_3_5_0, false, 0.07),
+            new OddsItem("霹雳马(0星，30天)", 1, R.drawable.card_data_index_9_5_4_0, false, 0.07),
+            new OddsItem("结界马(0星，30天)", 1, R.drawable.card_data_index_10_2_3_0, false, 0.07),
+            new OddsItem("焚寂马(0星，30天)", 1, R.drawable.card_data_index_11_2_2_0, false, 0.07),
+    };
 }

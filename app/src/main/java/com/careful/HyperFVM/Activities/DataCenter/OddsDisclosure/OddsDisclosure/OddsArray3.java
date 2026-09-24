@@ -122,4 +122,33 @@ public class OddsArray3 {
             new OddsItem("随机九星卡牌包", 1, R.drawable.item_card_pack_9, false, 0.30000),
             new OddsItem("10星卡片随机大宝箱", 1, R.drawable.item_card_pack_10, false, 0.02000),
     };
+
+    /**
+     * 祝融幸运大宝箱
+     */
+    public static OddsItem[] array5 = {
+            new OddsItem("大地女神盖亚进化凭证", 1, R.drawable.card_data_index_2_3_3_compose, true, 0.00001),
+            new OddsItem("大地女神(三转凭证A)", 1, R.drawable.card_data_index_2_3_3_transfer_1_a, true, 0.00001),
+            new OddsItem("大地女神(三转凭证B)", 1, R.drawable.card_data_index_2_3_3_transfer_1_b, true, 0.00001),
+            new OddsItem("大地女神(三转凭证C)", 1, R.drawable.card_data_index_2_3_3_transfer_1_b, true, 0.00001),
+            new OddsItem("大地女神(四转凭证A)", 1, R.drawable.card_data_index_2_3_3_transfer_2_a, true, 0.00001),
+            new OddsItem("大地女神(四转凭证B)", 1, R.drawable.card_data_index_2_3_3_transfer_2_b, true, 0.00001),
+            new OddsItem("大地女神(四转凭证C)", 1, R.drawable.card_data_index_2_3_3_transfer_2_c, true, 0.00001),
+            new OddsItem("月神狄安娜进化凭证", 1, R.drawable.card_data_index_9_1_4_compose, false, 0.00001),
+            new OddsItem("曙光女神盖亚进化凭证", 1, R.drawable.card_data_index_4_1_10_compose, false, 0.00001),
+            new OddsItem("水神忒提丝进化凭证", 1, R.drawable.card_data_index_6_1_5_compose, false, 0.00001),
+            new OddsItem("典伊神使(0星，30天)", 1, R.drawable.card_data_index_9_3_4_0, false, 0.00040),
+            new OddsItem("火箭猪(0星，30天)", 1, R.drawable.card_data_index_9_2_3_0, false, 0.00050),
+            new OddsItem("炙烤灯笼鱼(9星，30天)", 1, R.drawable.card_data_index_1_2_7_0, false, 0.15000),
+            new OddsItem("巧克力大炮(9星，30天)", 1, R.drawable.card_data_index_12_1_1_0, false, 0.15000),
+            new OddsItem("生煎锅(9星，30天)", 1, R.drawable.card_data_index_2_3_1_0, false, 0.10000),
+            new OddsItem("皇室香料", 20, R.drawable.item_spice_5, false, 0.07000),
+            new OddsItem("魔幻香料", 25, R.drawable.item_spice_6, false, 0.06000),
+            new OddsItem("精灵香料", 10, R.drawable.item_spice_7, false, 0.04900),
+            new OddsItem("5级四叶草", 3, R.drawable.item_four_leaf_clover_5, false, 0.05000),
+            new OddsItem("6级四叶草", 2, R.drawable.item_four_leaf_clover_6, false, 0.03000),
+            new OddsItem("超能四叶草", 1, R.drawable.item_four_leaf_clover_s, false, 0.02000),
+            new OddsItem("随机九星卡牌包", 1, R.drawable.item_card_pack_9, false, 0.30000),
+            new OddsItem("10星卡片随机大宝箱", 1, R.drawable.item_card_pack_10, false, 0.02000),
+    };
 }
