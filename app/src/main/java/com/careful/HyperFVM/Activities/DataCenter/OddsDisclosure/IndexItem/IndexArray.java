@@ -12,10 +12,10 @@ import com.careful.HyperFVM.R;
 
 public class IndexArray {
     public static final IndexItem[] array0 = {
-            new IndexItem("美味电鳗转职箱", R.drawable.transfer_box_13_2_2, "美味电鳗转职箱", "转职凭证是否绑定请根据箱子名称确定，其他道具均绑定。", OddsArray0.array0),
-            new IndexItem("防萤草灯笼转职箱", R.drawable.transfer_box_14_2_4, "防萤草灯笼转职箱", "转职凭证是否绑定请根据箱子名称确定，其他道具均绑定。", OddsArray0.array1),
-            new IndexItem("丸子厨师转职箱", R.drawable.transfer_box_10_3_2, "丸子厨师转职箱", "转职凭证是否绑定请根据箱子名称确定，其他道具均绑定。", OddsArray0.array2),
-            new IndexItem("12周年能量饮料转职箱", R.drawable.transfer_box_14_3_4, "12周年能量饮料转职箱", "转职凭证是否绑定请根据箱子名称确定，其他道具均绑定。", OddsArray0.array3),
+            new IndexItem("美味电鳗转职箱", R.drawable.transfer_box_13_2_2, "美味电鳗转职箱", "转职凭证不绑定，其他道具均绑定。", OddsArray0.array0),
+            new IndexItem("防萤草灯笼转职箱", R.drawable.transfer_box_14_2_4, "防萤草灯笼转职箱", "转职凭证不绑定，其他道具均绑定。", OddsArray0.array1),
+            new IndexItem("丸子厨师转职箱", R.drawable.transfer_box_10_3_2, "丸子厨师转职箱", "转职凭证不绑定，其他道具均绑定。", OddsArray0.array2),
+            new IndexItem("12周年能量饮料转职箱", R.drawable.transfer_box_14_3_4, "12周年能量饮料转职箱", "转职凭证不绑定，其他道具均绑定。", OddsArray0.array3),
             new IndexItem("面粉袋一转宝藏", R.drawable.transfer_box_13_1_3, "面粉袋一转宝藏", "转职凭证不绑定，其他道具均绑定。", OddsArray0.array4),
             new IndexItem("面粉袋二转宝藏", R.drawable.transfer_box_13_1_3, "面粉袋二转宝藏", "转职凭证不绑定，其他道具均绑定。", OddsArray0.array5),
             new IndexItem("酒瓶炸弹一转宝藏", R.drawable.transfer_box_12_2_2, "酒瓶炸弹一转宝藏", "转职凭证不绑定，其他道具均绑定。", OddsArray0.array6),
