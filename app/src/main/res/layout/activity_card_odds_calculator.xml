@@ -28,7 +28,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingTop="160dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <TextView
                     android:layout_width="match_parent"
