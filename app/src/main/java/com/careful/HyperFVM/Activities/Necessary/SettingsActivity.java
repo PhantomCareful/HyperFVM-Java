@@ -258,12 +258,31 @@ public class SettingsActivity extends BaseActivity {
         // 极端大字体下限制菜单宽度不超出屏幕
         contentWidth = Math.min(contentWidth, anchor.getRootView().getWidth());
 
-        // 锚点下方剩余空间不足时收缩菜单高度
-        int verticalOffset = (int) (4 * getResources().getDisplayMetrics().density);
+        // 展开方向与高度：优先向下全量展开；下方空间不足时向上翻转（负 offset，菜单底缘停在锚点上方）；
+        // 上下都放不下时取空间大的一侧并收缩高度（超出部分列表内滚动，至少保留两行）
+        int gap = (int) (4 * getResources().getDisplayMetrics().density);
         int[] location = new int[2];
         anchor.getLocationInWindow(location);
-        int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - verticalOffset;
-        int popupHeight = Math.min(itemHeight * entries.length, Math.max(spaceBelow, itemHeight * 2));
+        int fullHeight = itemHeight * entries.length;
+        int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - gap;
+        int spaceAbove = location[1] - gap;
+        int verticalOffset = gap;
+        int popupHeight;
+        if (spaceBelow >= fullHeight) {
+            // 下方足够：向下展开
+            popupHeight = fullHeight;
+        } else if (spaceAbove >= fullHeight) {
+            // 下方不够、上方足够：整体上移，菜单底缘停在锚点上方
+            popupHeight = fullHeight;
+            verticalOffset = -(anchor.getHeight() + fullHeight + gap);
+        } else if (spaceAbove > spaceBelow) {
+            // 上下都不够、上方空间更大：向上展开并收缩到可用高度
+            popupHeight = Math.max(spaceAbove, itemHeight * 2);
+            verticalOffset = -(anchor.getHeight() + popupHeight + gap);
+        } else {
+            // 上下都不够、下方空间更大：向下展开并收缩到可用高度
+            popupHeight = Math.max(spaceBelow, itemHeight * 2);
+        }
 
         // 横向弹出位置跟随手指按下的位置；最右不得超过屏幕右缘减页面边距，使菜单右缘与页面内容右缘对齐
         int horizontalOffset = 0;
