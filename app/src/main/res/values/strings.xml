@@ -489,8 +489,6 @@
     <string name="description_settings_option_themed_color">关闭动态取色后可自定义主题色</string>
     <string name="title_settings_option_dark_mode">深色模式</string>
     <string name="description_settings_option_dark_mode">自定义深/浅色主题</string>
-    <string name="title_settings_option_interface_style">界面风格</string>
-    <string name="description_settings_option_interface_style">自定义主题风格</string>
     <string name="title_settings_is_fixed_font_scale">跟随系统字体大小</string>
     <string name="description_settings_is_fixed_font_scale">App显示比例将和系统设置保持一致</string>
     <string name="title_settings_switch_font_scale">自定义显示比例</string>

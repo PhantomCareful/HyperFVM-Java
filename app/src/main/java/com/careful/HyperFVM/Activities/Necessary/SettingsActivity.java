@@ -59,15 +59,10 @@ public class SettingsActivity extends BaseActivity {
     private View themeSelectorContainer;
     private TextView themeCurrentSelection;
     private View darkModeSelectorContainer;
-    private View interfaceStyleSelectorContainer;
 
     public static final String CONTENT_DARK_MODE = "主题-深色主题";
     private String currentDarkMode;
     private TextView darkModeCurrentSelection;
-
-    public static final String CONTENT_INTERFACE_STYLE = "界面风格";
-    private String currentInterfaceStyle;
-    private TextView interfaceStyleCurrentSelection;
 
     public static final String CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE = "跟随系统字体大小";
     public static final String CONTENT_DIY_FONT_SCALE = "自定义字体大小";
@@ -192,8 +187,6 @@ public class SettingsActivity extends BaseActivity {
         themeSelectorContainer = findViewById(R.id.theme_selector_container);
         darkModeCurrentSelection = findViewById(R.id.dark_mode_current_selection);
         darkModeSelectorContainer = findViewById(R.id.dark_mode_selector_container);
-        interfaceStyleCurrentSelection = findViewById(R.id.interface_style_current_selection);
-        interfaceStyleSelectorContainer = findViewById(R.id.interface_style_selector_container);
 
         // 从数据库获取当前主题值
         currentTheme = dbHelper.getSettingStringValue(CONTENT_APP_THEME);
@@ -201,20 +194,14 @@ public class SettingsActivity extends BaseActivity {
         // 从数据库获取深色模式
         currentDarkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
         darkModeCurrentSelection.setText(currentDarkMode);
-        // 从数据库获取界面风格
-        currentInterfaceStyle = dbHelper.getSettingStringValue(CONTENT_INTERFACE_STYLE);
-        interfaceStyleCurrentSelection.setText(currentInterfaceStyle);
 
         // 记录触摸位置，使下拉菜单跟随手指横向弹出
         bindDropdownRowTouch(themeSelectorContainer);
         bindDropdownRowTouch(darkModeSelectorContainer);
-        bindDropdownRowTouch(interfaceStyleSelectorContainer);
         // 设置点击事件（动态取色开启时主题行不可点击）
         setThemeRowClickable(!dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR));
         // 设置深色模式点击事件
         darkModeSelectorContainer.setOnClickListener(v -> showDarkModeDropdown());
-        // 设置界面风格点击事件
-        interfaceStyleSelectorContainer.setOnClickListener(v -> showInterfaceStyleDropdown());
     }
 
     private void showThemeDropdown() {
@@ -225,12 +212,6 @@ public class SettingsActivity extends BaseActivity {
     private void showDarkModeDropdown() {
         showRowDropdown(darkModeSelectorContainer, R.array.dark_mode_entries, currentDarkMode, CONTENT_DARK_MODE,
                 darkModeCurrentSelection, selectedEntries -> currentDarkMode = selectedEntries);
-    }
-
-    private void showInterfaceStyleDropdown() {
-        showRowDropdown(interfaceStyleSelectorContainer, R.array.interface_style_entries, currentInterfaceStyle,
-                CONTENT_INTERFACE_STYLE, interfaceStyleCurrentSelection,
-                selectedEntries -> currentInterfaceStyle = selectedEntries);
     }
 
     /**
