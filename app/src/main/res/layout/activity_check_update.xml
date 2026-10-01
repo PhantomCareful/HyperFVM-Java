@@ -65,7 +65,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="?attr/colorOnSurfaceInverse"/>
+                    android:background="?attr/colorOnSurfaceVariant"/>
 
                 <TextView
                     android:id="@+id/app_log"
@@ -79,7 +79,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="?attr/colorOnSurfaceInverse"/>
+                    android:background="?attr/colorOnSurfaceVariant"/>
 
                 <TextView
                     android:id="@+id/app_update_note"
