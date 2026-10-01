@@ -2,23 +2,20 @@ package com.careful.HyperFVM.Activities.DataCenter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,17 +23,22 @@ import java.util.Map;
 /**
  * 防御卡目录页（CardDataIndexActivity）的列表适配器。
  * <p>
- * 将原先“单个巨型 ScrollView + 367 个静态卡片组件”的页面改为虚拟化列表：
- * - 47 个分节标题行（item_card_catalog_header）
- * - 47 个分节卡片组行（item_card_catalog_group：运行时组装圆角 CardView 分组容器，
- *   按数据表顺序 inflate 该分节全部单卡布局并绑定点击，视觉与原先
- *   card_card_data_index_X_Y.xml 的分组背景完全一致）
- * - 1 个页脚版权行（item_card_catalog_footer）
+ * 将“单个巨型 ScrollView + 367 个静态卡片组件”的页面改为虚拟化列表，按
+ * {@link CardDataLetterCatalogData} 的字母分节（0 / A-Z / #，完整拼音字典序）排布：
+ * <ul>
+ *   <li>分节标题行（item_card_catalog_header）：显示分节标签，顶部 15dp Space
+ *       提供章与章之间的间距（首个分节隐藏该 Space）；</li>
+ *   <li>单卡行（item_card_catalog_card）：每张卡独立一个圆角 CardView
+ *       （20dp 圆角 + ?attr/GeneralCardViewBackground，与原分组容器同款背景），
+ *       绑定时 inflate 该卡的单卡布局并挂点击跳转；</li>
+ *   <li>1 个页脚版权行（item_card_catalog_footer）。</li>
+ * </ul>
+ * 列表位置账目：[节0标题][节0卡×N] … [节K标题][节K卡×M][页脚]，
+ * 分节标题位置表在构造时一次算好，供快速滚动跳转查询。
  * <p>
  * 单卡布局文件（card_card_data_index_X_Y_Z.xml）被其他页面（如辅助卡列表页）复用，
- * 必须原样保留；分节容器文件已可由本类运行时组装替代（即原先的 47 个
- * card_card_data_index_X_Y.xml 已不再需要）。增删卡片只需改 CardDataCatalogData
- * 数据表与单卡布局文件，见数据表类注释。
+ * 必须原样保留。增删卡片只需改 CardDataCatalogData 数据表与单卡布局文件，
+ * 字母分节顺序由数据层自动推导，见数据表类与数据层类注释。
  */
 public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdapter.ViewHolder> {
 
@@ -44,47 +46,59 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
 
     /** 分节标题行 */
     public static final int TYPE_HEADER = 0;
-    /** 分节卡片组行 */
-    public static final int TYPE_GROUP = 1;
+    /** 单卡行（一张卡一个 CardView） */
+    public static final int TYPE_ITEM = 1;
     /** 页脚版权行 */
     public static final int TYPE_FOOTER = 2;
 
-    /** 分组容器圆角（与原分节文件 cardCornerRadius="20dp" 保持一致） */
-    private static final int GROUP_CORNER_RADIUS_DP = 20;
-
     private final Context context;
-    /** 47 个分节的标题文案（顺序与 CardDataCatalogData.SECTION_PREFIXES 一致） */
-    private final List<String> sectionTitles;
+    /** 字母分节（0 / A-Z / #，空桶已隐藏），顺序即显示顺序 */
+    private final List<CardDataLetterCatalogData.Section> sections;
+    /** 每个分节标题行在列表中的位置（升序，下标与 sections 一致） */
+    private final int[] headerPositions;
+    /** 列表总条目数（标题行 + 全部单卡行 + 页脚） */
+    private final int itemCount;
     /** 单卡布局缓存：布局名 -> 资源 id */
     private final Map<String, Integer> cellLayoutCache = new HashMap<>();
 
     private final LayoutInflater layoutInflater;
 
-    public CardDataIndexAdapter(Context context, List<String> sectionTitles) {
+    public CardDataIndexAdapter(Context context, List<CardDataLetterCatalogData.Section> sections) {
         this.context = context;
-        this.sectionTitles = sectionTitles;
+        this.sections = sections;
         this.layoutInflater = LayoutInflater.from(context);
+
+        headerPositions = new int[sections.size()];
+        int position = 0;
+        for (int i = 0; i < sections.size(); i++) {
+            headerPositions[i] = position;
+            position += 1 + sections.get(i).cards.size();
+        }
+        itemCount = position + 1; // 末位是页脚
     }
 
     /**
-     * 返回第 i 个分节标题在列表中的位置（供快速滚动使用）。
+     * 返回第 sectionIndex 个分节标题在列表中的位置（供快速滚动使用），越界返回 -1。
      */
     public int getHeaderPosition(int sectionIndex) {
-        return sectionIndex * 2;
+        if (sectionIndex < 0 || sectionIndex >= headerPositions.length) {
+            return -1;
+        }
+        return headerPositions[sectionIndex];
     }
 
     /**
-     * 返回第 i 个分节卡片组在列表中的位置。
+     * 分节数量（导航条与跳转的目标范围是 [0, sectionCount)）。
      */
-    public int getGroupPosition(int sectionIndex) {
-        return sectionIndex * 2 + 1;
+    public int getSectionCount() {
+        return sections.size();
     }
 
     /**
      * 返回页脚位置。
      */
     public int getFooterPosition() {
-        return getItemCount() - 1;
+        return itemCount - 1;
     }
 
     @NonNull
@@ -93,7 +107,7 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
         int layoutRes = switch (viewType) {
             case TYPE_HEADER -> R.layout.item_card_catalog_header;
             case TYPE_FOOTER -> R.layout.item_card_catalog_footer;
-            default -> R.layout.item_card_catalog_group;
+            default -> R.layout.item_card_catalog_card;
         };
         View itemView = layoutInflater.inflate(layoutRes, parent, false);
         return new ViewHolder(itemView, viewType);
@@ -102,71 +116,62 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (holder.viewType == TYPE_HEADER) {
-            bindHeader(holder, position / 2);
-        } else if (holder.viewType == TYPE_GROUP) {
-            bindGroup(holder, position / 2);
+            bindHeader(holder, position);
+        } else if (holder.viewType == TYPE_ITEM) {
+            bindCard(holder, position);
         }
     }
 
-    private void bindHeader(ViewHolder holder, int sectionIndex) {
-        if (sectionIndex < 0 || sectionIndex >= sectionTitles.size()) {
-            Log.w(TAG, "找不到分节标题 sectionIndex=" + sectionIndex);
+    private void bindHeader(ViewHolder holder, int position) {
+        int sectionIndex = Arrays.binarySearch(headerPositions, position);
+        if (sectionIndex < 0 || sectionIndex >= sections.size()) {
+            Log.w(TAG, "找不到分节标题 position=" + position);
             return;
         }
-        holder.headerTextView.setText(sectionTitles.get(sectionIndex));
+        holder.headerTextView.setText(sections.get(sectionIndex).label);
+        // 顶部 15dp Space = 章与章之间的间距：首个分节上方无"上一章"，不显示
+        holder.headerTopSpace.setVisibility(sectionIndex == 0 ? View.GONE : View.VISIBLE);
     }
 
     /**
-     * 绑定一个分节卡片组：分节变化时重新组装整组，否则直接复用（点击事件已在组装时挂好）。
+     * 绑定一张单卡：布局变化时重新 inflate（点击事件随 inflate 挂上），否则直接复用。
      */
-    private void bindGroup(ViewHolder holder, int sectionIndex) {
-        if (sectionIndex < 0 || sectionIndex >= CardDataCatalogData.SECTION_PREFIXES.length) {
-            Log.w(TAG, "找不到分节卡片组 sectionIndex=" + sectionIndex);
+    private void bindCard(ViewHolder holder, int position) {
+        CardDataLetterCatalogData.CardEntry entry = entryAt(position);
+        if (entry == null) {
+            Log.w(TAG, "找不到单卡条目 position=" + position);
             return;
         }
-        String prefix = CardDataCatalogData.SECTION_PREFIXES[sectionIndex];
-
-        View groupView = holder.groupContainer.getChildAt(0);
-        if (groupView == null || !prefix.equals(holder.lastInflatedPrefix)) {
-            holder.groupContainer.removeAllViews();
-            groupView = buildSectionCardGroup(sectionIndex);
-            holder.groupContainer.addView(groupView);
-            holder.lastInflatedPrefix = prefix;
+        String cellKey = entry.prefix + "_" + entry.row;
+        if (cellKey.equals(holder.lastInflatedCellKey)) {
+            return; // 复用视图对应同一张卡，点击事件仍有效
         }
+        holder.cardContainer.removeAllViews();
+        View cellView = layoutInflater.inflate(
+                resolveCellLayoutRes(entry.prefix, entry.row), holder.cardContainer, false);
+        // 每张卡片都有唯一对应的点击事件：跳转到该卡的详细数据页
+        cellView.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, entry.name));
+        holder.cardContainer.addView(cellView);
+        holder.lastInflatedCellKey = cellKey;
     }
 
-    /**
-     * 创建与原始分节容器同款外观的卡片组：圆角 CardView
-     * （?attr/GeneralCardViewBackground 背景 + 20dp 圆角）内竖向排列该分节全部单卡，
-     * 单卡数量与顺序以 CardDataCatalogData.SECTION_NAMES 为准，并给每张卡绑定唯一点击事件。
-     */
-    private View buildSectionCardGroup(int sectionIndex) {
-        // 分组容器：样式与原先 card_card_data_index_X_Y.xml 根 CardView 保持一致
-        CardView groupCard = new CardView(context);
-        groupCard.setLayoutParams(new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        groupCard.setRadius(TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, GROUP_CORNER_RADIUS_DP,
-                context.getResources().getDisplayMetrics()));
-        groupCard.setCardBackgroundColor(resolveGeneralCardViewBackgroundColor());
-
-        // 原分节文件内部为竖向 LinearLayout 依次 include 各单卡，这里等价实现
-        LinearLayout innerLayout = new LinearLayout(context);
-        innerLayout.setOrientation(LinearLayout.VERTICAL);
-        groupCard.addView(innerLayout, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        String prefix = CardDataCatalogData.SECTION_PREFIXES[sectionIndex];
-        String[] cardNames = CardDataCatalogData.SECTION_NAMES[sectionIndex];
-        for (int row = 0; row < cardNames.length; row++) {
-            View cellView = layoutInflater.inflate(
-                    resolveCellLayoutRes(prefix, row + 1), innerLayout, false);
-            String cardName = cardNames[row];
-            // 每张卡片都有唯一对应的点击事件：跳转到该卡的详细数据页
-            cellView.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, cardName));
-            innerLayout.addView(cellView);
+    /** 由列表位置反查单卡条目（标题行/页脚返回 null） */
+    private CardDataLetterCatalogData.CardEntry entryAt(int position) {
+        if (position < 0 || position >= itemCount - 1) {
+            return null;
         }
-        return groupCard;
+        int hit = Arrays.binarySearch(headerPositions, position);
+        if (hit >= 0) {
+            return null; // 标题行
+        }
+        // 未命中：插入点 - 1 即所属分节（详见 binarySearch 返回值语义）
+        int sectionIndex = -hit - 2;
+        int cardIndex = position - headerPositions[sectionIndex] - 1;
+        List<CardDataLetterCatalogData.CardEntry> cards = sections.get(sectionIndex).cards;
+        if (cardIndex < 0 || cardIndex >= cards.size()) {
+            return null;
+        }
+        return cards.get(cardIndex);
     }
 
     /**
@@ -187,45 +192,35 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
         return resId;
     }
 
-    /**
-     * 解析当前主题下 ?attr/GeneralCardViewBackground 的实际颜色（分组卡片背景）。
-     */
-    private int resolveGeneralCardViewBackgroundColor() {
-        TypedArray typedArray = context.obtainStyledAttributes(
-                new int[]{R.attr.GeneralCardViewBackground});
-        try {
-            return typedArray.getColor(0, 0);
-        } finally {
-            typedArray.recycle();
-        }
-    }
-
     @Override
     public int getItemViewType(int position) {
-        if (position == getFooterPosition()) {
+        if (position == itemCount - 1) {
             return TYPE_FOOTER;
         }
-        return (position % 2 == 0) ? TYPE_HEADER : TYPE_GROUP;
+        // headerPositions 升序：命中即标题行，落在两个标题之间即单卡行
+        return Arrays.binarySearch(headerPositions, position) >= 0 ? TYPE_HEADER : TYPE_ITEM;
     }
 
     @Override
     public int getItemCount() {
-        return CardDataCatalogData.SECTION_PREFIXES.length * 2 + 1;
+        return itemCount;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         final int viewType;
         TextView headerTextView;
-        FrameLayout groupContainer;
-        String lastInflatedPrefix;
+        View headerTopSpace;
+        FrameLayout cardContainer;
+        String lastInflatedCellKey;
 
         ViewHolder(@NonNull View itemView, int viewType) {
             super(itemView);
             this.viewType = viewType;
             if (viewType == TYPE_HEADER) {
-                headerTextView = (TextView) itemView;
-            } else if (viewType == TYPE_GROUP) {
-                groupContainer = itemView.findViewById(R.id.card_catalog_group_container);
+                headerTextView = itemView.findViewById(R.id.card_catalog_header_label);
+                headerTopSpace = itemView.findViewById(R.id.card_catalog_header_top_space);
+            } else if (viewType == TYPE_ITEM) {
+                cardContainer = itemView.findViewById(R.id.card_catalog_card_container);
             }
         }
     }

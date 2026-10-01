@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 防御卡目录页 RecyclerView 的单卡行（按拼音字典序分节后，每张卡独立一个 CardView）：
+     圆角与卡片背景沿用原分组容器样式（20dp + ?attr/GeneralCardViewBackground），
+     由 Adapter 在绑定时把单卡布局（card_card_data_index_*_Z）inflate 进容器。
+     marginBottom 提供相邻卡片的间距；
+     clipChildren/clipToPadding 放行：CardView 的阴影绘制会超出自身边界，
+     若不加这两项，阴影会被本容器裁成硬边。 -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_catalog_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+    app:cardCornerRadius="20dp">
+
+    <FrameLayout
+        android:id="@+id/card_catalog_card_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false" />
+
+</androidx.cardview.widget.CardView>

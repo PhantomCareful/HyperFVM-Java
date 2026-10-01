@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
     tools:ignore="MissingConstraints,TooManyViews,ContentDescription">
 
     <eightbitlab.com.blurview.BlurTarget
@@ -12,7 +13,7 @@
         android:layout_height="match_parent">
 
         <!-- 原巨型静态 ScrollView 目录改为 RecyclerView 虚拟化列表：
-             47 个分节标题 + 367 张卡片均按需创建，只有可见行才会被 inflate 与解码，
+             字母分节标题 + 366 张单卡均按需创建，只有可见行才会被 inflate 与解码，
              大幅降低进入延迟与内存占用 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecyclerView"
@@ -21,7 +22,7 @@
             android:paddingTop="360dp"
             android:paddingBottom="50dp"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingEnd="26dp"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:scrollbars="none"
@@ -30,9 +31,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="120dp"
-            android:layout_marginHorizontal="10dp">
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="26dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/card_data_index_background_images_1"
@@ -114,6 +116,20 @@
 
     </eightbitlab.com.blurview.BlurTarget>
 
+    <!-- 右侧 A-Z 快速索引条：叠在列表之上、顶栏模糊之下；
+         标签与分节由代码注入（LetterIndexBarView，Material You 自适应取色）；
+         滑动时条左侧绘制 Slider 风格悬浮气泡显示当前章节，
+         气泡超出条自身 bounds，故根布局设置了 clipChildren=false -->
+    <com.careful.HyperFVM.utils.ForDesign.Widget.LetterIndexBarView
+        android:id="@+id/LetterIndexBar"
+        android:layout_width="16dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <!-- 状态栏模糊遮罩层 -->
     <eightbitlab.com.blurview.BlurView
         android:id="@+id/blurViewTopBar"
@@ -150,18 +166,6 @@
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
-
-    <ImageButton
-        android:id="@+id/FloatButton_Index"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/ripple_circle"
-        android:src="@drawable/ic_index"
-        app:tint="?attr/colorOnSurface"
-        app:elevation="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/FloatButton_Search" />
 
     <ImageButton
         android:id="@+id/FloatButton_Search"

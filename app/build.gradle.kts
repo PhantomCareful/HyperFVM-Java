@@ -135,4 +135,7 @@ dependencies {
     //数据图内置查看器：超大图（约6500万像素）区域解码显示
     implementation(libs.subsampling.scale.image.view)
 
+    //拼音转换：防御卡目录按完整拼音字典序排序（多音字校正表在运行时挂载）
+    implementation(libs.tinypinyin)
+
 }

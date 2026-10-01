@@ -11,18 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.ListPopupWindow;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,10 +35,13 @@ import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.ForDesign.Widget.LetterIndexBarView;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import eightbitlab.com.blurview.BlurView;
@@ -52,8 +51,6 @@ public class CardDataIndexActivity extends BaseActivity {
     private static final int HEADER_TARGET_TOP_OFFSET_PX = 400; // 目录跳转后分节标题停在距列表顶的像素距离（与原页面视觉一致）
     private static final float JUMP_SCROLL_MS_PER_PX = 0.01f; // 目录跳转的滚动速度（每像素毫秒数，越小越快）
     private static final int JUMP_TAIL_SCROLL_MIN_MS = 120; // 收尾减速动画最短时长（速度调快后避免收尾退化成瞬间突变）
-    private static final float MENU_MAX_WIDTH_SCREEN_RATIO = 0.5f; // 目录菜单宽度上限（占屏幕宽比例），过长标题的条目自动换行
-    private static final float MENU_MAX_HEIGHT_SCREEN_RATIO = 0.5f; // 目录菜单高度上限（占屏幕高比例），超出部分滚动查看
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private DBHelper dbHelper;
     private BlurUtil blurUtil;
@@ -97,7 +94,7 @@ public class CardDataIndexActivity extends BaseActivity {
                     (String[][]) savedInstanceState.getSerializable("backgroundCardImageFileInfo");
         }
 
-        // 装配虚拟化目录列表（分节标题 + 367 张卡片，按需创建与解码）
+        // 装配虚拟化目录列表（字母分节标题 + 366 张单卡，按需创建与解码）
         setupRecyclerView();
 
         // 初始化各种装饰效果
@@ -112,7 +109,7 @@ public class CardDataIndexActivity extends BaseActivity {
     }
 
     /**
-     * 装配 RecyclerView：分节标题 + 卡片行 + 页脚，并恢复上次的滚动位置。
+     * 装配 RecyclerView：字母分节标题行 + 单卡行 + 页脚，并恢复上次的滚动位置。
      */
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.RecyclerView);
@@ -122,81 +119,21 @@ public class CardDataIndexActivity extends BaseActivity {
         // post scrollBy 的全量恢复叠加会超调；本页滚动位置完全自管 savedScrollY，故禁用之）
         recyclerView.setSaveEnabled(false);
 
-        adapter = new CardDataIndexAdapter(this, CardDataCatalogData.buildSectionTitles(this));
+        List<CardDataLetterCatalogData.Section> sections = CardDataLetterCatalogData.getSections();
+        adapter = new CardDataIndexAdapter(this, sections);
         recyclerView.setAdapter(adapter);
+
+        // 右侧 A-Z 快速索引条：标签 = 实际存在的分节（顺序与 Adapter 分节下标一一对应），
+        // 命中回调直连目录快速跳转（runFastScroll 内自带越界守卫与令牌抢占）
+        LetterIndexBarView indexBar = findViewById(R.id.LetterIndexBar);
+        List<String> labels = new ArrayList<>(sections.size());
+        for (CardDataLetterCatalogData.Section section : sections) {
+            labels.add(section.label);
+        }
+        indexBar.setLabels(labels);
+        indexBar.setOnSectionPickListener(this::runFastScroll);
         // 注意：滚动位置恢复不在这里执行——必须在滚动监听器注册完成后才能恢复
         // （详见 initDecoration 末尾），保证恢复动作能经由 onScrolled 的 dy 累计出真实偏移。
-    }
-
-    /**
-     * 以目录按钮为锚点弹出分节跳转下拉菜单（样式与食神谱图鉴目录菜单一致，仅无选中对勾）。
-     * 菜单宽高上限各为屏幕的一半（过长条目自动换行），47 个分节远超一屏，超出部分滚动查看。
-     */
-    private void showIndexDropdown(View anchor) {
-        String[] entries = CardDataCatalogData.buildSectionTitles(this).toArray(new String[0]);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_dropdown_selection, entries) {
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                View row = convertView != null ? convertView
-                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
-                ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
-                // 目录菜单不需要选中对勾
-                row.findViewById(R.id.option_check).setVisibility(View.GONE);
-                return row;
-            }
-        };
-
-        // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果）。ListView 在 PopupWindow 中无法
-        // 真正 wrap_content，需自行测量内容宽后按像素设置；getView 的 parent 形参标注 @NonNull，
-        // 这里传一个仅用于生成 LayoutParams 的空容器（不挂载子视图），避免传 null
-        ViewGroup measureParent = new FrameLayout(this);
-        int contentWidth = 0;
-        int itemHeight = 0;
-        for (int i = 0; i < entries.length; i++) {
-            View itemView = adapter.getView(i, null, measureParent);
-            itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-            contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
-            itemHeight = itemView.getMeasuredHeight();
-        }
-        // 菜单宽度上限：个别分节标题很长（最长的近 24 个全角字符），若完全按最宽条目展示会接近满屏，
-        // 观感差；这里限制为屏幕宽的一半，过长条目自动换行（item_dropdown_selection 已放开多行显示）
-        int screenWidth = anchor.getRootView().getWidth();
-        contentWidth = Math.min(contentWidth, (int) (screenWidth * MENU_MAX_WIDTH_SCREEN_RATIO));
-
-        // 锚点下方剩余空间不足时收缩菜单高度（47 个分节远超一屏，超出部分滚动查看）；高度上限取屏幕高的一半
-        int verticalOffset = DensityUtil.dpToPx(this, 4);
-        int[] location = new int[2];
-        anchor.getLocationInWindow(location);
-        int screenHeight = anchor.getRootView().getHeight();
-        int spaceBelow = screenHeight - location[1] - anchor.getHeight() - verticalOffset;
-        int popupHeight = Math.min(itemHeight * entries.length, Math.max(spaceBelow, itemHeight * 2));
-        popupHeight = Math.min(popupHeight, (int) (screenHeight * MENU_MAX_HEIGHT_SCREEN_RATIO));
-
-        // 菜单右缘与按钮右缘对齐（水平偏移取负值左移）；极端窄屏/锚点贴边时钳制在屏幕内
-        int horizontalOffset = anchor.getWidth() - contentWidth;
-        horizontalOffset = Math.max(-location[0], Math.min(horizontalOffset, screenWidth - contentWidth - location[0]));
-
-        ListPopupWindow popup = new ListPopupWindow(this);
-        popup.setAnchorView(anchor);
-        popup.setWidth(contentWidth);
-        popup.setHeight(popupHeight);
-        popup.setVerticalOffset(verticalOffset);
-        popup.setHorizontalOffset(horizontalOffset);
-        popup.setModal(true);
-        popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
-        popup.setAdapter(adapter);
-        popup.setOnItemClickListener((parent, view, position, id) -> {
-            popup.dismiss();
-            runFastScroll(position);
-        });
-        popup.show();
-        // 弹出后隐藏滚动条（47 项超一屏可滚动，滚动条影响观感）
-        ListView listView = popup.getListView();
-        if (listView != null) {
-            listView.setVerticalScrollBarEnabled(false);
-        }
     }
 
     /**
@@ -209,7 +146,7 @@ public class CardDataIndexActivity extends BaseActivity {
      */
     private void runFastScroll(int sectionIndex) {
         if (recyclerView == null || adapter == null || sectionIndex < 0
-                || sectionIndex >= CardDataCatalogData.SECTION_PREFIXES.length) {
+                || sectionIndex >= adapter.getSectionCount()) {
             return;
         }
         final int headerPosition = adapter.getHeaderPosition(sectionIndex);
@@ -268,7 +205,7 @@ public class CardDataIndexActivity extends BaseActivity {
     /**
      * 计算背景渐隐效果使用的滚动偏移。
      * <p>
-     * 不用累计值也不用估算 API：列表首行（1_1 分节标题）的内容坐标恒为 0，
+     * 不用累计值也不用估算 API：列表首行（首个字母分节标题）的内容坐标恒为 0，
      * 只要它还存在于 RecyclerView 的布局内，真实偏移 = paddingTop - 首行.getTop()，
      * 该几何测量精确且自纠，无需依赖增量累计；
      * 首行不可见说明列表已滚出渐隐窗口很远，此时按增量累计维护（页面所有滚动——手动滑动 /
@@ -301,7 +238,6 @@ public class CardDataIndexActivity extends BaseActivity {
         BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
         TextView topBar = findViewById(R.id.topBar);
         ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
-        ImageButton floatButtonIndex = findViewById(R.id.FloatButton_Index);
         ImageButton floatButtonSearch = findViewById(R.id.FloatButton_Search);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
@@ -318,10 +254,6 @@ public class CardDataIndexActivity extends BaseActivity {
             params.topMargin = height + DensityUtil.dpToPx(this, 5);
             floatButtonBack.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonIndex.getLayoutParams();
-            params.topMargin = height + DensityUtil.dpToPx(this, 5);
-            floatButtonIndex.setLayoutParams(params);
-
             params = (ViewGroup.MarginLayoutParams) floatButtonSearch.getLayoutParams();
             params.topMargin = height + DensityUtil.dpToPx(this, 5);
             floatButtonSearch.setLayoutParams(params);
@@ -329,7 +261,6 @@ public class CardDataIndexActivity extends BaseActivity {
 
         // 顺便设置按钮的功能
         floatButtonBack.setOnClickListener(v -> this.finish());
-        floatButtonIndex.setOnClickListener(this::showIndexDropdown);
         floatButtonSearch.setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
 
         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {

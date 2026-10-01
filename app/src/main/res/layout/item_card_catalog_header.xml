@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 防御卡目录页 RecyclerView 的分节标题行（样式与原 title_card_data_index_* 一致），
-     标题与下方卡片组的间距由标题自带 marginBottom 提供，
-     上一组卡片与标题的间距由 item_card_catalog_group 的 paddingBottom 还原 -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- 防御卡目录页 RecyclerView 的分节标题行：字母分节（0 / A-Z / #）的标签，
+     顶部 Space（15dp）= 上一章最后一张卡与本章标题之间的间距，
+     仅在「章与章之间」生效（首个分节的 Space 由 Adapter 绑定时置为 GONE），
+     标题与下方首张卡片的间距由标题自带 marginBottom 提供 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginBottom="10dp"
-    android:textSize="15sp"
-    android:textStyle="bold"
-    android:textColor="?attr/TitleTextViewColorOnSurface" />
+    android:orientation="vertical">
+
+    <Space
+        android:id="@+id/card_catalog_header_top_space"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp" />
+
+    <TextView
+        android:id="@+id/card_catalog_header_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="?attr/TitleTextViewColorOnSurface" />
+
+</LinearLayout>
