@@ -148,13 +148,13 @@ public class AuxiliaryList9Activity extends BaseActivity {
         findViewById(R.id.card_data_index_background_images_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "浮生茶"));
 
         // 增幅名单
-        cardListBinding.cardCardDataIndex11310.cardDataIndex11310.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赖皮蛇"));
-        cardListBinding.cardCardDataIndex11311.cardDataIndex11311.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "迷你披萨炉"));
-        cardListBinding.cardCardDataIndex11312.cardDataIndex11312.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
-        cardListBinding.cardCardDataIndex11313.cardDataIndex11313.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
-        cardListBinding.cardCardDataIndex11314.cardDataIndex11314.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "灯影花糕"));
-        cardListBinding.cardCardDataIndex13211.cardDataIndex13211.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "奇门马"));
-        cardListBinding.cardCardDataIndex329.cardDataIndex329.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元宝饺子鼎"));
+        cardListBinding.cardCardDataIndexX11122400.cardDataIndexX11122400.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赖皮蛇"));
+        cardListBinding.cardCardDataIndexX11122490.cardDataIndexX11122490.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "迷你披萨炉"));
+        cardListBinding.cardCardDataIndexX1112270a.cardDataIndexX1112270a.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
+        cardListBinding.cardCardDataIndexX11122780.cardDataIndexX11122780.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
+        cardListBinding.cardCardDataIndexX11122880.cardDataIndexX11122880.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "灯影花糕"));
+        cardListBinding.cardCardDataIndexX11122850.cardDataIndexX11122850.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "奇门马"));
+        cardListBinding.cardCardDataIndexX11122930.cardDataIndexX11122930.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元宝饺子鼎"));
 
     }
 

@@ -41,14 +41,14 @@ public class CookeryBottomSheetFragment_3_1 extends BaseCookeryBottomSheetFragme
         view.findViewById(R.id.card_data_cookery_compose_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "双层冰冻小笼包"));
         view.findViewById(R.id.card_data_cookery_compose_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "机枪冰冻小笼包"));
 
-        view.findViewById(R.id.card_data_index_1_3_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "双层小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "三向小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "机枪小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "冰冻小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "双层冰冻小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "三向冰冻小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_8).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "机枪冰冻小笼包"));
-        view.findViewById(R.id.card_data_index_1_3_13).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "包包龙"));
+        view.findViewById(R.id.card_data_index_x11130014).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "小笼包"));
+        view.findViewById(R.id.card_data_index_x11130020).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "双层小笼包"));
+        view.findViewById(R.id.card_data_index_x11130100).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "三向小笼包"));
+        view.findViewById(R.id.card_data_index_x11930010).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "机枪小笼包"));
+        view.findViewById(R.id.card_data_index_x11130050).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "冰冻小笼包"));
+        view.findViewById(R.id.card_data_index_x11130160).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "双层冰冻小笼包"));
+        view.findViewById(R.id.card_data_index_x11130170).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "三向冰冻小笼包"));
+        view.findViewById(R.id.card_data_index_x11930070).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "机枪冰冻小笼包"));
+        view.findViewById(R.id.card_data_index_x11122320).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "包包龙"));
     }
 }

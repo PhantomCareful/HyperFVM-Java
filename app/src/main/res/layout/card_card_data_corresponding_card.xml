@@ -21,7 +21,7 @@
             android:id="@+id/card_data_index_corresponding_card_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name_card_data_index_1_1_4_0"
+            android:text="@string/name_card_data_index_x1113000a"
             android:textColor="?attr/TextViewColorOnGeneralCardView"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -40,6 +40,6 @@
         android:id="@+id/card_data_index_corresponding_card_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/card_data_index_1_1_4_0"
+        android:src="@drawable/x1113000a"
         tools:ignore="ContentDescription" />
 </LinearLayout>

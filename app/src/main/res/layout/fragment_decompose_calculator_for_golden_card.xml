@@ -89,7 +89,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_card_1_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_0"
+                                android:src="@drawable/x1113000a"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -137,7 +137,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_card_2_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_1"
+                                android:src="@drawable/x1113000b"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -185,7 +185,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_card_3_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_2"
+                                android:src="@drawable/x1113000c"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -233,7 +233,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_card_4_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_3"
+                                android:src="@drawable/x1113000d"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -298,7 +298,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_skill_1_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_skill_1"
+                                android:src="@drawable/x12242410"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -346,7 +346,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_skill_2_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_skill_2"
+                                android:src="@drawable/x12242420"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -394,7 +394,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_skill_3_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_skill_3"
+                                android:src="@drawable/x12242430"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -442,7 +442,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_skill_4_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_skill_4"
+                                android:src="@drawable/x12242440"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -507,7 +507,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_1_a_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_1_a"
+                                android:src="@drawable/x13631083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -555,7 +555,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_1_b_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_1_b"
+                                android:src="@drawable/x13632083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -603,7 +603,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_1_c_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_1_c"
+                                android:src="@drawable/x13633083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -651,7 +651,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_2_a_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_2_a"
+                                android:src="@drawable/x13641083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -699,7 +699,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_2_b_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_2_b"
+                                android:src="@drawable/x13642083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -747,7 +747,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_2_c_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_2_c"
+                                android:src="@drawable/x13643083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -795,7 +795,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_3_a_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_3_a"
+                                android:src="@drawable/x13651083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -843,7 +843,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_3_b_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_3_b"
+                                android:src="@drawable/x13652083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -891,7 +891,7 @@
                                 android:id="@+id/decompose_calculator_for_golden_card_transfer_3_c_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_4_transfer_3_c"
+                                android:src="@drawable/x13653083"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -951,7 +951,7 @@
                             android:id="@+id/decompose_calculator_for_golden_card_compose_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/card_data_index_1_1_4_compose"
+                            android:src="@drawable/x12100100"
                             tools:ignore="ContentDescription" />
                     </LinearLayout>
 

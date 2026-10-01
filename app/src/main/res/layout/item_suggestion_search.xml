@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/card_data_index_1_1_1_2"
+            android:src="@drawable/x1113006f"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>

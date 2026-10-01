@@ -321,7 +321,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_3_2_3_0" />
+                            android:src="@drawable/x11120950" />
 
                         <Space
                             android:layout_width="0dp"
@@ -360,7 +360,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_10_3_7_0" />
+                            android:src="@drawable/x11120940" />
 
                         <Space
                             android:layout_width="0dp"
@@ -397,7 +397,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_3_2_6_0" />
+                            android:src="@drawable/x11120760" />
 
                         <Space
                             android:layout_width="0dp"
@@ -436,7 +436,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_14_2_8_0" />
+                            android:src="@drawable/x11140210" />
 
                         <Space
                             android:layout_width="0dp"
@@ -473,7 +473,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_14_3_1_0" />
+                            android:src="@drawable/x11121060" />
 
                         <Space
                             android:layout_width="0dp"
@@ -513,7 +513,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_3_2_3" />
+                    <include layout="@layout/card_card_data_index_x11120950" />
 
                 </LinearLayout>
 
@@ -541,7 +541,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_10_3_7" />
+                    <include layout="@layout/card_card_data_index_x11120940" />
 
                 </LinearLayout>
 

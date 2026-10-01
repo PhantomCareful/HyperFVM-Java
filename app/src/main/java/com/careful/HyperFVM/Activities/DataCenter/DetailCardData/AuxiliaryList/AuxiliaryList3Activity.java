@@ -147,17 +147,17 @@ public class AuxiliaryList3Activity extends BaseActivity {
         findViewById(R.id.card_data_index_background_images_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "莓果点心"));
 
         // 增幅名单
-        cardListBinding.cardCardDataIndex911.cardDataIndex911.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "章鱼烧"));
-        cardListBinding.cardCardDataIndex912.cardDataIndex912.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巨蟹座精灵"));
-        cardListBinding.cardCardDataIndex913.cardDataIndex913.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "忍忍鸡"));
-        cardListBinding.cardCardDataIndex914.cardDataIndex914.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狄安娜神使"));
-        cardListBinding.cardCardDataIndex915.cardDataIndex915.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
-        cardListBinding.cardCardDataIndex916.cardDataIndex916.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
-        cardListBinding.cardCardDataIndex917.cardDataIndex917.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
-        cardListBinding.cardCardDataIndex954.cardDataIndex954.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
-        cardListBinding.cardCardDataIndex955.cardDataIndex955.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
-        cardListBinding.cardCardDataIndex958.cardDataIndex958.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
-        cardListBinding.cardCardDataIndex936.cardDataIndex936.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
+        cardListBinding.cardCardDataIndexX11430030.cardDataIndexX11430030.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "章鱼烧"));
+        cardListBinding.cardCardDataIndexX11130064.cardDataIndexX11130064.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巨蟹座精灵"));
+        cardListBinding.cardCardDataIndexX11130364.cardDataIndexX11130364.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "忍忍鸡"));
+        cardListBinding.cardCardDataIndexX111300da.cardDataIndexX111300da.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狄安娜神使"));
+        cardListBinding.cardCardDataIndexX11430034.cardDataIndexX11430034.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "飞盘汪"));
+        cardListBinding.cardCardDataIndexX11131160.cardDataIndexX11131160.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "铁甲飞镖猪"));
+        cardListBinding.cardCardDataIndexX11120920.cardDataIndexX11120920.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "海盗兔"));
+        cardListBinding.cardCardDataIndexX11122640.cardDataIndexX11122640.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "霹雳马"));
+        cardListBinding.cardCardDataIndexX11122710.cardDataIndexX11122710.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "归元马"));
+        cardListBinding.cardCardDataIndexX11122790.cardDataIndexX11122790.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "萌海马"));
+        cardListBinding.cardCardDataIndexX11122260.cardDataIndexX11122260.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "冰块冷萃机"));
 
     }
 

@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/card_data_index_4_2_1_0_big"
+                            android:src="@drawable/x11120470_big"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/card_data_index_4_2_1_1_big"
+                            android:src="@drawable/x1112047e_big"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/card_data_index_4_2_1_2_big"
+                            android:src="@drawable/x1112047f_big"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="match_parent"

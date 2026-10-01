@@ -1,10 +1,15 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.github.promeg.pinyinhelper.Pinyin;
 import com.github.promeg.pinyinhelper.PinyinMapDict;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +24,8 @@ import java.util.Set;
 /**
  * 防御卡目录页的字母分节数据层。
  * <p>
- * 把 {@link CardDataCatalogData} 的 47 个章节拍平成单卡条目后，按卡名的<b>完整拼音</b>
+ * 读取 assets/card_data_index.csv 的主线主形态卡（name == base_name，目录页展示的
+ * 基础卡），得到单卡条目（卡名 + image_id），按卡名的<b>完整拼音</b>
  * 以汉语字典序排序（先比首字母、再逐字比后续拼音，而非只看首字母），再装入
  * 0 / A-Z / # 分节桶：
  * <ul>
@@ -29,21 +35,23 @@ import java.util.Set;
  * </ul>
  * <p>
  * 分节标签顺序恒为 0 → A → … → Z → #，空桶不产出分节（导航条也只显示有卡的桶）。
- * 排序使用 {@link Collections#sort}（稳定排序）：拼音完全相同的卡保持数据表原顺序，
- * 即原章节内先后不变。
+ * 排序使用 {@link Collections#sort}（稳定排序）：拼音完全相同的卡保持 CSV 原行序。
  * <p>
  * 多音字处理：TinyPinyin 只内置单字读音表（取最常用音），<b>没有</b>内置词组词典；
  * 因此词组级别的读音纠正完全依赖 {@link #PINYIN_OVERRIDES}（按词登记，可精确到卡名整词），
  * 经 {@link #ensurePinyinReady()} 的 PinyinMapDict 挂载后，命中词的读音优先于单字默认音。
  * <p>
- * 去重：同一卡名在数据表中出现多次时只保留最先出现的一张（其布局即
- * prefix + "_" + row 对应的单卡文件）。
+ * 去重：同一卡名在 CSV 中出现多次时只保留最先出现的一张（布局名即
+ * card_card_data_index_ + image_id 对应的单卡文件）。
  * <p>
  * 结果带缓存：列表页每次进入只构建一次；Pinyin.init 同样只执行一次。
  */
 public final class CardDataLetterCatalogData {
 
     private static final String TAG = "CardDataLetterCatalog";
+
+    /** 目录页数据源：assets 下的卡片索引 CSV（表头 name,base_name,table_name,image_id） */
+    private static final String CSV_FILE_NAME = "card_data_index.csv";
 
     /** 数字开头卡片所在分节的标签 */
     public static final String LABEL_DIGIT = "0";
@@ -74,19 +82,16 @@ public final class CardDataLetterCatalogData {
     private CardDataLetterCatalogData() {
     }
 
-    /** 一张卡的定位信息（拍平后的条目） */
+    /** 一张卡的定位信息（CSV 主线主形态卡条目） */
     public static final class CardEntry {
         /** 卡名：列表显示文案，也是点库跳转（CardDataHelper）的查询键 */
         public final String name;
-        /** 单卡布局前缀（如 "card_data_index_1_1"） */
-        public final String prefix;
-        /** 单卡在原分节内的行号（1..N） */
-        public final int row;
+        /** 卡片图片 id（CSV image_id 列，如 "x11130060"），单卡布局名为 card_card_data_index_ + imageId */
+        public final String imageId;
 
-        CardEntry(String name, String prefix, int row) {
+        CardEntry(String name, String imageId) {
             this.name = name;
-            this.prefix = prefix;
-            this.row = row;
+            this.imageId = imageId;
         }
     }
 
@@ -105,34 +110,24 @@ public final class CardDataLetterCatalogData {
 
     /**
      * 取全部字母分节（懒加载 + 缓存，主线程首次调用时构建）。
+     *
+     * @param context 读取 assets/card_data_index.csv 所需（仅首次构建时使用，不被持有）
      */
-    public static List<Section> getSections() {
+    public static List<Section> getSections(Context context) {
         synchronized (LOCK) {
             if (sSections == null) {
-                sSections = build();
+                sSections = build(context);
             }
             return sSections;
         }
     }
 
-    /** 拍平 + 去重 + 拼音字典序排序 + 分桶 */
-    private static List<Section> build() {
+    /** 读 CSV 主线卡 + 去重 + 拼音字典序排序 + 分桶 */
+    private static List<Section> build(Context context) {
         ensurePinyinReady();
 
-        // 1) 拍平：按数据表章节顺序展开，重复卡名只保留最先出现的一张
-        List<CardEntry> entries = new ArrayList<>();
-        Set<String> seen = new HashSet<>();
-        for (int i = 0; i < CardDataCatalogData.SECTION_PREFIXES.length; i++) {
-            String prefix = CardDataCatalogData.SECTION_PREFIXES[i];
-            String[] names = CardDataCatalogData.SECTION_NAMES[i];
-            for (int j = 0; j < names.length; j++) {
-                if (!seen.add(names[j])) {
-                    Log.d(TAG, "重复卡名去重：" + names[j] + "（保留 " + prefix + "_" + (j + 1) + "）");
-                    continue;
-                }
-                entries.add(new CardEntry(names[j], prefix, j + 1));
-            }
-        }
+        // 1) 读 CSV 主线主形态卡（保持原行序），重复卡名只保留最先出现的一张
+        List<CardEntry> entries = loadMainCards(context);
 
         // 2) 完整拼音字典序排序：先算好拼音（避免比较器内重复转换），稳定排序保持同音卡的原顺序
         List<SortableEntry> sortable = new ArrayList<>(entries.size());
@@ -157,6 +152,42 @@ public final class CardDataLetterCatalogData {
         }
         appendSection(sections, buckets, LABEL_OTHER);
         return Collections.unmodifiableList(sections);
+    }
+
+    /**
+     * 读 assets/card_data_index.csv，取主线主形态卡（name == base_name），保持 CSV 行序。
+     * <p>
+     * 首行为表头（含 BOM）直接跳过；空脏行与衍生形态行（name != base_name）不进目录页。
+     * CSV 恒为 4 列且字段不含逗号/引号，故直接按逗号切分。
+     */
+    private static List<CardEntry> loadMainCards(Context context) {
+        List<CardEntry> entries = new ArrayList<>();
+        Set<String> seen = new HashSet<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+                context.getAssets().open(CSV_FILE_NAME), StandardCharsets.UTF_8))) {
+            reader.readLine(); // 跳过表头（BOM 随表头一并丢弃）
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] cols = line.split(",", -1);
+                if (cols.length < 4) {
+                    continue;
+                }
+                String name = cols[0].trim();
+                String baseName = cols[1].trim();
+                String imageId = cols[3].trim();
+                if (name.isEmpty() || imageId.isEmpty() || !name.equals(baseName)) {
+                    continue;
+                }
+                if (!seen.add(name)) {
+                    Log.d(TAG, "重复卡名去重：" + name + "（保留 image_id=" + imageId + "）");
+                    continue;
+                }
+                entries.add(new CardEntry(name, imageId));
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException("读取 " + CSV_FILE_NAME + " 失败", e);
+        }
+        return entries;
     }
 
     private static void appendSection(List<Section> sections,

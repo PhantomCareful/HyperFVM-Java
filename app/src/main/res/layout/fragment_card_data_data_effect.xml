@@ -1134,7 +1134,7 @@
                         android:id="@+id/image_skill_count_1"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/card_data_index_1_1_1_skill_1" />
+                        android:src="@drawable/x12210a10" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -1175,7 +1175,7 @@
                         android:id="@+id/image_skill_count_2"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/card_data_index_1_1_1_skill_2" />
+                        android:src="@drawable/x12210a20" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -1216,7 +1216,7 @@
                         android:id="@+id/image_skill_count_3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/card_data_index_1_1_1_skill_3" />
+                        android:src="@drawable/x12210a30" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -1257,7 +1257,7 @@
                         android:id="@+id/image_skill_count_4"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/card_data_index_1_1_1_skill_4" />
+                        android:src="@drawable/x12210a40" />
                 </LinearLayout>
 
                 <TextView
@@ -1410,7 +1410,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_0"/>
+                            android:src="@drawable/x1113000a"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_card_2"
                             android:layout_width="40dp"
@@ -1420,7 +1420,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_1"/>
+                            android:src="@drawable/x1113000b"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_card_3"
                             android:layout_width="40dp"
@@ -1430,7 +1430,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_2"/>
+                            android:src="@drawable/x1113000c"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_card_4"
                             android:layout_width="40dp"
@@ -1440,7 +1440,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_3"/>
+                            android:src="@drawable/x1113000d"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_skill_1"
                             android:layout_width="40dp"
@@ -1450,7 +1450,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_skill_1"/>
+                            android:src="@drawable/x12242410"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_skill_2"
                             android:layout_width="40dp"
@@ -1460,7 +1460,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_skill_2"/>
+                            android:src="@drawable/x12242420"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_skill_3"
                             android:layout_width="40dp"
@@ -1470,7 +1470,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_skill_3"/>
+                            android:src="@drawable/x12242430"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_skill_4"
                             android:layout_width="40dp"
@@ -1480,7 +1480,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_skill_4"/>
+                            android:src="@drawable/x12242440"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_1_a"
                             android:layout_width="40dp"
@@ -1490,7 +1490,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_1_a"/>
+                            android:src="@drawable/x13631083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_1_b"
                             android:layout_width="40dp"
@@ -1500,7 +1500,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_1_b"/>
+                            android:src="@drawable/x13632083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_1_c"
                             android:layout_width="40dp"
@@ -1510,7 +1510,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_1_c"/>
+                            android:src="@drawable/x13633083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_2_a"
                             android:layout_width="40dp"
@@ -1520,7 +1520,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_2_a"/>
+                            android:src="@drawable/x13641083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_2_b"
                             android:layout_width="40dp"
@@ -1530,7 +1530,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_2_b"/>
+                            android:src="@drawable/x13642083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_2_c"
                             android:layout_width="40dp"
@@ -1540,7 +1540,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_2_c"/>
+                            android:src="@drawable/x13643083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_3_a"
                             android:layout_width="40dp"
@@ -1550,7 +1550,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_3_a"/>
+                            android:src="@drawable/x13651083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_3_b"
                             android:layout_width="40dp"
@@ -1560,7 +1560,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_3_b"/>
+                            android:src="@drawable/x13652083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_transfer_3_c"
                             android:layout_width="40dp"
@@ -1570,7 +1570,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_transfer_3_c"/>
+                            android:src="@drawable/x13653083"/>
                         <ImageView
                             android:id="@+id/decompose_image_id_compose"
                             android:layout_width="40dp"
@@ -1580,7 +1580,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_data_index_1_1_4_compose"/>
+                            android:src="@drawable/x12100100"/>
 
                         <TextView
                             android:id="@+id/get_card_1"

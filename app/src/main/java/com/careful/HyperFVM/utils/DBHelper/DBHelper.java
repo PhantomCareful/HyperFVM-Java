@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.careful.HyperFVM.utils.ForCardData.CardIndexIdTables;
 import com.careful.HyperFVM.utils.ForCardData.CardSearchSuggestion;
 import com.opencsv.CSVReader;
 
@@ -792,10 +793,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 String tableName = cursor.getString(2);
                 // 过滤空名称或空图片ID（可选，根据业务需求调整）
                 if (name != null && !name.isEmpty()) {
-                    int lastNum = Character.getNumericValue(imageId.charAt(imageId.length() - 1));
+                    int level = CardIndexIdTables.inferTransferLevel(imageId, tableName);
                     int tableNameNum = Character.getNumericValue(tableName.charAt(tableName.length() - 1));
                     String transferCategory = null;
-                    switch (lastNum) {
+                    switch (level) {
                         case 0:
                             transferCategory = "不转形态";
                             break;
@@ -849,10 +850,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 String tableName = cursor.getString(2);
                 // 过滤空名称或空图片ID（可选，根据业务需求调整）
                 if (name != null && !name.isEmpty()) {
-                    int lastNum = Character.getNumericValue(imageId.charAt(imageId.length() - 1));
+                    int level = CardIndexIdTables.inferTransferLevel(imageId, tableName);
                     int tableNameNum = Character.getNumericValue(tableName.charAt(tableName.length() - 1));
                     if (tableNameNum == 4) {
-                        String transferCategory = switch (lastNum) {
+                        String transferCategory = switch (level) {
                             case 0 -> "不转形态";
                             case 1 -> "一转形态";
                             case 2 -> "二转形态";
@@ -860,7 +861,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         };
                         suggestions.add(new CardSearchSuggestion(name, transferCategory, imageId));
                     } else if (tableNameNum == 3) {
-                        String transferCategory = switch (lastNum) {
+                        String transferCategory = switch (level) {
                             case 0 -> "不转形态";
                             case 1 -> "三转形态";
                             case 2 -> "四转形态";

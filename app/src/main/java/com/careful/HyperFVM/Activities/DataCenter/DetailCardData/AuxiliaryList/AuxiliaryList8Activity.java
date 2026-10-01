@@ -151,29 +151,29 @@ public class AuxiliaryList8Activity extends BaseActivity {
 
         // 增幅名单
         // N×N范围增幅
-        cardListBinding.cardCardDataIndex821.cardDataIndex821.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "旋转咖啡喷壶"));
-        cardListBinding.cardCardDataIndex822.cardDataIndex822.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狮子座精灵"));
-        cardListBinding.cardCardDataIndex823.cardDataIndex823.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "波塞冬神使"));
-        cardListBinding.cardCardDataIndex824.cardDataIndex824.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "转转鸡"));
-        cardListBinding.cardCardDataIndex825.cardDataIndex825.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "可乐汪"));
-        cardListBinding.cardCardDataIndex826.cardDataIndex826.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元气牛"));
-        cardListBinding.cardCardDataIndex827.cardDataIndex827.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巫蛊蛇"));
-        cardListBinding.cardCardDataIndex942.cardDataIndex942.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红柳烤串机"));
-        cardListBinding.cardCardDataIndex941.cardDataIndex941.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "金刚马"));
-        cardListBinding.cardCardDataIndex943.cardDataIndex943.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "俱吠罗神使"));
-        cardListBinding.cardCardDataIndex16112.cardDataIndex16112.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红温旋转咖啡壶"));
+        cardListBinding.cardCardDataIndexX11931060.cardDataIndexX11931060.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "旋转咖啡喷壶"));
+        cardListBinding.cardCardDataIndexX11930074.cardDataIndexX11930074.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "狮子座精灵"));
+        cardListBinding.cardCardDataIndexX1193007a.cardDataIndexX1193007a.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "波塞冬神使"));
+        cardListBinding.cardCardDataIndexX11930374.cardDataIndexX11930374.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "转转鸡"));
+        cardListBinding.cardCardDataIndexX11930084.cardDataIndexX11930084.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "可乐汪"));
+        cardListBinding.cardCardDataIndexX11120500.cardDataIndexX11120500.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元气牛"));
+        cardListBinding.cardCardDataIndexX11122470.cardDataIndexX11122470.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "巫蛊蛇"));
+        cardListBinding.cardCardDataIndexX11122890.cardDataIndexX11122890.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红柳烤串机"));
+        cardListBinding.cardCardDataIndexX11122660.cardDataIndexX11122660.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "金刚马"));
+        cardListBinding.cardCardDataIndexX1112280a.cardDataIndexX1112280a.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "俱吠罗神使"));
+        cardListBinding.cardCardDataIndexX11700130.cardDataIndexX11700130.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "红温旋转咖啡壶"));
 
         // 附加类
-        cardListBinding.cardCardDataIndex1123.cardDataIndex1123.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弹珠汽水"));
+        cardListBinding.cardCardDataIndexX11122740.cardDataIndexX11122740.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "弹珠汽水"));
 
         // 本行增幅
-        cardListBinding.cardCardDataIndex811.cardDataIndex811.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "咖啡喷壶"));
-        cardListBinding.cardCardDataIndex812.cardDataIndex812.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "关东煮喷锅"));
-        cardListBinding.cardCardDataIndex813.cardDataIndex813.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烈焰龙"));
-        cardListBinding.cardCardDataIndex814.cardDataIndex814.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赫斯提亚神使"));
-        cardListBinding.cardCardDataIndex815.cardDataIndex815.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "肥牛火锅"));
-        cardListBinding.cardCardDataIndex816.cardDataIndex816.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "麻辣香锅"));
-        cardListBinding.cardCardDataIndex1136.cardDataIndex1136.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "云霞马"));
+        cardListBinding.cardCardDataIndexX11131070.cardDataIndexX11131070.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "咖啡喷壶"));
+        cardListBinding.cardCardDataIndexX111310c0.cardDataIndexX111310c0.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "关东煮喷锅"));
+        cardListBinding.cardCardDataIndexX11122110.cardDataIndexX11122110.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "烈焰龙"));
+        cardListBinding.cardCardDataIndexX1112248a.cardDataIndexX1112248a.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "赫斯提亚神使"));
+        cardListBinding.cardCardDataIndexX11130240.cardDataIndexX11130240.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "肥牛火锅"));
+        cardListBinding.cardCardDataIndexX11130250.cardDataIndexX11130250.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "麻辣香锅"));
+        cardListBinding.cardCardDataIndexX11122840.cardDataIndexX11122840.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "云霞马"));
 
     }
 

@@ -5,31 +5,31 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/card_card_data_index_11_3_10"
-        layout="@layout/card_card_data_index_11_3_10" />
+        android:id="@+id/card_card_data_index_x11122400"
+        layout="@layout/card_card_data_index_x11122400" />
 
     <include
-        android:id="@+id/card_card_data_index_11_3_11"
-        layout="@layout/card_card_data_index_11_3_11" />
+        android:id="@+id/card_card_data_index_x11122490"
+        layout="@layout/card_card_data_index_x11122490" />
 
     <include
-        android:id="@+id/card_card_data_index_11_3_12"
-        layout="@layout/card_card_data_index_11_3_12" />
+        android:id="@+id/card_card_data_index_x1112270a"
+        layout="@layout/card_card_data_index_x1112270a" />
 
     <include
-        android:id="@+id/card_card_data_index_11_3_13"
-        layout="@layout/card_card_data_index_11_3_13" />
+        android:id="@+id/card_card_data_index_x11122780"
+        layout="@layout/card_card_data_index_x11122780" />
 
     <include
-        android:id="@+id/card_card_data_index_11_3_14"
-        layout="@layout/card_card_data_index_11_3_14" />
+        android:id="@+id/card_card_data_index_x11122880"
+        layout="@layout/card_card_data_index_x11122880" />
 
     <include
-        android:id="@+id/card_card_data_index_13_2_11"
-        layout="@layout/card_card_data_index_13_2_11" />
+        android:id="@+id/card_card_data_index_x11122850"
+        layout="@layout/card_card_data_index_x11122850" />
 
     <include
-        android:id="@+id/card_card_data_index_3_2_9"
-        layout="@layout/card_card_data_index_3_2_9" />
+        android:id="@+id/card_card_data_index_x11122930"
+        layout="@layout/card_card_data_index_x11122930" />
 
 </LinearLayout>

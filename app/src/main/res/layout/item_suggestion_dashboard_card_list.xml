@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/card_data_index_1_1_4_0"
+            android:src="@drawable/x1113000a"
             tools:ignore="ContentDescription" />
 
         <ImageView
@@ -60,7 +60,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/card_data_index_1_1_4_1"
+            android:src="@drawable/x1113000b"
             tools:ignore="ContentDescription" />
 
         <ImageView
@@ -69,7 +69,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/card_data_index_1_1_4_2"
+            android:src="@drawable/x1113000c"
             tools:ignore="ContentDescription" />
 
         <ImageView
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/card_data_index_1_1_4_3"
+            android:src="@drawable/x1113000d"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>

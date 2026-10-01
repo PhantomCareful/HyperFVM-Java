@@ -648,1113 +648,1112 @@
     <string name="label_version_4">4.X.X</string>
 
     <!--防御卡名称部分-->
-    <string name="name_card_data_index_1_1_1_0">双向水管</string>
-    <string name="name_card_data_index_1_1_1_1">控温双向水管–合金水管</string>
+    <string name="name_card_data_index_x11130060">双向水管</string>
+    <string name="name_card_data_index_x11130060_1">控温双向水管–合金水管</string>
 
-    <string name="name_card_data_index_1_1_2_0">天秤座精灵</string>
-    <string name="name_card_data_index_1_1_2_1">天秤座战将–天秤座星宿</string>
+    <string name="name_card_data_index_x11130074">天秤座精灵</string>
+    <string name="name_card_data_index_x11130074_1">天秤座战将–天秤座星宿</string>
 
-    <string name="name_card_data_index_1_1_3_0">呆呆鸡</string>
-    <string name="name_card_data_index_1_1_3_1">水遁呆呆鸡–贤圣呆呆鸡</string>
+    <string name="name_card_data_index_x11130304">呆呆鸡</string>
+    <string name="name_card_data_index_x11130304_1">水遁呆呆鸡–贤圣呆呆鸡</string>
 
-    <string name="name_card_data_index_1_1_4_0">阿瑞斯神使</string>
-    <string name="name_card_data_index_1_1_4_1">阿瑞斯圣神–战神·阿瑞斯–至尊战神</string>
+    <string name="name_card_data_index_x1113000a">阿瑞斯神使</string>
+    <string name="name_card_data_index_x1113000a_1">阿瑞斯圣神–战神·阿瑞斯–至尊战神</string>
 
-    <string name="name_card_data_index_1_1_5_0">二哈汪</string>
-    <string name="name_card_data_index_1_1_5_1">秘银二哈汪–金刚二哈汪</string>
+    <string name="name_card_data_index_x11130104">二哈汪</string>
+    <string name="name_card_data_index_x11130104_1">秘银二哈汪–金刚二哈汪</string>
 
-    <string name="name_card_data_index_1_1_6_0">双枪喵</string>
-    <string name="name_card_data_index_1_1_6_1">左轮双枪喵–等离子双枪喵</string>
+    <string name="name_card_data_index_x11120260">双枪喵</string>
+    <string name="name_card_data_index_x11120260_1">左轮双枪喵–等离子双枪喵</string>
 
-    <string name="name_card_data_index_1_1_7_0">散弹牛</string>
-    <string name="name_card_data_index_1_1_7_1">威武散弹牛–霸气散弹牛</string>
+    <string name="name_card_data_index_x11120490">散弹牛</string>
+    <string name="name_card_data_index_x11120490_1">威武散弹牛–霸气散弹牛</string>
 
-    <string name="name_card_data_index_1_1_8_0">威风虎</string>
-    <string name="name_card_data_index_1_1_8_1">爆气威风虎–连弩威风虎</string>
+    <string name="name_card_data_index_x11120720">威风虎</string>
+    <string name="name_card_data_index_x11120720_1">爆气威风虎–连弩威风虎</string>
 
 
-    <string name="name_card_data_index_1_2_1_0">三线酒架</string>
-    <string name="name_card_data_index_1_2_1_1">强力三线酒架–终结者酒架</string>
+    <string name="name_card_data_index_x111300b0">三线酒架</string>
+    <string name="name_card_data_index_x111300b0_1">强力三线酒架–终结者酒架</string>
 
-    <string name="name_card_data_index_1_2_2_0">射手座精灵</string>
-    <string name="name_card_data_index_1_2_2_1">射手座战将–射手座星宿</string>
+    <string name="name_card_data_index_x111300e4">射手座精灵</string>
+    <string name="name_card_data_index_x111300e4_1">射手座战将–射手座星宿</string>
 
-    <string name="name_card_data_index_1_2_3_0">砰砰鸡</string>
-    <string name="name_card_data_index_1_2_3_1">固岩砰砰鸡–暗殇砰砰鸡</string>
+    <string name="name_card_data_index_x111303e4">砰砰鸡</string>
+    <string name="name_card_data_index_x111303e4_1">固岩砰砰鸡–暗殇砰砰鸡</string>
 
-    <string name="name_card_data_index_1_2_4_0">丘比特神使</string>
-    <string name="name_card_data_index_1_2_4_1">丘比特圣神–爱神·丘比特–至尊爱神</string>
+    <string name="name_card_data_index_x111300ea">丘比特神使</string>
+    <string name="name_card_data_index_x111300ea_1">丘比特圣神–爱神·丘比特–至尊爱神</string>
 
-    <string name="name_card_data_index_1_2_5_0">狩猎汪</string>
-    <string name="name_card_data_index_1_2_5_1">丛林狩猎汪–部落狩猎汪</string>
+    <string name="name_card_data_index_x11130114">狩猎汪</string>
+    <string name="name_card_data_index_x11130114_1">丛林狩猎汪–部落狩猎汪</string>
 
-    <string name="name_card_data_index_1_2_6_0">猪猪猎手</string>
-    <string name="name_card_data_index_1_2_6_1">青铜猪猪猎手–王者猪猪猎手</string>
+    <string name="name_card_data_index_x11120130">猪猪猎手</string>
+    <string name="name_card_data_index_x11120130_1">青铜猪猪猎手–王者猪猪猎手</string>
 
-    <string name="name_card_data_index_1_2_7_0">炙烤灯笼鱼</string>
-    <string name="name_card_data_index_1_2_7_1">炙烤辣灯笼鱼–炙烤五香灯笼鱼</string>
+    <string name="name_card_data_index_x11120460">炙烤灯笼鱼</string>
+    <string name="name_card_data_index_x11120460_1">炙烤辣灯笼鱼–炙烤五香灯笼鱼</string>
 
 
-    <string name="name_card_data_index_1_3_1_0">小笼包</string>
+    <string name="name_card_data_index_x11130014">小笼包</string>
 
-    <string name="name_card_data_index_1_3_2_0">双层小笼包</string>
+    <string name="name_card_data_index_x11130020">双层小笼包</string>
 
-    <string name="name_card_data_index_1_3_3_0">三向小笼包</string>
+    <string name="name_card_data_index_x11130100">三向小笼包</string>
 
-    <string name="name_card_data_index_1_3_4_0">机枪小笼包</string>
-    <string name="name_card_data_index_1_3_4_1">竹筒机枪小笼包–格林机枪笼包</string>
+    <string name="name_card_data_index_x11930010">机枪小笼包</string>
+    <string name="name_card_data_index_x11930010_1">竹筒机枪小笼包–格林机枪笼包</string>
 
-    <string name="name_card_data_index_1_3_5_0">冰冻小笼包</string>
+    <string name="name_card_data_index_x11130050">冰冻小笼包</string>
 
-    <string name="name_card_data_index_1_3_6_0">双层冰冻小笼包</string>
+    <string name="name_card_data_index_x11130160">双层冰冻小笼包</string>
 
-    <string name="name_card_data_index_1_3_7_0">三向冰冻小笼包</string>
+    <string name="name_card_data_index_x11130170">三向冰冻小笼包</string>
 
-    <string name="name_card_data_index_1_3_8_0">机枪冰冻小笼包</string>
+    <string name="name_card_data_index_x11930070">机枪冰冻小笼包</string>
 
-    <string name="name_card_data_index_1_3_9_0">国王小笼包</string>
-    <string name="name_card_data_index_1_3_9_1">红心国王小笼包–黑心国王小笼包</string>
+    <string name="name_card_data_index_x11630010">国王小笼包</string>
+    <string name="name_card_data_index_x11630010_1">红心国王小笼包–黑心国王小笼包</string>
 
-    <string name="name_card_data_index_1_3_10_0">三向国王小笼包</string>
-    <string name="name_card_data_index_1_3_10_1">红心三向国王小笼包–黑心三向国王小笼包</string>
+    <string name="name_card_data_index_x11630100">三向国王小笼包</string>
+    <string name="name_card_data_index_x11630100_1">红心三向国王小笼包–黑心三向国王小笼包</string>
 
-    <string name="name_card_data_index_1_3_11_0">贵族小笼包</string>
+    <string name="name_card_data_index_x11130030">贵族小笼包</string>
 
-    <string name="name_card_data_index_1_3_12_0">玉蜀黍</string>
-    <string name="name_card_data_index_1_3_12_1">奶油玉米机枪–加农玉米机枪</string>
+    <string name="name_card_data_index_x11930060">玉蜀黍</string>
+    <string name="name_card_data_index_x11930060_1">奶油玉米机枪–加农玉米机枪</string>
 
-    <string name="name_card_data_index_1_3_13_0">包包龙</string>
-    <string name="name_card_data_index_1_3_13_1">懵懂包包龙–觉醒包包龙</string>
+    <string name="name_card_data_index_x11122320">包包龙</string>
+    <string name="name_card_data_index_x11122320_1">懵懂包包龙–觉醒包包龙</string>
 
-    <string name="name_card_data_index_1_3_14_0">咖啡杯</string>
-    <string name="name_card_data_index_1_3_14_1">花纹咖啡杯–骨瓷咖啡杯</string>
+    <string name="name_card_data_index_x11131034">咖啡杯</string>
+    <string name="name_card_data_index_x11131034_1">花纹咖啡杯–骨瓷咖啡杯</string>
 
-    <string name="name_card_data_index_1_3_15_0">水上茶杯</string>
+    <string name="name_card_data_index_x11431014">水上茶杯</string>
 
-    <string name="name_card_data_index_1_3_16_0">激光汪</string>
-    <string name="name_card_data_index_1_3_16_1">高频激光汪–超频激光汪</string>
+    <string name="name_card_data_index_x11130164">激光汪</string>
+    <string name="name_card_data_index_x11130164_1">高频激光汪–超频激光汪</string>
 
 
-    <string name="name_card_data_index_1_4_1_0">枪塔喵</string>
-    <string name="name_card_data_index_1_4_1_1">榴弹枪塔喵–射线枪塔喵</string>
+    <string name="name_card_data_index_x11120190">枪塔喵</string>
+    <string name="name_card_data_index_x11120190_1">榴弹枪塔喵–射线枪塔喵</string>
 
-    <string name="name_card_data_index_1_4_2_0">弩箭牛</string>
-    <string name="name_card_data_index_1_4_2_1">精英弩箭牛–暴力弩箭牛</string>
+    <string name="name_card_data_index_x11120300">弩箭牛</string>
+    <string name="name_card_data_index_x11120300_1">精英弩箭牛–暴力弩箭牛</string>
 
-    <string name="name_card_data_index_1_4_3_0">仙人掌刺身</string>
-    <string name="name_card_data_index_1_4_3_1">仙人球刺身–仙人掌花刺身</string>
+    <string name="name_card_data_index_x111304e0">仙人掌刺身</string>
+    <string name="name_card_data_index_x111304e0_1">仙人球刺身–仙人掌花刺身</string>
 
 
-    <string name="name_card_data_index_2_1_1_0">勺勺兔</string>
-    <string name="name_card_data_index_2_1_1_1">增强勺勺兔–盖世勺勺兔</string>
+    <string name="name_card_data_index_x11122050">勺勺兔</string>
+    <string name="name_card_data_index_x11122050_1">增强勺勺兔–盖世勺勺兔</string>
 
-    <string name="name_card_data_index_2_1_2_0">窃蛋龙</string>
-    <string name="name_card_data_index_2_1_2_1">蓝角窃蛋龙–钢爪窃蛋龙</string>
+    <string name="name_card_data_index_x11122120">窃蛋龙</string>
+    <string name="name_card_data_index_x11122120_1">蓝角窃蛋龙–钢爪窃蛋龙</string>
 
-    <string name="name_card_data_index_2_1_3_0">尤弥尔神使</string>
-    <string name="name_card_data_index_2_1_3_1">尤弥尔圣神–巨神·尤弥尔–至尊巨神</string>
+    <string name="name_card_data_index_x1112221a">尤弥尔神使</string>
+    <string name="name_card_data_index_x1112221a_1">尤弥尔圣神–巨神·尤弥尔–至尊巨神</string>
 
-    <string name="name_card_data_index_2_1_4_0">幻影蛇</string>
-    <string name="name_card_data_index_2_1_4_1">羽翼幻影蛇–金盔幻影蛇</string>
+    <string name="name_card_data_index_x11122450">幻影蛇</string>
+    <string name="name_card_data_index_x11122450_1">羽翼幻影蛇–金盔幻影蛇</string>
 
-    <string name="name_card_data_index_2_1_5_0">全能糖球投手</string>
-    <string name="name_card_data_index_2_1_5_1">水果糖全能投手–可可糖全能投手</string>
+    <string name="name_card_data_index_x11122520">全能糖球投手</string>
+    <string name="name_card_data_index_x11122520_1">水果糖全能投手–可可糖全能投手</string>
 
-    <string name="name_card_data_index_2_1_6_0">金乌马</string>
-    <string name="name_card_data_index_2_1_6_1">太阳金乌马–日冕金乌马</string>
+    <string name="name_card_data_index_x11122620">金乌马</string>
+    <string name="name_card_data_index_x11122620_1">太阳金乌马–日冕金乌马</string>
 
 
-    <string name="name_card_data_index_2_2_1_0">煮蛋器投手</string>
-    <string name="name_card_data_index_2_2_1_1">威力煮蛋器–强袭煮蛋器</string>
+    <string name="name_card_data_index_x111300a0">煮蛋器投手</string>
+    <string name="name_card_data_index_x111300a0_1">威力煮蛋器–强袭煮蛋器</string>
 
-    <string name="name_card_data_index_2_2_2_0">冰煮蛋器</string>
-    <string name="name_card_data_index_2_2_2_1">节能冰煮蛋器–冰河煮蛋器</string>
+    <string name="name_card_data_index_x11930020">冰煮蛋器</string>
+    <string name="name_card_data_index_x11930020_1">节能冰煮蛋器–冰河煮蛋器</string>
 
-    <string name="name_card_data_index_2_2_3_0">双鱼座精灵</string>
-    <string name="name_card_data_index_2_2_3_1">双鱼座战将–双鱼座星宿</string>
+    <string name="name_card_data_index_x111300c4">双鱼座精灵</string>
+    <string name="name_card_data_index_x111300c4_1">双鱼座战将–双鱼座星宿</string>
 
-    <string name="name_card_data_index_2_2_4_0">弹弹鸡</string>
-    <string name="name_card_data_index_2_2_4_1">寒冰弹弹鸡–月光弹弹鸡</string>
+    <string name="name_card_data_index_x111303c4">弹弹鸡</string>
+    <string name="name_card_data_index_x111303c4_1">寒冰弹弹鸡–月光弹弹鸡</string>
 
-    <string name="name_card_data_index_2_2_5_0">索尔神使</string>
-    <string name="name_card_data_index_2_2_5_1">索尔圣神–雷神·索尔–至尊雷神</string>
+    <string name="name_card_data_index_x111300ca">索尔神使</string>
+    <string name="name_card_data_index_x111300ca_1">索尔圣神–雷神·索尔–至尊雷神</string>
 
-    <string name="name_card_data_index_2_2_6_0">机械汪</string>
-    <string name="name_card_data_index_2_2_6_1">改装机械汪–自律机械汪</string>
+    <string name="name_card_data_index_x11130124">机械汪</string>
+    <string name="name_card_data_index_x11130124_1">改装机械汪–自律机械汪</string>
 
-    <string name="name_card_data_index_2_2_7_0">投弹猪</string>
-    <string name="name_card_data_index_2_2_7_1">獠牙投弹猪–振金投弹猪</string>
+    <string name="name_card_data_index_x11120090">投弹猪</string>
+    <string name="name_card_data_index_x11120090_1">獠牙投弹猪–振金投弹猪</string>
 
-    <string name="name_card_data_index_2_2_8_0">雪糕投手</string>
-    <string name="name_card_data_index_2_2_8_1">麦旋风投手–水果雪芭投手</string>
+    <string name="name_card_data_index_x11130180">雪糕投手</string>
+    <string name="name_card_data_index_x11130180_1">麦旋风投手–水果雪芭投手</string>
 
-    <string name="name_card_data_index_2_2_9_0">飞鱼喵</string>
-    <string name="name_card_data_index_2_2_9_1">河滨飞鱼喵–深海飞鱼喵</string>
+    <string name="name_card_data_index_x11120200">飞鱼喵</string>
+    <string name="name_card_data_index_x11120200_1">河滨飞鱼喵–深海飞鱼喵</string>
 
-    <string name="name_card_data_index_2_2_10_0">壮壮牛</string>
-    <string name="name_card_data_index_2_2_10_1">蛮力壮壮牛–乾坤壮壮牛</string>
+    <string name="name_card_data_index_x11120380">壮壮牛</string>
+    <string name="name_card_data_index_x11120380_1">蛮力壮壮牛–乾坤壮壮牛</string>
 
-    <string name="name_card_data_index_2_2_11_0">烤蜥蜴投手</string>
-    <string name="name_card_data_index_2_2_11_1">坚果蜥蜴投手–花椒蜥蜴投手</string>
+    <string name="name_card_data_index_x111304c0">烤蜥蜴投手</string>
+    <string name="name_card_data_index_x111304c0_1">坚果蜥蜴投手–花椒蜥蜴投手</string>
 
-    <string name="name_card_data_index_2_2_12_0">投篮虎</string>
-    <string name="name_card_data_index_2_2_12_1">职业投篮虎–球星投篮虎</string>
+    <string name="name_card_data_index_x11120540">投篮虎</string>
+    <string name="name_card_data_index_x11120540_1">职业投篮虎–球星投篮虎</string>
 
-    <string name="name_card_data_index_2_2_13_0">钵钵鸡</string>
-    <string name="name_card_data_index_2_2_13_1">飘香钵钵鸡–川香钵钵鸡</string>
+    <string name="name_card_data_index_x11122160">钵钵鸡</string>
+    <string name="name_card_data_index_x11122160_1">飘香钵钵鸡–川香钵钵鸡</string>
 
-    <string name="name_card_data_index_2_2_14_0">色拉投手</string>
-    <string name="name_card_data_index_2_2_14_1">果蔬色拉投手–凯撒色拉投手</string>
+    <string name="name_card_data_index_x11130094">色拉投手</string>
+    <string name="name_card_data_index_x11130094_1">果蔬色拉投手–凯撒色拉投手</string>
 
-    <string name="name_card_data_index_2_2_15_0">巧克力投手</string>
-    <string name="name_card_data_index_2_2_15_1">浓情巧克力投手–脆心巧克力投手</string>
+    <string name="name_card_data_index_x11130080">巧克力投手</string>
+    <string name="name_card_data_index_x11130080_1">浓情巧克力投手–脆心巧克力投手</string>
 
-    <string name="name_card_data_index_2_2_16_0">臭豆腐投手</string>
-    <string name="name_card_data_index_2_2_16_1">什锦臭豆腐投手–铁板臭豆腐投手</string>
+    <string name="name_card_data_index_x11130130">臭豆腐投手</string>
+    <string name="name_card_data_index_x11130130_1">什锦臭豆腐投手–铁板臭豆腐投手</string>
 
-    <string name="name_card_data_index_2_2_17_0">8周年蛋糕</string>
-    <string name="name_card_data_index_2_2_17_1">8周年慕斯–8周年红丝绒</string>
+    <string name="name_card_data_index_x11131090">8周年蛋糕</string>
+    <string name="name_card_data_index_x11131090_1">8周年慕斯–8周年红丝绒</string>
 
 
-    <string name="name_card_data_index_2_3_1_0">生煎锅</string>
-    <string name="name_card_data_index_2_3_1_1">水煎包锅–驴肉火烧锅</string>
+    <string name="name_card_data_index_x11130260">生煎锅</string>
+    <string name="name_card_data_index_x11130260_1">水煎包锅–驴肉火烧锅</string>
 
-    <string name="name_card_data_index_2_3_2_0">铛铛虎</string>
-    <string name="name_card_data_index_2_3_2_1">速热铛铛虎–微波铛铛虎</string>
+    <string name="name_card_data_index_x11120570">铛铛虎</string>
+    <string name="name_card_data_index_x11120570_1">速热铛铛虎–微波铛铛虎</string>
 
-    <string name="name_card_data_index_2_3_3_0">祝融神使</string>
-    <string name="name_card_data_index_2_3_3_1">祝融圣神–赤帝·祝融–至尊赤帝</string>
+    <string name="name_card_data_index_x1112090a">祝融神使</string>
+    <string name="name_card_data_index_x1112090a_1">祝融圣神–赤帝·祝融–至尊赤帝</string>
 
-    <string name="name_card_data_index_2_3_4_0">糖炒栗子</string>
-    <string name="name_card_data_index_2_3_4_1">开口笑栗子–焦香烤栗子</string>
+    <string name="name_card_data_index_x11122280">糖炒栗子</string>
+    <string name="name_card_data_index_x11122280_1">开口笑栗子–焦香烤栗子</string>
 
-    <string name="name_card_data_index_2_3_5_0">霜霜蛇</string>
-    <string name="name_card_data_index_2_3_5_1">雪花霜霜蛇–玄冰霜霜蛇</string>
+    <string name="name_card_data_index_x11122510">霜霜蛇</string>
+    <string name="name_card_data_index_x11122510_1">雪花霜霜蛇–玄冰霜霜蛇</string>
 
-    <string name="name_card_data_index_2_3_6_0">马卡龙烤箱</string>
-    <string name="name_card_data_index_2_3_6_1">抹茶马卡龙烤箱–幻彩马卡龙烤箱</string>
+    <string name="name_card_data_index_x11122690">马卡龙烤箱</string>
+    <string name="name_card_data_index_x11122690_1">抹茶马卡龙烤箱–幻彩马卡龙烤箱</string>
 
 
-    <string name="name_card_data_index_3_1_1_0">炭烧海星</string>
-    <string name="name_card_data_index_3_1_1_1">芝士焗海星–芥末海星刺身</string>
+    <string name="name_card_data_index_x11130200">炭烧海星</string>
+    <string name="name_card_data_index_x11130200_1">芝士焗海星–芥末海星刺身</string>
 
-    <string name="name_card_data_index_3_1_2_0">猪猪料理机</string>
-    <string name="name_card_data_index_3_1_2_1">猪猪搅拌机–猪猪破壁机</string>
+    <string name="name_card_data_index_x11131200">猪猪料理机</string>
+    <string name="name_card_data_index_x11131200_1">猪猪搅拌机–猪猪破壁机</string>
 
-    <string name="name_card_data_index_3_1_3_0">陀螺喵</string>
-    <string name="name_card_data_index_3_1_3_1">极光陀螺喵–金翼陀螺喵</string>
+    <string name="name_card_data_index_x11132200">陀螺喵</string>
+    <string name="name_card_data_index_x11132200_1">极光陀螺喵–金翼陀螺喵</string>
 
-    <string name="name_card_data_index_3_1_4_0">哈迪斯神使</string>
-    <string name="name_card_data_index_3_1_4_1">哈迪斯圣神–冥神·哈迪斯–至尊冥神</string>
+    <string name="name_card_data_index_x1113120a">哈迪斯神使</string>
+    <string name="name_card_data_index_x1113120a_1">哈迪斯圣神–冥神·哈迪斯–至尊冥神</string>
 
-    <string name="name_card_data_index_3_1_5_0">查克拉兔</string>
-    <string name="name_card_data_index_3_1_5_1">上忍查克拉兔–影级查克拉兔</string>
+    <string name="name_card_data_index_x11122020">查克拉兔</string>
+    <string name="name_card_data_index_x11122020_1">上忍查克拉兔–影级查克拉兔</string>
 
 
-    <string name="name_card_data_index_3_2_1_0">厨师虎</string>
-    <string name="name_card_data_index_3_2_1_1">银牌厨师虎–金牌厨师虎</string>
+    <string name="name_card_data_index_x11120590">厨师虎</string>
+    <string name="name_card_data_index_x11120590_1">银牌厨师虎–金牌厨师虎</string>
 
-    <string name="name_card_data_index_3_2_2_0">星星兔</string>
-    <string name="name_card_data_index_3_2_2_1">科技星星兔–宇宙星星兔</string>
+    <string name="name_card_data_index_x11120820">星星兔</string>
+    <string name="name_card_data_index_x11120820_1">科技星星兔–宇宙星星兔</string>
 
-    <string name="name_card_data_index_3_2_3_0">坚果爆炒机</string>
-    <string name="name_card_data_index_3_2_3_1">橡子搅拌机–松塔爆破机</string>
+    <string name="name_card_data_index_x11120950">坚果爆炒机</string>
+    <string name="name_card_data_index_x11120950_1">橡子搅拌机–松塔爆破机</string>
 
-    <string name="name_card_data_index_3_2_4_0">里格神使</string>
-    <string name="name_card_data_index_3_2_4_1">里格圣神–守护神·里格–至尊守护神</string>
+    <string name="name_card_data_index_x1112206a">里格神使</string>
+    <string name="name_card_data_index_x1112206a_1">里格圣神–守护神·里格–至尊守护神</string>
 
-    <string name="name_card_data_index_3_2_5_0">邪恶牛油果</string>
-    <string name="name_card_data_index_3_2_5_1">沙沙牛油果–桑巴牛油果</string>
+    <string name="name_card_data_index_x11122910">邪恶牛油果</string>
+    <string name="name_card_data_index_x11122910_1">沙沙牛油果–桑巴牛油果</string>
 
-    <string name="name_card_data_index_3_2_6_0">怪味鱿鱼</string>
-    <string name="name_card_data_index_3_2_6_1">爆汁怪味鱿鱼–天椒怪味鱿鱼</string>
+    <string name="name_card_data_index_x11120760">怪味鱿鱼</string>
+    <string name="name_card_data_index_x11120760_1">爆汁怪味鱿鱼–天椒怪味鱿鱼</string>
 
-    <string name="name_card_data_index_3_2_7_0">烟花虎</string>
-    <string name="name_card_data_index_3_2_7_1">冷光烟花虎–礼炮烟花虎</string>
+    <string name="name_card_data_index_x11120780">烟花虎</string>
+    <string name="name_card_data_index_x11120780_1">冷光烟花虎–礼炮烟花虎</string>
 
-    <string name="name_card_data_index_3_2_8_0">风车龙</string>
-    <string name="name_card_data_index_3_2_8_1">暴击风车龙–迅猛风车龙</string>
+    <string name="name_card_data_index_x11122290">风车龙</string>
+    <string name="name_card_data_index_x11122290_1">暴击风车龙–迅猛风车龙</string>
 
-    <string name="name_card_data_index_3_2_9_0">元宝饺子鼎</string>
-    <string name="name_card_data_index_3_2_9_1">四喜饺子鼎–八珍饺子鼎</string>
+    <string name="name_card_data_index_x11122930">元宝饺子鼎</string>
+    <string name="name_card_data_index_x11122930_1">四喜饺子鼎–八珍饺子鼎</string>
 
 
-    <string name="name_card_data_index_3_3_1_0">鲈鱼</string>
-    <string name="name_card_data_index_3_3_1_1">美味鲈鱼–龙门鲈鱼</string>
+    <string name="name_card_data_index_x11150034">鲈鱼</string>
+    <string name="name_card_data_index_x11150034_1">美味鲈鱼–龙门鲈鱼</string>
 
-    <string name="name_card_data_index_3_3_2_0">便便汪</string>
-    <string name="name_card_data_index_3_3_2_1">白银便便汪–黄金便便汪</string>
+    <string name="name_card_data_index_x11150054">便便汪</string>
+    <string name="name_card_data_index_x11150054_1">白银便便汪–黄金便便汪</string>
 
-    <string name="name_card_data_index_3_3_3_0">烧鸡</string>
-    <string name="name_card_data_index_3_3_3_1">美味烤鸡–奥尔良烤鸡</string>
+    <string name="name_card_data_index_x11150014">烧鸡</string>
+    <string name="name_card_data_index_x11150014_1">美味烤鸡–奥尔良烤鸡</string>
 
-    <string name="name_card_data_index_3_3_4_0">饼干汪</string>
-    <string name="name_card_data_index_3_3_4_1">冲锋饼干汪–加农饼干汪</string>
+    <string name="name_card_data_index_x11150024">饼干汪</string>
+    <string name="name_card_data_index_x11150024_1">冲锋饼干汪–加农饼干汪</string>
 
-    <string name="name_card_data_index_3_3_6_0">牛角面包</string>
+    <string name="name_card_data_index_x11150040">牛角面包</string>
 
-    <string name="name_card_data_index_3_3_7_0">盾盾汪</string>
-    <string name="name_card_data_index_3_3_7_1">钢化盾盾汪</string>
+    <string name="name_card_data_index_x11150044">盾盾汪</string>
+    <string name="name_card_data_index_x11150044_1">钢化盾盾汪</string>
 
 
-    <string name="name_card_data_index_4_1_1_0">火盆</string>
-    <string name="name_card_data_index_4_1_1_1">电子烤盘–岩烧烤盘</string>
+    <string name="name_card_data_index_x11190141">火盆</string>
+    <string name="name_card_data_index_x11190141_1">电子烤盘–岩烧烤盘</string>
 
-    <string name="name_card_data_index_4_1_2_0">金牛座精灵</string>
-    <string name="name_card_data_index_4_1_2_1">金牛座战将–金牛座星宿</string>
+    <string name="name_card_data_index_x11190154">金牛座精灵</string>
+    <string name="name_card_data_index_x11190154_1">金牛座战将–金牛座星宿</string>
 
-    <string name="name_card_data_index_4_1_3_0">洛基神使</string>
-    <string name="name_card_data_index_4_1_3_1">洛基圣神–火神·洛基–至尊火神</string>
+    <string name="name_card_data_index_x1119015a">洛基神使</string>
+    <string name="name_card_data_index_x1119015a_1">洛基圣神–火神·洛基–至尊火神</string>
 
-    <string name="name_card_data_index_4_1_4_0">暖炉汪</string>
-    <string name="name_card_data_index_4_1_4_1">高温暖炉汪–火热暖炉汪</string>
+    <string name="name_card_data_index_x11190164">暖炉汪</string>
+    <string name="name_card_data_index_x11190164_1">高温暖炉汪–火热暖炉汪</string>
 
-    <string name="name_card_data_index_4_1_5_0">能量喵</string>
-    <string name="name_card_data_index_4_1_5_1">蓝焰能量喵–樱红能量喵</string>
+    <string name="name_card_data_index_x11190254">能量喵</string>
+    <string name="name_card_data_index_x11190254_1">蓝焰能量喵–樱红能量喵</string>
 
-    <string name="name_card_data_index_4_1_6_0">坩埚蛇</string>
-    <string name="name_card_data_index_4_1_6_1">灵力坩埚蛇–幻术坩埚蛇</string>
+    <string name="name_card_data_index_x11122570">坩埚蛇</string>
+    <string name="name_card_data_index_x11122570_1">灵力坩埚蛇–幻术坩埚蛇</string>
 
-    <string name="name_card_data_index_4_1_7_0">猪猪加强器</string>
-    <string name="name_card_data_index_4_1_7_1">猪猪信号塔–猪猪发射站</string>
+    <string name="name_card_data_index_x11120110">猪猪加强器</string>
+    <string name="name_card_data_index_x11120110_1">猪猪信号塔–猪猪发射站</string>
 
-    <string name="name_card_data_index_4_1_8_0">蓝莓信号塔塔</string>
+    <string name="name_card_data_index_x11120420">蓝莓信号塔塔</string>
 
-    <string name="name_card_data_index_4_1_9_0">美味水果塔</string>
-    <string name="name_card_data_index_4_1_9_1">风车水果塔–巧克力风车塔</string>
+    <string name="name_card_data_index_x11120700">美味水果塔</string>
+    <string name="name_card_data_index_x11120700_1">风车水果塔–巧克力风车塔</string>
 
-    <string name="name_card_data_index_4_1_10_0">欧若拉神使</string>
-    <string name="name_card_data_index_4_1_10_1">欧若拉圣神–曙光女神·欧若拉–至尊曙光女神</string>
+    <string name="name_card_data_index_x1112085a">欧若拉神使</string>
+    <string name="name_card_data_index_x1112085a_1">欧若拉圣神–曙光女神·欧若拉–至尊曙光女神</string>
 
 
-    <string name="name_card_data_index_4_2_1_0">莓果点心</string>
-    <string name="name_card_data_index_4_2_1_1">薄荷莓果点心–流心莓果点心</string>
+    <string name="name_card_data_index_x11120470">莓果点心</string>
+    <string name="name_card_data_index_x11120470_1">薄荷莓果点心–流心莓果点心</string>
 
-    <string name="name_card_data_index_4_2_2_0">香料虎</string>
-    <string name="name_card_data_index_4_2_2_1">海洋香料虎–魔力香料虎</string>
+    <string name="name_card_data_index_x11120560">香料虎</string>
+    <string name="name_card_data_index_x11120560_1">海洋香料虎–魔力香料虎</string>
 
-    <string name="name_card_data_index_4_2_3_0">塔利亚神使</string>
-    <string name="name_card_data_index_4_2_3_1">塔利亚圣神–宴飨女神·塔利亚-至尊宴飨女神</string>
+    <string name="name_card_data_index_x1112215a">塔利亚神使</string>
+    <string name="name_card_data_index_x1112215a_1">塔利亚圣神–宴飨女神·塔利亚-至尊宴飨女神</string>
 
-    <string name="name_card_data_index_4_2_4_0">精灵龙</string>
-    <string name="name_card_data_index_4_2_4_1">蛋筒精灵龙–樱桃精灵龙</string>
+    <string name="name_card_data_index_x11122270">精灵龙</string>
+    <string name="name_card_data_index_x11122270_1">蛋筒精灵龙–樱桃精灵龙</string>
 
-    <string name="name_card_data_index_4_2_5_0">龙须面</string>
-    <string name="name_card_data_index_4_2_5_1">三鲜龙须面-佛跳墙龙须面</string>
+    <string name="name_card_data_index_x11122130">龙须面</string>
+    <string name="name_card_data_index_x11122130_1">三鲜龙须面-佛跳墙龙须面</string>
 
-    <string name="name_card_data_index_4_2_6_0">五谷丰登</string>
-    <string name="name_card_data_index_4_2_6_1">五谷营养餐–杂粮大丰收</string>
+    <string name="name_card_data_index_x11122310">五谷丰登</string>
+    <string name="name_card_data_index_x11122310_1">五谷营养餐–杂粮大丰收</string>
 
-    <string name="name_card_data_index_4_2_7_0">五行蛇</string>
-    <string name="name_card_data_index_4_2_7_1">通灵五行蛇–泰斗五行蛇</string>
+    <string name="name_card_data_index_x11122380">五行蛇</string>
+    <string name="name_card_data_index_x11122380_1">通灵五行蛇–泰斗五行蛇</string>
 
-    <string name="name_card_data_index_4_2_8_0">弗雷神使</string>
-    <string name="name_card_data_index_4_2_8_1">弗雷圣神–丰饶神·弗雷–至尊丰饶神</string>
+    <string name="name_card_data_index_x1112258a">弗雷神使</string>
+    <string name="name_card_data_index_x1112258a_1">弗雷圣神–丰饶神·弗雷–至尊丰饶神</string>
 
-    <string name="name_card_data_index_4_2_9_0">加速榨汁机</string>
-    <string name="name_card_data_index_4_2_9_1">苹果榨汁机–大菠萝榨汁机</string>
+    <string name="name_card_data_index_x11122500">加速榨汁机</string>
+    <string name="name_card_data_index_x11122500_1">苹果榨汁机–大菠萝榨汁机</string>
 
-    <string name="name_card_data_index_4_2_10_0">魔杖蛇</string>
-    <string name="name_card_data_index_4_2_10_1">青木魔杖蛇–凤羽魔杖蛇</string>
+    <string name="name_card_data_index_x11122530">魔杖蛇</string>
+    <string name="name_card_data_index_x11122530_1">青木魔杖蛇–凤羽魔杖蛇</string>
 
-    <string name="name_card_data_index_4_2_11_0">塔拉萨神使</string>
-    <string name="name_card_data_index_4_2_11_1">塔拉萨圣神–海洋女神·塔拉萨-至尊海洋女神</string>
+    <string name="name_card_data_index_x1112277a">塔拉萨神使</string>
+    <string name="name_card_data_index_x1112277a_1">塔拉萨圣神–海洋女神·塔拉萨-至尊海洋女神</string>
 
-    <string name="name_card_data_index_4_2_12_0">音盒马</string>
-    <string name="name_card_data_index_4_2_12_1">叮咚音盒马–玲珑音盒马</string>
+    <string name="name_card_data_index_x11122830">音盒马</string>
+    <string name="name_card_data_index_x11122830_1">叮咚音盒马–玲珑音盒马</string>
 
-    <string name="name_card_data_index_4_2_13_0">浮生茶</string>
-    <string name="name_card_data_index_4_2_13_1">清心浮生茶–忘忧浮生茶</string>
+    <string name="name_card_data_index_x11122860">浮生茶</string>
+    <string name="name_card_data_index_x11122860_1">清心浮生茶–忘忧浮生茶</string>
 
-    <string name="name_card_data_index_4_2_14_0">炎焱兔</string>
-    <string name="name_card_data_index_4_2_14_1">火火炎焱兔–燚燚炎焱兔</string>
+    <string name="name_card_data_index_x11120790">炎焱兔</string>
+    <string name="name_card_data_index_x11120790_1">火火炎焱兔–燚燚炎焱兔</string>
 
 
-    <string name="name_card_data_index_4_3_1_0">11周年美食盒子</string>
+    <string name="name_card_data_index_x11120530">11周年美食盒子</string>
 
-    <string name="name_card_data_index_4_3_2_0">战旗马</string>
-    <string name="name_card_data_index_4_3_2_1">飞天战旗马-燎原战旗马</string>
+    <string name="name_card_data_index_x11122610">战旗马</string>
+    <string name="name_card_data_index_x11122610_1">飞天战旗马-燎原战旗马</string>
 
 
-    <string name="name_card_data_index_5_1_1_0">小火炉</string>
-    <string name="name_card_data_index_5_1_1_1">日光炉–太阳能高效炉</string>
+    <string name="name_card_data_index_x11110014">小火炉</string>
+    <string name="name_card_data_index_x11110014_1">日光炉–太阳能高效炉</string>
 
-    <string name="name_card_data_index_5_1_2_0">大火炉</string>
-    <string name="name_card_data_index_5_1_2_1">高能火炉–超能燃气炉</string>
+    <string name="name_card_data_index_x11930040">大火炉</string>
+    <string name="name_card_data_index_x11930040_1">高能火炉–超能燃气炉</string>
 
-    <string name="name_card_data_index_5_1_3_0">酒杯灯</string>
-    <string name="name_card_data_index_5_1_3_1">节能灯–高效节能灯</string>
+    <string name="name_card_data_index_x11111024">酒杯灯</string>
+    <string name="name_card_data_index_x11111024_1">节能灯–高效节能灯</string>
 
-    <string name="name_card_data_index_5_1_4_0">双子座精灵</string>
-    <string name="name_card_data_index_5_1_4_1">双子座战将–双子座星宿</string>
+    <string name="name_card_data_index_x11110054">双子座精灵</string>
+    <string name="name_card_data_index_x11110054_1">双子座战将–双子座星宿</string>
 
-    <string name="name_card_data_index_5_1_5_0">咕咕鸡</string>
-    <string name="name_card_data_index_5_1_5_1">萤火咕咕鸡–梦幻咕咕鸡</string>
+    <string name="name_card_data_index_x11111324">咕咕鸡</string>
+    <string name="name_card_data_index_x11111324_1">萤火咕咕鸡–梦幻咕咕鸡</string>
 
-    <string name="name_card_data_index_5_1_6_0">暖暖鸡</string>
-    <string name="name_card_data_index_5_1_6_1">焰羽暖暖鸡–日耀暖暖鸡</string>
+    <string name="name_card_data_index_x11110354">暖暖鸡</string>
+    <string name="name_card_data_index_x11110354_1">焰羽暖暖鸡–日耀暖暖鸡</string>
 
-    <string name="name_card_data_index_5_1_7_0">阿波罗神使</string>
-    <string name="name_card_data_index_5_1_7_1">阿波罗圣神–太阳神·阿波罗–至尊太阳神</string>
+    <string name="name_card_data_index_x1111005a">阿波罗神使</string>
+    <string name="name_card_data_index_x1111005a_1">阿波罗圣神–太阳神·阿波罗–至尊太阳神</string>
 
-    <string name="name_card_data_index_5_1_8_0">7周年蜡烛</string>
+    <string name="name_card_data_index_x11111034">7周年蜡烛</string>
 
-    <string name="name_card_data_index_5_1_9_0">火焰牛</string>
-    <string name="name_card_data_index_5_1_9_1">幽蓝火焰牛–幻紫火焰牛</string>
+    <string name="name_card_data_index_x11120310">火焰牛</string>
+    <string name="name_card_data_index_x11120310_1">幽蓝火焰牛–幻紫火焰牛</string>
 
-    <string name="name_card_data_index_5_1_10_0">花火龙</string>
-    <string name="name_card_data_index_5_1_10_1">灼灼花火龙–炽焰花火龙</string>
+    <string name="name_card_data_index_x11122100">花火龙</string>
+    <string name="name_card_data_index_x11122100_1">灼灼花火龙–炽焰花火龙</string>
 
-    <string name="name_card_data_index_5_1_11_0">蛇羹煲</string>
-    <string name="name_card_data_index_5_1_11_1">厨圣蛇羹煲–帝王蛇羹煲</string>
+    <string name="name_card_data_index_x11390740">蛇羹煲</string>
+    <string name="name_card_data_index_x11390740_1">厨圣蛇羹煲–帝王蛇羹煲</string>
 
-    <string name="name_card_data_index_5_1_12_0">禅心马</string>
-    <string name="name_card_data_index_5_1_12_1">一念禅心马–明镜禅心马</string>
+    <string name="name_card_data_index_x11390660">禅心马</string>
+    <string name="name_card_data_index_x11390660_1">一念禅心马–明镜禅心马</string>
 
 
-    <string name="name_card_data_index_5_2_1_0">钱罐猪</string>
-    <string name="name_card_data_index_5_2_1_1">彩晶钱罐猪–招财钱罐猪</string>
+    <string name="name_card_data_index_x11120160">钱罐猪</string>
+    <string name="name_card_data_index_x11120160_1">彩晶钱罐猪–招财钱罐猪</string>
 
-    <string name="name_card_data_index_5_2_2_0">罐罐牛</string>
-    <string name="name_card_data_index_5_2_2_1">五香罐罐牛–香辣罐罐牛</string>
+    <string name="name_card_data_index_x11120440">罐罐牛</string>
+    <string name="name_card_data_index_x11120440_1">五香罐罐牛–香辣罐罐牛</string>
 
-    <string name="name_card_data_index_5_2_3_0">烈火虎</string>
-    <string name="name_card_data_index_5_2_3_1">煤气烈火虎–燃油烈火虎</string>
+    <string name="name_card_data_index_x11120740">烈火虎</string>
+    <string name="name_card_data_index_x11120740_1">煤气烈火虎–燃油烈火虎</string>
 
 
-    <string name="name_card_data_index_6_1_1_0">樱桃反弹布丁</string>
-    <string name="name_card_data_index_6_1_1_1">节能反弹布丁–热量反弹布丁</string>
+    <string name="name_card_data_index_x111911c0">樱桃反弹布丁</string>
+    <string name="name_card_data_index_x111911c0_1">节能反弹布丁–热量反弹布丁</string>
 
-    <string name="name_card_data_index_6_1_2_0">艾草粑粑</string>
+    <string name="name_card_data_index_x111911e0">艾草粑粑</string>
 
-    <string name="name_card_data_index_6_1_3_0">布丁汪</string>
-    <string name="name_card_data_index_6_1_3_1">双拼布丁汪–什锦布丁汪</string>
+    <string name="name_card_data_index_x111911d0">布丁汪</string>
+    <string name="name_card_data_index_x111911d0_1">双拼布丁汪–什锦布丁汪</string>
 
-    <string name="name_card_data_index_6_1_4_0">凉粉牛</string>
-    <string name="name_card_data_index_6_1_4_1">焦糖凉粉牛–山楂凉粉牛</string>
+    <string name="name_card_data_index_x11120320">凉粉牛</string>
+    <string name="name_card_data_index_x11120320_1">焦糖凉粉牛–山楂凉粉牛</string>
 
-    <string name="name_card_data_index_6_1_5_0">忒提丝神使</string>
-    <string name="name_card_data_index_6_1_5_1">忒提丝圣神–水神·忒提丝–至尊水神</string>
+    <string name="name_card_data_index_x1112207a">忒提丝神使</string>
+    <string name="name_card_data_index_x1112207a_1">忒提丝圣神–水神·忒提丝–至尊水神</string>
 
 
-    <string name="name_card_data_index_6_2_1_0">木盘子</string>
-    <string name="name_card_data_index_6_2_1_1">友情木盘子–坚韧木盘子</string>
+    <string name="name_card_data_index_x11370015">木盘子</string>
+    <string name="name_card_data_index_x11370015_1">友情木盘子–坚韧木盘子</string>
 
-    <string name="name_card_data_index_6_2_2_0">盘盘鸡</string>
-    <string name="name_card_data_index_6_2_2_1">王者盘盘鸡–超神盘盘鸡</string>
+    <string name="name_card_data_index_x11370044">盘盘鸡</string>
+    <string name="name_card_data_index_x11370044_1">王者盘盘鸡–超神盘盘鸡</string>
 
-    <string name="name_card_data_index_6_2_3_0">猫猫盘</string>
-    <string name="name_card_data_index_6_2_3_1">光能猫猫盘–无敌猫猫盘</string>
+    <string name="name_card_data_index_x11370050">猫猫盘</string>
+    <string name="name_card_data_index_x11370050_1">光能猫猫盘–无敌猫猫盘</string>
 
-    <string name="name_card_data_index_6_2_4_0">魔法软糖</string>
-    <string name="name_card_data_index_6_2_4_1">魔法师软糖–魔导士软糖</string>
+    <string name="name_card_data_index_x11370070">魔法软糖</string>
+    <string name="name_card_data_index_x11370070_1">魔法师软糖–魔导士软糖</string>
 
-    <string name="name_card_data_index_6_2_5_0">棉花糖</string>
-    <string name="name_card_data_index_6_2_5_1">草莓棉花糖–彩虹棉花糖</string>
+    <string name="name_card_data_index_x11370025">棉花糖</string>
+    <string name="name_card_data_index_x11370025_1">草莓棉花糖–彩虹棉花糖</string>
 
-    <string name="name_card_data_index_6_2_6_0">苏打气泡</string>
-    <string name="name_card_data_index_6_2_6_1">五彩香皂泡泡</string>
+    <string name="name_card_data_index_x11370034">苏打气泡</string>
+    <string name="name_card_data_index_x11370034_1">五彩香皂泡泡</string>
 
-    <string name="name_card_data_index_6_2_7_0">麦芽糖</string>
-    <string name="name_card_data_index_6_2_7_1">莓莓麦芽糖</string>
+    <string name="name_card_data_index_x11370060">麦芽糖</string>
+    <string name="name_card_data_index_x11370060_1">莓莓麦芽糖</string>
 
 
-    <string name="name_card_data_index_7_1_1_0">糖葫芦炮弹</string>
-    <string name="name_card_data_index_7_1_1_1">水果糖葫芦弹–七彩糖葫芦弹</string>
+    <string name="name_card_data_index_x11130280">糖葫芦炮弹</string>
+    <string name="name_card_data_index_x11130280_1">水果糖葫芦弹–七彩糖葫芦弹</string>
 
-    <string name="name_card_data_index_7_1_2_0">跳跳鸡</string>
-    <string name="name_card_data_index_7_1_2_1">动感跳跳鸡–魔音跳跳鸡</string>
+    <string name="name_card_data_index_x111302a4">跳跳鸡</string>
+    <string name="name_card_data_index_x111302a4_1">动感跳跳鸡–魔音跳跳鸡</string>
 
-    <string name="name_card_data_index_7_1_3_0">防空喵</string>
-    <string name="name_card_data_index_7_1_3_1">钢盔防空喵–狂暴防空喵</string>
+    <string name="name_card_data_index_x111302b0">防空喵</string>
+    <string name="name_card_data_index_x111302b0_1">钢盔防空喵–狂暴防空喵</string>
 
-    <string name="name_card_data_index_7_1_4_0">赫丘利神使</string>
-    <string name="name_card_data_index_7_1_4_1">赫丘利圣神–大力神·赫丘利–至尊大力神</string>
+    <string name="name_card_data_index_x1112041a">赫丘利神使</string>
+    <string name="name_card_data_index_x1112041a_1">赫丘利圣神–大力神·赫丘利–至尊大力神</string>
 
 
-    <string name="name_card_data_index_7_2_1_0">香肠</string>
+    <string name="name_card_data_index_x11130110">香肠</string>
 
-    <string name="name_card_data_index_7_2_2_0">热狗大炮</string>
-    <string name="name_card_data_index_7_2_2_1">热狗高射炮–热狗榴弹炮</string>
+    <string name="name_card_data_index_x11130140">热狗大炮</string>
+    <string name="name_card_data_index_x11130140_1">热狗高射炮–热狗榴弹炮</string>
 
-    <string name="name_card_data_index_7_2_3_0">弹簧虎</string>
-    <string name="name_card_data_index_7_2_3_1">飞行弹簧虎–机器弹簧虎</string>
+    <string name="name_card_data_index_x11120660">弹簧虎</string>
+    <string name="name_card_data_index_x11120660_1">飞行弹簧虎–机器弹簧虎</string>
 
-    <string name="name_card_data_index_7_2_4_0">泡泡龙</string>
-    <string name="name_card_data_index_7_2_4_1">蓝鳍泡泡龙–彩色泡泡龙</string>
+    <string name="name_card_data_index_x11122180">泡泡龙</string>
+    <string name="name_card_data_index_x11122180_1">蓝鳍泡泡龙–彩色泡泡龙</string>
 
-    <string name="name_card_data_index_7_2_5_0">爱心便当</string>
-    <string name="name_card_data_index_7_2_5_1">烤肠爱心便当-八爪鱼爱心便当</string>
+    <string name="name_card_data_index_x11122200">爱心便当</string>
+    <string name="name_card_data_index_x11122200_1">烤肠爱心便当-八爪鱼爱心便当</string>
 
-    <string name="name_card_data_index_7_2_6_0">梦幻多拿滋</string>
-    <string name="name_card_data_index_7_2_6_1">仙女多拿滋–女王多拿滋</string>
+    <string name="name_card_data_index_x11122250">梦幻多拿滋</string>
+    <string name="name_card_data_index_x11122250_1">仙女多拿滋–女王多拿滋</string>
 
-    <string name="name_card_data_index_7_2_7_0">埃罗斯神使</string>
-    <string name="name_card_data_index_7_2_7_1">埃罗斯圣神–恶作剧神·埃罗斯–至尊恶作剧神</string>
+    <string name="name_card_data_index_x1112236a">埃罗斯神使</string>
+    <string name="name_card_data_index_x1112236a_1">埃罗斯圣神–恶作剧神·埃罗斯–至尊恶作剧神</string>
 
-    <string name="name_card_data_index_7_2_8_0">耗油双菇</string>
-    <string name="name_card_data_index_7_2_8_1">伯爵耗油双菇–皇家耗油双菇</string>
+    <string name="name_card_data_index_x11120690">耗油双菇</string>
+    <string name="name_card_data_index_x11120690_1">伯爵耗油双菇–皇家耗油双菇</string>
 
-    <string name="name_card_data_index_7_2_9_0">奶茶猪</string>
-    <string name="name_card_data_index_7_2_9_1">紫薯奶茶猪–爆弹奶茶猪</string>
+    <string name="name_card_data_index_x11131140">奶茶猪</string>
+    <string name="name_card_data_index_x11131140_1">紫薯奶茶猪–爆弹奶茶猪</string>
 
-    <string name="name_card_data_index_7_2_10_0">科技喵</string>
-    <string name="name_card_data_index_7_2_10_1">坦克科技喵–重坦科技喵</string>
+    <string name="name_card_data_index_x11132140">科技喵</string>
+    <string name="name_card_data_index_x11132140_1">坦克科技喵–重坦科技喵</string>
 
 
-    <string name="name_card_data_index_8_1_1_0">咖啡喷壶</string>
-    <string name="name_card_data_index_8_1_1_1">香醇咖啡喷壶–红温咖啡喷壶</string>
+    <string name="name_card_data_index_x11131070">咖啡喷壶</string>
+    <string name="name_card_data_index_x11131070_1">香醇咖啡喷壶–红温咖啡喷壶</string>
 
-    <string name="name_card_data_index_8_1_2_0">关东煮喷锅</string>
-    <string name="name_card_data_index_8_1_2_1">福袋关东煮喷锅–海鲜关东煮喷锅</string>
+    <string name="name_card_data_index_x111310c0">关东煮喷锅</string>
+    <string name="name_card_data_index_x111310c0_1">福袋关东煮喷锅–海鲜关东煮喷锅</string>
 
-    <string name="name_card_data_index_8_1_3_0">烈焰龙</string>
-    <string name="name_card_data_index_8_1_3_1">火山烈焰龙–岩浆烈焰龙</string>
+    <string name="name_card_data_index_x11122110">烈焰龙</string>
+    <string name="name_card_data_index_x11122110_1">火山烈焰龙–岩浆烈焰龙</string>
 
-    <string name="name_card_data_index_8_1_4_0">赫斯提亚神使</string>
-    <string name="name_card_data_index_8_1_4_1">赫斯提亚圣神–圣火女神·赫斯提亚–至尊圣火女神</string>
+    <string name="name_card_data_index_x1112248a">赫斯提亚神使</string>
+    <string name="name_card_data_index_x1112248a_1">赫斯提亚圣神–圣火女神·赫斯提亚–至尊圣火女神</string>
 
-    <string name="name_card_data_index_8_1_5_0">肥牛火锅</string>
-    <string name="name_card_data_index_8_1_5_1">酸汤肥牛锅–海鲜肥牛锅</string>
+    <string name="name_card_data_index_x11130240">肥牛火锅</string>
+    <string name="name_card_data_index_x11130240_1">酸汤肥牛锅–海鲜肥牛锅</string>
 
-    <string name="name_card_data_index_8_1_6_0">麻辣香锅</string>
-    <string name="name_card_data_index_8_1_6_1">孜然羊肉锅–酱香鱿鱼锅</string>
+    <string name="name_card_data_index_x11130250">麻辣香锅</string>
+    <string name="name_card_data_index_x11130250_1">孜然羊肉锅–酱香鱿鱼锅</string>
 
 
-    <string name="name_card_data_index_8_2_1_0">旋转咖啡喷壶</string>
-    <string name="name_card_data_index_8_2_1_1">节能旋转咖啡壶–原子咖啡壶</string>
+    <string name="name_card_data_index_x11931060">旋转咖啡喷壶</string>
+    <string name="name_card_data_index_x11931060_1">节能旋转咖啡壶–原子咖啡壶</string>
 
-    <string name="name_card_data_index_8_2_2_0">狮子座精灵</string>
-    <string name="name_card_data_index_8_2_2_1">狮子座战将–狮子座星宿</string>
+    <string name="name_card_data_index_x11930074">狮子座精灵</string>
+    <string name="name_card_data_index_x11930074_1">狮子座战将–狮子座星宿</string>
 
-    <string name="name_card_data_index_8_2_3_0">波塞冬神使</string>
-    <string name="name_card_data_index_8_2_3_1">波塞冬圣神–海神·波塞冬–至尊海神</string>
+    <string name="name_card_data_index_x1193007a">波塞冬神使</string>
+    <string name="name_card_data_index_x1193007a_1">波塞冬圣神–海神·波塞冬–至尊海神</string>
 
-    <string name="name_card_data_index_8_2_4_0">转转鸡</string>
-    <string name="name_card_data_index_8_2_4_1">五彩转转鸡–王室转转鸡</string>
+    <string name="name_card_data_index_x11930374">转转鸡</string>
+    <string name="name_card_data_index_x11930374_1">五彩转转鸡–王室转转鸡</string>
 
-    <string name="name_card_data_index_8_2_5_0">可乐汪</string>
-    <string name="name_card_data_index_8_2_5_1">冰摇可乐汪–星杯可乐汪</string>
+    <string name="name_card_data_index_x11930084">可乐汪</string>
+    <string name="name_card_data_index_x11930084_1">冰摇可乐汪–星杯可乐汪</string>
 
-    <string name="name_card_data_index_8_2_6_0">元气牛</string>
-    <string name="name_card_data_index_8_2_6_1">泡泡元气牛–酷酷元气牛</string>
+    <string name="name_card_data_index_x11120500">元气牛</string>
+    <string name="name_card_data_index_x11120500_1">泡泡元气牛–酷酷元气牛</string>
 
-    <string name="name_card_data_index_8_2_7_0">巫蛊蛇</string>
-    <string name="name_card_data_index_8_2_7_1">暗黑巫蛊蛇–秘术巫蛊蛇</string>
+    <string name="name_card_data_index_x11122470">巫蛊蛇</string>
+    <string name="name_card_data_index_x11122470_1">暗黑巫蛊蛇–秘术巫蛊蛇</string>
 
 
-    <string name="name_card_data_index_9_1_1_0">章鱼烧</string>
-    <string name="name_card_data_index_9_1_1_1">两栖章鱼烧–火影章鱼烧</string>
+    <string name="name_card_data_index_x11430030">章鱼烧</string>
+    <string name="name_card_data_index_x11430030_1">两栖章鱼烧–火影章鱼烧</string>
 
-    <string name="name_card_data_index_9_1_2_0">巨蟹座精灵</string>
-    <string name="name_card_data_index_9_1_2_1">巨蟹座战将–巨蟹座星宿</string>
+    <string name="name_card_data_index_x11130064">巨蟹座精灵</string>
+    <string name="name_card_data_index_x11130064_1">巨蟹座战将–巨蟹座星宿</string>
 
-    <string name="name_card_data_index_9_1_3_0">忍忍鸡</string>
-    <string name="name_card_data_index_9_1_3_1">疾风忍忍鸡–幻影忍忍鸡</string>
+    <string name="name_card_data_index_x11130364">忍忍鸡</string>
+    <string name="name_card_data_index_x11130364_1">疾风忍忍鸡–幻影忍忍鸡</string>
 
-    <string name="name_card_data_index_9_1_4_0">狄安娜神使</string>
-    <string name="name_card_data_index_9_1_4_1">狄安娜圣神–月神·狄安娜–至尊月神</string>
+    <string name="name_card_data_index_x111300da">狄安娜神使</string>
+    <string name="name_card_data_index_x111300da_1">狄安娜圣神–月神·狄安娜–至尊月神</string>
 
-    <string name="name_card_data_index_9_1_5_0">飞盘汪</string>
-    <string name="name_card_data_index_9_1_5_1">大厨飞盘汪–名厨飞盘汪</string>
+    <string name="name_card_data_index_x11430034">飞盘汪</string>
+    <string name="name_card_data_index_x11430034_1">大厨飞盘汪–名厨飞盘汪</string>
 
-    <string name="name_card_data_index_9_1_6_0">铁甲飞镖猪</string>
-    <string name="name_card_data_index_9_1_6_1">银甲飞镖猪–金甲飞镖猪</string>
+    <string name="name_card_data_index_x11131160">铁甲飞镖猪</string>
+    <string name="name_card_data_index_x11131160_1">银甲飞镖猪–金甲飞镖猪</string>
 
-    <string name="name_card_data_index_9_1_7_0">海盗兔</string>
-    <string name="name_card_data_index_9_1_7_1">首领海盗兔–洛克斯海贼兔</string>
+    <string name="name_card_data_index_x11120920">海盗兔</string>
+    <string name="name_card_data_index_x11120920_1">首领海盗兔–洛克斯海贼兔</string>
 
 
-    <string name="name_card_data_index_9_2_1_0">咖喱龙虾炮</string>
-    <string name="name_card_data_index_9_2_1_1">麻辣龙虾炮–加农龙虾炮</string>
+    <string name="name_card_data_index_x111301a0">咖喱龙虾炮</string>
+    <string name="name_card_data_index_x111301a0_1">麻辣龙虾炮–加农龙虾炮</string>
 
-    <string name="name_card_data_index_9_2_2_0">雅典娜守护</string>
-    <string name="name_card_data_index_9_2_2_1">雅典娜圣衣–雅典娜光辉</string>
+    <string name="name_card_data_index_x11930090">雅典娜守护</string>
+    <string name="name_card_data_index_x11930090_1">雅典娜圣衣–雅典娜光辉</string>
 
-    <string name="name_card_data_index_9_2_3_0">火箭猪</string>
-    <string name="name_card_data_index_9_2_3_1">运载火箭猪–反重力火箭猪</string>
+    <string name="name_card_data_index_x11120150">火箭猪</string>
+    <string name="name_card_data_index_x11120150_1">运载火箭猪–反重力火箭猪</string>
 
-    <string name="name_card_data_index_9_2_4_0">宙斯神使</string>
-    <string name="name_card_data_index_9_2_4_1">宙斯圣神–天神·宙斯–至尊天神</string>
+    <string name="name_card_data_index_x1193009a">宙斯神使</string>
+    <string name="name_card_data_index_x1193009a_1">宙斯圣神–天神·宙斯–至尊天神</string>
 
 
-    <string name="name_card_data_index_9_3_1_0">魔法猪</string>
-    <string name="name_card_data_index_9_3_1_1">冰霜魔法猪–暴雪元素猪</string>
+    <string name="name_card_data_index_x11120120">魔法猪</string>
+    <string name="name_card_data_index_x11120120_1">冰霜魔法猪–暴雪元素猪</string>
 
-    <string name="name_card_data_index_9_3_2_0">招财喵</string>
-    <string name="name_card_data_index_9_3_2_1">贵族招财喵–御守招财喵</string>
+    <string name="name_card_data_index_x11120210">招财喵</string>
+    <string name="name_card_data_index_x11120210_1">贵族招财喵–御守招财喵</string>
 
-    <string name="name_card_data_index_9_3_3_0">雪球兔</string>
-    <string name="name_card_data_index_9_3_3_1">见习雪球兔–导师雪球兔</string>
+    <string name="name_card_data_index_x11120830">雪球兔</string>
+    <string name="name_card_data_index_x11120830_1">见习雪球兔–导师雪球兔</string>
 
-    <string name="name_card_data_index_9_3_4_0">典伊神使</string>
-    <string name="name_card_data_index_9_3_4_1">典伊圣神–冰神·典伊–至尊冰神</string>
+    <string name="name_card_data_index_x1112012a">典伊神使</string>
+    <string name="name_card_data_index_x1112012a_1">典伊圣神–冰神·典伊–至尊冰神</string>
 
-    <string name="name_card_data_index_9_3_5_0">冰晶龙</string>
-    <string name="name_card_data_index_9_3_5_1">四棱冰晶龙–独角冰晶龙</string>
+    <string name="name_card_data_index_x11122190">冰晶龙</string>
+    <string name="name_card_data_index_x11122190_1">四棱冰晶龙–独角冰晶龙</string>
 
-    <string name="name_card_data_index_9_3_6_0">冰块冷萃机</string>
-    <string name="name_card_data_index_9_3_6_1">低温冷萃机–迅捷冷萃机</string>
+    <string name="name_card_data_index_x11122260">冰块冷萃机</string>
+    <string name="name_card_data_index_x11122260_1">低温冷萃机–迅捷冷萃机</string>
 
 
-    <string name="name_card_data_index_9_4_1_0">金刚马</string>
-    <string name="name_card_data_index_9_4_1_1">魔铃金刚马–梵音金刚马</string>
+    <string name="name_card_data_index_x11122660">金刚马</string>
+    <string name="name_card_data_index_x11122660_1">魔铃金刚马–梵音金刚马</string>
 
-    <string name="name_card_data_index_9_4_2_0">红柳烤串机</string>
-    <string name="name_card_data_index_9_4_2_1">茴香红柳烤串机–星火红柳烤串机</string>
+    <string name="name_card_data_index_x11122890">红柳烤串机</string>
+    <string name="name_card_data_index_x11122890_1">茴香红柳烤串机–星火红柳烤串机</string>
 
-    <string name="name_card_data_index_9_4_3_0">俱吠罗神使</string>
-    <string name="name_card_data_index_9_4_3_1">俱吠罗圣神–护法神·俱吠罗-至尊护法神</string>
+    <string name="name_card_data_index_x1112280a">俱吠罗神使</string>
+    <string name="name_card_data_index_x1112280a_1">俱吠罗圣神–护法神·俱吠罗-至尊护法神</string>
 
 
-    <string name="name_card_data_index_9_5_1_0">鼠鼠蛋糕空投器</string>
-    <string name="name_card_data_index_9_5_1_1">喵博士蛋糕空投器</string>
+    <string name="name_card_data_index_x11120280">鼠鼠蛋糕空投器</string>
+    <string name="name_card_data_index_x11120280_1">喵博士蛋糕空投器</string>
 
-    <string name="name_card_data_index_9_5_2_0">风力空投猪</string>
-    <string name="name_card_data_index_9_5_2_1">导弹空投猪–涡轮空投猪</string>
+    <string name="name_card_data_index_x11120140">风力空投猪</string>
+    <string name="name_card_data_index_x11120140_1">导弹空投猪–涡轮空投猪</string>
 
-    <string name="name_card_data_index_9_5_3_0">电流虎</string>
-    <string name="name_card_data_index_9_5_3_1">磁铁电流虎–氢能电流虎</string>
+    <string name="name_card_data_index_x11120580">电流虎</string>
+    <string name="name_card_data_index_x11120580_1">磁铁电流虎–氢能电流虎</string>
 
-    <string name="name_card_data_index_9_5_4_0">霹雳马</string>
-    <string name="name_card_data_index_9_5_4_1">闪电霹雳马–雷霆霹雳马</string>
+    <string name="name_card_data_index_x11122640">霹雳马</string>
+    <string name="name_card_data_index_x11122640_1">闪电霹雳马–雷霆霹雳马</string>
 
-    <string name="name_card_data_index_9_5_5_0">归元马</string>
-    <string name="name_card_data_index_9_5_5_1">时空归元马–幻境归元马</string>
+    <string name="name_card_data_index_x11122710">归元马</string>
+    <string name="name_card_data_index_x11122710_1">时空归元马–幻境归元马</string>
 
-    <string name="name_card_data_index_9_5_6_0">蜜糖陷阱</string>
-    <string name="name_card_data_index_9_5_6_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
+    <string name="name_card_data_index_x11122750">蜜糖陷阱</string>
+    <string name="name_card_data_index_x11122750_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
 
-    <string name="name_card_data_index_9_5_7_0">仙笛马</string>
-    <string name="name_card_data_index_9_5_7_1">悠扬仙笛马–天籁仙笛马</string>
+    <string name="name_card_data_index_x11122900">仙笛马</string>
+    <string name="name_card_data_index_x11122900_1">悠扬仙笛马–天籁仙笛马</string>
 
-    <string name="name_card_data_index_9_5_8_0">萌海马</string>
-    <string name="name_card_data_index_9_5_8_1">嘟嘟萌海马–咕噜萌海马</string>
+    <string name="name_card_data_index_x11122790">萌海马</string>
+    <string name="name_card_data_index_x11122790_1">嘟嘟萌海马–咕噜萌海马</string>
 
 
-    <string name="name_card_data_index_10_1_1_0">汉堡包</string>
-    <string name="name_card_data_index_10_1_1_1">天椒双层堡–牛肉双黑汉堡</string>
+    <string name="name_card_data_index_x111300f0">汉堡包</string>
+    <string name="name_card_data_index_x111300f0_1">天椒双层堡–牛肉双黑汉堡</string>
 
-    <string name="name_card_data_index_10_1_2_0">贪食蛙</string>
+    <string name="name_card_data_index_x111300f1">贪食蛙</string>
 
-    <string name="name_card_data_index_10_1_3_0">吞噬龙</string>
-    <string name="name_card_data_index_10_1_3_1">幼年吞噬龙–成年吞噬龙</string>
+    <string name="name_card_data_index_x11122090">吞噬龙</string>
+    <string name="name_card_data_index_x11122090_1">幼年吞噬龙–成年吞噬龙</string>
 
-    <string name="name_card_data_index_10_1_4_0">香辣年糕蟹</string>
-    <string name="name_card_data_index_10_1_4_1">中辣年糕蟹–厨神年糕蟹</string>
+    <string name="name_card_data_index_x11122220">香辣年糕蟹</string>
+    <string name="name_card_data_index_x11122220_1">中辣年糕蟹–厨神年糕蟹</string>
 
-    <string name="name_card_data_index_10_1_5_0">混沌神使</string>
-    <string name="name_card_data_index_10_1_5_1">混沌圣神–上古神·混沌-至尊上古神</string>
+    <string name="name_card_data_index_x1112230a">混沌神使</string>
+    <string name="name_card_data_index_x1112230a_1">混沌圣神–上古神·混沌-至尊上古神</string>
 
 
-    <string name="name_card_data_index_10_2_1_0">雷电长棍面包</string>
-    <string name="name_card_data_index_10_2_1_1">节能面包–负离子面包</string>
+    <string name="name_card_data_index_x11130150">雷电长棍面包</string>
+    <string name="name_card_data_index_x11130150_1">节能面包–负离子面包</string>
 
-    <string name="name_card_data_index_10_2_2_0">三指兔</string>
-    <string name="name_card_data_index_10_2_2_1">开罗三指兔–胡夫三指兔</string>
+    <string name="name_card_data_index_x11120860">三指兔</string>
+    <string name="name_card_data_index_x11120860_1">开罗三指兔–胡夫三指兔</string>
 
-    <string name="name_card_data_index_10_2_3_0">结界马</string>
-    <string name="name_card_data_index_10_2_3_1">虚空结界马–镜反结界马</string>
+    <string name="name_card_data_index_x11122680">结界马</string>
+    <string name="name_card_data_index_x11122680_1">虚空结界马–镜反结界马</string>
 
 
-    <string name="name_card_data_index_10_3_1_0">新疆炒面</string>
-    <string name="name_card_data_index_10_3_1_1">刀削拉面–真刀削拉面</string>
+    <string name="name_card_data_index_x11130270">新疆拉面</string>
+    <string name="name_card_data_index_x11130270_1">刀削拉面–真刀削拉面</string>
 
-    <string name="name_card_data_index_10_3_2_0">丸子厨师</string>
-    <string name="name_card_data_index_10_3_2_1">盛宴丸子厨师-传奇丸子厨师</string>
+    <string name="name_card_data_index_x11130300">丸子厨师</string>
+    <string name="name_card_data_index_x11130300_1">盛宴丸子厨师-传奇丸子厨师</string>
 
-    <string name="name_card_data_index_10_3_3_0">功夫汪</string>
-    <string name="name_card_data_index_10_3_3_1">铁皮功夫汪–金甲功夫汪</string>
+    <string name="name_card_data_index_x11130370">功夫汪</string>
+    <string name="name_card_data_index_x11130370_1">铁皮功夫汪–金甲功夫汪</string>
 
-    <string name="name_card_data_index_10_3_4_0">拳皇马</string>
-    <string name="name_card_data_index_10_3_4_1">格斗拳皇马–传奇拳皇马</string>
+    <string name="name_card_data_index_x11122810">拳皇马</string>
+    <string name="name_card_data_index_x11122810_1">格斗拳皇马–传奇拳皇马</string>
 
-    <string name="name_card_data_index_10_3_5_0">鱼刺</string>
+    <string name="name_card_data_index_x11130120">鱼刺</string>
 
-    <string name="name_card_data_index_10_3_6_0">钢鱼刺</string>
-    <string name="name_card_data_index_10_3_6_1">无座钢鱼刺–海贼王鱼刺</string>
+    <string name="name_card_data_index_x11930050">钢鱼刺</string>
+    <string name="name_card_data_index_x11930050_1">无座钢鱼刺–海贼王鱼刺</string>
 
-    <string name="name_card_data_index_10_3_7_0">糖渍刺梨</string>
-    <string name="name_card_data_index_10_3_7_1">烟熏刺梨–生腌酸刺梨</string>
+    <string name="name_card_data_index_x11120940">糖渍刺梨</string>
+    <string name="name_card_data_index_x11120940_1">烟熏刺梨–生腌酸刺梨</string>
 
 
-    <string name="name_card_data_index_10_4_1_0">蜂蜜史莱姆</string>
-    <string name="name_card_data_index_10_4_1_1">蜂糖史莱姆–蜂王浆史莱姆</string>
+    <string name="name_card_data_index_x11120880">蜂蜜史莱姆</string>
+    <string name="name_card_data_index_x11120880_1">蜂糖史莱姆–蜂王浆史莱姆</string>
 
-    <string name="name_card_data_index_10_4_2_0">糖人马</string>
-    <string name="name_card_data_index_10_4_2_1">香芋糖人马–缤纷糖人马</string>
+    <string name="name_card_data_index_x11122720">糖人马</string>
+    <string name="name_card_data_index_x11122720_1">香芋糖人马–缤纷糖人马</string>
 
 
-    <string name="name_card_data_index_11_2_1_0">阴阳蛇</string>
-    <string name="name_card_data_index_11_2_1_1">伯仲阴阳蛇–龙虎阴阳蛇</string>
+    <string name="name_card_data_index_x11122600">阴阳蛇</string>
+    <string name="name_card_data_index_x11122600_1">伯仲阴阳蛇–龙虎阴阳蛇</string>
 
-    <string name="name_card_data_index_11_2_2_0">焚寂马</string>
-    <string name="name_card_data_index_11_2_2_1">星火焚寂马–烈日焚寂马</string>
+    <string name="name_card_data_index_x11122670">焚寂马</string>
+    <string name="name_card_data_index_x11122670_1">星火焚寂马–烈日焚寂马</string>
 
-    <string name="name_card_data_index_11_2_3_0">弹珠汽水</string>
-    <string name="name_card_data_index_11_2_3_1">香橙弹珠汽水–果味弹珠汽水</string>
+    <string name="name_card_data_index_x11122740">弹珠汽水</string>
+    <string name="name_card_data_index_x11122740_1">香橙弹珠汽水–果味弹珠汽水</string>
 
 
-    <string name="name_card_data_index_11_3_1_0">天蝎座精灵</string>
-    <string name="name_card_data_index_11_3_1_1">天蝎座战将</string>
+    <string name="name_card_data_index_x111300a4">天蝎座精灵</string>
+    <string name="name_card_data_index_x111300a4_1">天蝎座战将</string>
 
-    <string name="name_card_data_index_11_3_2_0">工程猪</string>
-    <string name="name_card_data_index_11_3_2_1">高级工程猪–科幻工程猪</string>
+    <string name="name_card_data_index_x111310a0">工程猪</string>
+    <string name="name_card_data_index_x111310a0_1">高级工程猪–科幻工程猪</string>
 
-    <string name="name_card_data_index_11_3_3_0">双刃蛇</string>
-    <string name="name_card_data_index_11_3_3_1">武士双刃蛇–游侠双刃蛇</string>
+    <string name="name_card_data_index_x11122460">双刃蛇</string>
+    <string name="name_card_data_index_x11122460_1">武士双刃蛇–游侠双刃蛇</string>
 
-    <string name="name_card_data_index_11_3_4_0">元素蛇</string>
-    <string name="name_card_data_index_11_3_4_1">烈暴元素蛇–流星元素蛇</string>
+    <string name="name_card_data_index_x11122550">元素蛇</string>
+    <string name="name_card_data_index_x11122550_1">烈暴元素蛇–流星元素蛇</string>
 
-    <string name="name_card_data_index_11_3_5_0">御风马</string>
-    <string name="name_card_data_index_11_3_5_1">净化御风马–菩提御风马</string>
+    <string name="name_card_data_index_x11122650">御风马</string>
+    <string name="name_card_data_index_x11122650_1">净化御风马–菩提御风马</string>
 
-    <string name="name_card_data_index_11_3_6_0">云霞马</string>
-    <string name="name_card_data_index_11_3_6_1">绵绵云霞马–绚丽云霞马</string>
+    <string name="name_card_data_index_x11122840">云霞马</string>
+    <string name="name_card_data_index_x11122840_1">绵绵云霞马–绚丽云霞马</string>
 
-    <string name="name_card_data_index_11_3_7_0">回旋虎</string>
-    <string name="name_card_data_index_11_3_7_1">高能回旋虎–宗师回旋虎</string>
+    <string name="name_card_data_index_x11120670">回旋虎</string>
+    <string name="name_card_data_index_x11120670_1">高能回旋虎–宗师回旋虎</string>
 
-    <string name="name_card_data_index_11_3_8_0">大师兔</string>
-    <string name="name_card_data_index_11_3_8_1">黑带大师兔–功夫大师兔</string>
+    <string name="name_card_data_index_x11120810">大师兔</string>
+    <string name="name_card_data_index_x11120810_1">黑带大师兔–功夫大师兔</string>
 
-    <string name="name_card_data_index_11_3_9_0">15周年猴赛雷</string>
-    <string name="name_card_data_index_11_3_9_1">捕风手猴赛雷–艺术家猴赛雷</string>
+    <string name="name_card_data_index_x11122590">15周年猴赛雷</string>
+    <string name="name_card_data_index_x11122590_1">捕风手猴赛雷–艺术家猴赛雷</string>
 
-    <string name="name_card_data_index_11_3_10_0">赖皮蛇</string>
-    <string name="name_card_data_index_11_3_10_1">宝石赖皮蛇–大王赖皮蛇</string>
+    <string name="name_card_data_index_x11122400">赖皮蛇</string>
+    <string name="name_card_data_index_x11122400_1">宝石赖皮蛇–大王赖皮蛇</string>
 
-    <string name="name_card_data_index_11_3_11_0">迷你披萨炉</string>
-    <string name="name_card_data_index_11_3_11_1">香脆披萨炉–拉丝披萨炉</string>
+    <string name="name_card_data_index_x11122490">迷你披萨炉</string>
+    <string name="name_card_data_index_x11122490_1">香脆披萨炉–拉丝披萨炉</string>
 
-    <string name="name_card_data_index_11_3_12_0">鲁班神使</string>
-    <string name="name_card_data_index_11_3_12_1">鲁班圣神–工匠神·鲁班-至尊工匠神</string>
+    <string name="name_card_data_index_x1112270a">鲁班神使</string>
+    <string name="name_card_data_index_x1112270a_1">鲁班圣神–工匠神·鲁班-至尊工匠神</string>
 
-    <string name="name_card_data_index_11_3_13_0">炎凰马</string>
-    <string name="name_card_data_index_11_3_13_1">白炽炎凰马–焚天炎凰马</string>
+    <string name="name_card_data_index_x11122780">炎凰马</string>
+    <string name="name_card_data_index_x11122780_1">白炽炎凰马–焚天炎凰马</string>
 
-    <string name="name_card_data_index_11_3_14_0">灯影花糕</string>
-    <string name="name_card_data_index_11_3_14_1">初见灯影花糕–梦境灯影花糕</string>
+    <string name="name_card_data_index_x11122880">灯影花糕</string>
+    <string name="name_card_data_index_x11122880_1">初见灯影花糕–梦境灯影花糕</string>
 
 
-    <string name="name_card_data_index_11_4_1_0">焦油喷壶</string>
-    <string name="name_card_data_index_11_4_1_1">强力焦油喷壶–祝融喷壶</string>
+    <string name="name_card_data_index_x11130090">焦油喷壶</string>
+    <string name="name_card_data_index_x11130090_1">强力焦油喷壶–祝融喷壶</string>
 
-    <string name="name_card_data_index_11_4_2_0">喷壶汪</string>
-    <string name="name_card_data_index_11_4_2_1">高压喷壶汪–连射喷壶汪</string>
+    <string name="name_card_data_index_x11130190">喷壶汪</string>
+    <string name="name_card_data_index_x11130190_1">高压喷壶汪–连射喷壶汪</string>
 
-    <string name="name_card_data_index_11_4_3_0">派派鸡</string>
-    <string name="name_card_data_index_11_4_3_1">少校派派鸡–将军派派鸡</string>
+    <string name="name_card_data_index_x111303a4">派派鸡</string>
+    <string name="name_card_data_index_x111303a4_1">少校派派鸡–将军派派鸡</string>
 
-    <string name="name_card_data_index_11_4_4_0">小猪米花机</string>
-    <string name="name_card_data_index_11_4_4_1">巧克力米花机–金箔米花机</string>
+    <string name="name_card_data_index_x11120100">小猪米花机</string>
+    <string name="name_card_data_index_x11120100_1">巧克力米花机–金箔米花机</string>
 
-    <string name="name_card_data_index_11_4_5_0">喷气牛</string>
-    <string name="name_card_data_index_11_4_5_1">恒温喷气牛–无限喷气牛</string>
+    <string name="name_card_data_index_x11120400">喷气牛</string>
+    <string name="name_card_data_index_x11120400_1">恒温喷气牛–无限喷气牛</string>
 
-    <string name="name_card_data_index_11_4_6_0">卖萌喵</string>
-    <string name="name_card_data_index_11_4_6_1">核能卖萌喵–原子卖萌喵</string>
+    <string name="name_card_data_index_x111311a0">卖萌喵</string>
+    <string name="name_card_data_index_x111311a0_1">核能卖萌喵–原子卖萌喵</string>
 
-    <string name="name_card_data_index_11_4_7_0">奥丁神使</string>
-    <string name="name_card_data_index_11_4_7_1">奥丁圣神–主神·奥丁–至尊主神</string>
+    <string name="name_card_data_index_x1112064a">奥丁神使</string>
+    <string name="name_card_data_index_x1112064a_1">奥丁圣神–主神·奥丁–至尊主神</string>
 
-    <string name="name_card_data_index_11_4_8_0">法师蛇</string>
-    <string name="name_card_data_index_11_4_8_1">幽冥法师蛇–奥术法师蛇</string>
+    <string name="name_card_data_index_x11122390">法师蛇</string>
+    <string name="name_card_data_index_x11122390_1">幽冥法师蛇–奥术法师蛇</string>
 
-    <string name="name_card_data_index_11_4_9_0">街头烤肉大师</string>
-    <string name="name_card_data_index_11_4_9_1">户外烤肉大师–BBQ烤肉大师</string>
+    <string name="name_card_data_index_x11122430">街头烤肉大师</string>
+    <string name="name_card_data_index_x11122430_1">户外烤肉大师–BBQ烤肉大师</string>
 
-    <string name="name_card_data_index_11_4_10_0">后羿神使</string>
-    <string name="name_card_data_index_11_4_10_1">后羿圣神–宗布神·后羿–至尊宗布神</string>
+    <string name="name_card_data_index_x1112244a">后羿神使</string>
+    <string name="name_card_data_index_x1112244a_1">后羿圣神–宗布神·后羿–至尊宗布神</string>
 
 
-    <string name="name_card_data_index_12_1_1_0">巧克力大炮</string>
-    <string name="name_card_data_index_12_1_1_1">节能巧克力大炮–死神大炮</string>
+    <string name="name_card_data_index_x11930030">巧克力大炮</string>
+    <string name="name_card_data_index_x11930030_1">节能巧克力大炮–死神大炮</string>
 
-    <string name="name_card_data_index_12_1_2_0">导弹蛇</string>
-    <string name="name_card_data_index_12_1_2_1">舰地导弹蛇–洲际导弹蛇</string>
+    <string name="name_card_data_index_x11122410">导弹蛇</string>
+    <string name="name_card_data_index_x11122410_1">舰地导弹蛇–洲际导弹蛇</string>
 
-    <string name="name_card_data_index_12_1_3_0">盖亚神使</string>
-    <string name="name_card_data_index_12_1_3_1">盖亚圣神–大地女神·盖亚–至尊大地女神</string>
+    <string name="name_card_data_index_x1112065a">盖亚神使</string>
+    <string name="name_card_data_index_x1112065a_1">盖亚圣神–大地女神·盖亚–至尊大地女神</string>
 
 
-    <string name="name_card_data_index_12_2_1_0">可乐炸弹</string>
-    <string name="name_card_data_index_12_2_1_1">云爆可乐弹–燃烧可乐弹</string>
+    <string name="name_card_data_index_x11120034">可乐炸弹</string>
+    <string name="name_card_data_index_x11120034_1">云爆可乐弹–燃烧可乐弹</string>
 
-    <string name="name_card_data_index_12_2_2_0">酒瓶炸弹</string>
-    <string name="name_card_data_index_12_2_2_1">高爆酒瓶弹–子母酒瓶弹</string>
+    <string name="name_card_data_index_x11120020">酒瓶炸弹</string>
+    <string name="name_card_data_index_x11120020_1">高爆酒瓶弹–子母酒瓶弹</string>
 
-    <string name="name_card_data_index_12_2_3_0">开水壶炸弹</string>
-    <string name="name_card_data_index_12_2_3_1">汽油壶炸弹–汽油干冰弹</string>
+    <string name="name_card_data_index_x11121010">开水壶炸弹</string>
+    <string name="name_card_data_index_x11121010_1">汽油壶炸弹–汽油干冰弹</string>
 
-    <string name="name_card_data_index_12_2_4_0">威士忌炸弹</string>
-    <string name="name_card_data_index_12_2_4_1">水晶威士忌炸弹–钻石威士忌炸弹</string>
+    <string name="name_card_data_index_x11120070">威士忌炸弹</string>
+    <string name="name_card_data_index_x11120070_1">水晶威士忌炸弹–钻石威士忌炸弹</string>
 
-    <string name="name_card_data_index_12_2_5_0">潘多拉</string>
-    <string name="name_card_data_index_12_2_5_1">潘多拉魔盒–疫神·潘多拉-至尊疫神</string>
+    <string name="name_card_data_index_x1112009a">潘多拉</string>
+    <string name="name_card_data_index_x1112009a_1">潘多拉魔盒–疫神·潘多拉-至尊疫神</string>
 
-    <string name="name_card_data_index_12_2_6_0">深水炸弹</string>
+    <string name="name_card_data_index_x11120510">深水炸弹</string>
 
-    <string name="name_card_data_index_12_2_7_0">爆辣河豚</string>
-    <string name="name_card_data_index_12_2_7_1">朝天椒河豚–青芥末河豚</string>
+    <string name="name_card_data_index_x11120620">爆辣河豚</string>
+    <string name="name_card_data_index_x11120620_1">朝天椒河豚–青芥末河豚</string>
 
-    <string name="name_card_data_index_12_2_8_0">爆竹</string>
+    <string name="name_card_data_index_x11120044">爆竹</string>
 
-    <string name="name_card_data_index_12_2_9_0">美食烟花普通版</string>
+    <string name="name_card_data_index_x11120054">美食烟花普通版</string>
 
-    <string name="name_card_data_index_12_2_10_0">美食烟花华丽版</string>
+    <string name="name_card_data_index_x11120064">美食烟花华丽版</string>
 
-    <string name="name_card_data_index_12_2_11_0">水瓶座精灵</string>
-    <string name="name_card_data_index_12_2_11_1">水瓶座战将–水瓶座星宿</string>
+    <string name="name_card_data_index_x11120074">水瓶座精灵</string>
+    <string name="name_card_data_index_x11120074_1">水瓶座战将–水瓶座星宿</string>
 
-    <string name="name_card_data_index_12_2_12_0">雷暴猪</string>
-    <string name="name_card_data_index_12_2_12_1">离子雷暴猪–电磁雷暴猪</string>
+    <string name="name_card_data_index_x11120170">雷暴猪</string>
+    <string name="name_card_data_index_x11120170_1">离子雷暴猪–电磁雷暴猪</string>
 
-    <string name="name_card_data_index_12_2_13_0">微波炉爆弹</string>
-    <string name="name_card_data_index_12_2_13_1">星际微波爆弹–宇宙微波核弹</string>
+    <string name="name_card_data_index_x11122230">微波炉爆弹</string>
+    <string name="name_card_data_index_x11122230_1">星际微波爆弹–宇宙微波核弹</string>
 
-    <string name="name_card_data_index_12_2_14_0">玉兔灯笼</string>
-    <string name="name_card_data_index_12_2_14_1">广寒玉兔灯笼–莲花玉兔灯笼</string>
+    <string name="name_card_data_index_x11121070">玉兔灯笼</string>
+    <string name="name_card_data_index_x11121070_1">广寒玉兔灯笼–莲花玉兔灯笼</string>
 
-    <string name="name_card_data_index_12_2_15_0">爆裂蛇</string>
-    <string name="name_card_data_index_12_2_15_1">凤梨爆裂蛇–西瓜爆裂蛇</string>
+    <string name="name_card_data_index_x11122370">爆裂蛇</string>
+    <string name="name_card_data_index_x11122370_1">凤梨爆裂蛇–西瓜爆裂蛇</string>
 
-    <string name="name_card_data_index_12_2_16_0">糖果罐子</string>
-    <string name="name_card_data_index_12_2_16_1">瞬息糖果罐子-核爆糖果罐子</string>
+    <string name="name_card_data_index_x11120960">糖果罐子</string>
+    <string name="name_card_data_index_x11120960_1">瞬息糖果罐子-核爆糖果罐子</string>
 
-    <string name="name_card_data_index_12_2_17_0">烛阴龙</string>
-    <string name="name_card_data_index_12_2_17_1">青莲烛阴龙–圣火烛阴龙</string>
+    <string name="name_card_data_index_x11122350">烛阴龙</string>
+    <string name="name_card_data_index_x11122350_1">青莲烛阴龙–圣火烛阴龙</string>
 
-    <string name="name_card_data_index_12_2_18_0">老鼠夹子</string>
-    <string name="name_card_data_index_12_2_18_1">多用老鼠夹子–黑猫鼠夹</string>
+    <string name="name_card_data_index_x11120010">老鼠夹子</string>
+    <string name="name_card_data_index_x11120010_1">多用老鼠夹子–黑猫鼠夹</string>
 
-    <string name="name_card_data_index_12_2_19_0">麻辣串炸弹</string>
+    <string name="name_card_data_index_x11120040">麻辣串炸弹</string>
 
-    <string name="name_card_data_index_12_2_20_0">竹筒粽子</string>
+    <string name="name_card_data_index_x11121050">竹筒粽子</string>
 
-    <string name="name_card_data_index_12_2_21_0">娇娇虎</string>
-    <string name="name_card_data_index_12_2_21_1">贵族娇娇虎–皇室娇娇虎</string>
+    <string name="name_card_data_index_x11120550">娇娇虎</string>
+    <string name="name_card_data_index_x11120550_1">贵族娇娇虎–皇室娇娇虎</string>
 
-    <string name="name_card_data_index_12_2_22_0">泡泡鸡尾酒</string>
-    <string name="name_card_data_index_12_2_22_1">蜜语鸡尾酒–粉红佳人鸡尾酒</string>
+    <string name="name_card_data_index_x11122760">泡泡鸡尾酒</string>
+    <string name="name_card_data_index_x11122760_1">蜜语鸡尾酒–粉红佳人鸡尾酒</string>
 
 
-    <string name="name_card_data_index_12_3_1_0">辣椒粉</string>
-    <string name="name_card_data_index_12_3_1_1">火爆辣椒粉–魔鬼辣椒粉</string>
+    <string name="name_card_data_index_x11120220">辣椒粉</string>
+    <string name="name_card_data_index_x11120220_1">火爆辣椒粉–魔鬼辣椒粉</string>
 
-    <string name="name_card_data_index_12_3_2_0">月蟾兔</string>
+    <string name="name_card_data_index_x11120230">月蟾兔</string>
 
-    <string name="name_card_data_index_12_3_3_0">爆炸汪</string>
-    <string name="name_card_data_index_12_3_3_1">时尚爆炸汪–魔幻爆炸汪</string>
+    <string name="name_card_data_index_x11120234">爆炸汪</string>
+    <string name="name_card_data_index_x11120234_1">时尚爆炸汪–魔幻爆炸汪</string>
 
-    <string name="name_card_data_index_12_3_4_0">肉松清明粿</string>
+    <string name="name_card_data_index_x11120630">肉松清明粿</string>
 
-    <string name="name_card_data_index_12_3_5_0">10周年烟花</string>
-    <string name="name_card_data_index_12_3_5_1">10周年爆竹–10周年礼花</string>
+    <string name="name_card_data_index_x11120270">10周年烟花</string>
+    <string name="name_card_data_index_x11120270_1">10周年爆竹–10周年礼花</string>
 
-    <string name="name_card_data_index_12_3_6_0">芥末牛</string>
-    <string name="name_card_data_index_12_3_6_1">微辣芥末牛–辛辣芥末牛</string>
+    <string name="name_card_data_index_x11120360">芥末牛</string>
+    <string name="name_card_data_index_x11120360_1">微辣芥末牛–辛辣芥末牛</string>
 
 
-    <string name="name_card_data_index_13_1_1_0">钢丝球</string>
+    <string name="name_card_data_index_x11430020">钢丝球</string>
 
-    <string name="name_card_data_index_13_1_2_0">炸地鼠爆竹</string>
+    <string name="name_card_data_index_x11120350">炸地鼠爆竹</string>
 
-    <string name="name_card_data_index_13_1_3_0">面粉袋</string>
-    <string name="name_card_data_index_13_1_3_1">影分身袋–乾坤分身袋</string>
+    <string name="name_card_data_index_x111300d0">面粉袋</string>
+    <string name="name_card_data_index_x111300d0_1">影分身袋–乾坤分身袋</string>
 
-    <string name="name_card_data_index_13_1_4_0">椰子果</string>
-    <string name="name_card_data_index_13_1_4_1">浓香椰子果-金丝椰子果</string>
+    <string name="name_card_data_index_x11140240">椰子果</string>
+    <string name="name_card_data_index_x11140240_1">浓香椰子果-金丝椰子果</string>
 
-    <string name="name_card_data_index_13_1_5_0">青涩柿柿</string>
-    <string name="name_card_data_index_13_1_5_1">成熟柿柿–柿柿如意</string>
+    <string name="name_card_data_index_x11122340">青涩柿柿</string>
+    <string name="name_card_data_index_x11122340_1">成熟柿柿–柿柿如意</string>
 
-    <string name="name_card_data_index_13_1_6_0">萌虎高压锅</string>
+    <string name="name_card_data_index_x11120600">萌虎高压锅</string>
 
-    <string name="name_card_data_index_13_1_7_0">白羊座精灵</string>
+    <string name="name_card_data_index_x11120084">白羊座精灵</string>
 
-    <string name="name_card_data_index_13_1_8_0">酋长汪</string>
-    <string name="name_card_data_index_13_1_8_1">天使酋长汪–金翼酋长汪</string>
+    <string name="name_card_data_index_x11120080">酋长汪</string>
+    <string name="name_card_data_index_x11120080_1">天使酋长汪–金翼酋长汪</string>
 
-    <string name="name_card_data_index_13_1_9_0">逗猫棒</string>
-    <string name="name_card_data_index_13_1_9_1">金鱼逗猫棒–鼠鼠逗猫棒</string>
+    <string name="name_card_data_index_x11120290">逗猫棒</string>
+    <string name="name_card_data_index_x11120290_1">金鱼逗猫棒–鼠鼠逗猫棒</string>
 
-    <string name="name_card_data_index_13_1_10_0">金牛烟花</string>
-    <string name="name_card_data_index_13_1_10_1">迷幻金牛烟花–璀璨金牛烟花</string>
+    <string name="name_card_data_index_x11140220">金牛烟花</string>
+    <string name="name_card_data_index_x11140220_1">迷幻金牛烟花–璀璨金牛烟花</string>
 
-    <string name="name_card_data_index_13_1_11_0">贪吃兔</string>
-    <string name="name_card_data_index_13_1_11_1">肥肥贪吃兔–暴走贪吃兔</string>
+    <string name="name_card_data_index_x11120800">贪吃兔</string>
+    <string name="name_card_data_index_x11120800_1">肥肥贪吃兔–暴走贪吃兔</string>
 
-    <string name="name_card_data_index_13_1_12_0">灵鱼摩蹉神使</string>
-    <string name="name_card_data_index_13_1_12_1">灵鱼摩蹉圣神–救世神·灵鱼摩蹉–至尊救世神</string>
+    <string name="name_card_data_index_x1112233a">灵鱼摩蹉神使</string>
+    <string name="name_card_data_index_x1112233a_1">灵鱼摩蹉圣神–救世神·灵鱼摩蹉–至尊救世神</string>
 
 
-    <string name="name_card_data_index_13_2_1_0">榴莲</string>
-    <string name="name_card_data_index_13_2_1_1">雪山榴莲–冰河世纪榴莲</string>
+    <string name="name_card_data_index_x11130210">榴莲</string>
+    <string name="name_card_data_index_x11130210_1">雪山榴莲–冰河世纪榴莲</string>
 
-    <string name="name_card_data_index_13_2_2_0">美味电鳗</string>
-    <string name="name_card_data_index_13_2_2_1">变异美味电鳗–霸王美味电鳗</string>
+    <string name="name_card_data_index_x11130230">美味电鳗</string>
+    <string name="name_card_data_index_x11130230_1">变异美味电鳗–霸王美味电鳗</string>
 
-    <string name="name_card_data_index_13_2_3_0">镭射喵</string>
-    <string name="name_card_data_index_13_2_3_1">荧光镭射喵–电音镭射喵</string>
+    <string name="name_card_data_index_x11130330">镭射喵</string>
+    <string name="name_card_data_index_x11130330_1">荧光镭射喵–电音镭射喵</string>
 
-    <string name="name_card_data_index_13_2_4_0">黑暗神使</string>
-    <string name="name_card_data_index_13_2_4_1">黑暗圣神–黑暗神·霍德尔–至尊黑暗神</string>
+    <string name="name_card_data_index_x1112203a">黑暗神使</string>
+    <string name="name_card_data_index_x1112203a_1">黑暗圣神–黑暗神·霍德尔–至尊黑暗神</string>
 
-    <string name="name_card_data_index_13_2_5_0">火龙果</string>
-    <string name="name_card_data_index_13_2_5_1">炎阳火龙果–九天皓日火龙果</string>
+    <string name="name_card_data_index_x11130220">火龙果</string>
+    <string name="name_card_data_index_x11130220_1">炎阳火龙果–九天皓日火龙果</string>
 
-    <string name="name_card_data_index_13_2_6_0">摩羯座精灵</string>
+    <string name="name_card_data_index_x11130234">摩羯座精灵</string>
 
-    <string name="name_card_data_index_13_2_7_0">龙珠果</string>
-    <string name="name_card_data_index_13_2_7_1">烈火龙珠果–燃爆龙珠果</string>
+    <string name="name_card_data_index_x11122080">龙珠果</string>
+    <string name="name_card_data_index_x11122080_1">烈火龙珠果–燃爆龙珠果</string>
 
-    <string name="name_card_data_index_13_2_8_0">巴德尔神使</string>
-    <string name="name_card_data_index_13_2_8_1">巴德尔圣神–光明神·巴德尔-至尊光明神</string>
+    <string name="name_card_data_index_x1112256a">巴德尔神使</string>
+    <string name="name_card_data_index_x1112256a_1">巴德尔圣神–光明神·巴德尔-至尊光明神</string>
 
-    <string name="name_card_data_index_13_2_9_0">桥头米线</string>
-    <string name="name_card_data_index_13_2_9_1">灵泉桥头米线–金汤桥头米线</string>
+    <string name="name_card_data_index_x11122870">桥头米线</string>
+    <string name="name_card_data_index_x11122870_1">灵泉桥头米线–金汤桥头米线</string>
 
-    <string name="name_card_data_index_13_2_10_0">泡椒春笋</string>
-    <string name="name_card_data_index_13_2_10_1">火辣泡椒笋–望乡泡椒笋</string>
+    <string name="name_card_data_index_x11122920">泡椒春笋</string>
+    <string name="name_card_data_index_x11122920_1">火辣泡椒笋–望乡泡椒笋</string>
 
-    <string name="name_card_data_index_13_2_11_0">奇门马</string>
-    <string name="name_card_data_index_13_2_11_1">玄妙奇门马–神术奇门马</string>
+    <string name="name_card_data_index_x11122850">奇门马</string>
+    <string name="name_card_data_index_x11122850_1">玄妙奇门马–神术奇门马</string>
 
 
-    <string name="name_card_data_index_13_3_1_0">冰桶炸弹</string>
-    <string name="name_card_data_index_13_3_1_1">酸橙冰桶炸弹–杂果冰桶炸弹</string>
+    <string name="name_card_data_index_x11121020">冰桶炸弹</string>
+    <string name="name_card_data_index_x11121020_1">酸橙冰桶炸弹–杂果冰桶炸弹</string>
 
-    <string name="name_card_data_index_13_3_2_0">冰弹喵</string>
-    <string name="name_card_data_index_13_3_2_1">爆裂冰弹喵–旋风冰弹喵</string>
+    <string name="name_card_data_index_x11121040">冰弹喵</string>
+    <string name="name_card_data_index_x11121040_1">爆裂冰弹喵–旋风冰弹喵</string>
 
-    <string name="name_card_data_index_13_3_3_0">冰兔菓子</string>
-    <string name="name_card_data_index_13_3_3_1">流心冰兔菓子-糯叽叽冰兔菓子</string>
+    <string name="name_card_data_index_x11120840">冰兔菓子</string>
+    <string name="name_card_data_index_x11120840_1">流心冰兔菓子-糯叽叽冰兔菓子</string>
 
-    <string name="name_card_data_index_13_3_4_0">泡泡糖</string>
-    <string name="name_card_data_index_13_3_4_1">大大泡泡糖–萄萄泡泡糖</string>
+    <string name="name_card_data_index_x11120430">泡泡糖</string>
+    <string name="name_card_data_index_x11120430_1">大大泡泡糖–萄萄泡泡糖</string>
 
-    <string name="name_card_data_index_13_3_5_0">逆转牛</string>
-    <string name="name_card_data_index_13_3_5_1">匀速逆转牛–光速逆转牛</string>
+    <string name="name_card_data_index_x11120520">逆转牛</string>
+    <string name="name_card_data_index_x11120520_1">匀速逆转牛–光速逆转牛</string>
 
 
-    <string name="name_card_data_index_13_4_1_0">蛋蛋兔</string>
-    <string name="name_card_data_index_13_4_1_1">智能蛋蛋兔–外星蛋蛋兔</string>
+    <string name="name_card_data_index_x11120870">蛋蛋兔</string>
+    <string name="name_card_data_index_x11120870_1">智能蛋蛋兔–外星蛋蛋兔</string>
 
 
-    <string name="name_card_data_index_14_1_1_0">冰激凌</string>
-    <string name="name_card_data_index_14_1_1_1">果蔬冰淇淋–极寒冰沙</string>
+    <string name="name_card_data_index_x113901d0">冰激凌</string>
+    <string name="name_card_data_index_x113901d0_1">果蔬冰淇淋–极寒冰沙</string>
 
-    <string name="name_card_data_index_14_1_2_0">转龙壶</string>
-    <string name="name_card_data_index_14_1_2_1">充能转龙壶–巨星转龙壶</string>
+    <string name="name_card_data_index_x11390700">转龙壶</string>
+    <string name="name_card_data_index_x11390700_1">充能转龙壶–巨星转龙壶</string>
 
-    <string name="name_card_data_index_14_1_3_0">美味计时器</string>
-    <string name="name_card_data_index_14_1_3_1">佳肴计时器–珍馐计时器</string>
+    <string name="name_card_data_index_x11390800">美味计时器</string>
+    <string name="name_card_data_index_x11390800_1">佳肴计时器–珍馐计时器</string>
 
-    <string name="name_card_data_index_14_1_4_0">柯罗诺斯神使</string>
-    <string name="name_card_data_index_14_1_4_1">柯罗诺斯圣神–时间神·柯罗诺斯–至尊时间神</string>
+    <string name="name_card_data_index_x1139090a">柯罗诺斯神使</string>
+    <string name="name_card_data_index_x1139090a_1">柯罗诺斯圣神–时间神·柯罗诺斯–至尊时间神</string>
 
-    <string name="name_card_data_index_14_1_5_0">幻幻鸡</string>
-    <string name="name_card_data_index_14_1_5_1">学者幻幻鸡–导师幻幻鸡</string>
+    <string name="name_card_data_index_x113903d4">幻幻鸡</string>
+    <string name="name_card_data_index_x113903d4_1">学者幻幻鸡–导师幻幻鸡</string>
 
-    <string name="name_card_data_index_14_1_6_0">百变蛇</string>
-    <string name="name_card_data_index_14_1_6_1">孪生百变蛇–双子百变蛇</string>
+    <string name="name_card_data_index_x11390730">百变蛇</string>
+    <string name="name_card_data_index_x11390730_1">孪生百变蛇–双子百变蛇</string>
 
-    <string name="name_card_data_index_14_1_7_0">梵天神使</string>
-    <string name="name_card_data_index_14_1_7_1">梵天圣神–创造神·梵天-至尊创造神</string>
+    <string name="name_card_data_index_x1139070a">梵天神使</string>
+    <string name="name_card_data_index_x1139070a_1">梵天圣神–创造神·梵天-至尊创造神</string>
 
-    <string name="name_card_data_index_14_1_8_0">顽皮龙</string>
-    <string name="name_card_data_index_14_1_8_1">捣蛋顽皮龙–神奇顽皮龙</string>
+    <string name="name_card_data_index_x11390710">顽皮龙</string>
+    <string name="name_card_data_index_x11390710_1">捣蛋顽皮龙–神奇顽皮龙</string>
 
-    <string name="name_card_data_index_14_1_9_0">圣诞包裹</string>
-    <string name="name_card_data_index_14_1_9_1">奢华圣诞包裹–至尊圣诞包裹</string>
+    <string name="name_card_data_index_x11390400">圣诞包裹</string>
+    <string name="name_card_data_index_x11390400_1">奢华圣诞包裹–至尊圣诞包裹</string>
 
-    <string name="name_card_data_index_14_1_10_0">天使猪</string>
-    <string name="name_card_data_index_14_1_10_1">魔法天使猪–神力天使猪</string>
+    <string name="name_card_data_index_x11390500">天使猪</string>
+    <string name="name_card_data_index_x11390500_1">魔法天使猪–神力天使猪</string>
 
-    <string name="name_card_data_index_14_1_11_0">黯然销魂饭</string>
-    <string name="name_card_data_index_14_1_11_1">培根香肠饭–天妇罗盖饭</string>
+    <string name="name_card_data_index_x11390600">黯然销魂饭</string>
+    <string name="name_card_data_index_x11390600_1">培根香肠饭–天妇罗盖饭</string>
 
-    <string name="name_card_data_index_14_1_12_0">星穹马</string>
-    <string name="name_card_data_index_14_1_12_1">璀璨星穹马–浩瀚星穹马</string>
+    <string name="name_card_data_index_x11390610">星穹马</string>
+    <string name="name_card_data_index_x11390610_1">璀璨星穹马–浩瀚星穹马</string>
 
-    <string name="name_card_data_index_14_1_13_0">奥西里斯神使</string>
-    <string name="name_card_data_index_14_1_13_1">奥西里斯圣神–重生神·奥西里斯-至尊重生神</string>
+    <string name="name_card_data_index_x1139067a">奥西里斯神使</string>
+    <string name="name_card_data_index_x1139067a_1">奥西里斯圣神–重生神·奥西里斯-至尊重生神</string>
 
-    <string name="name_card_data_index_14_1_14_0">13周年时光机</string>
-    <string name="name_card_data_index_14_1_14_1">超载时光机–未来时光机</string>
+    <string name="name_card_data_index_x11322040">13周年时光机</string>
+    <string name="name_card_data_index_x11322040_1">超载时光机–未来时光机</string>
 
-    <string name="name_card_data_index_14_1_15_0">蛇蛇酒</string>
-    <string name="name_card_data_index_14_1_15_1">仙露蛇蛇酒–琼浆蛇蛇酒</string>
+    <string name="name_card_data_index_x11322050">蛇蛇酒</string>
+    <string name="name_card_data_index_x11322050_1">仙露蛇蛇酒–琼浆蛇蛇酒</string>
 
-    <string name="name_card_data_index_14_1_16_0">克洛托神使</string>
-    <string name="name_card_data_index_14_1_16_1">克洛托圣神–命运女神·克洛托–至尊命运女神</string>
+    <string name="name_card_data_index_x1132206a">克洛托神使</string>
+    <string name="name_card_data_index_x1132206a_1">克洛托圣神–命运女神·克洛托–至尊命运女神</string>
 
 
-    <string name="name_card_data_index_14_2_1_0">油灯</string>
-    <string name="name_card_data_index_14_2_1_1">高亮油灯</string>
+    <string name="name_card_data_index_x11191160">油灯</string>
+    <string name="name_card_data_index_x11191160_1">高亮油灯</string>
 
-    <string name="name_card_data_index_14_2_2_0">南瓜灯</string>
+    <string name="name_card_data_index_x11190180">南瓜灯</string>
 
-    <string name="name_card_data_index_14_2_3_0">肉松清明粿</string>
 
-    <string name="name_card_data_index_14_2_4_0">防萤草灯笼</string>
-    <string name="name_card_data_index_14_2_4_1">灵光防萤草灯-圣辉防萤草灯</string>
+    <string name="name_card_data_index_x11120730">防萤草灯笼</string>
+    <string name="name_card_data_index_x11120730_1">灵光防萤草灯-圣辉防萤草灯</string>
 
-    <string name="name_card_data_index_14_2_5_0">萤火蛇</string>
-    <string name="name_card_data_index_14_2_5_1">星辉萤火蛇–月芒萤火蛇</string>
+    <string name="name_card_data_index_x11122420">萤火蛇</string>
+    <string name="name_card_data_index_x11122420_1">星辉萤火蛇–月芒萤火蛇</string>
 
-    <string name="name_card_data_index_14_2_6_0">换气扇</string>
+    <string name="name_card_data_index_x11190150">换气扇</string>
 
-    <string name="name_card_data_index_14_2_7_0">9周年幸运草扇</string>
-    <string name="name_card_data_index_14_2_7_1">9周年超能扇–9周年SSR草扇</string>
+    <string name="name_card_data_index_x11190160">9周年幸运草扇</string>
+    <string name="name_card_data_index_x11190160_1">9周年超能扇–9周年SSR草扇</string>
 
-    <string name="name_card_data_index_14_2_8_0">棕榈吹风机</string>
-    <string name="name_card_data_index_14_2_8_1">金棕榈吹风机</string>
+    <string name="name_card_data_index_x11140210">棕榈吹风机</string>
+    <string name="name_card_data_index_x11140210_1">金棕榈吹风机</string>
 
-    <string name="name_card_data_index_14_2_9_0">爆爆鸡</string>
-    <string name="name_card_data_index_14_2_9_1">疯狂爆爆鸡–酷炫爆爆鸡</string>
+    <string name="name_card_data_index_x11120334">爆爆鸡</string>
+    <string name="name_card_data_index_x11120334_1">疯狂爆爆鸡–酷炫爆爆鸡</string>
 
-    <string name="name_card_data_index_14_2_10_0">清障猪</string>
-    <string name="name_card_data_index_14_2_10_1">拉环清障猪–核能清障猪</string>
+    <string name="name_card_data_index_x11120340">清障猪</string>
+    <string name="name_card_data_index_x11120340_1">拉环清障猪–核能清障猪</string>
 
-    <string name="name_card_data_index_14_2_11_0">旋风牛</string>
-    <string name="name_card_data_index_14_2_11_1">强压旋风牛–极速旋风牛</string>
+    <string name="name_card_data_index_x11120370">旋风牛</string>
+    <string name="name_card_data_index_x11120370_1">强压旋风牛–极速旋风牛</string>
 
-    <string name="name_card_data_index_14_2_12_0">酸柠檬爆弹</string>
-    <string name="name_card_data_index_14_2_12_1">电子柠檬爆弹–质子柠檬爆弹</string>
+    <string name="name_card_data_index_x11120710">酸柠檬爆弹</string>
+    <string name="name_card_data_index_x11120710_1">电子柠檬爆弹–质子柠檬爆弹</string>
 
-    <string name="name_card_data_index_14_2_13_0">炸炸菇</string>
-    <string name="name_card_data_index_14_2_13_1">魔王炸炸菇</string>
+    <string name="name_card_data_index_x11120680">炸炸菇</string>
+    <string name="name_card_data_index_x11120680_1">魔王炸炸菇</string>
 
-    <string name="name_card_data_index_14_2_14_0">海盐粉</string>
-    <string name="name_card_data_index_14_2_14_1">芥末海盐粉–十三香海盐粉</string>
+    <string name="name_card_data_index_x11121030">海盐粉</string>
+    <string name="name_card_data_index_x11121030_1">芥末海盐粉–十三香海盐粉</string>
 
-    <string name="name_card_data_index_14_2_15_0">碎冰喵</string>
-    <string name="name_card_data_index_14_2_15_1">闹钟碎冰喵–发条碎冰喵</string>
+    <string name="name_card_data_index_x11120250">碎冰喵</string>
+    <string name="name_card_data_index_x11120250_1">闹钟碎冰喵–发条碎冰喵</string>
 
 
-    <string name="name_card_data_index_14_3_1_0">防风草沙拉</string>
-    <string name="name_card_data_index_14_3_1_1">蛋黄酱防风草</string>
+    <string name="name_card_data_index_x11121060">防风草沙拉</string>
+    <string name="name_card_data_index_x11121060_1">蛋黄酱防风草</string>
 
-    <string name="name_card_data_index_14_3_2_0">金箔甜筒</string>
-    <string name="name_card_data_index_14_3_2_1">金箔可可甜筒</string>
+    <string name="name_card_data_index_x11120450">金箔甜筒</string>
+    <string name="name_card_data_index_x11120450_1">金箔可可甜筒</string>
 
-    <string name="name_card_data_index_14_3_3_0">治愈喵</string>
-    <string name="name_card_data_index_14_3_3_1">武装治愈喵–全能治愈喵</string>
+    <string name="name_card_data_index_x11120180">治愈喵</string>
+    <string name="name_card_data_index_x11120180_1">武装治愈喵–全能治愈喵</string>
 
-    <string name="name_card_data_index_14_3_4_0">12周年能量饮料</string>
-    <string name="name_card_data_index_14_3_4_1">12周年活力饮料-12周年狂暴饮料</string>
+    <string name="name_card_data_index_x11120770">12周年能量饮料</string>
+    <string name="name_card_data_index_x11120770_1">12周年活力饮料-12周年狂暴饮料</string>
 
-    <string name="name_card_data_index_14_3_5_0">木塞子</string>
+    <string name="name_card_data_index_x11190171">木塞子</string>
 
-    <string name="name_card_data_index_14_3_6_0">咖啡粉</string>
-    <string name="name_card_data_index_14_3_6_1">名贵咖啡粉–皇族咖啡粉</string>
+    <string name="name_card_data_index_x113e0025">咖啡粉</string>
+    <string name="name_card_data_index_x113e0025_1">名贵咖啡粉–皇族咖啡粉</string>
 
-    <string name="name_card_data_index_14_3_7_0">尖叫马咖</string>
-    <string name="name_card_data_index_14_3_7_1">魔法马咖–觉醒曼德拉</string>
+    <string name="name_card_data_index_x113e0030">尖叫马咖</string>
+    <string name="name_card_data_index_x113e0030_1">魔法马咖–觉醒曼德拉</string>
 
-    <string name="name_card_data_index_14_3_8_0">傀儡马</string>
-    <string name="name_card_data_index_14_3_8_1">机关傀儡马–灵枢傀儡马</string>
+    <string name="name_card_data_index_x11122630">傀儡马</string>
+    <string name="name_card_data_index_x11122630_1">机关傀儡马–灵枢傀儡马</string>
 
 
-    <string name="name_card_data_index_14_4_1_0">猫猫盒</string>
+    <string name="name_card_data_index_x11190190">猫猫盒</string>
 
-    <string name="name_card_data_index_14_4_2_0">猫猫箱</string>
+    <string name="name_card_data_index_x111901f0">猫猫箱</string>
 
-    <string name="name_card_data_index_14_4_3_0">小丑盒子</string>
+    <string name="name_card_data_index_x11190200">小丑盒子</string>
 
-    <string name="name_card_data_index_14_4_4_0">鼠乐宝味觉糖</string>
-    <string name="name_card_data_index_14_4_4_1">黑加仑味觉糖–车厘子味觉糖</string>
+    <string name="name_card_data_index_x11120480">鼠乐宝味觉糖</string>
+    <string name="name_card_data_index_x11120480_1">黑加仑味觉糖–车厘子味觉糖</string>
 
-    <string name="name_card_data_index_14_4_5_0">大福虎</string>
-    <string name="name_card_data_index_14_4_5_1">草莓大福虎–可可大福虎</string>
+    <string name="name_card_data_index_x11120610">大福虎</string>
+    <string name="name_card_data_index_x11120610_1">草莓大福虎–可可大福虎</string>
 
 
-    <string name="name_card_data_index_15_1_1_0">土司面包</string>
+    <string name="name_card_data_index_x11140014">土司面包</string>
 
-    <string name="name_card_data_index_15_1_2_0">月饼</string>
+    <string name="name_card_data_index_x11140030">月饼</string>
 
-    <string name="name_card_data_index_15_1_3_0">冰皮月饼</string>
+    <string name="name_card_data_index_x111400f4">冰皮月饼</string>
 
-    <string name="name_card_data_index_15_1_4_0">巧克力面包</string>
-    <string name="name_card_data_index_15_1_4_1">德芙面包</string>
+    <string name="name_card_data_index_x11140020">巧克力面包</string>
+    <string name="name_card_data_index_x11140020_1">德芙面包</string>
 
-    <string name="name_card_data_index_15_1_5_0">菠萝爆炸面包</string>
-    <string name="name_card_data_index_15_1_5_1">独角菠萝面包–皇冠菠萝面包</string>
+    <string name="name_card_data_index_x11930080">菠萝爆炸面包</string>
+    <string name="name_card_data_index_x11930080_1">独角菠萝面包–皇冠菠萝面包</string>
 
-    <string name="name_card_data_index_15_1_6_0">老虎蟹面包</string>
-    <string name="name_card_data_index_15_1_6_1">帝王蟹面包</string>
+    <string name="name_card_data_index_x11140034">老虎蟹面包</string>
+    <string name="name_card_data_index_x11140034_1">帝王蟹面包</string>
 
-    <string name="name_card_data_index_15_1_7_0">桂花酒</string>
-    <string name="name_card_data_index_15_1_7_1">陈年桂花酒-仙酿桂花酒</string>
+    <string name="name_card_data_index_x11120240">桂花酒</string>
+    <string name="name_card_data_index_x11120240_1">陈年桂花酒-仙酿桂花酒</string>
 
-    <string name="name_card_data_index_15_1_8_0">榴莲千层饼</string>
+    <string name="name_card_data_index_x11140230">榴莲千层饼</string>
 
 
-    <string name="name_card_data_index_15_2_1_0">瓜皮护罩</string>
-    <string name="name_card_data_index_15_2_1_1">尖刺瓜皮护罩–锋芒瓜皮护罩</string>
+    <string name="name_card_data_index_x11240010">瓜皮护罩</string>
+    <string name="name_card_data_index_x11240010_1">尖刺瓜皮护罩–锋芒瓜皮护罩</string>
 
-    <string name="name_card_data_index_15_2_2_0">处女座精灵</string>
-    <string name="name_card_data_index_15_2_2_1">处女座战将–处女座星宿</string>
+    <string name="name_card_data_index_x11240014">处女座精灵</string>
+    <string name="name_card_data_index_x11240014_1">处女座战将–处女座星宿</string>
 
-    <string name="name_card_data_index_15_2_3_0">赫拉神使</string>
-    <string name="name_card_data_index_15_2_3_1">赫拉圣神–天后·赫拉–至尊天后</string>
+    <string name="name_card_data_index_x1124002a">赫拉神使</string>
+    <string name="name_card_data_index_x1124002a_1">赫拉圣神–天后·赫拉–至尊天后</string>
 
-    <string name="name_card_data_index_15_2_4_0">祥龙环</string>
-    <string name="name_card_data_index_15_2_4_1">点睛祥龙环–紫鳞祥龙环</string>
+    <string name="name_card_data_index_x11240030">祥龙环</string>
+    <string name="name_card_data_index_x11240030_1">点睛祥龙环–紫鳞祥龙环</string>
 
-    <string name="name_card_data_index_15_2_5_0">守能汪</string>
-    <string name="name_card_data_index_15_2_5_1">蓝焰守能汪–耀金守能汪</string>
+    <string name="name_card_data_index_x11210024">守能汪</string>
+    <string name="name_card_data_index_x11210024_1">蓝焰守能汪–耀金守能汪</string>
 
-    <string name="name_card_data_index_15_2_6_0">生日帽</string>
+    <string name="name_card_data_index_x11220024">生日帽</string>
 
-    <string name="name_card_data_index_15_2_7_0">喵喵炉</string>
-    <string name="name_card_data_index_15_2_7_1">靓粉喵喵炉–炫紫喵喵炉</string>
+    <string name="name_card_data_index_x11230024">喵喵炉</string>
+    <string name="name_card_data_index_x11230024_1">靓粉喵喵炉–炫紫喵喵炉</string>
 
-    <string name="name_card_data_index_15_2_8_0">扑克牌护罩</string>
-    <string name="name_card_data_index_15_2_8_1">精致黑桃护罩–豪华梅花护罩</string>
+    <string name="name_card_data_index_x11250010">扑克牌护罩</string>
+    <string name="name_card_data_index_x11250010_1">精致黑桃护罩–豪华梅花护罩</string>
 
-    <string name="name_card_data_index_15_2_9_0">彩虹蛇</string>
-    <string name="name_card_data_index_15_2_9_1">溏心彩虹蛇–缤纷彩虹蛇</string>
+    <string name="name_card_data_index_x11240040">彩虹蛇</string>
+    <string name="name_card_data_index_x11240040_1">溏心彩虹蛇–缤纷彩虹蛇</string>
 
 
-    <string name="name_card_data_index_16_1_1_0">火炉菠萝面包</string>
-    <string name="name_card_data_index_16_1_1_1">火龙果菠萝包–机枪菠萝面包</string>
+    <string name="name_card_data_index_x11700000">火炉菠萝面包</string>
+    <string name="name_card_data_index_x11700000_1">火龙果菠萝包–机枪菠萝面包</string>
 
-    <string name="name_card_data_index_16_1_2_0">雪芭煮蛋器</string>
-    <string name="name_card_data_index_16_1_2_1">臭豆腐煮蛋器–终结者煮蛋器</string>
+    <string name="name_card_data_index_x11700020">雪芭煮蛋器</string>
+    <string name="name_card_data_index_x11700020_1">臭豆腐煮蛋器–终结者煮蛋器</string>
 
-    <string name="name_card_data_index_16_1_3_0">火影怪味鱿鱼</string>
-    <string name="name_card_data_index_16_1_3_1">合金怪味鱿鱼–松香怪味鱿鱼</string>
+    <string name="name_card_data_index_x11700010">火影怪味鱿鱼</string>
+    <string name="name_card_data_index_x11700010_1">合金怪味鱿鱼–松香怪味鱿鱼</string>
 
-    <string name="name_card_data_index_16_1_4_0">酱香锅烤栗子</string>
-    <string name="name_card_data_index_16_1_4_1">可乐香烤栗子–如意香烤栗子</string>
+    <string name="name_card_data_index_x11700040">酱香锅烤栗子</string>
+    <string name="name_card_data_index_x11700040_1">可乐香烤栗子–如意香烤栗子</string>
 
-    <string name="name_card_data_index_16_1_5_0">热狗耗油双菇</string>
-    <string name="name_card_data_index_16_1_5_1">喷壶耗油双菇–糖葫芦耗油双菇</string>
+    <string name="name_card_data_index_x11700060">热狗耗油双菇</string>
+    <string name="name_card_data_index_x11700060_1">喷壶耗油双菇–糖葫芦耗油双菇</string>
 
-    <string name="name_card_data_index_16_1_6_0">子母三线酒架</string>
-    <string name="name_card_data_index_16_1_6_1">仙人掌花酒架–烤灯笼鱼酒架</string>
+    <string name="name_card_data_index_x11700070">子母三线酒架</string>
+    <string name="name_card_data_index_x11700070_1">仙人掌花酒架–烤灯笼鱼酒架</string>
 
-    <string name="name_card_data_index_16_1_7_0">刺梨烧烤盘</string>
-    <string name="name_card_data_index_16_1_7_1">冰榴莲烤盘–缤纷杂果冰盘</string>
+    <string name="name_card_data_index_x11700080">刺梨烧烤盘</string>
+    <string name="name_card_data_index_x11700080_1">冰榴莲烤盘–缤纷杂果冰盘</string>
 
-    <string name="name_card_data_index_16_1_8_0">机枪咖啡杯</string>
-    <string name="name_card_data_index_16_1_8_1">喷壶咖啡杯–三叠咖啡杯</string>
+    <string name="name_card_data_index_x11700050">机枪咖啡杯</string>
+    <string name="name_card_data_index_x11700050_1">喷壶咖啡杯–三叠咖啡杯</string>
 
-    <string name="name_card_data_index_16_1_9_0">葡萄味软糖</string>
-    <string name="name_card_data_index_16_1_9_1">彩虹棉花软糖–无敌猫猫软糖</string>
+    <string name="name_card_data_index_x11700090">葡萄味软糖</string>
+    <string name="name_card_data_index_x11700090_1">彩虹棉花软糖–无敌猫猫软糖</string>
 
-    <string name="name_card_data_index_16_1_10_0">脆心死神大炮</string>
-    <string name="name_card_data_index_16_1_10_1">霸王死神大炮–乾坤死神大炮</string>
+    <string name="name_card_data_index_x11700110">脆心死神大炮</string>
+    <string name="name_card_data_index_x11700110_1">霸王死神大炮–乾坤死神大炮</string>
 
-    <string name="name_card_data_index_16_1_11_0">仙人球海星刺身</string>
-    <string name="name_card_data_index_16_1_11_1">奶油海星刺身–王冠海星刺身</string>
+    <string name="name_card_data_index_x11700120">仙人球海星刺身</string>
+    <string name="name_card_data_index_x11700120_1">奶油海星刺身–王冠海星刺身</string>
 
-    <string name="name_card_data_index_16_1_12_0">红温旋转咖啡壶</string>
-    <string name="name_card_data_index_16_1_12_1">果味旋转咖啡壶–觉醒旋转咖啡壶</string>
+    <string name="name_card_data_index_x11700130">红温旋转咖啡壶</string>
+    <string name="name_card_data_index_x11700130_1">果味旋转咖啡壶–觉醒旋转咖啡壶</string>
 
 
     <!--食神谱部分-->

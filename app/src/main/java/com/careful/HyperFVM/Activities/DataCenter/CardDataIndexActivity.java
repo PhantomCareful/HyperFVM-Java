@@ -119,7 +119,7 @@ public class CardDataIndexActivity extends BaseActivity {
         // post scrollBy 的全量恢复叠加会超调；本页滚动位置完全自管 savedScrollY，故禁用之）
         recyclerView.setSaveEnabled(false);
 
-        List<CardDataLetterCatalogData.Section> sections = CardDataLetterCatalogData.getSections();
+        List<CardDataLetterCatalogData.Section> sections = CardDataLetterCatalogData.getSections(this);
         adapter = new CardDataIndexAdapter(this, sections);
         recyclerView.setAdapter(adapter);
 

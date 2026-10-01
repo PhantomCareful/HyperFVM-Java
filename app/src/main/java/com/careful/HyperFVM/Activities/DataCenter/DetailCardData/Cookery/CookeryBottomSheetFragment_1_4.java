@@ -38,6 +38,6 @@ public class CookeryBottomSheetFragment_1_4 extends BaseCookeryBottomSheetFragme
         view.findViewById(R.id.card_data_cookery_compose_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "冰激凌"));
         view.findViewById(R.id.card_data_cookery_compose_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "瓜皮护罩"));
 
-        view.findViewById(R.id.card_data_index_15_2_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "瓜皮护罩"));
+        view.findViewById(R.id.card_data_index_x11240010).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "瓜皮护罩"));
     }
 }

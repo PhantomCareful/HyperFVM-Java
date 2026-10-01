@@ -217,7 +217,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_1_0" />
+                            android:src="@drawable/x11130014" />
 
                         <Space
                             android:layout_width="0dp"
@@ -256,7 +256,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_2_0" />
+                            android:src="@drawable/x11130020" />
 
                         <Space
                             android:layout_width="0dp"
@@ -293,7 +293,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_4_0" />
+                            android:src="@drawable/x11930010" />
 
                         <Space
                             android:layout_width="0dp"
@@ -332,7 +332,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_5_0" />
+                            android:src="@drawable/x11130050" />
 
                         <Space
                             android:layout_width="0dp"
@@ -369,7 +369,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_6_0" />
+                            android:src="@drawable/x11130160" />
 
                         <Space
                             android:layout_width="0dp"
@@ -408,7 +408,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_8_0" />
+                            android:src="@drawable/x11930070" />
 
                         <Space
                             android:layout_width="0dp"
@@ -448,23 +448,23 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_1_3_1" />
+                    <include layout="@layout/card_card_data_index_x11130014" />
 
-                    <include layout="@layout/card_card_data_index_1_3_2" />
+                    <include layout="@layout/card_card_data_index_x11130020" />
 
-                    <include layout="@layout/card_card_data_index_1_3_3" />
+                    <include layout="@layout/card_card_data_index_x11130100" />
 
-                    <include layout="@layout/card_card_data_index_1_3_4" />
+                    <include layout="@layout/card_card_data_index_x11930010" />
 
-                    <include layout="@layout/card_card_data_index_1_3_5" />
+                    <include layout="@layout/card_card_data_index_x11130050" />
 
-                    <include layout="@layout/card_card_data_index_1_3_6" />
+                    <include layout="@layout/card_card_data_index_x11130160" />
 
-                    <include layout="@layout/card_card_data_index_1_3_7" />
+                    <include layout="@layout/card_card_data_index_x11130170" />
 
-                    <include layout="@layout/card_card_data_index_1_3_8" />
+                    <include layout="@layout/card_card_data_index_x11930070" />
 
-                    <include layout="@layout/card_card_data_index_1_3_13" />
+                    <include layout="@layout/card_card_data_index_x11122320" />
 
                 </LinearLayout>
 

@@ -213,7 +213,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_9_2_2_0" />
+                            android:src="@drawable/x11930090" />
 
                         <Space
                             android:layout_width="0dp"
@@ -252,7 +252,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_9_3_6_0" />
+                            android:src="@drawable/x11122260" />
 
                         <Space
                             android:layout_width="0dp"
@@ -289,7 +289,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_12_1_1_0" />
+                            android:src="@drawable/x11930030" />
 
                         <Space
                             android:layout_width="0dp"
@@ -328,7 +328,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_9_1_1_0" />
+                            android:src="@drawable/x11430030" />
 
                         <Space
                             android:layout_width="0dp"
@@ -368,7 +368,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_9_2_4" />
+                    <include layout="@layout/card_card_data_index_x1193009a" />
 
                 </LinearLayout>
 
@@ -396,7 +396,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_9_2_2" />
+                    <include layout="@layout/card_card_data_index_x11930090" />
 
                 </LinearLayout>
 

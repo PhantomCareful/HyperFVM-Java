@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/card_data_index_4_2_3_0_big"
+                            android:src="@drawable/x1112215a_big"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/card_data_index_4_2_3_1_big"
+                            android:src="@drawable/x1112215b_big"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="match_parent"
@@ -122,7 +122,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/card_data_index_4_2_3_2_big"
+                            android:src="@drawable/x1112215c_big"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="match_parent"
@@ -148,7 +148,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/card_data_index_4_2_3_3_big"
+                            android:src="@drawable/x1112215d_big"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="match_parent"

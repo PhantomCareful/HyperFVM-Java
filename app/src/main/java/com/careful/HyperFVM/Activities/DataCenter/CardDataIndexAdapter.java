@@ -36,9 +36,9 @@ import java.util.Map;
  * 列表位置账目：[节0标题][节0卡×N] … [节K标题][节K卡×M][页脚]，
  * 分节标题位置表在构造时一次算好，供快速滚动跳转查询。
  * <p>
- * 单卡布局文件（card_card_data_index_X_Y_Z.xml）被其他页面（如辅助卡列表页）复用，
- * 必须原样保留。增删卡片只需改 CardDataCatalogData 数据表与单卡布局文件，
- * 字母分节顺序由数据层自动推导，见数据表类与数据层类注释。
+ * 单卡布局文件（card_card_data_index_&lt;image_id&gt;.xml）被其他页面（如辅助卡列表页）复用，
+ * 必须原样保留。增删卡片只需改 assets/card_data_index.csv 与单卡布局文件，
+ * 字母分节顺序由数据层自动推导，见数据层类注释。
  */
 public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdapter.ViewHolder> {
 
@@ -142,13 +142,13 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
             Log.w(TAG, "找不到单卡条目 position=" + position);
             return;
         }
-        String cellKey = entry.prefix + "_" + entry.row;
+        String cellKey = entry.imageId;
         if (cellKey.equals(holder.lastInflatedCellKey)) {
             return; // 复用视图对应同一张卡，点击事件仍有效
         }
         holder.cardContainer.removeAllViews();
         View cellView = layoutInflater.inflate(
-                resolveCellLayoutRes(entry.prefix, entry.row), holder.cardContainer, false);
+                resolveCellLayoutRes(entry.imageId), holder.cardContainer, false);
         // 每张卡片都有唯一对应的点击事件：跳转到该卡的详细数据页
         cellView.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, entry.name));
         holder.cardContainer.addView(cellView);
@@ -175,11 +175,11 @@ public class CardDataIndexAdapter extends RecyclerView.Adapter<CardDataIndexAdap
     }
 
     /**
-     * 动态解析单卡布局资源：布局名 = "card_" + 分节前缀 + "_" + 行号
-     * （如 card_card_data_index_1_1_1，与原 include 体系命名一致）。
+     * 动态解析单卡布局资源：布局名 = "card_card_data_index_" + image_id
+     * （如 card_card_data_index_x11130060，与 assets CSV 的 image_id 列一一对应）。
      */
-    private int resolveCellLayoutRes(String prefix, int row) {
-        String layoutName = "card_" + prefix + "_" + row;
+    private int resolveCellLayoutRes(String imageId) {
+        String layoutName = "card_card_data_index_" + imageId;
         Integer cached = cellLayoutCache.get(layoutName);
         if (cached != null) {
             return cached;

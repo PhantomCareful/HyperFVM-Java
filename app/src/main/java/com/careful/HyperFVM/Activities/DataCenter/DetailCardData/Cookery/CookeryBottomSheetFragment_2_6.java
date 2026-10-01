@@ -38,7 +38,7 @@ public class CookeryBottomSheetFragment_2_6 extends BaseCookeryBottomSheetFragme
         view.findViewById(R.id.card_data_cookery_compose_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巧克力投手"));
         view.findViewById(R.id.card_data_cookery_compose_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巧克力大炮"));
 
-        view.findViewById(R.id.card_data_index_12_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巧克力大炮"));
-        view.findViewById(R.id.card_data_index_16_1_10).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "脆心死神大炮"));
+        view.findViewById(R.id.card_data_index_x11930030).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巧克力大炮"));
+        view.findViewById(R.id.card_data_index_x11700110).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "脆心死神大炮"));
     }
 }

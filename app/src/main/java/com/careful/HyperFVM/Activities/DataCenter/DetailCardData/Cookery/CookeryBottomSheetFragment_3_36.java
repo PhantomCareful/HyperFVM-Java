@@ -38,10 +38,10 @@ public class CookeryBottomSheetFragment_3_36 extends BaseCookeryBottomSheetFragm
         view.findViewById(R.id.card_data_cookery_compose_2).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "冰块冷萃机"));
         view.findViewById(R.id.card_data_cookery_compose_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "麦芽糖"));
 
-        view.findViewById(R.id.card_data_index_8_2_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "波塞冬神使"));
-        view.findViewById(R.id.card_data_index_8_2_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巫蛊蛇"));
-        view.findViewById(R.id.card_data_index_8_2_6).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "元气牛"));
-        view.findViewById(R.id.card_data_index_8_2_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "可乐汪"));
-        view.findViewById(R.id.card_data_index_8_2_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "转转鸡"));
+        view.findViewById(R.id.card_data_index_x1193007a).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "波塞冬神使"));
+        view.findViewById(R.id.card_data_index_x11122470).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巫蛊蛇"));
+        view.findViewById(R.id.card_data_index_x11120500).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "元气牛"));
+        view.findViewById(R.id.card_data_index_x11930084).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "可乐汪"));
+        view.findViewById(R.id.card_data_index_x11930374).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "转转鸡"));
     }
 }

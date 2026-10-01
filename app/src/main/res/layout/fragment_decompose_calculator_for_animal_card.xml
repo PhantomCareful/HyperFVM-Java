@@ -89,7 +89,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_card_1_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_0"
+                                android:src="@drawable/x11130074"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -137,7 +137,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_card_2_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_1"
+                                android:src="@drawable/x1113007e"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -185,7 +185,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_card_3_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_0"
+                                android:src="@drawable/x11130074"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -250,7 +250,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_skill_1_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_skill_1"
+                                android:src="@drawable/x12241310"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -298,7 +298,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_skill_2_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_skill_2"
+                                android:src="@drawable/x12241320"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -346,7 +346,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_skill_3_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_skill_3"
+                                android:src="@drawable/x12241330"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -394,7 +394,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_skill_4_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_skill_4"
+                                android:src="@drawable/x12241340"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -459,7 +459,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_transfer_1_a_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_transfer_1_a"
+                                android:src="@drawable/x13611051"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -507,7 +507,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_transfer_1_b_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_transfer_1_b"
+                                android:src="@drawable/x13612051"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -555,7 +555,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_transfer_2_a_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_transfer_2_a"
+                                android:src="@drawable/x13621051"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -603,7 +603,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_transfer_2_b_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_transfer_2_b"
+                                android:src="@drawable/x13622051"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 
@@ -651,7 +651,7 @@
                                 android:id="@+id/decompose_calculator_for_animal_card_transfer_2_c_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/card_data_index_1_1_2_transfer_2_c"
+                                android:src="@drawable/x13623051"
                                 tools:ignore="ContentDescription" />
                         </LinearLayout>
 

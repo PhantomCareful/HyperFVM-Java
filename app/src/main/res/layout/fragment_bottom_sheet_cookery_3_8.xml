@@ -267,7 +267,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_2_1_0" />
+                            android:src="@drawable/x111300b0" />
 
                         <Space
                             android:layout_width="0dp"
@@ -306,7 +306,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_14_3_5_0" />
+                            android:src="@drawable/x11190171" />
 
                         <Space
                             android:layout_width="0dp"
@@ -343,7 +343,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_12_2_2_0" />
+                            android:src="@drawable/x11120020" />
 
                         <Space
                             android:layout_width="0dp"
@@ -418,9 +418,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_1_2_1" />
+                    <include layout="@layout/card_card_data_index_x111300b0" />
 
-                    <include layout="@layout/card_card_data_index_16_1_6" />
+                    <include layout="@layout/card_card_data_index_x11700070" />
 
                 </LinearLayout>
 

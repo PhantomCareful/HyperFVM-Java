@@ -119,6 +119,8 @@ public class DatabaseInfo {
      * settings表增加“提示语设置-仪表盘刷新完成”设置
      * DB_VERSION = 91 - 106
      * 改造+更新普通卡数据库
+     * DB_VERSION = 107 - 108
+     * 图片资源全量改为 card_desc 对应条目 id（x<id> 命名），数据/布局/代码引用同步
      */
-    public static final int DB_VERSION = 106;
+    public static final int DB_VERSION = 108;
 }

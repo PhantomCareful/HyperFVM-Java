@@ -40,7 +40,7 @@ public class CookeryBottomSheetFragment_3_39 extends BaseCookeryBottomSheetFragm
         view.findViewById(R.id.card_data_cookery_compose_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "棕榈吹风机"));
         view.findViewById(R.id.card_data_cookery_compose_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "防风草沙拉"));
 
-        view.findViewById(R.id.card_data_index_3_2_3).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "坚果爆炒机"));
-        view.findViewById(R.id.card_data_index_10_3_7).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "糖渍刺梨"));
+        view.findViewById(R.id.card_data_index_x11120950).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "坚果爆炒机"));
+        view.findViewById(R.id.card_data_index_x11120940).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "糖渍刺梨"));
     }
 }

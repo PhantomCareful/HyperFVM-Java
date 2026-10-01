@@ -283,7 +283,9 @@ public class CardDataHelper {
                 int lastNum = 1;
                 if (i < imageIdArray.length) {
                     imageIdStr = imageIdArray[i];
-                    lastNum = Character.getNumericValue(imageIdStr.charAt(imageIdStr.length() - 1));
+                    // 新 id 末字符 -> 融合级别：0=初级 e=深度融合 f=灵魂（fusion 目标均为 card_data_2）
+                    char tailChar = imageIdStr.charAt(imageIdStr.length() - 1);
+                    lastNum = tailChar == '0' ? 1 : tailChar == 'e' ? 2 : tailChar == 'f' ? 3 : -1;
                 }
 
                 // 根据image_id获取资源ID

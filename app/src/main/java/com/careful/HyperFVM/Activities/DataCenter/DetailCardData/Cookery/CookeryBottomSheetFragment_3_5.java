@@ -40,11 +40,11 @@ public class CookeryBottomSheetFragment_3_5 extends BaseCookeryBottomSheetFragme
         view.findViewById(R.id.card_data_cookery_compose_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "雷电长棍面包"));
         view.findViewById(R.id.card_data_cookery_compose_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "牛角面包"));
 
-        view.findViewById(R.id.card_data_index_10_2_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "雷电长棍面包"));
-        view.findViewById(R.id.card_data_index_3_3_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "牛角面包"));
-        view.findViewById(R.id.card_data_index_15_1_5).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "菠萝爆炸面包"));
-        view.findViewById(R.id.card_data_index_16_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "火炉菠萝面包"));
-        view.findViewById(R.id.card_data_index_15_1_1).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "土司面包"));
-        view.findViewById(R.id.card_data_index_15_1_4).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巧克力面包"));
+        view.findViewById(R.id.card_data_index_x11130150).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "雷电长棍面包"));
+        view.findViewById(R.id.card_data_index_x11150040).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "牛角面包"));
+        view.findViewById(R.id.card_data_index_x11930080).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "菠萝爆炸面包"));
+        view.findViewById(R.id.card_data_index_x11700000).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "火炉菠萝面包"));
+        view.findViewById(R.id.card_data_index_x11140014).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "土司面包"));
+        view.findViewById(R.id.card_data_index_x11140020).setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), "巧克力面包"));
     }
 }

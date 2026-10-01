@@ -213,7 +213,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_5_1_1_0" />
+                            android:src="@drawable/x11110014" />
 
                         <Space
                             android:layout_width="0dp"
@@ -252,7 +252,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_5_1_2_0" />
+                            android:src="@drawable/x11930040" />
 
                         <Space
                             android:layout_width="0dp"
@@ -289,7 +289,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_5_1_3_0" />
+                            android:src="@drawable/x11111024" />
 
                         <Space
                             android:layout_width="0dp"
@@ -329,7 +329,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_5_1_7" />
+                    <include layout="@layout/card_card_data_index_x1111005a" />
 
                 </LinearLayout>
 
@@ -357,7 +357,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_5_1_5" />
+                    <include layout="@layout/card_card_data_index_x11111324" />
 
                 </LinearLayout>
 
@@ -385,7 +385,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_5_1_1" />
+                    <include layout="@layout/card_card_data_index_x11110014" />
 
                 </LinearLayout>
 

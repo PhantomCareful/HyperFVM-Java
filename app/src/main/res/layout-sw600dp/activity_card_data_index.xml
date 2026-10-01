@@ -45,7 +45,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/card_data_index_3_1_1_2_big"
+                android:src="@drawable/x1113020f_big"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -55,7 +55,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/card_data_index_4_2_7_2_big"
+                android:src="@drawable/x1112238f_big"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -65,7 +65,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/card_data_index_9_3_5_2_big"
+                android:src="@drawable/x1112219f_big"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/card_data_index_4_2_4_2_big"
+                android:src="@drawable/x1112227f_big"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -85,7 +85,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/card_data_index_8_1_4_2_big"
+                android:src="@drawable/x1112248c_big"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -95,7 +95,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/card_data_index_4_2_10_2_big"
+                android:src="@drawable/x1112253f_big"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -105,7 +105,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/card_data_index_16_1_9_3_big"
+                android:src="@drawable/x1170009f_big"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>

@@ -217,7 +217,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_14_0" />
+                            android:src="@drawable/x11131034" />
 
                         <Space
                             android:layout_width="0dp"
@@ -256,7 +256,7 @@
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/card_data_index_1_3_15_0" />
+                            android:src="@drawable/x11431014" />
 
                         <Space
                             android:layout_width="0dp"
@@ -296,9 +296,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/card_card_data_index_1_3_14" />
+                    <include layout="@layout/card_card_data_index_x11131034" />
 
-                    <include layout="@layout/card_card_data_index_16_1_8" />
+                    <include layout="@layout/card_card_data_index_x11700050" />
 
                 </LinearLayout>
 
