@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorSurface"
     tools:ignore="HardcodedText" >
 
     <ScrollView
@@ -93,6 +94,7 @@
 
     <Button
         android:id="@+id/button_close"
+        style="@style/DialogButton.Confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"

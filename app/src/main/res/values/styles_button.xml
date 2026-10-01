@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--素雅、扁平-->
-
     <style name="Button.NoShadow" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:elevation">0dp</item>
     </style>
 
-    <!--弹窗确定按钮-->
-    <style name="ButtonBarPositiveButtonStyle.NoShadow" parent="Widget.Material3.Button">
-        <item name="elevation">0dp</item>
-        <item name="android:stateListAnimator">@null</item>
+    <!--弹窗确认按钮：背景 colorPrimary，文字 colorOnPrimary（自定义弹窗布局中的确认/主动按钮统一使用）-->
+    <style name="DialogButton.Confirm" parent="">
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
-    <!--弹窗取消按钮-->
-    <style name="buttonBarNegativeButtonStyle.NoShadow" parent="Widget.Material3.Button.TonalButton">
-        <item name="elevation">0dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
-        <item name="android:stateListAnimator">@null</item>
+    <!--弹窗取消按钮：背景 colorSurfaceContainer，文字 colorOnSurface（自定义弹窗布局中的取消/关闭按钮统一使用）-->
+    <style name="DialogButton.Cancel" parent="">
+        <item name="android:backgroundTint">?attr/colorSurfaceContainer</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
 </resources>

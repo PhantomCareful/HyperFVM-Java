@@ -2,11 +2,21 @@
 <resources>
     <!--素雅、扁平-->
     <style name="MaterialAlertDialog.NoShadow" parent="MaterialAlertDialog.Material3">
-        <item name="buttonBarPositiveButtonStyle">@style/ButtonBarPositiveButtonStyle.NoShadow</item>
-        <item name="buttonBarNegativeButtonStyle">@style/buttonBarNegativeButtonStyle.NoShadow</item>
+        <!-- 必须覆盖 alertDialogStyle：backgroundTint 等属性在 obtainStyledAttributes 中
+             走 defStyleAttr 路径读取，其优先级高于主题直接属性，
+             不覆盖会被 ThemeOverlay.Material3.MaterialAlertDialog 指向的
+             MaterialAlertDialog.Material3（colorSurfaceContainerHigh）覆盖 -->
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.NoShadow.AlertStyle</item>
+        <!-- 弹窗背景统一为 colorSurface（覆盖 Material3 默认的 colorSurfaceContainerHigh） -->
+        <item name="backgroundTint">?attr/colorSurface</item>
 
         <!-- 关闭阴影裁剪 -->
         <item name="android:clipChildren">false</item>
         <item name="android:clipToPadding">false</item>
+    </style>
+
+    <!-- 弹窗实际读取的默认样式（经 alertDialogStyle 的 defStyleAttr 路径生效） -->
+    <style name="MaterialAlertDialog.NoShadow.AlertStyle" parent="MaterialAlertDialog.Material3">
+        <item name="backgroundTint">?attr/colorSurface</item>
     </style>
 </resources>
