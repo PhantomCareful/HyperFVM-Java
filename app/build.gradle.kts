@@ -18,7 +18,7 @@ configure<ApplicationExtension> {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
         targetSdk = 37
-        versionCode = 127
+        versionCode = 128
         versionName = "4.4.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -80,6 +80,17 @@ configure<ApplicationExtension> {
     }
     dataBinding {
         enable = true
+    }
+
+    // 排除 opencsv 依赖带入的多语言错误文案（15 个 .properties，约 36KB，仅异常提示用）
+    packaging {
+        resources {
+            excludes += listOf(
+                "opencsv*.properties",
+                "mustMatchRegex*.properties",
+                "convertLanguageToBoolean*.properties"
+            )
+        }
     }
 }
 
