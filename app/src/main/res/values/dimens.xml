@@ -12,8 +12,8 @@
          及 Widget.HyperFVMJava.BottomSheet.Modal 的 shapeAppearanceOverlay 共同引用，改一处即可全链路同步 -->
     <dimen name="bottom_sheet_top_corner_radius">40dp</dimen>
 
-    <!-- 弹窗圆角回退默认值（单一来源，与 M3 弹窗 ExtraLarge 圆角一致）：
-         设备有物理圆角时运行时同步覆盖，无圆角信息（平板/模拟器）时
-         作为弹窗 window 层与内容层的统一圆角，保证两层始终同值 -->
-    <dimen name="dialog_corner_radius">28dp</dimen>
+    <!-- 弹窗圆角固定值（单一来源）：46dp = 底部按钮 margin 26dp + 按钮圆角 20dp，
+         使弹窗角圆心与底部按钮角圆心严格同心；由 DialogCornerRadiusUtil 读取，
+         与设备屏幕物理圆角无关 -->
+    <dimen name="dialog_corner_radius">51dp</dimen>
 </resources>

@@ -1,18 +1,12 @@
 package com.careful.HyperFVM.utils.ForDesign.MaterialDialog;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
-import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.WindowInsets;
 
 import com.careful.HyperFVM.R;
 import com.google.android.material.shape.MaterialShapeDrawable;
@@ -21,31 +15,32 @@ import com.google.android.material.shape.ShapeAppearanceModel;
 import java.util.Objects;
 
 /**
- * 弹窗圆角与设备屏幕物理圆角同步（与 BottomSheet 的 applyScreenCornerRadius 同构）。
+ * 弹窗圆角：与底部按钮同心的固定值（与 BottomSheet 的 applyScreenCornerRadius 相互独立）。
  * <p>
  * 项目全部 17 处弹窗都经过 {@link com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil}
  * 的统一入口，故在其中调用本类，避免逐点散落。
  * <p>
- * 弹窗可见轮廓由两层背景叠加而成，必须同值同步（均为 G2 连续曲率的 squircle 圆角，
- * 角形状由 {@link SquircleCornerTreatment} 提供，同心半径仍按下方原则计算）：
- * ① window 层 MaterialShapeDrawable（MaterialAlertDialogBuilder 设置的背景）；
- * ② 内容层根容器背景（布局根的 ?attr/colorSurface，inflate 后为 ColorDrawable，
- *    替换为同色 MaterialShapeDrawable 后才能表达 G2 角曲线并与 window 层轮廓吻合）。
+ * 弹窗可见轮廓为单层：window 层背景（MaterialAlertDialogBuilder 设置的 InsetDrawable/MSD）
+ * 直接设为透明、不再绘制；仅保留内容层根容器的 ?attr/colorSurface 背景（inflate 后为
+ * ColorDrawable，替换为 MaterialShapeDrawable 后表达 G2 连续曲率的 squircle 圆角，
+ * 角形状由 {@link SquircleCornerTreatment} 提供），避免两层同形轮廓的双重 AA 叠加。
  * 弹窗内按钮保持 Material 默认圆角，不加 G2：按钮短边（约 40dp 级）小于翼曲线
  * 所需延伸 2(1+s)r（r=20、s=0.4 时 56dp），相邻角翼在直边上互相重叠会触发
  * ShapePath 的 overlap/UNION 规范化，在直边转入圆角处留下衔接折痕，实测无法规避。
  * <p>
- * 需在 dialog.show() 之前调用：通过 OnGlobalLayout 等待 insets 分发完成（show 后
- * decor attach 才会触发），处理一次后即移除监听。设备无圆角信息（平板/模拟器）时
- * 两层统一回退到 dimens 的 dialog_corner_radius，保证两层始终一致。
+ * 圆角取固定值 R.dimen.dialog_corner_radius（46dp = 按钮 margin 26dp + 按钮圆角
+ * 20dp）：弹窗未贴屏幕边缘且居中显示，与屏幕物理圆角同心反而不协调；固定 46dp
+ * 使弹窗角圆心与底部按钮角圆心严格重合，观感统一，也不再依赖设备圆角信息。
  * <p>
- * 同心原则：弹窗未紧贴屏幕边缘，直接用屏幕物理圆角会显得过大。故弹窗圆角取
- * “屏幕圆角 - 弹窗到屏幕最近边缘的距离”，使弹窗圆弧与屏幕圆角同心、看起来和谐；
- * 贴边容器（距离为0）自动等于物理圆角，与 BottomSheet 行为一致。
+ * 必须在 dialog.show() 之前调用并**同步**完成：此时 decor 尚未 attach 到窗口，
+ * 替换背景不会触发窗口布局，弹窗首帧即为终态。若像早期版本那样等首次全局布局
+ * 后再改背景，窗口会先按旧背景（InsetDrawable 带 inset）完成第一帧布局，替换后
+ * 背景 padding 变化引发 requestLayout 二次布局/重定位，表现为“先出现再瞬间移动”
+ * 的跳变动画。
  */
 public final class DialogCornerRadiusUtil {
 
-    /** 诊断日志开关（同心换算调试中，验证通过后关闭） */
+    /** 诊断日志开关（圆角/出现动画调试中，验证通过后关闭） */
     private static final boolean DEBUG = true;
     private static final String TAG = "DialogCorner";
 
@@ -53,7 +48,7 @@ public final class DialogCornerRadiusUtil {
     }
 
     /**
-     * 注册圆角同步（show 前调用，实际生效于首次全局布局回调）。
+     * 同步应用圆角与背景（show 前调用，decor 未 attach，无布局副作用）。
      *
      * @param dialog 目标 Dialog（已 create、未 show）
      */
@@ -73,124 +68,43 @@ public final class DialogCornerRadiusUtil {
             android.util.Log.d(TAG, "apply: " + dialog.getClass().getSimpleName()
                     + " from=" + from);
         }
+        if (applyLayers(dialog, resolveRadius(dialog))) {
+            return;
+        }
+        // 兜底：内容视图树尚未就绪时（理论不可达），等首次全局布局补齐一次并移除监听
         decor.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                WindowInsets insets = decor.getRootWindowInsets();
-                if (insets == null) {
-                    if (DEBUG) android.util.Log.d(TAG, "onGlobalLayout: insets=null, retry");
-                    return; // insets 尚未分发，等下一次全局布局回调再试
-                }
                 decor.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                int radius = resolveRadius(dialog, insets);
-                if (DEBUG) {
-                    RoundedCorner tl = insets.getRoundedCorner(RoundedCorner.POSITION_TOP_LEFT);
-                    android.util.Log.d(TAG, "radius resolve: dialogInsetsTopLeft="
-                            + (tl == null ? "null" : tl.getRadius() + "px")
-                            + " -> appliedRadius=" + radius + "px");
-                }
-                applyLayers(dialog, radius);
+                applyLayers(dialog, resolveRadius(dialog));
             }
         });
     }
 
     /**
-     * 读取设备屏幕物理圆角半径（px），换算为与屏幕圆角同心的弹窗圆角；
-     * 无圆角信息时回退 dimens 默认值。
-     * <p>
-     * 弹窗窗口居于屏幕中央、不与屏幕角落相交时，dialog window 的 insets 不携带
-     * RoundedCorner 信息，此时改从宿主 Activity 的全屏窗口 insets 读取（全屏窗口
-     * 必然贴屏幕角落，与 BottomSheet 能拿到圆角信息同理）。
+     * 弹窗圆角固定值（px）：R.dimen.dialog_corner_radius（46dp = 按钮 margin 26dp
+     * + 按钮圆角 20dp），与底部按钮角圆心严格同心；不依赖设备屏幕圆角信息，
+     * 平板/模拟器上行为一致。
      */
-    private static int resolveRadius(Dialog dialog, WindowInsets insets) {
-        int screenRadius = readCornerRadius(insets);
-        if (screenRadius == 0) {
-            // 居中弹窗的 window insets 无圆角信息：改从宿主 Activity 的全屏窗口取
-            Activity activity = findActivity(dialog.getContext());
-            if (activity != null) {
-                WindowInsets activityInsets = activity.getWindow().getDecorView().getRootWindowInsets();
-                if (activityInsets != null) {
-                    screenRadius = readCornerRadius(activityInsets);
-                }
-            }
-            if (DEBUG) android.util.Log.d(TAG, "resolve: dialogInsets=0 -> activityInsets=" + screenRadius + "px");
-        }
-        if (screenRadius == 0) {
-            // 设备没有圆角信息（如平板/模拟器）：两层统一回退默认值
-            return dialog.getContext().getResources().getDimensionPixelSize(R.dimen.dialog_corner_radius);
-        }
-        // 与屏幕圆角同心：弹窗圆角 = 屏幕圆角 - 弹窗到屏幕最近边缘的距离。
-        // 居中弹窗水平/垂直边距不等，取更近的边做同心基准（该方向上圆弧圆心与
-        // 屏幕圆角圆心严格重合）；贴边时距离为 0，自动等于物理圆角
-        int[] location = new int[2];
-        Objects.requireNonNull(dialog.getWindow()).getDecorView().getLocationOnScreen(location);
-        int inset = Math.min(location[0], location[1]);
-        int radius = screenRadius - inset;
-        if (DEBUG) android.util.Log.d(TAG, "resolve: screenRadius=" + screenRadius
-                + "px dialogAt=(" + location[0] + "," + location[1] + ") inset=" + inset
-                + "px -> concentricRadius=" + radius + "px");
-        if (radius <= 0) {
-            // 弹窗离屏幕边缘过远，同心值非正：回退默认值
-            radius = dialog.getContext().getResources().getDimensionPixelSize(R.dimen.dialog_corner_radius);
-        }
+    private static int resolveRadius(Dialog dialog) {
+        int radius = dialog.getContext().getResources().getDimensionPixelSize(R.dimen.dialog_corner_radius);
+        if (DEBUG) android.util.Log.d(TAG, "resolve: fixed dialog_corner_radius=" + radius + "px");
         return radius;
-    }
-
-    /** 从 insets 中读取顶部两角的物理圆角半径最大值（px），无信息返回 0 */
-    private static int readCornerRadius(WindowInsets insets) {
-        int radius = 0;
-        RoundedCorner topLeft = insets.getRoundedCorner(RoundedCorner.POSITION_TOP_LEFT);
-        if (topLeft != null) {
-            radius = Math.max(radius, topLeft.getRadius());
-        }
-        RoundedCorner topRight = insets.getRoundedCorner(RoundedCorner.POSITION_TOP_RIGHT);
-        if (topRight != null) {
-            radius = Math.max(radius, topRight.getRadius());
-        }
-        return radius;
-    }
-
-    /** 从 Dialog 的 context 中解包出宿主 Activity（兼容 ContextWrapper 包装） */
-    private static Activity findActivity(Context context) {
-        Context ctx = context;
-        while (ctx != null) {
-            if (ctx instanceof Activity) {
-                return (Activity) ctx;
-            }
-            if (ctx instanceof ContextWrapper) {
-                ctx = ((ContextWrapper) ctx).getBaseContext();
-            } else {
-                break;
-            }
-        }
-        return null;
     }
 
     /**
-     * 同步两层背景圆角：① window 层 MaterialShapeDrawable ② 内容层根容器背景。
-     * 两层均为 G2 squircle 角曲线，半径同值保证轮廓吻合。
+     * 同步弹窗背景：① window 层背景设为透明（不再绘制）② 内容层根容器背景
+     * 替换为 G2 squircle 圆角的 MaterialShapeDrawable，弹窗可见轮廓仅此一层。
+     *
+     * @return 内容层已就绪（或无需重试）返回 true；内容视图树未就绪返回 false
      */
-    private static void applyLayers(Dialog dialog, int radius) {
-        // ① window 层：MaterialAlertDialogBuilder.create() 将 MaterialShapeDrawable
-        //    包成 InsetDrawable 后设为窗口背景，decorView 背景即窗口背景（公开 API 取法），需解包内层
-        Drawable windowBackground = Objects.requireNonNull(dialog.getWindow()).getDecorView().getBackground();
-        if (DEBUG) android.util.Log.d(TAG, "window decorBg=" + (windowBackground == null ? "null" : windowBackground.getClass().getName()));
-        if (windowBackground instanceof InsetDrawable) {
-            windowBackground = ((InsetDrawable) windowBackground).getDrawable();
-            if (DEBUG) android.util.Log.d(TAG, "window unwrapped=" + (windowBackground == null ? "null" : windowBackground.getClass().getName()));
-        }
-        if (windowBackground instanceof MaterialShapeDrawable) {
-            MaterialShapeDrawable shape = (MaterialShapeDrawable) windowBackground.mutate();
-            // 四角换成 G2 squircle 角处理，半径维持同心换算值
-            ShapeAppearanceModel model = shape.getShapeAppearanceModel().toBuilder()
-                    .setAllCorners(new SquircleCornerTreatment())
-                    .setAllCornerSizes((float) radius)
-                    .build();
-            shape.setShapeAppearanceModel(model);
-            if (DEBUG) android.util.Log.d(TAG, "window layer: squircle(G2) rounded to " + radius + "px");
-        } else if (DEBUG) {
-            android.util.Log.d(TAG, "window layer: SKIPPED (not MaterialShapeDrawable)");
-        }
+    private static boolean applyLayers(Dialog dialog, int radius) {
+        // ① window 层：MaterialAlertDialogBuilder 会把背景包成 InsetDrawable(MSD) 设为
+        //    窗口背景；整体替换为透明，弹窗轮廓只由内容层 colorSurface 提供，避免两层
+        //    同形轮廓双重 AA 叠加。必须在 show 前（decor 未 attach）执行，否则背景
+        //    padding 变化会引发 requestLayout 二次布局，造成出现位置跳变
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        if (DEBUG) android.util.Log.d(TAG, "window layer: background -> transparent");
 
         // ② 内容层：setView 放入 customPanel/custom 的布局根容器
         View contentRoot = findContentRoot(dialog);
@@ -201,6 +115,7 @@ public final class DialogCornerRadiusUtil {
             applyContentBackground(contentRoot, radius);
         }
         // ③ 按钮不加 G2：见类注释，短边不足会触发 ShapePath UNION 折痕
+        return contentRoot != null;
     }
 
     /**

@@ -215,7 +215,8 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
+
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
@@ -1357,7 +1358,7 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
 
         if (result.isFraud) {
             Intent intent = new Intent(context, IcuFraudActivity.class);
