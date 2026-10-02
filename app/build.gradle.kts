@@ -149,4 +149,7 @@ dependencies {
     //拼音转换：防御卡目录按完整拼音字典序排序（多音字校正表在运行时挂载）
     implementation(libs.tinypinyin)
 
+    //G2 连续 squircle 圆角（弹窗/BottomSheet 角曲线，AndroidX 官方库）
+    implementation(libs.androidx.graphics.shapes)
+
 }

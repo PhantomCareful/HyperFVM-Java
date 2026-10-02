@@ -7,6 +7,8 @@ import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogCornerRadiusUtil;
+
 public class DialogBackgroundBlurUtil {
 
     /**
@@ -20,6 +22,10 @@ public class DialogBackgroundBlurUtil {
         if (window == null) {
             return;
         }
+
+        // 项目全部弹窗的统一入口：顺带同步弹窗圆角与设备屏幕物理圆角
+        // （内部通过 OnGlobalLayout 等待 insets 就绪，需在 show() 前注册）
+        DialogCornerRadiusUtil.apply(dialog);
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND); // 添加压暗，增强模糊对比
         window.setDimAmount(0.0f); // 压暗程度（0=完全透明，1=完全黑）

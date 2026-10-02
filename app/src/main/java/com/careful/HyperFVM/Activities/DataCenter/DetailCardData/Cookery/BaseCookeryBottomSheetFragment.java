@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery;
 
 import android.app.Dialog;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
+import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.SquircleCornerTreatment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -34,7 +36,8 @@ import com.google.android.material.shape.ShapeAppearanceModel;
  *
  * <p>圆角：顶部圆角在运行时读取设备屏幕的物理圆角（Android 12+ 的 RoundedCorner API），
  * 同步应用到外层 design_bottom_sheet 的 MaterialShapeDrawable 与内容根布局的 bottom_sheet_rounded；
- * 取不到圆角信息（平板/模拟器等无圆角设备）时保持 XML 默认值（40dp）。
+ * 角曲线为 G2 连续的 squircle（{@link SquircleCornerTreatment}，内容层同步替换为
+ * MaterialShapeDrawable 才能表达该曲线）；取不到圆角信息（平板/模拟器等无圆角设备）时保持 XML 默认值（40dp）。
  */
 public class BaseCookeryBottomSheetFragment extends BottomSheetDialogFragment {
 
@@ -165,7 +168,8 @@ public class BaseCookeryBottomSheetFragment extends BottomSheetDialogFragment {
     /**
      * 读取设备屏幕顶部的物理圆角半径（px）并同步到 sheet 的内外两层背景：
      * 外层 design_bottom_sheet 的 MaterialShapeDrawable（shapeAppearance 顶部两角）
-     * 与内容根布局的 bottom_sheet_rounded（cornerRadii 顶部两角，底部保持直角）。
+     * 与内容根布局的 bottom_sheet_rounded（替换为顶部两角 squircle 的
+     * MaterialShapeDrawable，底部保持直角）；两者均为 G2 连续角曲线。
      * 取不到圆角信息时保持 XML 默认圆角。
      */
     private void applyScreenCornerRadius(FrameLayout bottomSheet, View content) {
@@ -192,22 +196,43 @@ public class BaseCookeryBottomSheetFragment extends BottomSheetDialogFragment {
             return; // 设备没有圆角信息（如平板/模拟器），保持默认圆角
         }
 
-        // 外层：design_bottom_sheet 的 MaterialShapeDrawable 背景
+        // 外层：design_bottom_sheet 的 MaterialShapeDrawable 背景（顶部两角换 G2 squircle）
         Drawable outerBackground = bottomSheet.getBackground();
         if (outerBackground instanceof MaterialShapeDrawable) {
             MaterialShapeDrawable outer = (MaterialShapeDrawable) outerBackground.mutate();
             ShapeAppearanceModel model = outer.getShapeAppearanceModel().toBuilder()
+                    .setTopLeftCorner(new SquircleCornerTreatment())
+                    .setTopRightCorner(new SquircleCornerTreatment())
                     .setTopLeftCornerSize((float) radius)
                     .setTopRightCornerSize((float) radius)
                     .build();
             outer.setShapeAppearanceModel(model);
         }
 
-        // 内层：内容根布局的 bottom_sheet_rounded 背景（顶部两角，底部保持直角）
+        // 内层：内容根布局的 bottom_sheet_rounded（纯色+顶角，GradientDrawable 无法表达
+        // G2 曲线，替换为同色 MaterialShapeDrawable；底部两角保持默认直角）
         Drawable innerBackground = content.getBackground();
         if (innerBackground instanceof GradientDrawable) {
-            GradientDrawable inner = (GradientDrawable) innerBackground.mutate();
-            inner.setCornerRadii(new float[]{radius, radius, radius, radius, 0f, 0f, 0f, 0f});
+            // 取色契约：bottom_sheet_rounded 的 solid 固定为 ?attr/colorSurface（单源约定，
+            // 见 dimens/styles_bottom_sheet），直接按主题解析，不反射 GradientDrawable
+            // 内部（framework 私有字段已在 Android 17 移除，反射已废弃）
+            int color = 0;
+            android.util.TypedValue tv = new android.util.TypedValue();
+            if (content.getContext().getTheme().resolveAttribute(
+                    com.google.android.material.R.attr.colorSurface, tv, true)) {
+                color = tv.data;
+            }
+            if (color != 0) {
+                MaterialShapeDrawable inner = new MaterialShapeDrawable(
+                        new ShapeAppearanceModel().toBuilder()
+                                .setTopLeftCorner(new SquircleCornerTreatment())
+                                .setTopRightCorner(new SquircleCornerTreatment())
+                                .setTopLeftCornerSize((float) radius)
+                                .setTopRightCornerSize((float) radius)
+                                .build());
+                inner.setFillColor(ColorStateList.valueOf(color));
+                content.setBackground(inner);
+            }
         }
     }
 }

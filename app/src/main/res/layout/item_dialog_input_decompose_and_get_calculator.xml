@@ -118,7 +118,7 @@
         android:layout_marginHorizontal="10dp"
         android:text="关闭窗口"
         android:textSize="20sp"
-        app:cornerRadius="25dp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
