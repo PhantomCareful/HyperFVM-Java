@@ -31,6 +31,9 @@ import java.util.Objects;
  * ① window 层 MaterialShapeDrawable（MaterialAlertDialogBuilder 设置的背景）；
  * ② 内容层根容器背景（布局根的 ?attr/colorSurface，inflate 后为 ColorDrawable，
  *    替换为同色 MaterialShapeDrawable 后才能表达 G2 角曲线并与 window 层轮廓吻合）。
+ * 弹窗内按钮保持 Material 默认圆角，不加 G2：按钮短边（约 40dp 级）小于翼曲线
+ * 所需延伸 2(1+s)r（r=20、s=0.4 时 56dp），相邻角翼在直边上互相重叠会触发
+ * ShapePath 的 overlap/UNION 规范化，在直边转入圆角处留下衔接折痕，实测无法规避。
  * <p>
  * 需在 dialog.show() 之前调用：通过 OnGlobalLayout 等待 insets 分发完成（show 后
  * decor attach 才会触发），处理一次后即移除监听。设备无圆角信息（平板/模拟器）时
@@ -197,6 +200,7 @@ public final class DialogCornerRadiusUtil {
         if (contentRoot != null) {
             applyContentBackground(contentRoot, radius);
         }
+        // ③ 按钮不加 G2：见类注释，短边不足会触发 ShapePath UNION 折痕
     }
 
     /**
