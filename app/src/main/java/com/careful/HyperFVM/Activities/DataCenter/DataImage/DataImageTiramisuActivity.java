@@ -73,9 +73,6 @@ public class DataImageTiramisuActivity extends BaseActivity {
         setupContainer(R.id.tiramisu_image_2_2_container, "tiramisu_image_2_2");
         setupContainer(R.id.tiramisu_image_2_3_container, "tiramisu_image_2_3");
         setupContainer(R.id.tiramisu_image_2_3_1_container, "tiramisu_image_2_3_1");
-        setupContainer(R.id.tiramisu_image_2_3_2_container, "tiramisu_image_2_3_2");
-        setupContainer(R.id.tiramisu_image_2_3_3_container, "tiramisu_image_2_3_3");
-        setupContainer(R.id.tiramisu_image_2_3_4_container, "tiramisu_image_2_3_4");
         setupContainer(R.id.tiramisu_image_2_4_1_container, "tiramisu_image_2_4_1");
         setupContainer(R.id.tiramisu_image_2_4_2_container, "tiramisu_image_2_4_2");
         setupContainer(R.id.tiramisu_image_2_4_3_container, "tiramisu_image_2_4_3");

@@ -121,14 +121,8 @@
     <string name="description_tools_tiramisu_image_2_2">Q群获取指令：@提拉米鼠 /声望</string>
     <string name="title_tools_tiramisu_image_2_3">大赛奖励图</string>
     <string name="description_tools_tiramisu_image_2_3">Q群获取指令：@提拉米鼠 /大赛</string>
-    <string name="title_tools_tiramisu_image_2_3_1">大赛任务图(第1周)</string>
-    <string name="description_tools_tiramisu_image_2_3_1">Q群获取指令：@提拉米鼠 /大赛-1</string>
-    <string name="title_tools_tiramisu_image_2_3_2">大赛任务图(第2周)</string>
-    <string name="description_tools_tiramisu_image_2_3_2">Q群获取指令：@提拉米鼠 /大赛-2</string>
-    <string name="title_tools_tiramisu_image_2_3_3">大赛任务图(第3周)</string>
-    <string name="description_tools_tiramisu_image_2_3_3">Q群获取指令：@提拉米鼠 /大赛-3</string>
-    <string name="title_tools_tiramisu_image_2_3_4">大赛任务图(第4周)</string>
-    <string name="description_tools_tiramisu_image_2_3_4">Q群获取指令：@提拉米鼠 /大赛-4</string>
+    <string name="title_tools_tiramisu_image_2_3_1">大赛任务图</string>
+    <string name="description_tools_tiramisu_image_2_3_1">Q群获取指令：\n@提拉米鼠 /大赛-1\n@提拉米鼠 /大赛-2\n@提拉米鼠 /大赛-3\n@提拉米鼠 /大赛-4</string>
     <string name="title_tools_tiramisu_image_2_4_1" tools:ignore="Typos">VIP1权益图</string>
     <string name="description_tools_tiramisu_image_2_4_1">Q群获取指令：@提拉米鼠 /VIP 1</string>
     <string name="title_tools_tiramisu_image_2_4_2" tools:ignore="Typos">VIP2权益图</string>
