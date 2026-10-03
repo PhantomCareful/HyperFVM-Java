@@ -20,8 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
-
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.IcuFraudActivity;
@@ -638,41 +636,22 @@ public class DialogBuilderManager {
         // 实时模糊查询（修改核心：适配新的数据模型）
         cardName.addTextChangedListener(new TextWatcher() {
             @Override
-            @SuppressLint("DiscouragedApi")
             public void afterTextChanged(Editable s) {
                 String keyword = s.toString().trim();
                 if (!keyword.isEmpty()) {
-                    // 从数据库获取：包含name和image_id的搜索结果
+                    // 从数据库获取匹配的形态（name + image_id）
                     List<CardSearchSuggestion> suggestions = dbHelper.searchCards(keyword);
 
                     suggestion_card_list.removeAllViews();
+                    boolean hasResult = false;
                     for (int i = 0; i < suggestions.size(); i++) {
-                        CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_search, suggestion_card_list, false);
-                        // 绑定好需要用到的组件
-                        LinearLayout suggestion_card_search_container = cardView.findViewById(R.id.suggestion_card_search_container);
-                        TextView suggestion_name = cardView.findViewById(R.id.suggestion_name);
-                        TextView suggestion_transfer_category = cardView.findViewById(R.id.suggestion_transfer_category);
-                        ImageView suggestion_image = cardView.findViewById(R.id.suggestion_image);
-
-                        suggestion_name.setText(suggestions.get(i).getName());
-                        suggestion_transfer_category.setText(suggestions.get(i).getTransferCategory());
-
-                        String imageIdStr = suggestions.get(i).getImageId();
-                        // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-                        int imageResId = context.getResources().getIdentifier(
-                                imageIdStr,
-                                "drawable",
-                                context.getPackageName()
-                        );
-                        suggestion_image.setImageResource(imageResId);
-
-                        String baseName = dbHelper.getCardBaseName(suggestions.get(i).getName());
-                        suggestion_card_search_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
-
-                        suggestion_card_list.addView(cardView);
+                        CardSearchSuggestion suggestion = suggestions.get(i);
+                        // 每个匹配形态直接用自己的 image_id 复用已有单卡布局展示
+                        hasResult |= CardDataHelper.addCardRowByImageId(context, layoutInflater, suggestion_card_list,
+                                suggestion.getImageId(), v -> CardDataHelper.selectCardDataByName(context, suggestion.getName()));
                     }
 
-                    if (!suggestions.isEmpty()) {
+                    if (hasResult) {
                         suggestion_card_list.setVisibility(View.VISIBLE);
                         content_tips.setVisibility(View.VISIBLE);
                     } else {
@@ -706,7 +685,7 @@ public class DialogBuilderManager {
     /**
      * 显示分解兑换计算器的查询弹窗
      */
-    @SuppressLint("InflateParams,Range,DiscouragedApi")
+    @SuppressLint("InflateParams")
     public static void showDecomposeAndGetQueryDialog(Context context) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_card_data, null);
@@ -724,148 +703,19 @@ public class DialogBuilderManager {
             public void afterTextChanged(Editable s) {
                 String keyword = s.toString().trim();
                 if (!keyword.isEmpty()) {
-                    // 从数据库获取：包含name和image_id的搜索结果
+                    // 从数据库获取匹配的形态（name + image_id）
                     List<CardSearchSuggestion> suggestions = dbHelper.searchAnimalAndGoldenCards(keyword);
 
                     suggestion_card_list.removeAllViews();
+                    boolean hasResult = false;
                     for (int i = 0; i < suggestions.size(); i++) {
-                        CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_search, suggestion_card_list, false);
-                        // 绑定好需要用到的组件
-                        LinearLayout suggestion_card_search_container = cardView.findViewById(R.id.suggestion_card_search_container);
-                        TextView suggestion_name = cardView.findViewById(R.id.suggestion_name);
-                        TextView suggestion_transfer_category = cardView.findViewById(R.id.suggestion_transfer_category);
-                        ImageView suggestion_image = cardView.findViewById(R.id.suggestion_image);
-
-                        suggestion_name.setText(suggestions.get(i).getName());
-                        suggestion_transfer_category.setText(suggestions.get(i).getTransferCategory());
-
-                        String imageIdStr = suggestions.get(i).getImageId();
-                        // 根据image_id获取资源ID（如"card_splash_logo" → R.drawable.card_splash_logo）
-                        int imageResId = context.getResources().getIdentifier(
-                                imageIdStr,
-                                "drawable",
-                                context.getPackageName()
-                        );
-                        suggestion_image.setImageResource(imageResId);
-
-                        String baseName = dbHelper.getCardBaseName(suggestions.get(i).getName());
-                        String tableName = dbHelper.getCardTableName(suggestions.get(i).getName());
-                        try (Cursor cursor = dbHelper.getCardData(tableName, baseName)) {
-                            if (cursor == null || !cursor.moveToFirst()) {
-                                return;
-                            }
-
-                            String decomposeItemName = cursor.getString(cursor.getColumnIndex("decompose_item"));
-
-                            String[] imageIdsArray = tableName.equals("card_data_4") ? new String[] {
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_1")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_2")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_3")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_4")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_a")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_b")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_b")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_c")),
-                            } : new String[] {
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_4")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_1")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_2")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_3")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_4")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_a")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_b")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_c")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_b")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_c")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_a")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_b")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_c")),
-                                    cursor.getString(cursor.getColumnIndex("decompose_image_id_compose")),
-                            };
-
-                            int[] decomposeDataArray = tableName.equals("card_data_4") ? new int[] {
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c")),
-                            } : new int[] {
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_4")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_c")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_c")),
-                                    CardDataHelper.getStringFromCursor(cursor, "decompose_compose").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_compose")),
-                            };
-
-                            int[] getDataArray = tableName.equals("card_data_4") ? new int[] {
-                                    CardDataHelper.getStringFromCursor(cursor, "get_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_4")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c")),
-                            } : new int[] {
-                                    CardDataHelper.getStringFromCursor(cursor, "get_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_card_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_4")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_1")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_2")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_3")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_4")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_c")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_a")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_b")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_c")),
-                                    CardDataHelper.getStringFromCursor(cursor, "get_compose").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_compose")),
-                            };
-
-                            suggestion_card_search_container.setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(context, baseName, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
-                        }
-
-                        suggestion_card_list.addView(cardView);
+                        CardSearchSuggestion suggestion = suggestions.get(i);
+                        // 每个匹配形态直接用自己的 image_id 复用已有单卡布局展示，点击时再查询分解兑换数据
+                        hasResult |= CardDataHelper.addCardRowByImageId(context, layoutInflater, suggestion_card_list,
+                                suggestion.getImageId(), v -> openDecomposeDetail(context, suggestion.getName()));
                     }
 
-                    if (!suggestions.isEmpty()) {
+                    if (hasResult) {
                         suggestion_card_list.setVisibility(View.VISIBLE);
                         content_tips.setVisibility(View.VISIBLE);
                     } else {
@@ -894,6 +744,127 @@ public class DialogBuilderManager {
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
         dialog.show();
+    }
+
+    /** 点击搜索结果后查询该卡的分解兑换数据并打开计算页（惰性查询，避免每次输入都重建数据数组） */
+    @SuppressLint("Range")
+    private static void openDecomposeDetail(Context context, String cardName) {
+        String baseName = dbHelper.getCardBaseName(cardName);
+        String tableName = dbHelper.getCardTableName(cardName);
+        if (baseName == null || tableName == null) {
+            return;
+        }
+        try (Cursor cursor = dbHelper.getCardData(tableName, baseName)) {
+            if (cursor == null || !cursor.moveToFirst()) {
+                return;
+            }
+
+            String decomposeItemName = cursor.getString(cursor.getColumnIndex("decompose_item"));
+
+            String[] imageIdsArray = tableName.equals("card_data_4") ? new String[] {
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_1")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_2")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_3")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_4")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_a")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_b")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_b")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_c")),
+            } : new String[] {
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_1")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_2")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_3")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_card_4")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_1")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_2")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_3")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_skill_4")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_a")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_b")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_1_c")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_a")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_b")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_2_c")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_a")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_b")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_transfer_3_c")),
+                    cursor.getString(cursor.getColumnIndex("decompose_image_id_compose")),
+            };
+
+            int[] decomposeDataArray = tableName.equals("card_data_4") ? new int[] {
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c")),
+            } : new int[] {
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_card_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_card_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_skill_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_1_c")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_2_c")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_transfer_3_c")),
+                    CardDataHelper.getStringFromCursor(cursor, "decompose_compose").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "decompose_compose")),
+            };
+
+            int[] getDataArray = tableName.equals("card_data_4") ? new int[] {
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c")),
+            } : new int[] {
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_card_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_card_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_1").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_1")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_2").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_2")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_3").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_3")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_skill_4").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_skill_4")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_1_c")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_2_c")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_a").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_a")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_b").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_b")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_c").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_transfer_3_c")),
+                    CardDataHelper.getStringFromCursor(cursor, "get_compose").equals("🚫") ? 0 : Integer.parseInt(CardDataHelper.getStringFromCursor(cursor, "get_compose")),
+            };
+
+            CardDataHelper.selectDecomposeAndGetData(context, baseName, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray);
+        }
     }
 
     /**

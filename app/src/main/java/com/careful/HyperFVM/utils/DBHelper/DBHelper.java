@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.careful.HyperFVM.utils.ForCardData.CardIndexIdTables;
 import com.careful.HyperFVM.utils.ForCardData.CardSearchSuggestion;
 import com.opencsv.CSVReader;
 
@@ -777,56 +776,23 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // ====================== 以下为防御卡数据表的操作方法 ======================
-    // 模糊查询卡片名称和对应图片ID
+    // 模糊查询卡片名称：命中任意形态后回溯主形态行，展示主形态布局（衍生形态无自己的单卡布局），按卡去重
     public List<CardSearchSuggestion> searchCards(String keyword) {
         List<CardSearchSuggestion> suggestions = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        // 同时查询name和image_id两列
         Cursor cursor = db.rawQuery(
-                "SELECT name, image_id, table_name FROM " + TABLE_CARD_DATA_INDEX + " WHERE name LIKE ?",
+                "SELECT DISTINCT b.name, b.image_id FROM " + TABLE_CARD_DATA_INDEX + " i " +
+                        "JOIN " + TABLE_CARD_DATA_INDEX + " b ON b.name = i.base_name " +
+                        "WHERE i.name LIKE ?",
                 new String[]{"%" + keyword + "%"});
 
         if (cursor.moveToFirst()) {
             do {
                 String name = cursor.getString(0);
                 String imageId = cursor.getString(1);
-                String tableName = cursor.getString(2);
-                // 过滤空名称或空图片ID（可选，根据业务需求调整）
-                if (name != null && !name.isEmpty()) {
-                    int level = CardIndexIdTables.inferTransferLevel(imageId, tableName);
-                    int tableNameNum = Character.getNumericValue(tableName.charAt(tableName.length() - 1));
-                    String transferCategory = null;
-                    switch (level) {
-                        case 0:
-                            transferCategory = "不转形态";
-                            break;
-                        case 1:
-                            if (tableNameNum == 3) {
-                                transferCategory = "三转形态";
-                            } else if (tableNameNum == 2) {
-                                transferCategory = "初级融合";
-                            } else {
-                                transferCategory = "一转形态";
-                            }
-                            break;
-                        case 2:
-                            if (tableNameNum == 3) {
-                                transferCategory = "四转形态";
-                            } else if (tableNameNum == 2) {
-                                transferCategory = "深度融合";
-                            } else {
-                                transferCategory = "二转形态";
-                            }
-                            break;
-                        case 3:
-                            if (tableNameNum == 2) {
-                                transferCategory = "灵魂融合";
-                            } else {
-                                transferCategory = "终转形态";
-                            }
-                            break;
-                    }
-                    suggestions.add(new CardSearchSuggestion(name, transferCategory, imageId));
+                // 过滤空名称或空图片ID
+                if (name != null && !name.isEmpty() && imageId != null && !imageId.isEmpty()) {
+                    suggestions.add(new CardSearchSuggestion(name, imageId));
                 }
             } while (cursor.moveToNext());
         }
@@ -834,43 +800,24 @@ public class DBHelper extends SQLiteOpenHelper {
         return suggestions;
     }
 
-    // 模糊查询星座卡/生肖卡/金卡名称和对应图片ID
+    // 模糊查询星座卡/生肖卡/金卡：命中任意形态后回溯主形态行展示（仅保留 card_data_3 / card_data_4 表的卡）
     public List<CardSearchSuggestion> searchAnimalAndGoldenCards(String keyword) {
         List<CardSearchSuggestion> suggestions = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        // 同时查询name和image_id两列
         Cursor cursor = db.rawQuery(
-                "SELECT name, image_id, table_name FROM " + TABLE_CARD_DATA_INDEX + " WHERE name LIKE ?",
+                "SELECT DISTINCT b.name, b.image_id FROM " + TABLE_CARD_DATA_INDEX + " i " +
+                        "JOIN " + TABLE_CARD_DATA_INDEX + " b ON b.name = i.base_name " +
+                        "WHERE i.name LIKE ? AND i.table_name IN ('card_data_3', 'card_data_4')",
                 new String[]{"%" + keyword + "%"});
 
         if (cursor.moveToFirst()) {
             do {
                 String name = cursor.getString(0);
                 String imageId = cursor.getString(1);
-                String tableName = cursor.getString(2);
-                // 过滤空名称或空图片ID（可选，根据业务需求调整）
-                if (name != null && !name.isEmpty()) {
-                    int level = CardIndexIdTables.inferTransferLevel(imageId, tableName);
-                    int tableNameNum = Character.getNumericValue(tableName.charAt(tableName.length() - 1));
-                    if (tableNameNum == 4) {
-                        String transferCategory = switch (level) {
-                            case 0 -> "不转形态";
-                            case 1 -> "一转形态";
-                            case 2 -> "二转形态";
-                            default -> null;
-                        };
-                        suggestions.add(new CardSearchSuggestion(name, transferCategory, imageId));
-                    } else if (tableNameNum == 3) {
-                        String transferCategory = switch (level) {
-                            case 0 -> "不转形态";
-                            case 1 -> "三转形态";
-                            case 2 -> "四转形态";
-                            case 3 -> "终转形态";
-                            default -> null;
-                        };
-                        suggestions.add(new CardSearchSuggestion(name, transferCategory, imageId));
-                    }
+                if (name == null || name.isEmpty() || imageId == null || imageId.isEmpty()) {
+                    continue;
                 }
+                suggestions.add(new CardSearchSuggestion(name, imageId));
             } while (cursor.moveToNext());
         }
         cursor.close();
