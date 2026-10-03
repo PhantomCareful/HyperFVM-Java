@@ -111,7 +111,7 @@ public class AboutAppFragment extends Fragment {
                 ContextCompat.getDrawable(requireContext(), R.drawable.ic_github),
                 0,
                 getResources().getString(R.string.dialog_title_github),
-                getResources().getString(R.string.dialog_title_github),
+                getResources().getString(R.string.dialog_sub_title_github),
                 getResources().getString(R.string.dialog_url_github)));
 
         // 跳转浏览器，获取软件更新

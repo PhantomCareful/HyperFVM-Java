@@ -628,12 +628,12 @@
     <string name="dialog_sub_title_bilibili">Phantom_Careful</string>
     <string name="dialog_url_bilibili">https://space.bilibili.com/360191288</string>
     <string name="label_about_app_tencent_channel_1">腾讯频道</string>
-    <string name="label_about_app_tencent_channel_2">获取相关通知、发送反馈&amp;建议请戳这里</string>
+    <string name="label_about_app_tencent_channel_2">获取相关通知、提交反馈或建议</string>
     <string name="dialog_title_tencent_channel">腾讯频道</string>
     <string name="dialog_sub_title_tencent_channel">HyperFVM交流社区</string>
     <string name="dialog_url_tencent_channel">https://pd.qq.com/s/el8bp2qra</string>
     <string name="label_about_app_tencent_group_1">QQ群组</string>
-    <string name="label_about_app_tencent_group_2">参与内测、闲聊&amp;反馈请戳这里</string>
+    <string name="label_about_app_tencent_group_2">参与内测、直接和开发者对话、闲聊</string>
     <string name="dialog_title_tencent_group">QQ群组</string>
     <string name="dialog_sub_title_tencent_group">HyperFVM聊天小窝</string>
     <string name="dialog_url_tencent_group">https://qm.qq.com/q/bJDJZnBg7C</string>
