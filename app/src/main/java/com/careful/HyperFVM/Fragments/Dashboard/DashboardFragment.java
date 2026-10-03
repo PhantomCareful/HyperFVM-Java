@@ -498,14 +498,12 @@ public class DashboardFragment extends Fragment {
             String newCardName = data.get(0).get("resultBirthdayActivityNewCardName");
             int requiredDatabaseVersion = Integer.parseInt(Objects.requireNonNull(data.get(0).get("resultBirthdayActivityRequiredDatabaseVersion")));
             if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
-                DialogBuilderManager.showDashboardDetailDialogAndSeeTiramisuImage(
+                DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
                         getResources().getString(R.string.title_dashboard_birthday_activity),
                         birthdayActivityEmoji.isEmpty() ? "❌" : birthdayActivityEmoji,
                         contentStatus,
-                        contentDetail,
-                        "新卡名称",
-                        newCardName
+                        contentDetail
                 );
             } else {
                 DialogBuilderManager.showDashboardBirthdayActivityDialog(
