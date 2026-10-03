@@ -907,6 +907,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    // 获取卡片对应的图片 id（用于定位单卡布局 card_card_data_index_{image_id}）
+    public String getCardImageId(String cardName) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT image_id FROM card_data_index WHERE name = ?",
+                new String[]{cardName});
+        if (cursor.moveToFirst()) {
+            String imageId = cursor.getString(0);
+            cursor.close();
+            return imageId;
+        }
+        cursor.close();
+        return null;
+    }
+
     // 查询指定表中的卡片数据
     public Cursor getCardData(String tableName, String name) {
         SQLiteDatabase db = getReadableDatabase();

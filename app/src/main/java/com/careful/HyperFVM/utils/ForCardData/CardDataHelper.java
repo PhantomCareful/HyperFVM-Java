@@ -8,6 +8,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -91,6 +92,8 @@ import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class CardDataHelper {
@@ -123,6 +126,54 @@ public class CardDataHelper {
         intent.putExtra("cardName", baseName);
         intent.putExtra("tableName", tableName);
         context.startActivity(intent);
+    }
+
+    /** 单卡布局缓存：布局名 -> 资源 id */
+    private static final Map<String, Integer> cardLayoutCache = new HashMap<>();
+
+    /**
+     * 向弹窗的卡片名单容器追加一行卡片。
+     * 卡名 → base_name → image_id → 直接复用防御卡目录页的单卡布局（card_card_data_index_{image_id}），
+     * 文字与图片全部内置在布局中，无需手动绑定；点击跳转该卡的数据详情页。
+     *
+     * @return true=追加成功；false=卡名不存在或缺少对应布局（跳过该卡，不中断弹窗构建）
+     */
+    @SuppressLint("DiscouragedApi")
+    public static boolean addCardRowToDialog(Context context, LayoutInflater layoutInflater, LinearLayout container, String cardName) {
+        String baseName = dbHelper.getCardBaseName(cardName);
+        if (baseName == null) {
+            Log.w("CardDataHelper", "卡片名单中找不到卡片：" + cardName);
+            return false;
+        }
+        String imageId = dbHelper.getCardImageId(baseName);
+        if (imageId == null) {
+            Log.w("CardDataHelper", "卡片缺少 image_id：" + cardName);
+            return false;
+        }
+
+        String layoutName = "card_card_data_index_" + imageId;
+        Integer cached = cardLayoutCache.get(layoutName);
+        int cellLayoutRes;
+        if (cached != null) {
+            cellLayoutRes = cached;
+        } else {
+            int resId = context.getResources().getIdentifier(layoutName, "layout", context.getPackageName());
+            if (resId == 0) {
+                Log.w("CardDataHelper", "找不到单卡布局资源：" + layoutName);
+                return false;
+            }
+            cardLayoutCache.put(layoutName, resId);
+            cellLayoutRes = resId;
+        }
+
+        // item_card_catalog_card 是防御卡目录页在用的空 CardView 包装（20dp 圆角 + 卡片背景 + 底部间距）
+        View row = layoutInflater.inflate(R.layout.item_card_catalog_card, container, false);
+        FrameLayout cardContainer = row.findViewById(R.id.card_catalog_card_container);
+        View cellView = layoutInflater.inflate(cellLayoutRes, cardContainer, false);
+        cellView.setOnClickListener(v -> selectCardDataByName(context, baseName));
+        cardContainer.addView(cellView);
+        container.addView(row);
+        return true;
     }
 
     public static void selectAuxiliaryCardByName(Context context, String cardName) {
