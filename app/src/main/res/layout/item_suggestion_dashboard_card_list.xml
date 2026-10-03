@@ -6,7 +6,6 @@
     android:id="@+id/suggestion_card_transfer_discount"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
     android:layout_marginBottom="10dp"
     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
     app:cardCornerRadius="20dp"
@@ -25,6 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
             <!-- 左侧文字 -->
@@ -40,15 +40,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textStyle="bold"
                 android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/suggestion_image_0"
-            android:layout_width="32dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/x1113000a"
@@ -56,8 +55,8 @@
 
         <ImageView
             android:id="@+id/suggestion_image_1"
-            android:layout_width="32dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/x1113000b"
@@ -65,8 +64,8 @@
 
         <ImageView
             android:id="@+id/suggestion_image_2"
-            android:layout_width="32dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/x1113000c"
@@ -74,7 +73,7 @@
 
         <ImageView
             android:id="@+id/suggestion_image_3"
-            android:layout_width="32dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"

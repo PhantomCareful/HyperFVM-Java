@@ -15,5 +15,5 @@
     <!-- 弹窗圆角固定值（单一来源）：46dp = 底部按钮 margin 26dp + 按钮圆角 20dp，
          使弹窗角圆心与底部按钮角圆心严格同心；由 DialogCornerRadiusUtil 读取，
          与设备屏幕物理圆角无关 -->
-    <dimen name="dialog_corner_radius">51dp</dimen>
+    <dimen name="dialog_corner_radius">46dp</dimen>
 </resources>

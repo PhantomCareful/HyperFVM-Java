@@ -17,10 +17,10 @@
     <string name="description_data_center_cookery_index">查询食神谱的详细信息</string>
     <string name="title_data_center_odds_index">宝箱概率公示合集</string>
     <string name="description_data_center_odds_index">展示部分宝箱的概率公示信息</string>
-    <string name="card_data_search_title">防御卡数据查询</string>
-    <string name="card_data_search_data_version">数据库版本：20260917</string>
-    <string name="card_data_search_tips">👇点击卡片即可进入数据详情页👇</string>
-    <string name="card_data_search_input_tips">请输入防御卡名称</string>
+    <string name="title_card_data_search">防御卡数据查询</string>
+    <string name="version_card_data_search">数据库版本：20260917</string>
+    <string name="tips_card_data_search">👇点击卡片即可进入数据详情页👇</string>
+    <string name="tips_card_data_search_input">请输入防御卡名称</string>
     <string name="top_bar_card_data_index">防御卡全能数据库</string>
     <string name="top_bar_card_data_index_pad">防御卡全能数据库</string>
     <string name="title_card_data_base">基础</string>
@@ -49,7 +49,6 @@
     <string name="title_card_data_auxiliary_list_8_3">以下卡片\n👇魔杖蛇和海洋女神本行增幅👇</string>
     <string name="title_decompose_and_get_calculator">分解兑换计算器</string>
     <string name="description_decompose_and_get_calculator">顾名思义，自助求和</string>
-    <string name="dialog_tips_decompose_and_get_calculator">👇点击卡片即可进入详情页👇</string>
     <string name="top_bar_decompose_and_get_calculator">分解兑换计算器</string>
     <string name="title_decompose_calculator">分解</string>
     <string name="title_get_calculator">兑换</string>

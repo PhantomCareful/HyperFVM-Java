@@ -6,7 +6,6 @@
     android:id="@+id/suggestion_card_search"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
     android:layout_marginBottom="10dp"
     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
     app:cardCornerRadius="20dp"
@@ -24,20 +23,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical"
-            android:gravity="center_vertical">
+            android:gravity="center">
 
             <!-- 左侧文字 -->
             <TextView
                 android:id="@+id/suggestion_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/TextViewColorOnGeneralCardView"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/suggestion_transfer_category"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
                 android:textSize="15sp"/>

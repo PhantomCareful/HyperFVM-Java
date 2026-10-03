@@ -15,7 +15,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -68,7 +67,7 @@ public class DialogBuilderManager {
         TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentTextView = dialogView.findViewById(R.id.content);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentTextView.setText(content); // 设置内容文本
@@ -107,8 +106,9 @@ public class DialogBuilderManager {
         TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentTextView = dialogView.findViewById(R.id.content);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
+
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentTextView.setText(content); // 设置内容文本
@@ -140,9 +140,9 @@ public class DialogBuilderManager {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_signature_check, null);
 
-        Button buttonAction1 = dialogView.findViewById(R.id.button_action1);
-        Button buttonAction2 = dialogView.findViewById(R.id.button_action2);
-        Button buttonAction3 = dialogView.findViewById(R.id.button_action3);
+        TextView buttonAction1 = dialogView.findViewById(R.id.button_action1);
+        TextView buttonAction2 = dialogView.findViewById(R.id.button_action2);
+        TextView buttonAction3 = dialogView.findViewById(R.id.button_action3);
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setView(dialogView)
@@ -241,10 +241,9 @@ public class DialogBuilderManager {
      * @param emoji                 弹窗中的大表情
      * @param contentStatus         状态内容
      * @param contentDetail         详细内容
-     * @param positiveButtonTitle   按钮的内容
      * @param imageName             要查看的图片文件名，若为空，则只跳转到米鼠的图
      */
-    public static void showDashboardDetailDialogAndSeeTiramisuImage(Context context, String title, String emoji, String contentStatus, String contentDetail, String positiveButtonTitle, String imageName) {
+    public static void showDashboardDetailDialogAndSeeTiramisuImage(Context context, String title, String emoji, String contentStatus, String contentDetail, String imageName) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_tiramisu, null);
 
@@ -252,13 +251,13 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
+
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
-        buttonAction.setText(positiveButtonTitle);
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setView(dialogView)
@@ -304,9 +303,9 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
-        Button buttonAction1 = dialogView.findViewById(R.id.button_action_1);
-        Button buttonAction2 = dialogView.findViewById(R.id.button_action_2);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonAction1 = dialogView.findViewById(R.id.button_action_1);
+        TextView buttonAction2 = dialogView.findViewById(R.id.button_action_2);
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
@@ -366,19 +365,19 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
         for (int i = 0; i < cardList.size(); i++) {
-            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
+            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_card_list, false);
             // 绑定好需要用到的组件
-            LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
+            LinearLayout suggestion_card_container = cardView.findViewById(R.id.suggestion_card_container);
             TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
             TextView suggestion_name_2_transfer_discount = cardView.findViewById(R.id.suggestion_name_2);
             ImageView suggestion_image_0_transfer_discount = cardView.findViewById(R.id.suggestion_image_0);
@@ -445,9 +444,9 @@ public class DialogBuilderManager {
                 }
 
                 // 设置点击事件，跳转数据详情页
-                suggestion_card_transfer_discount_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
+                suggestion_card_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
 
-                suggestion_list_transfer_discount.addView(cardView);
+                suggestion_card_list.addView(cardView);
             }
         }
 
@@ -491,21 +490,18 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonWeek1 = dialogView.findViewById(R.id.button_week1);
-        Button buttonWeek2 = dialogView.findViewById(R.id.button_week2);
-        Button buttonWeek3 = dialogView.findViewById(R.id.button_week3);
-        Button buttonWeek4 = dialogView.findViewById(R.id.button_week4);
-        Button buttonReward = dialogView.findViewById(R.id.button_reward);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonWeek = dialogView.findViewById(R.id.button_week);
+        TextView buttonReward = dialogView.findViewById(R.id.button_reward);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
         for (int i = 0; i < cardList.size(); i++) {
-            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
+            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_card_list, false);
             // 绑定好需要用到的组件
             LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
             TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
@@ -576,7 +572,7 @@ public class DialogBuilderManager {
                 // 设置点击事件，跳转数据详情页
                 suggestion_card_transfer_discount_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
 
-                suggestion_list_transfer_discount.addView(cardView);
+                suggestion_card_list.addView(cardView);
             }
         }
 
@@ -584,7 +580,7 @@ public class DialogBuilderManager {
                 .setView(dialogView)
                 .create();
 
-        buttonWeek1.setOnClickListener(v -> {
+        buttonWeek.setOnClickListener(v -> {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
@@ -593,39 +589,6 @@ public class DialogBuilderManager {
             }
 
             DataImageViewerHelper.openDataImage(context, "tiramisu_image_2_3_1");
-        });
-
-        buttonWeek2.setOnClickListener(v -> {
-            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
-            if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
-                return;
-            }
-
-            DataImageViewerHelper.openDataImage(context, "tiramisu_image_2_3_2");
-        });
-
-        buttonWeek3.setOnClickListener(v -> {
-            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
-            if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
-                return;
-            }
-
-            DataImageViewerHelper.openDataImage(context, "tiramisu_image_2_3_3");
-        });
-
-        buttonWeek4.setOnClickListener(v -> {
-            // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
-            long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
-            if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
-                return;
-            }
-
-            DataImageViewerHelper.openDataImage(context, "tiramisu_image_2_3_4");
         });
 
         buttonReward.setOnClickListener(v -> {
@@ -662,10 +625,11 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
-        Button buttonConsumption1 = dialogView.findViewById(R.id.button_consumption1);
-        Button buttonConsumption2 = dialogView.findViewById(R.id.button_consumption2);
-        Button buttonConsumption3 = dialogView.findViewById(R.id.button_consumption3);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonConsumption1 = dialogView.findViewById(R.id.button_consumption_1);
+        TextView buttonConsumption2 = dialogView.findViewById(R.id.button_consumption_2);
+        TextView buttonConsumption3 = dialogView.findViewById(R.id.button_consumption_3);
+
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
@@ -732,16 +696,17 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
         for (int i = 0; i < discountList.size(); i++) {
-            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
+            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_card_list, false);
             // 绑定好需要用到的组件
             LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
             TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
@@ -812,7 +777,7 @@ public class DialogBuilderManager {
                 // 设置点击事件，跳转数据详情页
                 suggestion_card_transfer_discount_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
 
-                suggestion_list_transfer_discount.addView(cardView);
+                suggestion_card_list.addView(cardView);
             }
         }
 
@@ -845,15 +810,16 @@ public class DialogBuilderManager {
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
         TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
         TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+
         titleTextView.setText(title); // 设置标题
         emojiTextView.setText(emoji); // 设置表情符号
         contentStatusTextView.setText(contentStatus); // 设置状态文本
 
         // 开始逐个匹配卡片名称，查询防御卡数据库展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_list_transfer_discount = dialogView.findViewById(R.id.suggestion_dashboard_card_list);
-        if (Integer.parseInt(context.getString(R.string.card_data_search_data_version).split("：")[1]) >= requiredDatabaseVersion) {
-            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_list_transfer_discount, false);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
+        if (Integer.parseInt(context.getString(R.string.version_card_data_search).split("：")[1]) >= requiredDatabaseVersion) {
+            CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_dashboard_card_list, suggestion_card_list, false);
             // 绑定好需要用到的组件
             LinearLayout suggestion_card_transfer_discount_container = cardView.findViewById(R.id.suggestion_card_container);
             TextView suggestion_name_1_transfer_discount = cardView.findViewById(R.id.suggestion_name_1);
@@ -924,7 +890,7 @@ public class DialogBuilderManager {
                 // 设置点击事件，跳转数据详情页
                 suggestion_card_transfer_discount_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
 
-                suggestion_list_transfer_discount.addView(cardView);
+                suggestion_card_list.addView(cardView);
             }
         } else {
             contentDetail = contentDetail + "\n\n" + newCardName + "\n\n当前数据库尚未包含此卡片\n请更新数据库版本到" + requiredDatabaseVersion;
@@ -950,10 +916,13 @@ public class DialogBuilderManager {
     public static void showCardQueryDialog(Context context) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_card_data, null);
+        TextView title = dialogView.findViewById(R.id.title);
         TextInputEditText cardName = dialogView.findViewById(R.id.textInputEditText);
-        TextView content_tips2 = dialogView.findViewById(R.id.content_tips);
-        LinearLayout suggestion_list = dialogView.findViewById(R.id.suggestion_list);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView content_tips = dialogView.findViewById(R.id.content_tips);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+
+        title.setText(context.getString(R.string.title_card_data_search));
 
         // 实时模糊查询（修改核心：适配新的数据模型）
         cardName.addTextChangedListener(new TextWatcher() {
@@ -965,9 +934,9 @@ public class DialogBuilderManager {
                     // 从数据库获取：包含name和image_id的搜索结果
                     List<CardSearchSuggestion> suggestions = dbHelper.searchCards(keyword);
 
-                    suggestion_list.removeAllViews();
+                    suggestion_card_list.removeAllViews();
                     for (int i = 0; i < suggestions.size(); i++) {
-                        CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_search, suggestion_list, false);
+                        CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_search, suggestion_card_list, false);
                         // 绑定好需要用到的组件
                         LinearLayout suggestion_card_search_container = cardView.findViewById(R.id.suggestion_card_search_container);
                         TextView suggestion_name = cardView.findViewById(R.id.suggestion_name);
@@ -989,19 +958,19 @@ public class DialogBuilderManager {
                         String baseName = dbHelper.getCardBaseName(suggestions.get(i).getName());
                         suggestion_card_search_container.setOnClickListener(v -> CardDataHelper.selectCardDataByName(context, baseName));
 
-                        suggestion_list.addView(cardView);
+                        suggestion_card_list.addView(cardView);
                     }
 
                     if (!suggestions.isEmpty()) {
-                        suggestion_list.setVisibility(View.VISIBLE);
-                        content_tips2.setVisibility(View.VISIBLE);
+                        suggestion_card_list.setVisibility(View.VISIBLE);
+                        content_tips.setVisibility(View.VISIBLE);
                     } else {
-                        suggestion_list.setVisibility(View.GONE);
-                        content_tips2.setVisibility(View.GONE);
+                        suggestion_card_list.setVisibility(View.GONE);
+                        content_tips.setVisibility(View.GONE);
                     }
                 } else {
-                    suggestion_list.setVisibility(View.GONE);
-                    content_tips2.setVisibility(View.GONE);
+                    suggestion_card_list.setVisibility(View.GONE);
+                    content_tips.setVisibility(View.GONE);
                 }
             }
 
@@ -1029,11 +998,14 @@ public class DialogBuilderManager {
     @SuppressLint("InflateParams,Range,DiscouragedApi")
     public static void showDecomposeAndGetQueryDialog(Context context) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_decompose_and_get_calculator, null);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_card_data, null);
+        TextView title = dialogView.findViewById(R.id.title);
         TextInputEditText cardName = dialogView.findViewById(R.id.textInputEditText);
-        TextView content_tips2 = dialogView.findViewById(R.id.content_tips);
-        LinearLayout suggestion_list = dialogView.findViewById(R.id.suggestion_list);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView content_tips = dialogView.findViewById(R.id.content_tips);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+
+        title.setText(context.getString(R.string.title_decompose_and_get_calculator));
 
         // 实时模糊查询
         cardName.addTextChangedListener(new TextWatcher() {
@@ -1044,9 +1016,9 @@ public class DialogBuilderManager {
                     // 从数据库获取：包含name和image_id的搜索结果
                     List<CardSearchSuggestion> suggestions = dbHelper.searchAnimalAndGoldenCards(keyword);
 
-                    suggestion_list.removeAllViews();
+                    suggestion_card_list.removeAllViews();
                     for (int i = 0; i < suggestions.size(); i++) {
-                        CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_search, suggestion_list, false);
+                        CardView cardView = (CardView) layoutInflater.inflate(R.layout.item_suggestion_search, suggestion_card_list, false);
                         // 绑定好需要用到的组件
                         LinearLayout suggestion_card_search_container = cardView.findViewById(R.id.suggestion_card_search_container);
                         TextView suggestion_name = cardView.findViewById(R.id.suggestion_name);
@@ -1179,19 +1151,19 @@ public class DialogBuilderManager {
                             suggestion_card_search_container.setOnClickListener(v -> CardDataHelper.selectDecomposeAndGetData(context, baseName, decomposeItemName, imageIdsArray, decomposeDataArray, getDataArray));
                         }
 
-                        suggestion_list.addView(cardView);
+                        suggestion_card_list.addView(cardView);
                     }
 
                     if (!suggestions.isEmpty()) {
-                        suggestion_list.setVisibility(View.VISIBLE);
-                        content_tips2.setVisibility(View.VISIBLE);
+                        suggestion_card_list.setVisibility(View.VISIBLE);
+                        content_tips.setVisibility(View.VISIBLE);
                     } else {
-                        suggestion_list.setVisibility(View.GONE);
-                        content_tips2.setVisibility(View.GONE);
+                        suggestion_card_list.setVisibility(View.GONE);
+                        content_tips.setVisibility(View.GONE);
                     }
                 } else {
-                    suggestion_list.setVisibility(View.GONE);
-                    content_tips2.setVisibility(View.GONE);
+                    suggestion_card_list.setVisibility(View.GONE);
+                    content_tips.setVisibility(View.GONE);
                 }
             }
 
@@ -1229,8 +1201,8 @@ public class DialogBuilderManager {
         ImageView visit_image = dialogView.findViewById(R.id.visit_image);
         TextView visit_title = dialogView.findViewById(R.id.visit_title);
         TextView visit_sub_title = dialogView.findViewById(R.id.visit_sub_title);
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
 
         if (image != null) {
             visit_image.setImageDrawable(image);
@@ -1287,8 +1259,8 @@ public class DialogBuilderManager {
         // 获取布局中的输入框
         TextInputLayout inputLayout = dialogView.findViewById(R.id.inputLayout);
         TextInputEditText etQQ = (TextInputEditText) inputLayout.getEditText();
-        Button buttonClose = dialogView.findViewById(R.id.button_close);
-        Button buttonAction = dialogView.findViewById(R.id.button_action);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+        TextView buttonAction = dialogView.findViewById(R.id.button_action);
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
                 .setView(dialogView)

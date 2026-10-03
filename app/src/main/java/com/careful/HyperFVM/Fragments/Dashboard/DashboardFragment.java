@@ -536,7 +536,6 @@ public class DashboardFragment extends Fragment {
                         bountyEmoji.isEmpty() ? "null" : bountyEmoji,
                         data.get(0).get("resultBountyInfoContentStatus"),
                         data.get(0).get("resultBountyInfoContentDetail"),
-                        "悬赏声望图",
                         "tiramisu_image_2_2"
                 )
         );
@@ -572,7 +571,6 @@ public class DashboardFragment extends Fragment {
                                 threeIslandsEmoji.isEmpty() ? "❌" : threeIslandsEmoji,
                                 contentStatus,
                                 contentDetail,
-                                "去看米鼠的图",
                                 "tiramisu_image_2_1"
                         );
                     } else {
@@ -668,7 +666,6 @@ public class DashboardFragment extends Fragment {
                                 happyHolidayEmoji.isEmpty() ? "null" : happyHolidayEmoji,
                                 contentStatus,
                                 contentDetail,
-                                "去看米鼠的图",
                                 "tiramisu_image_1_7"
                         );
                     } else {
@@ -872,7 +869,6 @@ public class DashboardFragment extends Fragment {
                         weddingDiscountEmoji.isEmpty() ? "❌" : weddingDiscountEmoji,
                         data.get(0).get("resultWeddingDiscountContentStatus"),
                         data.get(0).get("resultWeddingDiscountContentDetail"),
-                        "去看米鼠的图",
                         "tiramisu_image_1_6"
                 )
         );
@@ -889,7 +885,6 @@ public class DashboardFragment extends Fragment {
                         dailyRechargeEmoji.isEmpty() ? "❌" : dailyRechargeEmoji,
                         data.get(0).get("resultDailyRechargeContentStatus"),
                         data.get(0).get("resultDailyRechargeContentDetail"),
-                        "去看米鼠的图",
                         "tiramisu_image_1_2"
                 )
         );

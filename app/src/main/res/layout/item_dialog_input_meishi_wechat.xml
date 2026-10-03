@@ -1,101 +1,106 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="?attr/colorSurface"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText,ContentDescription">
 
-    <ScrollView
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:scrollbars="none"
-        tools:ignore="MissingConstraints">
+        android:paddingVertical="26dp"
+        android:gravity="center"
+        android:text="@string/dialog_title_meishi_wechat_add_url"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface"
+        android:clickable="true"/>
 
-        <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="26dp"
+        app:boxStrokeWidth="2dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:backgroundTint="@android:color/transparent"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            android:paddingBottom="50dp">
+            android:padding="16dp"
+            android:textSize="20sp"
+            android:textColor="?attr/colorOnSurface"
+            android:hint="@string/dialog_tips_meishi_wechat_add_url"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:singleLine="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="26dp"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardCornerRadius="20dp">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/button_close"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:paddingVertical="11dp"
                 android:gravity="center"
-                android:text="@string/dialog_title_meishi_wechat_add_url"
+                android:text="关闭窗口"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout"
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="26dp"
+            android:layout_height="wrap_content" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/button_action"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                app:backgroundTint="@android:color/transparent"
-                app:boxCornerRadiusBottomEnd="20dp"
-                app:boxCornerRadiusBottomStart="20dp"
-                app:boxCornerRadiusTopEnd="20dp"
-                app:boxCornerRadiusTopStart="20dp"
-                app:boxStrokeWidth="2dp"
-                app:hintEnabled="false">
+                android:paddingVertical="11dp"
+                android:gravity="center"
+                android:text="添加链接"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnPrimary"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:hint="@string/dialog_tips_meishi_wechat_add_url"
-                    android:singleLine="false"
-                    android:inputType="textMultiLine"
-                    android:maxLines="5"
-                    android:textSize="15sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textColorHint="?attr/colorOnSurfaceVariant" />
+        </androidx.cardview.widget.CardView>
 
-            </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
-        </LinearLayout>
-
-    </ScrollView>
-
-    <Button
-        android:id="@+id/button_close"
-        style="@style/DialogButton.Cancel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="关闭窗口"
-        android:textSize="16sp"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button_action" />
-
-    <Button
-        android:id="@+id/button_action"
-        style="@style/DialogButton.Confirm"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:text="添加链接"
-        android:textSize="16sp"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toRightOf="@+id/button_close"
-        app:layout_constraintRight_toRightOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
