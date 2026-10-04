@@ -18,7 +18,7 @@
     <string name="title_data_center_odds_index">宝箱概率公示合集</string>
     <string name="description_data_center_odds_index">展示部分宝箱的概率公示信息</string>
     <string name="title_card_data_search">防御卡数据查询</string>
-    <string name="version_card_data_search">数据库版本：20260917</string>
+    <string name="version_card_data_search">数据库版本：20261002</string>
     <string name="tips_card_data_search">👇点击卡片即可进入数据详情页👇</string>
     <string name="tips_card_data_search_input">请输入防御卡名称</string>
     <string name="top_bar_card_data_index">防御卡全能数据库</string>
@@ -201,7 +201,8 @@
     <string name="text_data_images_index_card_9_2">群轰追踪</string>
     <string name="text_data_images_index_card_9_3">散点追踪</string>
     <string name="text_data_images_index_card_9_4">直线追踪</string>
-    <string name="text_data_images_index_card_9_5">特殊追踪</string>
+    <string name="text_data_images_index_card_9_5">专注追踪</string>
+    <string name="text_data_images_index_card_9_6">特殊追踪</string>
     <string name="title_data_images_index_card_10">10.杂项类</string>
     <string name="text_data_images_index_card_10_1">吞噬类</string>
     <string name="text_data_images_index_card_10_2">连携类</string>
@@ -221,7 +222,7 @@
     <string name="text_data_images_index_card_13_1">冷却&amp;复制&amp;变星</string>
     <string name="text_data_images_index_card_13_2">清除场地事件</string>
     <string name="text_data_images_index_card_13_3">特殊增益</string>
-    <string name="text_data_images_index_card_13_4">变道聚怪</string>
+    <string name="text_data_images_index_card_13_4">变道控制聚怪</string>
     <string name="title_data_images_index_card_14">14.防御类</string>
     <string name="text_data_images_index_card_14_1">面包类</string>
     <string name="text_data_images_index_card_14_2">护罩类</string>
@@ -1197,6 +1198,19 @@
     <string name="name_card_data_index_x1112280a_1">俱吠罗圣神–护法神·俱吠罗-至尊护法神</string>
 
 
+    <string name="name_card_data_index_x11122750">蜜糖陷阱</string>
+    <string name="name_card_data_index_x11122750_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
+
+    <string name="name_card_data_index_x11122900">仙笛马</string>
+    <string name="name_card_data_index_x11122900_1">悠扬仙笛马–天籁仙笛马</string>
+
+    <string name="name_card_data_index_x11122790">萌海马</string>
+    <string name="name_card_data_index_x11122790_1">嘟嘟萌海马–咕噜萌海马</string>
+
+    <string name="name_card_data_index_x11122960">笼草马</string>
+    <string name="name_card_data_index_x11122960_1">青芽笼草马–吞天笼草马</string>
+
+
     <string name="name_card_data_index_x11120280">鼠鼠蛋糕空投器</string>
     <string name="name_card_data_index_x11120280_1">喵博士蛋糕空投器</string>
 
@@ -1206,20 +1220,14 @@
     <string name="name_card_data_index_x11120580">电流虎</string>
     <string name="name_card_data_index_x11120580_1">磁铁电流虎–氢能电流虎</string>
 
+    <string name="name_card_data_index_x11122940">椒麻靓仔鸡</string>
+    <string name="name_card_data_index_x11122940_1">酥麻靓仔鸡–变态辣仔鸡</string>
+
     <string name="name_card_data_index_x11122640">霹雳马</string>
     <string name="name_card_data_index_x11122640_1">闪电霹雳马–雷霆霹雳马</string>
 
     <string name="name_card_data_index_x11122710">归元马</string>
     <string name="name_card_data_index_x11122710_1">时空归元马–幻境归元马</string>
-
-    <string name="name_card_data_index_x11122750">蜜糖陷阱</string>
-    <string name="name_card_data_index_x11122750_1">香浓蜜糖陷阱–王冠蜜糖陷阱</string>
-
-    <string name="name_card_data_index_x11122900">仙笛马</string>
-    <string name="name_card_data_index_x11122900_1">悠扬仙笛马–天籁仙笛马</string>
-
-    <string name="name_card_data_index_x11122790">萌海马</string>
-    <string name="name_card_data_index_x11122790_1">嘟嘟萌海马–咕噜萌海马</string>
 
 
     <string name="name_card_data_index_x111300f0">汉堡包</string>
@@ -1327,6 +1335,9 @@
     <string name="name_card_data_index_x11122880">灯影花糕</string>
     <string name="name_card_data_index_x11122880_1">初见灯影花糕–梦境灯影花糕</string>
 
+    <string name="name_card_data_index_x1112298a">神农氏神使</string>
+    <string name="name_card_data_index_x1112298a_1">神农氏圣神–炎帝·神农氏</string>
+
 
     <string name="name_card_data_index_x11130090">焦油喷壶</string>
     <string name="name_card_data_index_x11130090_1">强力焦油喷壶–祝融喷壶</string>
@@ -1369,117 +1380,6 @@
     <string name="name_card_data_index_x1112065a_1">盖亚圣神–大地女神·盖亚–至尊大地女神</string>
 
 
-    <string name="name_card_data_index_x11120034">可乐炸弹</string>
-    <string name="name_card_data_index_x11120034_1">云爆可乐弹–燃烧可乐弹</string>
-
-    <string name="name_card_data_index_x11120020">酒瓶炸弹</string>
-    <string name="name_card_data_index_x11120020_1">高爆酒瓶弹–子母酒瓶弹</string>
-
-    <string name="name_card_data_index_x11121010">开水壶炸弹</string>
-    <string name="name_card_data_index_x11121010_1">汽油壶炸弹–汽油干冰弹</string>
-
-    <string name="name_card_data_index_x11120070">威士忌炸弹</string>
-    <string name="name_card_data_index_x11120070_1">水晶威士忌炸弹–钻石威士忌炸弹</string>
-
-    <string name="name_card_data_index_x1112009a">潘多拉</string>
-    <string name="name_card_data_index_x1112009a_1">潘多拉魔盒–疫神·潘多拉-至尊疫神</string>
-
-    <string name="name_card_data_index_x11120510">深水炸弹</string>
-
-    <string name="name_card_data_index_x11120620">爆辣河豚</string>
-    <string name="name_card_data_index_x11120620_1">朝天椒河豚–青芥末河豚</string>
-
-    <string name="name_card_data_index_x11120044">爆竹</string>
-
-    <string name="name_card_data_index_x11120054">美食烟花普通版</string>
-
-    <string name="name_card_data_index_x11120064">美食烟花华丽版</string>
-
-    <string name="name_card_data_index_x11120074">水瓶座精灵</string>
-    <string name="name_card_data_index_x11120074_1">水瓶座战将–水瓶座星宿</string>
-
-    <string name="name_card_data_index_x11120170">雷暴猪</string>
-    <string name="name_card_data_index_x11120170_1">离子雷暴猪–电磁雷暴猪</string>
-
-    <string name="name_card_data_index_x11122230">微波炉爆弹</string>
-    <string name="name_card_data_index_x11122230_1">星际微波爆弹–宇宙微波核弹</string>
-
-    <string name="name_card_data_index_x11121070">玉兔灯笼</string>
-    <string name="name_card_data_index_x11121070_1">广寒玉兔灯笼–莲花玉兔灯笼</string>
-
-    <string name="name_card_data_index_x11122370">爆裂蛇</string>
-    <string name="name_card_data_index_x11122370_1">凤梨爆裂蛇–西瓜爆裂蛇</string>
-
-    <string name="name_card_data_index_x11120960">糖果罐子</string>
-    <string name="name_card_data_index_x11120960_1">瞬息糖果罐子-核爆糖果罐子</string>
-
-    <string name="name_card_data_index_x11122350">烛阴龙</string>
-    <string name="name_card_data_index_x11122350_1">青莲烛阴龙–圣火烛阴龙</string>
-
-    <string name="name_card_data_index_x11120010">老鼠夹子</string>
-    <string name="name_card_data_index_x11120010_1">多用老鼠夹子–黑猫鼠夹</string>
-
-    <string name="name_card_data_index_x11120040">麻辣串炸弹</string>
-
-    <string name="name_card_data_index_x11121050">竹筒粽子</string>
-
-    <string name="name_card_data_index_x11120550">娇娇虎</string>
-    <string name="name_card_data_index_x11120550_1">贵族娇娇虎–皇室娇娇虎</string>
-
-    <string name="name_card_data_index_x11122760">泡泡鸡尾酒</string>
-    <string name="name_card_data_index_x11122760_1">蜜语鸡尾酒–粉红佳人鸡尾酒</string>
-
-
-    <string name="name_card_data_index_x11120220">辣椒粉</string>
-    <string name="name_card_data_index_x11120220_1">火爆辣椒粉–魔鬼辣椒粉</string>
-
-    <string name="name_card_data_index_x11120230">月蟾兔</string>
-
-    <string name="name_card_data_index_x11120234">爆炸汪</string>
-    <string name="name_card_data_index_x11120234_1">时尚爆炸汪–魔幻爆炸汪</string>
-
-    <string name="name_card_data_index_x11120630">肉松清明粿</string>
-
-    <string name="name_card_data_index_x11120270">10周年烟花</string>
-    <string name="name_card_data_index_x11120270_1">10周年爆竹–10周年礼花</string>
-
-    <string name="name_card_data_index_x11120360">芥末牛</string>
-    <string name="name_card_data_index_x11120360_1">微辣芥末牛–辛辣芥末牛</string>
-
-
-    <string name="name_card_data_index_x11430020">钢丝球</string>
-
-    <string name="name_card_data_index_x11120350">炸地鼠爆竹</string>
-
-    <string name="name_card_data_index_x111300d0">面粉袋</string>
-    <string name="name_card_data_index_x111300d0_1">影分身袋–乾坤分身袋</string>
-
-    <string name="name_card_data_index_x11140240">椰子果</string>
-    <string name="name_card_data_index_x11140240_1">浓香椰子果-金丝椰子果</string>
-
-    <string name="name_card_data_index_x11122340">青涩柿柿</string>
-    <string name="name_card_data_index_x11122340_1">成熟柿柿–柿柿如意</string>
-
-    <string name="name_card_data_index_x11120600">萌虎高压锅</string>
-
-    <string name="name_card_data_index_x11120084">白羊座精灵</string>
-
-    <string name="name_card_data_index_x11120080">酋长汪</string>
-    <string name="name_card_data_index_x11120080_1">天使酋长汪–金翼酋长汪</string>
-
-    <string name="name_card_data_index_x11120290">逗猫棒</string>
-    <string name="name_card_data_index_x11120290_1">金鱼逗猫棒–鼠鼠逗猫棒</string>
-
-    <string name="name_card_data_index_x11140220">金牛烟花</string>
-    <string name="name_card_data_index_x11140220_1">迷幻金牛烟花–璀璨金牛烟花</string>
-
-    <string name="name_card_data_index_x11120800">贪吃兔</string>
-    <string name="name_card_data_index_x11120800_1">肥肥贪吃兔–暴走贪吃兔</string>
-
-    <string name="name_card_data_index_x1112233a">灵鱼摩蹉神使</string>
-    <string name="name_card_data_index_x1112233a_1">灵鱼摩蹉圣神–救世神·灵鱼摩蹉–至尊救世神</string>
-
-
     <string name="name_card_data_index_x11130210">榴莲</string>
     <string name="name_card_data_index_x11130210_1">雪山榴莲–冰河世纪榴莲</string>
 
@@ -1512,6 +1412,62 @@
     <string name="name_card_data_index_x11122850">奇门马</string>
     <string name="name_card_data_index_x11122850_1">玄妙奇门马–神术奇门马</string>
 
+    <string name="name_card_data_index_x11122950">啵啵跳跳糖</string>
+    <string name="name_card_data_index_x11122950_1">香梨跳跳糖–星辰跳跳糖</string>
+
+
+    <string name="name_card_data_index_x11120034">可乐炸弹</string>
+    <string name="name_card_data_index_x11120034_1">云爆可乐弹–燃烧可乐弹</string>
+
+    <string name="name_card_data_index_x11120020">酒瓶炸弹</string>
+    <string name="name_card_data_index_x11120020_1">高爆酒瓶弹–子母酒瓶弹</string>
+
+    <string name="name_card_data_index_x11121010">开水壶炸弹</string>
+    <string name="name_card_data_index_x11121010_1">汽油壶炸弹–汽油干冰弹</string>
+
+    <string name="name_card_data_index_x11120070">威士忌炸弹</string>
+    <string name="name_card_data_index_x11120070_1">水晶威士忌炸弹–钻石威士忌炸弹</string>
+
+    <string name="name_card_data_index_x1112009a">潘多拉</string>
+    <string name="name_card_data_index_x1112009a_1">潘多拉魔盒–疫神·潘多拉-至尊疫神</string>
+
+    <string name="name_card_data_index_x11121070">玉兔灯笼</string>
+    <string name="name_card_data_index_x11121070_1">广寒玉兔灯笼–莲花玉兔灯笼</string>
+
+    <string name="name_card_data_index_x11120510">深水炸弹</string>
+
+    <string name="name_card_data_index_x11122230">微波炉爆弹</string>
+    <string name="name_card_data_index_x11122230_1">星际微波爆弹–宇宙微波核弹</string>
+
+    <string name="name_card_data_index_x11120044">爆竹</string>
+
+    <string name="name_card_data_index_x11120054">美食烟花普通版</string>
+
+    <string name="name_card_data_index_x11120064">美食烟花华丽版</string>
+
+    <string name="name_card_data_index_x11120074">水瓶座精灵</string>
+    <string name="name_card_data_index_x11120074_1">水瓶座战将–水瓶座星宿</string>
+
+    <string name="name_card_data_index_x11120170">雷暴猪</string>
+    <string name="name_card_data_index_x11120170_1">离子雷暴猪–电磁雷暴猪</string>
+
+    <string name="name_card_data_index_x11120620">爆辣河豚</string>
+    <string name="name_card_data_index_x11120620_1">朝天椒河豚–青芥末河豚</string>
+
+    <string name="name_card_data_index_x11120960">糖果罐子</string>
+    <string name="name_card_data_index_x11120960_1">瞬息糖果罐子-核爆糖果罐子</string>
+
+    <string name="name_card_data_index_x11122350">烛阴龙</string>
+    <string name="name_card_data_index_x11122350_1">青莲烛阴龙–圣火烛阴龙</string>
+
+    <string name="name_card_data_index_x11122370">爆裂蛇</string>
+    <string name="name_card_data_index_x11122370_1">凤梨爆裂蛇–西瓜爆裂蛇</string>
+
+    <string name="name_card_data_index_x11120270">10周年烟花</string>
+    <string name="name_card_data_index_x11120270_1">10周年爆竹–10周年礼花</string>
+
+    <string name="name_card_data_index_x11120360">芥末牛</string>
+    <string name="name_card_data_index_x11120360_1">微辣芥末牛–辛辣芥末牛</string>
 
     <string name="name_card_data_index_x11121020">冰桶炸弹</string>
     <string name="name_card_data_index_x11121020_1">酸橙冰桶炸弹–杂果冰桶炸弹</string>
@@ -1522,15 +1478,67 @@
     <string name="name_card_data_index_x11120840">冰兔菓子</string>
     <string name="name_card_data_index_x11120840_1">流心冰兔菓子-糯叽叽冰兔菓子</string>
 
-    <string name="name_card_data_index_x11120430">泡泡糖</string>
-    <string name="name_card_data_index_x11120430_1">大大泡泡糖–萄萄泡泡糖</string>
+    <string name="name_card_data_index_x11120350">炸地鼠爆竹</string>
 
-    <string name="name_card_data_index_x11120520">逆转牛</string>
-    <string name="name_card_data_index_x11120520_1">匀速逆转牛–光速逆转牛</string>
+    <string name="name_card_data_index_x11120600">萌虎高压锅</string>
 
+    <string name="name_card_data_index_x11120084">白羊座精灵</string>
+
+    <string name="name_card_data_index_x11120080">酋长汪</string>
+    <string name="name_card_data_index_x11120080_1">天使酋长汪–金翼酋长汪</string>
+
+    <string name="name_card_data_index_x11120290">逗猫棒</string>
+    <string name="name_card_data_index_x11120290_1">金鱼逗猫棒–鼠鼠逗猫棒</string>
+
+    <string name="name_card_data_index_x11140220">金牛烟花</string>
+    <string name="name_card_data_index_x11140220_1">迷幻金牛烟花–璀璨金牛烟花</string>
+
+    <string name="name_card_data_index_x11120800">贪吃兔</string>
+    <string name="name_card_data_index_x11120800_1">肥肥贪吃兔–暴走贪吃兔</string>
+
+    <string name="name_card_data_index_x1112233a">灵鱼摩蹉神使</string>
+    <string name="name_card_data_index_x1112233a_1">灵鱼摩蹉圣神–救世神·灵鱼摩蹉–至尊救世神</string>
+
+
+    <string name="name_card_data_index_x111300d0">面粉袋</string>
+    <string name="name_card_data_index_x111300d0_1">影分身袋–乾坤分身袋</string>
+
+    <string name="name_card_data_index_x11140240">椰子果</string>
+    <string name="name_card_data_index_x11140240_1">浓香椰子果-金丝椰子果</string>
+
+    <string name="name_card_data_index_x11122340">青涩柿柿</string>
+    <string name="name_card_data_index_x11122340_1">成熟柿柿–柿柿如意</string>
+
+    <string name="name_card_data_index_x11430020">钢丝球</string>
+
+    <string name="name_card_data_index_x11120010">老鼠夹子</string>
+    <string name="name_card_data_index_x11120010_1">多用老鼠夹子–黑猫鼠夹</string>
+
+    <string name="name_card_data_index_x11120040">麻辣串炸弹</string>
+
+    <string name="name_card_data_index_x11121050">竹筒粽子</string>
+
+    <string name="name_card_data_index_x11120550">娇娇虎</string>
+    <string name="name_card_data_index_x11120550_1">贵族娇娇虎–皇室娇娇虎</string>
+
+    <string name="name_card_data_index_x11122760">泡泡鸡尾酒</string>
+    <string name="name_card_data_index_x11122760_1">蜜语鸡尾酒–粉红佳人鸡尾酒</string>
 
     <string name="name_card_data_index_x11120870">蛋蛋兔</string>
     <string name="name_card_data_index_x11120870_1">智能蛋蛋兔–外星蛋蛋兔</string>
+
+    <string name="name_card_data_index_x11122970">醉翁马</string>
+    <string name="name_card_data_index_x11122970_1">醇香醉翁马–御品醉翁马</string>
+
+    <string name="name_card_data_index_x11120220">辣椒粉</string>
+    <string name="name_card_data_index_x11120220_1">火爆辣椒粉–魔鬼辣椒粉</string>
+
+    <string name="name_card_data_index_x11120230">月蟾兔</string>
+
+    <string name="name_card_data_index_x11120234">爆炸汪</string>
+    <string name="name_card_data_index_x11120234_1">时尚爆炸汪–魔幻爆炸汪</string>
+
+    <string name="name_card_data_index_x11120630">肉松清明粿</string>
 
 
     <string name="name_card_data_index_x113901d0">冰激凌</string>
@@ -1654,11 +1662,17 @@
 
     <string name="name_card_data_index_x11190200">小丑盒子</string>
 
+    <string name="name_card_data_index_x11120430">泡泡糖</string>
+    <string name="name_card_data_index_x11120430_1">大大泡泡糖–萄萄泡泡糖</string>
+
     <string name="name_card_data_index_x11120480">鼠乐宝味觉糖</string>
     <string name="name_card_data_index_x11120480_1">黑加仑味觉糖–车厘子味觉糖</string>
 
     <string name="name_card_data_index_x11120610">大福虎</string>
     <string name="name_card_data_index_x11120610_1">草莓大福虎–可可大福虎</string>
+
+    <string name="name_card_data_index_x11120520">逆转牛</string>
+    <string name="name_card_data_index_x11120520_1">匀速逆转牛–光速逆转牛</string>
 
 
     <string name="name_card_data_index_x11140014">土司面包</string>

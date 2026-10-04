@@ -114,13 +114,15 @@ public class DatabaseInfo {
      * DB_VERSION = 81
      * 删除dashboard表
      * DB_VERSION = 82 - 89
-     * 改造+更新普通卡数据库
+     * 改造+更新防御卡数据库
      * DB_VERSION = 90
      * settings表增加“提示语设置-仪表盘刷新完成”设置
      * DB_VERSION = 91 - 106
-     * 改造+更新普通卡数据库
+     * 改造+更新防御卡数据库
      * DB_VERSION = 107 - 108
      * 图片资源全量改为 card_desc 对应条目 id（x<id> 命名），数据/布局/代码引用同步
+     * DB_VERSION = 109 - 110
+     * 更新防御卡数据库
      */
-    public static final int DB_VERSION = 108;
+    public static final int DB_VERSION = 110;
 }

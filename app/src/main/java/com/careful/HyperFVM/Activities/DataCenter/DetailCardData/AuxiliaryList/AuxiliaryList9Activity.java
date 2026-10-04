@@ -153,6 +153,7 @@ public class AuxiliaryList9Activity extends BaseActivity {
         cardListBinding.cardCardDataIndexX1112270a.cardDataIndexX1112270a.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "鲁班神使"));
         cardListBinding.cardCardDataIndexX11122780.cardDataIndexX11122780.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "炎凰马"));
         cardListBinding.cardCardDataIndexX11122880.cardDataIndexX11122880.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "灯影花糕"));
+        cardListBinding.cardCardDataIndexX1112298a.cardDataIndexX1112298a.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "神农氏神使"));
         cardListBinding.cardCardDataIndexX11122850.cardDataIndexX11122850.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "奇门马"));
         cardListBinding.cardCardDataIndexX11122930.cardDataIndexX11122930.setOnClickListener(v -> CardDataHelper.selectCardDataByName(this, "元宝饺子鼎"));
 

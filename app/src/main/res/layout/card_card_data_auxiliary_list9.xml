@@ -25,6 +25,10 @@
         layout="@layout/card_card_data_index_x11122880" />
 
     <include
+        android:id="@+id/card_card_data_index_x1112298a"
+        layout="@layout/card_card_data_index_x1112298a" />
+
+    <include
         android:id="@+id/card_card_data_index_x11122850"
         layout="@layout/card_card_data_index_x11122850" />
 

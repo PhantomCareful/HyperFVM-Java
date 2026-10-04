@@ -309,26 +309,19 @@ public class CardDataBaseFragment extends Fragment {
                         );
                         ImageViewCardBig.setImageResource(imageResId);
                         setTextToView(R.id.card_name_2_2, cardName3);
-
-                        // 调整容器顶部距离
-                        cardDataContainer.setPadding(
-                                cardDataContainer.getPaddingLeft(),
-                                DensityUtil.dpToPx(requireContext(), SmallestWidthUtil.getSmallestWidthDp() < 600 ? 520 : 120),
-                                cardDataContainer.getPaddingRight(),
-                                cardDataContainer.getPaddingBottom()
-                        );
                     } else {
-                        // 这张卡没有二转，隐藏Image_View_Card_Big_2_2_Container
+                        // 这张卡没有终转，隐藏Image_View_Card_Big_2_2_Container
                         root.findViewById(R.id.Image_View_Card_Big_2_2_Container).setVisibility(View.GONE);
-
-                        // 调整容器顶部距离
-                        cardDataContainer.setPadding(
-                                cardDataContainer.getPaddingLeft(),
-                                DensityUtil.dpToPx(requireContext(), SmallestWidthUtil.getSmallestWidthDp() < 600 ? 320 : 120),
-                                cardDataContainer.getPaddingRight(),
-                                cardDataContainer.getPaddingBottom()
-                        );
                     }
+
+                    // 调整容器顶部距离
+                    cardDataContainer.setPadding(
+                            cardDataContainer.getPaddingLeft(),
+                            DensityUtil.dpToPx(requireContext(), SmallestWidthUtil.getSmallestWidthDp() < 600 ? 520 : 120),
+                            cardDataContainer.getPaddingRight(),
+                            cardDataContainer.getPaddingBottom()
+                    );
+
                     break;
             }
 
