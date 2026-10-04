@@ -31,6 +31,7 @@ import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -56,15 +57,18 @@ import eightbitlab.com.blurview.BlurView;
  * 才把原图写入系统相册 Pictures/HyperFVM。
  * 单击图片可切换沉浸模式（隐藏装饰与系统栏、只显示图片，再单击恢复）。
  * 旋转（含物理旋转）不重建界面：大图无需重新加载，查看位置与沉浸状态自然保持；
- * 深浅色等其他配置变化仍走重建，自动保存并恢复查看位置与沉浸模式，切屏无缝续看。
+ * 深浅色等其他配置变化仍走重建，自动保存并恢复查看位置与沉浸模式，切屏无缝续看；
+ * 部分数据图有深浅色双版本（尺寸一致仅配色不同），重建时按当前主题重新解析文件，
+ * 查看中切换深浅色即可直接换版续看，查看位置不变（两版本坐标通用）。
  * <p>
  * 说明：Manifest 为本界面指定黑底专属主题作启动底色（打开瞬间不闪白），
  * 运行时由 ThemeManager 应用全局主题，顶部/底部装饰随主题着色。
  */
 public class DataImageViewerActivity extends BaseActivity {
 
-    // 数据图文件的绝对路径
-    public static final String EXTRA_IMAGE_PATH = "extra_data_image_viewer_image_path";
+    // 数据图基础文件名的 Intent 键（不含扩展名、不含 _dark/_light 后缀）：
+    // 版本选择不在入口定死，每次创建（含深浅色切换触发的重建）时由 resolveImageFile 实时解析
+    public static final String EXTRA_IMAGE_NAME = "extra_data_image_viewer_image_name";
 
     // 旋转重建时保存/恢复的查看状态键：缩放、视口中心（source 图像坐标）、沉浸模式
     private static final String STATE_VIEW_SCALE = "state_data_image_viewer_view_scale";
@@ -77,7 +81,7 @@ public class DataImageViewerActivity extends BaseActivity {
     private SubsamplingScaleImageView imageView;
     private ProgressBar loadingView;
 
-    // 当前查看的数据图文件（保存与分享均直接作用于该原图）
+    // 当前查看的数据图文件（按当前深浅色实时解析；保存与分享均直接作用于该原图）
     private File imageFile;
     // 保存进行中标记：防止连点导致重复写入
     private boolean isSaving;
@@ -122,8 +126,9 @@ public class DataImageViewerActivity extends BaseActivity {
         imageView = findViewById(R.id.data_image_viewer_image);
         loadingView = findViewById(R.id.data_image_viewer_loading);
 
-        String imagePath = getIntent().getStringExtra(EXTRA_IMAGE_PATH);
-        imageFile = (imagePath == null) ? null : new File(imagePath);
+        String imageName = getIntent().getStringExtra(EXTRA_IMAGE_NAME);
+        // 按当前深浅色解析实际要显示的文件：深浅色切换重建后在此自动换版（未带文件名时为 null，走下方失败分支）
+        imageFile = (imageName == null) ? null : DataImageViewerHelper.resolveImageFile(this, imageName);
         if (imageFile == null || !imageFile.exists()) {
             Toast.makeText(this, R.string.toast_data_image_viewer_load_failed, Toast.LENGTH_SHORT).show();
             finish();

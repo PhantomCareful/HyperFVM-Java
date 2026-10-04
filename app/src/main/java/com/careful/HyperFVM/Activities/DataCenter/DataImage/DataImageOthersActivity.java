@@ -1,10 +1,8 @@
 package com.careful.HyperFVM.Activities.DataCenter.DataImage;
 
-import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_DARK_MODE;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +15,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 
 import com.careful.HyperFVM.BaseActivity;
-import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
@@ -60,34 +56,20 @@ public class DataImageOthersActivity extends BaseActivity {
     }
 
     private void initViews() {
-        // 其他数据图
-        setupContainer(R.id.data_images_index_others_1_container, "data_image_others_1", true);
-        setupContainer(R.id.data_images_index_others_2_container, "data_image_others_2", true);
-        setupContainer(R.id.data_images_index_others_3_container, "data_image_others_3", false);
-        setupContainer(R.id.data_images_index_others_4_container, "data_image_others_4", true);
-        setupContainer(R.id.data_images_index_others_5_container, "data_image_others_5", false);
-        setupContainer(R.id.data_images_index_others_6_container, "data_image_others_6", true);
-        setupContainer(R.id.data_images_index_others_7_container, "data_image_others_7", true);
-        setupContainer(R.id.data_images_index_others_8_container, "data_image_others_8", true);
+        // 其他数据图（深浅色双版本由查看器按当前主题实时解析，这里只传基础文件名）
+        setupContainer(R.id.data_images_index_others_1_container, "data_image_others_1");
+        setupContainer(R.id.data_images_index_others_2_container, "data_image_others_2");
+        setupContainer(R.id.data_images_index_others_3_container, "data_image_others_3");
+        setupContainer(R.id.data_images_index_others_4_container, "data_image_others_4");
+        setupContainer(R.id.data_images_index_others_5_container, "data_image_others_5");
+        setupContainer(R.id.data_images_index_others_6_container, "data_image_others_6");
+        setupContainer(R.id.data_images_index_others_7_container, "data_image_others_7");
+        setupContainer(R.id.data_images_index_others_8_container, "data_image_others_8");
     }
 
-    private void setupContainer(int viewId, String imageName, boolean isDynamic) {
+    private void setupContainer(int viewId, String imageName) {
         LinearLayout container = findViewById(viewId);
-        DBHelper dbHelper = HyperFVMApplication.getDBHelper();
-        if (isDynamic) {
-            // 根据深色模式动态加载对应的图片
-            int currentNightMode;
-            String darkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
-            currentNightMode = switch (darkMode) {
-                case "总是开启\uD83C\uDF1A" -> Configuration.UI_MODE_NIGHT_YES;
-                case "总是关闭\uD83C\uDF1D" -> Configuration.UI_MODE_NIGHT_NO;
-                default -> getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            };
-            imageName = (currentNightMode == Configuration.UI_MODE_NIGHT_YES) ? imageName + "_dark" : imageName + "_light";
-        }
-
-        String finalImageName = imageName;
-        container.setOnClickListener(v -> DataImageViewerHelper.openDataImage(this, finalImageName));
+        container.setOnClickListener(v -> DataImageViewerHelper.openDataImage(this, imageName));
     }
 
     /**
