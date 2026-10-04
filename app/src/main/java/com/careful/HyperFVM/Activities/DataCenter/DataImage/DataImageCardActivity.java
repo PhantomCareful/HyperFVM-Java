@@ -149,16 +149,13 @@ public class DataImageCardActivity extends BaseActivity {
         textView = findViewById(R.id.data_images_index_card_12_description);
         textView.setText("包含：" +
                 getResources().getString(R.string.text_data_images_index_card_12_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_12_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_12_3)
+                getResources().getString(R.string.text_data_images_index_card_12_2)
         );
 
         textView = findViewById(R.id.data_images_index_card_12__description);
         textView.setText("包含：" +
                 getResources().getString(R.string.text_data_images_index_card_12__1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_12__2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_12__3) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_12__4)
+                getResources().getString(R.string.text_data_images_index_card_12__2)
         );
 
         textView = findViewById(R.id.data_images_index_card_13_description);
