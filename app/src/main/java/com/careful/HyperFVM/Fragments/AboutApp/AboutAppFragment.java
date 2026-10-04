@@ -114,15 +114,6 @@ public class AboutAppFragment extends Fragment {
                 getResources().getString(R.string.dialog_sub_title_github),
                 getResources().getString(R.string.dialog_url_github)));
 
-        // 跳转浏览器，获取软件更新
-        root.findViewById(R.id.about_app_get_update_123pan_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                requireContext(),
-                ContextCompat.getDrawable(requireContext(), R.drawable.ic_download),
-                0,
-                getResources().getString(R.string.dialog_title_123pan_dialog),
-                getResources().getString(R.string.dialog_sub_title_123pan_dialog),
-                getResources().getString(R.string.dialog_url_123pan)));
-
         // 跳转浏览器，前往作者B站主页
         root.findViewById(R.id.about_app_bilibili_container).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
                 requireContext(),
