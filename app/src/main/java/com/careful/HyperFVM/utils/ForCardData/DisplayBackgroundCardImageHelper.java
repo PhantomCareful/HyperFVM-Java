@@ -313,7 +313,7 @@ public class DisplayBackgroundCardImageHelper {
             {"x1113033f_big", "镭射喵", "card_data_4"},
             {"x1112203c_big", "黑暗神使", "card_data_3"},
             {"x1112203d_big", "黑暗神使", "card_data_3"},
-            {"x11130220_big", "火龙果", "card_data_1"},
+            {"x1113022f_big", "火龙果", "card_data_1"},
             {"x11130234_big", "摩羯座精灵", "card_data_4"},
             {"x1112208f_big", "龙珠果", "card_data_4"},
             {"x1112256c_big", "巴德尔神使", "card_data_3"},

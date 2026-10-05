@@ -187,9 +187,9 @@ public class DataCenterFragment extends Fragment {
     }
 
     /**
-     * 展示随机背景卡片图片：手机一行4张 / PAD一行7张，点击图片可查看对应卡片数据。
-     * 仅全新进入才重新随机（重建时沿用 savedInstanceState 恢复出的原清单），
-     * 原 CardDataIndexActivity 的滑动渐隐渐显效果已随之移除。
+     * 展示随机背景卡片图片：手机一行4张 / PAD一行7张，点击图片可查看对应卡片数据，
+     * 长按任意一张则整组重新随机换新。
+     * 仅全新进入才重新随机（重建时沿用 savedInstanceState 恢复出的原清单，含长按换新后的清单）。
      */
     private void setupRandomCardImages(FragmentDataCenterBinding binding) {
         ImageView[] backgroundImages;
@@ -223,12 +223,30 @@ public class DataCenterFragment extends Fragment {
         }
 
         // 展示随机图片，并给每张图片挂上点击事件：跳转查看该卡数据
+        applyRandomCardImages(backgroundImages, imageCount);
+
+        // 长按任意一张：整组重新随机换新（清单存字段，重建时沿用换新后的图）
+        for (ImageView imageView : backgroundImages) {
+            imageView.setOnLongClickListener(v -> {
+                backgroundCardImageFileInfo =
+                        DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(imageCount);
+                applyRandomCardImages(backgroundImages, imageCount);
+                return true; // 消费长按事件，避免同时触发点击跳转
+            });
+        }
+    }
+
+    /** 按当前 backgroundCardImageFileInfo 清单展示图片并挂点击跳转（初次展示与长按换新共用） */
+    private void applyRandomCardImages(ImageView[] backgroundImages, int imageCount) {
         for (int i = 0; i < imageCount; i++) {
             final String cardName = backgroundCardImageFileInfo[i][1];
             @SuppressLint("DiscouragedApi") int resId = getResources().getIdentifier(backgroundCardImageFileInfo[i][0], "drawable", requireContext().getPackageName());
             if (resId != 0) {
+                // placeholder 保留旧图：ImageView 是 wrap_content，Glide 加载期间若清空
+                // 会令高度瞬间塌缩、下方组件集体上移造成闪屏（长按换新时尤为明显）
                 Glide.with(this)
                         .load(resId)
+                        .placeholder(backgroundImages[i].getDrawable())
                         .override(200, 175)
                         .centerCrop()
                         .into(backgroundImages[i]);
