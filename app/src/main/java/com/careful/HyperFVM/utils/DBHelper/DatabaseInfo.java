@@ -121,8 +121,8 @@ public class DatabaseInfo {
      * 改造+更新防御卡数据库
      * DB_VERSION = 107 - 108
      * 图片资源全量改为 card_desc 对应条目 id（x<id> 命名），数据/布局/代码引用同步
-     * DB_VERSION = 109 - 110
+     * DB_VERSION = 109 - 111
      * 更新防御卡数据库
      */
-    public static final int DB_VERSION = 110;
+    public static final int DB_VERSION = 111;
 }
