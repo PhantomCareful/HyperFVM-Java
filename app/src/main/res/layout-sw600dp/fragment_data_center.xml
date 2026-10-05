@@ -42,6 +42,78 @@
                     android:textColor="?attr/colorOnSurface"
                     android:visibility="visible"/>
 
+                <LinearLayout
+                    android:id="@+id/display_background_card_images_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/display_background_card_image_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/x1113020f_big" />
+
+                    <ImageView
+                        android:id="@+id/display_background_card_image_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/x1112238f_big" />
+
+                    <ImageView
+                        android:id="@+id/display_background_card_image_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/x1112219f_big" />
+
+                    <ImageView
+                        android:id="@+id/display_background_card_image_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/x1112227f_big" />
+
+                    <ImageView
+                        android:id="@+id/display_background_card_image_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/x1112248c_big" />
+
+                    <ImageView
+                        android:id="@+id/display_background_card_image_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/x1112253f_big" />
+
+                    <ImageView
+                        android:id="@+id/display_background_card_image_7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/x1170009f_big" />
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

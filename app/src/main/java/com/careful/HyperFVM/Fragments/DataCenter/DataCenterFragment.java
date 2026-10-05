@@ -1,11 +1,13 @@
 package com.careful.HyperFVM.Fragments.DataCenter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.CookeryIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
@@ -23,9 +26,12 @@ import com.careful.HyperFVM.Activities.Tools.PrestigeCalculatorActivity;
 import com.careful.HyperFVM.Activities.Tools.TodayLuckyActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentDataCenterBinding;
+import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
+import com.careful.HyperFVM.utils.ForCardData.DisplayBackgroundCardImageHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
+import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
@@ -42,10 +48,22 @@ public class DataCenterFragment extends Fragment {
     // 顶部栏滚动联动
     private NestedScrollUtil nestedScrollUtil;
 
+    /** 背景随机图清单（每行 {drawable 名, 卡名}）：重建时沿用原图，仅全新进入才重新随机 */
+    private String[][] backgroundCardImageFileInfo;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentDataCenterBinding binding = FragmentDataCenterBinding.inflate(inflater, container, false);
         root = binding.getRoot();
+
+        // 重建（深色模式切换、小窗等）时沿用重建前的背景随机图；完全销毁后重新进入才重新随机
+        if (savedInstanceState != null) {
+            backgroundCardImageFileInfo =
+                    (String[][]) savedInstanceState.getSerializable("backgroundCardImageFileInfo");
+        }
+
+        // 展示随机背景卡片图片（手机一行4张 / PAD一行7张）
+        setupRandomCardImages(binding);
 
         // 初始化各种装饰效果
         initDecoration();
@@ -169,6 +187,57 @@ public class DataCenterFragment extends Fragment {
     }
 
     /**
+     * 展示随机背景卡片图片：手机一行4张 / PAD一行7张，点击图片可查看对应卡片数据。
+     * 仅全新进入才重新随机（重建时沿用 savedInstanceState 恢复出的原清单），
+     * 原 CardDataIndexActivity 的滑动渐隐渐显效果已随之移除。
+     */
+    private void setupRandomCardImages(FragmentDataCenterBinding binding) {
+        ImageView[] backgroundImages;
+        int imageCount;
+        if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
+            // ==================== 手机版：一行四张图 ====================
+            imageCount = 4;
+            backgroundImages = new ImageView[]{
+                    binding.displayBackgroundCardImage1,
+                    binding.displayBackgroundCardImage2,
+                    binding.displayBackgroundCardImage3,
+                    binding.displayBackgroundCardImage4,
+            };
+        } else {
+            // ==================== 平板版：一行七张图 ====================
+            imageCount = 7;
+            backgroundImages = new ImageView[]{
+                    binding.displayBackgroundCardImage1,
+                    binding.displayBackgroundCardImage2,
+                    binding.displayBackgroundCardImage3,
+                    binding.displayBackgroundCardImage4,
+                    binding.displayBackgroundCardImage5,
+                    binding.displayBackgroundCardImage6,
+                    binding.displayBackgroundCardImage7,
+            };
+        }
+
+        // 全新进入才重新随机（重建时 onCreateView 已从 savedInstanceState 恢复出原清单）
+        if (backgroundCardImageFileInfo == null || backgroundCardImageFileInfo.length != imageCount) {
+            backgroundCardImageFileInfo = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(imageCount);
+        }
+
+        // 展示随机图片，并给每张图片挂上点击事件：跳转查看该卡数据
+        for (int i = 0; i < imageCount; i++) {
+            final String cardName = backgroundCardImageFileInfo[i][1];
+            @SuppressLint("DiscouragedApi") int resId = getResources().getIdentifier(backgroundCardImageFileInfo[i][0], "drawable", requireContext().getPackageName());
+            if (resId != 0) {
+                Glide.with(this)
+                        .load(resId)
+                        .override(200, 175)
+                        .centerCrop()
+                        .into(backgroundImages[i]);
+            }
+            backgroundImages[i].setOnClickListener(v -> CardDataHelper.selectCardDataByName(requireContext(), cardName));
+        }
+    }
+
+    /**
      * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
      * 1.模糊材质
      * 2.背景动态流光
@@ -229,6 +298,10 @@ public class DataCenterFragment extends Fragment {
         // 保存滚动位置，供界面重建（旋转/深浅色切换等）后恢复顶部栏透明度状态
         if (nestedScrollUtil != null) {
             nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
+        }
+        // 保存背景随机图清单：重建时沿用原图，避免每次重建都重新随机
+        if (backgroundCardImageFileInfo != null) {
+            outState.putSerializable("backgroundCardImageFileInfo", backgroundCardImageFileInfo);
         }
     }
 

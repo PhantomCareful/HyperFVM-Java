@@ -2,7 +2,6 @@ package com.careful.HyperFVM.Activities.DataCenter;
 
 import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_CARD_DATA_INDEX;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,13 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForCardData.DisplayBackgroundCardImageHelper;
-import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
@@ -47,7 +42,7 @@ import java.util.Objects;
 import eightbitlab.com.blurview.BlurView;
 
 public class CardDataIndexActivity extends BaseActivity {
-    private static final int TOP_BAR_FADE_RANGE_DP = 150; // 顶栏模糊层渐显区间（滚动该距离后完全显现）
+    private static final int TOP_BAR_FADE_RANGE_DP = 25; // 顶栏模糊层渐显区间（滚动该距离后完全显现）
     private static final int HEADER_TARGET_TOP_OFFSET_PX = 400; // 目录跳转后分节标题停在距列表顶的像素距离（与原页面视觉一致）
     private static final float JUMP_SCROLL_MS_PER_PX = 0.01f; // 目录跳转的滚动速度（每像素毫秒数，越小越快）
     private static final int JUMP_TAIL_SCROLL_MIN_MS = 120; // 收尾减速动画最短时长（速度调快后避免收尾退化成瞬间突变）
@@ -58,15 +53,8 @@ public class CardDataIndexActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private CardDataIndexAdapter adapter;
-    private View backgroundImage1;
-    private View backgroundImage2;
 
     private int savedScrollY = 0;            // 用于保存/恢复的滚动位置
-    private int backgroundImageMaxScroll1;   // 判定完全消失的滚动距离（dp 转 px）
-    private int backgroundImageMaxScroll2;   // 判定完全消失的滚动距离（dp 转 px）
-
-    /** 背景随机图清单（每行 {drawable 名, 卡名}）：重建时沿用原图，仅全新进入才重新随机 */
-    private String[][] backgroundCardImageFileInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +77,6 @@ public class CardDataIndexActivity extends BaseActivity {
         // 恢复之前保存的滚动位置
         if (savedInstanceState != null) {
             savedScrollY = savedInstanceState.getInt("scrollY", 0);
-            // 重建（深色模式切换、小窗等）时沿用重建前的背景随机图；完全销毁后重新进入才重新随机
-            backgroundCardImageFileInfo =
-                    (String[][]) savedInstanceState.getSerializable("backgroundCardImageFileInfo");
         }
 
         // 装配虚拟化目录列表（字母分节标题 + 366 张单卡，按需创建与解码）
@@ -203,36 +188,32 @@ public class CardDataIndexActivity extends BaseActivity {
     }
 
     /**
-     * 计算背景渐隐效果使用的滚动偏移。
+     * 维护并返回列表真实滚动偏移（savedScrollY），供界面重建后恢复滚动位置使用。
      * <p>
      * 不用累计值也不用估算 API：列表首行（首个字母分节标题）的内容坐标恒为 0，
      * 只要它还存在于 RecyclerView 的布局内，真实偏移 = paddingTop - 首行.getTop()，
      * 该几何测量精确且自纠，无需依赖增量累计；
-     * 首行不可见说明列表已滚出渐隐窗口很远，此时按增量累计维护（页面所有滚动——手动滑动 /
+     * 首行不可见说明列表已滚出很远，此时按增量累计维护（页面所有滚动——手动滑动 /
      * 目录平滑跳转——都经 onScrolled 回调，累计与真实位置严格同步）。
      */
-    private int computeScrollOffsetForBackgroundEffect(@NonNull RecyclerView rv, int dy) {
+    private void computeScrollOffsetForBackgroundEffect(@NonNull RecyclerView rv, int dy) {
         View firstRow = Objects.requireNonNull(rv.getLayoutManager()).findViewByPosition(0);
         if (firstRow != null) {
             // 几何测量：首行随列表平移，其屏幕 top = paddingTop - 真实偏移
             savedScrollY = Math.max(0, rv.getPaddingTop() - firstRow.getTop());
-            return savedScrollY;
+            return;
         }
         // 首行已被回收（滚出很远）：仅累计维护 savedScrollY 供保存/恢复滚动位置使用；
         // 顶部锚定兜底（真正到达顶部时首行必然可见，会走上面的几何分支）。
         savedScrollY = rv.canScrollVertically(-1) ? Math.max(0, savedScrollY + dy) : 0;
-        // 效果值：已远离渐隐窗口，视为完全消失
-        return Integer.MAX_VALUE / 4;
     }
 
     /**
      * 此方法用于完成当前界面的各种花里胡哨的装饰，比如
      * 1.模糊材质
      * 2.背景动态流光
-     * 3.背景组件滑动渐隐渐显
      * 等等等等
      */
-    @SuppressLint("DiscouragedApi")
     private void initDecoration() {
         // 适配状态栏高度
         BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
@@ -263,147 +244,15 @@ public class CardDataIndexActivity extends BaseActivity {
         floatButtonBack.setOnClickListener(v -> this.finish());
         floatButtonSearch.setOnClickListener(v -> DialogBuilderManager.showCardQueryDialog(this));
 
-        if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
-            // ==================== 手机版：两组背景容器，每组三张图 ====================
-            ImageView[] cardDataIndexBackgroundImages = {
-                    findViewById(R.id.card_data_index_background_image_1),
-                    findViewById(R.id.card_data_index_background_image_2),
-                    findViewById(R.id.card_data_index_background_image_3),
-                    findViewById(R.id.card_data_index_background_image_4),
-                    findViewById(R.id.card_data_index_background_image_5),
-                    findViewById(R.id.card_data_index_background_image_6),
-            };
-
-            // 全新进入才重新随机（重建时 onCreate 已从 savedInstanceState 恢复出原清单）
-            if (backgroundCardImageFileInfo == null || backgroundCardImageFileInfo.length != 6) {
-                backgroundCardImageFileInfo = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(6);
+        // 滚动监听：以列表首行几何测量维护 savedScrollY，供界面重建后恢复滚动位置使用
+        // （原背景随机图片与滑动渐隐效果已迁移至 DataCenterFragment，渐隐效果随之移除）
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
+                // 以列表首行（内容坐标恒为 0）为锚点的几何测量，见 computeScrollOffsetForBackgroundEffect
+                computeScrollOffsetForBackgroundEffect(rv, dy);
             }
-            // final 别名：下方匿名监听器/lambda 只能捕获 effectively final 的局部变量
-            final String[][] cardImageFileInfoArray = backgroundCardImageFileInfo;
-
-            // 展示随机图片
-            for (int i = 0; i < 6; i++) {
-                int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
-                if (resId != 0) {
-                    Glide.with(this)
-                            .load(resId)
-                            .override(200, 175)
-                            .centerCrop()
-                            .into(cardDataIndexBackgroundImages[i]);
-                }
-            }
-
-            // 获取需要渐隐的元素
-            backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
-            backgroundImage2 = findViewById(R.id.card_data_index_background_images_2);
-
-            // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
-            backgroundImageMaxScroll1 = DensityUtil.dpToPx(this, 150);
-            backgroundImageMaxScroll2 = DensityUtil.dpToPx(this, 100);
-
-            // 等列表完成布局后：同步一次初始效果（透明度与恢复的滚动位置同步）
-            recyclerView.post(() -> {
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, savedScrollY, backgroundImageMaxScroll1);
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage2, savedScrollY, backgroundImageMaxScroll2);
-
-                // 给图片设置点击事件
-                // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
-                for (int i = 0; i <= 2; i++) {
-                    ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
-                            this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
-                }
-                for (int i = 3; i <= 5; i++) {
-                    ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
-                            this, backgroundImage2, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
-                }
-            });
-
-            // 滚动监听：以列表滚动偏移（等价于原 ScrollView 的 scrollY）驱动背景渐隐渐显
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
-                    // 以列表首行（内容坐标恒为 0）为锚点的几何测量，见 computeScrollOffsetForBackgroundEffect
-                    int scrollY = computeScrollOffsetForBackgroundEffect(rv, dy);
-                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, scrollY, backgroundImageMaxScroll1);
-                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage2, scrollY, backgroundImageMaxScroll2);
-
-                    // 给图片设置点击事件
-                    // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
-                    for (int i = 0; i <= 2; i++) {
-                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
-                                CardDataIndexActivity.this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
-                    }
-                    for (int i = 3; i <= 5; i++) {
-                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
-                                CardDataIndexActivity.this, backgroundImage2, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
-                    }
-                }
-            });
-        } else {
-            // ==================== 平板版：单行七张背景图 ====================
-            ImageView[] cardDataIndexBackgroundImages = {
-                    findViewById(R.id.card_data_index_background_image_1),
-                    findViewById(R.id.card_data_index_background_image_2),
-                    findViewById(R.id.card_data_index_background_image_3),
-                    findViewById(R.id.card_data_index_background_image_4),
-                    findViewById(R.id.card_data_index_background_image_5),
-                    findViewById(R.id.card_data_index_background_image_6),
-                    findViewById(R.id.card_data_index_background_image_7),
-            };
-
-            // 全新进入才重新随机（重建时 onCreate 已从 savedInstanceState 恢复出原清单）
-            if (backgroundCardImageFileInfo == null || backgroundCardImageFileInfo.length != 7) {
-                backgroundCardImageFileInfo = DisplayBackgroundCardImageHelper.giveRandomCardImageFileInfoArray(7);
-            }
-            // final 别名：下方匿名监听器/lambda 只能捕获 effectively final 的局部变量
-            final String[][] cardImageFileInfoArray = backgroundCardImageFileInfo;
-
-            for (int i = 0; i < 7; i++) {
-                int resId = getResources().getIdentifier(cardImageFileInfoArray[i][0], "drawable", getPackageName());
-                if (resId != 0) {
-                    Glide.with(this)
-                            .load(resId)
-                            .override(200, 175)
-                            .centerCrop()
-                            .into(cardDataIndexBackgroundImages[i]);
-                }
-            }
-
-            // 获取需要渐隐的元素
-            backgroundImage1 = findViewById(R.id.card_data_index_background_images_1);
-
-            // 设置一个合理的最大滚动距离，当滚动超过该值后元素完全消失
-            backgroundImageMaxScroll1 = DensityUtil.dpToPx(this, 100);
-
-            // 等列表完成布局后：同步一次初始效果
-            recyclerView.post(() -> {
-                ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, savedScrollY, backgroundImageMaxScroll1);
-
-                // 给图片设置点击事件
-                // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
-                for (int i = 0; i < 7; i++) {
-                    ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
-                            this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
-                }
-            });
-
-            // 滚动监听：以列表滚动偏移（等价于原 ScrollView 的 scrollY）驱动背景渐隐渐显
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
-                    // 以列表首行（内容坐标恒为 0）为锚点的几何测量，见 computeScrollOffsetForBackgroundEffect
-                    int scrollY = computeScrollOffsetForBackgroundEffect(rv, dy);
-                    ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(backgroundImage1, scrollY, backgroundImageMaxScroll1);
-
-                    // 给图片设置点击事件
-                    // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
-                    for (int i = 0; i < 7; i++) {
-                        ScrollEffectForBackgroundItem.updateCardDataIndexBackgroundImageClickable(
-                                CardDataIndexActivity.this, backgroundImage1, cardDataIndexBackgroundImages[i], cardImageFileInfoArray[i][1]);
-                    }
-                }
-            });
-        }
+        });
 
         // 添加模糊材质
         setupBlurEffect();
@@ -417,10 +266,10 @@ public class CardDataIndexActivity extends BaseActivity {
 
         // 恢复上次的滚动位置（必须在滚动监听器全部注册完成后执行）：
         // 先清零 savedScrollY，让 scrollBy 触发的 onScrolled 用 dy 重新累计出真实偏移，
-        // 从而保证背景渐隐效果与列表当前位置严格同步。
+        // 从而保证 savedScrollY 与列表当前位置严格同步。
         // 不能用 post 延迟：此处视图尚未 attach，post 会积压到 attach 时刻执行，彼时 RecyclerView
         // 还未完成首次布局（无子视图），scrollBy 会被忽略；GlobalLayout 回调发生在布局完成后、
-        // 同帧绘制前，一次性滚动后首帧即呈现最终状态（透明度同步经 scrollBy 触发的 onScrolled 完成）
+        // 同帧绘制前，一次性滚动后首帧即呈现最终状态（savedScrollY 同步经 scrollBy 触发的 onScrolled 完成）
         if (savedScrollY > 0) {
             final int targetScrollY = savedScrollY;
             savedScrollY = 0;
@@ -452,9 +301,6 @@ public class CardDataIndexActivity extends BaseActivity {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("scrollY", savedScrollY);
-        if (backgroundCardImageFileInfo != null) {
-            outState.putSerializable("backgroundCardImageFileInfo", backgroundCardImageFileInfo);
-        }
     }
 
     @Override
@@ -471,8 +317,6 @@ public class CardDataIndexActivity extends BaseActivity {
         View rootView = findViewById(android.R.id.content);
         InsetsUtil.removeListener(rootView);
         setContentView(new FrameLayout(this));
-
-        Glide.get(this).clearMemory();
 
         super.onDestroy();
     }

@@ -20,95 +20,13 @@
             android:id="@+id/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="300dp"
+            android:paddingTop="120dp"
             android:paddingBottom="50dp"
             android:paddingStart="20dp"
             android:paddingEnd="36dp"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:scrollbars="none"
-            tools:ignore="MissingConstraints" />
-
-        <LinearLayout
-            android:id="@+id/card_data_index_background_images_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="120dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="36dp">
-
-            <ImageView
-                android:id="@+id/card_data_index_background_image_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/x1113020f_big"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/card_data_index_background_image_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/x1112238f_big"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/card_data_index_background_image_3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/x1112219f_big"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/card_data_index_background_image_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/x1112227f_big"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/card_data_index_background_image_5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/x1112248c_big"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/card_data_index_background_image_6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/x1112253f_big"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/card_data_index_background_image_7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/x1170009f_big"
-                tools:ignore="ContentDescription" />
-
-        </LinearLayout>
+            android:scrollbars="none" />
 
     </eightbitlab.com.blurview.BlurTarget>
 
