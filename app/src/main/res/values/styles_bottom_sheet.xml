@@ -6,6 +6,11 @@
          ③ 底部系统栏 padding 已关闭（paddingBottomSystemWindowInsets=false），sheet 内容直达屏幕底部，导航栏区域由内容自身着色，实现底部沉浸 -->
     <style name="ThemeOverlay.HyperFVMJava.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Widget.HyperFVMJava.BottomSheet.Modal</item>
+        <!-- 导航栏透明：BottomSheetDialog 仅在 Color.alpha(navigationBarColor)<255 时才启用
+             drawEdgeToEdge（内容延伸至导航栏区 + 不自绘导航栏背景），默认不透明黑会导致
+             Android 13 等低版本出现底部黑带断层，与 paddingBottomSystemWindowInsets=false
+             的沉浸设计冲突 -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Widget.HyperFVMJava.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
