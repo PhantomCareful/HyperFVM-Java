@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:clickable="true"
     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
     app:cardCornerRadius="20dp"
     tools:ignore="ContentDescription">
