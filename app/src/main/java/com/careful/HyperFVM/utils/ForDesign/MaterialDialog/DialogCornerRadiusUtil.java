@@ -2,6 +2,7 @@ package com.careful.HyperFVM.utils.ForDesign.MaterialDialog;
 
 import android.app.Dialog;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.ColorStateListDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -22,7 +23,9 @@ import java.util.Objects;
  * <p>
  * 弹窗可见轮廓为单层：window 层背景（MaterialAlertDialogBuilder 设置的 InsetDrawable/MSD）
  * 直接设为透明、不再绘制；仅保留内容层根容器的 ?attr/colorSurface 背景（inflate 后为
- * ColorDrawable，替换为 MaterialShapeDrawable 后表达 G2 连续曲率的 squircle 圆角，
+ * ColorDrawable 或 framework ColorStateListDrawable——Android 13 实测为后者，仅判
+ * ColorDrawable 会 SKIPPED 导致“完全矩形”，两者须一并取色），替换为
+ * MaterialShapeDrawable 后表达 G2 连续曲率的 squircle 圆角，
  * 角形状由 {@link SquircleCornerTreatment} 提供），避免两层同形轮廓的双重 AA 叠加。
  * 弹窗内按钮保持 Material 默认圆角，不加 G2：按钮短边（约 40dp 级）小于翼曲线
  * 所需延伸 2(1+s)r（r=20、s=0.4 时 56dp），相邻角翼在直边上互相重叠会触发
@@ -150,12 +153,22 @@ public final class DialogCornerRadiusUtil {
             return;
         }
         int color;
+        ColorStateList bgColors = null;
         if (background instanceof ColorDrawable) {
-            color = ((ColorDrawable) background).getColor();
+            bgColors = ColorStateList.valueOf(((ColorDrawable) background).getColor());
+        } else if (background instanceof ColorStateListDrawable) {
+            // Android 10+ framework 把 ?attr 纯色包装成的 ColorStateListDrawable
+            // （Android 13 实测走此类型）：只判 ColorDrawable 会 SKIPPED，
+            // 叠加 window 层已透明 = 完全矩形，故须一并取色
+            bgColors = ((ColorStateListDrawable) background).getColorStateList();
+        }
+        if (bgColors != null) {
+            color = bgColors.getDefaultColor();
         } else {
-            // GradientDrawable 等不处理：G2 曲线无法用它表达，而 framework 私有字段
+            // 真渐变/图片背景不处理：G2 曲线无法用它表达，而 framework 私有字段
             // 已在 Android 17 移除、纯色无法可靠读取（真渐变也不能覆盖）——保持原背景
-            if (DEBUG) android.util.Log.d(TAG, "content layer: SKIPPED (bg type not handled)");
+            if (DEBUG) android.util.Log.d(TAG, "content layer: SKIPPED (bg type not handled): "
+                    + background.getClass().getName());
             return;
         }
         MaterialShapeDrawable shape = new MaterialShapeDrawable(new ShapeAppearanceModel().toBuilder()

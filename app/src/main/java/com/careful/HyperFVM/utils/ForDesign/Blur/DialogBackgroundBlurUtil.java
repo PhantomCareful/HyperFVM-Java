@@ -23,8 +23,8 @@ public class DialogBackgroundBlurUtil {
             return;
         }
 
-        // 项目全部弹窗的统一入口：顺带同步弹窗圆角与设备屏幕物理圆角
-        // （内部通过 OnGlobalLayout 等待 insets 就绪，需在 show() 前注册）
+        // 项目全部弹窗的统一入口：顺带应用固定 46dp 的 G2 squircle 圆角
+        // （需在 show() 前调用：window 层同步生效，内容层待首次全局布局回调补齐）
         DialogCornerRadiusUtil.apply(dialog);
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND); // 添加压暗，增强模糊对比
