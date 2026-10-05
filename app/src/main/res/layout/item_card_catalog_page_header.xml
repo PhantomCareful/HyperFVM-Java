@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 防御卡目录页 RecyclerView 的页首行（position 0）：
+     topBarBottom 大标题参与顶部栏滚动联动（滚动时本行淡出、顶部小标题与模糊层淡入）。
+     除 topBarBottom 的 id 必须保留外，下方内容可自由增删/替换（增删卡片、换成其他组件），
+     只需修改本文件，CardDataIndexAdapter 与 CardDataIndexActivity 无需改动；
+     页首与下方首个字母分节的间距由分节标题行自带的 15dp Space 提供。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <TextView
+        android:id="@+id/topBarBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/top_bar_card_data_index"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface"
+        android:visibility="visible"/>
+
+    <!-- 概览信息 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <include layout="@layout/card_card_data_index_overview_big"/>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <include layout="@layout/card_card_data_index_overview_small"/>
+
+            <include layout="@layout/card_card_data_index_overview_small"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <include layout="@layout/card_card_data_index_overview_small"/>
+
+            <include layout="@layout/card_card_data_index_overview_small"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

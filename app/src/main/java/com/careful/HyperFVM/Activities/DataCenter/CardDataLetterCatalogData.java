@@ -78,6 +78,7 @@ public final class CardDataLetterCatalogData {
     private static final Object LOCK = new Object();
     private static boolean sPinyinReady = false;
     private static List<Section> sSections;
+    private static OverviewStats sOverviewStats;
 
     private CardDataLetterCatalogData() {
     }
@@ -109,6 +110,29 @@ public final class CardDataLetterCatalogData {
     }
 
     /**
+     * 页首概览统计：card_data_index.csv 的 baseName 种数（全表 + 分表）。
+     * <p>
+     * 口径为 distinct base_name（不筛行形态），与目录分节的主线主形态口径相互独立。
+     */
+    public static final class OverviewStats {
+        /** 全表 distinct base_name 数（页首大卡） */
+        public final int totalBaseNames;
+        /** table_name -> 该表 distinct base_name 数 */
+        private final Map<String, Integer> baseNamesByTable;
+
+        OverviewStats(int totalBaseNames, Map<String, Integer> baseNamesByTable) {
+            this.totalBaseNames = totalBaseNames;
+            this.baseNamesByTable = baseNamesByTable;
+        }
+
+        /** 指定 table_name 的 baseName 种数（表不存在时返回 0） */
+        public int baseNamesOf(String tableName) {
+            Integer count = baseNamesByTable.get(tableName);
+            return count == null ? 0 : count;
+        }
+    }
+
+    /**
      * 取全部字母分节（懒加载 + 缓存，主线程首次调用时构建）。
      *
      * @param context 读取 assets/card_data_index.csv 所需（仅首次构建时使用，不被持有）
@@ -119,6 +143,20 @@ public final class CardDataLetterCatalogData {
                 sSections = build(context);
             }
             return sSections;
+        }
+    }
+
+    /**
+     * 取页首概览统计（懒加载 + 缓存，主线程首次调用时构建）。
+     *
+     * @param context 读取 assets/card_data_index.csv 所需（仅首次构建时使用，不被持有）
+     */
+    public static OverviewStats getOverviewStats(Context context) {
+        synchronized (LOCK) {
+            if (sOverviewStats == null) {
+                sOverviewStats = buildOverviewStats(context);
+            }
+            return sOverviewStats;
         }
     }
 
@@ -188,6 +226,42 @@ public final class CardDataLetterCatalogData {
             throw new IllegalStateException("读取 " + CSV_FILE_NAME + " 失败", e);
         }
         return entries;
+    }
+
+    /**
+     * 统计 CSV 的 baseName 种数：全表 distinct base_name + 各 table_name 的 distinct base_name。
+     * <p>
+     * 与目录分节各自独立扫一遍 CSV（千行级、纯内存集合，开销可忽略），两处口径互不影响：
+     * 这里统计全部行，不筛主线主形态。
+     */
+    private static OverviewStats buildOverviewStats(Context context) {
+        Set<String> total = new HashSet<>();
+        Map<String, Set<String>> perTable = new HashMap<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+                context.getAssets().open(CSV_FILE_NAME), StandardCharsets.UTF_8))) {
+            reader.readLine(); // 跳过表头（BOM 随表头一并丢弃）
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] cols = line.split(",", -1);
+                if (cols.length < 4) {
+                    continue;
+                }
+                String baseName = cols[1].trim();
+                String tableName = cols[2].trim();
+                if (baseName.isEmpty() || tableName.isEmpty()) {
+                    continue;
+                }
+                total.add(baseName);
+                perTable.computeIfAbsent(tableName, k -> new HashSet<>()).add(baseName);
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException("读取 " + CSV_FILE_NAME + " 失败", e);
+        }
+        Map<String, Integer> counts = new HashMap<>(perTable.size());
+        for (Map.Entry<String, Set<String>> entry : perTable.entrySet()) {
+            counts.put(entry.getKey(), entry.getValue().size());
+        }
+        return new OverviewStats(total.size(), counts);
     }
 
     private static void appendSection(List<Section> sections,

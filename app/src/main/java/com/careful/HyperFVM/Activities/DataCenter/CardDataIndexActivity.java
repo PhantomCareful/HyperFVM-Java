@@ -42,7 +42,7 @@ import java.util.Objects;
 import eightbitlab.com.blurview.BlurView;
 
 public class CardDataIndexActivity extends BaseActivity {
-    private static final int TOP_BAR_FADE_RANGE_DP = 25; // 顶栏模糊层渐显区间（滚动该距离后完全显现）
+    private static final int TOP_BAR_FADE_RANGE_DP = 50; // 顶栏渐变区间（滚动该距离后小标题与模糊层完全显现）
     private static final int HEADER_TARGET_TOP_OFFSET_PX = 400; // 目录跳转后分节标题停在距列表顶的像素距离（与原页面视觉一致）
     private static final float JUMP_SCROLL_MS_PER_PX = 0.01f; // 目录跳转的滚动速度（每像素毫秒数，越小越快）
     private static final int JUMP_TAIL_SCROLL_MIN_MS = 120; // 收尾减速动画最短时长（速度调快后避免收尾退化成瞬间突变）
@@ -53,6 +53,7 @@ public class CardDataIndexActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private CardDataIndexAdapter adapter;
+    private NestedScrollUtil nestedScrollUtil; // 顶部栏滚动联动（topBarBottom 位于页首 item 内，绑定后经 Adapter 回调注入）
 
     private int savedScrollY = 0;            // 用于保存/恢复的滚动位置
 
@@ -107,6 +108,14 @@ public class CardDataIndexActivity extends BaseActivity {
         List<CardDataLetterCatalogData.Section> sections = CardDataLetterCatalogData.getSections(this);
         adapter = new CardDataIndexAdapter(this, sections);
         recyclerView.setAdapter(adapter);
+
+        // 页首行（position 0）内的 topBarBottom 在 attach 时还未创建（页首视图要等首次布局才存在），
+        // 故顶部栏联动先以“无大标题”接入，待页首绑定完成经回调注入（bind 晚于 onCreate，时序安全）
+        adapter.setPageHeaderBinder(topBarBottom -> {
+            if (nestedScrollUtil != null) {
+                nestedScrollUtil.setTopBarBottom(topBarBottom);
+            }
+        });
 
         // 右侧 A-Z 快速索引条：标签 = 实际存在的分节（顺序与 Adapter 分节下标一一对应），
         // 命中回调直连目录快速跳转（runFastScroll 内自带越界守卫与令牌抢占）
@@ -190,7 +199,7 @@ public class CardDataIndexActivity extends BaseActivity {
     /**
      * 维护并返回列表真实滚动偏移（savedScrollY），供界面重建后恢复滚动位置使用。
      * <p>
-     * 不用累计值也不用估算 API：列表首行（首个字母分节标题）的内容坐标恒为 0，
+     * 不用累计值也不用估算 API：列表首行（页首行）的内容坐标恒为 0，
      * 只要它还存在于 RecyclerView 的布局内，真实偏移 = paddingTop - 首行.getTop()，
      * 该几何测量精确且自纠，无需依赖增量累计；
      * 首行不可见说明列表已滚出很远，此时按增量累计维护（页面所有滚动——手动滑动 /
@@ -257,12 +266,13 @@ public class CardDataIndexActivity extends BaseActivity {
         // 添加模糊材质
         setupBlurEffect();
 
-        // 接入顶部栏滚动联动：本页只联动模糊背景层（topBarBottom/topBar 传0跳过）。
+        // 接入顶部栏滚动联动：topBarBottom 位于 RecyclerView 页首 item 内，attach 时传 0 缺省，
+        // 待页首绑定完成后经 adapter.setPageHeaderBinder 回调注入（见 setupRecyclerView）；
+        // topBar 小标题与 blurViewTopBar 模糊层随滚动淡入（与带 topBarBottom 的其他页面一致）。
         // 滚动位置保存与恢复沿用页面自有机制——下方 post + scrollBy 恢复会经由 onScrolled
         // 驱动本工具类同步透明度，故不再调用工具类的 saveScrollY/restoreScrollY，避免双重恢复
-        // 顶部栏滚动联动（仅模糊层参与；滚动位置由页面自有机制保存/恢复）
-        NestedScrollUtil.attach(rootView,
-                R.id.RecyclerView, 0, 0, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP);
+        nestedScrollUtil = NestedScrollUtil.attach(rootView,
+                R.id.RecyclerView, 0, R.id.topBar, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP);
 
         // 恢复上次的滚动位置（必须在滚动监听器全部注册完成后执行）：
         // 先清零 savedScrollY，让 scrollBy 触发的 onScrolled 用 dy 重新累计出真实偏移，

@@ -19,12 +19,12 @@
             android:id="@+id/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="120dp"
-            android:paddingBottom="50dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="26dp"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:paddingStart="10dp"
+            android:paddingTop="120dp"
+            android:paddingEnd="26dp"
+            android:paddingBottom="50dp"
             android:scrollbars="none" />
 
     </eightbitlab.com.blurview.BlurTarget>

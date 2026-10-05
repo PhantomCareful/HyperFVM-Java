@@ -597,7 +597,7 @@ public class DialogBuilderManager {
 
         // 开始逐个匹配卡片名称，直接复用目录页单卡布局展示卡片信息，点击可跳转数据详情页
         LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
-        if (Integer.parseInt(context.getString(R.string.version_card_data_search).split("：")[1]) >= requiredDatabaseVersion) {
+        if (Integer.parseInt(context.getString(R.string.version_card_data_search)) >= requiredDatabaseVersion) {
             if (!CardDataHelper.addCardRowToDialog(context, layoutInflater, suggestion_card_list, newCardName)) {
                 return;
             }
@@ -621,17 +621,19 @@ public class DialogBuilderManager {
     /**
      * 显示卡片查询弹窗
      */
-    @SuppressLint("InflateParams")
+    @SuppressLint({"InflateParams", "SetTextI18n"})
     public static void showCardQueryDialog(Context context) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_card_data, null);
         TextView title = dialogView.findViewById(R.id.title);
+        TextView version = dialogView.findViewById(R.id.version);
         TextInputEditText cardName = dialogView.findViewById(R.id.textInputEditText);
         TextView content_tips = dialogView.findViewById(R.id.content_tips);
         LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list);
         TextView buttonClose = dialogView.findViewById(R.id.button_close);
 
         title.setText(context.getString(R.string.title_card_data_search));
+        version.setText("数据库版本：" + context.getString(R.string.version_card_data_search));
 
         // 实时模糊查询（修改核心：适配新的数据模型）
         cardName.addTextChangedListener(new TextWatcher() {
@@ -685,17 +687,19 @@ public class DialogBuilderManager {
     /**
      * 显示分解兑换计算器的查询弹窗
      */
-    @SuppressLint("InflateParams")
+    @SuppressLint({"InflateParams", "SetTextI18n"})
     public static void showDecomposeAndGetQueryDialog(Context context) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_input_card_data, null);
         TextView title = dialogView.findViewById(R.id.title);
+        TextView version = dialogView.findViewById(R.id.version);
         TextInputEditText cardName = dialogView.findViewById(R.id.textInputEditText);
         TextView content_tips = dialogView.findViewById(R.id.content_tips);
         LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list);
         TextView buttonClose = dialogView.findViewById(R.id.button_close);
 
         title.setText(context.getString(R.string.title_decompose_and_get_calculator));
+        version.setText("数据库版本：" + context.getString(R.string.version_card_data_search));
 
         // 实时模糊查询
         cardName.addTextChangedListener(new TextWatcher() {

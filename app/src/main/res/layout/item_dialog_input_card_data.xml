@@ -20,7 +20,7 @@
         android:clickable="true"/>
 
     <TextView
-        android:id="@+id/content_detail"
+        android:id="@+id/version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="6dp"

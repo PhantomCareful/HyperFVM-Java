@@ -18,9 +18,11 @@
     <string name="title_data_center_odds_index">宝箱概率公示合集</string>
     <string name="description_data_center_odds_index">展示部分宝箱的概率公示信息</string>
     <string name="title_card_data_search">防御卡数据查询</string>
-    <string name="version_card_data_search">数据库版本：20261002</string>
+    <string name="version_card_data_search">20261002</string>
     <string name="tips_card_data_search">👇点击卡片即可进入数据详情页👇</string>
     <string name="tips_card_data_search_input">请输入防御卡名称</string>
+    <string name="title_card_data_index_overview_big_1">当前版本</string>
+    <string name="title_card_data_index_overview_big_2">收录卡片</string>
     <string name="top_bar_card_data_index">防御卡全能数据库</string>
     <string name="top_bar_card_data_index_pad">防御卡全能数据库</string>
     <string name="title_card_data_base">基础</string>

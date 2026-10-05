@@ -45,7 +45,7 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
  */
 public class NestedScrollUtil {
     private final View scrollContainer;   // ScrollView / NestedScrollView / RecyclerView
-    private final View topBarBottom;      // 滚动容器内的大标题（可为null）
+    private View topBarBottom;          // 滚动容器内的大标题（可为null，可在绑定后经 setTopBarBottom 注入）
     private final View topBar;            // 悬浮的小标题（可为null）
     private final View blurViewTopBar;    // 悬浮的模糊背景层（可为null）
     private final int fadeRangePx;        // 渐变过渡区间（px）
@@ -171,6 +171,19 @@ public class NestedScrollUtil {
             });
         }
         return util;
+    }
+
+    /**
+     * 注入/替换大标题（topBarBottom）。
+     * 用于 topBarBottom 位于 RecyclerView 页首 item 内的场景：attach 时该视图尚未创建，
+     * 须在页首绑定完成后调用本方法注入；注入后立即按当前滚动位置同步一次透明度，
+     * 保证重建恢复滚动时大标题不闪现初始态
+     */
+    public void setTopBarBottom(@Nullable View topBarBottom) {
+        this.topBarBottom = topBarBottom;
+        if (topBarBottom != null) {
+            syncAlpha();
+        }
     }
 
     /**
