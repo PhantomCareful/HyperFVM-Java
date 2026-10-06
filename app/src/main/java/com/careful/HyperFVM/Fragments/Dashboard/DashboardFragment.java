@@ -128,14 +128,6 @@ public class DashboardFragment extends Fragment {
     private TextView dashboardLuckyMoney;
     private String luckyMoneyEmoji;
 
-    private FrameLayout dashboardSweetIslandContainer;
-    private TextView dashboardSweetIsland;
-    private String sweetIslandEmoji;
-
-    private FrameLayout dashboardAnimalActivityContainer;
-    private TextView dashboardAnimalActivity;
-    private String animalActivityEmoji;
-
     private FrameLayout dashboardThreeIslandsContainer;
     private TextView dashboardThreeIslands;
     private String threeIslandsEmoji;
@@ -158,6 +150,14 @@ public class DashboardFragment extends Fragment {
 
     private FrameLayout dashboardWorldBossContainer;
     private TextView dashboardWorldBoss;
+
+    private FrameLayout dashboardSweetIslandContainer;
+    private TextView dashboardSweetIsland;
+    private String sweetIslandEmoji;
+
+    private FrameLayout dashboardAnimalActivityContainer;
+    private TextView dashboardAnimalActivity;
+    private String animalActivityEmoji;
 
     private FrameLayout dashboardTransferDiscountContainer;
     private TextView dashboardTransferDiscount;
@@ -232,12 +232,6 @@ public class DashboardFragment extends Fragment {
         dashboardLuckyMoney = root.findViewById(R.id.dashboard_NewYearLuckyMoney);
         dashboardLuckyMoneyContainer = root.findViewById(R.id.dashboard_NewYearLuckyMoney_Container);
 
-        dashboardSweetIsland = root.findViewById(R.id.dashboard_SweetisLand);
-        dashboardSweetIslandContainer = root.findViewById(R.id.dashboard_SweetisLand_Container);
-
-        dashboardAnimalActivity = root.findViewById(R.id.dashboard_AnimalActivity);
-        dashboardAnimalActivityContainer = root.findViewById(R.id.dashboard_AnimalActivity_Container);
-
         dashboardThreeIslands = root.findViewById(R.id.dashboard_ThreeIslands);
         dashboardThreeIslandsContainer = root.findViewById(R.id.dashboard_ThreeIslands_Container);
 
@@ -255,6 +249,12 @@ public class DashboardFragment extends Fragment {
 
         dashboardWorldBossContainer = root.findViewById(R.id.dashboard_WorldBoss_Container);
         dashboardWorldBoss = root.findViewById(R.id.dashboard_WorldBoss);
+
+        dashboardSweetIsland = root.findViewById(R.id.dashboard_SweetisLand);
+        dashboardSweetIslandContainer = root.findViewById(R.id.dashboard_SweetisLand_Container);
+
+        dashboardAnimalActivity = root.findViewById(R.id.dashboard_AnimalActivity);
+        dashboardAnimalActivityContainer = root.findViewById(R.id.dashboard_AnimalActivity_Container);
 
         dashboardTransferDiscount = root.findViewById(R.id.dashboard_TransferDiscount);
         dashboardTransferDiscountCardNum = root.findViewById(R.id.dashboard_TransferDiscount_CardNum);
@@ -373,8 +373,6 @@ public class DashboardFragment extends Fragment {
         bountyDoubleIcon.setImageResource(R.drawable.ic_timer);
         dashboardBounty.setText("请等待...");
         dashboardLuckyMoney.setText("请等待...");
-        dashboardSweetIsland.setText("请等待...");
-        dashboardAnimalActivity.setText("请等待...");
 
         dashboardThreeIslands.setText("请等待...");
         dashboardFoodContest.setText("请等待...");
@@ -382,6 +380,8 @@ public class DashboardFragment extends Fragment {
         dashboardCrossServerTeamUp.setText("请等待...");
         dashboardHappyHoliday.setText("请等待...");
         dashboardWorldBoss.setText("请等待...");
+        dashboardSweetIsland.setText("请等待...");
+        dashboardAnimalActivity.setText("请等待...");
 
         dashboardTransferDiscount.setText("请等待...");
         dashboardTransferDiscountCardNum.setText("");
@@ -572,42 +572,6 @@ public class DashboardFragment extends Fragment {
                     luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji,
                     data.get(0).get("resultLuckyConsumptionInfoContentStatus"),
                     data.get(0).get("resultLuckyConsumptionInfoContentDetail"),
-                    activityInfoList
-            );
-        });
-
-        // 读取甜蜜岛活动结果
-        String sweetIslandResult = data.get(0).get("resultSweetIslandSimple");
-        sweetIslandEmoji = data.get(0).get("resultSweetIslandEmoji");
-        dashboardSweetIsland.setText(Objects.requireNonNull(sweetIslandResult).isEmpty() ? "null" : sweetIslandResult);
-        // 设置点击打开详情弹窗（弹窗内逐条展示甜蜜岛开放场次）
-        dashboardSweetIslandContainer.setOnClickListener(v -> {
-            String sweetIslandList = data.get(0).get("resultSweetIslandList");
-            List<SweetIslandActivityInfo> activityInfoList = SweetIslandActivityInfo.deserialize(sweetIslandList);
-            DialogBuilderManager.showDashboardAnimalAndSweetDialog(
-                    requireContext(),
-                    getResources().getString(R.string.title_dashboard_sweetis_land),
-                    sweetIslandEmoji.isEmpty() ? "null" : sweetIslandEmoji,
-                    data.get(0).get("resultSweetIslandContentStatus"),
-                    data.get(0).get("resultSweetIslandContentDetail"),
-                    activityInfoList
-            );
-        });
-
-        // 读取走马观花活动结果
-        String animalActivityResult = data.get(0).get("resultAnimalActivitySimple");
-        animalActivityEmoji = data.get(0).get("resultAnimalActivityEmoji");
-        dashboardAnimalActivity.setText(Objects.requireNonNull(animalActivityResult).isEmpty() ? "null" : animalActivityResult);
-        // 设置点击打开详情弹窗（弹窗内逐条展示走马观花开放场次）
-        dashboardAnimalActivityContainer.setOnClickListener(v -> {
-            String animalActivityList = data.get(0).get("resultAnimalActivityList");
-            List<SweetIslandActivityInfo> activityInfoList = SweetIslandActivityInfo.deserialize(animalActivityList);
-            DialogBuilderManager.showDashboardAnimalAndSweetDialog(
-                    requireContext(),
-                    getResources().getString(R.string.title_dashboard_animal_activity),
-                    animalActivityEmoji.isEmpty() ? "null" : animalActivityEmoji,
-                    data.get(0).get("resultAnimalActivityContentStatus"),
-                    data.get(0).get("resultAnimalActivityContentDetail"),
                     activityInfoList
             );
         });
@@ -865,6 +829,42 @@ public class DashboardFragment extends Fragment {
             root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
             isShowWorldBossCard = false;
         }
+
+        // 读取甜蜜岛活动结果
+        String sweetIslandResult = data.get(0).get("resultSweetIslandSimple");
+        sweetIslandEmoji = data.get(0).get("resultSweetIslandEmoji");
+        dashboardSweetIsland.setText(Objects.requireNonNull(sweetIslandResult).isEmpty() ? "null" : sweetIslandResult);
+        // 设置点击打开详情弹窗（弹窗内逐条展示甜蜜岛开放场次）
+        dashboardSweetIslandContainer.setOnClickListener(v -> {
+            String sweetIslandList = data.get(0).get("resultSweetIslandList");
+            List<SweetIslandActivityInfo> activityInfoList = SweetIslandActivityInfo.deserialize(sweetIslandList);
+            DialogBuilderManager.showDashboardAnimalAndSweetDialog(
+                    requireContext(),
+                    getResources().getString(R.string.title_dashboard_sweetis_land),
+                    sweetIslandEmoji.isEmpty() ? "null" : sweetIslandEmoji,
+                    data.get(0).get("resultSweetIslandContentStatus"),
+                    data.get(0).get("resultSweetIslandContentDetail"),
+                    activityInfoList
+            );
+        });
+
+        // 读取走马观花活动结果
+        String animalActivityResult = data.get(0).get("resultAnimalActivitySimple");
+        animalActivityEmoji = data.get(0).get("resultAnimalActivityEmoji");
+        dashboardAnimalActivity.setText(Objects.requireNonNull(animalActivityResult).isEmpty() ? "null" : animalActivityResult);
+        // 设置点击打开详情弹窗（弹窗内逐条展示走马观花开放场次）
+        dashboardAnimalActivityContainer.setOnClickListener(v -> {
+            String animalActivityList = data.get(0).get("resultAnimalActivityList");
+            List<SweetIslandActivityInfo> activityInfoList = SweetIslandActivityInfo.deserialize(animalActivityList);
+            DialogBuilderManager.showDashboardAnimalAndSweetDialog(
+                    requireContext(),
+                    getResources().getString(R.string.title_dashboard_animal_activity),
+                    animalActivityEmoji.isEmpty() ? "null" : animalActivityEmoji,
+                    data.get(0).get("resultAnimalActivityContentStatus"),
+                    data.get(0).get("resultAnimalActivityContentDetail"),
+                    activityInfoList
+            );
+        });
 
         // 读取二转打折活动结果
         String transferDiscountResult = data.get(0).get("resultTransferDiscountSimple");
