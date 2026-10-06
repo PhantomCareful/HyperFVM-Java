@@ -87,7 +87,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/tips_odds_index_description_1"
                                 android:textSize="15sp"
-                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+                                android:textColor="?attr/SummaryTextViewColorOnImportantCardView" />
 
                         </LinearLayout>
 

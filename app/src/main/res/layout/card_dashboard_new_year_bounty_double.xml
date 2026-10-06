@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:layout_marginBottom="10dp"
         android:clickable="true"
-        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
         app:cardCornerRadius="20dp">
 
         <FrameLayout
@@ -27,7 +27,8 @@
                 android:layout_marginBottom="-35dp"
                 android:layout_gravity="end|bottom"
                 android:src="@drawable/ic_round_check_circle_outline"
-                app:tint="?attr/TitleTextViewColorOnSurface" />
+                android:alpha="0.8"
+                app:tint="?attr/LargeVectorGraphicColorOnImportantCardView" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,7 +43,7 @@
                     android:layout_marginBottom="2dp"
                     android:text="@string/title_dashboard_new_year_bounty_double"
                     android:textSize="15sp"
-                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+                    android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
 
                 <TextView
                     android:id="@+id/dashboard_NewYearBountyDouble_IsDouble"
@@ -50,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                    android:textColor="?attr/TextViewColorOnImportantCardView"/>
 
             </LinearLayout>
 
@@ -63,7 +64,7 @@
                 android:layout_marginBottom="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                android:textColor="?attr/TextViewColorOnImportantCardView" />
 
         </FrameLayout>
 

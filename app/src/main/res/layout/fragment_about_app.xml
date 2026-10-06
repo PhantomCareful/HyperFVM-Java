@@ -83,7 +83,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/description_about_app_check_update"
-                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textColor="?attr/SummaryTextViewColorOnImportantCardView"
                                 android:textSize="15sp" />
 
                         </LinearLayout>
@@ -157,7 +157,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/label_about_app_developer_name_2"
-                                    android:textColor="?attr/TextViewColorOnImportantCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnImportantCardView"
                                     android:textSize="15sp" />
 
                             </LinearLayout>
@@ -204,7 +204,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/description_about_app_co_construction_team"
-                                    android:textColor="?attr/TextViewColorOnImportantCardView"
+                                    android:textColor="?attr/SummaryTextViewColorOnImportantCardView"
                                     android:textSize="15sp" />
 
                             </LinearLayout>

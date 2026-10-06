@@ -73,7 +73,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/tips_prestige_calculator_top_content"
                                 android:textSize="15sp"
-                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+                                android:textColor="?attr/SummaryTextViewColorOnImportantCardView" />
 
                         </LinearLayout>
 

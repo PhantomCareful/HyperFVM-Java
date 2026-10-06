@@ -83,7 +83,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/tips_data_images_index_tiramisu_description"
                                 android:textSize="15sp"
-                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+                                android:textColor="?attr/SummaryTextViewColorOnImportantCardView" />
 
                         </LinearLayout>
 
