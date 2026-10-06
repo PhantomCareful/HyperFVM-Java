@@ -21,12 +21,11 @@
 
             <ImageView
                 android:id="@+id/dashboard_TransferDiscount_Icon"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginEnd="-35dp"
-                android:layout_marginBottom="-35dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="-10dp"
                 android:layout_gravity="end|bottom"
-                android:src="@drawable/ic_baseline_arrow_circle_down"
+                android:src="@drawable/ic_baseline_discount"
                 app:tint="?attr/TitleTextViewColorOnSurface" />
 
             <LinearLayout

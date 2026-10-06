@@ -872,7 +872,7 @@ public class DashboardFragment extends Fragment {
         transferDiscountEmoji = data.get(0).get("resultTransferDiscountEmoji");
         dashboardTransferDiscount.setText(Objects.requireNonNull(transferDiscountResult).isEmpty() ? "null" : transferDiscountResult);
         dashboardTransferDiscountCardNum.setText(transferDiscountCardNum);
-        transferDiscountIcon.setImageResource(Objects.requireNonNull(transferDiscountCardNum).contains("张") ? R.drawable.ic_baseline_arrow_circle_down : R.drawable.ic_round_remove_circle_outline);
+        transferDiscountIcon.setImageResource(Objects.requireNonNull(transferDiscountCardNum).contains("张") ? R.drawable.ic_baseline_discount : R.drawable.ic_round_remove_circle_outline);
         // 设置点击打开详情弹窗
         dashboardTransferDiscountContainer.setOnClickListener(v -> {
             String contentStatus = data.get(0).get("resultTransferDiscountContentStatus");
