@@ -41,6 +41,7 @@ import com.careful.HyperFVM.databinding.FragmentDashboardBinding;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDashboard.ExecuteDailyTask;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.EveryMonthAndEveryWeek.EveryMonthAndEveryWeek;
+import com.careful.HyperFVM.utils.ForDashboard.FromGame.NewYear.LuckyMoneyActivityInfo;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -544,16 +545,19 @@ public class DashboardFragment extends Fragment {
         String luckyMoneyResult = data.get(0).get("resultLuckyConsumptionInfoSimple");
         luckyMoneyEmoji = data.get(0).get("resultLuckyConsumptionInfoEmoji");
         dashboardLuckyMoney.setText(Objects.requireNonNull(luckyMoneyResult).isEmpty() ? "null" : luckyMoneyResult);
-        // 设置点击打开详情弹窗
-        dashboardLuckyMoneyContainer.setOnClickListener(v ->
-                DialogBuilderManager.showDashboardDetailDialog(
-                        requireContext(),
-                        getResources().getString(R.string.title_dashboard_new_year_lucky_money),
-                        luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji,
-                        data.get(0).get("resultLuckyConsumptionInfoContentStatus"),
-                        data.get(0).get("resultLuckyConsumptionInfoContentDetail")
-                )
-        );
+        // 设置点击打开详情弹窗（弹窗内逐条展示抢红包场次）
+        dashboardLuckyMoneyContainer.setOnClickListener(v -> {
+            String luckyMoneyList = data.get(0).get("resultLuckyConsumptionInfoList");
+            List<LuckyMoneyActivityInfo> activityInfoList = LuckyMoneyActivityInfo.deserialize(luckyMoneyList);
+            DialogBuilderManager.showDashboardLuckyMoneyDialog(
+                    requireContext(),
+                    getResources().getString(R.string.title_dashboard_new_year_lucky_money),
+                    luckyMoneyEmoji.isEmpty() ? "null" : luckyMoneyEmoji,
+                    data.get(0).get("resultLuckyConsumptionInfoContentStatus"),
+                    data.get(0).get("resultLuckyConsumptionInfoContentDetail"),
+                    activityInfoList
+            );
+        });
 
         // 读取三岛福利活动结果
         String threeIslandsResult = data.get(0).get("resultThreeIslandsSimple");

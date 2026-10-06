@@ -256,6 +256,9 @@ public class ExecuteDailyTask {
                 result.put("resultLuckyConsumptionInfoEmoji", catchLuckyConsumptionInfoResult.get(0).get("resultEmoji"));
                 result.put("resultLuckyConsumptionInfoContentStatus", catchLuckyConsumptionInfoResult.get(0).get("resultContentStatus"));
                 result.put("resultLuckyConsumptionInfoContentDetail", catchLuckyConsumptionInfoResult.get(0).get("resultContentDetail"));
+                // 超时兜底结果不含resultList，取值可能为null，统一转为空串避免下游判空
+                String luckyConsumptionInfoList = catchLuckyConsumptionInfoResult.get(0).get("resultList");
+                result.put("resultLuckyConsumptionInfoList", luckyConsumptionInfoList == null ? "" : luckyConsumptionInfoList);
 
                 // 日氪
                 result.put("resultDailyRechargeSimple", catchGitDashboardInfoResult.get(0).get("resultDailyRechargeSimple"));

@@ -4,12 +4,14 @@ import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeS
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.provider.CalendarContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -29,6 +31,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
+import com.careful.HyperFVM.utils.ForDashboard.FromGame.NewYear.LuckyMoneyActivityInfo;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.ForCardData.CardSearchSuggestion;
@@ -558,6 +561,75 @@ public class DialogBuilderManager {
         LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
         for (String cardName : discountList) {
             CardDataHelper.addCardRowToDialog(context, layoutInflater, suggestion_card_list, cardName);
+        }
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
+     * 仪表盘：展示抢红包活动详细信息的弹窗，逐条列出每个抢红包场次
+     * @param context         上下文
+     * @param title           弹窗标题
+     * @param emoji           弹窗中的大表情
+     * @param contentStatus   状态内容
+     * @param contentDetail   详细内容
+     * @param activityInfoList 抢红包场次列表
+     */
+    public static void showDashboardLuckyMoneyDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, List<LuckyMoneyActivityInfo> activityInfoList) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_card_list, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
+
+        // 逐条添加抢红包场次卡片
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
+        for (LuckyMoneyActivityInfo activityInfo : activityInfoList) {
+            View itemView = layoutInflater.inflate(R.layout.item_activity_time_lucky_money, suggestion_card_list, false);
+            TextView timeTextView = itemView.findViewById(R.id.time);
+            TextView descriptionTextView = itemView.findViewById(R.id.description);
+            timeTextView.setText(activityInfo.formatTimeRange());
+            descriptionTextView.setText(activityInfo.formatDescription());
+            // 长按场次卡片：向系统日历App添加日程（预填后由用户确认保存，无需日历权限）
+            // 监听必须设在container上：它是clickable的会消费touch事件，外层CardView收不到长按
+            itemView.findViewById(R.id.container).setOnLongClickListener(v -> {
+                Intent calendarIntent = new Intent(Intent.ACTION_INSERT)
+                        .setData(CalendarContract.Events.CONTENT_URI);
+                calendarIntent.putExtra(CalendarContract.Events.TITLE, "美食大战老鼠抢红包");
+                calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, "这次你一定能抢到！！！");
+                long beginMillis = activityInfo.getBeginTime() * 1000L;
+                long endMillis = activityInfo.getEndTime() * 1000L;
+                // 主流日历（AOSP/Google）通过这两个extra读取起止时间，缺省时会落到当前时刻
+                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginMillis);
+                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endMillis);
+                // DTSTART/DTEND保留，兼容按数据列读取的其他日历
+                calendarIntent.putExtra(CalendarContract.Events.DTSTART, beginMillis);
+                calendarIntent.putExtra(CalendarContract.Events.DTEND, endMillis);
+                calendarIntent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Shanghai");
+                try {
+                    context.startActivity(calendarIntent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(context, "未找到日历应用", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            });
+            suggestion_card_list.addView(itemView);
         }
 
         Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)

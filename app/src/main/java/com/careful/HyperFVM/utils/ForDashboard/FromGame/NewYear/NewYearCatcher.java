@@ -5,14 +5,22 @@ import android.util.Log;
 import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
 import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NewYearCatcher {
     private static final String XML_URL = "https://cdn-qq-ms.123u.com/cdn.qq.123u.com/config/new_year.xml";
     private static final String TAG = "NewYearCatcher";
+
+    // 抢红包<li>场次标签的匹配模式（属性内不会出现>，可安全截取整个标签）
+    private static final Pattern LI_TAG_PATTERN = Pattern.compile("<li\\b[^>]*>");
 
     // 缓存XML内容，避免重复网络请求
     private String cachedXmlContent;
@@ -304,12 +312,12 @@ public class NewYearCatcher {
 
     /**
      * 异步解析抢红包活动内容
+     * 读取<LuckyMoney>包裹的<li>场次数据（条目数量不固定），生成场次列表并按当前时间判断活动状态
      */
     public void catchLuckyConsumptionInfo(LuckyConsumptionInfoCatchResultCallBack callBack) {
         // 网络请求必须在子线程执行，避免阻塞主线程
         new Thread(() -> {
             String errorMsg;
-            StringBuilder contentDetail; // 最终生成的结果文本
 
             try {
                 // 第1步：XML字符串并缓存
@@ -319,101 +327,186 @@ public class NewYearCatcher {
                     Log.e(TAG, "catchLuckyConsumptionInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
+                            generateLuckyMoneyMap("获取失败", "❌", "出错了呢", errorMsg, "")
                     );
 
                     return;
                 }
 
-                // 第2步：获取原始内容
+                // 第2步：获取<LuckyMoney>包裹的整块内容
                 Matcher matcher = XMLHelper.getContentByRegularExpression(cachedXmlContent,
-                        "stime\\s*=\\s*\"[^\"]*\"\\s+reddes\\s*=\\s*\"下午13:00-15:00之间，各个服务器随机间隔一定时间开启抢红包活动\"");
+                        "<LuckyMoney\\b[^>]*>[\\s\\S]*?</LuckyMoney>");
                 if (matcher == null) {
                     errorMsg = "内容获取失败，请联系开发者。";
                     Log.e(TAG, "catchLuckyConsumptionInfo：获取XML内容失败");
 
                     callBack.onResult(
-                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
+                            generateLuckyMoneyMap("获取失败", "❌", "出错了呢", errorMsg, "")
                     );
 
                     return;
                 }
 
-                String luckyMoneyInfo = matcher.group(0);
+                String luckyMoneyBlock = matcher.group(0);
 
-                if (luckyMoneyInfo == null || luckyMoneyInfo.trim().isEmpty()) {
+                if (luckyMoneyBlock == null || luckyMoneyBlock.trim().isEmpty()) {
                     errorMsg = "获取到的活动内容为空，请联系开发者并提交此界面截图";
                     Log.e(TAG, "catchLuckyConsumptionInfo: " + errorMsg);
 
                     callBack.onResult(
-                            generateMap("获取失败", "❌", "出错了呢", errorMsg)
+                            generateLuckyMoneyMap("获取失败", "❌", "出错了呢", errorMsg, "")
                     );
 
                     return;
                 }
-                Log.d(TAG, "catchLuckyConsumptionInfo: 原始内容：" + luckyMoneyInfo);
+                Log.d(TAG, "catchLuckyConsumptionInfo: 原始内容：" + luckyMoneyBlock);
 
                 /*
-                    第3步：从原始内容提取所有日期
-                    原始内容形如：[stime="12月25日|1月1日|1月26日|2月5日" reddes="下午13:00-15:00之间，各个服务器随机间隔一定时间开启抢红包活动"]
-                    需要进行一步步分割
+                    第3步：逐个解析<li>场次数据（条目数量不固定）
+                    原始内容形如：[<li beginTime="1787115600" endTime="1787122800" total="8800" userNum="100" minGet="12" maxGet="520"/>]
+                    不假设属性顺序，按属性名逐个提取，无效条目直接跳过
                  */
-                luckyMoneyInfo = luckyMoneyInfo.split("\"")[1];
-                String[] dateArray = luckyMoneyInfo.split("\\|");
-
-                /*
-                    第4步：
-                    因为这里不是yyyy-MM-dd的形式，所以我们只能逐一对比月和日
-                    如果当前日期能和其中一个匹配上，则说明今天有抢红包活动，直接退出
-                    否则继续寻找
-                    如果全部都没匹配上，则说明今天没有抢红包活动
-                 */
-                int currentMonth = TimeUtil.getCurrentMonth();
-                int currentDay = TimeUtil.getCurrentDay();
-                for (String s : dateArray) {
-                    int month = Integer.parseInt(s.split("月")[0]);
-                    int day = Integer.parseInt(s.split("月")[1].split("日")[0]);
-                    Log.d(TAG, "catchLuckyConsumptionInfo：正在匹配日期，今天：" + currentMonth + "月" + currentDay + "日，匹配到：" + month + "月" + day + "日");
-                    if (month == currentMonth && day == currentDay) {
-                        Log.d(TAG, "catchLuckyConsumptionInfo：匹配到了日期");
-                        contentDetail = new StringBuilder("今天13点到15点抢红包\n具体时刻请在游戏内查看");
-
-                        callBack.onResult(
-                                generateMap("恭喜发财", "\uD83E\uDDE7", "恭喜发财", contentDetail.toString())
-                        );
-
-                        return;
+                List<LuckyMoneyActivityInfo> activityInfoList = new ArrayList<>();
+                Matcher liMatcher = LI_TAG_PATTERN.matcher(luckyMoneyBlock);
+                while (liMatcher.find()) {
+                    LuckyMoneyActivityInfo activityInfo = parseLuckyMoneyLi(liMatcher.group(0));
+                    if (activityInfo != null) {
+                        activityInfoList.add(activityInfo);
                     }
                 }
 
-                // 来到这里的话说明今天没有抢红包活动
-                Log.d(TAG, "catchLuckyConsumptionInfo：一个日期都没匹配上");
-                contentDetail = new StringBuilder("👇这些日期才有抢红包活动👇\n");
-                for (int i = 0; i < dateArray.length; i += 2) {
-                    if (i + 1 < dateArray.length) {
-                        if (i + 1 == dateArray.length - 1) {
-                            contentDetail.append(dateArray[i]).append("、").append(dateArray[i + 1]);
-                        } else {
-                            contentDetail.append(dateArray[i]).append("、").append(dateArray[i + 1]).append("\n");
-                        }
-                    } else {
-                        contentDetail.append(dateArray[i]);
+                if (activityInfoList.isEmpty()) {
+                    errorMsg = "获取到的活动内容为空，请联系开发者并提交此界面截图";
+                    Log.e(TAG, "catchLuckyConsumptionInfo: " + errorMsg);
+
+                    callBack.onResult(
+                            generateLuckyMoneyMap("获取失败", "❌", "出错了呢", errorMsg, "")
+                    );
+
+                    return;
+                }
+
+                // 按开始时间升序排序，保证展示顺序固定
+                activityInfoList.sort(Comparator.comparingLong(LuckyMoneyActivityInfo::getBeginTime));
+                String serializedList = LuckyMoneyActivityInfo.serialize(activityInfoList);
+
+                /*
+                    第4步：按北京时间自然日判断当天是否有抢红包活动
+                    场次beginTime所在日期等于今天 → 今天有活动（不看当前时刻是否落在时段内）
+                    否则取最近一场尚未开始的场次；都没有则活动已全部结束
+                 */
+                String today = LuckyMoneyActivityInfo.formatToday();
+                long nowSeconds = System.currentTimeMillis() / 1000L;
+                LuckyMoneyActivityInfo todayInfo = null; // 今天举行的场次
+                LuckyMoneyActivityInfo nextInfo = null; // 最近一场尚未开始的场次
+                for (LuckyMoneyActivityInfo activityInfo : activityInfoList) {
+                    if (todayInfo == null && today.equals(activityInfo.formatDate())) {
+                        todayInfo = activityInfo;
+                    }
+                    if (nextInfo == null && nowSeconds < activityInfo.getBeginTime()) {
+                        nextInfo = activityInfo;
                     }
                 }
 
-                callBack.onResult(
-                        generateMap("暂无", "⏳", "等等等等", contentDetail.toString())
-                );
+                Map<String, String> resultMap;
+                if (todayInfo != null) {
+                    // 今天有抢红包活动，展示当天场次的具体时段
+                    Log.d(TAG, "catchLuckyConsumptionInfo：今天有抢红包活动");
+                    resultMap = generateLuckyMoneyMap("恭喜发财", "\uD83E\uDDE7", "恭喜发财",
+                            "今天" + todayInfo.formatTimeOfDayRange() + "抢红包\n具体时刻请在游戏内查看\n\n👇全部场次👇\n(长按卡片可以添加日程)", serializedList);
+                } else if (nextInfo != null) {
+                    // 今天没有活动，展示最近一场的日期（主界面不再显示“暂无”）
+                    Log.d(TAG, "catchLuckyConsumptionInfo：等待下一场");
+                    resultMap = generateLuckyMoneyMap(nextInfo.formatDate(), "⏳", "等等等等",
+                            "下一场：" + nextInfo.formatDate() + "\n\n👇全部场次👇\n(长按卡片可以添加日程)", serializedList);
+                } else {
+                    // 所有场次均已结束
+                    Log.d(TAG, "catchLuckyConsumptionInfo：所有场次已结束");
+                    resultMap = generateLuckyMoneyMap("暂无", "⏳", "空空如也",
+                            "抢红包活动已结束\n敬请期待下一期", serializedList);
+                }
+
+                callBack.onResult(resultMap);
 
             } catch (Exception e) {
                 // 必须回调失败结果：否则聚合器（ExecuteDailyTask）永远等不到本任务完成，界面会一直处于等待状态
                 Log.e(TAG, "捕获异常：" + e.getMessage(), e);
 
                 callBack.onResult(
-                        generateMap("获取失败", "❌", "出错了呢", "网络异常\n请检查网络后重试")
+                        generateLuckyMoneyMap("获取失败", "❌", "出错了呢", "网络异常\n请检查网络后重试", "")
                 );
             }
         }).start();
+    }
+
+    /**
+     * 解析单个<li>标签中的抢红包场次属性
+     * 不依赖属性顺序，按属性名逐个提取；任一属性缺失或格式非法则返回null（跳过该条）
+     *
+     * @param liTag 单个<li>标签的完整文本
+     * @return 解析成功返回场次数据，否则返回null
+     */
+    private LuckyMoneyActivityInfo parseLuckyMoneyLi(String liTag) {
+        String beginTimeStr = extractLuckyMoneyAttribute(liTag, "beginTime");
+        String endTimeStr = extractLuckyMoneyAttribute(liTag, "endTime");
+        String totalStr = extractLuckyMoneyAttribute(liTag, "total");
+        String userNumStr = extractLuckyMoneyAttribute(liTag, "userNum");
+        String minGetStr = extractLuckyMoneyAttribute(liTag, "minGet");
+        String maxGetStr = extractLuckyMoneyAttribute(liTag, "maxGet");
+
+        if (beginTimeStr == null || endTimeStr == null || totalStr == null
+                || userNumStr == null || minGetStr == null || maxGetStr == null) {
+            Log.e(TAG, "parseLuckyMoneyLi：场次属性缺失，跳过该条：" + liTag);
+            return null;
+        }
+
+        try {
+            long beginTime = Long.parseLong(beginTimeStr);
+            long endTime = Long.parseLong(endTimeStr);
+            int total = Integer.parseInt(totalStr);
+            int userNum = Integer.parseInt(userNumStr);
+            int minGet = Integer.parseInt(minGetStr);
+            int maxGet = Integer.parseInt(maxGetStr);
+
+            if (beginTime <= 0 || endTime < beginTime) {
+                Log.e(TAG, "parseLuckyMoneyLi：场次时间非法，跳过该条：" + liTag);
+                return null;
+            }
+
+            return new LuckyMoneyActivityInfo(beginTime, endTime, total, userNum, minGet, maxGet);
+        } catch (NumberFormatException e) {
+            Log.e(TAG, "parseLuckyMoneyLi：场次属性格式非法，跳过该条：" + liTag);
+            return null;
+        }
+    }
+
+    /**
+     * 从<li>标签文本中提取指定属性值
+     *
+     * @param liTag    单个<li>标签的完整文本
+     * @param attrName 属性名
+     * @return 属性值（已去除首尾空白），属性缺失时返回null
+     */
+    private String extractLuckyMoneyAttribute(String liTag, String attrName) {
+        Matcher matcher = Pattern.compile(attrName + "\\s*=\\s*\"([^\"]*)\"").matcher(liTag);
+        return matcher.find() ? Objects.requireNonNull(matcher.group(1)).trim() : null;
+    }
+
+    /**
+     * 生成抢红包结果Map（在通用结果基础上追加场次列表序列化字段）
+     * 所有分支（含失败分支）都必须携带resultList，避免下游拿到null
+     *
+     * @param resultSimple        显示在主界面的简要信息
+     * @param resultEmoji         显示在主界面和弹窗上的表情
+     * @param resultContentStatus 显示在弹窗上的状态信息
+     * @param resultContentDetail 显示在弹窗上的详细信息
+     * @param serializedList      序列化后的抢红包场次列表
+     * @return 生成的Map格式的数据
+     */
+    private Map<String, String> generateLuckyMoneyMap(String resultSimple, String resultEmoji, String resultContentStatus, String resultContentDetail, String serializedList) {
+        Map<String, String> resultMap = generateMap(resultSimple, resultEmoji, resultContentStatus, resultContentDetail);
+        resultMap.put("resultList", serializedList == null ? "" : serializedList);
+        return resultMap;
     }
 
     /**
