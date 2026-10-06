@@ -19,6 +19,10 @@
     <attr name="ImportantCardViewBackground" format="color" />
     <!--文字颜色-->
     <attr name="TextViewColorOnImportantCardView" format="color" />
+    <!--文字颜色-->
+    <attr name="SummaryTextViewColorOnImportantCardView" format="color" />
     <!--矢量图颜色-->
     <attr name="VectorGraphicColorOnImportantCardView" format="color" />
+    <!--大矢量图颜色-->
+    <attr name="LargeVectorGraphicColorOnImportantCardView" format="color" />
 </resources>
