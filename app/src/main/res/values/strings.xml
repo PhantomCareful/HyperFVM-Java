@@ -469,6 +469,8 @@
     <string name="title_card_odds_calculator_category_0">差卡</string>
     <string name="title_card_odds_calculator_category_1">中卡</string>
     <string name="title_card_odds_calculator_category_2">好卡</string>
+    <string name="title_card_odds_calculator_minimum_guarantee">保底说明</string>
+    <string name="content_card_odds_calculator_minimum_guarantee">启用保险金进行强化时会激活保底机制，当强化失败的累积概率（等号右边的值）超过120%后，下一次强化（无论是否启用保险金）必成。\n利用保底机制，您可以在强化高星级卡片时节省一次保险金费用。</string>
     <!--设置-->
     <string name="top_bar_settings">设置</string>
     <string name="title_settings_permission">授权检查</string>

@@ -1,7 +1,10 @@
 package com.careful.HyperFVM.Activities.Tools;
 
+import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -16,6 +19,7 @@ import androidx.annotation.NonNull;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -61,6 +65,8 @@ public class CardOddsCalculatorActivity extends BaseActivity {
 
     // 成功率结果展示组件
     private TextView totalView;
+    // 成功率组件的原始字号（onCreate 记录，每次缩字前先回到该字号再重新适配）
+    private float totalTextSizePx;
 
     // 选中组件的图片展示位：MAIN/SUB_1/SUB_2/SUB_3/FOUR_LEAF_CLOVER 选中项图片分别同步到这 5 个 ImageView
     private ImageView displayStarMain;
@@ -94,6 +100,8 @@ public class CardOddsCalculatorActivity extends BaseActivity {
 
         // 成功率结果展示组件
         totalView = findViewById(R.id.total_top);
+        // 记录原始字号（像素），供文案超宽时缩字适配、文案变短时恢复
+        totalTextSizePx = totalView.getTextSize();
 
         // 选中组件图片展示位与金币/保险金文案展示位
         displayStarMain = findViewById(R.id.display_star_main);
@@ -228,11 +236,55 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         String percentA = formatPercent(result1);
         String percentB = formatPercent(result2);
         String percentC = new BigDecimal(percentA).add(new BigDecimal(percentB)).toPlainString();
-        totalView.setText(String.format(Locale.CHINA, "%s%%+%s%%=%s%%",
-                percentA, percentB, percentC));
+
+        // 需求 8：percentA = 100 直接为“本次必成”；否则 percentC = 0 时不追加任何内容；
+        // 其余情况求最小整数 n 使 percentC × n 严格超过 120，n + 1 即 minimumGuaranteeNum，追加“保底X次”
+        String guaranteeText = "";
+        BigDecimal cValue = new BigDecimal(percentC);
+        if (new BigDecimal(percentA).compareTo(new BigDecimal("100")) == 0) {
+            guaranteeText = "本次必成";
+        } else if (cValue.compareTo(BigDecimal.ZERO) != 0) {
+            // 120/percentC 向下取整 + 1 = 首个严格超过 120 的倍数（整除时 +1 保证 > 而非 =）
+            long multiplier = BigDecimal.valueOf(120)
+                    .divide(cValue, 0, RoundingMode.DOWN)
+                    .add(BigDecimal.ONE)
+                    .longValue();
+            long minimumGuaranteeNum = multiplier + 1;
+            guaranteeText = "保底" + minimumGuaranteeNum + "次";
+        }
+        // 无追加内容时用不带尾逗号的格式（避免 percentC = 0 输出悬空逗号）
+        String format = guaranteeText.isEmpty() ? "%s%%+%s%%=%s%%" : "%s%%+%s%%=%s%% %s";
+        totalView.setText(String.format(Locale.CHINA, format,
+                percentA, percentB, percentC, guaranteeText));
+        // 文案可能超出一行：布局完成后按可用宽度自动缩字号，使其刚好一行显示完
+        totalView.post(this::fitTotalTextToSingleLine);
 
         // 同步展示区：各组选中项图片 + MAIN 对应的金币/保险金文案（覆盖初始/点击/恢复三处触发点）
         refreshDisplay();
+    }
+
+    /**
+     * 成功率文案自动缩字号（每次重算 setText 后 post 调用，此时宽度已就绪）：
+     * 先回到原始字号，若整串文本超出可用宽度（单行、不换行、不加省略号），
+     * 按 “原始字号 × 可用宽 / 文本宽” 等比缩小（同一字符串渲染宽度与 textSize 成正比），
+     * 再向下微调吸收字形渲染的舍入误差，得到刚好能一行显示完的最大字号
+     */
+    private void fitTotalTextToSingleLine() {
+        int available = totalView.getWidth() - totalView.getPaddingLeft() - totalView.getPaddingRight();
+        if (available <= 0 || totalTextSizePx <= 0) return; // 尚未布局，跳过本次适配
+
+        totalView.setTextSize(TypedValue.COMPLEX_UNIT_PX, totalTextSizePx);
+        String text = totalView.getText().toString();
+        float textWidth = totalView.getPaint().measureText(text);
+        if (textWidth <= available) return; // 放得下，保持原始字号
+
+        float newSize = totalTextSizePx * available / textWidth;
+        totalView.setTextSize(TypedValue.COMPLEX_UNIT_PX, newSize);
+        // 等比值可能因字形舍入仍略超宽，逐步下调直到放得下（下限 1px 防死循环）
+        while (newSize > 1f && totalView.getPaint().measureText(text) > available) {
+            newSize -= 0.5f;
+            totalView.setTextSize(TypedValue.COMPLEX_UNIT_PX, newSize);
+        }
     }
 
     /**
@@ -385,6 +437,10 @@ public class CardOddsCalculatorActivity extends BaseActivity {
 
         // 添加模糊材质
         setupBlurEffect();
+
+        // 添加按压动画
+        findViewById(R.id.content_card_odds_calculator_minimum_guarantee).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 
     /**

@@ -3052,6 +3052,40 @@
 
                 <Space
                     android:layout_width="wrap_content"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_card_odds_calculator_minimum_guarantee"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/content_card_odds_calculator_minimum_guarantee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="@string/content_card_odds_calculator_minimum_guarantee"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <Space
+                    android:layout_width="wrap_content"
                     android:layout_height="150dp" />
 
             </LinearLayout>
@@ -3100,9 +3134,10 @@
     <TextView
         android:id="@+id/total_top"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:paddingHorizontal="10dp"
         android:gravity="center"
+        android:maxLines="1"
         android:text="成功率：0%+0%"
         android:textSize="20sp"
         android:textStyle="bold"
