@@ -167,6 +167,19 @@
 
                 <include layout="@layout/card_world_boss"/>
 
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3">
+
+                    <include layout="@layout/card_dashboard_animal_activity"/>
+
+                    <Space android:layout_width="10dp" />
+
+                    <include layout="@layout/card_dashboard_sweetis_land"/>
+
+                </GridLayout>
+
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="15dp" />

@@ -32,6 +32,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDataImage.DataImageViewerHelper;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.NewYear.LuckyMoneyActivityInfo;
+import com.careful.HyperFVM.utils.ForDashboard.FromGame.SweetIsland.SweetIslandActivityInfo;
 import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.ForCardData.CardSearchSuggestion;
@@ -373,7 +374,7 @@ public class DialogBuilderManager {
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 开始逐个匹配卡片名称，直接复用目录页单卡布局展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.list);
         for (String cardName : cardList) {
             CardDataHelper.addCardRowToDialog(context, layoutInflater, suggestion_card_list, cardName);
         }
@@ -426,7 +427,7 @@ public class DialogBuilderManager {
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 开始逐个匹配卡片名称，直接复用目录页单卡布局展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.list);
         for (String cardName : cardList) {
             CardDataHelper.addCardRowToDialog(context, layoutInflater, suggestion_card_list, cardName);
         }
@@ -544,7 +545,7 @@ public class DialogBuilderManager {
      */
     public static void showDashboardTransferDiscountDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, List<String> discountList) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_card_list, null);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_list, null);
 
         TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
@@ -558,7 +559,7 @@ public class DialogBuilderManager {
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 开始逐个匹配卡片名称，直接复用目录页单卡布局展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.list);
         for (String cardName : discountList) {
             CardDataHelper.addCardRowToDialog(context, layoutInflater, suggestion_card_list, cardName);
         }
@@ -585,7 +586,7 @@ public class DialogBuilderManager {
      */
     public static void showDashboardLuckyMoneyDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, List<LuckyMoneyActivityInfo> activityInfoList) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_card_list, null);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_list, null);
 
         TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
@@ -599,7 +600,7 @@ public class DialogBuilderManager {
         contentDetailTextView.setText(contentDetail); // 设置内容文本
 
         // 逐条添加抢红包场次卡片
-        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.list);
         for (LuckyMoneyActivityInfo activityInfo : activityInfoList) {
             View itemView = layoutInflater.inflate(R.layout.item_activity_time_lucky_money, suggestion_card_list, false);
             TextView timeTextView = itemView.findViewById(R.id.time);
@@ -644,6 +645,73 @@ public class DialogBuilderManager {
     }
 
     /**
+     * 仪表盘：展示甜蜜岛/走马观花活动详细信息的弹窗，逐条列出每个开放场次
+     * @param context         上下文
+     * @param title           弹窗标题
+     * @param emoji           弹窗中的大表情
+     * @param contentStatus   状态内容
+     * @param contentDetail   详细内容
+     * @param activityInfoList 开放场次列表
+     */
+    public static void showDashboardAnimalAndSweetDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, List<SweetIslandActivityInfo> activityInfoList) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_list, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
+
+        // 逐条添加开放场次卡片
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.list);
+        for (SweetIslandActivityInfo activityInfo : activityInfoList) {
+            View itemView = layoutInflater.inflate(R.layout.item_activity_time_animal_and_sweet, suggestion_card_list, false);
+            TextView timeTextView = itemView.findViewById(R.id.time);
+            timeTextView.setText(activityInfo.formatTimeRange());
+            // 长按场次卡片：向系统日历App添加日程（预填后由用户确认保存，无需日历权限）
+            // 监听必须设在time上：它是clickable的会消费touch事件，外层CardView收不到长按
+            timeTextView.setOnLongClickListener(v -> {
+                Intent calendarIntent = new Intent(Intent.ACTION_INSERT)
+                        .setData(CalendarContract.Events.CONTENT_URI);
+                calendarIntent.putExtra(CalendarContract.Events.TITLE, "美食大战老鼠" + title);
+                calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, "这次你一定比上次更能肝！！！");
+                long beginMillis = activityInfo.getStartTime() * 1000L;
+                long endMillis = activityInfo.getEndTime() * 1000L;
+                // 主流日历（AOSP/Google）通过这两个extra读取起止时间，缺省时会落到当前时刻
+                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginMillis);
+                calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endMillis);
+                // DTSTART/DTEND保留，兼容按数据列读取的其他日历
+                calendarIntent.putExtra(CalendarContract.Events.DTSTART, beginMillis);
+                calendarIntent.putExtra(CalendarContract.Events.DTEND, endMillis);
+                calendarIntent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Shanghai");
+                try {
+                    context.startActivity(calendarIntent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(context, "未找到日历应用", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            });
+            suggestion_card_list.addView(itemView);
+        }
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        // 添加背景模糊
+        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        dialog.show();
+    }
+
+    /**
      * 仪表盘：展示福利打卡详细信息的弹窗，并可以直接跳转新卡片详情页（要求数据库不低于指定版本）
      * @param title         弹窗标题
      * @param emoji         弹窗中的大表情
@@ -655,7 +723,7 @@ public class DialogBuilderManager {
     @SuppressLint("SetTextI18n")
     public static void showDashboardBirthdayActivityDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, String newCardName, int requiredDatabaseVersion) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_card_list, null);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_with_list, null);
 
         TextView titleTextView = dialogView.findViewById(R.id.title);
         TextView emojiTextView = dialogView.findViewById(R.id.emoji);
@@ -668,7 +736,7 @@ public class DialogBuilderManager {
         contentStatusTextView.setText(contentStatus); // 设置状态文本
 
         // 开始逐个匹配卡片名称，直接复用目录页单卡布局展示卡片信息，点击可跳转数据详情页
-        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.suggestion_card_list_dashboard);
+        LinearLayout suggestion_card_list = dialogView.findViewById(R.id.list);
         if (Integer.parseInt(context.getString(R.string.version_card_data_search)) >= requiredDatabaseVersion) {
             if (!CardDataHelper.addCardRowToDialog(context, layoutInflater, suggestion_card_list, newCardName)) {
                 return;

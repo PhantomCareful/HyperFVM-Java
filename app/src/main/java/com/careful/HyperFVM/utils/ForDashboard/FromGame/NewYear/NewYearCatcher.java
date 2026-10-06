@@ -388,7 +388,6 @@ public class NewYearCatcher {
 
                 // 按开始时间升序排序，保证展示顺序固定
                 activityInfoList.sort(Comparator.comparingLong(LuckyMoneyActivityInfo::getBeginTime));
-                String serializedList = LuckyMoneyActivityInfo.serialize(activityInfoList);
 
                 /*
                     第4步：按北京时间自然日判断当天是否有抢红包活动
@@ -396,6 +395,12 @@ public class NewYearCatcher {
                     否则取最近一场尚未开始的场次；都没有则活动已全部结束
                  */
                 String today = LuckyMoneyActivityInfo.formatToday();
+
+                // 过滤掉早于当天的场次：列表只展示今天及以后的场次（yyyy-MM-dd字符串字典序即日期先后序）
+                // 过滤后列表为空与下方“所有场次已结束”分支严格等价，弹窗列表与卡片状态天然一致
+                activityInfoList.removeIf(activityInfo -> activityInfo.formatDate().compareTo(today) < 0);
+                String serializedList = LuckyMoneyActivityInfo.serialize(activityInfoList);
+
                 long nowSeconds = System.currentTimeMillis() / 1000L;
                 LuckyMoneyActivityInfo todayInfo = null; // 今天举行的场次
                 LuckyMoneyActivityInfo nextInfo = null; // 最近一场尚未开始的场次
@@ -423,7 +428,7 @@ public class NewYearCatcher {
                     // 所有场次均已结束
                     Log.d(TAG, "catchLuckyConsumptionInfo：所有场次已结束");
                     resultMap = generateLuckyMoneyMap("暂无", "⏳", "空空如也",
-                            "抢红包活动已结束\n敬请期待下一期", serializedList);
+                            "还没有新的活动呢", serializedList);
                 }
 
                 callBack.onResult(resultMap);

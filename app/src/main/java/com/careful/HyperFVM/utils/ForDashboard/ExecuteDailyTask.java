@@ -4,6 +4,7 @@ import com.careful.HyperFVM.utils.ForDashboard.FromGame.Activity.ActivityCatcher
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.FertilizationTask.FertilizationTaskCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.MeishiWechat.GiftFetcher;
 import com.careful.HyperFVM.utils.ForDashboard.FromGame.NewYear.NewYearCatcher;
+import com.careful.HyperFVM.utils.ForDashboard.FromGame.SweetIsland.SweetIslandCatcher;
 import com.careful.HyperFVM.utils.ForDashboard.FromGit.DashboardGitCatcher;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ExecuteDailyTask {
     private final ActivityCatcher activityCatcher;
     private final FertilizationTaskCatcher fertilizationTaskCatcher;
     private final NewYearCatcher newYearCatcher;
+    private final SweetIslandCatcher sweetIslandCatcher;
     private final DashboardGitCatcher dashboardGitCatcher;
 
     public ExecuteDailyTask() {
@@ -31,6 +33,7 @@ public class ExecuteDailyTask {
         activityCatcher = new ActivityCatcher();
         fertilizationTaskCatcher = new FertilizationTaskCatcher();
         newYearCatcher = new NewYearCatcher();
+        sweetIslandCatcher = new SweetIslandCatcher();
         dashboardGitCatcher = new DashboardGitCatcher();
     }
 
@@ -81,6 +84,8 @@ public class ExecuteDailyTask {
         final boolean[] catchBountyInfoDone = {false};
         final boolean[] catchMillionConsumptionInfoDone = {false};
         final boolean[] catchLuckyConsumptionInfoDone = {false};
+        final boolean[] catchSweetIslandInfoDone = {false};
+        final boolean[] catchAnimalActivityInfoDone = {false};
         final boolean[] catchGitDashboardInfoDone = {false};
 
         // 一次性回调保护：避免超时兜底与子任务回调同时触发导致重复回调
@@ -92,7 +97,7 @@ public class ExecuteDailyTask {
         Runnable checkAndSend = () -> {
             String result = null;
             synchronized (stateLock) {
-                if (!hasReturned[0] && catchTodayActivityInfoDone[0] && catchFertilizationTaskInfoDone[0] && catchBountyInfoDone[0] && catchMillionConsumptionInfoDone[0] && catchLuckyConsumptionInfoDone[0] && catchGitDashboardInfoDone[0]) {
+                if (!hasReturned[0] && catchTodayActivityInfoDone[0] && catchFertilizationTaskInfoDone[0] && catchBountyInfoDone[0] && catchMillionConsumptionInfoDone[0] && catchLuckyConsumptionInfoDone[0] && catchSweetIslandInfoDone[0] && catchAnimalActivityInfoDone[0] && catchGitDashboardInfoDone[0]) {
                     hasReturned[0] = true;
                     result = catchTodayActivityInfoResult[0] + "\n" +
                             catchFertilizationTaskInfoResult[0] + " " + catchBountyInfoResult[0] + "\n" +
@@ -131,9 +136,11 @@ public class ExecuteDailyTask {
                         catchGitDashboardInfoResult[0] = "🏝️三岛：❌超时 🥟大赛：❌超时";
                         catchGitDashboardInfoDone[0] = true;
                     }
-                    // 百万消费、抢红包任务不参与最终文本拼接，仅需置位完成标志
+                    // 百万消费、抢红包、甜蜜岛、走马观花任务不参与最终文本拼接，仅需置位完成标志
                     catchMillionConsumptionInfoDone[0] = true;
                     catchLuckyConsumptionInfoDone[0] = true;
+                    catchSweetIslandInfoDone[0] = true;
+                    catchAnimalActivityInfoDone[0] = true;
                 }
 
                 // 所有子任务已判定完成，统一走完成检查
@@ -174,6 +181,18 @@ public class ExecuteDailyTask {
             }
             checkAndSend.run();
         });
+        sweetIslandCatcher.catchSweetIslandInfo(result -> {
+            synchronized (stateLock) {
+                catchSweetIslandInfoDone[0] = true;
+            }
+            checkAndSend.run();
+        });
+        sweetIslandCatcher.catchAnimalActivityInfo(result -> {
+            synchronized (stateLock) {
+                catchAnimalActivityInfoDone[0] = true;
+            }
+            checkAndSend.run();
+        });
         dashboardGitCatcher.catchGitDashboardInfo(result -> {
             synchronized (stateLock) {
                 catchGitDashboardInfoResult[0] = "🏝️三岛：" + result.get("resultThreeIslandsSimple") + " 🥟大赛：" + result.get("resultFoodContestSimple");
@@ -191,6 +210,8 @@ public class ExecuteDailyTask {
         final List<Map<String, String>> catchBountyInfoResult = new ArrayList<>(Collections.nCopies(1, null));
         final List<Map<String, String>> catchMillionConsumptionInfoResult = new ArrayList<>(Collections.nCopies(1, null));
         final List<Map<String, String>> catchLuckyConsumptionInfoResult = new ArrayList<>(Collections.nCopies(1, null));
+        final List<Map<String, String>> catchSweetIslandInfoResult = new ArrayList<>(Collections.nCopies(1, null));
+        final List<Map<String, String>> catchAnimalActivityInfoResult = new ArrayList<>(Collections.nCopies(1, null));
         final List<Map<String, String>> catchGitDashboardInfoResult = new ArrayList<>(Collections.nCopies(1, null));
         final boolean[] catchMeishiWechatInfoDone = {false};
         final boolean[] catchTodayActivityInfoDone = {false};
@@ -198,6 +219,8 @@ public class ExecuteDailyTask {
         final boolean[] catchBountyInfoDone = {false};
         final boolean[] catchMillionConsumptionInfoDone = {false};
         final boolean[] catchLuckyConsumptionInfoDone = {false};
+        final boolean[] catchSweetIslandInfoDone = {false};
+        final boolean[] catchAnimalActivityInfoDone = {false};
         final boolean[] catchGitDashboardInfoDone = {false};
 
         // 一次性回调保护：避免超时兜底与子任务回调同时触发导致重复回调
@@ -209,7 +232,7 @@ public class ExecuteDailyTask {
         Runnable checkAndReturn = () -> {
             boolean needReturn = false;
             synchronized (stateLock) {
-                if (!hasReturned[0] && catchMeishiWechatInfoDone[0] && catchTodayActivityInfoDone[0] && catchFertilizationTaskInfoDone[0] && catchBountyInfoDone[0] && catchMillionConsumptionInfoDone[0] && catchLuckyConsumptionInfoDone[0] && catchGitDashboardInfoDone[0]) {
+                if (!hasReturned[0] && catchMeishiWechatInfoDone[0] && catchTodayActivityInfoDone[0] && catchFertilizationTaskInfoDone[0] && catchBountyInfoDone[0] && catchMillionConsumptionInfoDone[0] && catchLuckyConsumptionInfoDone[0] && catchSweetIslandInfoDone[0] && catchAnimalActivityInfoDone[0] && catchGitDashboardInfoDone[0]) {
                     hasReturned[0] = true;
                     needReturn = true;
                 }
@@ -259,6 +282,23 @@ public class ExecuteDailyTask {
                 // 超时兜底结果不含resultList，取值可能为null，统一转为空串避免下游判空
                 String luckyConsumptionInfoList = catchLuckyConsumptionInfoResult.get(0).get("resultList");
                 result.put("resultLuckyConsumptionInfoList", luckyConsumptionInfoList == null ? "" : luckyConsumptionInfoList);
+
+                // 甜蜜岛
+                result.put("resultSweetIslandSimple", catchSweetIslandInfoResult.get(0).get("resultSimple"));
+                result.put("resultSweetIslandEmoji", catchSweetIslandInfoResult.get(0).get("resultEmoji"));
+                result.put("resultSweetIslandContentStatus", catchSweetIslandInfoResult.get(0).get("resultContentStatus"));
+                result.put("resultSweetIslandContentDetail", catchSweetIslandInfoResult.get(0).get("resultContentDetail"));
+                // 超时兜底结果不含resultList，取值可能为null，统一转为空串避免下游判空
+                String sweetIslandList = catchSweetIslandInfoResult.get(0).get("resultList");
+                result.put("resultSweetIslandList", sweetIslandList == null ? "" : sweetIslandList);
+
+                // 走马观花
+                result.put("resultAnimalActivitySimple", catchAnimalActivityInfoResult.get(0).get("resultSimple"));
+                result.put("resultAnimalActivityEmoji", catchAnimalActivityInfoResult.get(0).get("resultEmoji"));
+                result.put("resultAnimalActivityContentStatus", catchAnimalActivityInfoResult.get(0).get("resultContentStatus"));
+                result.put("resultAnimalActivityContentDetail", catchAnimalActivityInfoResult.get(0).get("resultContentDetail"));
+                String animalActivityList = catchAnimalActivityInfoResult.get(0).get("resultList");
+                result.put("resultAnimalActivityList", animalActivityList == null ? "" : animalActivityList);
 
                 // 日氪
                 result.put("resultDailyRechargeSimple", catchGitDashboardInfoResult.get(0).get("resultDailyRechargeSimple"));
@@ -384,6 +424,14 @@ public class ExecuteDailyTask {
                         catchLuckyConsumptionInfoResult.set(0, generateCommonTimeoutResult());
                         catchLuckyConsumptionInfoDone[0] = true;
                     }
+                    if (!catchSweetIslandInfoDone[0]) {
+                        catchSweetIslandInfoResult.set(0, generateCommonTimeoutResult());
+                        catchSweetIslandInfoDone[0] = true;
+                    }
+                    if (!catchAnimalActivityInfoDone[0]) {
+                        catchAnimalActivityInfoResult.set(0, generateCommonTimeoutResult());
+                        catchAnimalActivityInfoDone[0] = true;
+                    }
                     if (!catchGitDashboardInfoDone[0]) {
                         catchGitDashboardInfoResult.set(0, DashboardGitCatcher.buildFailResult());
                         catchGitDashboardInfoDone[0] = true;
@@ -437,6 +485,20 @@ public class ExecuteDailyTask {
             }
             checkAndReturn.run();
         });
+        sweetIslandCatcher.catchSweetIslandInfo(result -> {
+            synchronized (stateLock) {
+                catchSweetIslandInfoResult.set(0, result);
+                catchSweetIslandInfoDone[0] = true;
+            }
+            checkAndReturn.run();
+        });
+        sweetIslandCatcher.catchAnimalActivityInfo(result -> {
+            synchronized (stateLock) {
+                catchAnimalActivityInfoResult.set(0, result);
+                catchAnimalActivityInfoDone[0] = true;
+            }
+            checkAndReturn.run();
+        });
         dashboardGitCatcher.catchGitDashboardInfo(result -> {
             synchronized (stateLock) {
                 catchGitDashboardInfoResult.set(0, result);
@@ -457,7 +519,7 @@ public class ExecuteDailyTask {
     }
 
     /**
-     * 构建常规子任务超时兜底结果（双爆/施肥/悬赏/百万消费/抢红包通用，含5个key）
+     * 构建常规子任务超时兜底结果（双爆/施肥/悬赏/百万消费/抢红包/甜蜜岛/走马观花通用，含5个key）
      */
     private Map<String, String> generateCommonTimeoutResult() {
         Map<String, String> result = new HashMap<>();
