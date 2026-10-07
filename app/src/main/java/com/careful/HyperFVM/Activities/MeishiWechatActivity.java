@@ -38,6 +38,7 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -176,6 +177,7 @@ public class MeishiWechatActivity extends BaseActivity {
                         Toast.makeText(this, "链接格式不正确", Toast.LENGTH_SHORT).show();
                     } else {
                         fetchPlayerInfo(false);
+                        dialog.dismiss();
                     }
                 } else {
                     Toast.makeText(this, "链接不能为空", Toast.LENGTH_SHORT).show();
@@ -216,10 +218,17 @@ public class MeishiWechatActivity extends BaseActivity {
         // 长按删除逻辑
         cardView.setOnLongClickListener(v -> {
             DialogBuilderManager.showDialogWithCallBack(
-                    this, "删除账号", "🗑️", "确定要删除 " + (info.playerName != null ? info.playerName : info.openid) + " 吗？",
+                    this, "删除账号", "🗑️", "确定要删除 " + (info.playerName != null ? isShow ? info.playerName : "🙅🙅🙅🙅🙅" : "未知角色") + " 吗？",
                     true, "咱手滑了", "删除", () -> {
-                        dbHelper.deleteMeishiWechat(info.openid);
-                        loadAccountList();
+                        if (HyperFVMApplication.isContentBiometricAuthEnabled(this)) {
+                            BiometricAuthHelper.simpleBiometricAuth(this, () -> {
+                                dbHelper.deleteMeishiWechat(info.openid);
+                                loadAccountList();
+                            });
+                        } else {
+                            dbHelper.deleteMeishiWechat(info.openid);
+                            loadAccountList();
+                        }
                     }
             );
             return true;
@@ -360,8 +369,15 @@ public class MeishiWechatActivity extends BaseActivity {
         // 顺便设置按钮的功能
         floatButtonBack.setOnClickListener(v -> this.finish());
         floatButtonShow.setOnClickListener(v -> {
-            isShow = !isShow;
-            loadAccountList();
+            if (HyperFVMApplication.isContentBiometricAuthEnabled(this) && !isShow) {
+                BiometricAuthHelper.simpleBiometricAuth(this, () -> {
+                    isShow = !isShow;
+                    loadAccountList();
+                });
+            } else {
+                isShow = !isShow;
+                loadAccountList();
+            }
         });
         floatButtonAdd.setOnClickListener(v -> showAddLinkDialog());
 

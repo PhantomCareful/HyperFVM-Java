@@ -404,10 +404,8 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch.setChecked(toastIsVisibleRefreshDashboard);
         // 生物认证开关
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
-        if (BiometricAuthHelper.isBiometricAvailable(this)) {
-            // 设备支持生物认证
-            boolean isBiometricAuth = dbHelper.getSettingBooleanValue(CONTENT_IS_BIOMETRIC_AUTH);
-            materialSwitch.setChecked(isBiometricAuth);
+        if (HyperFVMApplication.isContentBiometricAuthEnabled(this)) {
+            materialSwitch.setChecked(true);
         } else {
             // 设备不支持生物认证
             materialSwitch.setChecked(false);
@@ -514,23 +512,25 @@ public class SettingsActivity extends BaseActivity {
         MaterialSwitch finalMaterialSwitch7 = materialSwitch;
         materialSwitch.setOnClickListener(v -> {
             boolean isChecked = finalMaterialSwitch7.isChecked();
-            BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
-                    getResources().getString(R.string.biometric_auth_sub_title), () -> {
-                        // 验证成功
-                        dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, Boolean.toString(!isChecked));
-                        isPermitSwitchChanging = true;
-                        finalMaterialSwitch7.setChecked(!isChecked);
+            BiometricAuthHelper.simpleBiometricAuth(this, () -> {
+                // 验证成功
+                dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, Boolean.toString(!isChecked));
+                isPermitSwitchChanging = true;
+                finalMaterialSwitch7.setChecked(!isChecked);
+                // 同步更新 Application 中的缓存值，保证新打开的页面无需重启也能读取到最新设置
+                HyperFVMApplication.setContentIsBiometricAuth(finalMaterialSwitch7.isChecked());
             });
         });
         findViewById(R.id.Switch_BiometricAuth_Container).setOnClickListener(v -> {
             boolean isChecked = finalMaterialSwitch7.isChecked();
-            BiometricAuthHelper.simpleBiometricAuth(this, getResources().getString(R.string.biometric_auth_title),
-                    getResources().getString(R.string.biometric_auth_sub_title), () -> {
-                        // 验证成功
-                        dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, Boolean.toString(!isChecked));
-                        isPermitSwitchChanging = true;
-                        finalMaterialSwitch7.setChecked(!isChecked);
-                    });
+            BiometricAuthHelper.simpleBiometricAuth(this, () -> {
+                // 验证成功
+                dbHelper.updateSettingValue(CONTENT_IS_BIOMETRIC_AUTH, Boolean.toString(!isChecked));
+                isPermitSwitchChanging = true;
+                finalMaterialSwitch7.setChecked(!isChecked);
+                // 同步更新 Application 中的缓存值，保证新打开的页面无需重启也能读取到最新设置
+                HyperFVMApplication.setContentIsBiometricAuth(finalMaterialSwitch7.isChecked());
+            });
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         });
         materialSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {

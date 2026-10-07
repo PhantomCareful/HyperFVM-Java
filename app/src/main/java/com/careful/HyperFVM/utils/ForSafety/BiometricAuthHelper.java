@@ -1,13 +1,14 @@
 package com.careful.HyperFVM.utils.ForSafety;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+
+import com.careful.HyperFVM.R;
 
 import java.util.concurrent.Executor;
 
@@ -93,8 +94,8 @@ public class BiometricAuthHelper {
      * @param fragment 调用此方法的Fragment
      * @param successAction 验证成功后的操作（Runnable）
      */
-    public static void simpleBiometricAuth(Fragment fragment, String title, String subTitle, Runnable successAction) {
-        simpleBiometricAuth(fragment.requireActivity(), title, subTitle, successAction);
+    public static void simpleBiometricAuth(Fragment fragment, Runnable successAction) {
+        simpleBiometricAuth(fragment.requireActivity(), successAction);
     }
 
     /**
@@ -103,9 +104,10 @@ public class BiometricAuthHelper {
      * @param activity 调用此方法的Activity
      * @param successAction 验证成功后的操作（Runnable）
      */
-    public static void simpleBiometricAuth(FragmentActivity activity, String title, String subTitle, Runnable successAction) {
+    public static void simpleBiometricAuth(FragmentActivity activity, Runnable successAction) {
         authenticateWithBiometric(activity,
-                title, subTitle,
+                activity.getResources().getString(R.string.biometric_auth_title),
+                activity.getResources().getString(R.string.biometric_auth_sub_title),
                 new BiometricAuthCallback() {
                     @Override
                     public void onAuthenticationSuccess() {
@@ -122,11 +124,6 @@ public class BiometricAuthHelper {
 
                     @Override
                     public void onBiometricUnavailable() {
-                        activity.runOnUiThread(() -> {
-                            Toast.makeText(activity, "生物识别不可用", Toast.LENGTH_SHORT).show();
-                            // 可以选择是否继续执行操作
-                            // successAction.run();
-                        });
                     }
                 });
     }

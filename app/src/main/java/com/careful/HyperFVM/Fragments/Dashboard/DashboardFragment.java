@@ -1,6 +1,5 @@
 package com.careful.HyperFVM.Fragments.Dashboard;
 
-import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_IS_BIOMETRIC_AUTH;
 import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_TOAST_IS_VISIBLE_REFRESH_DASHBOARD;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
@@ -47,7 +46,6 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtil
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
-import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
@@ -460,19 +458,8 @@ public class DashboardFragment extends Fragment {
                 R.drawable.ic_round_remove_circle_outline : R.drawable.ic_round_check_circle_outline);
         // 设置点击打开详情弹窗
         dashboardMeishiWechatContainer.setOnClickListener(v -> {
-            if (dbHelper.getSettingBooleanValue(CONTENT_IS_BIOMETRIC_AUTH)) {
-                // 指纹验证(如果开启的话)
-                BiometricAuthHelper.simpleBiometricAuth(
-                        this, getResources().getString(R.string.biometric_auth_title), getResources().getString(R.string.biometric_auth_sub_title), () -> {
-                            // 验证成功后执行的操作
-                            Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
-                            startActivity(intent);
-                        });
-            } else {
-                // 直接进入
-                Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(requireActivity(), MeishiWechatActivity.class);
+            startActivity(intent);
         });
 
         // 读取双倍双爆结果

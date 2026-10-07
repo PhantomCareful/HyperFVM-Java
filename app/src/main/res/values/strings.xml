@@ -503,7 +503,7 @@
     <string name="description_settings_toast_switch_refresh_dashboard">“刷新完成~”</string>
     <string name="title_settings_safety">安全</string>
     <string name="title_settings_switch_biometric_auth">启用设备生物认证</string>
-    <string name="description_settings_biometric_auth">进入温馨礼包链接管理界面前将验证指纹</string>
+    <string name="description_settings_biometric_auth">管理温馨礼包链接时将验证指纹</string>
     <string name="description_settings_biometric_auth_description_not_support">当前设备不支持，请检查设备是否支持指纹解锁或是否已录入指纹</string>
     <string name="biometric_auth_title">👀确保那是你👀</string>
     <string name="biometric_auth_sub_title">🫰验证您的指纹以继续操作🫰</string>
