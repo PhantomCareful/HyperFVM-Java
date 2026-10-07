@@ -51,12 +51,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="26dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/button_action_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="11dp"
+                android:gravity="center"
+                android:text="测试链接"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnPrimary"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="13dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/button_action_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="11dp"
+                android:gravity="center"
+                android:text="添加链接"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnPrimary"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="13dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:cardBackgroundColor="?attr/colorSurfaceContainer"
             app:cardCornerRadius="20dp">
 
@@ -70,32 +119,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"/>
-
-        </androidx.cardview.widget.CardView>
-
-        <Space
-            android:layout_width="26dp"
-            android:layout_height="wrap_content" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:cardBackgroundColor="?attr/colorPrimary"
-            app:cardCornerRadius="20dp">
-
-            <TextView
-                android:id="@+id/button_action"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="11dp"
-                android:gravity="center"
-                android:text="添加链接"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="?attr/colorOnPrimary"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 
