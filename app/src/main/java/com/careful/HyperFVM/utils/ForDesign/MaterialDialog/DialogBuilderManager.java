@@ -61,8 +61,9 @@ public class DialogBuilderManager {
      * @param content 弹窗内容
      * @param cancelable 弹窗是否可以通过点击背景关闭
      * @param positiveButtonTitle 弹窗按钮标题，比如【确定】
+     * @return 已展示的弹窗实例，调用方可挂载dismiss监听等
      */
-    public static void showDialog(Context context, String title, String emoji, String content, boolean cancelable, String positiveButtonTitle) {
+    public static Dialog showDialog(Context context, String title, String emoji, String content, boolean cancelable, String positiveButtonTitle) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_general, null);
 
@@ -85,6 +86,7 @@ public class DialogBuilderManager {
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
         dialog.show();
+        return dialog;
     }
 
     /**
@@ -97,8 +99,9 @@ public class DialogBuilderManager {
      * @param positiveButtonTitle 弹窗按钮标题，比如【确定】
      * @param negativeButtonTitle 弹窗按钮标题，比如【关闭窗口】
      * @param callBack 回调事件，点击按钮后执行
+     * @return 已展示的弹窗实例，调用方可挂载dismiss监听等
      */
-    public static void showDialogWithCallBack(
+    public static Dialog showDialogWithCallBack(
             Context context, String title, String emoji, String content, boolean cancelable,
             String negativeButtonTitle, String positiveButtonTitle, PositiveButtonClickCallBack callBack
     ) {
@@ -132,6 +135,7 @@ public class DialogBuilderManager {
         // 添加背景模糊
         DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
         dialog.show();
+        return dialog;
     }
 
     /**

@@ -153,6 +153,31 @@
         <activity
             android:name=".Activities.MeishiWechatActivity"
             android:exported="false" />
+        <!-- 链接接入中转页：透明壳，收到链接后直接在来源应用（如微信）画面上弹确认框，
+             确认/取消后finish回到来源应用，不跳转任何业务界面。
+             taskAffinity="" + excludeFromRecents：不并入本App主任务，不留在最近任务列表 -->
+        <activity
+            android:name=".Activities.MeishiLinkReceiverActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden|uiMode|density"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/Theme.HyperFVMJava.LinkReceiver">
+            <!-- 应用链接声明：安装后系统会尝试自动验证，因域名不归本App所有会验证失败，
+                 但只有声明了autoVerify，系统设置的“默认打开”页面才会列出该域名供用户手动勾选 -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:host="meishi.wechat.123u.com" />
+                <data android:scheme="https" />
+                <data android:host="meishi.wechat.123u.com" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.UpdateLogHistory.UpdateLogHistoryActivity"
             android:exported="false" />

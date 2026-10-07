@@ -52,4 +52,14 @@
         <item name="LargeVectorGraphicColorOnImportantCardView">?attr/colorPrimary</item>
     </style>
 
+    <!-- 链接接入中转页：全透明不抢焦点，确认弹窗直接浮在来源应用（如微信）画面上，
+         确认/取消后立即finish回到来源应用。不能调用ThemeManager.applyTheme（setTheme会覆盖透明属性） -->
+    <style name="Theme.HyperFVMJava.LinkReceiver" parent="Base.Theme.HyperFVMJava.NoShadow">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
 </resources>

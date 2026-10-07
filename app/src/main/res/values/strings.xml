@@ -478,6 +478,8 @@
     <string name="description_settings_permission_notification">授予通知权限后，可在设备的控制中心添加HyperFVM磁贴，点击磁贴即可领取温馨礼包，并向您推送部分重要的仪表盘数据</string>
     <string name="title_settings_permission_install">软件包安装权限</string>
     <string name="description_settings_permission_install">授予安装权限后，当您在App内收到更新推送并下载好新版本安装包后，才能够顺利调起系统的软件包安装程序进行升级</string>
+    <string name="title_settings_permission_links">允许打开受支持的链接</string>
+    <string name="description_settings_permission_links">允许打开受支持的链接后，您在添加温馨礼包链接时，只需要直接访问这个链接，就可以自动跳转到App内，自动添加；您也可以在微信公众号-美食中心内，选择用App打开链接，同样可以自动添加</string>
     <string name="title_settings_theme">主题</string>
     <string name="tips_settings_theme">更改主题设置后，重启App可生效。点击右上角按钮可快捷重启。</string>
     <string name="title_settings_switch_is_dynamic_color">动态取色</string>
