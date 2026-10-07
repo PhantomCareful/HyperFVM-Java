@@ -330,9 +330,9 @@ public class DashboardFragment extends Fragment {
         if (sDataLoaded && sCachedData != null) {
             displayDashboardData(sCachedData);
             if (isShowWorldBossCard) {
-                root.findViewById(R.id.card_world_boss_container).setVisibility(View.VISIBLE);
+                root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.VISIBLE);
             } else {
-                root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
+                root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.GONE);
             }
             return;
         }
@@ -735,26 +735,25 @@ public class DashboardFragment extends Fragment {
             Date challenge = TimeUtil.transformStringToDate(challengeDate);
             Date settlement = TimeUtil.transformStringToDate(settlementDate);
             Date end = TimeUtil.transformStringToDate(endDate);
+
             // 获取进度条组件
-            LinearProgressIndicator dashboardWorldBossLinearProgressIndicator1 = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator_1);
-            LinearProgressIndicator dashboardWorldBossLinearProgressIndicator2 = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator_2);
-            LinearProgressIndicator dashboardWorldBossLinearProgressIndicator3 = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator_3);
+            LinearProgressIndicator progressIndicator = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator);
 
             if (today.before(start)) {
                 // 情况1：早于预热期，进度设为0
                 Log.d("WorldBoss", "情况1：早于预热期");
-                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(0, true);// 第二个参数表示是否使用动画
-                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(0, true);
-                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(0, true);
+                progressIndicator.setProgressCompat(0, true);// 第二个参数表示是否使用动画
+
+                // 显示部分组件
+                progressIndicator.setVisibility(View.VISIBLE);
+                contentDetail.setVisibility(View.VISIBLE);
 
                 contentStatus.setText(dashboardWorldBossContentStatus);
                 dashboardWorldBoss.setText("即将开始");
             } else if (today.before(challenge)) {
                 // 情况2：晚于预热期且早于挑战期，进度设为50
                 Log.d("WorldBoss", "情况2：晚于预热期且早于挑战期");
-                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(50, true);
-                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(0, true);
-                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(0, true);
+                progressIndicator.setProgressCompat(50, true);
 
                 contentStatus.setText("预热期：新赛季即将开始，请做好准备✊");
                 dashboardWorldBoss.setText("预热期");
@@ -764,9 +763,7 @@ public class DashboardFragment extends Fragment {
                 int duringCount = TimeUtil.calculateDaysBetween(challengeDate, todayDate);
                 // 不包含结算期，天数要减1
                 int length = TimeUtil.calculateDaysBetween(challengeDate, settlementDate) - 1;
-                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(100, true);
-                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(100 * duringCount / (length + 1), true);
-                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(0, true);
+                progressIndicator.setProgressCompat(100 * duringCount / (length + 1), true);
 
                 contentStatus.setText("挑战期：第" + duringCount + "天/持续" + length + "天\n" + "每天23:50关闭入口，请注意把握时间⏰");
                 dashboardWorldBoss.setText(duringCount + "/" + length);
@@ -776,20 +773,20 @@ public class DashboardFragment extends Fragment {
                 int duringCount = TimeUtil.calculateDaysBetween(settlementDate, todayDate);
                 // 不包含结算期，天数要减1
                 int length = TimeUtil.calculateDaysBetween(settlementDate, endDate) - 1;
-                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(100, true);
-                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(100, true);
-                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(100 * duringCount / (length + 1), true);
+                progressIndicator.setProgressCompat(100 * duringCount / (length + 1), true);
 
                 contentStatus.setText("结算期：第" + duringCount + "天/持续" + length + "天⏳");
                 dashboardWorldBoss.setText("结算期");
             } else if (today.equals(end)) {
-                // 情况5：等于结束日期，进度设为50
+                // 情况5：等于结束日期，进度设为100
                 Log.d("WorldBoss", "情况5：等于结束日期");
-                dashboardWorldBossLinearProgressIndicator1.setProgressCompat(100, true);
-                dashboardWorldBossLinearProgressIndicator2.setProgressCompat(100, true);
-                dashboardWorldBossLinearProgressIndicator3.setProgressCompat(100, true);
+                progressIndicator.setProgressCompat(100, true);
 
-                contentStatus.setText("活动关闭：今晚22:00领奖，22:15抢购🎉");
+                // 隐藏部分组件
+                progressIndicator.setVisibility(View.GONE);
+                contentDetail.setVisibility(View.GONE);
+
+                contentStatus.setText("活动关闭~\n今晚22:00领奖，22:15抢购🎉");
                 dashboardWorldBoss.setText("今晚领奖");
             }
 
@@ -807,13 +804,13 @@ public class DashboardFragment extends Fragment {
 
             // 设置点击打开详情卡片
             dashboardWorldBossContainer.setOnClickListener(v -> {
-                        if (root.findViewById(R.id.card_world_boss_container).getVisibility() == View.GONE) {
+                        if (root.findViewById(R.id.dashboard_WorldBossDetail_Container).getVisibility() == View.GONE) {
                             TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-                            root.findViewById(R.id.card_world_boss_container).setVisibility(View.VISIBLE);
+                            root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.VISIBLE);
                             isShowWorldBossCard = true;
                         } else {
                             TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-                            root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
+                            root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.GONE);
                             isShowWorldBossCard = false;
                         }
                     }
@@ -826,7 +823,7 @@ public class DashboardFragment extends Fragment {
             dashboardWorldBossContainer.setOnClickListener(null);
 
             TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-            root.findViewById(R.id.card_world_boss_container).setVisibility(View.GONE);
+            root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.GONE);
             isShowWorldBossCard = false;
         }
 
