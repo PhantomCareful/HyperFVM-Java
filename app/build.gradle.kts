@@ -18,7 +18,7 @@ configure<ApplicationExtension> {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
         targetSdk = 37
-        versionCode = 142
+        versionCode = 143
         versionName = "4.4.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
