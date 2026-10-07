@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="?attr/colorSurface"
+    android:background="?attr/DialogBackground"
     tools:ignore="HardcodedText,ContentDescription">
 
     <TextView
@@ -35,11 +35,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
-        app:boxStrokeWidth="2dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxStrokeColor="@color/input_box_stroke_color"
         app:boxCornerRadiusTopStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusBottomEnd="20dp"
+        app:boxBackgroundColor="?attr/colorSecondaryContainer"
         app:backgroundTint="@android:color/transparent"
         app:hintEnabled="false">
 
@@ -51,7 +54,7 @@
             android:textSize="20sp"
             android:textColor="?attr/colorOnSurface"
             android:hint="@string/tips_card_data_search_input"
-            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:textColorHint="?attr/colorOnSecondaryContainer"
             android:inputType="text"
             android:singleLine="true"/>
 
@@ -97,7 +100,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardBackgroundColor="?attr/DialogConfirmButtonBackground"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -109,7 +112,7 @@
                 android:text="关闭窗口"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnPrimary"
+                android:textColor="?attr/DialogTextViewColorOnConfirmButton"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 

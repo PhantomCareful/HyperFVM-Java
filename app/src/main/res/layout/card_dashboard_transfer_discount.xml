@@ -27,7 +27,7 @@
                 android:layout_marginBottom="-35dp"
                 android:layout_gravity="end|bottom"
                 android:src="@drawable/ic_discount"
-                android:alpha="0.8"
+                android:alpha="?attr/LargeVectorGraphicAlphaOnImportantCardView"
                 app:tint="?attr/LargeVectorGraphicColorOnImportantCardView" />
 
             <LinearLayout

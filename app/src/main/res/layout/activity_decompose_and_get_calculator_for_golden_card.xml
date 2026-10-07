@@ -5,6 +5,7 @@
     android:id="@+id/decompose_and_get_calculator_for_golden_card_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     android:clipChildren="false"
     android:clipToPadding="false"
     tools:ignore="HardcodedText,MissingConstraints,ContentDescription">

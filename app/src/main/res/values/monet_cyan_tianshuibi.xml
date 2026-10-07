@@ -1,36 +1,5 @@
 <resources>
-    <style name="Monet.Cyan.Tianshuibi.NoShadow" parent="Theme.Material3.Light.NoActionBar">
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.HyperFVMJava.BottomSheetDialog</item>
-        <!--Button的默认样式-->
-        <item name="materialButtonStyle">@style/Button.NoShadow</item>
-
-        <!--CardView的默认样式-->
-        <item name="cardViewStyle">@style/CardView.NoShadow</item>
-
-        <!--标题文字颜色-->
-        <item name="TitleTextViewColorOnSurface">?attr/colorPrimary</item>
-
-        <!--一般CardView-->
-        <!--卡片颜色-->
-        <item name="GeneralCardViewBackground">?attr/colorSurfaceContainer</item>
-        <!--文字颜色-->
-        <item name="TextViewColorOnGeneralCardView">?attr/colorOnSurface</item>
-        <!--次要文字颜色-->
-        <item name="SummaryTextViewColorOnGeneralCardView">?attr/colorOnSurfaceVariant</item>
-        <!--矢量图颜色-->
-        <item name="VectorGraphicColorOnGeneralCardView">?attr/colorOnSurface</item>
-
-        <!--重要CardView-->
-        <!--卡片颜色-->
-        <item name="ImportantCardViewBackground">?attr/colorSecondaryContainer</item>
-        <!--文字颜色-->
-        <item name="TextViewColorOnImportantCardView">?attr/colorOnSurface</item>
-        <!--次要文字颜色-->
-        <item name="SummaryTextViewColorOnImportantCardView">?attr/colorOnSecondaryContainer</item>
-        <!--矢量图颜色-->
-        <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnSurface</item>
-        <!--大矢量图颜色，要额外加alpha=0.8f-->
-        <item name="LargeVectorGraphicColorOnImportantCardView">?attr/colorPrimary</item>
+    <style name="Monet.Cyan.Tianshuibi" parent="Base.Theme.HyperFVMJava">
 
         <item name="colorPrimary">@color/md_cyan_tianshuibi_primary</item>
         <item name="colorOnPrimary">@color/md_cyan_tianshuibi_onPrimary</item>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="?attr/colorSurface"
+    android:background="?attr/DialogBackground"
     tools:ignore="HardcodedText,ContentDescription">
 
     <TextView
@@ -24,11 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
-        app:boxStrokeWidth="2dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxStrokeColor="@color/input_box_stroke_color"
         app:boxCornerRadiusTopStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusBottomEnd="20dp"
+        app:boxBackgroundColor="?attr/colorSecondaryContainer"
         app:backgroundTint="@android:color/transparent"
         app:hintEnabled="false">
 
@@ -40,10 +43,10 @@
             android:textSize="20sp"
             android:textColor="?attr/colorOnSurface"
             android:hint="@string/dialog_tips_meishi_wechat_add_url"
-            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:textColorHint="?attr/colorOnSecondaryContainer"
             android:inputType="textMultiLine"
             android:maxLines="5"
-            android:singleLine="false"/>
+            android:singleLine="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,7 +59,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardBackgroundColor="?attr/DialogConfirmButtonBackground"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -68,7 +71,7 @@
                 android:text="测试链接"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnPrimary"
+                android:textColor="?attr/DialogTextViewColorOnConfirmButton"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 
@@ -81,7 +84,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardBackgroundColor="?attr/DialogConfirmButtonBackground"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -93,7 +96,7 @@
                 android:text="添加链接"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnPrimary"
+                android:textColor="?attr/DialogTextViewColorOnConfirmButton"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 
@@ -106,7 +109,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardBackgroundColor="?attr/DialogCancelButtonBackground"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -118,7 +121,7 @@
                 android:text="关闭窗口"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?attr/DialogTextViewColorOnCancelButton"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 

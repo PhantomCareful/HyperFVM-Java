@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MaterialSwitch thumb 圆配色：颜色全部由主题 attr 管理（SwitchXxxCircleColor 平时态 /
+     SwitchXxxTouchColor 按下未松手态），disabled 沿用原生语义 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="?attr/SwitchDisabledUncheckedCircleColor" android:state_enabled="false" android:state_checked="false"/>
+    <item android:color="?attr/SwitchDisabledCheckedCircleColor" android:state_enabled="false" android:state_checked="true"/>
+    <item android:color="?attr/SwitchCheckedTouchColor" android:state_checked="true" android:state_pressed="true"/>
+    <item android:color="?attr/SwitchCheckedCircleColor" android:state_checked="true"/>
+    <item android:color="?attr/SwitchUncheckedTouchColor" android:state_pressed="true"/>
+    <item android:color="?attr/SwitchUncheckedCircleColor"/>
+</selector>

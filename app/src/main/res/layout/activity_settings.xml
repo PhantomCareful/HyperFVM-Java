@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     android:clipChildren="false"
     android:clipToPadding="false"
     tools:ignore="MissingConstraints,TooManyViews,TooDeepLayout,ContentDescription">
@@ -554,7 +555,6 @@
                                 android:valueFrom="0.8"
                                 android:valueTo="1.5"
                                 android:stepSize="0.01"
-                                app:trackColorInactive="?attr/colorPrimaryInverse"
                                 app:labelBehavior="floating"
                                 app:tickVisible="false" />
 

@@ -8,11 +8,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:paddingVertical="16dp"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
     tools:ignore="UseCompoundDrawables">
 
     <TextView
@@ -20,6 +19,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingVertical="16dp"
+        android:layout_marginEnd="16dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="?attr/colorOnSurface" />
 
@@ -27,7 +28,6 @@
         android:id="@+id/option_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_check"
         app:tint="?attr/colorPrimary" />

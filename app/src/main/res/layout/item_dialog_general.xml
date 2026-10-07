@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="?attr/colorSurface"
+    android:background="?attr/DialogBackground"
     tools:ignore="HardcodedText,ContentDescription">
 
     <TextView
@@ -65,7 +65,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardBackgroundColor="?attr/DialogConfirmButtonBackground"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -76,7 +76,7 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnPrimary"
+                android:textColor="?attr/DialogTextViewColorOnConfirmButton"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 

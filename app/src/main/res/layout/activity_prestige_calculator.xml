@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     tools:ignore="HardcodedText,TooManyViews,contentDescription">
 
     <eightbitlab.com.blurview.BlurTarget
@@ -103,11 +104,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -155,11 +159,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -207,11 +214,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -259,11 +269,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -311,11 +324,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -363,11 +379,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -415,11 +434,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -467,11 +489,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -519,11 +544,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -571,11 +599,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -623,11 +654,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -675,11 +709,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -727,11 +764,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -779,11 +819,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -831,11 +874,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -883,11 +929,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -935,11 +984,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="2dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:boxStrokeColor="@color/input_box_stroke_color"
                         app:boxCornerRadiusTopStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
                         app:backgroundTint="@android:color/transparent">
 
                         <com.google.android.material.textfield.TextInputEditText

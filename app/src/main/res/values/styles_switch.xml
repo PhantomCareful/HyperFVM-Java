@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- MaterialSwitch 无描边样式：未开启时 track 外圈描边来自 trackDecoration
+         （mtrl_switch_track_decoration 纯描边 vector + mtrl_switch_track_decoration_tint
+         在未勾选态取 colorOutline），覆盖 tint 为全透明即去掉描边；
+         勾选态原生就是 transparent，不受影响 -->
+    <style name="Switch.NoStroke" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="trackDecorationTint">@color/switch_track_decoration_tint</item>
+        <!-- track 背景：未开启态统一 colorSecondary（开启态保持 colorPrimary） -->
+        <item name="trackTint">@color/switch_track_tint</item>
+        <!-- thumb 圆：按下未松手两态统一 colorOnSecondary -->
+        <item name="thumbTint">@color/switch_thumb_tint</item>
+        <!-- 去掉按下时的水波纹：原生样式 background 是 selectableItemBackground 的
+             RippleDrawable，SwitchCompat.draw() 会把它的 hotspot bounds 锚到 thumb 区域，
+             按住时在 thumb 下画出一圈淡灰圆（r=40dp，松手消失），置 @null 移除 -->
+        <item name="android:background">@null</item>
+    </style>
+
+    <!-- 覆盖 material 库同名 string：MaterialSwitch thumb 圆大小由该路径决定，
+         库原值半径 8（16dp，未开启态小圆），改为与开启态 path_checked 相同的半径 12（24dp），
+         使未开启时圆形与开启时同大；开/关形变动画（path_unchecked→morphing→checked）
+         节点结构一致，动画不受影响 -->
+    <string name="mtrl_switch_thumb_path_unchecked" translatable="false" tools:ignore="PrivateResource">M4,16 A12,12 0 0,1 16,4 H16 A12,12 0 0,1 16,28 H16 A12,12 0 0,1 4,16</string>
+
+    <!-- 同法覆盖按下态 path_pressed（原半径 14=28dp，按下时圆放大一圈、视觉似水波纹）与
+         切换中间态 path_morphing（原半径 11=22dp，开/关时轻微呼吸）：均改为与静态圆相同的
+         半径 12（24dp），按下/切换不再有大小变化，动画节点结构一致不受影响 -->
+    <string name="mtrl_switch_thumb_path_pressed" translatable="false" tools:ignore="PrivateResource">M4,16 A12,12 0 0,1 16,4 H16 A12,12 0 0,1 16,28 H16 A12,12 0 0,1 4,16</string>
+    <string name="mtrl_switch_thumb_path_morphing" translatable="false" tools:ignore="PrivateResource">M4,16 A12,12 0 0,1 16,4 H16 A12,12 0 0,1 16,28 H16 A12,12 0 0,1 4,16</string>
+</resources>

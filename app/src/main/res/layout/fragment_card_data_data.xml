@@ -5,6 +5,7 @@
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorSurface"
     android:scrollbars="none"
     android:clipChildren="false"
     android:clipToPadding="false"

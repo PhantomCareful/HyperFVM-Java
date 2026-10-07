@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MaterialSwitch 未开启时的外圈描边（trackDecoration，源自 colorOutline）全状态透明：
+     覆盖 mtrl_switch_track_decoration_tint，使开关任何状态下都不画描边 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@android:color/transparent" />
+</selector>

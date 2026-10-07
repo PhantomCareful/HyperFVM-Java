@@ -12,19 +12,15 @@
 
         <!--BottomSheetDialog内部背景层透明化，使圆角/颜色/透明度由bottom_sheet_rounded控制-->
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.HyperFVMJava.BottomSheetDialog</item>
-    </style>
 
-    <!-- 数据图内置查看器：固定黑底全屏（图片查看场景不随主题/深浅色变化），打开瞬间不闪白 -->
-    <style name="Theme.HyperFVMJava.DataImageViewer" parent="Base.Theme.HyperFVMJava">
-        <item name="android:windowBackground">@android:color/black</item>
-    </style>
-
-    <style name="Base.Theme.HyperFVMJava.NoShadow" parent="Base.Theme.HyperFVMJava">
         <!--Button的默认样式-->
         <item name="materialButtonStyle">@style/Button.NoShadow</item>
 
         <!--CardView的默认样式-->
         <item name="cardViewStyle">@style/CardView.NoShadow</item>
+
+        <!--MaterialSwitch默认样式：去掉未开启时的外圈描边-->
+        <item name="materialSwitchStyle">@style/Switch.NoStroke</item>
 
         <!--标题文字颜色-->
         <item name="TitleTextViewColorOnSurface">?attr/colorPrimary</item>
@@ -48,9 +44,47 @@
         <item name="SummaryTextViewColorOnImportantCardView">?attr/colorOnSecondaryContainer</item>
         <!--矢量图颜色-->
         <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnSurface</item>
-        <!--大矢量图颜色，要额外加alpha=0.8f-->
+        <!--大矢量图颜色-->
         <item name="LargeVectorGraphicColorOnImportantCardView">?attr/colorPrimary</item>
+        <!--大矢量图透明度：Miuix主题1.0f（完全不透明），其余主题0.8f-->
+        <item name="LargeVectorGraphicAlphaOnImportantCardView">0.8</item>
+
+        <!--开关配色-->
+        <item name="SwitchUncheckedBackgroundColor">?attr/colorSurfaceDim</item>
+        <item name="SwitchUncheckedCircleColor">?attr/colorOutline</item>
+        <item name="SwitchCheckedBackgroundColor">?attr/colorPrimary</item>
+        <item name="SwitchCheckedCircleColor">?attr/colorOnPrimary</item>
+        <item name="SwitchUncheckedTouchColor">?attr/colorOutline</item>
+        <item name="SwitchCheckedTouchColor">?attr/colorOnPrimary</item>
+        <item name="SwitchDisabledUncheckedBackgroundColor">?attr/colorSurfaceContainerHighest</item>
+        <item name="SwitchDisabledUncheckedCircleColor">?attr/colorSurfaceDim</item>
+        <item name="SwitchDisabledCheckedBackgroundColor">?attr/colorSecondaryContainer</item>
+        <item name="SwitchDisabledCheckedCircleColor">?attr/colorSurfaceBright</item>
+
+        <!--弹窗-->
+        <!--背景颜色-->
+        <item name="DialogBackground">?attr/colorSurface</item>
+        <!--弹窗确认按钮背景颜色-->
+        <item name="DialogConfirmButtonBackground">?attr/colorPrimary</item>
+        <!--弹窗确认按钮文字颜色-->
+        <item name="DialogTextViewColorOnConfirmButton">?attr/colorOnPrimary</item>
+        <!--弹窗取消按钮背景颜色-->
+        <item name="DialogCancelButtonBackground">?attr/colorSurfaceContainer</item>
+        <!--弹窗取消按钮文字颜色-->
+        <item name="DialogTextViewColorOnCancelButton">?attr/colorOnSurface</item>
+        <!--弹窗中的一般卡片颜色-->
+        <item name="DialogGeneralCardViewBackground">?attr/colorSurfaceContainer</item>
+        <!--弹窗中矢量图颜色-->
+        <item name="DialogVectorGraphicColorOnGeneralCardView">?attr/colorOnPrimaryContainer</item>
     </style>
+
+    <!-- 数据图内置查看器：固定黑底全屏（图片查看场景不随主题/深浅色变化），打开瞬间不闪白 -->
+    <style name="Theme.HyperFVMJava.DataImageViewer" parent="Base.Theme.HyperFVMJava">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <!-- 动态取色/全部主题的公共属性已上移至 Base.Theme.HyperFVMJava，本样式仅作兼容保留 -->
+    <style name="Base.Theme.HyperFVMJava.NoShadow" parent="Base.Theme.HyperFVMJava" />
 
     <!-- 链接接入中转页：全透明不抢焦点，确认弹窗直接浮在来源应用（如微信）画面上，
          确认/取消后立即finish回到来源应用。不能调用ThemeManager.applyTheme（setTheme会覆盖透明属性） -->

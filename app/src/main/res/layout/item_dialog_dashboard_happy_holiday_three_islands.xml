@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="?attr/colorSurface"
+    android:background="?attr/DialogBackground"
     tools:ignore="HardcodedText,ContentDescription">
 
     <TextView
@@ -84,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardBackgroundColor="?attr/DialogCancelButtonBackground"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -96,7 +96,7 @@
                 android:text="关闭窗口"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?attr/DialogTextViewColorOnCancelButton"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 
@@ -110,7 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardBackgroundColor="?attr/DialogConfirmButtonBackground"
             app:cardCornerRadius="20dp">
 
             <TextView
@@ -122,7 +122,7 @@
                 android:text="米鼠的图"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnPrimary"
+                android:textColor="?attr/DialogTextViewColorOnConfirmButton"
                 android:clickable="true"
                 android:background="?attr/selectableItemBackground"/>
 

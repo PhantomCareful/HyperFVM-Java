@@ -4,8 +4,43 @@
     <color name="ic_launcher_foreground">@android:color/system_accent1_100</color>
     <color name="ic_launcher_background">@android:color/system_neutral1_800</color>
 
-    <!--动态流光背景上的卡片颜色和文字颜色-->
+    <!--动态流光背景上的卡片颜色-->
     <color name="card_background_color_effect">#0FFFFFFF</color>
+
+    <!--Miuix-->
+    <color name="miuix_important_cardview_background">#1A3825</color>
+    <color name="miuix_textview_color_on_important_cardview">#E9EBEA</color>
+    <color name="miuix_summary_textview_color_on_important_cardview">#A3AFA8</color>
+    <color name="miuix_vector_graphic_color_on_important_cardview">#E9EBEA</color>
+    <color name="miuix_large_vector_graphic_color_on_important_cardview">#36D167</color>
+    <color name="miuix_primary">#277AF7</color>
+    <color name="miuix_on_primary">#FFFFFF</color>
+    <color name="miuix_primary_container">#338FE4</color>
+    <color name="miuix_on_primary_container">#FFFFFF</color>
+    <color name="miuix_secondary">#505050</color>
+    <color name="miuix_on_secondary">#FFFFFF</color>
+    <color name="miuix_secondary_container">#434343</color>
+    <color name="miuix_on_secondary_container">#7C7C7C</color>
+    <color name="miuix_secondary_variant">#434343</color>
+    <color name="miuix_on_secondary_variant">#D9D9D9</color>
+    <color name="miuix_secondary_container_variant">#4E4E4E</color>
+    <color name="miuix_on_secondary_container_variant">#959595</color>
+    <color name="miuix_error">#F12522</color>
+    <color name="miuix_on_error">#FFFFFF</color>
+    <color name="miuix_error_container">#2E0603</color>
+    <color name="miuix_on_error_container">#FFDAD6</color>
+    <color name="miuix_background">#242424</color>
+    <color name="miuix_on_background">#EAEAEA</color>
+    <color name="miuix_on_background_variant">#787E96</color>
+    <color name="miuix_surface">#000000</color>
+    <color name="miuix_on_surface">#F2F2F2</color>
+    <color name="miuix_surface_variant">#242424</color>
+    <color name="miuix_on_surface_variant_summary">#929292</color>
+    <color name="miuix_outline">#242424</color>
+    <color name="miuix_outline_variant">#242424</color>
+    <color name="miuix_surface_container">#242424</color>
+    <color name="miuix_surface_container_high">#242424</color>
+    <color name="miuix_surface_container_highest">#2D2D2D</color>
 
     <!--宫墙-->
     <color name="md_red_gongqiang_primary">#FFB4A4</color>

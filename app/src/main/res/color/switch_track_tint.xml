@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MaterialSwitch track 背景配色：颜色全部由主题 attr 管理（SwitchUncheckedBackgroundColor /
+     SwitchCheckedBackgroundColor，Miuix 与其余主题的未启用色不同）；disabled 沿用 M3 原生语义（0.12 透明度） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="?attr/SwitchDisabledUncheckedBackgroundColor" android:state_enabled="false" android:state_checked="false"/>
+    <item android:color="?attr/SwitchDisabledCheckedBackgroundColor" android:state_enabled="false" android:state_checked="true"/>
+    <item android:color="?attr/SwitchCheckedBackgroundColor" android:state_checked="true"/>
+    <item android:color="?attr/SwitchUncheckedBackgroundColor"/>
+</selector>

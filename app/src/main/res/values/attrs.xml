@@ -25,4 +25,44 @@
     <attr name="VectorGraphicColorOnImportantCardView" format="color" />
     <!--大矢量图颜色-->
     <attr name="LargeVectorGraphicColorOnImportantCardView" format="color" />
+    <!--大矢量图透明度：Miuix主题1.0f（完全不透明），其余主题0.8f-->
+    <attr name="LargeVectorGraphicAlphaOnImportantCardView" format="float" />
+
+    <!--MaterialSwitch 开关配色-->
+    <!--未启用时 track 背景色：Miuix 主题为 colorSecondary，其他主题为 colorSecondaryContainer-->
+    <attr name="SwitchUncheckedBackgroundColor" format="color" />
+    <!--未启用时 thumb 圆形色-->
+    <attr name="SwitchUncheckedCircleColor" format="color" />
+    <!--已启用时 track 背景色-->
+    <attr name="SwitchCheckedBackgroundColor" format="color" />
+    <!--已启用时 thumb 圆形色-->
+    <attr name="SwitchCheckedCircleColor" format="color" />
+    <!--按下未松手时 thumb 圆形色（未启用态）-->
+    <attr name="SwitchUncheckedTouchColor" format="color" />
+    <!--按下未松手时 thumb 圆形色（已启用态）-->
+    <attr name="SwitchCheckedTouchColor" format="color" />
+    <!--禁用时、未启用时 track 背景色：Miuix 主题为 colorSecondary，其他主题为 colorSecondaryContainer-->
+    <attr name="SwitchDisabledUncheckedBackgroundColor" format="color" />
+    <!--禁用时、未启用时 thumb 圆形色-->
+    <attr name="SwitchDisabledUncheckedCircleColor" format="color" />
+    <!--禁用时、已启用时 track 背景色-->
+    <attr name="SwitchDisabledCheckedBackgroundColor" format="color" />
+    <!--禁用时、已启用时 thumb 圆形色-->
+    <attr name="SwitchDisabledCheckedCircleColor" format="color" />
+
+    <!--弹窗-->
+    <!--背景颜色-->
+    <attr name="DialogBackground" format="color" />
+    <!--弹窗确认按钮背景颜色-->
+    <attr name="DialogConfirmButtonBackground" format="color" />
+    <!--弹窗确认按钮文字颜色-->
+    <attr name="DialogTextViewColorOnConfirmButton" format="color" />
+    <!--弹窗取消按钮背景颜色-->
+    <attr name="DialogCancelButtonBackground" format="color" />
+    <!--弹窗取消按钮文字颜色-->
+    <attr name="DialogTextViewColorOnCancelButton" format="color" />
+    <!--弹窗中的一般卡片颜色-->
+    <attr name="DialogGeneralCardViewBackground" format="color" />
+    <!--弹窗中矢量图颜色-->
+    <attr name="DialogVectorGraphicColorOnGeneralCardView" format="color" />
 </resources>

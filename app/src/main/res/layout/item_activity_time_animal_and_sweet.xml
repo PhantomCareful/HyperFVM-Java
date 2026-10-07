@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+    app:cardBackgroundColor="?attr/DialogGeneralCardViewBackground"
     app:cardCornerRadius="20dp">
 
     <TextView
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="?attr/colorOnSurface"
+        android:textColor="?attr/TextViewColorOnGeneralCardView"
         android:clickable="true"
         android:background="?attr/selectableItemBackground" />
 

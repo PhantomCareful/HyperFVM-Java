@@ -191,8 +191,8 @@ public class CardDataHelper {
 
     /** inflate 单卡布局，装入 item_card_catalog_card 空 CardView 包装行后追加到容器 */
     private static void attachCardRow(LayoutInflater layoutInflater, LinearLayout container, int cellLayoutRes, View.OnClickListener onClickListener) {
-        // item_card_catalog_card 是防御卡目录页在用的空 CardView 包装（20dp 圆角 + 卡片背景 + 底部间距）
-        View row = layoutInflater.inflate(R.layout.item_card_catalog_card, container, false);
+        // item_card_catalog_card 是防御卡目录页在用的空 CardView 包装（20dp 圆角 + 卡片背景 + 底部间距）,加_dialog是为了匹配弹窗的主题
+        View row = layoutInflater.inflate(R.layout.item_card_catalog_card_dialog, container, false);
         FrameLayout cardContainer = row.findViewById(R.id.card_catalog_card_container);
         View cellView = layoutInflater.inflate(cellLayoutRes, cardContainer, false);
         cellView.setOnClickListener(onClickListener);
