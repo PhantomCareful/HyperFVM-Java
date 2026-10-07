@@ -766,12 +766,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static class PlayerInfo {
         public String openid;
         public String serverName;
-        public String playerId;
+        public String playerName;
 
-        public PlayerInfo(String openid, String serverName, String playerId) {
+        public PlayerInfo(String openid, String serverName, String playerName) {
             this.openid = openid;
             this.serverName = serverName;
-            this.playerId = playerId;
+            this.playerName = playerName;
         }
     }
 

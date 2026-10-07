@@ -17,7 +17,7 @@
 
         <!-- 区服名称 -->
         <TextView
-            android:id="@+id/TextView_Server"
+            android:id="@+id/TextView_ServerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -26,22 +26,12 @@
 
         <!-- 角色ID -->
         <TextView
-            android:id="@+id/TextView_PlayerId"
+            android:id="@+id/TextView_PlayerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
-        <!-- openid（可设为较小字体或隐藏） -->
-        <TextView
-            android:id="@+id/TextView_Openid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-            android:layout_marginTop="5dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

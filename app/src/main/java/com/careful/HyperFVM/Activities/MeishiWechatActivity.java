@@ -81,6 +81,8 @@ public class MeishiWechatActivity extends BaseActivity {
     private String serverName;
     private String playerName;
 
+    private boolean isShow = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置主题（必须在super.onCreate前调用才有效）
@@ -205,18 +207,16 @@ public class MeishiWechatActivity extends BaseActivity {
                 .inflate(R.layout.item_account_card, accountListContainer, false);
 
         // 绑定控件并设置内容（处理空值）
-        TextView serverText = cardView.findViewById(R.id.TextView_Server);
-        TextView playerText = cardView.findViewById(R.id.TextView_PlayerId);
-        TextView openidText = cardView.findViewById(R.id.TextView_Openid);
+        TextView serverText = cardView.findViewById(R.id.TextView_ServerName);
+        TextView playerText = cardView.findViewById(R.id.TextView_PlayerName);
 
         serverText.setText("所在区服：" + (info.serverName != null ? info.serverName : "未知区服"));
-        playerText.setText("角色ID：" + (info.playerId != null ? info.playerId : "未知角色"));
-        openidText.setText("openid：" + info.openid);
+        playerText.setText("角色ID：" + (info.playerName != null ? isShow ? info.playerName : "🙅🙅🙅🙅🙅" : "未知角色"));
 
         // 长按删除逻辑
         cardView.setOnLongClickListener(v -> {
             DialogBuilderManager.showDialogWithCallBack(
-                    this, "删除账号", "🗑️", "确定要删除 " + (info.playerId != null ? info.playerId : info.openid) + " 吗？",
+                    this, "删除账号", "🗑️", "确定要删除 " + (info.playerName != null ? info.playerName : info.openid) + " 吗？",
                     true, "咱手滑了", "删除", () -> {
                         dbHelper.deleteMeishiWechat(info.openid);
                         loadAccountList();
@@ -331,6 +331,7 @@ public class MeishiWechatActivity extends BaseActivity {
         BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
         TextView topBar = findViewById(R.id.topBar);
         ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        ImageButton floatButtonShow = findViewById(R.id.FloatButton_Show);
         ImageButton floatButtonAdd = findViewById(R.id.FloatButton_Add);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
@@ -347,6 +348,10 @@ public class MeishiWechatActivity extends BaseActivity {
             params.topMargin = height + DensityUtil.dpToPx(this, 5);
             floatButtonBack.setLayoutParams(params);
 
+            params = (ViewGroup.MarginLayoutParams) floatButtonShow.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonShow.setLayoutParams(params);
+
             params = (ViewGroup.MarginLayoutParams) floatButtonAdd.getLayoutParams();
             params.topMargin = height + DensityUtil.dpToPx(this, 5);
             floatButtonAdd.setLayoutParams(params);
@@ -354,6 +359,10 @@ public class MeishiWechatActivity extends BaseActivity {
 
         // 顺便设置按钮的功能
         floatButtonBack.setOnClickListener(v -> this.finish());
+        floatButtonShow.setOnClickListener(v -> {
+            isShow = !isShow;
+            loadAccountList();
+        });
         floatButtonAdd.setOnClickListener(v -> showAddLinkDialog());
 
         // 添加模糊材质
