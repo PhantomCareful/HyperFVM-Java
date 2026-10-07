@@ -5,6 +5,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimat
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
@@ -100,6 +101,7 @@ public class MeishiWechatActivity extends BaseActivity {
         initDecoration();
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private void initViews() {
         // 账号数量文本和列表容器
         accountCountText = findViewById(R.id.TitleMeishiWechatSavedAccount);
@@ -111,6 +113,23 @@ public class MeishiWechatActivity extends BaseActivity {
         transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
         transition.addTransition(new Fade()); // 淡入淡出
         transition.setDuration(400); // 动画时长400ms
+
+        // 跳转系统“默认打开”页面，手动勾选受支持的链接（域名无法自动验证，勾选后链接直接跳转进App）
+        findViewById(R.id.permission_links_container).setOnClickListener(v -> {
+            // 跳转到本应用的“默认打开”设置页
+            Intent intent = new Intent(android.provider.Settings.ACTION_APP_OPEN_BY_DEFAULT_SETTINGS)
+                    .setData(android.net.Uri.parse("package:" + this.getPackageName()));
+
+            // 检查是否有可以处理此Intent的应用
+            if (intent.resolveActivity(this.getPackageManager()) != null) {
+                this.startActivity(intent);
+            } else {
+                // 如果无法跳转到精确设置页面，跳转到应用详情页
+                Intent appDetailsIntent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                appDetailsIntent.setData(android.net.Uri.parse("package:" + this.getPackageName()));
+                this.startActivity(appDetailsIntent);
+            }
+        });
     }
 
     /**

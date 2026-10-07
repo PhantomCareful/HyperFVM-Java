@@ -43,6 +43,63 @@
                     android:textColor="?attr/colorOnSurface"
                     android:visibility="visible"/>
 
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/permission_links_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_link"
+                            app:tint="?attr/VectorGraphicColorOnImportantCardView" />
+
+                        <!-- 左侧文字 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_settings_permission_links"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description_settings_permission_links"
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            app:tint="?attr/SummaryTextViewColorOnImportantCardView" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
                 <TextView
                     android:id="@+id/TitleMeishiWechatSavedAccount"
                     android:layout_width="match_parent"
