@@ -207,16 +207,14 @@
                                 app:cardElevation="0dp"
                                 app:cardCornerRadius="10dp">
 
-                                <TextView
+                                <ImageView
                                     android:id="@+id/star_main_0"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="0"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/star_image_0"/>
 
                             </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
 
@@ -615,16 +613,14 @@
                                 app:cardElevation="0dp"
                                 app:cardCornerRadius="10dp">
 
-                                <TextView
+                                <ImageView
                                     android:id="@+id/star_sub_1_0"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="0"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/star_image_0"/>
 
                             </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
 
@@ -1139,16 +1135,14 @@
                                 app:cardElevation="0dp"
                                 app:cardCornerRadius="10dp">
 
-                                <TextView
+                                <ImageView
                                     android:id="@+id/star_sub_2_0"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="0"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/star_image_0"/>
 
                             </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
 
@@ -1663,16 +1657,14 @@
                                 app:cardElevation="0dp"
                                 app:cardCornerRadius="10dp">
 
-                                <TextView
+                                <ImageView
                                     android:id="@+id/star_sub_3_0"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="0"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/star_image_0"/>
 
                             </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
 
@@ -3071,7 +3063,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:clickable="true"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
                     <TextView
@@ -3081,7 +3073,7 @@
                         android:text="@string/content_card_odds_calculator_minimum_guarantee"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+                        android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
 
                 </androidx.cardview.widget.CardView>
 
