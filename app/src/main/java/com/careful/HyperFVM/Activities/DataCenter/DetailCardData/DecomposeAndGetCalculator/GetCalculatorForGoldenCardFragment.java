@@ -335,109 +335,109 @@ public class GetCalculatorForGoldenCardFragment extends Fragment {
         // 设置点击事件
         get_calculator_for_golden_card_card_1_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_card_1_checkbox.setChecked(!get_calculator_for_golden_card_card_1_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_card_2_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_card_2_checkbox.setChecked(!get_calculator_for_golden_card_card_2_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_card_3_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_card_3_checkbox.setChecked(!get_calculator_for_golden_card_card_3_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_card_4_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_card_4_checkbox.setChecked(!get_calculator_for_golden_card_card_4_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_skill_1_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_skill_1_checkbox.setChecked(!get_calculator_for_golden_card_skill_1_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_skill_2_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_skill_2_checkbox.setChecked(!get_calculator_for_golden_card_skill_2_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_skill_3_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_skill_3_checkbox.setChecked(!get_calculator_for_golden_card_skill_3_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_skill_4_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_skill_4_checkbox.setChecked(!get_calculator_for_golden_card_skill_4_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_1_a_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_1_a_checkbox.setChecked(!get_calculator_for_golden_card_transfer_1_a_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_1_b_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_1_b_checkbox.setChecked(!get_calculator_for_golden_card_transfer_1_b_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_1_c_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_1_c_checkbox.setChecked(!get_calculator_for_golden_card_transfer_1_c_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_2_a_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_2_a_checkbox.setChecked(!get_calculator_for_golden_card_transfer_2_a_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_2_b_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_2_b_checkbox.setChecked(!get_calculator_for_golden_card_transfer_2_b_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_2_c_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_2_c_checkbox.setChecked(!get_calculator_for_golden_card_transfer_2_c_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_3_a_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_3_a_checkbox.setChecked(!get_calculator_for_golden_card_transfer_3_a_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_3_b_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_3_b_checkbox.setChecked(!get_calculator_for_golden_card_transfer_3_b_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_transfer_3_c_container.setOnClickListener(v -> {
             get_calculator_for_golden_card_transfer_3_c_checkbox.setChecked(!get_calculator_for_golden_card_transfer_3_c_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
         get_calculator_for_golden_card_compose_container_.setOnClickListener(v -> {
             get_calculator_for_golden_card_compose_checkbox.setChecked(!get_calculator_for_golden_card_compose_checkbox.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             calculateGetResult();
         });
 
