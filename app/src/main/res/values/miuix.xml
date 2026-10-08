@@ -29,7 +29,7 @@
         <!--文字颜色-->
         <item name="TextViewColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
         <!--次要文字颜色-->
-        <item name="SummaryTextViewColorOnImportantCardView">@color/miuix_primary_container</item>
+        <item name="SummaryTextViewColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
         <!--矢量图颜色-->
         <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
 
