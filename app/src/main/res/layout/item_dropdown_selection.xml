@@ -20,14 +20,15 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingVertical="16dp"
-        android:layout_marginEnd="16dp"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:textColor="?attr/colorOnSurface" />
 
     <ImageView
         android:id="@+id/option_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_check"
         app:tint="?attr/colorPrimary" />
