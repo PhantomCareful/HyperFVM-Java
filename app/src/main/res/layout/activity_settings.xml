@@ -321,7 +321,8 @@
                             <com.google.android.material.materialswitch.MaterialSwitch
                                 android:id="@+id/Switch_isDynamicColor"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:clickable="false" />
 
                         </LinearLayout>
 
@@ -496,7 +497,8 @@
                             <com.google.android.material.materialswitch.MaterialSwitch
                                 android:id="@+id/Switch_isFixedFontScale"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:clickable="false" />
 
                         </LinearLayout>
 
@@ -619,7 +621,8 @@
                             <com.google.android.material.materialswitch.MaterialSwitch
                                 android:id="@+id/Switch_isDynamicBackground"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:clickable="false" />
 
                         </LinearLayout>
 
@@ -746,7 +749,8 @@
                             <com.google.android.material.materialswitch.MaterialSwitch
                                 android:id="@+id/Switch_isVisible_CardDataIndex"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:clickable="false" />
 
                         </LinearLayout>
 
@@ -793,7 +797,8 @@
                             <com.google.android.material.materialswitch.MaterialSwitch
                                 android:id="@+id/Switch_isVisible_CardDataAuxiliaryList"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:clickable="false" />
 
                         </LinearLayout>
 
@@ -840,7 +845,8 @@
                             <com.google.android.material.materialswitch.MaterialSwitch
                                 android:id="@+id/Switch_isVisible_RefreshDashboard"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:clickable="false" />
 
                         </LinearLayout>
 
@@ -914,7 +920,8 @@
                             <com.google.android.material.materialswitch.MaterialSwitch
                                 android:id="@+id/Switch_BiometricAuth"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:clickable="false" />
 
                         </LinearLayout>
 
