@@ -15,6 +15,9 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
 public class BaseActivity extends AppCompatActivity {
 
+    // 本实例创建时的 UI 配置版本快照（字段初始化在构造期执行，早于 onResume）
+    private int seenUiConfigVersion = HyperFVMApplication.getUiConfigVersion();
+
     @Override
     protected void attachBaseContext(Context newBase) {
         // 复用 Application 中的 fontScale 修正逻辑，确保 Activity 上下文也生效
@@ -87,6 +90,18 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         return context;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 主题/字体/背景等设置变更后返回前台时，自动重建为最新配置（免手动重启）
+        if (seenUiConfigVersion != HyperFVMApplication.getUiConfigVersion()) {
+            seenUiConfigVersion = HyperFVMApplication.getUiConfigVersion();
+            if (!isFinishing() && !isDestroyed()) {
+                recreate();
+            }
+        }
     }
 
     protected void onCreate(Bundle savedInstanceState) {

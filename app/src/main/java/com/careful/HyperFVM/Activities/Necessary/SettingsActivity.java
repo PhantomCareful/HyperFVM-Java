@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -32,6 +31,7 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtil
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Dropdown.DropdownPopupHelper;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
+import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -229,7 +229,10 @@ public class SettingsActivity extends BaseActivity {
 
     private void showThemeDropdown() {
         showRowDropdown(themeSelectorContainer, R.array.theme_entries, currentTheme, CONTENT_APP_THEME,
-                themeCurrentSelection, selectedEntries -> currentTheme = selectedEntries);
+                themeCurrentSelection, selectedEntries -> {
+                    currentTheme = selectedEntries;
+                    applyThemeChangeAndRefresh();
+                });
     }
 
     private void showThemeModeDropdown() {
@@ -238,6 +241,7 @@ public class SettingsActivity extends BaseActivity {
                     currentThemeMode = selectedEntries;
                     // 强调色行仅在 Monet 模式下可更改
                     setThemeRowClickable(selectedEntries.startsWith("Monet"));
+                    applyThemeChangeAndRefresh();
                 });
     }
 
@@ -374,20 +378,18 @@ public class SettingsActivity extends BaseActivity {
     }
 
     /**
-     * 重启App的方法
+     * 主题相关设置变更后立即生效：版本号+1（返回栈页面回前台时惰性重建），
+     * 应用深浅色模式，并延迟一拍重建设置页自身（确保下拉菜单已 dismiss、开关状态已写完；
+     * 若深浅色变化已由系统触发重建，此处守卫跳过，避免二次重建）
      */
-    private void restartApp() {
-        // 获取App的主Activity（通常是AndroidManifest中声明的LAUNCHER Activity）
-        Intent intent = getPackageManager()
-                .getLaunchIntentForPackage(getPackageName());
-        if (intent != null) {
-            // 清除之前的任务栈，避免重启后返回旧页面
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            // 启动主Activity
-            startActivity(intent);
-            // 关闭当前所有Activity
-            finishAffinity();
-        }
+    private void applyThemeChangeAndRefresh() {
+        HyperFVMApplication.bumpUiConfigVersion();
+        DarkModeManager.applyDarkMode(); // 主题模式含（深色）/（浅色）后缀，需同步夜间模式
+        getWindow().getDecorView().post(() -> {
+            if (!isFinishing() && !isDestroyed()) {
+                recreate();
+            }
+        });
     }
 
     /**
@@ -452,6 +454,7 @@ public class SettingsActivity extends BaseActivity {
             dbHelper.updateSettingValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE, Boolean.toString(finalMaterialSwitch2.isChecked()));
             fontScaleSlider.setEnabled(!finalMaterialSwitch2.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            applyThemeChangeAndRefresh();
         });
         // 自定义字体大小滑条
         fontScaleSlider.addOnChangeListener((slider, v, b) -> {
@@ -466,7 +469,8 @@ public class SettingsActivity extends BaseActivity {
 
             @Override
             public void onStopTrackingTouch(@NonNull Slider slider) {
-                // 啥也不做
+                // 松手时才刷新（拖动过程中仅写库，避免连续重建）
+                applyThemeChangeAndRefresh();
             }
         });
         // 动态背景开关
@@ -477,6 +481,7 @@ public class SettingsActivity extends BaseActivity {
             // 同步更新 Application 中的缓存值，保证新打开的页面无需重启也能读取到最新设置
             HyperFVMApplication.setContentIsDynamicBackground(finalMaterialSwitch3.isChecked());
             v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            applyThemeChangeAndRefresh();
         });
         // Toast显示设置开关
         MaterialSwitch finalMaterialSwitch4 = findViewById(R.id.Switch_isVisible_CardDataIndex);
@@ -525,7 +530,6 @@ public class SettingsActivity extends BaseActivity {
         BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
         TextView topBar = findViewById(R.id.topBar);
         ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
-        ImageButton floatButtonRestart = findViewById(R.id.FloatButton_Restart);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
@@ -540,10 +544,6 @@ public class SettingsActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.topMargin = height + DensityUtil.dpToPx(this, 5);
             floatButtonBack.setLayoutParams(params);
-
-            params = (ViewGroup.MarginLayoutParams) floatButtonRestart.getLayoutParams();
-            params.topMargin = height + DensityUtil.dpToPx(this, 5);
-            floatButtonRestart.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout settings_container = findViewById(R.id.settings_container);
@@ -557,21 +557,12 @@ public class SettingsActivity extends BaseActivity {
             params.leftMargin = layout_marginHorizontal;
             floatButtonBack.setLayoutParams(params);
 
-            params = (ViewGroup.MarginLayoutParams) floatButtonRestart.getLayoutParams();
-            params.rightMargin = layout_marginHorizontal;
-            floatButtonRestart.setLayoutParams(params);
-
             // 同步页面边距给下拉菜单：菜单最右缘与页面内容右缘对齐，统一在此处管理
             pageContentSideMarginPx = layout_marginHorizontal;
         });
 
         // 顺便设置按钮的功能
         floatButtonBack.setOnClickListener(v -> this.finish());
-        floatButtonRestart.setOnClickListener(v -> {
-            Toast.makeText(this, "重启App⏳⏳⏳", Toast.LENGTH_SHORT).show();
-            // 重启App
-            restartApp();
-        });
 
         // 接入顶部栏滚动联动：滚动时模糊层与悬浮标题联动显现（topBarBottom 滚出后顶栏显现）
         nestedScrollUtil = NestedScrollUtil.attach(

@@ -481,7 +481,7 @@
     <string name="title_settings_permission_links">允许打开受支持的链接</string>
     <string name="description_settings_permission_links">允许App打开受支持的链接后，您在微信公众号-美食中心内选择“在浏览器中打开”，即可自动跳转到App，一步添加链接；您也可以在设备任意位置（如笔记、便签）长按选中链接，系统也会弹出使用App打开的选项（一个链接符号或者直接是App图标）</string>
     <string name="title_settings_theme">主题</string>
-    <string name="tips_settings_theme">更改主题设置后，重启App可生效。点击右上角按钮可快捷重启。</string>
+    <string name="tips_settings_theme">更改主题设置会实时重绘界面，可能会出现短暂的卡顿，此为底层处理机制，非性能问题。</string>
     <string name="title_settings_option_theme_mode">主题</string>
     <string name="description_settings_option_theme_mode">选择应用的主题模式</string>
     <string name="title_settings_option_themed_color">强调色</string>
