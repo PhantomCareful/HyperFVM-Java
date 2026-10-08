@@ -20,6 +20,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Dropdown.DropdownPopupHelper;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -171,7 +172,8 @@ public class CookeryIndexActivity extends BaseActivity {
             popup.dismiss();
             scrollToSectionTitle(findViewById(SECTION_TITLE_IDS[position]));
         });
-        popup.show();
+        // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角）
+        DropdownPopupHelper.show(this, popup);
     }
 
     /**

@@ -30,6 +30,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Dropdown.DropdownPopupHelper;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
@@ -323,8 +324,9 @@ public class SettingsActivity extends BaseActivity {
             popup.dismiss();
         });
 
-        popup.show();
-        // 弹出后隐藏滚动条（选中态由 adapter 渲染右侧对勾，无需 ListView 单选模式）
+        // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角），随后隐藏滚动条
+        // （选中态由 adapter 渲染右侧对勾，无需 ListView 单选模式）
+        DropdownPopupHelper.show(this, popup);
         ListView listView = popup.getListView();
         if (listView != null) {
             listView.setVerticalScrollBarEnabled(false);

@@ -24,6 +24,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Dropdown.DropdownPopupHelper;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -129,7 +130,8 @@ public class OddsDisclosureIndexActivity extends BaseActivity {
                 scrollToSectionTitle(sectionTitleViews.get(position));
             }
         });
-        popup.show();
+        // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角）
+        DropdownPopupHelper.show(this, popup);
     }
 
     /**
