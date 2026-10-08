@@ -8,15 +8,20 @@
     <color name="card_background_color_effect">#0FFFFFFF</color>
 
     <!--Miuix-->
-    <color name="miuix_important_cardview_background">#1A3825</color>
-    <color name="miuix_textview_color_on_important_cardview">#E9EBEA</color>
-    <color name="miuix_summary_textview_color_on_important_cardview">#A3AFA8</color>
-    <color name="miuix_vector_graphic_color_on_important_cardview">#E9EBEA</color>
-    <color name="miuix_large_vector_graphic_color_on_important_cardview">#36D167</color>
+    <color name="miuix_status_cardview_background">#1A3825</color>
+    <color name="miuix_textview_color_on_status_cardview">#E9EBEA</color>
+    <color name="miuix_summary_textview_color_on_status_cardview">#A3AFA8</color>
+    <color name="miuix_vector_graphic_color_on_status_cardview">#36D167</color>
     <color name="miuix_primary">#277AF7</color>
     <color name="miuix_on_primary">#FFFFFF</color>
     <color name="miuix_primary_container">#338FE4</color>
     <color name="miuix_on_primary_container">#FFFFFF</color>
+    <color name="miuix_primary_variant">#0073DD</color>
+    <color name="miuix_on_primary_variant">#99C7F1</color>
+    <color name="miuix_disabled_primary">#253E64</color>
+    <color name="miuix_disabled_on_primary">#667892</color>
+    <color name="miuix_disabled_primary_button">#253E64</color>
+    <color name="miuix_disabled_on_primary_button">#677893</color>
     <color name="miuix_secondary">#505050</color>
     <color name="miuix_on_secondary">#FFFFFF</color>
     <color name="miuix_secondary_container">#434343</color>
@@ -25,6 +30,10 @@
     <color name="miuix_on_secondary_variant">#D9D9D9</color>
     <color name="miuix_secondary_container_variant">#4E4E4E</color>
     <color name="miuix_on_secondary_container_variant">#959595</color>
+    <color name="miuix_disabled_on_secondary">#797979</color>
+    <color name="miuix_tertiary_container">#2B3B54</color>
+    <color name="miuix_on_tertiary_container">#4788FF</color>
+    <color name="miuix_on_tertiary_container_variant">#505050</color>
     <color name="miuix_error">#F12522</color>
     <color name="miuix_on_error">#FFFFFF</color>
     <color name="miuix_error_container">#2E0603</color>

@@ -25,16 +25,25 @@
 
         <!--重要CardView-->
         <!--卡片颜色-->
-        <item name="ImportantCardViewBackground">@color/miuix_important_cardview_background</item>
+        <item name="ImportantCardViewBackground">?attr/colorTertiaryContainer</item>
         <!--文字颜色-->
-        <item name="TextViewColorOnImportantCardView">@color/miuix_textview_color_on_important_cardview</item>
+        <item name="TextViewColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
         <!--次要文字颜色-->
-        <item name="SummaryTextViewColorOnImportantCardView">@color/miuix_summary_textview_color_on_important_cardview</item>
+        <item name="SummaryTextViewColorOnImportantCardView">@color/miuix_primary_container</item>
         <!--矢量图颜色-->
-        <item name="VectorGraphicColorOnImportantCardView">@color/miuix_vector_graphic_color_on_important_cardview</item>
-        <!--大矢量图颜色与透明度-->
-        <item name="LargeVectorGraphicColorOnImportantCardView">@color/miuix_large_vector_graphic_color_on_important_cardview</item>
-        <item name="LargeVectorGraphicAlphaOnImportantCardView">1.0</item>
+        <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnTertiaryContainer</item>
+
+        <!--状态卡片：这些卡片右下角都会放一个大图标-->
+        <!--卡片颜色-->
+        <item name="StatusCardViewBackground">@color/miuix_status_cardview_background</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnStatusCardView">@color/miuix_textview_color_on_status_cardview</item>
+        <!--次要文字颜色-->
+        <item name="SummaryTextViewColorOnStatusCardView">@color/miuix_summary_textview_color_on_status_cardview</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnStatusCardView">@color/miuix_vector_graphic_color_on_status_cardview</item>
+        <!--矢量图透明度：Miuix主题1.0f（完全不透明），其余主题0.8f-->
+        <item name="VectorGraphicAlphaOnStatusCardView">1.0</item>
 
         <!--开关配色-->
         <item name="SwitchUncheckedBackgroundColor">?attr/colorSecondary</item>
@@ -52,9 +61,9 @@
         <!--背景颜色-->
         <item name="DialogBackground">@color/miuix_background</item>
         <!--弹窗确认按钮背景颜色-->
-        <item name="DialogConfirmButtonBackground">@color/miuix_primary</item>
+        <item name="DialogConfirmButtonBackground">?attr/colorPrimary</item>
         <!--弹窗确认按钮文字颜色-->
-        <item name="DialogTextViewColorOnConfirmButton">@color/miuix_on_primary</item>
+        <item name="DialogTextViewColorOnConfirmButton">?attr/colorOnPrimary</item>
         <!--弹窗取消按钮背景颜色-->
         <item name="DialogCancelButtonBackground">@color/miuix_secondary_variant</item>
         <!--弹窗取消按钮文字颜色-->
@@ -62,7 +71,7 @@
         <!--弹窗中的一般卡片颜色-->
         <item name="DialogGeneralCardViewBackground">@color/miuix_secondary_variant</item>
         <!--弹窗中矢量图颜色-->
-        <item name="DialogVectorGraphicColorOnGeneralCardView">@color/miuix_on_background</item>
+        <item name="DialogVectorGraphicColorOnGeneralCardView">?attr/colorOnBackground</item>
 
         <item name="colorPrimary">@color/miuix_primary</item>
         <item name="colorOnPrimary">@color/miuix_on_primary</item>
@@ -74,8 +83,8 @@
         <item name="colorOnSecondaryContainer">@color/miuix_on_secondary_container</item>
         <item name="colorTertiary">@color/md_blue_kongquelan_tertiary</item>
         <item name="colorOnTertiary">@color/md_blue_kongquelan_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/md_blue_kongquelan_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/md_blue_kongquelan_onTertiaryContainer</item>
+        <item name="colorTertiaryContainer">@color/miuix_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/miuix_on_tertiary_container</item>
         <item name="colorError">@color/miuix_error</item>
         <item name="colorOnError">@color/miuix_on_error</item>
         <item name="colorErrorContainer">@color/miuix_error_container</item>

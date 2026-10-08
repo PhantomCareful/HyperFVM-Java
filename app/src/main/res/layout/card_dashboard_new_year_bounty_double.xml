@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:layout_marginBottom="10dp"
         android:clickable="true"
-        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+        app:cardBackgroundColor="?attr/StatusCardViewBackground"
         app:cardCornerRadius="20dp">
 
         <FrameLayout
@@ -27,8 +27,8 @@
                 android:layout_marginBottom="-35dp"
                 android:layout_gravity="end|bottom"
                 android:src="@drawable/ic_round_check_circle_outline"
-                android:alpha="?attr/LargeVectorGraphicAlphaOnImportantCardView"
-                app:tint="?attr/LargeVectorGraphicColorOnImportantCardView" />
+                android:alpha="?attr/VectorGraphicAlphaOnStatusCardView"
+                app:tint="?attr/VectorGraphicColorOnStatusCardView" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:layout_marginBottom="2dp"
                     android:text="@string/title_dashboard_new_year_bounty_double"
                     android:textSize="15sp"
-                    android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
+                    android:textColor="?attr/SummaryTextViewColorOnStatusCardView"/>
 
                 <TextView
                     android:id="@+id/dashboard_NewYearBountyDouble_IsDouble"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/TextViewColorOnImportantCardView"/>
+                    android:textColor="?attr/TextViewColorOnStatusCardView"/>
 
             </LinearLayout>
 
@@ -64,7 +64,7 @@
                 android:layout_marginBottom="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="?attr/TextViewColorOnImportantCardView" />
+                android:textColor="?attr/TextViewColorOnStatusCardView" />
 
         </FrameLayout>
 

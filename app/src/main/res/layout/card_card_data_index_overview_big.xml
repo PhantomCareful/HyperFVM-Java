@@ -11,7 +11,7 @@
         android:layout_weight="2"
         android:layout_marginBottom="10dp"
         android:clickable="true"
-        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+        app:cardBackgroundColor="?attr/StatusCardViewBackground"
         app:cardCornerRadius="20dp">
 
         <FrameLayout
@@ -26,8 +26,8 @@
                 android:layout_marginBottom="-10dp"
                 android:layout_gravity="end|bottom"
                 android:src="@drawable/ic_cards"
-                android:alpha="?attr/LargeVectorGraphicAlphaOnImportantCardView"
-                app:tint="?attr/LargeVectorGraphicColorOnImportantCardView" />
+                android:alpha="?attr/VectorGraphicAlphaOnStatusCardView"
+                app:tint="?attr/VectorGraphicColorOnStatusCardView" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:layout_marginBottom="2dp"
                     android:text="@string/title_card_data_index_overview_big_1"
                     android:textSize="15sp"
-                    android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
+                    android:textColor="?attr/SummaryTextViewColorOnStatusCardView"/>
 
                 <TextView
                     android:id="@+id/card_data_index_overview_big_content_1"
@@ -52,7 +52,7 @@
                     android:text="@string/version_card_data_search"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/TextViewColorOnImportantCardView"/>
+                    android:textColor="?attr/TextViewColorOnStatusCardView"/>
 
             </LinearLayout>
 
@@ -70,7 +70,7 @@
                     android:layout_marginBottom="2dp"
                     android:text="@string/title_card_data_index_overview_big_2"
                     android:textSize="15sp"
-                    android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
+                    android:textColor="?attr/SummaryTextViewColorOnStatusCardView"/>
 
                 <TextView
                     android:id="@+id/card_data_index_overview_big_content_2"
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/TextViewColorOnImportantCardView"/>
+                    android:textColor="?attr/TextViewColorOnStatusCardView"/>
 
             </LinearLayout>
 

@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="?attr/TextViewColorOnImportantCardView"/>
+            android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
 
     </LinearLayout>
 

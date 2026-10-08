@@ -19,14 +19,22 @@
     <attr name="ImportantCardViewBackground" format="color" />
     <!--文字颜色-->
     <attr name="TextViewColorOnImportantCardView" format="color" />
-    <!--文字颜色-->
+    <!--次要文字颜色-->
     <attr name="SummaryTextViewColorOnImportantCardView" format="color" />
     <!--矢量图颜色-->
     <attr name="VectorGraphicColorOnImportantCardView" format="color" />
-    <!--大矢量图颜色-->
-    <attr name="LargeVectorGraphicColorOnImportantCardView" format="color" />
-    <!--大矢量图透明度：Miuix主题1.0f（完全不透明），其余主题0.8f-->
-    <attr name="LargeVectorGraphicAlphaOnImportantCardView" format="float" />
+
+    <!--状态卡片：这些卡片右下角都会放一个大图标-->
+    <!--卡片颜色-->
+    <attr name="StatusCardViewBackground" format="color" />
+    <!--文字颜色-->
+    <attr name="TextViewColorOnStatusCardView" format="color" />
+    <!--次要文字颜色-->
+    <attr name="SummaryTextViewColorOnStatusCardView" format="color" />
+    <!--矢量图颜色-->
+    <attr name="VectorGraphicColorOnStatusCardView" format="color" />
+    <!--矢量图透明度：Miuix主题1.0f（完全不透明），其余主题0.8f-->
+    <attr name="VectorGraphicAlphaOnStatusCardView" format="float" />
 
     <!--MaterialSwitch 开关配色-->
     <!--未启用时 track 背景色：Miuix 主题为 colorSecondary，其他主题为 colorSecondaryContainer-->

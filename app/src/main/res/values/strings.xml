@@ -523,7 +523,7 @@
     <string name="label_check_update_status_need_install_permission">❌需要权限，点击重试❌</string>
     <string name="label_check_update_join">加入群组参与讨论和内测</string>
     <string name="title_about_app_developer_name">开发者</string>
-    <string name="label_about_app_developer_name_1">Phantom_Careful😈</string>
+    <string name="label_about_app_developer_name_1">Phantom_Careful</string>
     <string name="label_about_app_developer_name_2">QQ空间1–8服·喵帕斯赛高</string>
     <string name="dialog_sub_title_developer">Phantom_Careful</string>
     <string name="dialog_url_about_app_developer">https://github.com/PhantomCareful</string>

@@ -44,10 +44,18 @@
         <item name="SummaryTextViewColorOnImportantCardView">?attr/colorOnSecondaryContainer</item>
         <!--矢量图颜色-->
         <item name="VectorGraphicColorOnImportantCardView">?attr/colorOnSurface</item>
-        <!--大矢量图颜色-->
-        <item name="LargeVectorGraphicColorOnImportantCardView">?attr/colorPrimary</item>
-        <!--大矢量图透明度：Miuix主题1.0f（完全不透明），其余主题0.8f-->
-        <item name="LargeVectorGraphicAlphaOnImportantCardView">0.8</item>
+
+        <!--状态卡片：这些卡片右下角都会放一个大图标-->
+        <!--卡片颜色-->
+        <item name="StatusCardViewBackground">?attr/colorSecondaryContainer</item>
+        <!--文字颜色-->
+        <item name="TextViewColorOnStatusCardView">?attr/colorOnSurface</item>
+        <!--次要文字颜色-->
+        <item name="SummaryTextViewColorOnStatusCardView">?attr/colorOnSecondaryContainer</item>
+        <!--矢量图颜色-->
+        <item name="VectorGraphicColorOnStatusCardView">?attr/colorPrimary</item>
+        <!--矢量图透明度：Miuix主题1.0f（完全不透明），其余主题0.8f-->
+        <item name="VectorGraphicAlphaOnStatusCardView">0.8</item>
 
         <!--开关配色-->
         <item name="SwitchUncheckedBackgroundColor">?attr/colorSurfaceDim</item>

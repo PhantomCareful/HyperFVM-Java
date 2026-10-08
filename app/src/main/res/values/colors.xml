@@ -9,15 +9,16 @@
     <color name="card_background_color_effect">#2FFFFFFF</color>
 
     <!--Miuix-->
-    <color name="miuix_important_cardview_background">#DFFAE4</color>
-    <color name="miuix_textview_color_on_important_cardview">#000000</color>
-    <color name="miuix_summary_textview_color_on_important_cardview">#59645B</color>
-    <color name="miuix_vector_graphic_color_on_important_cardview">#000000</color>
-    <color name="miuix_large_vector_graphic_color_on_important_cardview">#36D167</color>
+    <color name="miuix_status_cardview_background">#DFFAE4</color>
+    <color name="miuix_textview_color_on_status_cardview">#000000</color>
+    <color name="miuix_summary_textview_color_on_status_cardview">#59645B</color>
+    <color name="miuix_vector_graphic_color_on_status_cardview">#36D167</color>
     <color name="miuix_primary">#3482FF</color>
     <color name="miuix_on_primary">#FFFFFF</color>
     <color name="miuix_primary_container">#5D9BFF</color>
     <color name="miuix_on_primary_container">#FFFFFF</color>
+    <color name="miuix_primary_variant">#3482FF</color>
+    <color name="miuix_on_primary_variant">#AECDFF</color>
     <color name="miuix_disabled_primary">#C2D9FF</color>
     <color name="miuix_disabled_on_primary">#F2F7FF</color>
     <color name="miuix_disabled_primary_button">#C2D9FF</color>
@@ -31,6 +32,9 @@
     <color name="miuix_secondary_container_variant">#F0F0F0</color>
     <color name="miuix_on_secondary_container_variant">#A8A8A8</color>
     <color name="miuix_disabled_on_secondary">#FCFCFC</color>
+    <color name="miuix_tertiary_container">#EAF2FF</color>
+    <color name="miuix_on_tertiary_container">#3482FF</color>
+    <color name="miuix_on_tertiary_container_variant">#EAF2FF</color>
     <color name="miuix_error">#E94634</color>
     <color name="miuix_on_error">#FFFFFF</color>
     <color name="miuix_error_container">#FDF6F4</color>
