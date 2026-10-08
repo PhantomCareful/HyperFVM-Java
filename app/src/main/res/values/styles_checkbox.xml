@@ -1,0 +1,26 @@
+<resources>
+    <!-- 圆形勾选框尺寸（控件盒子边长）与圆角半径单源：
+         半径 >= 盒宽一半 时 GradientDrawable 自动 clamp 为正圆；
+         想调圆的大小/半径只需改这两处，四个计算器页面全局生效 -->
+    <dimen name="checkbox_box_size">24dp</dimen>
+    <dimen name="checkbox_corner_radius">12dp</dimen>
+    <!-- 未选中态描边宽度 -->
+    <dimen name="checkbox_stroke_width">2dp</dimen>
+    <!-- 内嵌勾号 vector 边长（选中态实心圆内） -->
+    <dimen name="checkbox_check_size">18dp</dimen>
+
+    <!-- Material3 标准圆形勾选框：
+         未选中 = 描边空心圆（colorOnSurfaceVariant），选中 = 实心圆（colorPrimary）+ 白色勾号（colorOnPrimary），
+         随主题/深浅色自动适配；
+         buttonCompat 换成自定义圆形 selector（原生是矩形 morph 动画 drawable）；
+         buttonTint 必须置 @null：M3 基础样式带 buttonTint=@color/m3_checkbox_button_tint，
+         会以 SRC_IN 把整个自定义 drawable 染成单色，勾号会消失；
+         background 置 @null 去掉按下圆波纹：M3 样式 background=m3_selection_control_ripple
+         （无 mask、半径固定 20dp 的 RippleDrawable），点击行容器时 ViewGroup.dispatchSetPressed
+         会把 pressed 传播给不可点击的 child（clickable=false 恰是传播条件），导致该圆波被触发 -->
+    <style name="Checkbox.Round" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="android:background">@null</item>
+        <item name="buttonCompat">@drawable/checkbox_round_selector</item>
+        <item name="buttonTint">@null</item>
+    </style>
+</resources>

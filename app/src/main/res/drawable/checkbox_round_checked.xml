@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 选中态：实心圆（colorPrimary）+ 居中勾号（colorOnPrimary），随主题/深浅色适配 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/checkbox_corner_radius" />
+            <solid android:color="?attr/colorPrimary" />
+            <size
+                android:width="@dimen/checkbox_box_size"
+                android:height="@dimen/checkbox_box_size" />
+        </shape>
+    </item>
+    <!-- 勾号居中叠加（item 宽高 + gravity 需 API 23+，minSdk 31 满足） -->
+    <item
+        android:width="@dimen/checkbox_check_size"
+        android:height="@dimen/checkbox_check_size"
+        android:gravity="center"
+        android:drawable="@drawable/checkbox_round_check" />
+</layer-list>
