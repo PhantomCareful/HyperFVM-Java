@@ -127,6 +127,13 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
                     "VALUES ('提示语显示-仪表盘刷新完成', 'true')");
         }
+
+        // 版本112：settings表增加“主题-主题模式”“主题-强调色”设置（旧主题键已废弃，不做兼容迁移）
+        if (oldVersion < 112) {
+            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
+                    "VALUES ('主题-主题模式', 'Miuix（跟随系统）')," +
+                    "('主题-强调色', '默认')");
+        }
     }
 
     @Override
@@ -723,7 +730,12 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("value", value);
-        db.update(TABLE_SETTINGS, values, "content = ?", new String[]{content});
+        int updated = db.update(TABLE_SETTINGS, values, "content = ?", new String[]{content});
+        if (updated == 0) {
+            // 新键（如“主题-主题模式”）表中可能不存在：update 不命中时补插入（content 为主键，OR IGNORE 防重复）
+            values.put("content", content);
+            db.insertWithOnConflict(TABLE_SETTINGS, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        }
     }
 
     // ====================== 以下为meishi_wechat表的操作方法 ======================

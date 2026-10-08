@@ -8,9 +8,15 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 
 public class ThemeManager {
 
-    // 常量：数据库中主题设置的键（与原代码保持一致）
-    public static final String KEY_IS_DYNAMIC_COLOR = "主题-是否动态取色";
-    public static final String KEY_CUSTOM_THEME = "主题-自定义主题色";
+    // 常量：数据库中主题设置的键（仅以下两个新键，旧主题键已废弃、不再兼容）
+    // 主题模式（“Miuix/Monet（跟随系统/浅色/深色）”六选一），深浅色部分由 DarkModeManager 按后缀解析
+    public static final String KEY_THEME_MODE = "主题-主题模式";
+    // 强调色（仅 Monet 模式下可更改的种子色下拉）
+    public static final String KEY_ACCENT_COLOR = "主题-强调色";
+    // 两个键的默认值（与预制数据库一致）
+    public static final String THEME_MODE_DEFAULT = "Miuix（跟随系统）";
+    // 强调色的“默认”值：对应动态取色（壁纸取色）
+    private static final String ACCENT_DEFAULT = "默认";
 
     /**
      * 为Activity应用主题（需在super.onCreate前调用）
@@ -24,22 +30,29 @@ public class ThemeManager {
             return;
         }
 
-        // 2. 读取主题设置
-        boolean isDynamicColor = dbHelper.getSettingBooleanValue(KEY_IS_DYNAMIC_COLOR);
-        String currentTheme = dbHelper.getSettingStringValue(KEY_CUSTOM_THEME);
+        // 2. 读取主题模式（键缺失时落为默认值）
+        String themeMode = dbHelper.getSettingStringValue(KEY_THEME_MODE);
+        if (themeMode.isEmpty()) {
+            themeMode = THEME_MODE_DEFAULT;
+        }
 
-        if (!isDynamicColor) {
-            // 3. 非动态取色时，应用自定义主题
-            applyCustomTheme(activity, currentTheme);
+        if (themeMode.startsWith("Monet")) {
+            // 3. Monet 模式：强调色为“默认”（或空）时使用动态取色，否则使用选定的种子色
+            String accent = dbHelper.getSettingStringValue(KEY_ACCENT_COLOR);
+            if (accent.isEmpty() || ACCENT_DEFAULT.equals(accent)) {
+                // 注意：此处必须 setTheme 一个与 manifest 主题不同的 resId（空壳 NoShadow 即可）。
+                // 若与 manifest 相同，setTheme 为 no-op，Application 阶段 material DynamicColors
+                // 在 onActivityPreCreated apply 的 overlay 会保留；该 overlay 经 values-v31/v34
+                // 最终指向 @android:color/system_error_container_light（系统壁纸动态色，可能偏深，
+                // 实测 #FFA746F），导致 colorErrorContainer 卡片背景显示为深红而非预期浅红。
+                // setTheme 不同 resId 会重建 mTheme、丢弃该 overlay，回落静态浅红 #F9DEDC（2dff6dd8 行为）。
+                activity.setTheme(R.style.Base_Theme_HyperFVMJava_NoShadow);
+            } else {
+                applyCustomTheme(activity, accent);
+            }
         } else {
-            // 4. 动态取色时，使用默认主题
-            // 注意：此处必须 setTheme 一个与 manifest 主题不同的 resId（空壳 NoShadow 即可）。
-            // 若与 manifest 相同，setTheme 为 no-op，Application 阶段 material DynamicColors
-            // 在 onActivityPreCreated apply 的 overlay 会保留；该 overlay 经 values-v31/v34
-            // 最终指向 @android:color/system_error_container_light（系统壁纸动态色，可能偏深，
-            // 实测 #FFA746F），导致 colorErrorContainer 卡片背景显示为深红而非预期浅红。
-            // setTheme 不同 resId 会重建 mTheme、丢弃该 overlay，回落静态浅红 #F9DEDC（2dff6dd8 行为）。
-            activity.setTheme(R.style.Base_Theme_HyperFVMJava_NoShadow);
+            // 4. Miuix 模式：固定使用 Miuix 主题（深浅色由 DarkModeManager 按主题模式后缀控制）
+            activity.setTheme(R.style.Miuix);
         }
     }
 
@@ -55,7 +68,6 @@ public class ThemeManager {
 
         // 根据主题名称匹配对应的样式资源
         int themeResId = switch (themeValue) {
-            case "Miuix" -> R.style.Miuix;
             case "宫墙" -> R.style.Monet_Red_Gongqiang;
             case "琥珀" -> R.style.Monet_Orange_Hupo;
             case "麦芽糖" -> R.style.Monet_Yellow_Maiyatang;

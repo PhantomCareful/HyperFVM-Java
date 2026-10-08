@@ -279,7 +279,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/Switch_isDynamicColor_Container"
+                            android:id="@+id/theme_mode_selector_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -305,24 +305,32 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_settings_switch_is_dynamic_color"
+                                    android:text="@string/title_settings_option_theme_mode"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_settings_switch_is_dynamic_color"
+                                    android:text="@string/description_settings_option_theme_mode"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                             </LinearLayout>
 
-                            <com.google.android.material.materialswitch.MaterialSwitch
-                                android:id="@+id/Switch_isDynamicColor"
+                            <TextView
+                                android:id="@+id/theme_mode_current_selection"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:clickable="false" />
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_arrow_up_down"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -368,62 +376,6 @@
 
                             <TextView
                                 android:id="@+id/theme_current_selection"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_arrow_up_down"
-                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/dark_mode_selector_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="16dp"
-                            android:orientation="horizontal"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_invert_colors"
-                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
-
-                            <!-- 左侧文字 -->
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginHorizontal="16dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_settings_option_dark_mode"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/description_settings_option_dark_mode"
-                                    android:textSize="15sp"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/dark_mode_current_selection"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="15sp"

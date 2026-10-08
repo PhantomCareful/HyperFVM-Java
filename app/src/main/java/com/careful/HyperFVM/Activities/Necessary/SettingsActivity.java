@@ -54,16 +54,18 @@ public class SettingsActivity extends BaseActivity {
 
     private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（大标题/悬浮标题/模糊层三组件全联动）
 
-    private static final String CONTENT_IS_DYNAMIC_COLOR = "主题-是否动态取色";
-    private static final String CONTENT_APP_THEME = "主题-自定义主题色";
+    // 强调色键（与 ThemeManager.KEY_ACCENT_COLOR 保持一致）
+    private static final String CONTENT_APP_THEME = "主题-强调色";
+    // 主题模式键（“Miuix/Monet（跟随系统/浅色/深色）”六选一），与 ThemeManager 保持一致
+    private static final String CONTENT_THEME_MODE = "主题-主题模式";
+    // 强调色的“默认”值：对应动态取色（壁纸取色），与 ThemeManager 保持一致
+    private static final String ACCENT_DEFAULT = "默认";
     private String currentTheme;
     private View themeSelectorContainer;
     private TextView themeCurrentSelection;
-    private View darkModeSelectorContainer;
-
-    public static final String CONTENT_DARK_MODE = "主题-深色主题";
-    private String currentDarkMode;
-    private TextView darkModeCurrentSelection;
+    private String currentThemeMode;
+    private View themeModeSelectorContainer;
+    private TextView themeModeCurrentSelection;
 
     public static final String CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE = "跟随系统字体大小";
     public static final String CONTENT_DIY_FONT_SCALE = "自定义字体大小";
@@ -200,23 +202,29 @@ public class SettingsActivity extends BaseActivity {
     private void initThemeSelector() {
         themeCurrentSelection = findViewById(R.id.theme_current_selection);
         themeSelectorContainer = findViewById(R.id.theme_selector_container);
-        darkModeCurrentSelection = findViewById(R.id.dark_mode_current_selection);
-        darkModeSelectorContainer = findViewById(R.id.dark_mode_selector_container);
+        themeModeCurrentSelection = findViewById(R.id.theme_mode_current_selection);
+        themeModeSelectorContainer = findViewById(R.id.theme_mode_selector_container);
 
-        // 从数据库获取当前主题值
+        // 从数据库获取当前强调色（键缺失时落为默认值）
         currentTheme = dbHelper.getSettingStringValue(CONTENT_APP_THEME);
+        if (currentTheme.isEmpty()) {
+            currentTheme = ACCENT_DEFAULT;
+        }
         themeCurrentSelection.setText(currentTheme);
-        // 从数据库获取深色模式
-        currentDarkMode = dbHelper.getSettingStringValue(CONTENT_DARK_MODE);
-        darkModeCurrentSelection.setText(currentDarkMode);
+        // 从数据库获取主题模式（键缺失时落为默认值）
+        currentThemeMode = dbHelper.getSettingStringValue(CONTENT_THEME_MODE);
+        if (currentThemeMode.isEmpty()) {
+            currentThemeMode = ThemeManager.THEME_MODE_DEFAULT;
+        }
+        themeModeCurrentSelection.setText(currentThemeMode);
 
         // 记录触摸位置，使下拉菜单跟随手指横向弹出
         bindDropdownRowTouch(themeSelectorContainer);
-        bindDropdownRowTouch(darkModeSelectorContainer);
-        // 设置点击事件（动态取色开启时主题行不可点击）
-        setThemeRowClickable(!dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR));
-        // 设置深色模式点击事件
-        darkModeSelectorContainer.setOnClickListener(v -> showDarkModeDropdown());
+        bindDropdownRowTouch(themeModeSelectorContainer);
+        // 主题模式行始终可点击
+        themeModeSelectorContainer.setOnClickListener(v -> showThemeModeDropdown());
+        // 强调色行仅在主题模式为 Monet 时可点击
+        setThemeRowClickable(currentThemeMode.startsWith("Monet"));
     }
 
     private void showThemeDropdown() {
@@ -224,13 +232,17 @@ public class SettingsActivity extends BaseActivity {
                 themeCurrentSelection, selectedEntries -> currentTheme = selectedEntries);
     }
 
-    private void showDarkModeDropdown() {
-        showRowDropdown(darkModeSelectorContainer, R.array.dark_mode_entries, currentDarkMode, CONTENT_DARK_MODE,
-                darkModeCurrentSelection, selectedEntries -> currentDarkMode = selectedEntries);
+    private void showThemeModeDropdown() {
+        showRowDropdown(themeModeSelectorContainer, R.array.theme_mode_entries, currentThemeMode, CONTENT_THEME_MODE,
+                themeModeCurrentSelection, selectedEntries -> {
+                    currentThemeMode = selectedEntries;
+                    // 强调色行仅在 Monet 模式下可更改
+                    setThemeRowClickable(selectedEntries.startsWith("Monet"));
+                });
     }
 
     /**
-     * 主题行是否可点击（动态取色开启时禁用）
+     * 强调色行是否可点击（仅主题模式为 Monet 时可更改）
      */
     private void setThemeRowClickable(boolean clickable) {
         themeSelectorContainer.setOnClickListener(clickable ? v -> showThemeDropdown() : null);
@@ -384,10 +396,6 @@ public class SettingsActivity extends BaseActivity {
     @SuppressLint("SetTextI18n")
     private void initSwitchesAndSliders() {
         MaterialSwitch materialSwitch;
-        // 动态取色开关
-        boolean isDynamicColor = dbHelper.getSettingBooleanValue(CONTENT_IS_DYNAMIC_COLOR);
-        materialSwitch = findViewById(R.id.Switch_isDynamicColor);
-        materialSwitch.setChecked(isDynamicColor);
         // 跟随系统字体大小开关
         boolean isFollowSystemFontScale = dbHelper.getSettingBooleanValue(CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE);
         materialSwitch = findViewById(R.id.Switch_isFixedFontScale);
@@ -437,15 +445,6 @@ public class SettingsActivity extends BaseActivity {
      * 设置开关和滑条状态变化监听，同步更新数据库
      */
     private void setupSwitchAndSliderListeners() {
-        // 动态取色开关
-        MaterialSwitch finalMaterialSwitch1 = findViewById(R.id.Switch_isDynamicColor);
-        findViewById(R.id.Switch_isDynamicColor_Container).setOnClickListener(v -> {
-            // 先翻转开关再读取，保证落库的是点击后的新值
-            finalMaterialSwitch1.setChecked(!finalMaterialSwitch1.isChecked());
-            dbHelper.updateSettingValue(CONTENT_IS_DYNAMIC_COLOR, Boolean.toString(finalMaterialSwitch1.isChecked()));
-            setThemeRowClickable(!finalMaterialSwitch1.isChecked());
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-        });
         // 跟随系统字体大小开关
         MaterialSwitch finalMaterialSwitch2 = findViewById(R.id.Switch_isFixedFontScale);
         findViewById(R.id.Switch_isFixedFontScale_Container).setOnClickListener(v -> {
