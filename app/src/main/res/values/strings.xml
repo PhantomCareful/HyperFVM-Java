@@ -299,12 +299,10 @@
     <string name="toast_data_image_viewer_share_failed">分享失败，请稍后重试</string>
     <string name="top_bar_data_center_cookery_index">食神谱合集</string>
     <string name="top_bar_data_center_odds_index">宝箱概率公示合集</string>
-    <string name="tips_odds_index_title_1">说明</string>
-    <string name="tips_odds_index_description_1">以下概率公示均获取自官方发布的帖子，部分冷门宝箱未收录，您可以点击本卡片可访问原帖查看完整内容。</string>
-    <string name="tips_odds_index_title_2">勘误预警</string>
-    <string name="tips_odds_index_description_2">本页面所有内容均为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。\n请不要在官方评论区展示本页面的任何内容，尤其是出现勘误的时候，谢谢您的配合。</string>
+    <string name="tips_odds_index_1">以下概率公示均获取自官方发布的帖子，部分冷门宝箱未收录，您可以点击本卡片可访问原帖查看完整内容。</string>
+    <string name="tips_odds_index_2">本页面所有内容均为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。\n请不要在官方评论区展示本页面的任何内容，尤其是出现勘误的时候，谢谢您的配合。</string>
     <string name="tips_odds_index_title_3">勘误预警</string>
-    <string name="tips_odds_index_description_3">本概率公示获取自官方发布的帖子。\n内容为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。</string>
+    <string name="tips_odds_index_3">本概率公示获取自官方发布的帖子。\n内容为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。</string>
     <string name="copyright_and_molu">数据来自：So陌路の\n数据为人工录入，若发现问题可向开发者反馈🫰\n\nHyperFVM\nMade By Phantom Careful 😈</string>
     <string name="copyright">HyperFVM\nMade By Phantom Careful 😈</string>
     <!--防御卡全能数据库-->
@@ -322,8 +320,7 @@
     <string name="content_meishi_wechat_rules_1">点击右上角的添加按钮，输入您从微信公众号-美食中心复制过来的链接。</string>
     <string name="content_meishi_wechat_rules_2">添加成功后，当前界面会出现一个卡片，里面会显示您的账号信息(所在区服、角色ID)，您可以检查信息是否有误。</string>
     <string name="content_meishi_wechat_rules_3">若要删除账号，请长按该账号的信息卡片。</string>
-    <string name="tips_meishi_wechat_rules_title">特别提醒</string>
-    <string name="tips_meishi_wechat_rules_content">请妥善保管好您的openid，不要泄露给他人！</string>
+    <string name="tips_meishi_wechat">请妥善保管好您的openid，不要泄露给他人！</string>
     <string name="title_meishi_wechat_get_gift_rules">领取时机</string>
     <string name="content_meishi_wechat_get_gift_rules_1">您每次打开App都会自动执行一次领取操作。</string>
     <string name="content_meishi_wechat_get_gift_rules_2">您可以点击主界面仪表盘右上角的刷新内容按钮进行手动领取。</string>
@@ -433,8 +430,7 @@
     <string name="title_data_center_prestige_calculator">威望储备计算器</string>
     <string name="description_data_center_prestige_calculator">威望币留着没开的同学很适合这个功能</string>
     <string name="top_bar_prestige_calculator">威望储备计算器</string>
-    <string name="tips_prestige_calculator_top_title">一个小提示</string>
-    <string name="tips_prestige_calculator_top_content">请根据提示输入您在游戏中拥有的对应物品的数量，输入后将自动计算出结果。</string>
+    <string name="tips_prestige_calculator">请根据提示输入您在游戏中拥有的对应物品的数量，输入后将自动计算出结果。</string>
     <string name="tips_prestige_calculator_balance">威望商城余额</string>
     <string name="tips_prestige_calculator_1">威望币1的数量</string>
     <string name="tips_prestige_calculator_5">威望币5的数量</string>
@@ -466,7 +462,7 @@
     <string name="title_card_odds_calculator_category_1">中卡</string>
     <string name="title_card_odds_calculator_category_2">好卡</string>
     <string name="title_card_odds_calculator_minimum_guarantee">保底说明</string>
-    <string name="content_card_odds_calculator_minimum_guarantee">启用保险金进行强化时会激活保底机制，当强化失败的累积概率（等号右边的值）超过120%后，下一次强化（无论是否启用保险金）必成。\n利用保底机制，您可以在强化高星级卡片时节省一次保险金费用。</string>
+    <string name="tips_card_odds_calculator_minimum_guarantee">启用保险金进行强化时会激活保底机制，当强化失败的累积概率（等号右边的值）超过120%后，下一次强化（无论是否启用保险金）必成。\n利用保底机制，您可以在强化高星级卡片时节省一次保险金费用。</string>
     <!--设置-->
     <string name="top_bar_settings">设置</string>
     <string name="title_settings_permission">授权检查</string>
@@ -524,7 +520,7 @@
     <string name="title_about_app_co_construction_team">共建团</string>
     <string name="description_about_app_co_construction_team">HyperFVM也是这些同学们的作品</string>
     <string name="top_bar_co_construction_team">共建团</string>
-    <string name="tips_co_construction_team_description">感谢以下同学为HyperFVM的开发提供了不同程度的帮助🥰（按照区服进行划分，区服内的排名顺序为时间先后顺序）</string>
+    <string name="tips_co_construction_team">感谢以下同学为HyperFVM的开发提供了不同程度的帮助。（按照区服进行划分，区服内的排名顺序为时间先后顺序）</string>
     <string name="title_co_construction_team_4399_2_6_1">4399 2–6服·早睡日氪一元</string>
     <string name="description_co_construction_team_4399_2_6_1">感谢提出防御卡数据整合的建议\n感谢提出相关防御卡跳转查询的建议\n感谢帮助检查防御卡全能数据库中的错误</string>
     <string name="title_co_construction_team_qq_1_8_1">QQ空间1–8服·飛飛</string>
@@ -545,7 +541,7 @@
     <string name="title_about_app_thanks_list_app">App相关</string>
     <string name="description_about_app_thanks_list_app">HyperFVM使用了这些开源项目</string>
     <string name="top_bar_thanks_list_fvm">游戏相关</string>
-    <string name="tips_thanks_list_fvm_description">HyperFVM 在开发过程中使用了这些老师们的作品，在此表示衷心感谢🥰（排名顺序不分先后）</string>
+    <string name="tips_thanks_list_fvm">HyperFVM 在开发过程中使用了这些老师们的作品，在此表示衷心感谢。（排名顺序不分先后）</string>
     <string name="title_thanks_list_fvm_1">So陌路の</string>
     <string name="description_thanks_list_fvm_1">综合数据表作者\n防御卡全能数据库中的大部分内容都来自此数据表，为了更方便地查询防御卡数据，HyperFVM应运而生</string>
     <string name="dialog_sub_title_thanks_list_fvm_1">So陌路の</string>
@@ -564,7 +560,7 @@
     <string name="title_thanks_list_fvm_5_1">哪片花火</string>
     <string name="description_thanks_list_fvm_5_2">部分数据图作者\n从这位老师那里看到了一些不错的数据图，重制之后署名并收录在数据图合集里</string>
     <string name="top_bar_thanks_list_app">App相关</string>
-    <string name="tips_thanks_list_app_description">HyperFVM 在开发过程中使用了这些优秀的开源项目或辅助工具，在此表示衷心感谢🥰（排名顺序不分先后）</string>
+    <string name="tips_thanks_list_app">HyperFVM 在开发过程中使用了这些优秀的开源项目或辅助工具，在此表示衷心感谢。（排名顺序不分先后）</string>
     <string name="title_thanks_list_app_1">YuKongA/miuix</string>
     <string name="description_thanks_list_app_1">一个Compose Multiplatform的组件库，提供了一系列小米澎湃OS风格的组件\nHyperFVM当前使用View构建界面，因此无法直接使用，仅借鉴了其界面布局设计</string>
     <string name="dialog_sub_title_thanks_list_app_1">miuix</string>
@@ -589,8 +585,7 @@
     <string name="title_using_instruction">使用说明</string>
     <string name="description_using_instruction">阅读以快速上手HyperFVM</string>
     <string name="top_bar_using_instruction">使用说明</string>
-    <string name="tips_using_instruction_title">写在最前面</string>
-    <string name="tips_using_instruction_description">这个App是我计划了很久的作品，承诺永久免费，纯净无广，希望大家能够喜欢🥰🥰🥰\n如果您是第一次使用HyperFVM，或者对其中的某些功能不太了解，可以阅读这里的使用说明来获取帮助。</string>
+    <string name="tips_using_instruction">这个App是我计划了很久的作品，承诺永久免费，纯净无广，希望大家能够喜欢。\n如果您是第一次使用HyperFVM，或者对其中的某些功能不太了解，可以阅读这里的使用说明来获取帮助。</string>
     <string name="title_using_instruction_1">仪表盘</string>
     <string name="description_using_instruction_1">不需要进入游戏，便可以在这里查看各种重要信息</string>
     <string name="title_using_instruction_2">数据相关功能</string>
@@ -1885,7 +1880,7 @@
     <string name="description_card_data_cookery_3_3">如果没有与辣椒花椒比拼的勇气，谨吃慎食</string>
     <string name="reward_card_data_cookery_3_3">奖励750食神点</string>
     <string name="auxiliary_card_data_cookery_3_3_1">开启此食神谱后，以下卡片增幅倍率提升10%</string>
-    <string name="title_auxiliary_card_data_cookery_3_3_1_tips">🚨实际数据为增幅倍率提升0.1</string>
+    <string name="tips_auxiliary_card_data_cookery_3_3_1">🚨实际数据为增幅倍率提升0.1</string>
 
     <string name="name_card_data_cookery_3_4">番茄炒蛋</string>
     <string name="description_card_data_cookery_3_4">家常小炒菜，虽说简单却色香味俱全</string>
@@ -1914,8 +1909,8 @@
     <string name="reward_card_data_cookery_3_8">奖励450食神点</string>
     <string name="description_get_card_data_cookery_star_energy_3_8">通过每日充值(日氪)收集星能碎片，使用400个星能碎片进行兑换</string>
     <string name="auxiliary_card_data_cookery_3_8_1">开启此食神谱后，以下卡片攻速提升5%</string>
-    <string name="title_auxiliary_card_data_cookery_3_8_1_tips">该食神谱无实际效果🚫</string>
-    <string name="description_auxiliary_card_data_cookery_3_8_1_tips">实际加成为3%，攻速缩减量小于1帧，因此无加成(你游20帧游戏这一块🙄)</string>
+    <string name="tips_auxiliary_card_data_cookery_3_8_1_title">该食神谱无实际效果🚫</string>
+    <string name="tips_auxiliary_card_data_cookery_3_8_1_description">实际加成为3%，攻速缩减量小于1帧，因此无加成(你游20帧游戏这一块🙄)</string>
 
     <string name="name_card_data_cookery_3_9">圣诞姜饼</string>
     <string name="description_card_data_cookery_3_9">美味镇圣诞节专用小吃，谁吃谁知道！</string>

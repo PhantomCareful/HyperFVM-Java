@@ -53,47 +53,17 @@
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
-                    <LinearLayout
+                    <TextView
                         android:id="@+id/tips_odds_index_1_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:padding="16dp"
-                        android:gravity="center"
+                        android:text="@string/tips_odds_index_1"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TextViewColorOnImportantCardView"
                         android:clickable="true"
-                        android:background="?attr/selectableItemBackground">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_create"
-                            app:tint="?attr/VectorGraphicColorOnImportantCardView" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="16dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tips_odds_index_title_1"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnImportantCardView" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tips_odds_index_description_1"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnImportantCardView" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:background="?attr/selectableItemBackground" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -106,44 +76,14 @@
                     app:cardBackgroundColor="?attr/colorErrorContainer"
                     app:cardCornerRadius="20dp">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:padding="16dp"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_create"
-                            app:tint="?attr/colorOnErrorContainer" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="16dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tips_odds_index_title_2"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnErrorContainer" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tips_odds_index_description_2"
-                                android:textSize="15sp"
-                                android:textColor="?attr/colorOnErrorContainer" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:text="@string/tips_odds_index_2"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnErrorContainer" />
 
                 </androidx.cardview.widget.CardView>
 

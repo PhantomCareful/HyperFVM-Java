@@ -45,7 +45,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
+                        android:layout_marginBottom="10dp"
                         app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                         app:cardCornerRadius="20dp">
 
@@ -98,6 +98,30 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/tips_meishi_wechat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/colorErrorContainer"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/tips_meishi_wechat"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnErrorContainer" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
 
                     <TextView
                         android:id="@+id/TitleMeishiWechatSavedAccount"
@@ -215,55 +239,9 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/tips_meishi_wechat"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?attr/colorErrorContainer"
-                        app:cardCornerRadius="20dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="16dp"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_create"
-                                app:tint="?attr/colorOnErrorContainer" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginStart="16dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_meishi_wechat_rules_title"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/colorOnErrorContainer" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_meishi_wechat_rules_content"
-                                    android:textSize="15sp"
-                                    android:textColor="?attr/colorOnErrorContainer" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
 
                     <TextView
                         android:layout_width="match_parent"

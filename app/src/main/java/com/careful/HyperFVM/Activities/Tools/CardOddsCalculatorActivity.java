@@ -439,7 +439,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         setupBlurEffect();
 
         // 添加按压动画
-        findViewById(R.id.content_card_odds_calculator_minimum_guarantee).setOnTouchListener((v, event) ->
+        findViewById(R.id.tips_card_odds_calculator_minimum_guarantee).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
 

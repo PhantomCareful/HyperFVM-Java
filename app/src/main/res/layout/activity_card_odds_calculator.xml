@@ -3058,7 +3058,7 @@
                     android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/content_card_odds_calculator_minimum_guarantee"
+                    android:id="@+id/tips_card_odds_calculator_minimum_guarantee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -3070,7 +3070,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="@string/content_card_odds_calculator_minimum_guarantee"
+                        android:text="@string/tips_card_odds_calculator_minimum_guarantee"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>

@@ -388,7 +388,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/title_auxiliary_card_data_cookery_3_8_1_tips"
+                        android:text="@string/tips_auxiliary_card_data_cookery_3_8_1_title"
                         android:textSize="30sp"
                         android:textColor="?attr/colorOnErrorContainer"
                         android:padding="16dp"/>
@@ -396,7 +396,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/description_auxiliary_card_data_cookery_3_8_1_tips"
+                        android:text="@string/tips_auxiliary_card_data_cookery_3_8_1_description"
                         android:textSize="15sp"
                         android:textColor="?attr/colorOnErrorContainer"
                         android:paddingHorizontal="16dp"

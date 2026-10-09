@@ -337,7 +337,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="@string/title_auxiliary_card_data_cookery_3_3_1_tips"
+                        android:text="@string/tips_auxiliary_card_data_cookery_3_3_1"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="?attr/TextViewColorOnImportantCardView"
