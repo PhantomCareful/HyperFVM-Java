@@ -688,4 +688,9 @@
     <color name="md_pink_mitao_surfaceContainer">#FCEAE8</color>
     <color name="md_pink_mitao_surfaceContainerHigh">#F6E4E2</color>
     <color name="md_pink_mitao_surfaceContainerHighest">#F1DEDD</color>
+
+    <!-- 关于页 logo 模糊混色三层（借鉴 HyperCeiler 的 app_about_logo_color1/2/3，仅 MIUI/HyperOS 生效） -->
+    <color name="about_app_logo_blur_color1">#cc4a4a4a</color>
+    <color name="about_app_logo_blur_color2">#4f4f4f</color>
+    <color name="about_app_logo_blur_color3">#1af200</color>
 </resources>

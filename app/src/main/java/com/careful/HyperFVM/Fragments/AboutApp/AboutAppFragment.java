@@ -30,6 +30,7 @@ import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundI
 
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Blur.MiuiLogoBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForUpdate.BadgeDotUtil;
@@ -237,6 +238,17 @@ public class AboutAppFragment extends Fragment {
         logoMaxScroll = DensityUtil.dpToPx(requireContext(), 200);
         appNameMaxScroll = DensityUtil.dpToPx(requireContext(), 100);
         appVersionMaxScroll = DensityUtil.dpToPx(requireContext(), 50);
+
+        // logo与应用名的 MIUI/HyperOS 模糊混色：透出下方流光背景（借鉴 HyperCeiler 关于页，
+        // 仅“动态背景”启用且系统模糊开关打开时生效，其余情况静默回退为普通显示）
+        // 容器用 logo 的普通父布局（对齐 HyperCeiler 的 mRootView），不用 targetView——
+        // 它同时是 eightbitlab BlurView 的模糊目标，渲染流程可能与 MIUI 硬件模糊互斥
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled() && logoView != null) {
+            View logoContainer = logoView.getParent() instanceof View ? (View) logoView.getParent() : null;
+            if (logoContainer != null) {
+                MiuiLogoBlurUtil.applyLogoEffect(requireContext(), logoContainer, logoView, appNameText);
+            }
+        }
 
         // 添加模糊材质
         setupBlurEffect();
