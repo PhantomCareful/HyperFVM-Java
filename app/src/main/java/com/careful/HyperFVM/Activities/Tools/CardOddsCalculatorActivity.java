@@ -329,7 +329,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         final View clickTarget;
         // 当前选择展示位（仅类别组有；图标组靠图片展示，为 null）
         final TextView selectionText;
-        // 菜单行布局：纯文字（item_dropdown_selection）/纯图片/图片+文字（四叶草的加成倍率）
+        // 菜单行布局：纯文字（item_dropdown_text_selection）/纯图片/图片+文字（四叶草的加成倍率）
         final int menuLayoutId;
         // 图片行各条目对应的图片资源（纯文字行为 null；首项“不选”为 card_data_x）
         final int[] menuDrawables;
