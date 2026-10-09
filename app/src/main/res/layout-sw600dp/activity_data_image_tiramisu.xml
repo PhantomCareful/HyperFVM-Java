@@ -1461,7 +1461,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_image_index_tiramisu_image"
+        android:text="@string/top_bar_data_image_tiramisu_image"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

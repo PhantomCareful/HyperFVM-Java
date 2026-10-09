@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
                     android:layout_marginHorizontal="16dp"
-                    android:text="@string/top_bar_data_image_index"
+                    android:text="@string/top_bar_data_image"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="?attr/colorOnSurface"
@@ -173,7 +173,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_data_image_index_tiramisu"
+                                    android:text="@string/title_data_image_tiramisu"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -181,7 +181,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/author_data_image_index_tiramisu"
+                                    android:text="@string/author_data_image_tiramisu"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -214,7 +214,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_data_image_index_card"
+                                    android:text="@string/title_data_image_card"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -222,7 +222,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/author_data_image_index_card"
+                                    android:text="@string/author_data_image_card"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -255,7 +255,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_data_image_index_weapon_and_gem"
+                                    android:text="@string/title_data_image_weapon_and_gem"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -263,7 +263,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/author_data_image_index_weapon_and_gem"
+                                    android:text="@string/author_data_image_weapon_and_gem"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -296,7 +296,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_data_image_index_decompose_and_get"
+                                    android:text="@string/title_data_image_decompose_and_get"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -304,7 +304,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/author_data_image_index_decompose_and_get"
+                                    android:text="@string/author_data_image_decompose_and_get"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -337,7 +337,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_data_image_index_mouse_hp"
+                                    android:text="@string/title_data_image_mouse_hp"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -345,7 +345,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/author_data_image_index_mouse_hp"
+                                    android:text="@string/author_data_image_mouse_hp"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -378,7 +378,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_data_image_index_others"
+                                    android:text="@string/title_data_image_others"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -386,7 +386,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_data_image_index_others"
+                                    android:text="@string/description_data_image_others"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -430,7 +430,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_image_index"
+        android:text="@string/top_bar_data_image"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

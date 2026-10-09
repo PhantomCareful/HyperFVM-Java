@@ -80,7 +80,7 @@
                                 android:id="@+id/data_image_index_update_info_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/title_data_image_index_card_0_1"
+                                android:text="@string/title_data_image_card_0_1"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnImportantCardView" />
@@ -157,7 +157,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_0_2_1"
+                                        android:text="@string/title_data_image_card_0_2_1"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -200,7 +200,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_0_2_2"
+                                        android:text="@string/title_data_image_card_0_2_2"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -243,7 +243,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_0_3"
+                                        android:text="@string/title_data_image_card_0_3"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -302,7 +302,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_1"
+                                        android:text="@string/title_data_image_card_1"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -345,7 +345,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_2"
+                                        android:text="@string/title_data_image_card_2"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -388,7 +388,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_3"
+                                        android:text="@string/title_data_image_card_3"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -431,7 +431,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_4"
+                                        android:text="@string/title_data_image_card_4"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -474,7 +474,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_5"
+                                        android:text="@string/title_data_image_card_5"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -517,7 +517,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_6"
+                                        android:text="@string/title_data_image_card_6"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -560,7 +560,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_7"
+                                        android:text="@string/title_data_image_card_7"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -603,7 +603,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_8"
+                                        android:text="@string/title_data_image_card_8"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -646,7 +646,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_9"
+                                        android:text="@string/title_data_image_card_9"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -689,7 +689,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_10"
+                                        android:text="@string/title_data_image_card_10"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -732,7 +732,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_11"
+                                        android:text="@string/title_data_image_card_11"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -775,7 +775,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_12"
+                                        android:text="@string/title_data_image_card_12"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -818,7 +818,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_12_"
+                                        android:text="@string/title_data_image_card_12_"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -861,7 +861,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_13"
+                                        android:text="@string/title_data_image_card_13"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -904,7 +904,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_14"
+                                        android:text="@string/title_data_image_card_14"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -963,7 +963,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_15"
+                                        android:text="@string/title_data_image_card_15"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1006,7 +1006,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_16"
+                                        android:text="@string/title_data_image_card_16"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1049,7 +1049,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_17"
+                                        android:text="@string/title_data_image_card_17"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1092,7 +1092,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/title_data_image_index_card_18"
+                                        android:text="@string/title_data_image_card_18"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
                                         android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1147,7 +1147,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_image_index_card"
+        android:text="@string/top_bar_data_image_card"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

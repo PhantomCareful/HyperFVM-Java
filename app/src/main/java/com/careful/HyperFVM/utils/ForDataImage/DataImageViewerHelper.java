@@ -33,9 +33,9 @@ public class DataImageViewerHelper {
         if (!imageFile.exists()) {
             DialogBuilderManager.showDialog(
                     context,
-                    context.getResources().getString(R.string.title_dialog_data_image_index_open_failed_file_not_found),
+                    context.getResources().getString(R.string.title_dialog_data_image_open_failed_file_not_found),
                     "❌",
-                    context.getResources().getString(R.string.content_dialog_data_image_index_open_failed_file_not_found),
+                    context.getResources().getString(R.string.content_dialog_data_image_open_failed_file_not_found),
                     true,
                     "好的"
             );
