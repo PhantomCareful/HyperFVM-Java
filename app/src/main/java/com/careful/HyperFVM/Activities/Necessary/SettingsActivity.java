@@ -15,12 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.ListPopupWindow;
 import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
@@ -267,90 +265,14 @@ public class SettingsActivity extends BaseActivity {
 
     /**
      * 以设置行为锚点，就地弹出简洁的下拉选项菜单（替代原先的中央列表弹窗）。
-     * 菜单宽度自适应选项内容（wrap_content）且跟随手指横向弹出，选中项右侧显示√，点击行外区域自动关闭。
+     * 行渲染（选中文字 colorPrimary 高亮+√）、宽度恒为“最长条目+对勾”、四分支展开、
+     * 横向跟随手指弹出、打开时居中定位选中项、点击行外自动关闭——
+     * 统一复用 DropdownPopupHelper 公用实现，本方法只负责取条目、算选中下标与选中回调
      */
     private void showRowDropdown(View anchor, int arrayId, String currentContent, String dbHelperUpdateContent,
                                  TextView currentSelection, Consumer<String> onSelected) {
         String[] entries = getResources().getStringArray(arrayId);
-        ArrayAdapter<String> adapter = getStringArrayAdapter(currentContent, entries);
-        // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果），高度用于限制总高避免超屏。
-        // ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置。
-        // getView 的 parent 形参标注 @NonNull：这里传一个仅用于生成 LayoutParams 的空容器（不挂载子视图），避免传 null
-        ViewGroup measureParent = new FrameLayout(this);
-        int contentWidth = 0;
-        int itemHeight = 0;
-        for (int i = 0; i < entries.length; i++) {
-            View itemView = adapter.getView(i, null, measureParent);
-            itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-            contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
-            itemHeight = itemView.getMeasuredHeight();
-        }
-        // 极端大字体下限制菜单宽度不超出屏幕
-        contentWidth = Math.min(contentWidth, anchor.getRootView().getWidth());
-
-        // 展开方向与高度：优先向下全量展开；下方空间不足时向上翻转（负 offset，菜单底缘停在锚点上方）；
-        // 上下都放不下时取空间大的一侧并收缩高度（超出部分列表内滚动，至少保留两行）
-        int gap = (int) (4 * getResources().getDisplayMetrics().density);
-        int[] location = new int[2];
-        anchor.getLocationInWindow(location);
-        int fullHeight = itemHeight * entries.length;
-        int spaceBelow = anchor.getRootView().getHeight() - location[1] - anchor.getHeight() - gap;
-        int spaceAbove = location[1] - gap;
-        int verticalOffset = gap;
-        int popupHeight;
-        if (spaceBelow >= fullHeight) {
-            // 下方足够：向下展开
-            popupHeight = fullHeight;
-        } else if (spaceAbove >= fullHeight) {
-            // 下方不够、上方足够：整体上移，菜单底缘停在锚点上方
-            popupHeight = fullHeight;
-            verticalOffset = -(anchor.getHeight() + fullHeight + gap);
-        } else if (spaceAbove > spaceBelow) {
-            // 上下都不够、上方空间更大：向上展开并收缩到可用高度
-            popupHeight = Math.max(spaceAbove, itemHeight * 2);
-            verticalOffset = -(anchor.getHeight() + popupHeight + gap);
-        } else {
-            // 上下都不够、下方空间更大：向下展开并收缩到可用高度
-            popupHeight = Math.max(spaceBelow, itemHeight * 2);
-        }
-
-        // 横向弹出位置跟随手指按下的位置；最右不得超过屏幕右缘减页面边距，使菜单右缘与页面内容右缘对齐
-        int horizontalOffset = 0;
-        if (lastTouchDownX >= 0) {
-            int maxOffset = anchor.getRootView().getWidth() - contentWidth - location[0] - pageContentSideMarginPx;
-            horizontalOffset = Math.max(0, Math.min((int) lastTouchDownX, maxOffset));
-        }
-
-        ListPopupWindow popup = new ListPopupWindow(this);
-        popup.setAnchorView(anchor);
-        popup.setWidth(contentWidth);
-        popup.setHeight(popupHeight);
-        popup.setVerticalOffset(verticalOffset);
-        popup.setHorizontalOffset(horizontalOffset);
-        popup.setModal(true);
-        popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
-        popup.setAdapter(adapter);
-        popup.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedEntries = entries[position];
-            dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
-            currentSelection.setText(selectedEntries);
-            // 使用回调，将selectedEntries传回调用方（同步成员变量）
-            onSelected.accept(selectedEntries);
-            popup.dismiss();
-        });
-
-        // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角），随后隐藏滚动条
-        // （选中态由 adapter 渲染右侧对勾，无需 ListView 单选模式）
-        DropdownPopupHelper.show(this, popup);
-        ListView listView = popup.getListView();
-        if (listView != null) {
-            listView.setVerticalScrollBarEnabled(false);
-        }
-    }
-
-    @NonNull
-    private ArrayAdapter<String> getStringArrayAdapter(String currentContent, String[] entries) {
+        // 当前选中下标（按内容匹配，未匹配到默认第一项）
         int selectedIndex = 0;
         for (int i = 0; i < entries.length; i++) {
             if (entries[i].equals(currentContent)) {
@@ -358,23 +280,16 @@ public class SettingsActivity extends BaseActivity {
                 break;
             }
         }
-
-        // 实测选项宽高：菜单宽度取最宽选项（wrap_content 效果），高度用于限制总高避免超屏。
-        // ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置
-        final int currentSelectedIndex = selectedIndex;
-        return new ArrayAdapter<>(SettingsActivity.this, R.layout.item_dropdown_selection, entries) {
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                View row = convertView != null ? convertView
-                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
-                ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
-                // 仅当前选中项右侧显示对勾，其余不显示
-                row.findViewById(R.id.option_check)
-                        .setVisibility(position == currentSelectedIndex ? View.VISIBLE : View.GONE);
-                return row;
-            }
-        };
+        ArrayAdapter<String> adapter = DropdownPopupHelper.createAdapter(this, selectedIndex, entries,
+                R.layout.item_dropdown_text_selection, null);
+        DropdownPopupHelper.showAnchored(this, anchor, adapter, entries.length, selectedIndex,
+                lastTouchDownX, pageContentSideMarginPx, position -> {
+                    String selectedEntries = entries[position];
+                    dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
+                    currentSelection.setText(selectedEntries);
+                    // 使用回调，将selectedEntries传回调用方（同步成员变量）
+                    onSelected.accept(selectedEntries);
+                });
     }
 
     /**

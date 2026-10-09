@@ -14,13 +14,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.ListPopupWindow;
-import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
@@ -194,31 +191,39 @@ public class CardOddsCalculatorActivity extends BaseActivity {
 
     /**
      * 初始化 10 组下拉选择（弹出方式与设置页 selector 一致：以点击区为锚点、菜单跟随手指横向弹出）：
-     * 图标组（主卡/副卡/四叶草/VIP/公会）点击“标题+图片”整列弹出菜单；
+     * 图标组（主卡/副卡/四叶草/VIP/公会）点击“标题+图片”整列弹出菜单，其中主卡/副卡/VIP
+     * 菜单为纯图片、四叶草为图片+加成倍率文字、公会为纯文字；
      * 副卡类型组点击整行弹出菜单，按“好卡、中卡、差卡”顺序排列且默认好卡
      */
     private void setupDropdownGroups() {
         dropdownGroups = new DropdownGroup[GROUP_COUNT];
 
-        // 主卡：不选 + 0~15
+        // 主卡：不选 + 0~15（菜单为纯图片）
         dropdownGroups[GROUP_MAIN] = createIconGroup(STATE_SELECTED_MAIN_CARD,
-                buildNumberLabels(0, 15), findViewById(R.id.display_star_main));
-        // 副卡 1~3：不选 + 0~16
+                buildNumberLabels(0, 15), findViewById(R.id.display_star_main),
+                STAR_DRAWABLES, false);
+        // 副卡 1~3：不选 + 0~16（菜单为纯图片）
         dropdownGroups[GROUP_SUB_1] = createIconGroup(STATE_SELECTED_SUB_1,
-                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_1));
+                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_1),
+                STAR_DRAWABLES, false);
         dropdownGroups[GROUP_SUB_2] = createIconGroup(STATE_SELECTED_SUB_2,
-                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_2));
+                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_2),
+                STAR_DRAWABLES, false);
         dropdownGroups[GROUP_SUB_3] = createIconGroup(STATE_SELECTED_SUB_3,
-                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_3));
-        // 四叶草：不选 + 12 个四叶草条目
+                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_3),
+                STAR_DRAWABLES, false);
+        // 四叶草：不选 + 12 个四叶草（菜单为图片 + 加成倍率文字）
         dropdownGroups[GROUP_FOUR_LEAF_CLOVER] = createIconGroup(STATE_SELECTED_FOUR_LEAF_CLOVER,
-                buildCloverLabels(), findViewById(R.id.display_four_leaf_clover));
-        // VIP 等级：不选 + 1~16
+                buildCloverLabels(), findViewById(R.id.display_four_leaf_clover),
+                CLOVER_DRAWABLES, true);
+        // VIP 等级：不选 + 1~16（菜单为纯图片）
         dropdownGroups[GROUP_VIP] = createIconGroup(STATE_SELECTED_VIP,
-                buildNumberLabels(1, 16), findViewById(R.id.display_vip));
-        // 公会合成屋等级：不选 + 1~6（展示位为文字）
+                buildNumberLabels(1, 16), findViewById(R.id.display_vip),
+                VIP_DRAWABLES, false);
+        // 公会合成屋等级：不选 + 1~6（文字展示位、无对应图片，菜单保持纯文字）
         dropdownGroups[GROUP_CONSORTIA] = createIconGroup(STATE_SELECTED_CONSORTIA,
-                buildNumberLabels(1, 6), findViewById(R.id.display_consortia));
+                buildNumberLabels(1, 6), findViewById(R.id.display_consortia),
+                null, false);
         // 副卡类型 ×3：好卡/中卡/差卡三选一，默认好卡
         dropdownGroups[GROUP_SUB_1_CATEGORY] = createCategoryGroup(STATE_SELECTED_SUB_1_CATEGORY,
                 R.id.sub_card_category_1_selector_container, R.id.sub_card_category_1_current_selection);
@@ -241,28 +246,47 @@ public class CardOddsCalculatorActivity extends BaseActivity {
     }
 
     /**
-     * 四叶草图标组菜单条目：首项“不选”，其余为 12 个四叶草条目（与概率表顺序一致）
+     * 四叶草图标组菜单条目：首项“不选”，其余为 12 个四叶草的加成倍率（格式 X倍，
+     * 数值直接取自 FourLeafClover 概率表，与条目图片顺序一一对应）；
+     * 用 BigDecimal 去掉小数末尾的 0：2.0 → “2倍”，1.2 → “1.2倍”
      */
     private String[] buildCloverLabels() {
-        String[] entries = getResources().getStringArray(R.array.card_odds_calculator_four_leaf_clover_entries);
-        String[] labels = new String[entries.length + 1];
+        String[] labels = new String[CardOddsData.FourLeafClover.length + 1];
         labels[0] = getString(R.string.title_card_odds_calculator_not_select);
-        System.arraycopy(entries, 0, labels, 1, entries.length);
+        for (int i = 0; i < CardOddsData.FourLeafClover.length; i++) {
+            labels[i + 1] = BigDecimal.valueOf(CardOddsData.FourLeafClover[i])
+                    .stripTrailingZeros().toPlainString() + "倍";
+        }
         return labels;
     }
 
     /**
      * 图标组：点击区与菜单锚点均为“标题+图片”整列（展示位的父容器）；
-     * 逻辑选中值 -1=不选、0~N=菜单中第 N+1 项（与旧单选器下标语义一致）
+     * 逻辑选中值 -1=不选、0~N=菜单中第 N+1 项（与旧单选器下标语义一致）。
+     * displayDrawables 为各逻辑值对应的展示图（null 表示该组无图片，如公会合成屋，菜单保持纯文字）；
+     * 有图片时菜单行改为图片形式，textInMenu=true 时图片右侧附文字列（四叶草的加成倍率）
      */
-    private DropdownGroup createIconGroup(String stateKey, String[] labels, View displayView) {
+    private DropdownGroup createIconGroup(String stateKey, String[] labels, View displayView,
+                                          int[] displayDrawables, boolean textInMenu) {
         View clickTarget = displayView.getParent() instanceof View parent ? parent : displayView;
         int[] menuToLogic = new int[labels.length];
         for (int i = 0; i < labels.length; i++) {
             menuToLogic[i] = i - 1; // 首项“不选”→ -1，其余顺延
         }
+        // 行布局与图片：首项“不选”用 card_data_x，其余行与展示图按逻辑值一一对齐
+        int menuLayoutId = R.layout.item_dropdown_text_selection;
+        int[] menuDrawables = null;
+        if (displayDrawables != null) {
+            menuLayoutId = textInMenu
+                    ? R.layout.item_dropdown_image_text_selection
+                    : R.layout.item_dropdown_image_selection;
+            menuDrawables = new int[labels.length];
+            menuDrawables[0] = R.drawable.card_data_x;
+            System.arraycopy(displayDrawables, 0, menuDrawables, 1,
+                    Math.min(labels.length - 1, displayDrawables.length));
+        }
         return new DropdownGroup(prefs, stateKey, -1, -1, labels.length - 2,
-                labels, menuToLogic, clickTarget, null);
+                labels, menuToLogic, clickTarget, null, menuLayoutId, menuDrawables);
     }
 
     /**
@@ -278,9 +302,10 @@ public class CardOddsCalculatorActivity extends BaseActivity {
                 getString(R.string.title_card_odds_calculator_category_0)  // 差卡
         };
         int[] menuToLogic = {2, 1, 0};
-        // 类别组无“不选”，默认 2=好卡，合法逻辑值 0~2（旧记录为 -1 时回退默认）
+        // 类别组无“不选”，默认 2=好卡，合法逻辑值 0~2（旧记录为 -1 时回退默认）；菜单保持纯文字
         return new DropdownGroup(prefs, stateKey, 2, 0, 2,
-                labels, menuToLogic, container, selectionText);
+                labels, menuToLogic, container, selectionText,
+                R.layout.item_dropdown_text_selection, null);
     }
 
     /**
@@ -296,7 +321,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         // 合法逻辑值范围（闭区间），越界记录一律回退默认值
         final int minLogic;
         final int maxLogic;
-        // 菜单条目文本（按菜单显示顺序）
+        // 菜单条目文本（按菜单显示顺序；纯图片行不显示文字，仅用于数量统计与无障碍描述）
         final String[] labels;
         // 菜单下标 → 逻辑选中值
         final int[] menuToLogic;
@@ -304,13 +329,18 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         final View clickTarget;
         // 当前选择展示位（仅类别组有；图标组靠图片展示，为 null）
         final TextView selectionText;
+        // 菜单行布局：纯文字（item_dropdown_selection）/纯图片/图片+文字（四叶草的加成倍率）
+        final int menuLayoutId;
+        // 图片行各条目对应的图片资源（纯文字行为 null；首项“不选”为 card_data_x）
+        final int[] menuDrawables;
 
         // 当前逻辑选中值
         int logic;
 
         DropdownGroup(SharedPreferences prefs, String stateKey, int defaultValue,
                       int minLogic, int maxLogic, String[] labels, int[] menuToLogic,
-                      View clickTarget, TextView selectionText) {
+                      View clickTarget, TextView selectionText,
+                      int menuLayoutId, int[] menuDrawables) {
             this.stateKey = stateKey;
             this.defaultValue = defaultValue;
             this.minLogic = minLogic;
@@ -319,6 +349,8 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             this.menuToLogic = menuToLogic;
             this.clickTarget = clickTarget;
             this.selectionText = selectionText;
+            this.menuLayoutId = menuLayoutId;
+            this.menuDrawables = menuDrawables;
 
             // 从持久化存储恢复上次选中的逻辑值（无记录或记录越界时取默认值）
             this.logic = prefs.getInt(stateKey, defaultValue);
@@ -331,92 +363,18 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         }
 
         /**
-         * 就地弹出本组下拉选项菜单：菜单宽度自适应最宽选项（wrap_content 效果）、
-         * 四分支展开方向（下足向下/上足上翻/都不够取空间大侧收缩）、横向跟随手指弹出、
-         * 打开时定位到当前选中项（居中显示）、选中项右侧显示√、点击行外区域自动关闭
+         * 就地弹出本组下拉选项菜单：行渲染（文字 colorPrimary 高亮/图片/√）、
+         * 宽度恒为“最长条目+对勾”、四分支展开、横向跟随手指、打开时居中定位选中项、
+         * 点击行外自动关闭——全部复用 DropdownPopupHelper 公用实现，
+         * 本方法只负责构造本组 adapter 与选中回调
          */
         private void showDropdown() {
-            ArrayAdapter<String> adapter = createMenuAdapter(menuIndexOfLogic(), labels);
-            // 实测选项宽高：ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置。
-            // getView 的 parent 形参标注 @NonNull：这里传一个仅用于生成 LayoutParams 的空容器（不挂载子视图），避免传 null
-            ViewGroup measureParent = new FrameLayout(CardOddsCalculatorActivity.this);
-            int contentWidth = 0;
-            int itemHeight = 0;
-            for (int i = 0; i < labels.length; i++) {
-                View itemView = adapter.getView(i, null, measureParent);
-                itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
-                itemHeight = itemView.getMeasuredHeight();
-            }
-            // 极端大字体下限制菜单宽度不超出屏幕
-            contentWidth = Math.min(contentWidth, clickTarget.getRootView().getWidth());
-
-            // 展开方向与高度：优先向下全量展开；下方空间不足时向上翻转（负 offset，菜单底缘停在锚点上方）；
-            // 上下都放不下时取空间大的一侧并收缩高度（超出部分列表内滚动，至少保留两行）
-            int gap = DensityUtil.dpToPx(CardOddsCalculatorActivity.this, 4);
-            int[] location = new int[2];
-            clickTarget.getLocationInWindow(location);
-            int fullHeight = itemHeight * labels.length;
-            int spaceBelow = clickTarget.getRootView().getHeight() - location[1] - clickTarget.getHeight() - gap;
-            int spaceAbove = location[1] - gap;
-            int verticalOffset = gap;
-            int popupHeight;
-            if (spaceBelow >= fullHeight) {
-                // 下方足够：向下展开
-                popupHeight = fullHeight;
-            } else if (spaceAbove >= fullHeight) {
-                // 下方不够、上方足够：整体上移，菜单底缘停在锚点上方
-                popupHeight = fullHeight;
-                verticalOffset = -(clickTarget.getHeight() + fullHeight + gap);
-            } else if (spaceAbove > spaceBelow) {
-                // 上下都不够、上方空间更大：向上展开并收缩到可用高度
-                popupHeight = Math.max(spaceAbove, itemHeight * 2);
-                verticalOffset = -(clickTarget.getHeight() + popupHeight + gap);
-            } else {
-                // 上下都不够、下方空间更大：向下展开并收缩到可用高度
-                popupHeight = Math.max(spaceBelow, itemHeight * 2);
-            }
-
-            // 横向弹出位置跟随手指按下的位置（与设置页一致）；
-            // 最右不得超过屏幕右缘减页面边距，使菜单右缘与页面内容右缘对齐
-            int horizontalOffset = 0;
-            if (lastTouchDownX >= 0) {
-                int maxOffset = clickTarget.getRootView().getWidth() - contentWidth
-                        - location[0] - pageContentSideMarginPx;
-                horizontalOffset = Math.max(0, Math.min((int) lastTouchDownX, maxOffset));
-            }
-
-            // 列表高于可视区时打开即定位当前选中项：取选中项居中时的首行下标
-            // （可视行数按已算出的弹出高度折算；全部可见时折算结果为 0，不产生滚动）
-            int visibleCount = Math.max(1, popupHeight / Math.max(1, itemHeight));
-            int firstVisible = Math.max(0, Math.min(menuIndexOfLogic() - visibleCount / 2,
-                    labels.length - visibleCount));
-
-            ListPopupWindow popup = new ListPopupWindow(CardOddsCalculatorActivity.this);
-            popup.setAnchorView(clickTarget);
-            popup.setWidth(contentWidth);
-            popup.setHeight(popupHeight);
-            popup.setVerticalOffset(verticalOffset);
-            popup.setHorizontalOffset(horizontalOffset);
-            popup.setModal(true);
-            popup.setBackgroundDrawable(ContextCompat.getDrawable(
-                    CardOddsCalculatorActivity.this, R.drawable.popup_dropdown_background));
-            popup.setAdapter(adapter);
-            popup.setOnItemClickListener((parent, view, position, id) -> {
-                selectByMenuIndex(position);
-                popup.dismiss();
-            });
-
-            // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角），随后隐藏滚动条
-            // （选中态由 adapter 渲染右侧对勾，无需 ListView 单选模式）
-            DropdownPopupHelper.show(CardOddsCalculatorActivity.this, popup);
-            ListView listView = popup.getListView();
-            if (listView != null) {
-                listView.setVerticalScrollBarEnabled(false);
-                // 长列表打开时滚动到当前选中项（选中靠后条目再次打开时可见）
-                listView.setSelection(firstVisible);
-            }
+            int selectedMenuIndex = menuIndexOfLogic();
+            ArrayAdapter<String> adapter = DropdownPopupHelper.createAdapter(
+                    CardOddsCalculatorActivity.this, selectedMenuIndex, labels, menuLayoutId, menuDrawables);
+            DropdownPopupHelper.showAnchored(CardOddsCalculatorActivity.this, clickTarget, adapter,
+                    labels.length, selectedMenuIndex, lastTouchDownX, pageContentSideMarginPx,
+                    this::selectByMenuIndex);
         }
 
         /** 菜单项点击：写入逻辑选中值并持久化，随后统一由 recalculate 刷新展示与结果 */
@@ -458,27 +416,6 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             }
             return false;// 不消费事件，保持原有按压反馈与点击行为
         });
-    }
-
-    /**
-     * 下拉菜单通用选项项 adapter：条目文字 + 仅当前选中项右侧显示√
-     */
-    @NonNull
-    private ArrayAdapter<String> createMenuAdapter(int selectedIndex, String[] labels) {
-        final int checkedIndex = selectedIndex;
-        return new ArrayAdapter<>(this, R.layout.item_dropdown_selection, labels) {
-            @NonNull
-            @Override
-            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                View row = convertView != null ? convertView
-                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
-                ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
-                // 仅当前选中项右侧显示对勾，其余不显示
-                row.findViewById(R.id.option_check)
-                        .setVisibility(position == checkedIndex ? View.VISIBLE : View.GONE);
-                return row;
-            }
-        };
     }
 
     /**

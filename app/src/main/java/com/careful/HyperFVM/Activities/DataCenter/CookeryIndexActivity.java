@@ -129,12 +129,12 @@ public class CookeryIndexActivity extends BaseActivity {
      */
     private void showIndexDropdown(View anchor) {
         String[] entries = getResources().getStringArray(R.array.cookery_index_entries);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_dropdown_selection, entries) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_dropdown_text_selection, entries) {
             @NonNull
             @Override
             public View getView(int position, View convertView, @NonNull ViewGroup parent) {
                 View row = convertView != null ? convertView
-                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
+                        : getLayoutInflater().inflate(R.layout.item_dropdown_text_selection, parent, false);
                 ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
                 // 章节目录不需要选中对勾
                 row.findViewById(R.id.option_check).setVisibility(View.GONE);
