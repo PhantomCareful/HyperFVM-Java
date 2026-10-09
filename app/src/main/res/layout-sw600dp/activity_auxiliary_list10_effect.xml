@@ -132,57 +132,61 @@
 
             </LinearLayout>
 
-            <ScrollView
-                android:id="@+id/scrollView2"
+            <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scrollbars="none"
-                android:clipChildren="false"
-                android:clipToPadding="false">
-
-                <LinearLayout
+                android:layout_weight="1">
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:paddingTop="120dp"
-                    android:paddingBottom="50dp"
-                    android:orientation="vertical"
+                    android:layout_height="match_parent"
+                    android:id="@+id/scrollView2"
+                    android:scrollbars="none"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <!-- 展示增幅名单 -->
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/title_card_data_auxiliary_list"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurface"/>
+                        android:layout_marginStart="10dp"
+                        android:paddingTop="120dp"
+                        android:paddingBottom="50dp"
+                        android:orientation="vertical"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
-                        app:cardBackgroundColor="@color/card_background_color_effect"
-                        app:cardCornerRadius="20dp"
-                        app:cardElevation="0dp">
+                        <!-- 展示增幅名单 -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_data_auxiliary_list"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list10"
-                            layout="@layout/card_card_data_auxiliary_list10"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="25dp"
+                            app:cardBackgroundColor="@color/card_background_color_effect"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="0dp">
 
-                    </androidx.cardview.widget.CardView>
+                            <include
+                                android:id="@+id/card_card_data_auxiliary_list10"
+                                layout="@layout/card_card_data_auxiliary_list10"/>
 
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp" />
+                        </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp" />
 
-            </ScrollView>
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+            </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
         </LinearLayout>
 

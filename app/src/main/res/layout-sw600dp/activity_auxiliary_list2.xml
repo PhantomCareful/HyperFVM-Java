@@ -22,552 +22,560 @@
             android:clipChildren="false"
             android:clipToPadding="false">
 
-            <ScrollView
-                android:id="@+id/scrollView1"
+            <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scrollbars="none"
-                android:clipChildren="false"
-                android:clipToPadding="false">
-
-                <LinearLayout
+                android:layout_weight="1">
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:paddingTop="100dp"
-                    android:paddingBottom="50dp"
-                    android:orientation="vertical"
+                    android:layout_height="match_parent"
+                    android:id="@+id/scrollView1"
+                    android:scrollbars="none"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <!-- 展示各增幅卡的大图 -->
                     <LinearLayout
-                        android:id="@+id/card_data_index_background_images_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
+                        android:layout_marginEnd="10dp"
+                        android:paddingTop="100dp"
+                        android:paddingBottom="50dp"
+                        android:orientation="vertical"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
+                        <!-- 展示各增幅卡的大图 -->
                         <LinearLayout
-                            android:id="@+id/card_data_index_background_image_1_1"
-                            android:layout_width="0dp"
+                            android:id="@+id/card_data_index_background_images_1"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_1_1"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x11190254_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x11190254_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="能量喵"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_1_2"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="能量喵"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1119025e_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="蓝焰能量喵"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_1_3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1119025f_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="樱红能量喵"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/card_data_index_background_image_1_2"
-                            android:layout_width="0dp"
+                            android:id="@+id/card_data_index_background_images_2"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_2_1"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1119025e_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x11120110_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="猪猪加强器"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_2_2"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="蓝焰能量喵"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112011e_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="猪猪信号塔"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_2_3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112011f_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="猪猪发射站"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/card_data_index_background_image_1_3"
-                            android:layout_width="0dp"
+                            android:id="@+id/card_data_index_background_images_3"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_3_1"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1119025f_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:visibility="invisible">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x11120420_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="蓝莓信号塔塔"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_3_2"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="樱红能量喵"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x11120420_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="蓝莓信号塔塔"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_3_3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:visibility="invisible">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x11120420_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="蓝莓信号塔塔"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/card_data_index_background_images_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_4_1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x11120700_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="美味水果塔"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_4_2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112070e_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="风车水果塔"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_4_3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112070f_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="巧克力风车塔"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/card_data_index_background_images_5_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_5_1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112085a_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="欧若拉神使"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_5_2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112085b_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="欧若拉圣神"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/card_data_index_background_images_5_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_5_3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112085c_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="曙光女神·欧若拉"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/card_data_index_background_image_5_4"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/x1112085d_big"
+                                    tools:ignore="ContentDescription" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="至尊曙光女神"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:gravity="center"
+                                    android:layout_gravity="center" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/card_data_index_background_images_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
+                </androidx.core.widget.NestedScrollView>
+            </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_2_1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x11120110_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="猪猪加强器"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_2_2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112011e_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="猪猪信号塔"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_2_3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112011f_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="猪猪发射站"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/card_data_index_background_images_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_3_1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:visibility="invisible">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x11120420_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="蓝莓信号塔塔"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_3_2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x11120420_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="蓝莓信号塔塔"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_3_3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:visibility="invisible">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x11120420_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="蓝莓信号塔塔"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/card_data_index_background_images_4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_4_1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x11120700_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="美味水果塔"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_4_2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112070e_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="风车水果塔"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_4_3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112070f_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="巧克力风车塔"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/card_data_index_background_images_5_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_5_1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112085a_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="欧若拉神使"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_5_2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112085b_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="欧若拉圣神"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/card_data_index_background_images_5_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_5_3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112085c_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="曙光女神·欧若拉"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/card_data_index_background_image_5_4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/x1112085d_big"
-                                tools:ignore="ContentDescription" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="至尊曙光女神"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface"
-                                android:gravity="center"
-                                android:layout_gravity="center" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <ScrollView
-                android:id="@+id/scrollView2"
+            <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scrollbars="none"
-                android:clipChildren="false"
-                android:clipToPadding="false">
-
-                <LinearLayout
+                android:layout_weight="1">
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:paddingTop="120dp"
-                    android:paddingBottom="50dp"
-                    android:orientation="vertical"
+                    android:layout_height="match_parent"
+                    android:id="@+id/scrollView2"
+                    android:scrollbars="none"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <!-- 展示增幅名单 -->
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/title_card_data_auxiliary_list"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
+                        android:layout_marginStart="10dp"
+                        android:paddingTop="120dp"
+                        android:paddingBottom="50dp"
+                        android:orientation="vertical"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
-                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                        app:cardCornerRadius="20dp">
+                        <!-- 展示增幅名单 -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_data_auxiliary_list"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
-                        <include
-                            android:id="@+id/card_card_data_auxiliary_list2"
-                            layout="@layout/card_card_data_auxiliary_list2"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="25dp"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
-                    </androidx.cardview.widget.CardView>
+                            <include
+                                android:id="@+id/card_card_data_auxiliary_list2"
+                                layout="@layout/card_card_data_auxiliary_list2"/>
 
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp" />
+                        </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp" />
 
-            </ScrollView>
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+            </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
         </LinearLayout>
 

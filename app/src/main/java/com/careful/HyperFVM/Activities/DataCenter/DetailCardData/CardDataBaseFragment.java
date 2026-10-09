@@ -22,7 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -591,7 +591,7 @@ public class CardDataBaseFragment extends Fragment {
      */
     private void initDecoration() {
         // 获取滚动视图ScrollView
-        ScrollView scrollView = root.findViewById(R.id.scrollView);
+        NestedScrollView scrollView = root.findViewById(R.id.scrollView);
 
         // 初始化大图片的淡入动画
         transition = new TransitionSet();

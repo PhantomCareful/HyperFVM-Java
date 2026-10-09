@@ -18,52 +18,56 @@
         android:textColor="?attr/colorOnSurface"
         android:clickable="true"/>
 
-    <ScrollView
+    <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="none"
-        android:clipChildren="false"
-        android:clipToPadding="false">
-
-        <LinearLayout
+        android:layout_weight="1">
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="26dp"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
             android:clipChildren="false"
             android:clipToPadding="false">
 
-            <ImageView
-                android:id="@+id/visit_image"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter" />
-
-            <TextView
-                android:id="@+id/visit_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="?attr/colorOnSurface"/>
+                android:paddingHorizontal="26dp"
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
-            <TextView
-                android:id="@+id/visit_sub_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="?attr/colorOnSurfaceVariant"/>
+                <ImageView
+                    android:id="@+id/visit_image"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/visit_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"/>
 
-    </ScrollView>
+                <TextView
+                    android:id="@+id/visit_sub_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"/>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -15,688 +15,692 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:id="@+id/scrollView"
+        <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-
-            <LinearLayout
-                android:id="@+id/CardOddsCalculator_Container"
+            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:paddingTop="120dp"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView"
+                android:scrollbars="none"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/CardOddsCalculator_Container"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingTop="120dp"
+                    android:orientation="vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="@string/title_card_odds_calculator_choose_sub_card_1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_odds_calculator_choose_sub_card_1"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                        <ImageView
+                            android:id="@+id/display_star_sub_1"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/star_image_0"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/title_card_odds_calculator_choose_sub_card_2"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                            <ImageView
+                                android:id="@+id/display_star_sub_2"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/star_image_0"/>
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/title_card_odds_calculator_choose_main_card"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                            <ImageView
+                                android:id="@+id/display_star_main"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/star_image_0"/>
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/title_card_odds_calculator_choose_sub_card_3"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                            <ImageView
+                                android:id="@+id/display_star_sub_3"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/star_image_0"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/title_card_odds_calculator_choose_four_leaf_clover"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                            <ImageView
+                                android:id="@+id/display_four_leaf_clover"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/item_four_leaf_clover_1"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/title_card_odds_calculator_choose_consortia"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                            <TextView
+                                android:id="@+id/display_consortia"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textSize="45sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/colorOnSurface"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/title_card_odds_calculator_choose_vip"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                            <ImageView
+                                android:id="@+id/display_vip"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/vip_1"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_card_odds_calculator_result"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
-                    <ImageView
-                        android:id="@+id/display_star_sub_1"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/star_image_0"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/percent_a_container"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@string/title_card_odds_calculator_choose_sub_card_2"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                        <ImageView
-                            android:id="@+id/display_star_sub_2"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/star_image_0"/>
-
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@string/title_card_odds_calculator_choose_main_card"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                        <ImageView
-                            android:id="@+id/display_star_main"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/star_image_0"/>
-
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@string/title_card_odds_calculator_choose_sub_card_3"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                        <ImageView
-                            android:id="@+id/display_star_sub_3"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/star_image_0"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@string/title_card_odds_calculator_choose_four_leaf_clover"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                        <ImageView
-                            android:id="@+id/display_four_leaf_clover"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/item_four_leaf_clover_1"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@string/title_card_odds_calculator_choose_consortia"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                        <TextView
-                            android:id="@+id/display_consortia"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textSize="45sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/colorOnSurface"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@string/title_card_odds_calculator_choose_vip"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                        <ImageView
-                            android:id="@+id/display_vip"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:layout_gravity="center"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/vip_1"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_result"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/percent_a_container"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/percent_a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:gravity="center"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TextViewColorOnImportantCardView" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <Space
-                        android:layout_width="6dp"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurface" />
-
-                    <Space
-                        android:layout_width="6dp"
-                        android:layout_height="wrap_content" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/percent_b_container"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/percent_b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:gravity="center"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TextViewColorOnImportantCardView" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <Space
-                        android:layout_width="6dp"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="="
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurface" />
-
-                    <Space
-                        android:layout_width="6dp"
-                        android:layout_height="wrap_content" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/percent_c_container"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                        app:cardCornerRadius="20dp">
-
-                        <TextView
-                            android:id="@+id/percent_c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:gravity="center"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TextViewColorOnImportantCardView" />
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/coin_container"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                        app:cardCornerRadius="20dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
                             <TextView
+                                android:id="@+id/percent_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:text="@string/title_card_odds_calculator_coin"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
-
-                            <TextView
-                                android:id="@+id/coin"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:gravity="center"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
 
-                        </LinearLayout>
+                        </androidx.cardview.widget.CardView>
 
-                    </androidx.cardview.widget.CardView>
+                        <Space
+                            android:layout_width="6dp"
+                            android:layout_height="wrap_content" />
 
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/insurance_container"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                        app:cardCornerRadius="20dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <Space
+                            android:layout_width="6dp"
+                            android:layout_height="wrap_content" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/percent_b_container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
                             <TextView
+                                android:id="@+id/percent_b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:text="@string/title_card_odds_calculator_insurance"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
-
-                            <TextView
-                                android:id="@+id/insurance"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:gravity="center"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
 
-                        </LinearLayout>
+                        </androidx.cardview.widget.CardView>
 
-                    </androidx.cardview.widget.CardView>
+                        <Space
+                            android:layout_width="6dp"
+                            android:layout_height="wrap_content" />
 
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/minimum_guarantee_container"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                        app:cardCornerRadius="20dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="10dp">
+                            android:text="="
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <Space
+                            android:layout_width="6dp"
+                            android:layout_height="wrap_content" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/percent_c_container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
                             <TextView
+                                android:id="@+id/percent_c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:text="@string/title_card_odds_calculator_minimum_guarantee"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
-
-                            <TextView
-                                android:id="@+id/minimum_guarantee"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:gravity="center"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
 
-                        </LinearLayout>
+                        </androidx.cardview.widget.CardView>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
-                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/coin_container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_sub_card_category"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="10dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/tips_card_odds_calculator_sub_card_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:clickable="true"
-                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                    app:cardCornerRadius="20dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/title_card_odds_calculator_coin"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                                <TextView
+                                    android:id="@+id/coin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/insurance_container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/title_card_odds_calculator_insurance"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                                <TextView
+                                    android:id="@+id/insurance"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/minimum_guarantee_container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                            app:cardCornerRadius="20dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="@string/title_card_odds_calculator_minimum_guarantee"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                                <TextView
+                                    android:id="@+id/minimum_guarantee"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="@string/tips_card_odds_calculator_sub_card_category"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_card_odds_calculator_choose_sub_card_category"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:textColor="?attr/TextViewColorOnImportantCardView" />
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/tips_card_odds_calculator_sub_card_category"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                        app:cardCornerRadius="20dp">
 
-                        <LinearLayout
-                            android:id="@+id/sub_card_category_1_selector_container"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
                             android:padding="16dp"
-                            android:orientation="horizontal"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
+                            android:text="@string/tips_card_odds_calculator_sub_card_category"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnImportantCardView" />
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginEnd="16dp"
-                                android:text="@string/title_card_odds_calculator_choose_sub_card_1"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                    </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/sub_card_category_1_current_selection"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/sub_card_category_1_selector_container"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_arrow_up_down"
-                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+                                android:gravity="center"
+                                android:padding="16dp"
+                                android:orientation="horizontal"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginEnd="16dp"
+                                    android:text="@string/title_card_odds_calculator_choose_sub_card_1"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                                <TextView
+                                    android:id="@+id/sub_card_category_1_current_selection"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_arrow_up_down"
+                                    app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/sub_card_category_2_selector_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="16dp"
+                                android:orientation="horizontal"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginEnd="16dp"
+                                    android:text="@string/title_card_odds_calculator_choose_sub_card_2"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                                <TextView
+                                    android:id="@+id/sub_card_category_2_current_selection"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_arrow_up_down"
+                                    app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/sub_card_category_3_selector_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="16dp"
+                                android:orientation="horizontal"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginEnd="16dp"
+                                    android:text="@string/title_card_odds_calculator_choose_sub_card_3"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                                <TextView
+                                    android:id="@+id/sub_card_category_3_current_selection"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_arrow_up_down"
+                                    app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/sub_card_category_2_selector_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="16dp"
-                            android:orientation="horizontal"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
+                    </androidx.cardview.widget.CardView>
 
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginEnd="16dp"
-                                android:text="@string/title_card_odds_calculator_choose_sub_card_2"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
-                            <TextView
-                                android:id="@+id/sub_card_category_2_current_selection"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_arrow_up_down"
-                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/sub_card_category_3_selector_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="16dp"
-                            android:orientation="horizontal"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground">
-
-                            <!-- 左侧文字 -->
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginEnd="16dp"
-                                android:text="@string/title_card_odds_calculator_choose_sub_card_3"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
-
-                            <TextView
-                                android:id="@+id/sub_card_category_3_current_selection"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_arrow_up_down"
-                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_minimum_guarantee_description"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/tips_card_odds_calculator_minimum_guarantee"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:clickable="true"
-                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                    app:cardCornerRadius="20dp">
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="@string/tips_card_odds_calculator_minimum_guarantee"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_card_odds_calculator_minimum_guarantee_description"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:textColor="?attr/TextViewColorOnImportantCardView" />
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
-                </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/tips_card_odds_calculator_minimum_guarantee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                        app:cardCornerRadius="20dp">
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/tips_card_odds_calculator_minimum_guarantee"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnImportantCardView" />
 
-            </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-        </ScrollView>
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 

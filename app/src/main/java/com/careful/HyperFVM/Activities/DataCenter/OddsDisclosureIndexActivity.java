@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -138,7 +138,7 @@ public class OddsDisclosureIndexActivity extends BaseActivity {
      * 平滑滚动到指定分节标题：标题最终停在顶部模糊栏下方（留一点间距），滚动中正常联动顶部栏渐显
      */
     private void scrollToSectionTitle(View titleView) {
-        ScrollView scrollView = findViewById(R.id.scrollView);
+        NestedScrollView scrollView = findViewById(R.id.scrollView);
         View blurViewTopBar = findViewById(R.id.blurViewTopBar);
         int[] scrollLocation = new int[2];
         int[] titleLocation = new int[2];

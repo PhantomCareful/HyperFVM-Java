@@ -12,167 +12,171 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:id="@+id/scrollView"
+        <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-
-            <LinearLayout
-                android:id="@+id/icu_fraud_container"
+            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:paddingTop="120dp"
-                android:paddingBottom="50dp"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView"
+                android:scrollbars="none"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="🚨"
-                    android:textSize="100sp"
-                    android:textColor="?attr/colorOnSurfaceVariant" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="center"
-                    android:text="@string/title_icu_fraud"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorOnSurface"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_icu_fraud_info"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
-                        android:paddingVertical="16dp"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground">
-
-                        <TextView
-                            android:id="@+id/fraud_info_qq"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="16dp"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/fraud_info_record_time"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="16dp"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/fraud_info_last_fraud_time"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="16dp"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <!-- 水平线段 -->
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginHorizontal="6dp"
-                            android:layout_marginVertical="16dp"
-                            android:background="?attr/colorSurface"/>
-
-                        <TextView
-                            android:id="@+id/fraud_info_fraud_count"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="16dp"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/fraud_info_fraud_amount"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="16dp"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/fraud_info_uncertain_fraud_count"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="16dp"
-                            android:textColor="?attr/TextViewColorOnImportantCardView"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/title_victim_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_icu_victim_info"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
                 <LinearLayout
-                    android:id="@+id/icu_victim_info_container"
+                    android:id="@+id/icu_fraud_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingTop="120dp"
+                    android:paddingBottom="50dp"
                     android:orientation="vertical"
                     android:clipChildren="false"
-                    android:clipToPadding="false" />
+                    android:clipToPadding="false">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="center"
-                    android:text="@string/copyright"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="🚨"
+                        android:textSize="100sp"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="20dp"
+                        android:gravity="center"
+                        android:text="@string/title_icu_fraud"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface"/>
 
-        </ScrollView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_icu_fraud_info"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="16dp"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/fraud_info_qq"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="16dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/fraud_info_record_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="16dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/fraud_info_last_fraud_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="16dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <!-- 水平线段 -->
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginHorizontal="6dp"
+                                android:layout_marginVertical="16dp"
+                                android:background="?attr/colorSurface"/>
+
+                            <TextView
+                                android:id="@+id/fraud_info_fraud_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="16dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/fraud_info_fraud_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="16dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/fraud_info_uncertain_fraud_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="16dp"
+                                android:textColor="?attr/TextViewColorOnImportantCardView"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/title_victim_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_icu_victim_info"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                    <LinearLayout
+                        android:id="@+id/icu_victim_info_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:orientation="vertical"
+                        android:clipChildren="false"
+                        android:clipToPadding="false" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="20dp"
+                        android:gravity="center"
+                        android:text="@string/copyright"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 

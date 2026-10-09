@@ -29,7 +29,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDashboard.XMLHelper;
 
-import android.widget.ScrollView;
+import androidx.core.widget.NestedScrollView;
 
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
@@ -77,7 +77,7 @@ public class DataImageIndexActivity extends BaseActivity {
 
     private long localVersionCode;
 
-    private ScrollView scrollView;
+    private NestedScrollView scrollView;
     private TransitionSet transition;
 
     private LinearLayout data_image_index_update_info_container;

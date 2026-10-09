@@ -13,992 +13,996 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <ScrollView
-            android:id="@+id/scrollView"
+        <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-
-            <LinearLayout
-                android:id="@+id/prestige_calculator_container"
+            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="10dp"
-                android:paddingTop="160dp"
-                android:paddingBottom="50dp"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView"
+                android:scrollbars="none"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/tips_prestige_calculator"
+                <LinearLayout
+                    android:id="@+id/prestige_calculator_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:clickable="true"
-                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
-                    app:cardCornerRadius="20dp">
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingTop="160dp"
+                    android:paddingBottom="50dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-                    <TextView
-                        android:id="@+id/tips_odds_index_1_container"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/tips_prestige_calculator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="@string/tips_prestige_calculator"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/TextViewColorOnImportantCardView" />
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                        app:cardCornerRadius="20dp">
 
-                </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_coin_change"
+                        <TextView
+                            android:id="@+id/tips_odds_index_1_container"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_balance"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="@string/tips_prestige_calculator"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnImportantCardView" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </androidx.cardview.widget.CardView>
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_1"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_1"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_coin_change"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_balance"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_5"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_5"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_1"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_10"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_10"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_5"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_5"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_50"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_50"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_10"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_10"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_100"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_100"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_50"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_50"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_200"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_200"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_100"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_100"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_500"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_500"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_200"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_200"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_1000"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_1000"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_500"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_500"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_2000"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_2000"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_1000"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_1000"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_3000"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_3000"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_2000"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_2000"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_4000"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_4000"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_3000"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_3000"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_5000"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_5000"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_4000"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_4000"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_8000"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_8000"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_5000"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_5000"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_10000"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_10000"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/data_center_image_prestige_calculator"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_8000"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_8000"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/month_card"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_month_card_gift"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_month_card_gift"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/month_card_gift"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_10000"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_10000"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/data_center_image_prestige_calculator"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/world_stars"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                    </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:boxStrokeColor="@color/input_box_stroke_color"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxBackgroundColor="?attr/colorSecondaryContainer"
-                        app:backgroundTint="@android:color/transparent">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_luxury_welfare_gift"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:hint="@string/tips_prestige_calculator_luxury_welfare_gift"
-                            android:textSize="20sp"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLines="1" />
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/month_card"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/luxury_welfare_gift"
-                        android:scaleType="fitCenter"
-                        android:layout_gravity="end|bottom"
-                        tools:ignore="ContentDescription" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_month_card_gift"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_month_card_gift"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
 
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/month_card_gift"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/world_stars"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="10dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:boxStrokeColor="@color/input_box_stroke_color"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxBackgroundColor="?attr/colorSecondaryContainer"
+                            app:backgroundTint="@android:color/transparent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_luxury_welfare_gift"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:hint="@string/tips_prestige_calculator_luxury_welfare_gift"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/luxury_welfare_gift"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="end|bottom"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/copyright"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="25dp"
+                        android:gravity="center"/>
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/copyright"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="25dp"
-                    android:gravity="center"/>
-            </LinearLayout>
-        </ScrollView>
+            </androidx.core.widget.NestedScrollView>
+        </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 

@@ -12,282 +12,286 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:id="@+id/scrollView"
+        <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/DataCenter_Container"
+            android:layout_height="wrap_content">
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:paddingTop="120dp"
-                android:paddingBottom="100dp"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView"
                 android:clipChildren="false"
-                android:clipToPadding="false">
-
-                <TextView
-                    android:id="@+id/topBarBottom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:text="@string/top_bar_data_center"
-                    android:textSize="32sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorOnSurface"
-                    android:visibility="visible"/>
+                android:clipToPadding="false"
+                android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/display_background_card_images_container"
+                    android:id="@+id/DataCenter_Container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/display_background_card_image_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/x1113020f_big" />
-
-                    <ImageView
-                        android:id="@+id/display_background_card_image_2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/x1112238f_big" />
-
-                    <ImageView
-                        android:id="@+id/display_background_card_image_3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/x1112219f_big" />
-
-                    <ImageView
-                        android:id="@+id/display_background_card_image_4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/x1112227f_big" />
-
-                    <ImageView
-                        android:id="@+id/display_background_card_image_5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/x1112248c_big" />
-
-                    <ImageView
-                        android:id="@+id/display_background_card_image_6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/x1112253f_big" />
-
-                    <ImageView
-                        android:id="@+id/display_background_card_image_7"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/x1170009f_big" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_data_center_special_features"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    android:paddingTop="120dp"
+                    android:paddingBottom="100dp"
+                    android:orientation="vertical"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
-                    <!-- 左列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/topBarBottom"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="@string/top_bar_data_center"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface"
+                        android:visibility="visible"/>
+
+                    <LinearLayout
+                        android:id="@+id/display_background_card_images_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/display_background_card_image_1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/x1113020f_big" />
+
+                        <ImageView
+                            android:id="@+id/display_background_card_image_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/x1112238f_big" />
+
+                        <ImageView
+                            android:id="@+id/display_background_card_image_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/x1112219f_big" />
+
+                        <ImageView
+                            android:id="@+id/display_background_card_image_4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/x1112227f_big" />
+
+                        <ImageView
+                            android:id="@+id/display_background_card_image_5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/x1112248c_big" />
+
+                        <ImageView
+                            android:id="@+id/display_background_card_image_6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/x1112253f_big" />
+
+                        <ImageView
+                            android:id="@+id/display_background_card_image_7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/x1170009f_big" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_data_center_special_features"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:clipChildren="false"
                         android:clipToPadding="false">
 
-                        <include layout="@layout/card_card_data_index"/>
-                        <include layout="@layout/card_cookery_index"/>
+                        <!-- 左列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_card_data_index"/>
+                            <include layout="@layout/card_cookery_index"/>
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"/>
+
+                        <!-- 右列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_data_image_index"/>
+                            <include layout="@layout/card_odds_index"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"/>
 
-                    <!-- 右列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_data_center_data_station"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
                         android:clipChildren="false"
                         android:clipToPadding="false">
 
-                        <include layout="@layout/card_data_image_index"/>
-                        <include layout="@layout/card_odds_index"/>
+                        <!-- 左列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
 
-                    </LinearLayout>
+                            <include layout="@layout/card_tiramisu"/>
+                            <include layout="@layout/card_molu"/>
+                            <include layout="@layout/card_faa"/>
+                            <include layout="@layout/card_guidao"/>
 
-                </LinearLayout>
+                        </LinearLayout>
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"/>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_data_center_data_station"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+                        <!-- 右列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                            <include layout="@layout/card_strategy"/>
+                            <include layout="@layout/card_strategy_world_boss"/>
+                            <include layout="@layout/card_card_calculator"/>
+                            <include layout="@layout/card_gem_calculator"/>
 
-                    <!-- 左列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <include layout="@layout/card_tiramisu"/>
-                        <include layout="@layout/card_molu"/>
-                        <include layout="@layout/card_faa"/>
-                        <include layout="@layout/card_guidao"/>
-
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"/>
-
-                    <!-- 右列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <include layout="@layout/card_strategy"/>
-                        <include layout="@layout/card_strategy_world_boss"/>
-                        <include layout="@layout/card_card_calculator"/>
-                        <include layout="@layout/card_gem_calculator"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_data_center_made_by_phantom_careful"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-
-                    <!-- 左列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <include layout="@layout/card_today_lucky"/>
-                        <include layout="@layout/card_card_odds_calculator"/>
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"/>
 
-                    <!-- 右列卡片 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_data_center_made_by_phantom_careful"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
                         android:clipChildren="false"
                         android:clipToPadding="false">
 
-                        <include layout="@layout/card_prestige_calculator"/>
+                        <!-- 左列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_today_lucky"/>
+                            <include layout="@layout/card_card_odds_calculator"/>
+
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content"/>
+
+                        <!-- 右列卡片 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <include layout="@layout/card_prestige_calculator"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
+
                 </LinearLayout>
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp" />
-
-            </LinearLayout>
-
-        </ScrollView>
+            </androidx.core.widget.NestedScrollView>
+        </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 

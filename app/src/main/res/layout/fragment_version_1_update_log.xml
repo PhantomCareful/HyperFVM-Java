@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/Root_Layout_Data_Station"
+<com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
-    android:scrollbars="none">
-
-    <LinearLayout
+    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="10dp"
-        android:paddingTop="120dp"
-        android:paddingBottom="150dp">
+        android:layout_height="match_parent"
+        android:id="@+id/Root_Layout_Data_Station"
+        android:background="?attr/colorSurface"
+        android:scrollbars="none">
 
-        <TextView
-            android:id="@+id/about_app_history_update_log_1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="?attr/colorOnSurface"/>
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            android:paddingTop="120dp"
+            android:paddingBottom="150dp">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/about_app_history_update_log_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="?attr/colorOnSurface"/>
 
-</ScrollView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>

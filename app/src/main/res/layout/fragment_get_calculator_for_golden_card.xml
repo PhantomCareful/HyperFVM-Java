@@ -8,7 +8,7 @@
     android:background="?attr/colorSurface"
     android:clipChildren="false"
     android:clipToPadding="false"
-    tools:ignore="RtlSymmetry,TooManyViews">
+    tools:ignore="RtlSymmetry,TooManyViews,TooDeepLayout">
 
     <eightbitlab.com.blurview.BlurTarget
         android:id="@+id/targetView"
@@ -16,974 +16,978 @@
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
 
-        <ScrollView
+        <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-
-            <LinearLayout
-                android:id="@+id/get_calculator_for_golden_card_container"
+            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:orientation="vertical"
-                android:paddingTop="190dp"
-                android:paddingBottom="150dp"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/get_calculator_for_golden_card_card_container"
+                <LinearLayout
+                    android:id="@+id/get_calculator_for_golden_card_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="vertical"
+                    android:paddingTop="190dp"
+                    android:paddingBottom="150dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/get_calculator_for_golden_card_card_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
 
                         <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_card_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_card_1_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_card_1_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x1113000a"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_card_2_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_card_2_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_card_2_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x1113000b"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_card_3_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_card_3_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_3"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_card_3_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x1113000c"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_card_4_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_card_4_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_4"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_card_4_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x1113000d"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/get_calculator_for_golden_card_skill_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_skill_1_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_skill_1_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_1"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_skill_1_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x12242410"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_skill_2_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_skill_2_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_2"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_skill_2_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x12242420"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_skill_3_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_skill_3_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_3"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_skill_3_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x12242430"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_skill_4_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_skill_4_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_4"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_skill_4_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x12242440"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/get_calculator_for_golden_card_transfer_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_1_a_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_1_a_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_1_a"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_1_a_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13631083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_1_b_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_1_b_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_1_b"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_1_b_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13632083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_1_c_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_1_c_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_1_c"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_1_c_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13633083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_2_a_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_2_a_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_2_a"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_2_a_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13641083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_2_b_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_2_b_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_2_b"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_2_b_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13642083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_2_c_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_2_c_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_2_c"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_2_c_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13643083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_3_a_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_3_a_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_3_a"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_3_a_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13651083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_3_b_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_3_b_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_3_b"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_3_b_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13652083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/get_calculator_for_golden_card_transfer_3_c_container"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingVertical="10dp"
-                            android:paddingEnd="10dp">
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                style="@style/Checkbox.Round"
-                                android:id="@+id/get_calculator_for_golden_card_transfer_3_c_checkbox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="false"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <!-- 左侧文字 -->
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_3_c"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tips_decompose_and_get_calculator"
-                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                    android:textSize="15sp"/>
-                            </LinearLayout>
-
-                            <!-- 右侧卡片 -->
-                            <ImageView
-                                android:id="@+id/get_calculator_for_golden_card_transfer_3_c_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/x13653083"
-                                tools:ignore="ContentDescription" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/get_calculator_for_golden_card_compose_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <LinearLayout
-                        android:id="@+id/get_calculator_for_golden_card_compose_container_"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground"
-                        android:paddingVertical="10dp"
-                        android:paddingEnd="10dp">
-
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            style="@style/Checkbox.Round"
-                            android:id="@+id/get_calculator_for_golden_card_compose_checkbox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="false"/>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <!-- 左侧文字 -->
-                            <TextView
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_card_1_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/title_decompose_and_get_calculator_for_golden_card_compose"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-                            <TextView
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_card_1_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_1"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_card_1_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x1113000a"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_card_2_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/tips_decompose_and_get_calculator"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
-                                android:textSize="15sp"/>
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_card_2_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_2"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_card_2_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x1113000b"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_card_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_card_3_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_3"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_card_3_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x1113000c"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_card_4_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_card_4_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_card_4"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_card_4_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x1113000d"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
                         </LinearLayout>
 
-                        <!-- 右侧卡片 -->
-                        <ImageView
-                            android:id="@+id/get_calculator_for_golden_card_compose_image"
-                            android:layout_width="wrap_content"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/get_calculator_for_golden_card_skill_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/x12100100"
-                            tools:ignore="ContentDescription" />
-                    </LinearLayout>
+                            android:orientation="vertical">
 
-                </androidx.cardview.widget.CardView>
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_skill_1_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp" />
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_skill_1_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
 
-            </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
 
-        </ScrollView>
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_1"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_skill_1_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x12242410"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_skill_2_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_skill_2_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_2"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_skill_2_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x12242420"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_skill_3_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_skill_3_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_3"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_skill_3_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x12242430"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_skill_4_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_skill_4_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_skill_4"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_skill_4_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x12242440"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/get_calculator_for_golden_card_transfer_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_1_a_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_1_a_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_1_a"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_1_a_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13631083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_1_b_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_1_b_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_1_b"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_1_b_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13632083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_1_c_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_1_c_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_1_c"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_1_c_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13633083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_2_a_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_2_a_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_2_a"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_2_a_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13641083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_2_b_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_2_b_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_2_b"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_2_b_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13642083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_2_c_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_2_c_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_2_c"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_2_c_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13643083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_3_a_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_3_a_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_3_a"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_3_a_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13651083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_3_b_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_3_b_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_3_b"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_3_b_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13652083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/get_calculator_for_golden_card_transfer_3_c_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:paddingVertical="10dp"
+                                android:paddingEnd="10dp">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    style="@style/Checkbox.Round"
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_3_c_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <!-- 左侧文字 -->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title_decompose_and_get_calculator_for_golden_card_transfer_3_c"
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/tips_decompose_and_get_calculator"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- 右侧卡片 -->
+                                <ImageView
+                                    android:id="@+id/get_calculator_for_golden_card_transfer_3_c_image"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/x13653083"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/get_calculator_for_golden_card_compose_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:id="@+id/get_calculator_for_golden_card_compose_container_"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingVertical="10dp"
+                            android:paddingEnd="10dp">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                style="@style/Checkbox.Round"
+                                android:id="@+id/get_calculator_for_golden_card_compose_checkbox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"/>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <!-- 左侧文字 -->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_decompose_and_get_calculator_for_golden_card_compose"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tips_decompose_and_get_calculator"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"
+                                    android:textSize="15sp"/>
+                            </LinearLayout>
+
+                            <!-- 右侧卡片 -->
+                            <ImageView
+                                android:id="@+id/get_calculator_for_golden_card_compose_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/x12100100"
+                                tools:ignore="ContentDescription" />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 
