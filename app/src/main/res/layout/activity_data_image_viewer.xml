@@ -52,7 +52,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_images_viewer"
+        android:text="@string/top_bar_data_image_viewer"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

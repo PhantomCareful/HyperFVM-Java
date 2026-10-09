@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.careful.HyperFVM.Activities.DataCenter.CardDataIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.CookeryIndexActivity;
-import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImageIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.OddsDisclosureIndexActivity;
 import com.careful.HyperFVM.Activities.Tools.CardOddsCalculatorActivity;
 import com.careful.HyperFVM.Activities.Tools.PrestigeCalculatorActivity;
@@ -76,8 +76,8 @@ public class DataCenterFragment extends Fragment {
         });
 
         // 数据图合集
-        root.findViewById(R.id.DataCenter_DataImagesIndex_Container).setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), DataImagesIndexActivity.class);
+        root.findViewById(R.id.DataCenter_DataImageIndex_Container).setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), DataImageIndexActivity.class);
             startActivity(intent);
         });
 

@@ -83,7 +83,7 @@
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_1_container"
+                                android:id="@+id/data_image_index_decompose_and_get_1_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -97,7 +97,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_1"
+                                    android:text="@string/title_data_image_index_decompose_and_get_1"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -112,7 +112,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_2_container"
+                                android:id="@+id/data_image_index_decompose_and_get_2_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -126,7 +126,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_2"
+                                    android:text="@string/title_data_image_index_decompose_and_get_2"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -141,7 +141,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_3_container"
+                                android:id="@+id/data_image_index_decompose_and_get_3_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -155,7 +155,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_3"
+                                    android:text="@string/title_data_image_index_decompose_and_get_3"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -170,7 +170,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_4_container"
+                                android:id="@+id/data_image_index_decompose_and_get_4_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -184,7 +184,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_4"
+                                    android:text="@string/title_data_image_index_decompose_and_get_4"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -199,7 +199,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_5_container"
+                                android:id="@+id/data_image_index_decompose_and_get_5_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -213,7 +213,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_5"
+                                    android:text="@string/title_data_image_index_decompose_and_get_5"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -228,7 +228,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_6_container"
+                                android:id="@+id/data_image_index_decompose_and_get_6_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -242,7 +242,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_6"
+                                    android:text="@string/title_data_image_index_decompose_and_get_6"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -257,7 +257,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_7_container"
+                                android:id="@+id/data_image_index_decompose_and_get_7_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -271,7 +271,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_7"
+                                    android:text="@string/title_data_image_index_decompose_and_get_7"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -286,7 +286,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_8_container"
+                                android:id="@+id/data_image_index_decompose_and_get_8_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -300,7 +300,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_8"
+                                    android:text="@string/title_data_image_index_decompose_and_get_8"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -315,7 +315,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_9_container"
+                                android:id="@+id/data_image_index_decompose_and_get_9_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -329,7 +329,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_9"
+                                    android:text="@string/title_data_image_index_decompose_and_get_9"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -344,7 +344,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_10_container"
+                                android:id="@+id/data_image_index_decompose_and_get_10_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -358,7 +358,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_10"
+                                    android:text="@string/title_data_image_index_decompose_and_get_10"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -373,7 +373,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_11_container"
+                                android:id="@+id/data_image_index_decompose_and_get_11_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -387,7 +387,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_11"
+                                    android:text="@string/title_data_image_index_decompose_and_get_11"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -402,7 +402,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_images_index_decompose_and_get_12_container"
+                                android:id="@+id/data_image_index_decompose_and_get_12_container"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -416,7 +416,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:layout_marginEnd="16dp"
-                                    android:text="@string/title_data_images_index_decompose_and_get_12"
+                                    android:text="@string/title_data_image_index_decompose_and_get_12"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -462,7 +462,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_images_index_decompose_and_get"
+        android:text="@string/top_bar_data_image_index_decompose_and_get"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

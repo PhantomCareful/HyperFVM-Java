@@ -120,7 +120,7 @@
             android:name=".Activities.DataCenter.CardDataIndexActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DataCenter.DataImagesIndexActivity"
+            android:name=".Activities.DataCenter.DataImageIndexActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.CheckUpdateActivity"

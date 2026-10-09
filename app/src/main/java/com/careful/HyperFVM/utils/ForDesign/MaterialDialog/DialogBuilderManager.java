@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
-import com.careful.HyperFVM.Activities.DataCenter.DataImagesIndexActivity;
+import com.careful.HyperFVM.Activities.DataCenter.DataImageIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.IcuFraudActivity;
 import com.careful.HyperFVM.Activities.Necessary.UsingInstruction.UsingInstructionActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
@@ -275,7 +275,7 @@ public class DialogBuilderManager {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 
@@ -327,7 +327,7 @@ public class DialogBuilderManager {
             // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 
@@ -393,7 +393,7 @@ public class DialogBuilderManager {
             // 还需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 
@@ -444,7 +444,7 @@ public class DialogBuilderManager {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 
@@ -455,7 +455,7 @@ public class DialogBuilderManager {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 
@@ -503,7 +503,7 @@ public class DialogBuilderManager {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 
@@ -514,7 +514,7 @@ public class DialogBuilderManager {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 
@@ -525,7 +525,7 @@ public class DialogBuilderManager {
             // 需要检查版本号，如果当前还没有下载图片或者图片已删除，则跳转目录界面
             long localVersionCode = LocalVersionUtil.getImageResourcesVersionCode();
             if (localVersionCode == 0 || localVersionCode == 1) {
-                context.startActivity(new Intent(context, DataImagesIndexActivity.class));
+                context.startActivity(new Intent(context, DataImageIndexActivity.class));
                 return;
             }
 

@@ -1,6 +1,6 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-public class DataImagesInfo {
+public class DataImageInfo {
     private String fileName;
     private long version;
     private String url;

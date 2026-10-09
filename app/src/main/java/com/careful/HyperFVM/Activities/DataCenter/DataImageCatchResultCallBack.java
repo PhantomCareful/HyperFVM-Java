@@ -1,6 +1,6 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-public interface DataImagesCatchResultCallBack {
+public interface DataImageCatchResultCallBack {
     void onSuccess();
     void onFailed(Exception e);
 }

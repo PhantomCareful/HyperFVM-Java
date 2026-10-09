@@ -21,7 +21,7 @@
             android:clipToPadding="false">
 
             <LinearLayout
-                android:id="@+id/data_images_index_container"
+                android:id="@+id/data_image_index_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
                     android:layout_marginHorizontal="16dp"
-                    android:text="@string/top_bar_data_images_index_tiramisu_image"
+                    android:text="@string/top_bar_data_image_index_tiramisu_image"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="?attr/colorOnSurface"
@@ -55,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="@string/tips_data_images_tiramisu"
+                        android:text="@string/tips_data_image_tiramisu"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="?attr/TextViewColorOnImportantCardView" />
@@ -108,7 +108,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_1"
+                                    android:text="@string/title_data_image_tiramisu_image_1_1"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -116,7 +116,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_1"
+                                    android:text="@string/description_data_image_tiramisu_image_1_1"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -151,7 +151,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_2"
+                                    android:text="@string/title_data_image_tiramisu_image_1_2"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -159,7 +159,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_2"
+                                    android:text="@string/description_data_image_tiramisu_image_1_2"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -194,7 +194,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_3_1"
+                                    android:text="@string/title_data_image_tiramisu_image_1_3_1"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -202,7 +202,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_3_1"
+                                    android:text="@string/description_data_image_tiramisu_image_1_3_1"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -237,7 +237,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_3_2"
+                                    android:text="@string/title_data_image_tiramisu_image_1_3_2"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -245,7 +245,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_3_2"
+                                    android:text="@string/description_data_image_tiramisu_image_1_3_2"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -280,7 +280,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_3_3"
+                                    android:text="@string/title_data_image_tiramisu_image_1_3_3"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -288,7 +288,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_3_3"
+                                    android:text="@string/description_data_image_tiramisu_image_1_3_3"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -323,7 +323,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_4"
+                                    android:text="@string/title_data_image_tiramisu_image_1_4"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -331,7 +331,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_4"
+                                    android:text="@string/description_data_image_tiramisu_image_1_4"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -366,7 +366,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_5"
+                                    android:text="@string/title_data_image_tiramisu_image_1_5"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -374,7 +374,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_5"
+                                    android:text="@string/description_data_image_tiramisu_image_1_5"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -409,7 +409,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_6"
+                                    android:text="@string/title_data_image_tiramisu_image_1_6"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -417,7 +417,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_6"
+                                    android:text="@string/description_data_image_tiramisu_image_1_6"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -452,7 +452,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_1_7"
+                                    android:text="@string/title_data_image_tiramisu_image_1_7"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -460,7 +460,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_1_7"
+                                    android:text="@string/description_data_image_tiramisu_image_1_7"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -484,7 +484,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/title_tools_tiramisu_image_2"
+                    android:text="@string/title_data_image_tiramisu_image_2"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="?attr/TitleTextViewColorOnSurface"/>
@@ -521,7 +521,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_1"
+                                    android:text="@string/title_data_image_tiramisu_image_2_1"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -529,7 +529,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_1"
+                                    android:text="@string/description_data_image_tiramisu_image_2_1"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -564,7 +564,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_2"
+                                    android:text="@string/title_data_image_tiramisu_image_2_2"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -572,7 +572,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_2"
+                                    android:text="@string/description_data_image_tiramisu_image_2_2"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -607,7 +607,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_3"
+                                    android:text="@string/title_data_image_tiramisu_image_2_3"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -615,7 +615,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_3"
+                                    android:text="@string/description_data_image_tiramisu_image_2_3"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -650,7 +650,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_3_1"
+                                    android:text="@string/title_data_image_tiramisu_image_2_3_1"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -658,7 +658,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_3_1"
+                                    android:text="@string/description_data_image_tiramisu_image_2_3_1"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -693,7 +693,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_5"
+                                    android:text="@string/title_data_image_tiramisu_image_2_5"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -701,7 +701,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_5"
+                                    android:text="@string/description_data_image_tiramisu_image_2_5"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -736,7 +736,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_1"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_1"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -744,7 +744,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_1"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_1"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -779,7 +779,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_2"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_2"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -787,7 +787,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_2"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_2"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -822,7 +822,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_3"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_3"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -830,7 +830,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_3"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_3"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -865,7 +865,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_4"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_4"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -873,7 +873,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_4"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_4"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -908,7 +908,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_5"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_5"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -916,7 +916,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_5"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_5"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -951,7 +951,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_6"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_6"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -959,7 +959,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_6"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_6"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -994,7 +994,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_7"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_7"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1002,7 +1002,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_7"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_7"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1037,7 +1037,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_8"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_8"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1045,7 +1045,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_8"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_8"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1080,7 +1080,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_9"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_9"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1088,7 +1088,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_9"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_9"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1123,7 +1123,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_10"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_10"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1131,7 +1131,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_10"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_10"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1166,7 +1166,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_11"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_11"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1174,7 +1174,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_11"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_11"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1209,7 +1209,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_12"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_12"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1217,7 +1217,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_12"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_12"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1252,7 +1252,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_13"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_13"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1260,7 +1260,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_13"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_13"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1295,7 +1295,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_14"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_14"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1303,7 +1303,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_14"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_14"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1338,7 +1338,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_15"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_15"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1346,7 +1346,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_15"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_15"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1381,7 +1381,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_tools_tiramisu_image_2_4_16"
+                                    android:text="@string/title_data_image_tiramisu_image_2_4_16"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -1389,7 +1389,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_tools_tiramisu_image_2_4_16"
+                                    android:text="@string/description_data_image_tiramisu_image_2_4_16"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -1434,7 +1434,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_images_index_tiramisu_image"
+        android:text="@string/top_bar_data_image_index_tiramisu_image"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

@@ -60,152 +60,152 @@ public class DataImageCardActivity extends BaseActivity {
         // 设置子标题
         TextView textView;
 
-        textView = findViewById(R.id.data_images_index_card_0_1_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_1));
-        textView = findViewById(R.id.data_images_index_card_0_2_1_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_2_1));
-        textView = findViewById(R.id.data_images_index_card_0_2_2_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_2_2));
-        textView = findViewById(R.id.data_images_index_card_0_3_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_0_3));
+        textView = findViewById(R.id.data_image_index_card_0_1_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_0_1));
+        textView = findViewById(R.id.data_image_index_card_0_2_1_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_0_2_1));
+        textView = findViewById(R.id.data_image_index_card_0_2_2_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_0_2_2));
+        textView = findViewById(R.id.data_image_index_card_0_3_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_0_3));
 
-        textView = findViewById(R.id.data_images_index_card_1_description);
+        textView = findViewById(R.id.data_image_index_card_1_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_1_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_1_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_1_3) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_1_4)
+                getResources().getString(R.string.text_data_image_index_card_1_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_1_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_1_3) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_1_4)
         );
 
-        textView = findViewById(R.id.data_images_index_card_2_description);
+        textView = findViewById(R.id.data_image_index_card_2_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_2_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_2_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_2_3)
+                getResources().getString(R.string.text_data_image_index_card_2_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_2_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_2_3)
         );
 
-        textView = findViewById(R.id.data_images_index_card_3_description);
+        textView = findViewById(R.id.data_image_index_card_3_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_3_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_3_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_3_3)
+                getResources().getString(R.string.text_data_image_index_card_3_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_3_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_3_3)
         );
 
-        textView = findViewById(R.id.data_images_index_card_4_description);
+        textView = findViewById(R.id.data_image_index_card_4_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_4_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_4_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_4_3)
+                getResources().getString(R.string.text_data_image_index_card_4_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_4_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_4_3)
         );
 
-        textView = findViewById(R.id.data_images_index_card_5_description);
+        textView = findViewById(R.id.data_image_index_card_5_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_5_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_5_2)
+                getResources().getString(R.string.text_data_image_index_card_5_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_5_2)
         );
 
-        textView = findViewById(R.id.data_images_index_card_6_description);
+        textView = findViewById(R.id.data_image_index_card_6_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_6_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_6_2)
+                getResources().getString(R.string.text_data_image_index_card_6_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_6_2)
         );
 
-        textView = findViewById(R.id.data_images_index_card_7_description);
+        textView = findViewById(R.id.data_image_index_card_7_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_7_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_7_2)
+                getResources().getString(R.string.text_data_image_index_card_7_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_7_2)
         );
 
-        textView = findViewById(R.id.data_images_index_card_8_description);
+        textView = findViewById(R.id.data_image_index_card_8_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_8_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_8_2)
+                getResources().getString(R.string.text_data_image_index_card_8_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_8_2)
         );
 
-        textView = findViewById(R.id.data_images_index_card_9_description);
+        textView = findViewById(R.id.data_image_index_card_9_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_9_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_9_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_9_3) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_9_4) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_9_5) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_9_6)
+                getResources().getString(R.string.text_data_image_index_card_9_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_9_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_9_3) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_9_4) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_9_5) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_9_6)
         );
 
-        textView = findViewById(R.id.data_images_index_card_10_description);
+        textView = findViewById(R.id.data_image_index_card_10_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_10_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_10_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_10_3) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_10_4)
+                getResources().getString(R.string.text_data_image_index_card_10_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_10_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_10_3) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_10_4)
         );
 
-        textView = findViewById(R.id.data_images_index_card_11_description);
+        textView = findViewById(R.id.data_image_index_card_11_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_11_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_11_3) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_11_4)
+                getResources().getString(R.string.text_data_image_index_card_11_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_11_3) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_11_4)
         );
 
-        textView = findViewById(R.id.data_images_index_card_12_description);
+        textView = findViewById(R.id.data_image_index_card_12_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_12_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_12_2)
+                getResources().getString(R.string.text_data_image_index_card_12_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_12_2)
         );
 
-        textView = findViewById(R.id.data_images_index_card_12__description);
+        textView = findViewById(R.id.data_image_index_card_12__description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_12__1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_12__2)
+                getResources().getString(R.string.text_data_image_index_card_12__1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_12__2)
         );
 
-        textView = findViewById(R.id.data_images_index_card_13_description);
+        textView = findViewById(R.id.data_image_index_card_13_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_13_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_13_2) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_13_3) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_13_4)
+                getResources().getString(R.string.text_data_image_index_card_13_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_13_2) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_13_3) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_13_4)
         );
 
-        textView = findViewById(R.id.data_images_index_card_14_description);
+        textView = findViewById(R.id.data_image_index_card_14_description);
         textView.setText("包含：" +
-                getResources().getString(R.string.text_data_images_index_card_14_1) + "、" +
-                getResources().getString(R.string.text_data_images_index_card_14_2)
+                getResources().getString(R.string.text_data_image_index_card_14_1) + "、" +
+                getResources().getString(R.string.text_data_image_index_card_14_2)
         );
 
-        textView = findViewById(R.id.data_images_index_card_15_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_15));
-        textView = findViewById(R.id.data_images_index_card_16_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_16));
-        textView = findViewById(R.id.data_images_index_card_17_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_17));
-        textView = findViewById(R.id.data_images_index_card_18_description);
-        textView.setText(getResources().getString(R.string.description_data_images_index_card_18));
+        textView = findViewById(R.id.data_image_index_card_15_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_15));
+        textView = findViewById(R.id.data_image_index_card_16_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_16));
+        textView = findViewById(R.id.data_image_index_card_17_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_17));
+        textView = findViewById(R.id.data_image_index_card_18_description);
+        textView.setText(getResources().getString(R.string.description_data_image_index_card_18));
 
         // 防御卡数据图
-        setupContainer(R.id.data_images_index_card_0_1_container, "data_image_card_0_1");
-        setupContainer(R.id.data_images_index_card_0_2_1_container, "data_image_card_0_2_1");
-        setupContainer(R.id.data_images_index_card_0_2_2_container, "data_image_card_0_2_2");
-        setupContainer(R.id.data_images_index_card_0_3_container, "data_image_card_0_3");
-        setupContainer(R.id.data_images_index_card_1_container, "data_image_card_1");
-        setupContainer(R.id.data_images_index_card_2_container, "data_image_card_2");
-        setupContainer(R.id.data_images_index_card_3_container, "data_image_card_3");
-        setupContainer(R.id.data_images_index_card_4_container, "data_image_card_4");
-        setupContainer(R.id.data_images_index_card_5_container, "data_image_card_5");
-        setupContainer(R.id.data_images_index_card_6_container, "data_image_card_6");
-        setupContainer(R.id.data_images_index_card_7_container, "data_image_card_7");
-        setupContainer(R.id.data_images_index_card_8_container, "data_image_card_8");
-        setupContainer(R.id.data_images_index_card_9_container, "data_image_card_9");
-        setupContainer(R.id.data_images_index_card_10_container, "data_image_card_10");
-        setupContainer(R.id.data_images_index_card_11_container, "data_image_card_11");
-        setupContainer(R.id.data_images_index_card_12_container, "data_image_card_12");
-        setupContainer(R.id.data_images_index_card_12__container, "data_image_card_12_");
-        setupContainer(R.id.data_images_index_card_13_container, "data_image_card_13");
-        setupContainer(R.id.data_images_index_card_14_container, "data_image_card_14");
-        setupContainer(R.id.data_images_index_card_15_container, "data_image_card_15");
-        setupContainer(R.id.data_images_index_card_16_container, "data_image_card_16");
-        setupContainer(R.id.data_images_index_card_17_container, "data_image_card_17");
-        setupContainer(R.id.data_images_index_card_18_container, "data_image_card_18");
+        setupContainer(R.id.data_image_index_card_0_1_container, "data_image_card_0_1");
+        setupContainer(R.id.data_image_index_card_0_2_1_container, "data_image_card_0_2_1");
+        setupContainer(R.id.data_image_index_card_0_2_2_container, "data_image_card_0_2_2");
+        setupContainer(R.id.data_image_index_card_0_3_container, "data_image_card_0_3");
+        setupContainer(R.id.data_image_index_card_1_container, "data_image_card_1");
+        setupContainer(R.id.data_image_index_card_2_container, "data_image_card_2");
+        setupContainer(R.id.data_image_index_card_3_container, "data_image_card_3");
+        setupContainer(R.id.data_image_index_card_4_container, "data_image_card_4");
+        setupContainer(R.id.data_image_index_card_5_container, "data_image_card_5");
+        setupContainer(R.id.data_image_index_card_6_container, "data_image_card_6");
+        setupContainer(R.id.data_image_index_card_7_container, "data_image_card_7");
+        setupContainer(R.id.data_image_index_card_8_container, "data_image_card_8");
+        setupContainer(R.id.data_image_index_card_9_container, "data_image_card_9");
+        setupContainer(R.id.data_image_index_card_10_container, "data_image_card_10");
+        setupContainer(R.id.data_image_index_card_11_container, "data_image_card_11");
+        setupContainer(R.id.data_image_index_card_12_container, "data_image_card_12");
+        setupContainer(R.id.data_image_index_card_12__container, "data_image_card_12_");
+        setupContainer(R.id.data_image_index_card_13_container, "data_image_card_13");
+        setupContainer(R.id.data_image_index_card_14_container, "data_image_card_14");
+        setupContainer(R.id.data_image_index_card_15_container, "data_image_card_15");
+        setupContainer(R.id.data_image_index_card_16_container, "data_image_card_16");
+        setupContainer(R.id.data_image_index_card_17_container, "data_image_card_17");
+        setupContainer(R.id.data_image_index_card_18_container, "data_image_card_18");
     }
 
     private void setupContainer(int viewId, String imageName) {

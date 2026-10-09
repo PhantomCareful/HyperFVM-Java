@@ -56,12 +56,12 @@ public class DataImageWeaponAndGemActivity extends BaseActivity {
 
     private void initViews() {
         // 武器宝石数据图
-        setupContainer(R.id.data_images_index_weapon_and_gem_0_1_container, "data_image_weapon_and_gem_0_1");
-        setupContainer(R.id.data_images_index_weapon_and_gem_1_container, "data_image_weapon_and_gem_1");
-        setupContainer(R.id.data_images_index_weapon_and_gem_2_container, "data_image_weapon_and_gem_2");
-        setupContainer(R.id.data_images_index_weapon_and_gem_3_container, "data_image_weapon_and_gem_3");
-        setupContainer(R.id.data_images_index_weapon_and_gem_4_container, "data_image_weapon_and_gem_4");
-        setupContainer(R.id.data_images_index_weapon_and_gem_5_container, "data_image_weapon_and_gem_5");
+        setupContainer(R.id.data_image_index_weapon_and_gem_0_1_container, "data_image_weapon_and_gem_0_1");
+        setupContainer(R.id.data_image_index_weapon_and_gem_1_container, "data_image_weapon_and_gem_1");
+        setupContainer(R.id.data_image_index_weapon_and_gem_2_container, "data_image_weapon_and_gem_2");
+        setupContainer(R.id.data_image_index_weapon_and_gem_3_container, "data_image_weapon_and_gem_3");
+        setupContainer(R.id.data_image_index_weapon_and_gem_4_container, "data_image_weapon_and_gem_4");
+        setupContainer(R.id.data_image_index_weapon_and_gem_5_container, "data_image_weapon_and_gem_5");
     }
 
     private void setupContainer(int viewId, String imageName) {

@@ -21,7 +21,7 @@
             android:clipToPadding="false">
 
             <LinearLayout
-                android:id="@+id/data_images_index_container"
+                android:id="@+id/data_image_index_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
                     android:layout_marginHorizontal="16dp"
-                    android:text="@string/top_bar_data_images_index_weapon_and_gem"
+                    android:text="@string/top_bar_data_image_index_weapon_and_gem"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="?attr/colorOnSurface"
@@ -73,7 +73,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_0_1_container"
+                            android:id="@+id/data_image_index_weapon_and_gem_0_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -92,7 +92,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/title_data_images_index_weapon_and_gem_0_1"
+                                    android:text="@string/title_data_image_index_weapon_and_gem_0_1"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -100,7 +100,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/description_data_images_index_weapon_and_gem_0_1"
+                                    android:text="@string/description_data_image_index_weapon_and_gem_0_1"
                                     android:textSize="15sp"
                                     android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
 
@@ -132,7 +132,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_1_container"
+                            android:id="@+id/data_image_index_weapon_and_gem_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -146,7 +146,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_weapon_and_gem_1"
+                                android:text="@string/title_data_image_index_weapon_and_gem_1"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -161,7 +161,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_2_container"
+                            android:id="@+id/data_image_index_weapon_and_gem_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -175,7 +175,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_weapon_and_gem_2"
+                                android:text="@string/title_data_image_index_weapon_and_gem_2"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -190,7 +190,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_3_container"
+                            android:id="@+id/data_image_index_weapon_and_gem_3_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -204,7 +204,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_weapon_and_gem_3"
+                                android:text="@string/title_data_image_index_weapon_and_gem_3"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -219,7 +219,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_4_container"
+                            android:id="@+id/data_image_index_weapon_and_gem_4_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -233,7 +233,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_weapon_and_gem_4"
+                                android:text="@string/title_data_image_index_weapon_and_gem_4"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -248,7 +248,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_weapon_and_gem_5_container"
+                            android:id="@+id/data_image_index_weapon_and_gem_5_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -262,7 +262,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_weapon_and_gem_5"
+                                android:text="@string/title_data_image_index_weapon_and_gem_5"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -306,7 +306,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_images_index_weapon_and_gem"
+        android:text="@string/top_bar_data_image_index_weapon_and_gem"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

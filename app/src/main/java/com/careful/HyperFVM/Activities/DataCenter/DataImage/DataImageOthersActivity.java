@@ -57,14 +57,14 @@ public class DataImageOthersActivity extends BaseActivity {
 
     private void initViews() {
         // 其他数据图（深浅色双版本由查看器按当前主题实时解析，这里只传基础文件名）
-        setupContainer(R.id.data_images_index_others_1_container, "data_image_others_1");
-        setupContainer(R.id.data_images_index_others_2_container, "data_image_others_2");
-        setupContainer(R.id.data_images_index_others_3_container, "data_image_others_3");
-        setupContainer(R.id.data_images_index_others_4_container, "data_image_others_4");
-        setupContainer(R.id.data_images_index_others_5_container, "data_image_others_5");
-        setupContainer(R.id.data_images_index_others_6_container, "data_image_others_6");
-        setupContainer(R.id.data_images_index_others_7_container, "data_image_others_7");
-        setupContainer(R.id.data_images_index_others_8_container, "data_image_others_8");
+        setupContainer(R.id.data_image_index_others_1_container, "data_image_others_1");
+        setupContainer(R.id.data_image_index_others_2_container, "data_image_others_2");
+        setupContainer(R.id.data_image_index_others_3_container, "data_image_others_3");
+        setupContainer(R.id.data_image_index_others_4_container, "data_image_others_4");
+        setupContainer(R.id.data_image_index_others_5_container, "data_image_others_5");
+        setupContainer(R.id.data_image_index_others_6_container, "data_image_others_6");
+        setupContainer(R.id.data_image_index_others_7_container, "data_image_others_7");
+        setupContainer(R.id.data_image_index_others_8_container, "data_image_others_8");
     }
 
     private void setupContainer(int viewId, String imageName) {
@@ -101,12 +101,12 @@ public class DataImageOthersActivity extends BaseActivity {
             floatButtonBack.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
-        LinearLayout data_images_index_container = findViewById(R.id.data_images_index_container);
-        InsetsUtil.setMarginHorizontal(this, data_images_index_container, layout_marginHorizontal -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) data_images_index_container.getLayoutParams();
+        LinearLayout data_image_index_container = findViewById(R.id.data_image_index_container);
+        InsetsUtil.setMarginHorizontal(this, data_image_index_container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) data_image_index_container.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
-            data_images_index_container.setLayoutParams(params);
+            data_image_index_container.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;

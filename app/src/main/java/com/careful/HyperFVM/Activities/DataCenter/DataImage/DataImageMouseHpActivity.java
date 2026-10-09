@@ -59,16 +59,16 @@ public class DataImageMouseHpActivity extends BaseActivity {
 
     private void initViews() {
         // 老输血量数据图
-        setupContainer(R.id.data_images_index_mouse_hp_1_container, "data_image_mouse_hp_1");
-        setupContainer(R.id.data_images_index_mouse_hp_2_container, "data_image_mouse_hp_2");
-        setupContainer(R.id.data_images_index_mouse_hp_3_container, "data_image_mouse_hp_3");
-        setupContainer(R.id.data_images_index_mouse_hp_4_container, "data_image_mouse_hp_4");
-        setupContainer(R.id.data_images_index_mouse_hp_5_container, "data_image_mouse_hp_5");
-        setupContainer(R.id.data_images_index_mouse_hp_6_container, "data_image_mouse_hp_6");
-        setupContainer(R.id.data_images_index_mouse_hp_7_container, "data_image_mouse_hp_7");
-        setupContainer(R.id.data_images_index_mouse_hp_8_container, "data_image_mouse_hp_8");
-        setupContainer(R.id.data_images_index_mouse_hp_9_container, "data_image_mouse_hp_9");
-        setupContainer(R.id.data_images_index_mouse_hp_10_container, "data_image_mouse_hp_10");
+        setupContainer(R.id.data_image_index_mouse_hp_1_container, "data_image_mouse_hp_1");
+        setupContainer(R.id.data_image_index_mouse_hp_2_container, "data_image_mouse_hp_2");
+        setupContainer(R.id.data_image_index_mouse_hp_3_container, "data_image_mouse_hp_3");
+        setupContainer(R.id.data_image_index_mouse_hp_4_container, "data_image_mouse_hp_4");
+        setupContainer(R.id.data_image_index_mouse_hp_5_container, "data_image_mouse_hp_5");
+        setupContainer(R.id.data_image_index_mouse_hp_6_container, "data_image_mouse_hp_6");
+        setupContainer(R.id.data_image_index_mouse_hp_7_container, "data_image_mouse_hp_7");
+        setupContainer(R.id.data_image_index_mouse_hp_8_container, "data_image_mouse_hp_8");
+        setupContainer(R.id.data_image_index_mouse_hp_9_container, "data_image_mouse_hp_9");
+        setupContainer(R.id.data_image_index_mouse_hp_10_container, "data_image_mouse_hp_10");
     }
 
     private void setupContainer(int viewId, String imageName) {

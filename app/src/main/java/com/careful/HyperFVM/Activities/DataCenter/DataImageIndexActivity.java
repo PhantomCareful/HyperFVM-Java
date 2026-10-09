@@ -58,42 +58,42 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import eightbitlab.com.blurview.BlurView;
 
-public class DataImagesIndexActivity extends BaseActivity {
+public class DataImageIndexActivity extends BaseActivity {
     // 顶部栏滚动联动的状态保存键与渐变区间
-    private static final String STATE_SCROLL_Y = "state_data_images_index_scroll_y";
+    private static final String STATE_SCROLL_Y = "state_data_image_index_scroll_y";
     private static final int TOP_BAR_FADE_RANGE_DP = 50;// 顶部模糊遮罩层完整显现的滚动区间（dp）
 
     private BlurUtil blurUtil;
     private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（大标题/悬浮标题/模糊层三组件全联动）
-    private final String TAG = "DataImagesIndexActivity";
+    private final String TAG = "DataImageIndexActivity";
 
-    private final String DATA_IMAGES_URL = "https://raw.giteeusercontent.com/phantom-careful/hyper-fvm-updater/raw/main/DataImages/DataImagesUrl.m3u";
-    // 存储从DATA_IMAGES_URL获取到的图片信息
-    private final List<DataImagesInfo> dataImagesInfoList = new ArrayList<>();
+    private final String DATA_IMAGE_URL = "https://raw.giteeusercontent.com/phantom-careful/hyper-fvm-updater/raw/main/DataImages/DataImagesUrl.m3u";
+    // 存储从DATA_IMAGE_URL获取到的图片信息
+    private final List<DataImageInfo> dataImageInfoList = new ArrayList<>();
     // 存储需要更新的图片信息
-    private final List<DataImagesInfo> needUpdateDataImagesInfoList = new ArrayList<>();
+    private final List<DataImageInfo> needUpdateDataImageInfoList = new ArrayList<>();
     // 存储下载失败的图片信息
-    private final List<DataImagesInfo> downloadFailedDataImagesInfoList = new ArrayList<>();
+    private final List<DataImageInfo> downloadFailedDataImageInfoList = new ArrayList<>();
 
     private long localVersionCode;
 
     private ScrollView scrollView;
     private TransitionSet transition;
 
-    private LinearLayout data_images_index_update_info_container;
-    private TextView data_images_index_update_info_title;
-    private TextView data_images_index_update_info_description;
+    private LinearLayout data_image_index_update_info_container;
+    private TextView data_image_index_update_info_title;
+    private TextView data_image_index_update_info_description;
 
-    private LinearLayout data_images_index_delete_container;
-    private TextView data_images_index_delete_title;
-    TextView data_images_index_delete_description;
+    private LinearLayout data_image_index_delete_container;
+    private TextView data_image_index_delete_title;
+    TextView data_image_index_delete_description;
 
-    private LinearLayout data_images_index_card_container;
-    private LinearLayout data_images_index_weapon_and_gem_container;
-    private LinearLayout data_images_index_decompose_and_get_container;
-    private LinearLayout data_images_index_mouse_hp_container;
-    private LinearLayout data_images_index_others_container;
-    private LinearLayout data_images_index_tiramisu_container;
+    private LinearLayout data_image_index_card_container;
+    private LinearLayout data_image_index_weapon_and_gem_container;
+    private LinearLayout data_image_index_decompose_and_get_container;
+    private LinearLayout data_image_index_mouse_hp_container;
+    private LinearLayout data_image_index_others_container;
+    private LinearLayout data_image_index_tiramisu_container;
 
     private ExecutorService downloadExecutor;
     private volatile boolean isActivityDestroyed = false;
@@ -111,38 +111,38 @@ public class DataImagesIndexActivity extends BaseActivity {
         if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
             NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
         }
-        setContentView(R.layout.activity_data_images_index);
+        setContentView(R.layout.activity_data_image_index);
 
         scrollView = findViewById(R.id.scrollView);
         transition = new TransitionSet();
         transition.addTransition(new ChangeBounds()); // 边界变化（高度、位置）
         transition.setDuration(300); // 动画时长
 
-        data_images_index_update_info_container = findViewById(R.id.data_images_index_update_info_container);
-        data_images_index_update_info_title = findViewById(R.id.data_images_index_update_info_title);
-        data_images_index_update_info_description = findViewById(R.id.data_images_index_update_info_description);
-        data_images_index_update_info_title.setText("正在检查图片版本⏳");
-        data_images_index_update_info_description.setText("请稍候，很快就好哦");
+        data_image_index_update_info_container = findViewById(R.id.data_image_index_update_info_container);
+        data_image_index_update_info_title = findViewById(R.id.data_image_index_update_info_title);
+        data_image_index_update_info_description = findViewById(R.id.data_image_index_update_info_description);
+        data_image_index_update_info_title.setText("正在检查图片版本⏳");
+        data_image_index_update_info_description.setText("请稍候，很快就好哦");
 
         downloadExecutor = Executors.newFixedThreadPool(4);
         mainHandler = new Handler(Looper.getMainLooper());
 
-        data_images_index_delete_container = findViewById(R.id.data_images_index_delete_container);
-        data_images_index_delete_title = findViewById(R.id.data_images_index_delete_title);
-        data_images_index_delete_description = findViewById(R.id.data_images_index_delete_description);
+        data_image_index_delete_container = findViewById(R.id.data_image_index_delete_container);
+        data_image_index_delete_title = findViewById(R.id.data_image_index_delete_title);
+        data_image_index_delete_description = findViewById(R.id.data_image_index_delete_description);
 
         if (hasWebpImages()) {
-            data_images_index_delete_title.setText("检测到旧版App下载的图片");
-            data_images_index_delete_description.setText("这些图片的清晰度较低，当前版本已不支持查看。您可以长按本卡片将它们删除，然后使用上面的卡片重新下载更高清的图片。");
+            data_image_index_delete_title.setText("检测到旧版App下载的图片");
+            data_image_index_delete_description.setText("这些图片的清晰度较低，当前版本已不支持查看。您可以长按本卡片将它们删除，然后使用上面的卡片重新下载更高清的图片。");
         } else {
-            data_images_index_delete_title.setText("删除所有图片");
-            data_images_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
+            data_image_index_delete_title.setText("删除所有图片");
+            data_image_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
         }
-        data_images_index_delete_container.setOnLongClickListener(v -> {
+        data_image_index_delete_container.setOnLongClickListener(v -> {
             DialogBuilderManager.showDialogWithCallBack(
                     this, "二次确认", "🗑️", "将删除所有本地图片。删除后，您需要重新下载才能查看。", true,
                     "咱手滑了", "开始删除", () -> {
-                        data_images_index_delete_title.setText("操作执行中⏳");
+                        data_image_index_delete_title.setText("操作执行中⏳");
                         setAllCardViewEnabled(false);
 
                         File dir = new File(getFilesDir(), "data_images");
@@ -157,35 +157,35 @@ public class DataImagesIndexActivity extends BaseActivity {
                             }
                         }
 
-                        data_images_index_delete_title.setText("删除完成🎉🎉🎉");
-                        data_images_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
+                        data_image_index_delete_title.setText("删除完成🎉🎉🎉");
+                        data_image_index_delete_description.setText("长按本卡片可执行删除操作\n如果您遇到图片无法查看的问题，可尝试先删除所有图片再重新下载");
 
                         LocalVersionUtil.setImageResourcesVersionCode(1);
                         mainHandler.post(() -> {
                             setAllCardViewEnabled(false);
-                            data_images_index_delete_container.setEnabled(true);
+                            data_image_index_delete_container.setEnabled(true);
                             TransitionManager.beginDelayedTransition(scrollView, transition);
-                            data_images_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
-                            data_images_index_update_info_description.setText("删除图片后需要重新下载才能查看哦");
-                            data_images_index_update_info_container.setOnClickListener(view -> downloadImages(dataImagesInfoList));
+                            data_image_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
+                            data_image_index_update_info_description.setText("删除图片后需要重新下载才能查看哦");
+                            data_image_index_update_info_container.setOnClickListener(view -> downloadImages(dataImageInfoList));
                         });
                     });
 
             return true;
         });
 
-        data_images_index_card_container = findViewById(R.id.data_images_index_card_container);
-        data_images_index_weapon_and_gem_container = findViewById(R.id.data_images_index_weapon_and_gem_container);
-        data_images_index_decompose_and_get_container = findViewById(R.id.data_images_index_decompose_and_get_container);
-        data_images_index_mouse_hp_container = findViewById(R.id.data_images_index_mouse_hp_container);
-        data_images_index_others_container = findViewById(R.id.data_images_index_others_container);
-        data_images_index_tiramisu_container = findViewById(R.id.data_images_index_tiramisu_container);
+        data_image_index_card_container = findViewById(R.id.data_image_index_card_container);
+        data_image_index_weapon_and_gem_container = findViewById(R.id.data_image_index_weapon_and_gem_container);
+        data_image_index_decompose_and_get_container = findViewById(R.id.data_image_index_decompose_and_get_container);
+        data_image_index_mouse_hp_container = findViewById(R.id.data_image_index_mouse_hp_container);
+        data_image_index_others_container = findViewById(R.id.data_image_index_others_container);
+        data_image_index_tiramisu_container = findViewById(R.id.data_image_index_tiramisu_container);
 
         // 初始化各种装饰效果
         initDecoration();
 
         // 从云端仓库获取数据图信息（版本号、访问链接等）
-        getDataImagesInfoFromGit(new DataImagesCatchResultCallBack() {
+        getDataImageInfoFromGit(new DataImageCatchResultCallBack() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess() {
@@ -204,25 +204,25 @@ public class DataImagesIndexActivity extends BaseActivity {
                     mainHandler.post(() -> {
                         setAllCardViewEnabled(false);
                         TransitionManager.beginDelayedTransition(scrollView, transition);
-                        data_images_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
-                        data_images_index_update_info_description.setText("第一次使用需要先下载图片才能查看哦");
-                        data_images_index_update_info_container.setOnClickListener(v -> downloadImages(dataImagesInfoList));
+                        data_image_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
+                        data_image_index_update_info_description.setText("第一次使用需要先下载图片才能查看哦");
+                        data_image_index_update_info_container.setOnClickListener(v -> downloadImages(dataImageInfoList));
                     });
                 } else if (localVersionCode == 1) {
                     mainHandler.post(() -> {
                         setAllCardViewEnabled(false);
                         TransitionManager.beginDelayedTransition(scrollView, transition);
-                        data_images_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
-                        data_images_index_update_info_description.setText("删除图片后需要重新下载才能查看哦");
-                        data_images_index_update_info_container.setOnClickListener(v -> downloadImages(dataImagesInfoList));
+                        data_image_index_update_info_title.setText("点击本卡片获取图片资源📣📣📣");
+                        data_image_index_update_info_description.setText("删除图片后需要重新下载才能查看哦");
+                        data_image_index_update_info_container.setOnClickListener(v -> downloadImages(dataImageInfoList));
                     });
                 } else {
                     boolean needUpdate = false;
-                    for (int i = 0; i < dataImagesInfoList.size(); i++) {
+                    for (int i = 0; i < dataImageInfoList.size(); i++) {
                         // 如有云端图片版本号更新，将其信息加入需要更新的List中
-                        Log.d(TAG, dataImagesInfoList.get(i).getFileName() + ": 云端" + dataImagesInfoList.get(i).getVersion() + ", 本地" + localVersionCode);
-                        if (localVersionCode < dataImagesInfoList.get(i).getVersion()) {
-                            needUpdateDataImagesInfoList.add(dataImagesInfoList.get(i));
+                        Log.d(TAG, dataImageInfoList.get(i).getFileName() + ": 云端" + dataImageInfoList.get(i).getVersion() + ", 本地" + localVersionCode);
+                        if (localVersionCode < dataImageInfoList.get(i).getVersion()) {
+                            needUpdateDataImageInfoList.add(dataImageInfoList.get(i));
                             needUpdate = true;
                         }
                     }
@@ -231,16 +231,16 @@ public class DataImagesIndexActivity extends BaseActivity {
                     mainHandler.post(() -> {
                         TransitionManager.beginDelayedTransition(scrollView, transition);
                         if (finalNeedUpdate) {
-                            data_images_index_update_info_title.setText(needUpdateDataImagesInfoList.size() + "张图片需要更新📣📣📣");
-                            data_images_index_update_info_description.setText("单击本卡片仅下载有更新的图片\n长按本卡片下载全部图片(耗时更长，仅在需要时使用)");
-                            data_images_index_update_info_container.setOnClickListener(v -> downloadImages(needUpdateDataImagesInfoList));
+                            data_image_index_update_info_title.setText(needUpdateDataImageInfoList.size() + "张图片需要更新📣📣📣");
+                            data_image_index_update_info_description.setText("单击本卡片仅下载有更新的图片\n长按本卡片下载全部图片(耗时更长，仅在需要时使用)");
+                            data_image_index_update_info_container.setOnClickListener(v -> downloadImages(needUpdateDataImageInfoList));
                         } else {
-                            data_images_index_update_info_title.setText("已经是最新版本😋😋😋");
-                            data_images_index_update_info_description.setText("如有需要，可长按本卡片重新下载图片");
-                            data_images_index_update_info_container.setOnClickListener(null);
+                            data_image_index_update_info_title.setText("已经是最新版本😋😋😋");
+                            data_image_index_update_info_description.setText("如有需要，可长按本卡片重新下载图片");
+                            data_image_index_update_info_container.setOnClickListener(null);
                         }
-                        data_images_index_update_info_container.setOnLongClickListener(v -> {
-                            downloadImages(dataImagesInfoList);
+                        data_image_index_update_info_container.setOnLongClickListener(v -> {
+                            downloadImages(dataImageInfoList);
                             return true;
                         });
                     });
@@ -251,7 +251,7 @@ public class DataImagesIndexActivity extends BaseActivity {
             public void onFailed(Exception e) {
                 // 失败的话，用弹窗显示异常日志
                 DialogBuilderManager.showDialog(
-                        DataImagesIndexActivity.this,
+                        DataImageIndexActivity.this,
                         "抛出异常",
                         "❌",
                         "请将本页面截图反馈给开发者：\n" + e,
@@ -262,11 +262,11 @@ public class DataImagesIndexActivity extends BaseActivity {
         });
     }
 
-    private void getDataImagesInfoFromGit(DataImagesCatchResultCallBack callBack) {
+    private void getDataImageInfoFromGit(DataImageCatchResultCallBack callBack) {
         new Thread(() -> {
             try {
                 // 第1步：从给定的链接获取JSON字符串
-                String JSONArrayStr = XMLHelper.getContentFromUrl(DATA_IMAGES_URL);
+                String JSONArrayStr = XMLHelper.getContentFromUrl(DATA_IMAGE_URL);
                 if (JSONArrayStr == null) {
                     // 网络异常/内容获取失败：必须主动回调失败，避免JSONArray构造抛出NPE导致线程静默死亡
                     callBack.onFailed(new IOException("内容获取失败，请检查网络后重试"));
@@ -283,14 +283,14 @@ public class DataImagesIndexActivity extends BaseActivity {
                     // 提取单个JSON对象
                     itemObj = jsonArray.getJSONObject(i);
 
-                    // 讲JSON中的内容存储到DataImagesInfo类中
-                    DataImagesInfo dataImagesInfo = new DataImagesInfo();
-                    dataImagesInfo.setFileName(itemObj.getString("fileName"));
-                    dataImagesInfo.setVersion(Long.parseLong(itemObj.getString("version")));
-                    dataImagesInfo.setUrl(itemObj.getString("url"));
+                    // 讲JSON中的内容存储到DataImageInfo类中
+                    DataImageInfo dataImageInfo = new DataImageInfo();
+                    dataImageInfo.setFileName(itemObj.getString("fileName"));
+                    dataImageInfo.setVersion(Long.parseLong(itemObj.getString("version")));
+                    dataImageInfo.setUrl(itemObj.getString("url"));
 
                     // 加入List
-                    dataImagesInfoList.add(dataImagesInfo);
+                    dataImageInfoList.add(dataImageInfo);
                 }
 
                 // 第4步：触发回调
@@ -304,12 +304,12 @@ public class DataImagesIndexActivity extends BaseActivity {
     }
 
     private void initViews() {
-        data_images_index_card_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageCardActivity.class)));
-        data_images_index_weapon_and_gem_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageWeaponAndGemActivity.class)));
-        data_images_index_decompose_and_get_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageDecomposeAndGetActivity.class)));
-        data_images_index_mouse_hp_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageMouseHpActivity.class)));
-        data_images_index_others_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageOthersActivity.class)));
-        data_images_index_tiramisu_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageTiramisuActivity.class)));
+        data_image_index_card_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageCardActivity.class)));
+        data_image_index_weapon_and_gem_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageWeaponAndGemActivity.class)));
+        data_image_index_decompose_and_get_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageDecomposeAndGetActivity.class)));
+        data_image_index_mouse_hp_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageMouseHpActivity.class)));
+        data_image_index_others_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageOthersActivity.class)));
+        data_image_index_tiramisu_container.setOnClickListener(v -> startActivity(new Intent(this, DataImageTiramisuActivity.class)));
     }
 
     private void setAllCardViewEnabled(boolean enabled) {
@@ -317,13 +317,13 @@ public class DataImagesIndexActivity extends BaseActivity {
             runOnUiThread(() -> setAllCardViewEnabled(enabled));
             return;
         }
-        data_images_index_delete_container.setEnabled(enabled);
-        data_images_index_tiramisu_container.setEnabled(enabled);
-        data_images_index_card_container.setEnabled(enabled);
-        data_images_index_weapon_and_gem_container.setEnabled(enabled);
-        data_images_index_decompose_and_get_container.setEnabled(enabled);
-        data_images_index_mouse_hp_container.setEnabled(enabled);
-        data_images_index_others_container.setEnabled(enabled);
+        data_image_index_delete_container.setEnabled(enabled);
+        data_image_index_tiramisu_container.setEnabled(enabled);
+        data_image_index_card_container.setEnabled(enabled);
+        data_image_index_weapon_and_gem_container.setEnabled(enabled);
+        data_image_index_decompose_and_get_container.setEnabled(enabled);
+        data_image_index_mouse_hp_container.setEnabled(enabled);
+        data_image_index_others_container.setEnabled(enabled);
     }
 
     /**
@@ -348,58 +348,58 @@ public class DataImagesIndexActivity extends BaseActivity {
     /**
      * 下载图片
      *
-     * @param dataImagesInfoList 需要下载的图片的信息
-     *                           全量下载：请传入dataImagesInfoList
-     *                           增量下载：请传入needUpdateDataImagesInfoList
-     *                           失败重试：请传入downloadFailedDataImagesInfoList
+     * @param dataImageInfoList 需要下载的图片的信息
+     *                           全量下载：请传入dataImageInfoList
+     *                           增量下载：请传入needUpdateDataImageInfoList
+     *                           失败重试：请传入downloadFailedDataImageInfoList
      */
     @SuppressLint("SetTextI18n")
-    private void downloadImages(List<DataImagesInfo> dataImagesInfoList) {
+    private void downloadImages(List<DataImageInfo> dataImageInfoList) {
         DialogBuilderManager.showDialogWithCallBack(
                 this, "二次确认", "\uD83D\uDCE5", "将开始下载图片资源，请注意网络流量消耗。", true,
                 "咱手滑了", "开始下载", () -> {
                     final AtomicInteger completedCount = new AtomicInteger(0);
-                    // 快照本次要下载的图片清单：失败重试时传入的是downloadFailedDataImagesInfoList本身，
+                    // 快照本次要下载的图片清单：失败重试时传入的是downloadFailedDataImageInfoList本身，
                     // 若直接引用它，下面的clear()会把清单一并清空，导致进度显示0/0且不提交任何下载任务
-                    final List<DataImagesInfo> imagesToDownload = new ArrayList<>(dataImagesInfoList);
+                    final List<DataImageInfo> imagesToDownload = new ArrayList<>(dataImageInfoList);
 
                     // 清空之前的失败记录
-                    downloadFailedDataImagesInfoList.clear();
+                    downloadFailedDataImageInfoList.clear();
 
                     TransitionManager.beginDelayedTransition(scrollView, transition);
-                    data_images_index_update_info_title.setText("正在下载，已完成(" + completedCount + "/" + imagesToDownload.size() + ")⏳");
-                    data_images_index_update_info_description.setText("请保持App处于前台状态，并不要退出本界面");
+                    data_image_index_update_info_title.setText("正在下载，已完成(" + completedCount + "/" + imagesToDownload.size() + ")⏳");
+                    data_image_index_update_info_description.setText("请保持App处于前台状态，并不要退出本界面");
                     // 将卡片点击事件设置为null，防止重复下载
-                    data_images_index_update_info_container.setOnClickListener(null);
-                    data_images_index_update_info_container.setOnLongClickListener(null);
+                    data_image_index_update_info_container.setOnClickListener(null);
+                    data_image_index_update_info_container.setOnLongClickListener(null);
                     // 下载过程中不能查看图片
                     setAllCardViewEnabled(false);
 
-                    for (DataImagesInfo dataImagesInfo : imagesToDownload) {
+                    for (DataImageInfo dataImageInfo : imagesToDownload) {
                         downloadExecutor.execute(() -> {
-                            boolean success = downloadSingleImage(dataImagesInfo);
+                            boolean success = downloadSingleImage(dataImageInfo);
                             int current = completedCount.incrementAndGet();
                             if (!success) {
-                                synchronized (downloadFailedDataImagesInfoList) {
-                                    downloadFailedDataImagesInfoList.add(dataImagesInfo);
+                                synchronized (downloadFailedDataImageInfoList) {
+                                    downloadFailedDataImageInfoList.add(dataImageInfo);
                                 }
                             }
 
                             // 更新下载进度
-                            mainHandler.post(() -> data_images_index_update_info_title.setText("正在下载，已完成(" + current + "/" + imagesToDownload.size() + ")⏳"));
+                            mainHandler.post(() -> data_image_index_update_info_title.setText("正在下载，已完成(" + current + "/" + imagesToDownload.size() + ")⏳"));
 
                             // 全部完成
                             if (current == imagesToDownload.size() && !isActivityDestroyed) {
                                 mainHandler.post(() -> {
-                                    data_images_index_update_info_title.setText("更新完成🎉🎉🎉");
-                                    if (downloadFailedDataImagesInfoList.isEmpty()) {
-                                        data_images_index_update_info_description.setText(
-                                                imagesToDownload.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败");
+                                    data_image_index_update_info_title.setText("更新完成🎉🎉🎉");
+                                    if (downloadFailedDataImageInfoList.isEmpty()) {
+                                        data_image_index_update_info_description.setText(
+                                                imagesToDownload.size() - downloadFailedDataImageInfoList.size() + "张图片更新成功，" + downloadFailedDataImageInfoList.size() + "张图片更新失败");
 
                                         // 更新本地版本号，取云端全量图片信息中版本号最大的值
                                         // （失败重试时本次清单只是全量的子集，按子集计算会低估版本号，导致下次进页面误报更新）
                                         long newestVersion = 0;
-                                        for (DataImagesInfo info : this.dataImagesInfoList) {
+                                        for (DataImageInfo info : this.dataImageInfoList) {
                                             if (info.getVersion() > newestVersion) {
                                                 newestVersion = info.getVersion();
                                             }
@@ -407,12 +407,12 @@ public class DataImagesIndexActivity extends BaseActivity {
                                         LocalVersionUtil.setImageResourcesVersionCode(newestVersion);
 
                                     } else {
-                                        data_images_index_update_info_description.setText(
-                                                imagesToDownload.size() - downloadFailedDataImagesInfoList.size() + "张图片更新成功，" + downloadFailedDataImagesInfoList.size() + "张图片更新失败" + "\n" +
+                                        data_image_index_update_info_description.setText(
+                                                imagesToDownload.size() - downloadFailedDataImageInfoList.size() + "张图片更新成功，" + downloadFailedDataImageInfoList.size() + "张图片更新失败" + "\n" +
                                                         "点击本卡片可重新下载更新失败的图片"
                                         );
-                                        data_images_index_update_info_container.setOnClickListener(v -> downloadImages(downloadFailedDataImagesInfoList));
-                                        data_images_index_update_info_container.setOnLongClickListener(v -> {
+                                        data_image_index_update_info_container.setOnClickListener(v -> downloadImages(downloadFailedDataImageInfoList));
+                                        data_image_index_update_info_container.setOnLongClickListener(v -> {
                                             downloadImages(imagesToDownload);
                                             return true;
                                         });
@@ -428,19 +428,19 @@ public class DataImagesIndexActivity extends BaseActivity {
     /**
      * 下载单张图片的方法
      *
-     * @param dataImagesInfo 图片信息
+     * @param dataImageInfo 图片信息
      * @return 是否成功
      */
-    private boolean downloadSingleImage(DataImagesInfo dataImagesInfo) {
+    private boolean downloadSingleImage(DataImageInfo dataImageInfo) {
         HttpURLConnection connection = null;
         try {
             File dir = new File(getFilesDir(), "data_images");
             if (!dir.exists()) dir.mkdirs();
 
-            File tempFile = new File(dir, dataImagesInfo.getFileName() + ".tmp");
-            File targetFile = new File(dir, dataImagesInfo.getFileName() + ".png");
+            File tempFile = new File(dir, dataImageInfo.getFileName() + ".tmp");
+            File targetFile = new File(dir, dataImageInfo.getFileName() + ".png");
 
-            URL url = new URL(dataImagesInfo.getUrl());
+            URL url = new URL(dataImageInfo.getUrl());
             connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(15000);
             connection.setReadTimeout(15000);
@@ -463,7 +463,7 @@ public class DataImagesIndexActivity extends BaseActivity {
                 return false;
             }
         } catch (IOException e) {
-            Log.e(TAG, "下载失败: " + dataImagesInfo.getFileName(), e);
+            Log.e(TAG, "下载失败: " + dataImageInfo.getFileName(), e);
             return false;
         } finally {
             if (connection != null) connection.disconnect();
@@ -499,12 +499,12 @@ public class DataImagesIndexActivity extends BaseActivity {
             floatButtonBack.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
-        LinearLayout data_images_index_container = findViewById(R.id.data_images_index_container);
-        InsetsUtil.setMarginHorizontal(this, data_images_index_container, layout_marginHorizontal -> {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) data_images_index_container.getLayoutParams();
+        LinearLayout data_image_index_container = findViewById(R.id.data_image_index_container);
+        InsetsUtil.setMarginHorizontal(this, data_image_index_container, layout_marginHorizontal -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) data_image_index_container.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             params.rightMargin = layout_marginHorizontal;
-            data_images_index_container.setLayoutParams(params);
+            data_image_index_container.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;

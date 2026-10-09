@@ -21,7 +21,7 @@
             android:clipToPadding="false">
 
             <LinearLayout
-                android:id="@+id/data_images_index_container"
+                android:id="@+id/data_image_index_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
                     android:layout_marginHorizontal="16dp"
-                    android:text="@string/top_bar_data_images_index_mouse_hp"
+                    android:text="@string/top_bar_data_image_index_mouse_hp"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="?attr/colorOnSurface"
@@ -92,7 +92,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/tips_data_images_index_mouse_hp_title"
+                                android:text="@string/tips_data_image_index_mouse_hp_title"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnImportantCardView" />
@@ -100,7 +100,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/tips_data_images_index_mouse_hp_description"
+                                android:text="@string/tips_data_image_index_mouse_hp_description"
                                 android:textSize="15sp"
                                 android:textColor="?attr/SummaryTextViewColorOnImportantCardView" />
 
@@ -123,7 +123,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_1_container"
+                            android:id="@+id/data_image_index_mouse_hp_1_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -137,7 +137,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_1"
+                                android:text="@string/title_data_image_index_mouse_hp_1"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -152,7 +152,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_2_container"
+                            android:id="@+id/data_image_index_mouse_hp_2_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -166,7 +166,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_2"
+                                android:text="@string/title_data_image_index_mouse_hp_2"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -181,7 +181,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_3_container"
+                            android:id="@+id/data_image_index_mouse_hp_3_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -195,7 +195,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_3"
+                                android:text="@string/title_data_image_index_mouse_hp_3"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -210,7 +210,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_4_container"
+                            android:id="@+id/data_image_index_mouse_hp_4_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -224,7 +224,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_4"
+                                android:text="@string/title_data_image_index_mouse_hp_4"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -239,7 +239,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_5_container"
+                            android:id="@+id/data_image_index_mouse_hp_5_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -253,7 +253,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_5"
+                                android:text="@string/title_data_image_index_mouse_hp_5"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -268,7 +268,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_6_container"
+                            android:id="@+id/data_image_index_mouse_hp_6_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -282,7 +282,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_6"
+                                android:text="@string/title_data_image_index_mouse_hp_6"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -297,7 +297,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_7_container"
+                            android:id="@+id/data_image_index_mouse_hp_7_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -311,7 +311,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_7"
+                                android:text="@string/title_data_image_index_mouse_hp_7"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -326,7 +326,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_8_container"
+                            android:id="@+id/data_image_index_mouse_hp_8_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -340,7 +340,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_8"
+                                android:text="@string/title_data_image_index_mouse_hp_8"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -355,7 +355,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_9_container"
+                            android:id="@+id/data_image_index_mouse_hp_9_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -369,7 +369,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_9"
+                                android:text="@string/title_data_image_index_mouse_hp_9"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -384,7 +384,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/data_images_index_mouse_hp_10_container"
+                            android:id="@+id/data_image_index_mouse_hp_10_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -398,7 +398,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="16dp"
-                                android:text="@string/title_data_images_index_mouse_hp_10"
+                                android:text="@string/title_data_image_index_mouse_hp_10"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/TextViewColorOnGeneralCardView" />
@@ -442,7 +442,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="@string/top_bar_data_images_index_mouse_hp"
+        android:text="@string/top_bar_data_image_index_mouse_hp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"

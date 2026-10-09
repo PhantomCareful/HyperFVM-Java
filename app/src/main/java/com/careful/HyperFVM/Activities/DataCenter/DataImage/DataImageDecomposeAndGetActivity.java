@@ -56,18 +56,18 @@ public class DataImageDecomposeAndGetActivity extends BaseActivity {
 
     private void initViews() {
         // 道具分解&兑换数据图
-        setupContainer(R.id.data_images_index_decompose_and_get_1_container, "data_image_decompose_and_get_1");
-        setupContainer(R.id.data_images_index_decompose_and_get_2_container, "data_image_decompose_and_get_2");
-        setupContainer(R.id.data_images_index_decompose_and_get_3_container, "data_image_decompose_and_get_3");
-        setupContainer(R.id.data_images_index_decompose_and_get_4_container, "data_image_decompose_and_get_4");
-        setupContainer(R.id.data_images_index_decompose_and_get_5_container, "data_image_decompose_and_get_5");
-        setupContainer(R.id.data_images_index_decompose_and_get_6_container, "data_image_decompose_and_get_6");
-        setupContainer(R.id.data_images_index_decompose_and_get_7_container, "data_image_decompose_and_get_7");
-        setupContainer(R.id.data_images_index_decompose_and_get_8_container, "data_image_decompose_and_get_8");
-        setupContainer(R.id.data_images_index_decompose_and_get_9_container, "data_image_decompose_and_get_9");
-        setupContainer(R.id.data_images_index_decompose_and_get_10_container, "data_image_decompose_and_get_10");
-        setupContainer(R.id.data_images_index_decompose_and_get_11_container, "data_image_decompose_and_get_11");
-        setupContainer(R.id.data_images_index_decompose_and_get_12_container, "data_image_decompose_and_get_12");
+        setupContainer(R.id.data_image_index_decompose_and_get_1_container, "data_image_decompose_and_get_1");
+        setupContainer(R.id.data_image_index_decompose_and_get_2_container, "data_image_decompose_and_get_2");
+        setupContainer(R.id.data_image_index_decompose_and_get_3_container, "data_image_decompose_and_get_3");
+        setupContainer(R.id.data_image_index_decompose_and_get_4_container, "data_image_decompose_and_get_4");
+        setupContainer(R.id.data_image_index_decompose_and_get_5_container, "data_image_decompose_and_get_5");
+        setupContainer(R.id.data_image_index_decompose_and_get_6_container, "data_image_decompose_and_get_6");
+        setupContainer(R.id.data_image_index_decompose_and_get_7_container, "data_image_decompose_and_get_7");
+        setupContainer(R.id.data_image_index_decompose_and_get_8_container, "data_image_decompose_and_get_8");
+        setupContainer(R.id.data_image_index_decompose_and_get_9_container, "data_image_decompose_and_get_9");
+        setupContainer(R.id.data_image_index_decompose_and_get_10_container, "data_image_decompose_and_get_10");
+        setupContainer(R.id.data_image_index_decompose_and_get_11_container, "data_image_decompose_and_get_11");
+        setupContainer(R.id.data_image_index_decompose_and_get_12_container, "data_image_decompose_and_get_12");
     }
 
     private void setupContainer(int viewId, String imageName) {
