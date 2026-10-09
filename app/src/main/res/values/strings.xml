@@ -123,11 +123,7 @@
     <string name="title_data_image_tiramisu_image_2_3">大赛奖励图</string>
     <string name="description_data_image_tiramisu_image_2_3">Q群获取指令：@提拉米鼠 /大赛</string>
     <string name="title_data_image_tiramisu_image_2_3_1">大赛任务图</string>
-    <string name="description_data_image_tiramisu_image_2_3_1">Q群获取指令：
-@提拉米鼠 /大赛-1
-@提拉米鼠 /大赛-2
-@提拉米鼠 /大赛-3
-@提拉米鼠 /大赛-4</string>
+    <string name="description_data_image_tiramisu_image_2_3_1">Q群获取指令：\n@提拉米鼠 /大赛-1\n@提拉米鼠 /大赛-2\n@提拉米鼠 /大赛-3\n@提拉米鼠 /大赛-4</string>
     <string name="title_data_image_tiramisu_image_2_4_1" tools:ignore="Typos">VIP1权益图</string>
     <string name="description_data_image_tiramisu_image_2_4_1">Q群获取指令：@提拉米鼠 /VIP 1</string>
     <string name="title_data_image_tiramisu_image_2_4_2" tools:ignore="Typos">VIP2权益图</string>
@@ -295,12 +291,7 @@
     <string name="title_data_image_others_8">8.游戏功能解锁条件对照表</string>
     <string name="author_data_image_others_8">By 哪片花火</string>
     <string name="title_dialog_data_image_open_failed_file_not_found">图片文件不存在</string>
-    <string name="content_dialog_data_image_open_failed_file_not_found">可能的原因如下：
-1.您还没有下载此图片资源；
-2.此图片资源被意外删除；
-3.App升级以后，图片文件名发生了变更。
-
-解决方式：请回到主界面，重新下载全部图片后再尝试查看。若依然提示图片文件不存在，请向开发者反馈。</string>
+    <string name="content_dialog_data_image_open_failed_file_not_found">可能的原因如下：\n1.您还没有下载此图片资源；\n2.此图片资源被意外删除；\n3.App升级以后，图片文件名发生了变更。\n\n解决方式：请回到主界面，重新下载全部图片后再尝试查看。若依然提示图片文件不存在，请向开发者反馈。</string>
     <string name="toast_data_image_viewer_load_failed">图片加载失败，请尝试重新下载图片资源后再查看</string>
     <string name="title_data_image_viewer_share">分享数据图</string>
     <string name="toast_data_image_viewer_save_success">已保存到相册（Pictures/HyperFVM）</string>
@@ -312,12 +303,8 @@
     <string name="tips_odds_index_2">本页面所有内容均为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。\n请不要在官方评论区展示本页面的任何内容，尤其是出现勘误的时候，谢谢您的配合。</string>
     <string name="tips_odds_index_title_3">勘误预警</string>
     <string name="tips_odds_index_3">本概率公示获取自官方发布的帖子。\n内容为人工整理，若您发现可能有误的地方，请先前往原帖进行核实，如确实有误，请向开发者反馈。</string>
-    <string name="copyright_and_molu">数据来自：So陌路の
-数据为人工录入，若发现问题可向开发者反馈🫰
-
-HyperFVM
-Made By Phantom Careful 😈</string>
-    <string name="copyright">HyperFVM\nMade By Phantom Careful 😈</string>
+    <string name="copyright_and_molu">数据来自：So陌路の\n数据为人工录入，若发现问题可向开发者反馈🫰\n\nHyperFVM\nMade By Phantom Careful</string>
+    <string name="copyright">HyperFVM\nMade By Phantom Careful</string>
     <!--防御卡全能数据库-->
     <string name="title_card_data_base_info">基础信息</string>
     <string name="title_card_data_transfer_change">人话解释</string>
@@ -583,11 +570,11 @@ Made By Phantom Careful 😈</string>
     <string name="top_bar_thanks_list_app">App相关</string>
     <string name="tips_thanks_list_app">HyperFVM 在开发过程中使用了这些优秀的开源项目或辅助工具，在此表示衷心感谢。（排名顺序不分先后）</string>
     <string name="title_thanks_list_app_1">YuKongA/miuix</string>
-    <string name="description_thanks_list_app_1">一个Compose Multiplatform的组件库，提供了一系列小米澎湃OS风格的组件\nHyperFVM当前使用View构建界面，因此无法直接使用，仅借鉴了其界面布局设计</string>
+    <string name="description_thanks_list_app_1">一个Compose Multiplatform的组件库，提供了一系列小米澎湃OS风格的组件\nHyperFVM当前使用View构建界面，无法直接使用，仅借鉴了其界面布局设计</string>
     <string name="dialog_sub_title_thanks_list_app_1">miuix</string>
     <string name="dialog_url_thanks_list_app_1">https://github.com/compose-miuix-ui/miuix</string>
     <string name="title_thanks_list_app_2">ReChronoRain/HyperCeiler</string>
-    <string name="description_thanks_list_app_2">一个功能强大的Xposed模块\n该模块同样基于View构建界面，因此HyperFVM借鉴了其关于页面动态流光背景的实现方式</string>
+    <string name="description_thanks_list_app_2">一个功能强大的Xposed模块\n该模块设计了基于View的miuix组件，HyperFVM中的部分组件借鉴了其实现方式</string>
     <string name="dialog_sub_title_thanks_list_app_2">HyperCeiler</string>
     <string name="dialog_url_thanks_list_app_2">https://github.com/ReChronoRain/HyperCeiler</string>
     <string name="title_thanks_list_app_3">Dimezis/BlurView</string>
