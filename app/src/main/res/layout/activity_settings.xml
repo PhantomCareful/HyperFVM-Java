@@ -248,21 +248,14 @@
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tips_settings_theme"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TextViewColorOnImportantCardView" />
-
-                    </LinearLayout>
+                        android:padding="16dp"
+                        android:text="@string/tips_settings_theme"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TextViewColorOnImportantCardView" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -586,28 +579,25 @@
                     android:id="@+id/tips_dynamic_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="10dp"
                     android:clickable="true"
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tips_dynamic_background"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TextViewColorOnImportantCardView" />
-
-                    </LinearLayout>
+                        android:padding="16dp"
+                        android:text="@string/tips_dynamic_background"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TextViewColorOnImportantCardView" />
 
                 </androidx.cardview.widget.CardView>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -628,21 +618,14 @@
                     app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                     app:cardCornerRadius="20dp">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tips_settings_toast"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/TextViewColorOnImportantCardView" />
-
-                    </LinearLayout>
+                        android:padding="16dp"
+                        android:text="@string/tips_settings_toast"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TextViewColorOnImportantCardView" />
 
                 </androidx.cardview.widget.CardView>
 

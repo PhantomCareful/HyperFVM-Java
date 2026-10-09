@@ -95,9 +95,8 @@
     <string name="top_bar_data_images_viewer">数据图查看器</string>
     <string name="title_data_images_index_tiramisu">米鼠的图</string>
     <string name="author_data_images_index_tiramisu">By 夏夜浅酌</string>
-    <string name="tips_data_images_index_tiramisu_title">一个小提示</string>
-    <string name="tips_data_images_index_tiramisu_description">设置这个版块的目的是当米鼠有时候叫不出来时，您仍然可以在这里查看部分数据图。\n图片更新可能不及时，当这里的图片和米鼠不一致时，请以米鼠提供的为准。</string>
-    <string name="title_tools_tiramisu_image_1">氪金活动类</string>
+    <string name="tips_data_images_tiramisu">设置这个版块的目的是当米鼠有时候叫不出来时，您仍然可以在这里查看部分数据图。\n图片更新可能不及时，当这里的图片和米鼠不一致时，请以米鼠提供的为准。</string>
+    <string name="title_data_image_tiramisu_image_1">氪金活动类</string>
     <string name="title_tools_tiramisu_image_1_1">周氪图</string>
     <string name="description_tools_tiramisu_image_1_1">Q群获取指令：@提拉米鼠 /周氪</string>
     <string name="title_tools_tiramisu_image_1_2">日氪图</string>
@@ -376,8 +375,7 @@
     <string name="title_dashboard_about_money">氪金专区</string>
     <string name="title_dashboard_new_year_million_consumption">百万消费</string>
     <string name="title_dashboard_daily_recharge">日氪</string>
-    <string name="title_dashboard_tips">小贴士</string>
-    <string name="content_dashboard_tips">点击每个卡片可以查看更详细的内容\n点击右上角的按钮可以手动刷新一次数据</string>
+    <string name="tips_dashboard">点击每个卡片可以查看更详细的内容，点击右上角的按钮可以手动刷新一次数据。</string>
     <!--美食数据站-->
     <string name="title_data_center_data_station">美食数据站</string>
     <string name="title_data_center_tiramisu">提拉米鼠</string>
@@ -494,7 +492,7 @@
     <string name="description_settings_switch_is_dynamic_background">将部分界面的纯色背景替换为带混色的流动背景</string>
     <string name="tips_dynamic_background">动态流光背景功能仅支持搭载Android13及以上系统的设备。\n本功能对设备性能要求较高，如您在使用过程中出现卡顿，请关闭本功能。</string>
     <string name="title_settings_toast">提示语显示</string>
-    <string name="tips_settings_toast">如果App内的这些小提示影响了您的使用体验，可将它们关闭。</string>
+    <string name="tips_settings_toast">这些小提示是给刚开始使用App的同学提供帮助的，如果影响了您的使用体验，可将它们关闭。</string>
     <string name="title_settings_toast_switch_card_data_index">防御卡全能数据库</string>
     <string name="description_settings_toast_switch_card_data_index">“点击卡片可查看其数据”</string>
     <string name="title_settings_toast_switch_card_data_auxiliary_list">增幅卡名单</string>
