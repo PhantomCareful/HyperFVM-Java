@@ -3,27 +3,32 @@ package com.careful.HyperFVM.Activities.Tools;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.ListPopupWindow;
+import androidx.core.content.ContextCompat;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Dropdown.DropdownPopupHelper;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
-import com.careful.HyperFVM.utils.ForDesign.Widget.StrokeSingleSelector;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -32,19 +37,21 @@ import eightbitlab.com.blurview.BlurView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CardOddsCalculatorActivity extends BaseActivity {
     // 顶部栏滚动联动的状态保存键与渐变区间
     private static final String STATE_SCROLL_Y = "state_co_contributor_team_scroll_y";
     private static final int TOP_BAR_FADE_RANGE_DP = 25;// 顶部模糊遮罩层完整显现的滚动区间（dp）
 
-    // 三张副卡概率表，按各组 SUB_N_CATEGORY 选中的下标取用（0=差卡、1=中卡、2=好卡）
+    // 三张副卡概率表，按各组 SUB_N_CATEGORY 选中的逻辑值取用（0=差卡、1=中卡、2=好卡）
     private static final double[][][] ODDS_TABLES = {
             CardOddsData.SubCardOdds0, CardOddsData.SubCardOdds1, CardOddsData.SubCardOdds2
     };
 
-    // 各组卡片单选的选中状态保存键（每组一个，互不相同）
+    // 各组下拉选择的选中状态保存键（每组一个，互不相同；沿用旧单选器键名，
+    // 历史 SharedPreferences 记录与 Bundle 记录可直接继续生效）
     private static final String STATE_SELECTED_MAIN_CARD = "state_selected_main_card";
     private static final String STATE_SELECTED_SUB_1 = "state_selected_sub_1";
     private static final String STATE_SELECTED_SUB_1_CATEGORY = "state_selected_sub_1_category";
@@ -56,28 +63,90 @@ public class CardOddsCalculatorActivity extends BaseActivity {
     private static final String STATE_SELECTED_VIP = "state_selected_vip";
     private static final String STATE_SELECTED_CONSORTIA = "state_selected_consortia";
 
+    // 组索引（与保存键、dropdownGroups 数组顺序一一对应）
+    private static final int GROUP_MAIN = 0;
+    private static final int GROUP_SUB_1 = 1;
+    private static final int GROUP_SUB_1_CATEGORY = 2;
+    private static final int GROUP_SUB_2 = 3;
+    private static final int GROUP_SUB_2_CATEGORY = 4;
+    private static final int GROUP_SUB_3 = 5;
+    private static final int GROUP_SUB_3_CATEGORY = 6;
+    private static final int GROUP_FOUR_LEAF_CLOVER = 7;
+    private static final int GROUP_VIP = 8;
+    private static final int GROUP_CONSORTIA = 9;
+    private static final int GROUP_COUNT = 10;
+
+    // 三路取数的组配对：每路为 {SUB_N 组下标, SUB_N_CATEGORY 组下标}
+    private static final int[][] SUB_PAIRS = {
+            {GROUP_SUB_1, GROUP_SUB_1_CATEGORY},
+            {GROUP_SUB_2, GROUP_SUB_2_CATEGORY},
+            {GROUP_SUB_3, GROUP_SUB_3_CATEGORY}
+    };
+
+    // 逻辑选中值 → 展示图片（下标即逻辑值，-1“不选”不在此列）：
+    // 主卡 0~15、副卡 0~16 共用 0~16 的星级图
+    private static final int[] STAR_DRAWABLES = {
+            R.drawable.star_image_0, R.drawable.star_image_1, R.drawable.star_image_2,
+            R.drawable.star_image_3, R.drawable.star_image_4, R.drawable.star_image_5,
+            R.drawable.star_image_6, R.drawable.star_image_7, R.drawable.star_image_8,
+            R.drawable.star_image_9, R.drawable.star_image_10, R.drawable.star_image_11,
+            R.drawable.star_image_12, R.drawable.star_image_13, R.drawable.star_image_14,
+            R.drawable.star_image_15, R.drawable.star_image_16
+    };
+    // 四叶草 12 项（1~6级、超能、SS、SSS、SSR、蛇年、马年），与菜单条目及概率表顺序一致
+    private static final int[] CLOVER_DRAWABLES = {
+            R.drawable.item_four_leaf_clover_1, R.drawable.item_four_leaf_clover_2,
+            R.drawable.item_four_leaf_clover_3, R.drawable.item_four_leaf_clover_4,
+            R.drawable.item_four_leaf_clover_5, R.drawable.item_four_leaf_clover_6,
+            R.drawable.item_four_leaf_clover_s, R.drawable.item_four_leaf_clover_ss,
+            R.drawable.item_four_leaf_clover_sss, R.drawable.item_four_leaf_clover_ssr,
+            R.drawable.item_four_leaf_clover_snake, R.drawable.item_four_leaf_clover_horse
+    };
+    // VIP 等级 1~16
+    private static final int[] VIP_DRAWABLES = {
+            R.drawable.vip_1, R.drawable.vip_2, R.drawable.vip_3, R.drawable.vip_4,
+            R.drawable.vip_5, R.drawable.vip_6, R.drawable.vip_7, R.drawable.vip_8,
+            R.drawable.vip_9, R.drawable.vip_10, R.drawable.vip_11, R.drawable.vip_12,
+            R.drawable.vip_13, R.drawable.vip_14, R.drawable.vip_15, R.drawable.vip_16
+    };
+
     private BlurUtil blurUtil;
 
     private NestedScrollUtil nestedScrollUtil;// 顶部栏滚动联动（大标题/悬浮标题/模糊层三组件全联动）
 
-    // 各组卡片单选器：每组一个实例，独立维护选中项与外描边
-    private StrokeSingleSelector[] cardSelectors;
+    // 各组下拉选择：每组一个实例，独立维护选中值、菜单与展示位
+    private DropdownGroup[] dropdownGroups;
 
-    // 成功率结果展示组件
-    private TextView totalView;
-    // 成功率组件的原始字号（onCreate 记录，每次缩字前先回到该字号再重新适配）
-    private float totalTextSizePx;
+    // 记录最近一次触摸按下时的横向位置，供下拉菜单跟随手指弹出（-1 表示尚未触摸过）
+    private float lastTouchDownX = -1;
 
-    // 选中组件的图片展示位：MAIN/SUB_1/SUB_2/SUB_3/FOUR_LEAF_CLOVER 选中项图片分别同步到这 5 个 ImageView
+    // 页面内容左右边距（手机/PAD 由 InsetsUtil 动态计算）。下拉菜单最右缘沿用此值，
+    // 保证菜单不贴屏幕右缘，而是与页面内容右缘对齐
+    private int pageContentSideMarginPx = 0;
+
+    // 持久化存储：按各组 stateKey 记录逻辑选中值（与旧单选器同键同义，跨升级兼容）
+    private SharedPreferences prefs;
+
+    // 成功率结果展示组件：A部分、B部分、求和三段成功率分别写入这三张卡
+    private TextView percentAView;
+    private TextView percentBView;
+    private TextView percentCView;
+    // 消耗与保底展示组件：金币/保险金按主卡等级取数，保底显示次数
+    private TextView coinView;
+    private TextView insuranceView;
+    private TextView minimumGuaranteeView;
+    // 各展示组件的原始字号（onCreate 记录，每次缩字前先回到该字号再重新适配）
+    private final Map<TextView, Float> originalTextSizes = new HashMap<>();
+
+    // 选中组件的图片展示位：MAIN/SUB_1/SUB_2/SUB_3/FOUR_LEAF_CLOVER/VIP 选中项图片分别同步到这 6 个 ImageView
     private ImageView displayStarMain;
     private ImageView displayStarSub1;
     private ImageView displayStarSub2;
     private ImageView displayStarSub3;
     private ImageView displayFourLeafClover;
-
-    // MAIN 选中项对应的金币/保险金文案展示位
-    private TextView coinView;
-    private TextView insuranceView;
+    private ImageView displayVip;
+    // 公会合成屋等级的文字展示位（未选中显示“无”，选中显示等级数字）
+    private TextView displayConsortia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,111 +164,345 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         // 初始化各种装饰效果
         initDecoration();
 
-        // 初始化各组卡片的单选功能
-        setupCardSelectors();
+        // 持久化存储（各组选中值在构造各组时按 stateKey 恢复）
+        prefs = getPreferences(MODE_PRIVATE);
 
-        // 成功率结果展示组件
-        totalView = findViewById(R.id.total_top);
-        // 记录原始字号（像素），供文案超宽时缩字适配、文案变短时恢复
-        totalTextSizePx = totalView.getTextSize();
+        // 成功率与消耗/保底展示组件（同时记录各自原始字号，供文案超宽时缩字适配、文案变短时恢复）
+        percentAView = bindResultView(R.id.percent_a);
+        percentBView = bindResultView(R.id.percent_b);
+        percentCView = bindResultView(R.id.percent_c);
+        coinView = bindResultView(R.id.coin);
+        insuranceView = bindResultView(R.id.insurance);
+        minimumGuaranteeView = bindResultView(R.id.minimum_guarantee);
 
-        // 选中组件图片展示位与金币/保险金文案展示位
+        // 选中组件图片/文字展示位
         displayStarMain = findViewById(R.id.display_star_main);
         displayStarSub1 = findViewById(R.id.display_star_sub_1);
         displayStarSub2 = findViewById(R.id.display_star_sub_2);
         displayStarSub3 = findViewById(R.id.display_star_sub_3);
         displayFourLeafClover = findViewById(R.id.display_four_leaf_clover);
-        coinView = findViewById(R.id.coin);
-        insuranceView = findViewById(R.id.insurance);
+        displayVip = findViewById(R.id.display_vip);
+        displayConsortia = findViewById(R.id.display_consortia);
 
-        // 初始执行一次计算（持久化恢复的选中项在此还原，未恢复过则全不选、输出 成功率：0.00%+0.00%）
+        // 初始化各组下拉选择（构造时已从持久化恢复选中值并绑定点击）
+        setupDropdownGroups();
+
+        // 初始执行一次计算（持久化恢复的选中项在此还原并刷新展示，
+        // 未恢复过则全不选、输出 0.00%+0.00%=0.00% 且保底显示“—”）
         recalculate();
-        // 持久化恢复的选中项可能在横排屏幕外（构造时已从 SharedPreferences 恢复），滚动到可见位置
-        scrollSelectorsToSelected();
     }
 
     /**
-     * 初始化各组卡片的单选：每组传入组件 id 数组，独立记录点击项并绘制外描边
+     * 初始化 10 组下拉选择（弹出方式与设置页 selector 一致：以点击区为锚点、菜单跟随手指横向弹出）：
+     * 图标组（主卡/副卡/四叶草/VIP/公会）点击“标题+图片”整列弹出菜单；
+     * 副卡类型组点击整行弹出菜单，按“好卡、中卡、差卡”顺序排列且默认好卡
      */
-    private void setupCardSelectors() {
-        cardSelectors = new StrokeSingleSelector[]{
-                new StrokeSingleSelector(this, STATE_SELECTED_MAIN_CARD, new int[]{
-                        R.id.star_main_0, R.id.star_main_1, R.id.star_main_2, R.id.star_main_3,
-                        R.id.star_main_4, R.id.star_main_5, R.id.star_main_6, R.id.star_main_7,
-                        R.id.star_main_8, R.id.star_main_9, R.id.star_main_10, R.id.star_main_11,
-                        R.id.star_main_12, R.id.star_main_13, R.id.star_main_14, R.id.star_main_15
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_SUB_1, new int[]{
-                        R.id.star_sub_1_0, R.id.star_sub_1_1, R.id.star_sub_1_2, R.id.star_sub_1_3,
-                        R.id.star_sub_1_4, R.id.star_sub_1_5, R.id.star_sub_1_6, R.id.star_sub_1_7,
-                        R.id.star_sub_1_8, R.id.star_sub_1_9, R.id.star_sub_1_10, R.id.star_sub_1_11,
-                        R.id.star_sub_1_12, R.id.star_sub_1_13, R.id.star_sub_1_14, R.id.star_sub_1_15,
-                        R.id.star_sub_1_16
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_SUB_1_CATEGORY, new int[]{
-                        R.id.star_sub_1_category_0, R.id.star_sub_1_category_1, R.id.star_sub_1_category_2
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_SUB_2, new int[]{
-                        R.id.star_sub_2_0, R.id.star_sub_2_1, R.id.star_sub_2_2, R.id.star_sub_2_3,
-                        R.id.star_sub_2_4, R.id.star_sub_2_5, R.id.star_sub_2_6, R.id.star_sub_2_7,
-                        R.id.star_sub_2_8, R.id.star_sub_2_9, R.id.star_sub_2_10, R.id.star_sub_2_11,
-                        R.id.star_sub_2_12, R.id.star_sub_2_13, R.id.star_sub_2_14, R.id.star_sub_2_15,
-                        R.id.star_sub_2_16
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_SUB_2_CATEGORY, new int[]{
-                        R.id.star_sub_2_category_0, R.id.star_sub_2_category_1, R.id.star_sub_2_category_2
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_SUB_3, new int[]{
-                        R.id.star_sub_3_0, R.id.star_sub_3_1, R.id.star_sub_3_2, R.id.star_sub_3_3,
-                        R.id.star_sub_3_4, R.id.star_sub_3_5, R.id.star_sub_3_6, R.id.star_sub_3_7,
-                        R.id.star_sub_3_8, R.id.star_sub_3_9, R.id.star_sub_3_10, R.id.star_sub_3_11,
-                        R.id.star_sub_3_12, R.id.star_sub_3_13, R.id.star_sub_3_14, R.id.star_sub_3_15,
-                        R.id.star_sub_3_16
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_SUB_3_CATEGORY, new int[]{
-                        R.id.star_sub_3_category_0, R.id.star_sub_3_category_1, R.id.star_sub_3_category_2
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_FOUR_LEAF_CLOVER, new int[]{
-                        R.id.four_leaf_clover_1, R.id.four_leaf_clover_2, R.id.four_leaf_clover_3, R.id.four_leaf_clover_4, R.id.four_leaf_clover_5, R.id.four_leaf_clover_6,
-                        R.id.four_leaf_clover_s, R.id.four_leaf_clover_ss, R.id.four_leaf_clover_sss, R.id.four_leaf_clover_ssr, R.id.four_leaf_clover_snake, R.id.four_leaf_clover_horse,
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_VIP, new int[]{
-                        R.id.vip_1, R.id.vip_2, R.id.vip_3, R.id.vip_4, R.id.vip_5, R.id.vip_6, R.id.vip_7, R.id.vip_8,
-                        R.id.vip_9, R.id.vip_10, R.id.vip_11, R.id.vip_12, R.id.vip_13, R.id.vip_14, R.id.vip_15, R.id.vip_16
-                }),
-                new StrokeSingleSelector(this, STATE_SELECTED_CONSORTIA, new int[]{
-                        R.id.consortia_1, R.id.consortia_2, R.id.consortia_3, R.id.consortia_4, R.id.consortia_5, R.id.consortia_6
-                })
-        };
+    private void setupDropdownGroups() {
+        dropdownGroups = new DropdownGroup[GROUP_COUNT];
 
-        // 需求 1：任意一组选中项变更（含取消选中）后，重新执行一次本计算机制
-        for (StrokeSingleSelector selector : cardSelectors) {
-            selector.setOnSelectionChangedListener(s -> recalculate());
+        // 主卡：不选 + 0~15
+        dropdownGroups[GROUP_MAIN] = createIconGroup(STATE_SELECTED_MAIN_CARD,
+                buildNumberLabels(0, 15), findViewById(R.id.display_star_main));
+        // 副卡 1~3：不选 + 0~16
+        dropdownGroups[GROUP_SUB_1] = createIconGroup(STATE_SELECTED_SUB_1,
+                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_1));
+        dropdownGroups[GROUP_SUB_2] = createIconGroup(STATE_SELECTED_SUB_2,
+                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_2));
+        dropdownGroups[GROUP_SUB_3] = createIconGroup(STATE_SELECTED_SUB_3,
+                buildNumberLabels(0, 16), findViewById(R.id.display_star_sub_3));
+        // 四叶草：不选 + 12 个四叶草条目
+        dropdownGroups[GROUP_FOUR_LEAF_CLOVER] = createIconGroup(STATE_SELECTED_FOUR_LEAF_CLOVER,
+                buildCloverLabels(), findViewById(R.id.display_four_leaf_clover));
+        // VIP 等级：不选 + 1~16
+        dropdownGroups[GROUP_VIP] = createIconGroup(STATE_SELECTED_VIP,
+                buildNumberLabels(1, 16), findViewById(R.id.display_vip));
+        // 公会合成屋等级：不选 + 1~6（展示位为文字）
+        dropdownGroups[GROUP_CONSORTIA] = createIconGroup(STATE_SELECTED_CONSORTIA,
+                buildNumberLabels(1, 6), findViewById(R.id.display_consortia));
+        // 副卡类型 ×3：好卡/中卡/差卡三选一，默认好卡
+        dropdownGroups[GROUP_SUB_1_CATEGORY] = createCategoryGroup(STATE_SELECTED_SUB_1_CATEGORY,
+                R.id.sub_card_category_1_selector_container, R.id.sub_card_category_1_current_selection);
+        dropdownGroups[GROUP_SUB_2_CATEGORY] = createCategoryGroup(STATE_SELECTED_SUB_2_CATEGORY,
+                R.id.sub_card_category_2_selector_container, R.id.sub_card_category_2_current_selection);
+        dropdownGroups[GROUP_SUB_3_CATEGORY] = createCategoryGroup(STATE_SELECTED_SUB_3_CATEGORY,
+                R.id.sub_card_category_3_selector_container, R.id.sub_card_category_3_current_selection);
+    }
+
+    /**
+     * 数字类图标组菜单条目：首项“不选”，其余为 from~to 的等级数字
+     */
+    private String[] buildNumberLabels(int from, int to) {
+        String[] labels = new String[to - from + 2];
+        labels[0] = getString(R.string.title_card_odds_calculator_not_select);
+        for (int i = from; i <= to; i++) {
+            labels[i - from + 1] = String.valueOf(i);
+        }
+        return labels;
+    }
+
+    /**
+     * 四叶草图标组菜单条目：首项“不选”，其余为 12 个四叶草条目（与概率表顺序一致）
+     */
+    private String[] buildCloverLabels() {
+        String[] entries = getResources().getStringArray(R.array.card_odds_calculator_four_leaf_clover_entries);
+        String[] labels = new String[entries.length + 1];
+        labels[0] = getString(R.string.title_card_odds_calculator_not_select);
+        System.arraycopy(entries, 0, labels, 1, entries.length);
+        return labels;
+    }
+
+    /**
+     * 图标组：点击区与菜单锚点均为“标题+图片”整列（展示位的父容器）；
+     * 逻辑选中值 -1=不选、0~N=菜单中第 N+1 项（与旧单选器下标语义一致）
+     */
+    private DropdownGroup createIconGroup(String stateKey, String[] labels, View displayView) {
+        View clickTarget = displayView.getParent() instanceof View parent ? parent : displayView;
+        int[] menuToLogic = new int[labels.length];
+        for (int i = 0; i < labels.length; i++) {
+            menuToLogic[i] = i - 1; // 首项“不选”→ -1，其余顺延
+        }
+        return new DropdownGroup(prefs, stateKey, -1, -1, labels.length - 2,
+                labels, menuToLogic, clickTarget, null);
+    }
+
+    /**
+     * 副卡类型组：点击区与菜单锚点均为整行容器，当前选择展示在行内 selectionText；
+     * 菜单按“好卡、中卡、差卡”顺序排列（menuToLogic 映射回概率表下标 0=差、1=中、2=好），默认好卡
+     */
+    private DropdownGroup createCategoryGroup(String stateKey, int containerId, int selectionTextId) {
+        View container = findViewById(containerId);
+        TextView selectionText = findViewById(selectionTextId);
+        String[] labels = {
+                getString(R.string.title_card_odds_calculator_category_2), // 好卡
+                getString(R.string.title_card_odds_calculator_category_1), // 中卡
+                getString(R.string.title_card_odds_calculator_category_0)  // 差卡
+        };
+        int[] menuToLogic = {2, 1, 0};
+        // 类别组无“不选”，默认 2=好卡，合法逻辑值 0~2（旧记录为 -1 时回退默认）
+        return new DropdownGroup(prefs, stateKey, 2, 0, 2,
+                labels, menuToLogic, container, selectionText);
+    }
+
+    /**
+     * 单组下拉选择：持有本组菜单条目、点击区（兼菜单锚点）与当前逻辑选中值。
+     * 点击 clickTarget 弹出 ListPopupWindow（√标记当前项、点击行外关闭），
+     * 选中后写入 SharedPreferences、刷新展示并触发重算；随界面重建 saveState/restoreState
+     */
+    private class DropdownGroup {
+        // 本组选中状态的保存键（既用于 outState 也用于 SharedPreferences）
+        final String stateKey;
+        // 默认逻辑选中值（图标组 -1=不选；类别组 2=好卡）
+        final int defaultValue;
+        // 合法逻辑值范围（闭区间），越界记录一律回退默认值
+        final int minLogic;
+        final int maxLogic;
+        // 菜单条目文本（按菜单显示顺序）
+        final String[] labels;
+        // 菜单下标 → 逻辑选中值
+        final int[] menuToLogic;
+        // 点击触发区，同时作为菜单弹出锚点（图标组为“标题+图片”整列；类别组为整行）
+        final View clickTarget;
+        // 当前选择展示位（仅类别组有；图标组靠图片展示，为 null）
+        final TextView selectionText;
+
+        // 当前逻辑选中值
+        int logic;
+
+        DropdownGroup(SharedPreferences prefs, String stateKey, int defaultValue,
+                      int minLogic, int maxLogic, String[] labels, int[] menuToLogic,
+                      View clickTarget, TextView selectionText) {
+            this.stateKey = stateKey;
+            this.defaultValue = defaultValue;
+            this.minLogic = minLogic;
+            this.maxLogic = maxLogic;
+            this.labels = labels;
+            this.menuToLogic = menuToLogic;
+            this.clickTarget = clickTarget;
+            this.selectionText = selectionText;
+
+            // 从持久化存储恢复上次选中的逻辑值（无记录或记录越界时取默认值）
+            this.logic = prefs.getInt(stateKey, defaultValue);
+            if (logic < minLogic || logic > maxLogic) {
+                logic = defaultValue;
+            }
+            // 记录触摸位置，使下拉菜单跟随手指横向弹出（与设置页一致）
+            bindDropdownRowTouch(clickTarget);
+            this.clickTarget.setOnClickListener(v -> showDropdown());
+        }
+
+        /**
+         * 就地弹出本组下拉选项菜单：菜单宽度自适应最宽选项（wrap_content 效果）、
+         * 四分支展开方向（下足向下/上足上翻/都不够取空间大侧收缩）、横向跟随手指弹出、
+         * 打开时定位到当前选中项（居中显示）、选中项右侧显示√、点击行外区域自动关闭
+         */
+        private void showDropdown() {
+            ArrayAdapter<String> adapter = createMenuAdapter(menuIndexOfLogic(), labels);
+            // 实测选项宽高：ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置。
+            // getView 的 parent 形参标注 @NonNull：这里传一个仅用于生成 LayoutParams 的空容器（不挂载子视图），避免传 null
+            ViewGroup measureParent = new FrameLayout(CardOddsCalculatorActivity.this);
+            int contentWidth = 0;
+            int itemHeight = 0;
+            for (int i = 0; i < labels.length; i++) {
+                View itemView = adapter.getView(i, null, measureParent);
+                itemView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                contentWidth = Math.max(contentWidth, itemView.getMeasuredWidth());
+                itemHeight = itemView.getMeasuredHeight();
+            }
+            // 极端大字体下限制菜单宽度不超出屏幕
+            contentWidth = Math.min(contentWidth, clickTarget.getRootView().getWidth());
+
+            // 展开方向与高度：优先向下全量展开；下方空间不足时向上翻转（负 offset，菜单底缘停在锚点上方）；
+            // 上下都放不下时取空间大的一侧并收缩高度（超出部分列表内滚动，至少保留两行）
+            int gap = DensityUtil.dpToPx(CardOddsCalculatorActivity.this, 4);
+            int[] location = new int[2];
+            clickTarget.getLocationInWindow(location);
+            int fullHeight = itemHeight * labels.length;
+            int spaceBelow = clickTarget.getRootView().getHeight() - location[1] - clickTarget.getHeight() - gap;
+            int spaceAbove = location[1] - gap;
+            int verticalOffset = gap;
+            int popupHeight;
+            if (spaceBelow >= fullHeight) {
+                // 下方足够：向下展开
+                popupHeight = fullHeight;
+            } else if (spaceAbove >= fullHeight) {
+                // 下方不够、上方足够：整体上移，菜单底缘停在锚点上方
+                popupHeight = fullHeight;
+                verticalOffset = -(clickTarget.getHeight() + fullHeight + gap);
+            } else if (spaceAbove > spaceBelow) {
+                // 上下都不够、上方空间更大：向上展开并收缩到可用高度
+                popupHeight = Math.max(spaceAbove, itemHeight * 2);
+                verticalOffset = -(clickTarget.getHeight() + popupHeight + gap);
+            } else {
+                // 上下都不够、下方空间更大：向下展开并收缩到可用高度
+                popupHeight = Math.max(spaceBelow, itemHeight * 2);
+            }
+
+            // 横向弹出位置跟随手指按下的位置（与设置页一致）；
+            // 最右不得超过屏幕右缘减页面边距，使菜单右缘与页面内容右缘对齐
+            int horizontalOffset = 0;
+            if (lastTouchDownX >= 0) {
+                int maxOffset = clickTarget.getRootView().getWidth() - contentWidth
+                        - location[0] - pageContentSideMarginPx;
+                horizontalOffset = Math.max(0, Math.min((int) lastTouchDownX, maxOffset));
+            }
+
+            // 列表高于可视区时打开即定位当前选中项：取选中项居中时的首行下标
+            // （可视行数按已算出的弹出高度折算；全部可见时折算结果为 0，不产生滚动）
+            int visibleCount = Math.max(1, popupHeight / Math.max(1, itemHeight));
+            int firstVisible = Math.max(0, Math.min(menuIndexOfLogic() - visibleCount / 2,
+                    labels.length - visibleCount));
+
+            ListPopupWindow popup = new ListPopupWindow(CardOddsCalculatorActivity.this);
+            popup.setAnchorView(clickTarget);
+            popup.setWidth(contentWidth);
+            popup.setHeight(popupHeight);
+            popup.setVerticalOffset(verticalOffset);
+            popup.setHorizontalOffset(horizontalOffset);
+            popup.setModal(true);
+            popup.setBackgroundDrawable(ContextCompat.getDrawable(
+                    CardOddsCalculatorActivity.this, R.drawable.popup_dropdown_background));
+            popup.setAdapter(adapter);
+            popup.setOnItemClickListener((parent, view, position, id) -> {
+                selectByMenuIndex(position);
+                popup.dismiss();
+            });
+
+            // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角），随后隐藏滚动条
+            // （选中态由 adapter 渲染右侧对勾，无需 ListView 单选模式）
+            DropdownPopupHelper.show(CardOddsCalculatorActivity.this, popup);
+            ListView listView = popup.getListView();
+            if (listView != null) {
+                listView.setVerticalScrollBarEnabled(false);
+                // 长列表打开时滚动到当前选中项（选中靠后条目再次打开时可见）
+                listView.setSelection(firstVisible);
+            }
+        }
+
+        /** 菜单项点击：写入逻辑选中值并持久化，随后统一由 recalculate 刷新展示与结果 */
+        private void selectByMenuIndex(int menuIndex) {
+            logic = menuToLogic[menuIndex];
+            prefs.edit().putInt(stateKey, logic).apply();
+            recalculate();
+        }
+
+        /** 当前逻辑选中值对应的菜单下标（√标记与类别组文本展示用） */
+        int menuIndexOfLogic() {
+            for (int i = 0; i < menuToLogic.length; i++) {
+                if (menuToLogic[i] == logic) return i;
+            }
+            return 0;
+        }
+
+        /** 保存本组选中值，供界面重建后恢复 */
+        void saveState(Bundle outState) {
+            outState.putInt(stateKey, logic);
+        }
+
+        /** 恢复重建前的选中值（越界回退默认值）并写回持久化；Bundle 无记录时保留构造时恢复的值 */
+        void restoreState(Bundle savedInstanceState) {
+            int restored = savedInstanceState.getInt(stateKey, logic);
+            logic = restored >= minLogic && restored <= maxLogic ? restored : defaultValue;
+            prefs.edit().putInt(stateKey, logic).apply();
         }
     }
 
     /**
-     * 重新执行一次成功率计算并写入 total 组件（每次变更任意一组选中项后调用）：
-     * 先存储 10 组当前选中的下标，再按 MAIN→行、SUB→列、SUB_N_CATEGORY→表
+     * 记录点击下拉行/列时的横向触摸位置，供下拉菜单跟随手指横向弹出（与设置页一致）
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    private void bindDropdownRowTouch(View container) {
+        container.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                lastTouchDownX = event.getX();
+            }
+            return false;// 不消费事件，保持原有按压反馈与点击行为
+        });
+    }
+
+    /**
+     * 下拉菜单通用选项项 adapter：条目文字 + 仅当前选中项右侧显示√
+     */
+    @NonNull
+    private ArrayAdapter<String> createMenuAdapter(int selectedIndex, String[] labels) {
+        final int checkedIndex = selectedIndex;
+        return new ArrayAdapter<>(this, R.layout.item_dropdown_selection, labels) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View row = convertView != null ? convertView
+                        : getLayoutInflater().inflate(R.layout.item_dropdown_selection, parent, false);
+                ((TextView) row.findViewById(R.id.option_text)).setText(getItem(position));
+                // 仅当前选中项右侧显示对勾，其余不显示
+                row.findViewById(R.id.option_check)
+                        .setVisibility(position == checkedIndex ? View.VISIBLE : View.GONE);
+                return row;
+            }
+        };
+    }
+
+    /**
+     * 重新执行一次成功率计算并写入展示组件（每次变更任意一组选中值后调用）：
+     * 先读取 10 组当前选中的逻辑值，再按 MAIN→行、SUB→列、SUB_N_CATEGORY→表
      * 取出 SUB_1/2/3 三路数据（任一依赖未选中则该路不取数），按第 5 步规则合并为结果1
      * （超过 100% 时直接取 100%），再乘 FOUR_LEAF_CLOVER 对应倍率（未选为 1.0）
-     * 并再次钳制到 100%，最后叠加 VIP 与 Consortia 加成得到结果2，
-     * 输出 结果1%+结果2%=总和%
+     * 并再次钳制到 100%，最后叠加 VIP 与 Consortia 加成得到结果2；
+     * 三段成功率写入 A/B/C 三张卡，另按主卡等级写入金币/保险金，保底规则写入保底卡
      */
+    @SuppressLint("SetTextI18n")
     private void recalculate() {
-        if (cardSelectors == null || totalView == null) return;
+        if (dropdownGroups == null || percentAView == null) return;
 
-        // 需求 2：存储所有组当前选中的下标（MAIN 组下标决定取哪一行）
-        int mainSelected = cardSelectors[0].getSelected();
+        // 需求 2：读取所有组当前选中的逻辑值（MAIN 组值决定取哪一行）
+        int mainSelected = dropdownGroups[GROUP_MAIN].logic;
 
-        // 需求 3/4：三路取数，每路按 {SUB_N 组下标, SUB_N_CATEGORY 组下标} 定列与表
-        int[][] subPairs = {{1, 2}, {3, 4}, {5, 6}};
-        int[] subSelected = new int[subPairs.length];
-        double[] values = new double[subPairs.length];
-        for (int i = 0; i < subPairs.length; i++) {
-            subSelected[i] = cardSelectors[subPairs[i][0]].getSelected();
+        // 需求 3/4：三路取数，每路按 {SUB_N 组值, SUB_N_CATEGORY 组值} 定列与表
+        int[] subSelected = new int[SUB_PAIRS.length];
+        double[] values = new double[SUB_PAIRS.length];
+        for (int i = 0; i < SUB_PAIRS.length; i++) {
+            subSelected[i] = dropdownGroups[SUB_PAIRS[i][0]].logic;
             values[i] = fetchOdds(mainSelected, subSelected[i],
-                    cardSelectors[subPairs[i][1]].getSelected());
+                    dropdownGroups[SUB_PAIRS[i][1]].logic);
         }
 
         // 需求 5：三路数据按规则合并为结果1；超过 100% 时直接取 100%（后续乘法基于钳制后的值计算）
@@ -210,7 +513,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
 
         // 四叶草：得到最终结果1 后乘 FOUR_LEAF_CLOVER 选中项对应倍率（未选中则为 1.0），
         // 乘积若再次超过 100% 仍直接取 100%
-        int cloverSelected = cardSelectors[7].getSelected();
+        int cloverSelected = dropdownGroups[GROUP_FOUR_LEAF_CLOVER].logic;
         if (cloverSelected >= 0 && cloverSelected < CardOddsData.FourLeafClover.length) {
             result1 *= CardOddsData.FourLeafClover[cloverSelected];
         }
@@ -218,11 +521,11 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             result1 = 1;
         }
 
-        // 需求 6：读取 VIP 与 Consortia 选中下标取对应加成，求和后乘结果1 得结果2；
+        // 需求 6：读取 VIP 与 Consortia 选中值取对应加成，求和后乘结果1 得结果2；
         // 只选中其中一个时加成直接用选中项的值（未选中项不参与加成），
         // 两个都选中时两者相加，两个都未选中时加成为 0（此时结果2 为 0）
-        int vipSelected = cardSelectors[8].getSelected();
-        int consortiaSelected = cardSelectors[9].getSelected();
+        int vipSelected = dropdownGroups[GROUP_VIP].logic;
+        int consortiaSelected = dropdownGroups[GROUP_CONSORTIA].logic;
         double bonus = 0;
         if (vipSelected >= 0 && vipSelected < CardOddsData.VIP.length) {
             bonus += CardOddsData.VIP[vipSelected];
@@ -232,116 +535,128 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         }
         double result2 = result1 * bonus;
 
-        // 需求 7：输出 成功率：A%+B%=C%，C 为 A、B 两个显示值之和（按显示值相加保证画面上 A+B 恒等于 C）
+        // 需求 7：三段成功率分别写入 A/B/C 三张卡（C 为 A、B 两个显示值之和，
+        // 按显示值相加保证画面上 A+B 恒等于 C）
         String percentA = formatPercent(result1);
         String percentB = formatPercent(result2);
         String percentC = new BigDecimal(percentA).add(new BigDecimal(percentB)).toPlainString();
 
-        // 需求 8：percentA = 100 直接为“本次必成”；否则 percentC = 0 时不追加任何内容；
-        // 其余情况求最小整数 n 使 percentC × n 严格超过 120，n + 1 即 minimumGuaranteeNum，追加“保底X次”
-        String guaranteeText = "";
+        // 需求 8：percentA = 100 保底卡为“本次必成”；percentC = 0 保底不适用显示“—”；
+        // 其余情况求最小整数 n 使 percentC × n 严格超过 120，n + 1 即保底次数
+        String guaranteeText;
         BigDecimal cValue = new BigDecimal(percentC);
         if (new BigDecimal(percentA).compareTo(new BigDecimal("100")) == 0) {
             guaranteeText = "本次必成";
-        } else if (cValue.compareTo(BigDecimal.ZERO) != 0) {
+        } else if (cValue.compareTo(BigDecimal.ZERO) == 0) {
+            guaranteeText = "—";
+        } else {
             // 120/percentC 向下取整 + 1 = 首个严格超过 120 的倍数（整除时 +1 保证 > 而非 =）
             long multiplier = BigDecimal.valueOf(120)
                     .divide(cValue, 0, RoundingMode.DOWN)
                     .add(BigDecimal.ONE)
                     .longValue();
-            long minimumGuaranteeNum = multiplier + 1;
-            guaranteeText = "保底" + minimumGuaranteeNum + "次";
+            guaranteeText = (multiplier + 1) + "次";
         }
-        // 无追加内容时用不带尾逗号的格式（避免 percentC = 0 输出悬空逗号）
-        String format = guaranteeText.isEmpty() ? "%s%%+%s%%=%s%%" : "%s%%+%s%%=%s%% %s";
-        totalView.setText(String.format(Locale.CHINA, format,
-                percentA, percentB, percentC, guaranteeText));
-        // 文案可能超出一行：布局完成后按可用宽度自动缩字号，使其刚好一行显示完
-        totalView.post(this::fitTotalTextToSingleLine);
+        percentAView.setText(percentA + "%");
+        percentBView.setText(percentB + "%");
+        percentCView.setText(percentC + "%");
+        minimumGuaranteeView.setText(guaranteeText);
 
-        // 同步展示区：各组选中项图片 + MAIN 对应的金币/保险金文案（覆盖初始/点击/恢复三处触发点）
+        // 金币/保险金按 MAIN 选中等级取数；未选中（或下标越界）显示 0
+        boolean hasMainCost = mainSelected >= 0
+                && mainSelected < CardOddsData.Coin.length
+                && mainSelected < CardOddsData.Insurance.length;
+        coinView.setText(String.valueOf(hasMainCost ? CardOddsData.Coin[mainSelected] : 0));
+        insuranceView.setText(String.valueOf(hasMainCost ? CardOddsData.Insurance[mainSelected] : 0));
+
+        // 文案可能超出卡片宽度：布局完成后按可用宽度自动缩字号，使其刚好一行显示完
+        for (TextView view : new TextView[]{percentAView, percentBView, percentCView,
+                coinView, insuranceView, minimumGuaranteeView}) {
+            view.post(() -> fitTextViewToSingleLine(view));
+        }
+
+        // 同步展示区：各组选中项图片/文字 + 副卡类型当前选择文本（覆盖初始/点击/恢复三处触发点）
         refreshDisplay();
     }
 
     /**
-     * 成功率文案自动缩字号（每次重算 setText 后 post 调用，此时宽度已就绪）：
+     * 绑定结果展示组件并记录其原始字号（供缩字适配前回到该字号）
+     */
+    private TextView bindResultView(int viewId) {
+        TextView view = findViewById(viewId);
+        originalTextSizes.put(view, view.getTextSize());
+        return view;
+    }
+
+    /**
+     * 展示文案自动缩字号（每次重算 setText 后 post 调用，此时宽度已就绪）：
      * 先回到原始字号，若整串文本超出可用宽度（单行、不换行、不加省略号），
      * 按 “原始字号 × 可用宽 / 文本宽” 等比缩小（同一字符串渲染宽度与 textSize 成正比），
      * 再向下微调吸收字形渲染的舍入误差，得到刚好能一行显示完的最大字号
      */
-    private void fitTotalTextToSingleLine() {
-        int available = totalView.getWidth() - totalView.getPaddingLeft() - totalView.getPaddingRight();
-        if (available <= 0 || totalTextSizePx <= 0) return; // 尚未布局，跳过本次适配
+    private void fitTextViewToSingleLine(TextView view) {
+        // 显式判空后再拆箱：未登记过原始字号（不应发生）时取 0，
+        // 由下方 originalSizePx <= 0 分支跳过本次适配
+        Float recordedSize = originalTextSizes.get(view);
+        float originalSizePx = recordedSize == null ? 0f : recordedSize;
+        int available = view.getWidth() - view.getPaddingLeft() - view.getPaddingRight();
+        if (available <= 0 || originalSizePx <= 0) return; // 尚未布局，跳过本次适配
 
-        totalView.setTextSize(TypedValue.COMPLEX_UNIT_PX, totalTextSizePx);
-        String text = totalView.getText().toString();
-        float textWidth = totalView.getPaint().measureText(text);
+        view.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalSizePx);
+        String text = view.getText().toString();
+        float textWidth = view.getPaint().measureText(text);
         if (textWidth <= available) return; // 放得下，保持原始字号
 
-        float newSize = totalTextSizePx * available / textWidth;
-        totalView.setTextSize(TypedValue.COMPLEX_UNIT_PX, newSize);
+        float newSize = originalSizePx * available / textWidth;
+        view.setTextSize(TypedValue.COMPLEX_UNIT_PX, newSize);
         // 等比值可能因字形舍入仍略超宽，逐步下调直到放得下（下限 1px 防死循环）
-        while (newSize > 1f && totalView.getPaint().measureText(text) > available) {
+        while (newSize > 1f && view.getPaint().measureText(text) > available) {
             newSize -= 0.5f;
-            totalView.setTextSize(TypedValue.COMPLEX_UNIT_PX, newSize);
+            view.setTextSize(TypedValue.COMPLEX_UNIT_PX, newSize);
         }
     }
 
     /**
      * 展示区刷新（每次重算末尾统一调用）：
-     * 1. 将 MAIN/SUB_1/SUB_2/SUB_3/FOUR_LEAF_CLOVER 各组当前选中项的图片
-     *    分别同步到对应 display ImageView，未选中时显示 card_data_x；
-     * 2. 按 MAIN 选中下标取 Coin/Insurance 对应数据写入 coin/insurance，
-     *    未选中（或下标越界）时不显示任何内容
+     * 1. 将 MAIN/SUB_1/SUB_2/SUB_3/FOUR_LEAF_CLOVER/VIP 各组选中项的图片
+     *    分别同步到对应 display ImageView，未选中（-1）时统一显示 card_data_x；
+     * 2. 公会合成屋文字展示位：未选中显示“无”，选中显示等级数字；
+     * 3. 三个副卡类型行的当前选择文本按菜单顺序（好/中/差）同步显示
      */
     private void refreshDisplay() {
-        // 各组在 cardSelectors 中的下标：MAIN=0、SUB_1=1、SUB_2=3、SUB_3=5、FOUR_LEAF_CLOVER=7
-        updateDisplayImage(displayStarMain, cardSelectors[0]);
-        updateDisplayImage(displayStarSub1, cardSelectors[1]);
-        updateDisplayImage(displayStarSub2, cardSelectors[3]);
-        updateDisplayImage(displayStarSub3, cardSelectors[5]);
-        updateDisplayImage(displayFourLeafClover, cardSelectors[7]);
-        updateCoinInsurance();
-    }
+        updateImageDisplay(displayStarMain, STAR_DRAWABLES, dropdownGroups[GROUP_MAIN].logic);
+        updateImageDisplay(displayStarSub1, STAR_DRAWABLES, dropdownGroups[GROUP_SUB_1].logic);
+        updateImageDisplay(displayStarSub2, STAR_DRAWABLES, dropdownGroups[GROUP_SUB_2].logic);
+        updateImageDisplay(displayStarSub3, STAR_DRAWABLES, dropdownGroups[GROUP_SUB_3].logic);
+        updateImageDisplay(displayFourLeafClover, CLOVER_DRAWABLES,
+                dropdownGroups[GROUP_FOUR_LEAF_CLOVER].logic);
+        updateImageDisplay(displayVip, VIP_DRAWABLES, dropdownGroups[GROUP_VIP].logic);
 
-    /**
-     * 将本组选中项的图片同步到展示位：
-     * 未选中（或组件缺失）显示 card_data_x；
-     * 选中项是 ImageView 时共享其 drawable（同一资源两个视图共用实例）；
-     * 选中项是第 0 项的文本卡（"0"，本身无图片）时取展示位默认的 star_image_0
-     */
-    private void updateDisplayImage(ImageView display, StrokeSingleSelector selector) {
-        if (display == null || selector == null) return;
-        View selectedView = selector.getSelectedView();
-        if (selectedView == null) {
-            display.setImageResource(R.drawable.card_data_x);
-        } else if (selectedView instanceof ImageView imageView && imageView.getDrawable() != null) {
-            display.setImageDrawable(imageView.getDrawable());
-        } else {
-            display.setImageResource(R.drawable.star_image_0);
+        // 公会合成屋等级是文字展示位：未选中显示“无”，选中显示 1~6
+        int consortiaSelected = dropdownGroups[GROUP_CONSORTIA].logic;
+        displayConsortia.setText(consortiaSelected >= 0
+                ? String.valueOf(consortiaSelected + 1)
+                : getString(R.string.title_card_odds_calculator_none));
+
+        // 副卡类型行的当前选择文本（菜单顺序：好卡、中卡、差卡）
+        for (int categoryGroup : new int[]{GROUP_SUB_1_CATEGORY, GROUP_SUB_2_CATEGORY, GROUP_SUB_3_CATEGORY}) {
+            DropdownGroup group = dropdownGroups[categoryGroup];
+            group.selectionText.setText(group.labels[group.menuIndexOfLogic()]);
         }
     }
 
     /**
-     * 按 MAIN 选中下标取 Coin/Insurance 对应位置数据写入两个文案位，
-     * 格式为 "需金币：XXX" / "保险金：XXX"；未选中或下标越界时清空（什么都不显示）
+     * 将本组选中值对应的图片同步到展示位：
+     * 未选中（-1）或下标越界时显示 card_data_x
      */
-    @SuppressLint("SetTextI18n")
-    private void updateCoinInsurance() {
-        if (coinView == null || insuranceView == null) return;
-        int mainSelected = cardSelectors[0].getSelected();
-        if (mainSelected >= 0 && mainSelected < CardOddsData.Coin.length
-                && mainSelected < CardOddsData.Insurance.length) {
-            coinView.setText("需金币：" + CardOddsData.Coin[mainSelected]);
-            insuranceView.setText("保险金：" + CardOddsData.Insurance[mainSelected]);
-        } else {
-            coinView.setText("");
-            insuranceView.setText("");
-        }
+    private void updateImageDisplay(ImageView display, int[] drawables, int logic) {
+        if (display == null) return;
+        display.setImageResource(logic >= 0 && logic < drawables.length
+                ? drawables[logic] : R.drawable.card_data_x);
     }
 
     /**
-     * 第 3/4 步的单路取数：MAIN 下标定行、SUB 下标定该行第几个数据、
+     * 第 3/4 步的单路取数：MAIN 值定行、SUB 值定该行第几个数据、
      * SUB_N_CATEGORY 定取哪一张表；任一未选中（-1）或下标越界时返回 NaN（不取任何数据）
      */
     private static double fetchOdds(int mainSelected, int subSelected, int categorySelected) {
@@ -404,7 +719,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) blurViewTopBar.getLayoutParams();
-            params.height = height + DensityUtil.dpToPx(this, 90);
+            params.height = height + DensityUtil.dpToPx(this, 50);
             blurViewTopBar.setLayoutParams(params);
 
             params = (ViewGroup.MarginLayoutParams) topBar.getLayoutParams();
@@ -426,6 +741,9 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             floatButtonBack.setLayoutParams(params);
+
+            // 同步页面边距给下拉菜单：菜单最右缘与页面内容右缘对齐，统一在此处管理
+            pageContentSideMarginPx = layout_marginHorizontal;
         });
 
         // 顺便设置返回按钮的功能
@@ -438,7 +756,21 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         // 添加模糊材质
         setupBlurEffect();
 
-        // 添加按压动画
+        // 添加按压动画（三张成功率卡与两张提示卡；helper 不消费事件，不影响后续点击功能）
+        findViewById(R.id.percent_a_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.percent_b_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.percent_c_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.coin_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.insurance_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.minimum_guarantee_container).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.tips_card_odds_calculator_sub_card_category).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
         findViewById(R.id.tips_card_odds_calculator_minimum_guarantee).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
     }
@@ -460,59 +792,12 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         if (nestedScrollUtil != null) {
             nestedScrollUtil.saveScrollY(outState, STATE_SCROLL_Y);
         }
-        // 保存各组卡片当前选中的下标，供界面重建（深浅色切换等）后恢复
-        if (cardSelectors != null) {
-            for (StrokeSingleSelector selector : cardSelectors) {
-                selector.saveState(outState);
+        // 保存各组当前选中的逻辑值，供界面重建（深浅色切换等）后恢复
+        if (dropdownGroups != null) {
+            for (DropdownGroup group : dropdownGroups) {
+                group.saveState(outState);
             }
         }
-    }
-
-    /**
-     * 将各组当前选中项滚动到所在横排的可见区域（仅在进入界面的两条恢复路径各调用一次，
-     * 用户手动点击时不调用，避免刚点完就被滚动）：
-     * MAIN/SUB/四叶草/VIP 等长横排放在 HorizontalScrollView 内，
-     * 持久化或界面重建恢复的选中项可能位于屏幕外，这里定位让它显示出来；
-     * 未选中、或组件不在横向滚动容器内的组（如 SUB_N_CATEGORY 短排）自动跳过
-     */
-    private void scrollSelectorsToSelected() {
-        if (cardSelectors == null) return;
-        for (StrokeSingleSelector selector : cardSelectors) {
-            View selectedView = selector.getSelectedView();
-            if (selectedView == null) continue;
-            HorizontalScrollView scrollView = findAncestorScrollView(selectedView);
-            if (scrollView == null) continue;
-            // 此刻尚未布局、坐标无效，post 到首帧布局完成后按实际位置定位
-            scrollView.post(() -> scrollSelectedIntoView(scrollView, selectedView));
-        }
-    }
-
-    /** 从组件本身向上找包裹它的 HorizontalScrollView（没有则返回 null，视为不在横排内） */
-    private static HorizontalScrollView findAncestorScrollView(View view) {
-        for (View current = view; current != null; ) {
-            if (current instanceof HorizontalScrollView scrollView) return scrollView;
-            current = current.getParent() instanceof View parent ? parent : null;
-        }
-        return null;
-    }
-
-    /** 选中项已完整可见时不动作（保留滚动容器自身恢复的位置），否则滚动到水平居中并受内容边界钳制 */
-    private static void scrollSelectedIntoView(HorizontalScrollView scrollView, View selected) {
-        int[] scrollLoc = new int[2];
-        int[] selectedLoc = new int[2];
-        scrollView.getLocationInWindow(scrollLoc);
-        selected.getLocationInWindow(selectedLoc);
-        // 选中项左右边界相对滚动内容的横坐标（窗口坐标差 + 当前 scrollX）
-        int viewportLeft = scrollView.getScrollX();
-        int contentLeft = selectedLoc[0] - scrollLoc[0] + viewportLeft;
-        int contentRight = contentLeft + selected.getWidth();
-        int viewportRight = viewportLeft + scrollView.getWidth();
-        if (contentLeft >= viewportLeft && contentRight <= viewportRight) return;
-
-        int targetX = contentLeft - (scrollView.getWidth() - selected.getWidth()) / 2;
-        View content = scrollView.getChildAt(0);
-        int maxScrollX = content == null ? 0 : Math.max(0, content.getWidth() - scrollView.getWidth());
-        scrollView.scrollTo(Math.max(0, Math.min(targetX, maxScrollX)), 0);
     }
 
     @Override
@@ -522,15 +807,13 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
         }
 
-        // 恢复重建前各组卡片的选中下标
-        if (cardSelectors != null) {
-            for (StrokeSingleSelector selector : cardSelectors) {
-                selector.restoreState(savedInstanceState);
+        // 恢复重建前各组选中的逻辑值（restoreState 不触发重算，恢复完毕后统一处理）
+        if (dropdownGroups != null) {
+            for (DropdownGroup group : dropdownGroups) {
+                group.restoreState(savedInstanceState);
             }
-            // 恢复完成后按恢复出的选中项重新计算一次（restoreState 不触发变更监听）
+            // 恢复完成后按恢复出的选中项重新计算一次（同步刷新展示区与结果）
             recalculate();
-            // 界面重建恢复的选中项同样可能在横排屏幕外，滚动到可见位置
-            scrollSelectorsToSelected();
         }
     }
 

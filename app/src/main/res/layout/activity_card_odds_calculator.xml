@@ -28,56 +28,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:paddingTop="160dp"
+                android:paddingTop="120dp"
                 android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <ImageView
-                    android:id="@+id/display_star_sub_1"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/star_image_0"/>
-
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/title_card_odds_calculator_choose_sub_card_1"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                     <ImageView
-                        android:id="@+id/display_star_sub_2"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/star_image_0"/>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <ImageView
-                        android:id="@+id/display_star_main"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/star_image_0"/>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <ImageView
-                        android:id="@+id/display_star_sub_3"
+                        android:id="@+id/display_star_sub_1"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
@@ -95,11 +69,120 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_odds_calculator_choose_sub_card_2"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                        <ImageView
+                            android:id="@+id/display_star_sub_2"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/star_image_0"/>
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_odds_calculator_choose_main_card"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                        <ImageView
+                            android:id="@+id/display_star_main"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/star_image_0"/>
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_odds_calculator_choose_sub_card_3"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                        <ImageView
+                            android:id="@+id/display_star_sub_3"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/star_image_0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_gravity="center"
                         android:gravity="center"
                         android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_odds_calculator_choose_four_leaf_clover"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
 
                         <ImageView
                             android:id="@+id/display_four_leaf_clover"
@@ -110,54 +193,63 @@
                             android:scaleType="fitStart"
                             android:src="@drawable/item_four_leaf_clover_1"/>
 
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="10dp" />
-
-                        <TextView
-                            android:id="@+id/coin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="需金币"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/colorOnSurface"/>
-
                     </LinearLayout>
-
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_gravity="center"
                         android:gravity="center"
                         android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_odds_calculator_choose_consortia"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                        <TextView
+                            android:id="@+id/display_consortia"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textSize="45sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="@string/title_card_odds_calculator_choose_vip"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
                         <ImageView
+                            android:id="@+id/display_vip"
                             android:layout_width="55dp"
                             android:layout_height="55dp"
                             android:layout_gravity="center"
                             android:adjustViewBounds="true"
                             android:scaleType="fitStart"
-                            android:src="@drawable/item_insurance_charm"/>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="10dp" />
-
-                        <TextView
-                            android:id="@+id/insurance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="保险金"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="?attr/colorOnSurface"/>
+                            android:src="@drawable/vip_1"/>
 
                     </LinearLayout>
 
@@ -172,10 +264,270 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_main_card"
+                    android:text="@string/title_card_odds_calculator_result"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/percent_a_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/percent_a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/percent_b_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/percent_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="="
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/percent_c_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/percent_c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/coin_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:text="@string/title_card_odds_calculator_coin"
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            <TextView
+                                android:id="@+id/coin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/insurance_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:text="@string/title_card_odds_calculator_insurance"
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            <TextView
+                                android:id="@+id/insurance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/minimum_guarantee_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:text="@string/title_card_odds_calculator_minimum_guarantee"
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            <TextView
+                                android:id="@+id/minimum_guarantee"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_card_odds_calculator_choose_sub_card_category"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tips_card_odds_calculator_sub_card_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="@string/tips_card_odds_calculator_sub_card_category"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/TextViewColorOnImportantCardView" />
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -184,388 +536,123 @@
                     app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                     app:cardCornerRadius="20dp">
 
-                    <HorizontalScrollView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
+                        android:orientation="vertical">
 
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/sub_card_category_1_selector_container"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
                             android:orientation="horizontal"
-                            android:padding="12dp"
-                            android:clipChildren="false"
-                            android:clipToPadding="false">
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_card_odds_calculator_choose_sub_card_1"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                            <TextView
+                                android:id="@+id/sub_card_category_1_current_selection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_arrow_up_down"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/sub_card_category_2_selector_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_card_odds_calculator_choose_sub_card_2"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                            <TextView
+                                android:id="@+id/sub_card_category_2_current_selection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_arrow_up_down"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/sub_card_category_3_selector_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <!-- 左侧文字 -->
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="16dp"
+                                android:text="@string/title_card_odds_calculator_choose_sub_card_3"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnGeneralCardView" />
+
+                            <TextView
+                                android:id="@+id/sub_card_category_3_current_selection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_arrow_up_down"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
+                        </LinearLayout>
 
-                                <ImageView
-                                    android:id="@+id/star_main_0"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_0"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_1"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_2"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_3"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_4"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_5"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_6"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_7"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_7"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_8"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_8"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_9"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_9"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_10"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_10"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_11"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_12"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_12"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_13"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_13"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_14"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_14"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_main_15"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_15"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                    </HorizontalScrollView>
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -578,2481 +665,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_sub_card_1"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="12dp"
-                            android:clipChildren="false"
-                            android:clipToPadding="false">
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_0"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_0"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_1"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_2"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_3"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_4"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_5"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_6"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_7"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_7"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_8"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_8"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_9"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_9"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_10"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_10"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_11"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_12"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_12"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_13"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_13"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_14"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_14"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_15"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_15"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_1_16"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_16"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                    </HorizontalScrollView>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="12dp"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_1_category_0"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_0"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        <Space
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content" />
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_1_category_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_1"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        <Space
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content" />
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_1_category_2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_2"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                    </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_sub_card_2"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="12dp"
-                            android:clipChildren="false"
-                            android:clipToPadding="false">
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_0"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_0"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_1"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_2"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_3"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_4"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_5"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_6"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_7"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_7"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_8"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_8"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_9"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_9"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_10"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_10"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_11"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_12"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_12"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_13"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_13"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_14"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_14"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_15"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_15"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_2_16"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_16"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                    </HorizontalScrollView>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="12dp"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_2_category_0"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_0"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        <Space
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content" />
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_2_category_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_1"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        <Space
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content" />
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_2_category_2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_2"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                    </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_sub_card_3"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="12dp"
-                            android:clipChildren="false"
-                            android:clipToPadding="false">
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_0"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_0"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_1"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_2"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_3"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_4"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_5"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_6"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_7"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_7"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_8"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_8"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_9"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_9"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_10"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_10"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_11"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_12"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_12"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_13"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_13"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_14"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_14"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_15"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_15"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:id="@+id/star_sub_3_16"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/star_image_16"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                    </HorizontalScrollView>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="12dp"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_3_category_0"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_0"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        <Space
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content" />
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_3_category_1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_1"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        <Space
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content" />
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                            app:cardElevation="0dp"
-                            app:cardCornerRadius="10dp">
-
-                            <TextView
-                                android:id="@+id/star_sub_3_category_2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="@string/title_card_odds_calculator_category_2"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                    </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_four_leaf_clover"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="12dp"
-                            android:clipChildren="false"
-                            android:clipToPadding="false">
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_1"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_2"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_3"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_4"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_5"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_6"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_s"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_s"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_ss"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_ss"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_sss"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_sss"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_ssr"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_ssr"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_snake"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_snake"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/four_leaf_clover_horse"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/item_four_leaf_clover_horse"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                    </HorizontalScrollView>
-
-                </androidx.cardview.widget.CardView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_vip"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="12dp"
-                            android:clipChildren="false"
-                            android:clipToPadding="false">
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_1"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_2"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_3"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_4"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_5"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_6"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_7"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_7"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_8"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_8"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_9"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_9"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_10"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_10"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_11"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_12"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_12"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_13"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_13"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_14"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_14"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_15"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_15"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="@android:color/transparent"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="8dp">
-
-                                <ImageView
-                                    android:id="@+id/vip_16"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:adjustViewBounds="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/vip_16"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                    </HorizontalScrollView>
-
-                </androidx.cardview.widget.CardView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_choose_consortia"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/TitleTextViewColorOnSurface"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                    app:cardCornerRadius="20dp">
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
-
-                        <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:padding="12dp"
-                            android:clipChildren="false"
-                            android:clipToPadding="false">
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <TextView
-                                    android:id="@+id/consortia_1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="1"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <TextView
-                                    android:id="@+id/consortia_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="2"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <TextView
-                                    android:id="@+id/consortia_3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="3"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <TextView
-                                    android:id="@+id/consortia_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="4"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <TextView
-                                    android:id="@+id/consortia_5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="5"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                            <Space
-                                android:layout_width="24dp"
-                                android:layout_height="wrap_content"/>
-
-                            <com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                app:cardBackgroundColor="?attr/GeneralCardViewBackground"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="10dp">
-
-                                <TextView
-                                    android:id="@+id/consortia_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text="6"
-                                    android:textSize="25sp"
-                                    android:textStyle="bold"
-                                    android:textColor="?attr/TextViewColorOnGeneralCardView"/>
-
-                            </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeCardView>
-
-                        </com.careful.HyperFVM.utils.ForDesign.Widget.StrokeRowLayout>
-
-                    </HorizontalScrollView>
-
-                </androidx.cardview.widget.CardView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title_card_odds_calculator_minimum_guarantee"
+                    android:text="@string/title_card_odds_calculator_minimum_guarantee_description"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="?attr/TitleTextViewColorOnSurface"/>
@@ -3073,7 +686,7 @@
                         android:text="@string/tips_card_odds_calculator_minimum_guarantee"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
+                        android:textColor="?attr/TextViewColorOnImportantCardView" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -3091,7 +704,7 @@
     <eightbitlab.com.blurview.BlurView
         android:id="@+id/blurViewTopBar"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="100dp"
         android:clickable="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -3123,20 +736,5 @@
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
-
-    <TextView
-        android:id="@+id/total_top"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:paddingHorizontal="10dp"
-        android:gravity="center"
-        android:maxLines="1"
-        android:text="成功率：0%+0%"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="?attr/colorOnSurface"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

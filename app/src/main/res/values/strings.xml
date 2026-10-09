@@ -451,17 +451,40 @@
     <string name="title_data_center_card_odds_calculator">强卡成功率计算器</string>
     <string name="description_data_center_card_odds_calculator">可以快捷计算不同星级组合的强卡成功率，不能模拟上卡哦</string>
     <string name="top_bar_data_center_card_odds_calculator">强卡成功率计算器</string>
-    <string name="title_card_odds_calculator_choose_main_card">选择主卡</string>
-    <string name="title_card_odds_calculator_choose_sub_card_1">选择副卡1</string>
-    <string name="title_card_odds_calculator_choose_sub_card_2">选择副卡2</string>
-    <string name="title_card_odds_calculator_choose_sub_card_3">选择副卡3</string>
-    <string name="title_card_odds_calculator_choose_four_leaf_clover">选择四叶草</string>
-    <string name="title_card_odds_calculator_choose_vip">选择VIP等级</string>
-    <string name="title_card_odds_calculator_choose_consortia">选择公会合成屋等级</string>
+    <string name="title_card_odds_calculator_choose_main_card">主卡</string>
+    <string name="title_card_odds_calculator_choose_sub_card_1">副卡1</string>
+    <string name="title_card_odds_calculator_choose_sub_card_2">副卡2</string>
+    <string name="title_card_odds_calculator_choose_sub_card_3">副卡3</string>
+    <string name="title_card_odds_calculator_choose_four_leaf_clover">四叶草</string>
+    <string name="title_card_odds_calculator_choose_vip">VIP等级</string>
+    <string name="title_card_odds_calculator_choose_consortia">公会合成屋</string>
+    <string name="title_card_odds_calculator_result">计算结果</string>
+    <string name="title_card_odds_calculator_coin">金币</string>
+    <string name="title_card_odds_calculator_minimum_guarantee">保底</string>
+    <string name="title_card_odds_calculator_insurance">保险金</string>
+    <string name="title_card_odds_calculator_choose_sub_card_category">副卡类型</string>
+    <string name="tips_card_odds_calculator_sub_card_category">副卡类型分为好卡、中卡、差卡3种，相同星级下的成功率：好卡>中卡>差卡。您可以在防御卡全能数据库中查询卡片的副卡类型。</string>
     <string name="title_card_odds_calculator_category_0">差卡</string>
     <string name="title_card_odds_calculator_category_1">中卡</string>
     <string name="title_card_odds_calculator_category_2">好卡</string>
-    <string name="title_card_odds_calculator_minimum_guarantee">保底说明</string>
+    <string name="title_card_odds_calculator_not_select">不选</string>
+    <string name="title_card_odds_calculator_none">无</string>
+    <!-- 强化成功率计算器四叶草下拉菜单条目（顺序与 FourLeafClover 概率表、旧布局横排条目一致） -->
+    <string-array name="card_odds_calculator_four_leaf_clover_entries">
+        <item>1级四叶草</item>
+        <item>2级四叶草</item>
+        <item>3级四叶草</item>
+        <item>4级四叶草</item>
+        <item>5级四叶草</item>
+        <item>6级四叶草</item>
+        <item>超能四叶草</item>
+        <item>SS四叶草</item>
+        <item>SSS四叶草</item>
+        <item>SSR四叶草</item>
+        <item>蛇年纪念四叶草</item>
+        <item>马年纪念四叶草</item>
+    </string-array>
+    <string name="title_card_odds_calculator_minimum_guarantee_description">保底说明</string>
     <string name="tips_card_odds_calculator_minimum_guarantee">启用保险金进行强化时会激活保底机制，当强化失败的累积概率（等号右边的值）超过120%后，下一次强化（无论是否启用保险金）必成。\n利用保底机制，您可以在强化高星级卡片时节省一次保险金费用。</string>
     <!--设置-->
     <string name="top_bar_settings">设置</string>
