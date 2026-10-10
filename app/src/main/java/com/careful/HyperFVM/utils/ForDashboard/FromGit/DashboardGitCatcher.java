@@ -112,6 +112,18 @@ public class DashboardGitCatcher {
                 "resultHappyHolidayCardList", "resultThreeIslandsCardList",
                 "resultFoodContestCardList", "resultTransferDiscountCardList");
 
+        // 二转打折卡数（DashboardFragment用requireNonNull读取，缺失会NPE闪退）
+        failResult.put("resultTransferDiscountCardNum", "");
+
+        // 福利打卡活动（缺失key会导致DashboardFragment主线程NullPointerException闪退）
+        failResult.put("resultBirthdayActivitySimple", "网络异常");
+        failResult.put("resultBirthdayActivityEmoji", "❌");
+        failResult.put("resultBirthdayActivityContentStatus", "出错了呢");
+        failResult.put("resultBirthdayActivityContentDetail", "内容获取失败，请检查网络后重试");
+        failResult.put("resultBirthdayActivityNewCardName", "");
+        // 数据库版本兜底为0：本地版本永远>=0，不会误提示“数据库尚未包含此卡片”
+        failResult.put("resultBirthdayActivityRequiredDatabaseVersion", "0");
+
         // App通知不展示
         putKeys(failResult, "", "resultGlobalNotificationTitle", "resultGlobalNotificationContent");
         failResult.put("resultGlobalNotificationIsShow", "false");

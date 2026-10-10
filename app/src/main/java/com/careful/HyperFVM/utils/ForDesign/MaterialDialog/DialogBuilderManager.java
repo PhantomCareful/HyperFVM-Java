@@ -3,6 +3,7 @@ package com.careful.HyperFVM.utils.ForDesign.MaterialDialog;
 import static com.careful.HyperFVM.HyperFVMApplication.materialAlertDialogThemeStyleId;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -11,6 +12,8 @@ import android.database.Cursor;
 import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.CalendarContract;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -44,6 +47,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 弹窗管理类
@@ -54,16 +59,40 @@ public class DialogBuilderManager {
     private static final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
 
     /**
+     * 判断Activity是否已销毁或正在关闭，已销毁时展示弹窗会抛BadTokenException导致闪退
+     */
+    private static boolean isActivityDead(Context context) {
+        if (context instanceof Activity activity) {
+            return activity.isFinishing() || activity.isDestroyed();
+        }
+        return false;
+    }
+
+    /**
      * 一般弹窗展示方法，仅展示内容和一个按钮，不做任何额外的操作。
+     * 网络异步回调可能晚于Activity销毁或在工作线程触发，此处做统一防护：
+     * Activity已销毁时降级为Toast；工作线程调用时自动切回主线程。两种情况均返回null。
      * @param context 上下文
      * @param title 弹窗标题
      * @param emoji 状态表情
      * @param content 弹窗内容
      * @param cancelable 弹窗是否可以通过点击背景关闭
      * @param positiveButtonTitle 弹窗按钮标题，比如【确定】
-     * @return 已展示的弹窗实例，调用方可挂载dismiss监听等
+     * @return 已展示的弹窗实例，调用方可挂载dismiss监听等；未展示时返回null
      */
     public static Dialog showDialog(Context context, String title, String emoji, String content, boolean cancelable, String positiveButtonTitle) {
+        // Activity已销毁/正在关闭：弹窗会抛BadTokenException导致闪退，降级为Toast
+        if (isActivityDead(context)) {
+            Toast.makeText(context.getApplicationContext(), title + "\n" + content, Toast.LENGTH_LONG).show();
+            return null;
+        }
+        // 非主线程（如网络请求的工作线程回调）：切回主线程重新执行
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            new Handler(Looper.getMainLooper()).post(
+                    () -> showDialog(context, title, emoji, content, cancelable, positiveButtonTitle));
+            return null;
+        }
+
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_general, null);
 
@@ -105,6 +134,54 @@ public class DialogBuilderManager {
             Context context, String title, String emoji, String content, boolean cancelable,
             String negativeButtonTitle, String positiveButtonTitle, PositiveButtonClickCallBack callBack
     ) {
+        // 非主线程调用时先在本线程构建（inflate/setText不依赖窗口），show切回主线程执行
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            Handler handler = new Handler(Looper.getMainLooper());
+            // 延迟到主线程构建并展示，主线程路径直接构建
+            return showDialogWithCallBackOnUiThread(context, title, emoji, content, cancelable,
+                    negativeButtonTitle, positiveButtonTitle, callBack, handler);
+        }
+        return buildAndShowDialogWithCallBack(context, title, emoji, content, cancelable,
+                negativeButtonTitle, positiveButtonTitle, callBack);
+    }
+
+    /**
+     * 在主线程构建并展示带回调弹窗（非主线程调用时由handler切换）
+     */
+    private static Dialog showDialogWithCallBackOnUiThread(
+            Context context, String title, String emoji, String content, boolean cancelable,
+            String negativeButtonTitle, String positiveButtonTitle, PositiveButtonClickCallBack callBack,
+            Handler handler
+    ) {
+        // 必须同步等待主线程构建完成才能返回弹窗实例（调用方会挂载dismiss监听）
+        final Dialog[] holder = new Dialog[1];
+        CountDownLatch latch = new CountDownLatch(1);
+        handler.post(() -> {
+            try {
+                holder[0] = buildAndShowDialogWithCallBack(context, title, emoji, content, cancelable,
+                        negativeButtonTitle, positiveButtonTitle, callBack);
+            } finally {
+                latch.countDown();
+            }
+        });
+        try {
+            // 加超时避免主线程被占用时永久阻塞调用线程
+            if (!latch.await(3, TimeUnit.SECONDS)) {
+                return null;
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        return holder[0];
+    }
+
+    /**
+     * 构建并展示带回调弹窗（需在主线程调用）
+     */
+    private static Dialog buildAndShowDialogWithCallBack(
+            Context context, String title, String emoji, String content, boolean cancelable,
+            String negativeButtonTitle, String positiveButtonTitle, PositiveButtonClickCallBack callBack
+    ) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_general_call_back, null);
 
@@ -134,7 +211,15 @@ public class DialogBuilderManager {
 
         // 添加窗口遮罩
         DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
-        dialog.show();
+        // Activity已销毁时不展示（避免BadTokenException闪退），
+        // 但必须返回实例：调用方会挂载dismiss监听，返回null会NPE
+        if (!isActivityDead(context)) {
+            try {
+                dialog.show();
+            } catch (Exception e) {
+                // 窗口token已失效等极端情况，吞掉异常避免闪退
+            }
+        }
         return dialog;
     }
 
@@ -1153,6 +1238,19 @@ public class DialogBuilderManager {
      */
     @SuppressLint({"InflateParams", "SetTextI18n"})
     private static void showIcuResultDialog(Context context, IcuHelper.FraudResult result) {
+        // 异步查询结果可能晚于Activity销毁，销毁时弹窗/跳转都会抛异常导致闪退，降级为Toast
+        if (isActivityDead(context)) {
+            Toast.makeText(context.getApplicationContext(),
+                    result.isFraud ? "已查询到骗子信息，请稍后重新打开查看" : "查询结果：暂未被标记为骗子",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        // 防御：非主线程调用时切回主线程
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            new Handler(Looper.getMainLooper()).post(() -> showIcuResultDialog(context, result));
+            return;
+        }
+
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard, null);
 

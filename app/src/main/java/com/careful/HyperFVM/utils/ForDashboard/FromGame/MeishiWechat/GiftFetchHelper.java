@@ -4,10 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -55,7 +53,10 @@ public class GiftFetchHelper {
                         isServerError = true;
                         break;
                     }
-                } catch (IOException | JSONException e) {
+                } catch (Exception e) {
+                    // 兜底捕获RuntimeException（如url非法IllegalArgumentException），
+                    // 避免executor线程崩溃导致App闪退
+                    Log.e(TAG, "领取礼包失败：" + e.getMessage(), e);
                     isServerError = true;
                     break;
                 }

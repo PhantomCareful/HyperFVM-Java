@@ -385,6 +385,10 @@ public class ExecuteDailyTask {
                 result.put("resultBirthdayActivityNewCardName", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivityNewCardName"));
                 result.put("resultBirthdayActivityRequiredDatabaseVersion", catchGitDashboardInfoResult.get(0).get("resultBirthdayActivityRequiredDatabaseVersion"));
 
+                // 兜底归一化：任意子任务兜底结果缺key时map.get会得到null，
+                // 下游DashboardFragment用requireNonNull/isEmpty读取会NPE闪退，统一转为空串
+                result.replaceAll((k, v) -> v == null ? "" : v);
+
                 timer.cancel();
                 callBack.onResult(result);
             }

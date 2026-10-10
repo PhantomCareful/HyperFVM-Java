@@ -54,11 +54,20 @@ public class HttpUtil {
     }
 
     public void getContentFromLink(String url, OnGetCallback callback) {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        // 请求构建可能因url非法抛出IllegalArgumentException（RuntimeException），
+        // 若不捕获会直接在调用方线程（多为主线程）崩溃
+        final Call call;
+        try {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            call = client.newCall(request);
+        } catch (Exception e) {
+            mainHandler.post(() -> callback.onFailure("请求失败：链接无效"));
+            return;
+        }
 
-        client.newCall(request).enqueue(new Callback() {
+        call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 // 检查是否是取消导致的失败
@@ -68,16 +77,22 @@ public class HttpUtil {
             }
 
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
                 if (call.isCanceled()) {
                     return; // 已取消则不处理响应
                 }
 
-                if (response.isSuccessful() && response.body() != null) {
-                    String content = response.body().string().trim();
-                    mainHandler.post(() -> callback.onSuccess(content));
-                } else {
-                    mainHandler.post(() -> callback.onFailure("检查更新失败，服务器响应异常"));
+                // 读取响应体可能抛异常，需自行捕获转为失败回调，
+                // 否则回调丢失导致界面永久卡在加载态
+                try {
+                    if (response.isSuccessful() && response.body() != null) {
+                        String content = response.body().string().trim();
+                        mainHandler.post(() -> callback.onSuccess(content));
+                    } else {
+                        mainHandler.post(() -> callback.onFailure("检查更新失败，服务器响应异常"));
+                    }
+                } catch (Exception e) {
+                    mainHandler.post(() -> callback.onFailure("读取服务器响应失败，请稍后再试"));
                 }
             }
         });
@@ -90,8 +105,16 @@ public class HttpUtil {
         // 先取消相同标识符的下载请求（如果有）
         cancelDownloadByKey(downloadKey);
 
-        Request request = new Request.Builder().url(url).build();
-        Call call = client.newCall(request);
+        // 请求构建可能因url非法（来自服务器返回的下载链接）抛出IllegalArgumentException，
+        // 不捕获会直接在调用方线程崩溃
+        final Call call;
+        try {
+            Request request = new Request.Builder().url(url).build();
+            call = client.newCall(request);
+        } catch (Exception e) {
+            mainHandler.post(() -> callback.onFailure("下载失败：链接无效"));
+            return;
+        }
 
         // 保存当前请求
         downloadCalls.put(downloadKey, call);
@@ -142,13 +165,16 @@ public class HttpUtil {
 
                             out.write(buf, 0, len);
                             downloaded += len;
-                            int progress = (int) (downloaded * 100 / total);
-                            mainHandler.post(() -> callback.onProgress(progress)); // 通知进度
+                            // 服务器未返回contentLength时total为-1，直接除会抛ArithmeticException杀死下载线程
+                            if (total > 0) {
+                                int progress = (int) (downloaded * 100 / total);
+                                mainHandler.post(() -> callback.onProgress(progress)); // 通知进度
+                            }
                         }
                         mainHandler.post(() -> callback.onSuccess(savePath)); // 下载完成
                         downloadCalls.remove(downloadKey);
-                    } catch (IOException e) {
-                        // 过滤取消导致的异常
+                    } catch (Exception e) {
+                        // 过滤取消导致的异常；兜底捕获RuntimeException避免下载线程崩溃导致App闪退
                         if (!call.isCanceled()) {
                             mainHandler.post(() -> callback.onFailure("文件写入失败：" + e.getMessage()));
                         }
@@ -168,18 +194,6 @@ public class HttpUtil {
             call.cancel();
             downloadCalls.remove(key);
         }
-    }
-
-    /**
-     * 取消所有下载请求
-     */
-    public void cancelAllDownloads() {
-        for (Call call : downloadCalls.values()) {
-            if (!call.isCanceled()) {
-                call.cancel();
-            }
-        }
-        downloadCalls.clear();
     }
 
     /**

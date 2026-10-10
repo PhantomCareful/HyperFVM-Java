@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -81,9 +80,11 @@ public class MeishiLinkUtil {
         new Thread(() -> {
             String url = "http://meishi.wechat.123u.com/meishi/index?openid=" + openId;
             OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().url(url).build();
 
             try {
+                // 请求构建可能因url非法抛出IllegalArgumentException（RuntimeException），
+                // 必须纳入try避免线程未捕获异常导致App闪退
+                Request request = new Request.Builder().url(url).build();
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful() && response.body() != null) {
                     String html = response.body().string();
@@ -132,8 +133,8 @@ public class MeishiLinkUtil {
                         callback.onFailure(null);
                     });
                 }
-            } catch (IOException e) {
-                // 用Handler显示Toast（主线程）
+            } catch (Exception e) {
+                // 兜底捕获RuntimeException（如url非法）；用Handler显示Toast（主线程）
                 mainHandler.post(() -> {
                     Toast.makeText(context, "网络错误\n无法连接服务器", Toast.LENGTH_SHORT).show();
                     callback.onFailure(null);

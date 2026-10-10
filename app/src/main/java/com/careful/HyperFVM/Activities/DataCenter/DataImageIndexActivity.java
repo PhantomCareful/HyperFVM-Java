@@ -41,7 +41,6 @@ import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -296,8 +295,9 @@ public class DataImageIndexActivity extends BaseActivity {
                 // 第4步：触发回调
                 callBack.onSuccess();
 
-            } catch (IOException | JSONException e) {
-                // 出发回调
+            } catch (Exception e) {
+                // 兜底捕获RuntimeException（如version字段非数字抛NumberFormatException），
+                // 否则未捕获异常会杀死本工作线程导致App闪退
                 callBack.onFailed(e);
             }
         }).start();
@@ -462,7 +462,9 @@ public class DataImageIndexActivity extends BaseActivity {
             } else {
                 return false;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
+            // 兜底捕获RuntimeException（如云端url非http(s)时强转HttpURLConnection抛ClassCastException），
+            // 下载任务运行在downloadExecutor中，未捕获异常会杀死线程导致App闪退
             Log.e(TAG, "下载失败: " + dataImageInfo.getFileName(), e);
             return false;
         } finally {

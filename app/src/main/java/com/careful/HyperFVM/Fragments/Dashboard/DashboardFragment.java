@@ -326,7 +326,13 @@ public class DashboardFragment extends Fragment {
     private void loadDashboardData() {
         // 如果已有缓存，直接显示，不重新请求
         if (sDataLoaded && sCachedData != null) {
-            displayDashboardData(sCachedData);
+            try {
+                displayDashboardData(sCachedData);
+            } catch (Exception e) {
+                // 数据异常时不能让整个App崩溃，降级提示后继续展示已有卡片
+                Log.e("DashboardFragment", "显示缓存数据失败", e);
+                Toast.makeText(requireContext(), "数据展示异常，请下拉刷新重试", Toast.LENGTH_SHORT).show();
+            }
             if (isShowWorldBossCard) {
                 root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.VISIBLE);
             } else {
@@ -404,8 +410,13 @@ public class DashboardFragment extends Fragment {
                     // 切回主线程更新UI：读取数据 + 恢复按钮
                     if (isAdded() && getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            // 更新云端内容
-                            displayDashboardData(data);
+                            // 更新云端内容（云端内容异常时不能让整个App崩溃）
+                            try {
+                                displayDashboardData(data);
+                            } catch (Exception e) {
+                                Log.e("DashboardFragment", "显示云端数据失败", e);
+                                Toast.makeText(requireContext(), "数据展示异常，请下拉刷新重试", Toast.LENGTH_SHORT).show();
+                            }
 
                             // 恢复按钮
                             floatButtonRefresh.setEnabled(true);
@@ -501,7 +512,13 @@ public class DashboardFragment extends Fragment {
             String contentStatus = data.get(0).get("resultBirthdayActivityContentStatus");
             String contentDetail = data.get(0).get("resultBirthdayActivityContentDetail");
             String newCardName = data.get(0).get("resultBirthdayActivityNewCardName");
-            int requiredDatabaseVersion = Integer.parseInt(Objects.requireNonNull(data.get(0).get("resultBirthdayActivityRequiredDatabaseVersion")));
+            // 云端版本号可能非数字，解析失败降级为0（0不会触发“数据库尚未包含此卡片”提示）
+            int requiredDatabaseVersion;
+            try {
+                requiredDatabaseVersion = Integer.parseInt(Objects.requireNonNull(data.get(0).get("resultBirthdayActivityRequiredDatabaseVersion")));
+            } catch (Exception e) {
+                requiredDatabaseVersion = 0;
+            }
             if (Objects.requireNonNull(contentStatus).equals("空空如也")) {
                 DialogBuilderManager.showDashboardDetailDialog(
                         requireContext(),
@@ -717,16 +734,30 @@ public class DashboardFragment extends Fragment {
             dashboardWorldBossContentStatus2.setText("挑战期\n" + challengeDate);
             dashboardWorldBossContentStatus3.setText("结算期\n" + settlementDate);
 
-            Date today = TimeUtil.transformStringToDate(todayDate);
-            Date start = TimeUtil.transformStringToDate(startDate);
-            Date challenge = TimeUtil.transformStringToDate(challengeDate);
-            Date settlement = TimeUtil.transformStringToDate(settlementDate);
-            Date end = TimeUtil.transformStringToDate(endDate);
+            // 云端日期格式异常时transformStringToDate会抛RuntimeException，需兜底避免整个界面崩溃
+            Date today = null;
+            Date start = null;
+            Date challenge = null;
+            Date settlement = null;
+            Date end = null;
+            try {
+                today = TimeUtil.transformStringToDate(todayDate);
+                start = TimeUtil.transformStringToDate(startDate);
+                challenge = TimeUtil.transformStringToDate(challengeDate);
+                settlement = TimeUtil.transformStringToDate(settlementDate);
+                end = TimeUtil.transformStringToDate(endDate);
+            } catch (Exception e) {
+                Log.e("DashboardFragment", "世界BOSS日期解析失败", e);
+            }
 
             // 获取进度条组件
             LinearProgressIndicator progressIndicator = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator);
 
-            if (today.before(start)) {
+            if (today == null || start == null || challenge == null || settlement == null || end == null) {
+                // 日期数据异常：跳过阶段计算，降级展示避免崩溃
+                Log.e("DashboardFragment", "世界BOSS日期数据异常，跳过阶段计算");
+                dashboardWorldBoss.setText("暂无");
+            } else if (today.before(start)) {
                 // 情况1：早于预热期，进度设为0
                 Log.d("WorldBoss", "情况1：早于预热期");
                 progressIndicator.setProgressCompat(0, true);// 第二个参数表示是否使用动画
@@ -855,8 +886,9 @@ public class DashboardFragment extends Fragment {
         String transferDiscountCardNum = data.get(0).get("resultTransferDiscountCardNum");
         transferDiscountEmoji = data.get(0).get("resultTransferDiscountEmoji");
         dashboardTransferDiscount.setText(Objects.requireNonNull(transferDiscountResult).isEmpty() ? "null" : transferDiscountResult);
-        dashboardTransferDiscountCardNum.setText(transferDiscountCardNum);
-        transferDiscountIcon.setImageResource(Objects.requireNonNull(transferDiscountCardNum).contains("张") ? R.drawable.ic_discount : R.drawable.ic_round_remove_circle_outline);
+        dashboardTransferDiscountCardNum.setText(transferDiscountCardNum == null ? "" : transferDiscountCardNum);
+        // 网络异常时cardNum可能为null，直接requireNonNull会NPE闪退
+        transferDiscountIcon.setImageResource(transferDiscountCardNum != null && transferDiscountCardNum.contains("张") ? R.drawable.ic_discount : R.drawable.ic_round_remove_circle_outline);
         // 设置点击打开详情弹窗
         dashboardTransferDiscountContainer.setOnClickListener(v -> {
             String contentStatus = data.get(0).get("resultTransferDiscountContentStatus");

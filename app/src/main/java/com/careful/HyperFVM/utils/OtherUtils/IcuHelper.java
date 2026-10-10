@@ -162,6 +162,11 @@ public class IcuHelper {
             } catch (JSONException e) {
                 Log.e("IcuHelper", "JSONException", e);
                 mainHandler.post(() -> callback.onError("解析数据失败，请稍后重试。"));
+            } catch (Exception e) {
+                // 兜底：非法url（IllegalArgumentException）、响应体为空（NullPointerException）、
+                // 数字解析失败等RuntimeException不捕获会导致executor线程崩溃、App闪退
+                Log.e("IcuHelper", "Unexpected exception", e);
+                mainHandler.post(() -> callback.onError("查询异常，请稍后重试。"));
             }
         });
     }

@@ -63,40 +63,42 @@ public class XMLHelper {
         int num = 1 + random.nextInt(1000000000);
         url = url + "?" + num;
 
-        // 2.构建OkHttp请求
-        Request request = new Request.Builder()
-                .url(url)
-                .header("Accept", "application/xml") // 指定接收XML格式
-                .header("User-Agent", "CustomXMLClient")
-                .build();
+        // 2.构建OkHttp请求并执行（请求构建可能因url非法抛出IllegalArgumentException，一并纳入捕获）
+        try {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .header("Accept", "application/xml") // 指定接收XML格式
+                    .header("User-Agent", "CustomXMLClient")
+                    .build();
 
-        Call call = OK_HTTP_CLIENT.newCall(request);
-        try (Response response = call.execute()) {
-            // 3. 执行同步请求（注意必须要在子线程上调用）
+            Call call = OK_HTTP_CLIENT.newCall(request);
+            try (Response response = call.execute()) {
+                // 3. 执行同步请求（注意必须要在子线程上调用）
 
-            // 4. 校验响应状态
-            if (!response.isSuccessful()) {
-                Log.e(TAG, "getContentFromUrl: 获取失败，响应码：" + response.code());
-                return null;
+                // 4. 校验响应状态
+                if (!response.isSuccessful()) {
+                    Log.e(TAG, "getContentFromUrl: 获取失败，响应码：" + response.code());
+                    return null;
+                }
+
+                // 5. 读取响应体
+                ResponseBody responseBody = response.body();
+                if (responseBody == null) {
+                    Log.e(TAG, "getContentFromUrl: 响应体为空");
+                    return null;
+                }
+
+                // 6. 转换为字符串（指定UTF-8编码，避免乱码）
+                String XMLContent = responseBody.string();
+                if (XMLContent.trim().isEmpty()) {
+                    Log.e(TAG, "getContentFromUrl: 内容为空");
+                    return null;
+                }
+
+                return XMLContent;
             }
-
-            // 5. 读取响应体
-            ResponseBody responseBody = response.body();
-            if (responseBody == null) {
-                Log.e(TAG, "getContentFromUrl: 响应体为空");
-                return null;
-            }
-
-            // 6. 转换为字符串（指定UTF-8编码，避免乱码）
-            String XMLContent = responseBody.string();
-            if (XMLContent.trim().isEmpty()) {
-                Log.e(TAG, "getContentFromUrl: 内容为空");
-                return null;
-            }
-
-            return XMLContent;
-        } catch (IOException e) {
-            // 网络异常时必须返回null：不能把异常信息当作有效内容返回给调用方解析
+        } catch (Exception e) {
+            // 网络异常/非法URL时必须返回null：不能把异常信息当作有效内容返回给调用方解析
             Log.e(TAG, "getContentFromUrl: 捕获异常：" + e.getMessage(), e);
             return null;
         }

@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.Looper;
 
 import java.io.File;
-import java.util.Objects;
 
 public class AppUpdaterUtil {
 
@@ -128,11 +127,19 @@ public class AppUpdaterUtil {
         isDownloadCancelled = false;
         currentDownloadUrl = downloadUrl;
 
+        // 存储不可用（如被系统禁用）时getExternalFilesDir返回null，
+        // 原requireNonNull会NPE导致主线程闪退，这里降级为失败回调
+        File externalDir = context.getExternalFilesDir("apk");
+        if (externalDir == null) {
+            mainHandler.post(() -> callback.onFailure("存储空间不可用，无法下载更新"));
+            return;
+        }
+
         String apkFileName = "hyper_fvm_update_" + System.currentTimeMillis() + ".apk";
-        currentApkFilePath = context.getExternalFilesDir("apk") + File.separator + apkFileName;
+        currentApkFilePath = externalDir + File.separator + apkFileName;
 
         // 确保目录存在
-        File apkDir = new File(Objects.requireNonNull(context.getExternalFilesDir("apk")).getPath());
+        File apkDir = new File(externalDir.getPath());
         if (!apkDir.exists()) {
             apkDir.mkdirs();
         }
