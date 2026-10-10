@@ -18,7 +18,7 @@ configure<ApplicationExtension> {
         applicationId = "com.careful.HyperFVM"
         minSdk = 31
         targetSdk = 37
-        versionCode = 144
+        versionCode = 145
         versionName = "4.4.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -151,5 +151,8 @@ dependencies {
 
     //G2 连续 squircle 圆角（弹窗/BottomSheet 角曲线，AndroidX 官方库）
     implementation(libs.androidx.graphics.shapes)
+
+    //Miuix Folme 动画库（动态背景弹簧换色，对齐 HyperCeiler；本地 aar，公共仓库无此构件）
+    implementation(files("libs/animation-1.0.13.0.aar"))
 
 }
