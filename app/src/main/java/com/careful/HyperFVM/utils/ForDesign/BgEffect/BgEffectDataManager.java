@@ -14,6 +14,9 @@ public class BgEffectDataManager {
     private final BgEffectData mPhoneDarkData;
     private final BgEffectData mPadLightData;
     private final BgEffectData mPadDarkData;
+    // 详情页专用副本：详情页会覆写 gradientColors*，若直接改主页实例，返回后主页配色会被污染
+    private final BgEffectData mDetailLightData;
+    private final BgEffectData mDetailDarkData;
 
     private final float[] mHyperOS2ThemeLight = {
             0.57f, 0.76f, 0.98f, 1.0f,
@@ -85,8 +88,8 @@ public class BgEffectDataManager {
         mPhoneLightData.gradientSpeedChange = 1.6f;
         mPhoneLightData.gradientSpeedRest = 1.05f;
         mPhoneLightData.gradientColors1 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
-        mPhoneLightData.gradientColors2 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
-        mPhoneLightData.gradientColors3 = new float[]{1.0f, 0.9f, 0.94f, 1.0f, 1.0f, 0.84f, 0.89f, 1.0f, 0.97f, 0.73f, 0.82f, 1.0f, 0.64f, 0.65f, 0.98f, 1.0f};
+        mPhoneLightData.gradientColors2 = new float[]{0.58f, 0.74f, 1.0f, 1.0f, 1.0f, 0.9f, 0.93f, 1.0f, 0.74f, 0.76f, 1.0f, 1.0f, 0.97f, 0.77f, 0.84f, 1.0f};
+        mPhoneLightData.gradientColors3 = new float[]{0.98f, 0.86f, 0.9f, 1.0f, 0.6f, 0.73f, 0.98f, 1.0f, 0.92f, 0.93f, 1.0f, 1.0f, 0.56f, 0.69f, 1.0f, 1.0f};
 
         // 平板浅色（可省略，仅保留手机参数）
         mPadLightData = new BgEffectData();
@@ -154,6 +157,8 @@ public class BgEffectDataManager {
         mPadDarkData.gradientColors2 = new float[]{0.07f, 0.15f, 0.79f, 0.5f, 0.11f, 0.16f, 0.83f, 0.5f, 0.06f, 0.25f, 0.84f, 0.5f, 0.66f, 0.26f, 0.62f, 0.5f};
         mPadDarkData.gradientColors3 = new float[]{0.58f, 0.3f, 0.74f, 0.5f, 0.11f, 0.16f, 0.83f, 0.5f, 0.66f, 0.26f, 0.62f, 0.5f, 0.27f, 0.18f, 0.6f, 0.6f};
 
+        mDetailLightData = copyOf(mPhoneLightData);
+        mDetailDarkData = copyOf(mPhoneDarkData);
     }
 
     public BgEffectData getAboutAppColorData(BgEffectController.DeviceType deviceType, BgEffectController.ThemeMode themeMode) {
@@ -166,43 +171,68 @@ public class BgEffectDataManager {
 
     public BgEffectData getDetailAnimalCardDataColorData(BgEffectController.ThemeMode themeMode) {
         if (themeMode == LIGHT) {
-            mPhoneLightData.gradientColors1 = mHyperOS2ThemeLight;
-            mPhoneLightData.gradientColors2 = mHyperOS2ThemeLight;
-            mPhoneLightData.gradientColors3 = mHyperOS2ThemeLight;
-            return mPhoneLightData;
+            mDetailLightData.gradientColors1 = mHyperOS2ThemeLight;
+            mDetailLightData.gradientColors2 = mHyperOS2ThemeLight;
+            mDetailLightData.gradientColors3 = mHyperOS2ThemeLight;
+            return mDetailLightData;
         } else {
-            mPhoneLightData.gradientColors1 = mHyperOS2ThemeDark;
-            mPhoneLightData.gradientColors2 = mHyperOS2ThemeDark;
-            mPhoneLightData.gradientColors3 = mHyperOS2ThemeDark;
-            return mPadDarkData;
+            mDetailDarkData.gradientColors1 = mHyperOS2ThemeDark;
+            mDetailDarkData.gradientColors2 = mHyperOS2ThemeDark;
+            mDetailDarkData.gradientColors3 = mHyperOS2ThemeDark;
+            return mDetailDarkData;
         }
     }
 
     public BgEffectData getDetailGoldenCardDataColorData(BgEffectController.ThemeMode themeMode) {
         if (themeMode == LIGHT) {
-            mPhoneLightData.gradientColors1 = mGoldenCardThemeLight;
-            mPhoneLightData.gradientColors2 = mGoldenCardThemeLight;
-            mPhoneLightData.gradientColors3 = mGoldenCardThemeLight;
-            return mPhoneLightData;
+            mDetailLightData.gradientColors1 = mGoldenCardThemeLight;
+            mDetailLightData.gradientColors2 = mGoldenCardThemeLight;
+            mDetailLightData.gradientColors3 = mGoldenCardThemeLight;
+            return mDetailLightData;
         } else {
-            mPhoneLightData.gradientColors1 = mHyperOS2ThemeDark;
-            mPhoneLightData.gradientColors2 = mHyperOS2ThemeDark;
-            mPhoneLightData.gradientColors3 = mHyperOS2ThemeDark;
-            return mPadDarkData;
+            mDetailDarkData.gradientColors1 = mHyperOS2ThemeDark;
+            mDetailDarkData.gradientColors2 = mHyperOS2ThemeDark;
+            mDetailDarkData.gradientColors3 = mHyperOS2ThemeDark;
+            return mDetailDarkData;
         }
     }
 
     public BgEffectData getDetailFusionCardDataColorData(BgEffectController.ThemeMode themeMode) {
         if (themeMode == LIGHT) {
-            mPhoneLightData.gradientColors1 = mFusionCardThemeLight;
-            mPhoneLightData.gradientColors2 = mFusionCardThemeLight;
-            mPhoneLightData.gradientColors3 = mFusionCardThemeLight;
-            return mPhoneLightData;
+            mDetailLightData.gradientColors1 = mFusionCardThemeLight;
+            mDetailLightData.gradientColors2 = mFusionCardThemeLight;
+            mDetailLightData.gradientColors3 = mFusionCardThemeLight;
+            return mDetailLightData;
         } else {
-            mPhoneLightData.gradientColors1 = mHyperOS2ThemeDark;
-            mPhoneLightData.gradientColors2 = mHyperOS2ThemeDark;
-            mPhoneLightData.gradientColors3 = mHyperOS2ThemeDark;
-            return mPadDarkData;
+            mDetailDarkData.gradientColors1 = mHyperOS2ThemeDark;
+            mDetailDarkData.gradientColors2 = mHyperOS2ThemeDark;
+            mDetailDarkData.gradientColors3 = mHyperOS2ThemeDark;
+            return mDetailDarkData;
         }
+    }
+
+    // 浅拷贝基础参数（gradientColors* 由各 getDetailXxx 方法覆写，故此处直接共享引用）
+    private static BgEffectData copyOf(BgEffectData src) {
+        BgEffectData d = new BgEffectData();
+        d.uTranslateY = src.uTranslateY;
+        d.uPoints = src.uPoints;
+        d.uAlphaMulti = src.uAlphaMulti;
+        d.uNoiseScale = src.uNoiseScale;
+        d.uPointOffset = src.uPointOffset;
+        d.uPointRadiusMulti = src.uPointRadiusMulti;
+        d.uSaturateOffset = src.uSaturateOffset;
+        d.uLightOffset = src.uLightOffset;
+        d.uAlphaOffset = src.uAlphaOffset;
+        d.uShadowColorMulti = src.uShadowColorMulti;
+        d.uShadowColorOffset = src.uShadowColorOffset;
+        d.uShadowNoiseScale = src.uShadowNoiseScale;
+        d.uShadowOffset = src.uShadowOffset;
+        d.colorInterpPeriod = src.colorInterpPeriod;
+        d.gradientSpeedChange = src.gradientSpeedChange;
+        d.gradientSpeedRest = src.gradientSpeedRest;
+        d.gradientColors1 = src.gradientColors1;
+        d.gradientColors2 = src.gradientColors2;
+        d.gradientColors3 = src.gradientColors3;
+        return d;
     }
 }
