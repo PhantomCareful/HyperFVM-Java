@@ -16,18 +16,25 @@
         <!-- 原巨型静态 ScrollView 目录改为 RecyclerView 虚拟化列表：
              字母分节标题 + 366 张单卡均按需创建，只有可见行才会被 inflate 与解码，
              大幅降低进入延迟与内存占用。
-             注：原平板双列静态布局改为单列列表（其余装饰层不变） -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView"
+             注：原平板双列静态布局改为单列列表（其余装饰层不变）。
+             外层 SpringBackLayout 提供越界回弹（与其余页面的 ScrollView 改造同套组件） -->
+        <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="120dp"
-            android:paddingBottom="50dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="36dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:scrollbars="none" />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="120dp"
+                android:paddingBottom="50dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="36dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:scrollbars="none" />
+
+        </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
 
     </eightbitlab.com.blurview.BlurTarget>
 
