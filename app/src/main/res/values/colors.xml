@@ -8,6 +8,9 @@
     <!--动态流光背景上的卡片颜色-->
     <color name="card_background_color_effect">#2FFFFFFF</color>
 
+    <!--窗口遮罩（Miuix 规范）：对话框/下拉等弹窗遮罩，深色模式值见 values-night-->
+    <color name="color_window_scrim">#4D000000</color>
+
     <!--Miuix-->
     <color name="miuix_status_cardview_background">#DFFAE4</color>
     <color name="miuix_textview_color_on_status_cardview">#000000</color>
@@ -37,8 +40,8 @@
     <color name="miuix_on_tertiary_container_variant">#EAF2FF</color>
     <color name="miuix_error">#E94634</color>
     <color name="miuix_on_error">#FFFFFF</color>
-    <color name="miuix_error_container">#FDF6F4</color>
-    <color name="miuix_on_error_container">#410002</color>
+    <color name="miuix_error_container">#F8E2E2</color>
+    <color name="miuix_on_error_container">#F72727</color>
     <color name="miuix_background">#FFFFFF</color>
     <color name="miuix_on_background">#000000</color>
     <color name="miuix_on_background_variant">#8C93B0</color>
