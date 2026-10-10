@@ -81,8 +81,6 @@
         <item name="colorOnSecondary">@color/miuix_on_secondary</item>
         <item name="colorSecondaryContainer">@color/miuix_secondary_container</item>
         <item name="colorOnSecondaryContainer">@color/miuix_on_secondary_container</item>
-        <item name="colorTertiary">@color/md_blue_kongquelan_tertiary</item>
-        <item name="colorOnTertiary">@color/md_blue_kongquelan_onTertiary</item>
         <item name="colorTertiaryContainer">@color/miuix_tertiary_container</item>
         <item name="colorOnTertiaryContainer">@color/miuix_on_tertiary_container</item>
         <item name="colorError">@color/miuix_error</item>
@@ -101,6 +99,13 @@
         <item name="colorOnSurfaceVariant">@color/miuix_on_surface_variant_summary</item>
         <item name="colorOutline">@color/miuix_outline</item>
         <item name="colorOutlineVariant">@color/miuix_outline_variant</item>
+        <item name="colorSurfaceContainer">@color/miuix_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/miuix_surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/miuix_surface_container_highest</item>
+
+        <!--Miuix中没有被定义的颜色，也不会被使用，仅留档，并使用颜色相近的Monet主题色作为兜底-->
+        <item name="colorTertiary">@color/md_blue_kongquelan_tertiary</item>
+        <item name="colorOnTertiary">@color/md_blue_kongquelan_onTertiary</item>
         <item name="colorSurfaceInverse">@color/md_blue_kongquelan_inverseSurface</item>
         <item name="colorOnSurfaceInverse">@color/md_blue_kongquelan_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/md_blue_kongquelan_inversePrimary</item>
@@ -120,8 +125,6 @@
         <item name="colorSurfaceBright">@color/md_blue_kongquelan_surfaceBright</item>
         <item name="colorSurfaceContainerLowest">@color/md_blue_kongquelan_surfaceContainerLowest</item>
         <item name="colorSurfaceContainerLow">@color/md_blue_kongquelan_surfaceContainerLow</item>
-        <item name="colorSurfaceContainer">@color/miuix_surface_container</item>
-        <item name="colorSurfaceContainerHigh">@color/miuix_surface_container_high</item>
-        <item name="colorSurfaceContainerHighest">@color/miuix_surface_container_highest</item>
+
     </style>
 </resources>

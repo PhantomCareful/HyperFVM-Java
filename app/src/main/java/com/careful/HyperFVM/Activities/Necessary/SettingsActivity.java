@@ -78,13 +78,6 @@ public class SettingsActivity extends BaseActivity {
 
     public static final String CONTENT_IS_BIOMETRIC_AUTH = "安全-生物认证";
 
-    // 记录最近一次触摸按下时的横向位置，供下拉菜单跟随手指弹出（-1 表示尚未触摸过）
-    private float lastTouchDownX = -1;
-
-    // 页面内容左右边距（手机/PAD 由 InsetsUtil 动态计算）。下拉菜单最右缘沿用此值，
-    // 保证菜单不贴屏幕右缘，而是与页面内容右缘对齐
-    private int pageContentSideMarginPx = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 设置主题（必须在super.onCreate前调用才有效）
@@ -216,9 +209,6 @@ public class SettingsActivity extends BaseActivity {
         }
         themeModeCurrentSelection.setText(currentThemeMode);
 
-        // 记录触摸位置，使下拉菜单跟随手指横向弹出
-        bindDropdownRowTouch(themeSelectorContainer);
-        bindDropdownRowTouch(themeModeSelectorContainer);
         // 主题模式行始终可点击
         themeModeSelectorContainer.setOnClickListener(v -> showThemeModeDropdown());
         // 强调色行仅在主题模式为 Monet 时可点击
@@ -251,22 +241,9 @@ public class SettingsActivity extends BaseActivity {
     }
 
     /**
-     * 记录点击设置行时的横向触摸位置，供下拉菜单跟随手指横向弹出
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    private void bindDropdownRowTouch(View container) {
-        container.setOnTouchListener((v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                lastTouchDownX = event.getX();
-            }
-            return false;// 不消费事件，保持原有按压反馈与点击行为
-        });
-    }
-
-    /**
      * 以设置行为锚点，就地弹出简洁的下拉选项菜单（替代原先的中央列表弹窗）。
      * 行渲染（选中文字 colorPrimary 高亮+√）、宽度恒为“最长条目+对勾”、四分支展开、
-     * 横向跟随手指弹出、打开时居中定位选中项、点击行外自动关闭——
+     * 右缘固定对齐容器、打开时居中定位选中项、点击行外自动关闭——
      * 统一复用 DropdownPopupHelper 公用实现，本方法只负责取条目、算选中下标与选中回调
      */
     private void showRowDropdown(View anchor, int arrayId, String currentContent, String dbHelperUpdateContent,
@@ -283,7 +260,7 @@ public class SettingsActivity extends BaseActivity {
         ArrayAdapter<String> adapter = DropdownPopupHelper.createAdapter(this, selectedIndex, entries,
                 R.layout.item_dropdown_text_selection, null);
         DropdownPopupHelper.showAnchored(this, anchor, adapter, entries.length, selectedIndex,
-                lastTouchDownX, pageContentSideMarginPx, position -> {
+                position -> {
                     String selectedEntries = entries[position];
                     dbHelper.updateSettingValue(dbHelperUpdateContent, selectedEntries);
                     currentSelection.setText(selectedEntries);
@@ -471,9 +448,6 @@ public class SettingsActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             floatButtonBack.setLayoutParams(params);
-
-            // 同步页面边距给下拉菜单：菜单最右缘与页面内容右缘对齐，统一在此处管理
-            pageContentSideMarginPx = layout_marginHorizontal;
         });
 
         // 顺便设置按钮的功能

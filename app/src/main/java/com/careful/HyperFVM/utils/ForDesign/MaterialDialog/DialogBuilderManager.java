@@ -83,8 +83,8 @@ public class DialogBuilderManager {
 
         buttonAction.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
         return dialog;
     }
@@ -132,8 +132,8 @@ public class DialogBuilderManager {
             dialog.dismiss();
         });
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
         return dialog;
     }
@@ -187,8 +187,8 @@ public class DialogBuilderManager {
             System.exit(0);
         });
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -235,8 +235,8 @@ public class DialogBuilderManager {
 
         buttonAction.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -287,8 +287,8 @@ public class DialogBuilderManager {
             DataImageViewerHelper.openDataImage(context, imageName);
         });
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -347,8 +347,8 @@ public class DialogBuilderManager {
             }
         });
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -400,8 +400,8 @@ public class DialogBuilderManager {
             DataImageViewerHelper.openDataImage(context, imageName);
         });
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -464,8 +464,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -534,8 +534,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -574,8 +574,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -643,8 +643,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -710,8 +710,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -757,8 +757,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -823,8 +823,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -889,8 +889,8 @@ public class DialogBuilderManager {
 
         buttonClose.setOnClickListener(v -> dialog.dismiss());
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -1074,8 +1074,8 @@ public class DialogBuilderManager {
             }
         });
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -1142,8 +1142,8 @@ public class DialogBuilderManager {
             }
         });
 
-        // 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 
@@ -1179,8 +1179,8 @@ public class DialogBuilderManager {
 
             buttonAction.setOnClickListener(v -> dialog.dismiss());
 
-            // 添加背景模糊
-            DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+            // 添加窗口遮罩
+            DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
             dialog.show();
         }
     }

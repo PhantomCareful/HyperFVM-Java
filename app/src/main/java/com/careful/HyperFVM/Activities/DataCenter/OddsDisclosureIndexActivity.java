@@ -4,6 +4,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimat
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationUtils;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Dropdown.DropdownPopupHelper;
+import com.careful.HyperFVM.utils.ForDesign.Dropdown.MiuixDropdownAnimator;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -83,6 +85,9 @@ public class OddsDisclosureIndexActivity extends BaseActivity {
      * 菜单条目直接取 CategoryArray.titleArray——与页面动态添加的分节标题同源，天然一一对应
      */
     private void showIndexDropdown(View anchor) {
+        // 点击弹出菜单时触发一次振动反馈（不放在 DropdownPopupHelper.show 里：
+        // showAnchored 也复用 show()，底层加会造成设置页菜单双震）
+        anchor.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         String[] entries = CategoryArray.titleArray;
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_dropdown_text_selection, entries) {
             @NonNull
@@ -124,7 +129,9 @@ public class OddsDisclosureIndexActivity extends BaseActivity {
         popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
         popup.setAdapter(adapter);
         popup.setOnItemClickListener((parent, view, position, id) -> {
-            popup.dismiss();
+            // 选择条目时的振动反馈（与 showAnchored 行点击一致）
+            view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            MiuixDropdownAnimator.dismissAnimated(popup);
             // 标题是动态添加的：用收集到的标题列表按位置取锚点（替代固定 id 数组）
             if (position >= 0 && position < sectionTitleViews.size()) {
                 scrollToSectionTitle(sectionTitleViews.get(position));

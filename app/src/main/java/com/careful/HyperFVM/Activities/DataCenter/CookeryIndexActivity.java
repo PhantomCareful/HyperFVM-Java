@@ -2,6 +2,7 @@ package com.careful.HyperFVM.Activities.DataCenter;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Dropdown.DropdownPopupHelper;
+import com.careful.HyperFVM.utils.ForDesign.Dropdown.MiuixDropdownAnimator;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -128,6 +130,9 @@ public class CookeryIndexActivity extends BaseActivity {
      * 以目录按钮为锚点弹出章节跳转下拉菜单（样式参照设置页下拉菜单，仅去掉了选中对勾）
      */
     private void showIndexDropdown(View anchor) {
+        // 点击弹出菜单时触发一次振动反馈（不放在 DropdownPopupHelper.show 里：
+        // showAnchored 也复用 show()，底层加会造成设置页菜单双震）
+        anchor.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         String[] entries = getResources().getStringArray(R.array.cookery_index_entries);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_dropdown_text_selection, entries) {
             @NonNull
@@ -169,7 +174,9 @@ public class CookeryIndexActivity extends BaseActivity {
         popup.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.popup_dropdown_background));
         popup.setAdapter(adapter);
         popup.setOnItemClickListener((parent, view, position, id) -> {
-            popup.dismiss();
+            // 选择条目时的振动反馈（与 showAnchored 行点击一致）
+            view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            MiuixDropdownAnimator.dismissAnimated(popup);
             scrollToSectionTitle(findViewById(SECTION_TITLE_IDS[position]));
         });
         // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角）

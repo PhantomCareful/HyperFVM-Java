@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Miuix popup 展开/收起动画的减速插值器（HC 同款参数）：
+     fan.miuix 各 aar 的 R.txt 均声明本资源但未随包携带定义，
+     按同源 accelerate_sextic = AccelerateInterpolator(factor 3.0) 对称实现
+     （sextic 即 2×factor=6 次方曲线） -->
+<decelerateInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:factor="3.0" />

@@ -187,8 +187,8 @@ public class MeishiWechatActivity extends BaseActivity {
             }
         });
 
-        // 6. 添加背景模糊
-        DialogBackgroundBlurUtil.setDialogBackgroundBlur(dialog, 100);
+        // 6. 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
     }
 

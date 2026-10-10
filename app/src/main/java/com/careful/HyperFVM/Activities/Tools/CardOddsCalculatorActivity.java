@@ -114,13 +114,6 @@ public class CardOddsCalculatorActivity extends BaseActivity {
     // 各组下拉选择：每组一个实例，独立维护选中值、菜单与展示位
     private DropdownGroup[] dropdownGroups;
 
-    // 记录最近一次触摸按下时的横向位置，供下拉菜单跟随手指弹出（-1 表示尚未触摸过）
-    private float lastTouchDownX = -1;
-
-    // 页面内容左右边距（手机/PAD 由 InsetsUtil 动态计算）。下拉菜单最右缘沿用此值，
-    // 保证菜单不贴屏幕右缘，而是与页面内容右缘对齐
-    private int pageContentSideMarginPx = 0;
-
     // 持久化存储：按各组 stateKey 记录逻辑选中值（与旧单选器同键同义，跨升级兼容）
     private SharedPreferences prefs;
 
@@ -190,7 +183,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
     }
 
     /**
-     * 初始化 10 组下拉选择（弹出方式与设置页 selector 一致：以点击区为锚点、菜单跟随手指横向弹出）：
+     * 初始化 10 组下拉选择（弹出方式与设置页 selector 一致：以点击区为锚点、菜单右缘固定对齐容器）：
      * 图标组（主卡/副卡/四叶草/VIP/公会）点击“标题+图片”整列弹出菜单，其中主卡/副卡/VIP
      * 菜单为纯图片、四叶草为图片+加成倍率文字、公会为纯文字；
      * 副卡类型组点击整行弹出菜单，按“好卡、中卡、差卡”顺序排列且默认好卡
@@ -357,14 +350,12 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             if (logic < minLogic || logic > maxLogic) {
                 logic = defaultValue;
             }
-            // 记录触摸位置，使下拉菜单跟随手指横向弹出（与设置页一致）
-            bindDropdownRowTouch(clickTarget);
             this.clickTarget.setOnClickListener(v -> showDropdown());
         }
 
         /**
          * 就地弹出本组下拉选项菜单：行渲染（文字 colorPrimary 高亮/图片/√）、
-         * 宽度恒为“最长条目+对勾”、四分支展开、横向跟随手指、打开时居中定位选中项、
+         * 宽度恒为“最长条目+对勾”、四分支展开、右缘固定对齐容器、打开时居中定位选中项、
          * 点击行外自动关闭——全部复用 DropdownPopupHelper 公用实现，
          * 本方法只负责构造本组 adapter 与选中回调
          */
@@ -373,8 +364,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             ArrayAdapter<String> adapter = DropdownPopupHelper.createAdapter(
                     CardOddsCalculatorActivity.this, selectedMenuIndex, labels, menuLayoutId, menuDrawables);
             DropdownPopupHelper.showAnchored(CardOddsCalculatorActivity.this, clickTarget, adapter,
-                    labels.length, selectedMenuIndex, lastTouchDownX, pageContentSideMarginPx,
-                    this::selectByMenuIndex);
+                    labels.length, selectedMenuIndex, this::selectByMenuIndex);
         }
 
         /** 菜单项点击：写入逻辑选中值并持久化，随后统一由 recalculate 刷新展示与结果 */
@@ -403,19 +393,6 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             logic = restored >= minLogic && restored <= maxLogic ? restored : defaultValue;
             prefs.edit().putInt(stateKey, logic).apply();
         }
-    }
-
-    /**
-     * 记录点击下拉行/列时的横向触摸位置，供下拉菜单跟随手指横向弹出（与设置页一致）
-     */
-    @SuppressLint("ClickableViewAccessibility")
-    private void bindDropdownRowTouch(View container) {
-        container.setOnTouchListener((v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                lastTouchDownX = event.getX();
-            }
-            return false;// 不消费事件，保持原有按压反馈与点击行为
-        });
     }
 
     /**
@@ -678,9 +655,6 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             floatButtonBack.setLayoutParams(params);
-
-            // 同步页面边距给下拉菜单：菜单最右缘与页面内容右缘对齐，统一在此处管理
-            pageContentSideMarginPx = layout_marginHorizontal;
         });
 
         // 顺便设置返回按钮的功能

@@ -2,8 +2,10 @@ package com.careful.HyperFVM.utils.ForDesign.Scroll;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -67,6 +69,13 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     private float mVelocityX;
     private float mVelocityY;
     private final int[] mNestedConsumedCompat = new int[2];
+    // 回弹振动去重：同一次手势的嵌套/fling 多条回弹链路可能先后收口到 springBack，短窗口内只振一次
+    private long mLastSpringBackHapticAt;
+    private static final long SPRING_BACK_HAPTIC_DEBOUNCE_MS = 250;
+    // touch 手势链起点时目标的边缘状态：区分"行进中撞边缘（回弹要振）"与
+    // "已停稳在边缘后再拖出越界（回弹不振）"；fling 是同一条手势链的延续不覆盖
+    private boolean mTargetStartedAtTop;
+    private boolean mTargetStartedAtBottom;
 
     public SpringBackLayout(Context context) {
         this(context, null);
@@ -271,6 +280,9 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
                 mActivePointerId = ev.getPointerId(0);
+                // 非嵌套（touch 路径）手势起点的边缘状态；嵌套页随后由 accepted 覆盖（同值）
+                mTargetStartedAtTop = isTargetScrollToTop();
+                mTargetStartedAtBottom = isTargetScrollToBottom();
                 int idx = ev.findPointerIndex(mActivePointerId);
                 if (idx < 0) return false;
                 mInitialDownY = ev.getY(idx);
@@ -498,6 +510,11 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     @Override
     public void onNestedScrollAccepted(@NonNull View child, @NonNull View target, int axes, int type) {
         if (mSpringBackEnable) {
+            if (type == ViewCompat.TYPE_TOUCH) {
+                // 记录 touch 手势链起点的边缘状态（fling NON_TOUCH 不覆盖：同链延续）
+                mTargetStartedAtTop = isTargetScrollToTop();
+                mTargetStartedAtBottom = isTargetScrollToBottom();
+            }
             boolean vertical = mNestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL;
             int dir = vertical ? DIRECTION_VERTICAL : 1;
             float scroll = vertical ? getScrollY() : getScrollX();
@@ -826,6 +843,21 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         int y = getScrollY();
         if (x == 0 && y == 0 && velocity == 0f) {
             return; // 原版会启动一个立即完成的空动画并分派 state 0，这里等价早退
+        }
+        // 触发回弹效果时的振动反馈（对齐 HyperCeiler 观感）：仅"行进中撞到边缘"的回弹
+        // 才振（手势链起点不在该边缘）；已停稳在边缘后再拖出的越界回弹不振（起点即在该边缘）
+        boolean haptic;
+        if (y < 0) {
+            haptic = !mTargetStartedAtTop;
+        } else if (y > 0) {
+            haptic = !mTargetStartedAtBottom;
+        } else {
+            haptic = !mTargetStartedAtTop && !mTargetStartedAtBottom;
+        }
+        long now = SystemClock.uptimeMillis();
+        if (haptic && now - mLastSpringBackHapticAt > SPRING_BACK_HAPTIC_DEBOUNCE_MS) {
+            mLastSpringBackHapticAt = now;
+            performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         }
         mSpringScroller.forceStop();
         mSpringScroller.scrollByFling(x, 0, y, 0, velocity, direction, false);

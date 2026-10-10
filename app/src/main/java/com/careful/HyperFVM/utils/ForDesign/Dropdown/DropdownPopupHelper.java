@@ -1,10 +1,9 @@
 package com.careful.HyperFVM.utils.ForDesign.Dropdown;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Outline;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
@@ -25,77 +24,127 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 
 import java.util.function.Consumer;
 
+import fan.animation.Folme;
+import fan.animation.base.AnimConfig;
+import fan.animation.listener.TransitionListener;
+import fan.animation.property.ViewProperty;
+import fan.animation.utils.EaseManager;
+
 /**
  * 下拉菜单（ListPopupWindow + popup_dropdown_background 浮层）通用增强：
  * 1. 菜单弹出时给菜单以外的屏幕区域加深灰色遮罩，突出菜单主体（菜单为独立窗口，
- *    天然层叠在遮罩之上）；菜单关闭时遮罩自动移除。
+ *    天然层叠在遮罩之上）；菜单关闭时遮罩自动移除（与收起动画同步淡出）。
  * 2. 把列表绘制（含首/末条目的按压波纹）裁进浮层圆角，防止波纹溢出 16dp 圆角。
+ * 3. 展开/收起采用 Miuix view 级弹簧变形动画（MiuixDropdownAnimator，对齐
+ *    HyperCeiler 的 PopupAnimHelper 真实路径）：条目点击/外部点击带动画收起，
+ *    窗口级 enter/exit 动画全程清零（展开不叠加窗口过场，纯由 view 级弹簧呈现）。
  * 供 SettingsActivity / CookeryIndexActivity / OddsDisclosureIndexActivity 复用。
  * 另提供 createAdapter/showAnchored 公用构建：选项行渲染（文字高亮/图片/√）与就地弹出
- * 全流程（实测宽度恒为“最长条目+对勾”、四分支展开、手指跟随、居中定位选中项），
+ * 全流程（实测宽度恒为“最长条目+对勾”、四分支展开、右缘固定对齐、居中定位选中项），
  * 供 SettingsActivity（纯文本菜单）与 CardOddsCalculatorActivity（图片/图片+文字菜单）复用。
  */
 public final class DropdownPopupHelper {
 
     // 与 drawable/popup_dropdown_background.xml 的 corners radius 保持一致
     private static final int CORNER_RADIUS_DP = 16;
-    // 遮罩压暗程度（黑 40% 透明度）
-    private static final int DIM_MASK_COLOR = 0x66000000;
-    // 遮罩淡入时长
-    private static final long DIM_MASK_FADE_IN_MS = 180;
-    // 遮罩淡出时长（菜单关闭后遮罩再淡出消失，避免瞬间闪没）
-    private static final long DIM_MASK_FADE_OUT_MS = 180;
+    // 遮罩淡入时长（对齐 HC PopupAnimHelper 的 DIM_ENTER_DURATION=300）
+    private static final long DIM_MASK_FADE_IN_MS = 300;
+    // 遮罩淡出时长（对齐 HC DIM_EXIT_DURATION=150；view 级收起时与菜单同步启动，
+    // 返回键关闭时则在真关闭后才淡出，与窗口 exit 动画同时进行）
+    private static final long DIM_MASK_FADE_OUT_MS = 150;
 
     private DropdownPopupHelper() {
     }
 
     /**
-     * 弹出下拉菜单并附加遮罩与圆角裁切。须在 setAdapter/setOnItemClickListener 等
-     * 参数全部设置完成之后调用（本方法内部负责 show，调用方不要再调 popup.show()）。
+     * 弹出下拉菜单并附加遮罩、Miuix 展开动画与圆角裁切。须在 setAdapter/
+     * setOnItemClickListener 等参数全部设置完成之后调用（本方法内部负责 show，
+     * 调用方不要再调 popup.show()）。
      * 注意：会覆盖调用方已设置的 OnDismissListener（当前三处调用方均未设置）。
      */
     public static void show(Activity activity, ListPopupWindow popup) {
         // 遮罩挂在 content 上：随 Activity 销毁自动回收，且不遮挡系统栏图标
         ViewGroup content = activity.findViewById(android.R.id.content);
         View mask = new View(activity);
-        mask.setBackgroundColor(DIM_MASK_COLOR);
+        // Miuix 窗口遮罩规范：浅色 #4D000000 / 深色 #99000000（night 资源自适应）
+        mask.setBackgroundColor(ContextCompat.getColor(activity, R.color.color_window_scrim));
         // modal 模式下触摸由 popup 窗口拦截，此点击兜底仅在非 modal 时防止误触底下控件
         mask.setClickable(true);
         mask.setAlpha(0f);
         content.addView(mask, new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mask.animate().alpha(1f).setDuration(DIM_MASK_FADE_IN_MS).start();
+        fadeMask(mask, 1f, DIM_MASK_FADE_IN_MS, null);
         // 菜单关闭时遮罩先淡出再移除（此时 popup 窗口已关闭，遮罩短暂残留于底层之上无视觉冲突）。
-        // 用 onAnimationEnd 而非 withEndAction：动画被取消时前者仍会回调，
-        // 避免残留一个透明但可点击的遮罩拦截页面触摸
-        popup.setOnDismissListener(() -> mask.animate()
-                .alpha(0f)
-                .setDuration(DIM_MASK_FADE_OUT_MS)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (mask.getParent() != null) {
-                            content.removeView(mask);
-                        }
-                    }
-                })
-                .start());
-
-        popup.show();
-
-        // 列表按 16dp 圆角裁剪绘制（波纹等子项绘制一并裁进圆角）
-        ListView listView = popup.getListView();
-        if (listView != null) {
-            float radiusPx = CORNER_RADIUS_DP
-                    * activity.getResources().getDisplayMetrics().density;
-            listView.setOutlineProvider(new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radiusPx);
+        // 结束/取消均回调（onComplete/onCancel）：避免残留一个透明但可点击的遮罩拦截页面触摸
+        popup.setOnDismissListener(() -> {
+            if (mask.getAlpha() <= 0.01f) {
+                // view 级收起时遮罩已与菜单同步淡出完毕，直接移除即可
+                if (mask.getParent() != null) {
+                    content.removeView(mask);
+                }
+                return;
+            }
+            fadeMask(mask, 0f, DIM_MASK_FADE_OUT_MS, () -> {
+                if (mask.getParent() != null) {
+                    content.removeView(mask);
                 }
             });
-            listView.setClipToOutline(true);
+        });
+
+        // show 前准备 view 级 Miuix 展开/收起动画（HyperCeiler 同款弹簧变形；
+        // 窗口参数 show 时固化，背景透明化与窗口动画清零须在此之前完成）
+        MiuixDropdownAnimator animator = MiuixDropdownAnimator.prepare(popup);
+        if (animator != null) {
+            // 收起动画启动瞬间同步淡出遮罩（与菜单收缩同步，对齐 HC 的 dim 时序）
+            animator.setOnDismissStart(() -> fadeMask(mask, 0f, DIM_MASK_FADE_OUT_MS, null));
         }
+        popup.show();
+
+        if (animator != null) {
+            animator.onShown(popup);
+        } else {
+            Log.d("MiuixDrop", "helper: animator null -> static clip path");
+            // 降级（反射失败等）：无 view 级动画，列表按固定 16dp 圆角裁剪绘制
+            // （波纹等子项绘制一并裁进圆角，保持原行为）
+            ListView listView = popup.getListView();
+            if (listView != null) {
+                float radiusPx = CORNER_RADIUS_DP
+                        * activity.getResources().getDisplayMetrics().density;
+                listView.setOutlineProvider(new ViewOutlineProvider() {
+                    @Override
+                    public void getOutline(View view, Outline outline) {
+                        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radiusPx);
+                    }
+                });
+                listView.setClipToOutline(true);
+            }
+        }
+    }
+
+    /**
+     * 遮罩 alpha 过渡：必须用 Folme 定时驱动而非 ViewPropertyAnimator——后者受开发者选项
+     * "Animator 时长缩放"影响（10x 下淡入 300ms 拖成 3s，展开观感被放慢），
+     * 而 HC 的 dim 与菜单动画同为自计时引擎驱动、不受该缩放影响（菜单几何同走 Folme）。
+     *
+     * @param onSettled 结束/取消回调（均可触发，调用方自行保证幂等）；可为 null
+     */
+    private static void fadeMask(View mask, float targetAlpha, long durationMs, Runnable onSettled) {
+        AnimConfig config = new AnimConfig()
+                .setEase(EaseManager.getStyle(1, (int) durationMs));
+        if (onSettled != null) {
+            config.addListeners(new TransitionListener() {
+                @Override
+                public void onComplete(Object o) {
+                    onSettled.run();
+                }
+
+                @Override
+                public void onCancel(Object o) {
+                    onSettled.run();
+                }
+            });
+        }
+        Folme.use(mask).to(ViewProperty.ALPHA, targetAlpha, config);
     }
 
     /**
@@ -158,19 +207,18 @@ public final class DropdownPopupHelper {
      * 1. 实测全部选项行——测量时统一强制显示√，菜单宽恒为“最长条目+对勾”，不随选中项变化，
      *    再按屏幕宽钳制；行高用于限制菜单总高；
      * 2. 四分支展开方向（下足向下/上足上翻/都不够取空间大侧收缩至少两行）；
-     * 3. 横向跟随手指按下的位置弹出，右缘与页面内容右缘对齐；
+     * 3. 横向固定对齐容器右缘（菜单右缘 = 容器右缘，从容器右下角（向下弹）/右上角
+     *    （向上弹）固定展示，不随手指按压位置变化）；
      * 4. 打开时列表定位到当前选中项（居中显示）；
      * 5. 弹出（附带灰遮罩+波纹圆角裁切）并隐藏滚动条，点击行执行 onMenuItemClick 后自动关闭；
      * 6. 弹出菜单时与点击条目时各触发一次设备振动反馈（CONFIRM，与设置页既有交互反馈一致）。
      * 须在 adapter 构造完成之后调用。
      *
-     * @param lastTouchDownX          anchor 上一次 ACTION_DOWN 的横向位置（bindRowTouch 记录，-1 表示无）
-     * @param pageContentSideMarginPx 页面内容区侧边距，用于菜单右缘对齐
      * @param onMenuItemClick         行点击回调（菜单关闭由本方法统一处理）
      */
     public static void showAnchored(Activity activity, View anchor, ArrayAdapter<String> adapter,
-                                    int itemCount, int selectedMenuIndex, float lastTouchDownX,
-                                    int pageContentSideMarginPx, Consumer<Integer> onMenuItemClick) {
+                                    int itemCount, int selectedMenuIndex,
+                                    Consumer<Integer> onMenuItemClick) {
         // 点击弹出菜单时先触发一次振动反馈（与点击条目时的振动一致）
         anchor.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         // 实测选项宽高：ListView 在 PopupWindow 中无法真正 wrap_content，需自行测量内容宽后按像素设置。
@@ -218,13 +266,12 @@ public final class DropdownPopupHelper {
             popupHeight = Math.max(spaceBelow, itemHeight * 2);
         }
 
-        // 横向弹出位置跟随手指按下的位置；最右不得超过屏幕右缘减页面边距，使菜单右缘与页面内容右缘对齐
-        int horizontalOffset = 0;
-        if (lastTouchDownX >= 0) {
-            int maxOffset = anchor.getRootView().getWidth() - contentWidth
-                    - location[0] - pageContentSideMarginPx;
-            horizontalOffset = Math.max(0, Math.min((int) lastTouchDownX, maxOffset));
-        }
+        // 横向固定对齐容器右缘：菜单右缘 = 容器右缘，弹窗从容器右下角（向下弹）/
+        // 右上角（向上弹）固定展示，不随手指按压位置变化；
+        // 再钳进屏幕左右边界，防窄容器靠边时菜单越出屏幕
+        int horizontalOffset = anchor.getWidth() - contentWidth;
+        horizontalOffset = Math.max(-location[0],
+                Math.min(horizontalOffset, anchor.getRootView().getWidth() - contentWidth - location[0]));
 
         // 列表高于可视区时打开即定位当前选中项：取选中项居中时的首行下标
         // （可视行数按已算出的弹出高度折算；全部可见时折算结果为 0，不产生滚动）
@@ -245,7 +292,7 @@ public final class DropdownPopupHelper {
             // 点击条目时触发一次振动反馈，随后执行回调并关闭菜单
             view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             onMenuItemClick.accept(position);
-            popup.dismiss();
+            MiuixDropdownAnimator.dismissAnimated(popup);
         });
 
         // 弹出菜单（附带全屏灰色遮罩 + 首末条目波纹裁进浮层圆角），随后隐藏滚动条

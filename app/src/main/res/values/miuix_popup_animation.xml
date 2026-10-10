@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Miuix 弹出菜单（ImmersionMenu）窗口动画样式，自 fan.miuix:popupwidget 1.0.13.0 移植。
+     v2：展开动画由 DropdownPopupHelper/MiuixDropdownAnimator 的 view 级 Folme 弹簧变形承担
+     （对齐 HyperCeiler 的 PopupAnimHelper 真实路径），窗口动画仅保留 exit 作为
+     返回键/框架直接 dismiss 等无法拦截路径的收起兑底；主动关闭时会清零
+     windowAnimations 防止与 view 级收缩动画叠加。
+-->
+<resources>
+    <fraction name="immersion_menu_anim_pivot_x">100%</fraction>
+    <integer name="immersion_menu_exit_duration">150</integer>
+
+    <!-- 基类 style 由 fan.miuix 其他模块提供，未随 popupwidget 移植，
+         这里补空定义以满足 Animation.PopupWindow 点号命名的隐式父级链接 -->
+    <style name="Animation" />
+
+    <style name="Animation.PopupWindow" />
+
+    <style name="Animation.PopupWindow.ImmersionMenu">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit</item>
+    </style>
+
+    <style name="Animation.PopupWindow.ImmersionMenu.Bottom">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit_bottom</item>
+    </style>
+
+    <style name="Animation.PopupWindow.ImmersionMenu.Center">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit_center</item>
+    </style>
+
+    <style name="Animation.PopupWindow.ImmersionMenu.LeftBottom">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit_left_bottom</item>
+    </style>
+
+    <style name="Animation.PopupWindow.ImmersionMenu.LeftTop">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit_left_top</item>
+    </style>
+
+    <style name="Animation.PopupWindow.ImmersionMenu.RightBottom">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit_right_bottom</item>
+    </style>
+
+    <style name="Animation.PopupWindow.ImmersionMenu.RightTop">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit_right_top</item>
+    </style>
+
+    <style name="Animation.PopupWindow.ImmersionMenu.Top">
+        <item name="android:windowExitAnimation">@anim/immersion_menu_exit_top</item>
+    </style>
+</resources>

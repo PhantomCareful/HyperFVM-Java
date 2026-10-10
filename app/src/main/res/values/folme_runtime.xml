@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        fan.folme 运行时映射资源（配合 java/fan/folme/R.java 使用）。
+        animation-1.0.13.0.aar 内嵌的 miuix-animation.jar（Folme 主体）字节码 sget 了
+        fan.folme.R$id / fan.folme.R$color，但 aar namespace 为 fan.animation，
+        fan.folme.R 无任何模块提供；这些 tag key 与 tint 色也不在 aar 的 res/values 里，
+        故在本 app 自建（app 资源覆盖/补充 library 资源，编译期与运行时都归 HyperFVM.R）。
+    -->
+    <!-- Folme 用作 setTag/getTag 的 key，只需本进程内唯一，不存在于原 res 亦无碍 -->
+    <item name="folme_tag_animator" type="id" />
+    <item name="miuix_animation_tag_is_dragging" type="id" />
+    <item name="miuix_animation_tag_touch_listener" type="id" />
+    <item name="miuix_animation_tag_hover_set_translation_x" type="id" />
+
+    <!-- FolmeBlink / FolmeTouch / FolmeHover 的高亮 tint。下拉菜单与背景换色动画
+         均不触达 touch/hover 路径；透明兜底，即使被触达也不会渲染出错误色块 -->
+    <color name="miuix_folme_color_blink_tint">#00000000</color>
+    <color name="miuix_folme_color_touch_tint">#00000000</color>
+    <color name="miuix_folme_color_touch_tint_light">#00000000</color>
+    <color name="miuix_folme_color_hover_tint">#00000000</color>
+    <color name="miuix_folme_color_hover_tint_light">#00000000</color>
+</resources>

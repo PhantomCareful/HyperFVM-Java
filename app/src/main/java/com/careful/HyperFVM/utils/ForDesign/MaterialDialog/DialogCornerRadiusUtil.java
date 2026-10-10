@@ -43,8 +43,8 @@ import java.util.Objects;
  */
 public final class DialogCornerRadiusUtil {
 
-    /** 诊断日志开关（圆角/出现动画调试中，验证通过后关闭） */
-    private static final boolean DEBUG = true;
+    /** 诊断日志开关（圆角/出现动画已验证通过，关闭以清噪声；再调试时改 true） */
+    private static final boolean DEBUG = false;
     private static final String TAG = "DialogCorner";
 
     private DialogCornerRadiusUtil() {
