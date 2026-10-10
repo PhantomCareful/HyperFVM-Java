@@ -2,6 +2,7 @@ package com.careful.HyperFVM.utils.ForDesign.Scroll;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 
 import androidx.annotation.IdRes;
@@ -45,6 +46,8 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
  */
 public class NestedScrollUtil {
     private final View scrollContainer;   // ScrollView / NestedScrollView / RecyclerView
+    @Nullable
+    private final View springBackParent;  // 外层 SpringBackLayout 越界回弹容器（无包裹时为null）
     private View topBarBottom;          // 滚动容器内的大标题（可为null，可在绑定后经 setTopBarBottom 注入）
     private final View topBar;            // 悬浮的小标题（可为null）
     private final View blurViewTopBar;    // 悬浮的模糊背景层（可为null）
@@ -53,10 +56,12 @@ public class NestedScrollUtil {
     private int lastScrollOffset; // RecyclerView 场景的真实滚动偏移（onScrolled 中按增量累计并经首行几何自纠）
     private boolean syncEnabled = true;// 联动组件写入开关：多宿主共享同一联动组件时，非当前宿主应关闭，防止不可见页的滚动/位置恢复影响当前页
 
-    private NestedScrollUtil(View scrollContainer, View topBarBottom, View topBar,
+    private NestedScrollUtil(View scrollContainer, @Nullable View springBackParent,
+                             View topBarBottom, View topBar,
                              View blurViewTopBar, int fadeRangePx,
                              @Nullable View.OnScrollChangeListener pageScrollListener) {
         this.scrollContainer = scrollContainer;
+        this.springBackParent = springBackParent;
         this.topBarBottom = topBarBottom;
         this.topBar = topBar;
         this.blurViewTopBar = blurViewTopBar;
@@ -145,7 +150,8 @@ public class NestedScrollUtil {
         if (fadeRangeDp <= 0) {
             throw new IllegalArgumentException("fadeRangeDp 必须大于0，当前：" + fadeRangeDp);
         }
-        NestedScrollUtil util = new NestedScrollUtil(scrollContainer, topBarBottom, topBar,
+        NestedScrollUtil util = new NestedScrollUtil(scrollContainer,
+                findSpringBackAncestor(scrollContainer), topBarBottom, topBar,
                 blurViewTopBar, DensityUtil.dpToPx(scrollContainer.getContext(), fadeRangeDp),
                 pageScrollListener);
         // 同步初始透明度（未滚动：大标题全显、顶栏全透明）
@@ -167,6 +173,19 @@ public class NestedScrollUtil {
                 util.syncAlpha();
                 if (pageScrollListener != null) {
                     pageScrollListener.onScrollChange(v, scrollX, scrollY, oldScrollX, oldScrollY);
+                }
+            });
+        }
+        // 越界回弹位移联动：短内容页 scrollContainer 恒不滚动（scrollY=0、滚动监听不触发），
+        // 拖动的视觉位移全部由 SpringBackLayout 自身产生——在其位移变化时同样驱动渐变，
+        // 使越界拖动也能让大标题淡出、顶栏淡入，避免顶栏文字与内容重叠
+        if (util.springBackParent != null) {
+            util.springBackParent.setOnScrollChangeListener((v, sx, sy, osx, osy) -> {
+                util.syncAlpha();
+                if (pageScrollListener != null) {
+                    int offset = util.getScrollOffset();
+                    pageScrollListener.onScrollChange(scrollContainer, scrollContainer.getScrollX(),
+                            offset, scrollContainer.getScrollX(), offset);
                 }
             });
         }
@@ -223,7 +242,9 @@ public class NestedScrollUtil {
     }
 
     private float computeProgress() {
-        return Math.min(1f, getScrollOffset() / (float) fadeRangePx);
+        // 越界位移可使偏移短暂为负（顶部下拉）或越过 fadeRange（底部上推）→ clamp 到 [0,1]
+        float progress = getScrollOffset() / (float) fadeRangePx;
+        return Math.min(1f, Math.max(0f, progress));
     }
 
     private void cancelAlphaAnimations() {
@@ -258,7 +279,8 @@ public class NestedScrollUtil {
      * 请在宿主的 onSaveInstanceState 中调用
      */
     public void saveScrollY(@NonNull Bundle outState, @NonNull String key) {
-        outState.putInt(key, getScrollOffset());
+        // 只保存纯滚动位置，不含越界回弹瞬态位移（重建后容器已归零，混入会导致恢复超调）
+        outState.putInt(key, getContainerScrollOffset());
     }
 
     /**
@@ -350,13 +372,41 @@ public class NestedScrollUtil {
     /**
      * 读取滚动容器当前的垂直滚动偏移：
      * ScrollView/NestedScrollView 直接读 getScrollY；
-     * RecyclerView 不更新 View 的 scrollY（恒为0），须用滚动条偏移 API 获取真实偏移
+     * RecyclerView 不更新 View 的 scrollY（恒为0），以 onScrolled 增量累计并经首行几何自纠维护
      */
-    private int getScrollOffset() {
+    private int getContainerScrollOffset() {
         if (scrollContainer instanceof RecyclerView) {
             // RecyclerView 场景：偏移由 onScrolled 维护（增量累计 + 首行几何自纠），见 updateLastScrollOffset
             return lastScrollOffset;
         }
         return scrollContainer.getScrollY();
+    }
+
+    /**
+     * 视觉偏移 = 滚动偏移 + 越界回弹位移。
+     * SpringBackLayout 的 scrollTo 位移与 scrollY 同号（正=内容上移：底部越界为正、顶部下拉为负），
+     * 短内容页 scrollContainer 恒不滚动，视觉偏移完全来自容器位移——顶栏渐变按此口径计算
+     */
+    private int getScrollOffset() {
+        int offset = getContainerScrollOffset();
+        if (springBackParent != null) {
+            offset += springBackParent.getScrollY();
+        }
+        return offset;
+    }
+
+    /**
+     * 沿父链查找越界回弹容器（SpringBackLayout）：未做回弹改造的布局返回 null，行为与原先完全一致
+     */
+    @Nullable
+    private static View findSpringBackAncestor(View scrollContainer) {
+        ViewParent parent = scrollContainer.getParent();
+        while (parent != null) {
+            if (parent instanceof SpringBackLayout) {
+                return (View) parent;
+            }
+            parent = parent.getParent();
+        }
+        return null;
     }
 }
