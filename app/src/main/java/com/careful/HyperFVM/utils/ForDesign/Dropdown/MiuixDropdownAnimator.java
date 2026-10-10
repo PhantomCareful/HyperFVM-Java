@@ -1,5 +1,6 @@
 package com.careful.HyperFVM.utils.ForDesign.Dropdown;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Outline;
@@ -88,7 +89,7 @@ public final class MiuixDropdownAnimator {
      * setMinVisibleChange(-1) 忽略最小变化阈值，过冲区间持续刷新（HC setEdgeExtension(true) 同款）。
      */
     private static final ValueProperty<MiuixDropdownAnimator> POPUP_FRACTION =
-            new ValueProperty<MiuixDropdownAnimator>("fraction") {
+            new ValueProperty<>("fraction") {
                 @Override
                 public float getValue(MiuixDropdownAnimator anim) {
                     return anim.mFraction;
@@ -154,7 +155,7 @@ public final class MiuixDropdownAnimator {
             Field field = ListPopupWindow.class.getDeclaredField("mPopup");
             field.setAccessible(true);
             Object raw = field.get(popup);
-            if (!(raw instanceof PopupWindow)) {
+            if (!(raw instanceof PopupWindow frameworkPopup)) {
                 Log.d(TAG, "prepare: mPopup is " + (raw == null ? "null" : raw.getClass().getName())
                         + " -> skip anim");
                 return null;
@@ -165,7 +166,6 @@ public final class MiuixDropdownAnimator {
                 Log.d(TAG, "prepare: no background -> skip anim");
                 return null;
             }
-            PopupWindow frameworkPopup = (PopupWindow) raw;
             int gravity = estimateGravity(popup, anchor);
             // 窗口动画 style 清零（对齐官方 view 级路径：窗口从不携带动画 style）：
             // ListPopupWindow 构造时经主题 defStyle 带入了含 enter 的窗口动画，
@@ -324,6 +324,7 @@ public final class MiuixDropdownAnimator {
     // ------------------------------------------------------------------ 内部实现
 
     /** 预估弹出方向（原 DropdownPopupHelper#applyMiuixAnimation 迁入）：show 前按锚点/偏移估算中心偏差 */
+    @SuppressLint("RtlHardcoded")
     private static int estimateGravity(ListPopupWindow popup, View anchor) {
         // showAsDropDown：left = anchor.left + xoff，top = anchor.bottom + yoff；
         // 尺寸未设置时按锚点尺寸/0 参与估算
@@ -395,6 +396,7 @@ public final class MiuixDropdownAnimator {
      * 注意：这会替换 androidx 自带的 PopupTouchInterceptor，其仅承担 IME 弹出时的
      * 列表高度重测（本菜单不涉及输入法），丢失无影响。
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void installOutsideInterceptor() {
         mFrameworkPopup.setTouchInterceptor((v, ev) -> {
             if (mDismissing) {
@@ -432,8 +434,7 @@ public final class MiuixDropdownAnimator {
             View probe = mContent != null ? mContent : mFrameworkPopup.getContentView();
             View root = probe.getRootView();
             ViewGroup.LayoutParams lp = root.getLayoutParams();
-            if (lp instanceof WindowManager.LayoutParams) {
-                WindowManager.LayoutParams wlp = (WindowManager.LayoutParams) lp;
+            if (lp instanceof WindowManager.LayoutParams wlp) {
                 if (wlp.windowAnimations != 0) {
                     wlp.windowAnimations = 0;
                     WindowManager wm = (WindowManager) root.getContext()
