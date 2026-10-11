@@ -19,7 +19,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.ListPopupWindow;
 import androidx.core.content.ContextCompat;
 
+import com.careful.HyperFVM.BuildConfig;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 
 import java.util.function.Consumer;
@@ -57,7 +59,7 @@ public final class DropdownPopupHelper {
     }
 
     /**
-     * 弹出下拉菜单并附加遮罩、Miuix 展开动画与圆角裁切。须在 setAdapter/
+     * 弹出下拉菜单并附加遮罩、Miuix 展开动画、圆角裁切与长列表越界回弹。须在 setAdapter/
      * setOnItemClickListener 等参数全部设置完成之后调用（本方法内部负责 show，
      * 调用方不要再调 popup.show()）。
      * 注意：会覆盖调用方已设置的 OnDismissListener（当前三处调用方均未设置）。
@@ -99,25 +101,72 @@ public final class DropdownPopupHelper {
             animator.setOnDismissStart(() -> fadeMask(mask, 0f, DIM_MASK_FADE_OUT_MS, null));
         }
         popup.show();
+        // 长内容菜单越界回弹：把弹出的 ListView 包进竖直 SpringBackLayout
+        // （非嵌套 target 走 touch 路径；每次 show 均新建 popup/ListView，无复用冲突）
+        wrapListWithSpringBack(activity, popup);
 
         if (animator != null) {
             animator.onShown(popup);
         } else {
             Log.d("MiuixDrop", "helper: animator null -> static clip path");
             // 降级（反射失败等）：无 view 级动画，列表按固定 16dp 圆角裁剪绘制
-            // （波纹等子项绘制一并裁进圆角，保持原行为）
+            // （波纹等子项绘制一并裁进圆角，保持原行为）；圆角层挂外壳——否则
+            // 越界滚动把内容移出列表底边后，圆角被列表直角 bounds 裁成直角
             ListView listView = popup.getListView();
             if (listView != null) {
                 float radiusPx = CORNER_RADIUS_DP
                         * activity.getResources().getDisplayMetrics().density;
-                listView.setOutlineProvider(new ViewOutlineProvider() {
+                View clipTarget = listView.getParent() instanceof SpringBackLayout spring
+                        ? spring : listView;
+                clipTarget.setOutlineProvider(new ViewOutlineProvider() {
                     @Override
                     public void getOutline(View view, Outline outline) {
                         outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radiusPx);
                     }
                 });
-                listView.setClipToOutline(true);
+                clipTarget.setClipToOutline(true);
             }
+        }
+    }
+
+    /**
+     * 把弹出的 ListView 包进竖直 SpringBackLayout：长菜单滚动到顶/底后再拖动获得
+     * 越界回弹（含回弹振动）。包裹失败仅失去回弹，不影响弹出流程。
+     * 菜单弹层的越界范围用中阻尼（覆写 getSpringBackRange）：菜单内条目先滚动，
+     * 滚到头后橡皮筋上限 = range/3 ≈ 120dp，接近页面列表观感但不至像屏高/3 那样
+     * 把整菜单大幅移位（早期“菜单本身在滚动”的观感问题即来自完全不限幅）。
+     */
+    private static void wrapListWithSpringBack(Activity activity, ListPopupWindow popup) {
+        try {
+            ListView listView = popup.getListView();
+            if (listView == null || listView.getParent() instanceof SpringBackLayout
+                    || !(listView.getParent() instanceof ViewGroup parent)) {
+                return;
+            }
+            int index = parent.indexOfChild(listView);
+            ViewGroup.LayoutParams lp = listView.getLayoutParams();
+            if (index < 0 || lp == null) {
+                return;
+            }
+            parent.removeView(listView);
+            SpringBackLayout spring = new SpringBackLayout(activity) {
+                @Override
+                protected int getSpringBackRange(int dir) {
+                    // 360dp 阻尼范围 → 最大越界 120dp（obtainDampingDistance(1)=range/3）
+                    return DensityUtil.dpToPx(activity, 360);
+                }
+            };
+            parent.addView(spring, index, lp);
+            spring.addView(listView, new ViewGroup.LayoutParams(lp.width, lp.height));
+            // 菜单列表 fling 撞顶/底也不硬停：滚动监听补一次撞界回弹（与 touch 路径同观感）
+            spring.setEdgeFlingBounceEnable(true);
+            if (BuildConfig.DEBUG) {
+                Log.d("MiuixDrop", "wrapped listView parent=" + parent.getClass().getName()
+                        + " index=" + index + " lp=" + lp.width + "x" + lp.height
+                        + " listScrollable=" + listView.canScrollList(1));
+            }
+        } catch (Throwable t) {
+            Log.d("MiuixDrop", "wrapListWithSpringBack failed", t);
         }
     }
 

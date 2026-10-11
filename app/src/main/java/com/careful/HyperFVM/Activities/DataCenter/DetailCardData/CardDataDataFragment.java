@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.core.widget.NestedScrollView;
@@ -25,8 +26,12 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardDataDataFragment extends Fragment {
     private final DBHelper dbHelper = HyperFVMApplication.getDBHelper();
@@ -64,6 +69,8 @@ public class CardDataDataFragment extends Fragment {
         } else {
             root = inflater.inflate(R.layout.fragment_card_data_data, container, false);
         }
+        // 横向滚动组件适配越界回弹：全部包进水平 SpringBackLayout（两套布局通用）
+        wrapHorizontalScrollViews(root);
 
         if (getArguments() != null) {
             cardName = getArguments().getString("cardName");
@@ -82,6 +89,53 @@ public class CardDataDataFragment extends Fragment {
         initDecoration();
 
         return root;
+    }
+
+    /**
+     * 把布局内全部 HorizontalScrollView 包进水平 SpringBackLayout（越界回弹）。
+     * HorizontalScrollView 非 NestedScrollingChild，只能走 SpringBackLayout 的 touch 路径；
+     * 程序化包裹保持原 LayoutParams 宽高（测量/视觉零变化），覆盖普通与 _effect 两套布局，
+     * 无需改动布局 XML。
+     */
+    private static void wrapHorizontalScrollViews(View root) {
+        List<HorizontalScrollView> found = new ArrayList<>();
+        collectHorizontalScrollViews(root, found);
+        for (HorizontalScrollView hs : found) {
+            wrapHorizontalScrollView(hs);
+        }
+    }
+
+    private static void collectHorizontalScrollViews(View view, List<HorizontalScrollView> out) {
+        if (view instanceof HorizontalScrollView hsv) {
+            out.add(hsv);
+            return; // 横向滚动区内不再嵌套横向回弹
+        }
+        if (view instanceof ViewGroup group) {
+            for (int i = 0; i < group.getChildCount(); i++) {
+                collectHorizontalScrollViews(group.getChildAt(i), out);
+            }
+        }
+    }
+
+    private static void wrapHorizontalScrollView(HorizontalScrollView hs) {
+        if (hs.getParent() instanceof SpringBackLayout) {
+            return; // 已包裹（幂等）
+        }
+        if (!(hs.getParent() instanceof ViewGroup parent)) {
+            return;
+        }
+        int index = parent.indexOfChild(hs);
+        ViewGroup.LayoutParams lp = hs.getLayoutParams();
+        if (index < 0 || lp == null) {
+            return;
+        }
+        parent.removeView(hs);
+        SpringBackLayout spring = new SpringBackLayout(parent.getContext());
+        spring.setScrollOrientation(SpringBackLayout.DIRECTION_HORIZONTAL);
+        // fling 惯性撞边界不经 touch 路径（HSV 硬停无回弹），靠滚动监听补一次撞界回弹
+        spring.setEdgeFlingBounceEnable(true);
+        parent.addView(spring, index, lp);
+        spring.addView(hs, new ViewGroup.LayoutParams(lp.width, lp.height));
     }
 
     @SuppressLint({"Range", "DiscouragedApi"})

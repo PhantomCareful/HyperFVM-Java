@@ -77,6 +77,8 @@ configure<ApplicationExtension> {
     }
     buildFeatures {
         viewBinding = true
+        // 诊断日志 BuildConfig.DEBUG 门控（SpringBackLayout 触摸路径）
+        buildConfig = true
     }
     dataBinding {
         enable = true

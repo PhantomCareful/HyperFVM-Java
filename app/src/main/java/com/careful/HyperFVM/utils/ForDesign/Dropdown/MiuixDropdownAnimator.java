@@ -20,6 +20,8 @@ import android.widget.PopupWindow;
 
 import androidx.appcompat.widget.ListPopupWindow;
 
+import com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout;
+
 import java.lang.reflect.Field;
 import java.util.Collection;
 
@@ -203,15 +205,19 @@ public final class MiuixDropdownAnimator {
                 degrade();
                 return;
             }
-            mContent = listView;
+            // 背景/圆角裁切挂在外壳（SpringBackLayout）上：越界滚动只平移内层列表，
+            // 外壳的背景与 outline 固定不动——内容滑出菜单底边时底缘仍是圆角，
+            // 而不是跟着内容移走后被外壳直角 bounds 裁成直角；未包裹时退回列表自身
+            mContent = listView.getParent() instanceof SpringBackLayout spring
+                    ? spring : listView;
             listView.setTag(this);
-            // 原窗口背景（主题色 + 16dp 圆角 shape）搬到内容 view，视觉零差异
-            listView.setBackground(mMenuBackground);
+            // 原窗口背景（主题色 + 16dp 圆角 shape）搬到外壳，视觉零差异
+            mContent.setBackground(mMenuBackground);
             // 波纹等子项绘制裁进圆角；半径随动画在 view 本地坐标系反算（见 ScaleListener.apply）
             mOutlineRadiusPx = END_RADIUS_DP
-                    * listView.getResources().getDisplayMetrics().density;
-            applyOutlineProvider(listView);
-            mContentFolme = Folme.use(listView);
+                    * mContent.getResources().getDisplayMetrics().density;
+            applyOutlineProvider(mContent);
+            mContentFolme = Folme.use(mContent);
             // 窗口已添加：把窗口动画经 updateViewLayout 硬清零（与收起同一方法），
             // 展开期间 WMS 侧窗口同样不携带 enter 过场，纯由 view 级弹簧呈现
             disableWindowAnimations();

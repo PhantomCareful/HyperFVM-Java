@@ -7,9 +7,11 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,8 @@ import androidx.core.view.NestedScrollingChild;
 import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
+
+import com.careful.HyperFVM.BuildConfig;
 
 /**
  * 越界回弹容器（复刻 fan.springback.view.SpringBackLayout 1.0.13.0）。
@@ -30,24 +34,39 @@ import androidx.core.widget.NestedScrollView;
  *       阻尼拖拽 + 松手零速回弹，动画中按住用 obtainTouchDistance 反阻尼重映射不跳变。</li>
  * </ul>
  *
+ * <p>作用轴：默认竖直；{@link #setScrollOrientation(int)} 可把 touch 路径切到水平
+ * （供 HorizontalScrollView 包裹使用，如卡牌详情星级表）；嵌套路径仅服务竖直容器。
+ *
  * <p>与原版的差异（有意为之）：不实现向上层的 NestedScrollingChild 协议（本容器为顶层）、
  * 无 OnSpringListener/滚动状态分派（无消费者）、屏幕尺寸用 DisplayMetrics。
  */
 public class SpringBackLayout extends ViewGroup implements NestedScrollingParent3 {
 
     private static final String TAG = "SpringBackLayout";
-    private static final int DIRECTION_VERTICAL = 2;
+    /** 作用轴/方向（与 SpringScroller 的 orientation 语义一致）：2=竖直，1=水平 */
+    public static final int DIRECTION_VERTICAL = 2;
+    public static final int DIRECTION_HORIZONTAL = 1;
     private static final int MAX_FLING_CONSUME_COUNTER = 4;
     private static final float VELOCITY_THRESHOLD = 2000f;
+    /** fling 撞界回弹的初始越界量（dp）：先造一段越界位移再 springBack，撞墙呈橡皮筋而非硬停 */
+    private static final float EDGE_BOUNCE_KICK_DP = 20f;
+    /** touch 路径松手甩出速度上限（px/s）：限制 springBack 初速的过冲幅度，避免短内容被甩出过远 */
+    private static final float MAX_RELEASE_FLING = 3000f;
 
     private View mTarget;
     private final SpringScroller mSpringScroller;
     private boolean mSpringBackEnable = true;
+    /** 回弹作用轴：默认竖直；touch 路径可切水平（嵌套路径恒竖直） */
+    private int mOrientation = DIRECTION_VERTICAL;
 
     private boolean mIsBeingDragged;
     private int mActivePointerId = -1;
-    private float mInitialDownY;
-    private float mInitialMotionY;
+    // 手势基准坐标（随作用轴存 Y/X）
+    private float mInitialDownPos;
+    private float mInitialMotionPos;
+    // 手势是否已进入"目标在边缘"状态：行进中刚到达边缘时以当前触点重设方向基准，
+    // 否则方向判定要先回拖过整段行进位移才够 touchSlop，同手势中途到边无法越界拖拽
+    private boolean mEdgeEligible;
     private final int mTouchSlop;
 
     private int mScreenWidth;
@@ -72,10 +91,49 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     // 回弹振动去重：同一次手势的嵌套/fling 多条回弹链路可能先后收口到 springBack，短窗口内只振一次
     private long mLastSpringBackHapticAt;
     private static final long SPRING_BACK_HAPTIC_DEBOUNCE_MS = 250;
-    // touch 手势链起点时目标的边缘状态：区分"行进中撞边缘（回弹要振）"与
+    // 触摸路径诊断日志限流（仅 debug 构建生效，定位拦截链用）
+    private long mLastTouchLogAt;
+    // 手势链起点时目标的边缘状态（start=顶/左，end=底/右）：区分"行进中撞边缘（回弹要振）"与
     // "已停稳在边缘后再拖出越界（回弹不振）"；fling 是同一条手势链的延续不覆盖
-    private boolean mTargetStartedAtTop;
-    private boolean mTargetStartedAtBottom;
+    private boolean mTargetStartedAtStart;
+    private boolean mTargetStartedAtEnd;
+    // ---------------------------------------------------------------------
+    // fling 撞界回弹（touch 路径补位）：target 的惯性滚动不经本容器 touch 事件，
+    // 撞边界即硬停（HSV overscroll=NEVER）——经 target 滚动监听补一次越界+回弹
+    // ---------------------------------------------------------------------
+    private boolean mEdgeFlingBounce;
+    /** 本实例是否收到过手势 DOWN：排除 setSelection 等程序化滚动误触发回弹 */
+    private boolean mSawDown;
+    /** 已挂撞界回弹监听的 target（防重复挂载/覆盖） */
+    private View mEdgeBounceWatched;
+    private final View.OnScrollChangeListener mEdgeBounceListener = this::onTargetScrolled;
+    // 撞界方向由边缘状态差分判定（非边缘→边缘的那次回调 = 撞界帧）：AbsListView 的
+    // invokeOnItemScrollListener 回调 onScrollChanged(0,0,0,0)（AOSP dummy values），
+    // 坐标差分对菜单 DropDownListView 恒为 0——旧 delta 判定在菜单上从未触发过
+    private boolean mEdgePrevAtStart;
+    private boolean mEdgePrevAtEnd;
+    private boolean mEdgePrevValid;
+    // ---------------------------------------------------------------------
+    // 接管期事件并行转发（对齐嵌套路径观感）：target 是非嵌套子时手势被本容器独占，
+    // 容器归零交还后 target 收不到事件，无法继续滚动/按速度 fling——接管期间把完整
+    // 事件序列（缺 DOWN 则合成补发）并行转发给 target，由它原生处理恢复方向滚动
+    // 与快甩惯性；自身仍按越界端状态机驱动容器位移，两边互不干扰
+    // ---------------------------------------------------------------------
+    /** 本手势越界端：-1=起始侧(顶/左)、1=终止侧(底/右)、0=容器已归 0（滚动交由 target） */
+    private int mOverdragSide;
+    /** target 是否已收到本手势 DOWN（真实或合成）：决定转发序列是否完整 */
+    private boolean mTargetHasDown;
+    /** 合成 DOWN 触点（原始坐标系）：UP 位移未超 slop 则改发 CANCEL，防重放误触发点击；兼作越界段钉点 */
+    private float mTargetDownX;
+    private float mTargetDownY;
+    /** side 变化时给 target 重放 CANCEL+DOWN 换基准：断层藏进 DOWN，避免坐标跳变产生瞬移滚动 */
+    private boolean mTargetReplayDown;
+    /** target 视角是否收到过超 slop 的真实坐标 MOVE（已进入滚动状态）：钉住段 target 持续收
+     *  静止 MOVE，mTouchMode 停在 TAP——UP 若发出会被 AbsListView 以 pointToPosition(UP)
+     *  判成点击（命中手指位置的条目）；未真实滑动过则收口只能发 CANCEL */
+    private boolean mTargetScrolled;
+    /** touch 路径松手速度采集（仅本容器接管的手势维护，UP/CANCEL 后释放） */
+    private VelocityTracker mVelocityTracker;
 
     public SpringBackLayout(Context context) {
         this(context, null);
@@ -113,6 +171,28 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         mSpringBackEnable = enable;
     }
 
+    /** 设置回弹作用轴（仅 touch 路径生效；应在首次触摸前调用）。 */
+    public void setScrollOrientation(int orientation) {
+        mOrientation = (orientation == DIRECTION_HORIZONTAL)
+                ? DIRECTION_HORIZONTAL : DIRECTION_VERTICAL;
+    }
+
+    /**
+     * 开启/关闭 fling 惯性撞边界回弹：target（HSV/ListView 等非嵌套子）的惯性滚动
+     * 不经过本容器 touch 路径，撞边界直接硬停；开启后经 target 滚动监听在撞界瞬间
+     * 造一小段越界位移再走标准 springBack（含振动）。手指拖拽越界仍由 touch 路径处理，
+     * 程序化滚动（setSelection 等）因实例未收到过手势 DOWN 不触发。
+     */
+    public void setEdgeFlingBounceEnable(boolean enable) {
+        mEdgeFlingBounce = enable;
+        if (enable) {
+            ensureEdgeBounceWatch();
+        } else if (mEdgeBounceWatched != null) {
+            mEdgeBounceWatched.setOnScrollChangeListener(null);
+            mEdgeBounceWatched = null;
+        }
+    }
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -127,17 +207,79 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
             mTarget = getChildAt(0);
         }
         if (mTarget instanceof NestedScrollingChild) {
-            // 原版 ensureTarget：启用嵌套上报，越界 delta 交给本容器接管；
-            // 同时关闭系统 overscroll（边缘光晕/辉光与回弹冲突）
+            // 原版 ensureTarget：启用嵌套上报，越界 delta 交给本容器接管
             NestedScrollingChild child = (NestedScrollingChild) mTarget;
             if (!child.isNestedScrollingEnabled()) {
                 child.setNestedScrollingEnabled(true);
             }
-            if (mTarget.getOverScrollMode() != View.OVER_SCROLL_NEVER && mSpringBackEnable) {
-                mTarget.setOverScrollMode(View.OVER_SCROLL_NEVER);
-            }
         }
+        if (mSpringBackEnable && mTarget.getOverScrollMode() != View.OVER_SCROLL_NEVER) {
+            // 关闭系统 overscroll：边缘光晕/辉光与回弹冲突（touch 路径的
+            // 普通 ScrollView / ListView / HorizontalScrollView 同样要关）
+            mTarget.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        }
+        ensureEdgeBounceWatch();
         return mTarget;
+    }
+
+    /** 给 target 挂 fling 撞界回弹监听（幂等：target 变更时先摘旧监听再挂新的）。 */
+    private void ensureEdgeBounceWatch() {
+        if (!mEdgeFlingBounce || mTarget == null || mEdgeBounceWatched == mTarget) {
+            return;
+        }
+        if (mEdgeBounceWatched != null) {
+            mEdgeBounceWatched.setOnScrollChangeListener(null);
+        }
+        mTarget.setOnScrollChangeListener(mEdgeBounceListener);
+        mEdgeBounceWatched = mTarget;
+        mEdgePrevValid = false; // 换 target：边缘状态基线重取
+    }
+
+    /**
+     * target 滚动回调：fling 惯性把内容推到边界时（无手指、非拖拽、容器无越界位移），
+     * 补一次撞界回弹。方向由边缘状态转变判定（非边缘→边缘 = 撞界那一帧），不用回调
+     * 坐标差分——AbsListView（菜单 DropDownListView）滚动经 invokeOnItemScrollListener
+     * 回调 onScrollChanged(0,0,0,0)（AOSP dummy values），坐标差分恒 0 永不触发；状态
+     * 转变判定对 HSV 的真实坐标回调同样成立。状态记录不受前置条件排除影响（手指在屏
+     * 的拖拽帧也要记账，否则后续首次滚动会把陈旧基线误判为撞界），仅判定受门控。
+     */
+    private void onTargetScrolled(View v, int sx, int sy, int osx, int osy) {
+        boolean atStart = isTargetAtStart();
+        boolean atEnd = isTargetAtEnd();
+        boolean crossedStart = mEdgePrevValid && !mEdgePrevAtStart && atStart;
+        boolean crossedEnd = mEdgePrevValid && !mEdgePrevAtEnd && atEnd;
+        mEdgePrevAtStart = atStart;
+        mEdgePrevAtEnd = atEnd;
+        mEdgePrevValid = true;
+        if (!mEdgeFlingBounce || !mSpringBackEnable || !isEnabled() || !mSawDown) {
+            return;
+        }
+        if (mIsBeingDragged || mActivePointerId >= 0) {
+            return; // 手指在屏：越界拖拽由 touch 路径负责
+        }
+        if (axisScroll() != 0 || !mSpringScroller.isFinished() || mNestedScrollInProgress) {
+            return; // 越界/回弹进行中，或嵌套路径自会收口
+        }
+        if (crossedEnd || crossedStart) {
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "edgeCross end=" + crossedEnd + " start=" + crossedStart
+                        + " scroll=" + axisScroll());
+            }
+            bounceFromEdge(crossedEnd);
+        }
+    }
+
+    /**
+     * fling 撞界回弹：终点侧造正向越界、起始侧造负向越界（与 handleDrag 的接受区间一致），
+     * 随即零速 springBack——撞墙从硬停变成短暂橡皮筋 + 振动。
+     */
+    private void bounceFromEdge(boolean atEnd) {
+        int kick = (int) (EDGE_BOUNCE_KICK_DP * getResources().getDisplayMetrics().density);
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "edgeBounce atEnd=" + atEnd + " kick=" + kick);
+        }
+        scrollAxisTo(atEnd ? kick : -kick);
+        springBack(mOrientation);
     }
 
     @Override
@@ -221,25 +363,53 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     }
 
     // ---------------------------------------------------------------------
-    // 边界判定
+    // 边界判定与作用轴辅助
     // ---------------------------------------------------------------------
 
-    private boolean isTargetScrollToTop() {
+    /** 目标是否已到"起始"边缘（竖直=顶、水平=左）。 */
+    private boolean isTargetAtStart() {
         View target = resolveTarget();
         if (target == null) return true;
-        if (target instanceof ListView) {
-            return !((ListView) target).canScrollList(-1);
+        if (mOrientation == DIRECTION_VERTICAL) {
+            if (target instanceof ListView) {
+                return !((ListView) target).canScrollList(-1);
+            }
+            return !target.canScrollVertically(-1);
         }
-        return !target.canScrollVertically(-1);
+        return !target.canScrollHorizontally(-1);
     }
 
-    private boolean isTargetScrollToBottom() {
+    /** 目标是否已到"终止"边缘（竖直=底、水平=右）。 */
+    private boolean isTargetAtEnd() {
         View target = resolveTarget();
         if (target == null) return true;
-        if (target instanceof ListView) {
-            return !((ListView) target).canScrollList(1);
+        if (mOrientation == DIRECTION_VERTICAL) {
+            if (target instanceof ListView) {
+                return !((ListView) target).canScrollList(1);
+            }
+            return !target.canScrollVertically(1);
         }
-        return !target.canScrollVertically(1);
+        return !target.canScrollHorizontally(1);
+    }
+
+    /** 取手势坐标在作用轴上的分量（竖直=Y、水平=X）。 */
+    private float axisOf(MotionEvent ev, int pointerIndex) {
+        return mOrientation == DIRECTION_VERTICAL
+                ? ev.getY(pointerIndex) : ev.getX(pointerIndex);
+    }
+
+    /** 容器在作用轴上的当前偏移（另一轴恒 0）。 */
+    private int axisScroll() {
+        return mOrientation == DIRECTION_VERTICAL ? getScrollY() : getScrollX();
+    }
+
+    /** 把作用轴偏移落到指定值。 */
+    private void scrollAxisTo(int value) {
+        if (mOrientation == DIRECTION_VERTICAL) {
+            scrollTo(0, value);
+        } else {
+            scrollTo(value, 0);
+        }
     }
 
     // ---------------------------------------------------------------------
@@ -247,13 +417,21 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     // ---------------------------------------------------------------------
 
     /**
-     * 原版启用时会吞掉子 View 的 disallow 请求（requestDisallowInterceptTouchEvent
-     * 只在 disabled 时才 super），保证边缘拖拽随时可接管——这里保持一致。
+     * 原版语义仅适用“容器即根”场景：吞掉子请求保证边缘拖拽随时可接管。本容器作为
+     * 中间层时（如 HorizontalScrollView 包裹层）必须把请求继续向父链传递——HSV 横滑
+     * 超 slop 时调 mParent.requestDisallowInterceptTouchEvent(true) 禁掉外层
+     * NestedScrollView 的竖直拦截，若在此被吞，横滑会频繁被竖直滚动打断；
+     * 自身不置 DISALLOW 标志（不调 super），边缘越界拖拽仍保持随时可接管。
      */
     @Override
     public void requestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         if (!isEnabled() || !mSpringBackEnable) {
             super.requestDisallowInterceptTouchEvent(disallowIntercept);
+            return;
+        }
+        ViewParent parent = getParent();
+        if (parent != null) {
+            parent.requestDisallowInterceptTouchEvent(disallowIntercept);
         }
     }
 
@@ -272,47 +450,89 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         if (!mSpringScroller.isFinished() && action == MotionEvent.ACTION_DOWN) {
             mSpringScroller.forceStop();
         }
-        // 中段既不在顶也不在底时不拦截（内容正常滚动）
-        if (!isTargetScrollToTop() && !isTargetScrollToBottom()) {
-            return false;
+        // 松手甩动速度采集：intercept 每拍必经且先于分发，序列完整（仅 touch 路径走到这里）
+        if (action == MotionEvent.ACTION_DOWN) {
+            if (mVelocityTracker != null) {
+                mVelocityTracker.recycle();
+            }
+            mVelocityTracker = VelocityTracker.obtain();
+        }
+        if (mVelocityTracker != null) {
+            mVelocityTracker.addMovement(ev);
+        }
+        if (BuildConfig.DEBUG && (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_UP
+                || action == MotionEvent.ACTION_CANCEL)) {
+            View probe = resolveTarget();
+            Log.d(TAG, "icpt " + action + " canSB=" + canSpringBack() + " target="
+                    + (probe == null ? "null" : probe.getClass().getName()) + " scroll=" + axisScroll()
+                    + " enable=" + mSpringBackEnable + "/" + isEnabled());
         }
 
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
                 mActivePointerId = ev.getPointerId(0);
-                // 非嵌套（touch 路径）手势起点的边缘状态；嵌套页随后由 accepted 覆盖（同值）
-                mTargetStartedAtTop = isTargetScrollToTop();
-                mTargetStartedAtBottom = isTargetScrollToBottom();
+                mSawDown = true;
+                // 新手势开始：target 必未收到本手势 DOWN（真实分发尚未发生），接管时需合成补发
+                mTargetHasDown = false;
+                // 手势链起点的边缘状态（回弹振动判定用；嵌套页随后由 accepted 覆盖同值）
+                mTargetStartedAtStart = isTargetAtStart();
+                mTargetStartedAtEnd = isTargetAtEnd();
                 int idx = ev.findPointerIndex(mActivePointerId);
                 if (idx < 0) return false;
-                mInitialDownY = ev.getY(idx);
-                if (getScrollY() != 0) {
+                mInitialDownPos = axisOf(ev, idx);
+                // 起点即在边缘（或越界动画进行中）才纳入边缘判定
+                mEdgeEligible = mTargetStartedAtStart || mTargetStartedAtEnd;
+                if (axisScroll() != 0) {
                     // 越界动画进行中按下：接管拖拽（精确重映射在 onTouchEvent 的
                     // checkScrollStart 中用反阻尼完成）
                     mIsBeingDragged = true;
-                    mInitialMotionY = mInitialDownY;
+                    mInitialMotionPos = mInitialDownPos;
                 } else {
                     mIsBeingDragged = false;
                 }
                 return mIsBeingDragged;
             }
             case MotionEvent.ACTION_MOVE: {
+                if (mActivePointerId < 0) {
+                    return false;
+                }
                 int idx = ev.findPointerIndex(mActivePointerId);
                 if (idx < 0) {
                     Log.e(TAG, "Got ACTION_MOVE event but have an invalid active pointer id.");
                     return false;
                 }
-                float y = ev.getY(idx);
                 if (mIsBeingDragged) {
                     return true;
                 }
-                float dy = y - mInitialDownY;
-                boolean bothEdges = isTargetScrollToTop() && isTargetScrollToBottom();
-                boolean pullDown = (!bothEdges && isTargetScrollToTop()) || (bothEdges && dy > 0);
-                if (pullDown ? dy > mTouchSlop : -dy > mTouchSlop) {
+                if (BuildConfig.DEBUG && SystemClock.uptimeMillis() - mLastTouchLogAt > 300) {
+                    mLastTouchLogAt = SystemClock.uptimeMillis();
+                    Log.d(TAG, "icpt MOVE atS=" + isTargetAtStart() + " atE=" + isTargetAtEnd()
+                            + " edge=" + mEdgeEligible + " pos=" + axisOf(ev, idx)
+                            + " down=" + mInitialDownPos + " activeId=" + mActivePointerId);
+                }
+                float pos = axisOf(ev, idx);
+                boolean atStart = isTargetAtStart();
+                boolean atEnd = isTargetAtEnd();
+                // 两端都不在边缘时不拦截（内容正常滚动）
+                if (!atStart && !atEnd) {
+                    mEdgeEligible = false;
+                    return false;
+                }
+                if (!mEdgeEligible) {
+                    // 行进中刚到达边缘：以当前触点重设方向判定基准
+                    mEdgeEligible = true;
+                    mInitialDownPos = pos;
+                }
+                float delta = pos - mInitialDownPos;
+                boolean bothEdges = atStart && atEnd;
+                boolean pullStart = (!bothEdges && atStart) || (bothEdges && delta > 0);
+                if (pullStart ? delta > mTouchSlop : -delta > mTouchSlop) {
                     mIsBeingDragged = true;
                     // 基准设为当前触点：拖拽位移从 0 开始，消除 touchSlop 段的跳变
-                    mInitialMotionY = y;
+                    mInitialMotionPos = pos;
+                    if (BuildConfig.DEBUG) {
+                        Log.d(TAG, "icpt INTERCEPT delta=" + delta + " atS=" + atStart + " atE=" + atEnd);
+                    }
                     return true;
                 }
                 return false;
@@ -321,6 +541,7 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
             case MotionEvent.ACTION_CANCEL: {
                 mIsBeingDragged = false;
                 mActivePointerId = -1;
+                mEdgeEligible = false;
                 return false;
             }
             case MotionEvent.ACTION_POINTER_UP: {
@@ -349,7 +570,15 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
                 mActivePointerId = ev.getPointerId(0);
+                if (!mTargetHasDown) {
+                    // 接管按下（回弹动画进行中/容器仍越界）：target 缺本手势 DOWN，
+                    // 合成补发使后续转发的 MOVE/UP 构成完整序列（可滚、可 fling、不误点）
+                    forwardToTarget(ev, true);
+                }
                 checkScrollStart();
+                if (BuildConfig.DEBUG) {
+                    Log.d(TAG, "touchevt DOWN dragged=" + mIsBeingDragged);
+                }
                 return true;
             }
             case MotionEvent.ACTION_MOVE: {
@@ -358,8 +587,21 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
                     Log.e(TAG, "Got ACTION_MOVE event but have an invalid active pointer id.");
                     return false;
                 }
+                boolean freshDown = false;
+                if (!mTargetHasDown) {
+                    // 边缘拦截型接管：框架刚给 target 发过 CANCEL，用当前触点重放 DOWN 后再转发
+                    forwardToTarget(ev, true);
+                    freshDown = true;
+                }
                 if (mIsBeingDragged) {
-                    handleDrag(ev.getY(idx));
+                    handleDrag(axisOf(ev, idx));
+                }
+                if (freshDown) {
+                    // 本拍刚放的 DOWN 即钉点，同拍的 side 变化无需再重放
+                    mTargetReplayDown = false;
+                }
+                if (mTargetHasDown) {
+                    forwardToTarget(ev, false);
                 }
                 return true;
             }
@@ -375,15 +617,21 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
                     Log.e(TAG, "Got ACTION_POINTER_DOWN event but have an invalid action index.");
                     return false;
                 }
-                float delta = ev.getY(activeIdx) - mInitialDownY;
-                float newInitial = ev.getY(actionIndex) - delta;
-                mInitialDownY = newInitial;
-                mInitialMotionY = newInitial;
+                float delta = axisOf(ev, activeIdx) - mInitialDownPos;
+                float newInitial = axisOf(ev, actionIndex) - delta;
+                mInitialDownPos = newInitial;
+                mInitialMotionPos = newInitial;
                 mActivePointerId = ev.getPointerId(actionIndex);
+                if (mTargetHasDown) {
+                    forwardToTarget(ev, false);
+                }
                 return true;
             }
             case MotionEvent.ACTION_POINTER_UP: {
                 onSecondaryPointerUp(ev);
+                if (mTargetHasDown) {
+                    forwardToTarget(ev, false);
+                }
                 return true;
             }
             case MotionEvent.ACTION_UP: {
@@ -391,19 +639,30 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
                     Log.e(TAG, "Got ACTION_UP event but don't have an active pointer id.");
                     return false;
                 }
+                if (BuildConfig.DEBUG) {
+                    Log.d(TAG, "touchevt UP dragged=" + mIsBeingDragged);
+                }
+                // 先把序列交还 target：超 slop 发 UP（触发它按真实速度 fling = 快甩惯性），
+                // 未超 slop 发 CANCEL 防合成重放误触发点击
+                finishForwardToTarget(ev, false);
                 if (mIsBeingDragged) {
                     mIsBeingDragged = false;
-                    springBack(DIRECTION_VERTICAL);
+                    springBackOnRelease();
                 }
+                mOverdragSide = 0;
                 mActivePointerId = -1;
+                recycleVelocityTracker();
                 return false;
             }
             case MotionEvent.ACTION_CANCEL: {
+                finishForwardToTarget(ev, true);
                 if (mIsBeingDragged) {
                     mIsBeingDragged = false;
-                    springBack(DIRECTION_VERTICAL);
+                    springBack(mOrientation);
                 }
+                mOverdragSide = 0;
                 mActivePointerId = -1;
+                recycleVelocityTracker();
                 return false;
             }
             default:
@@ -419,56 +678,169 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     }
 
     /**
+     * 把手势事件并行转发给 target（asDown=true 时合成补发 DOWN），坐标换到 target 左上角：
+     * <ul>
+     *   <li>side!=0（容器越界中）：坐标钉死在基准点——target 视角手指静止，不产生滚动，
+     *       避免与容器位移重复计账（视觉超速）；</li>
+     *   <li>side 变化瞬间：重放 CANCEL+DOWN（坐标=当拍真实触点）重建滚动基准，
+     *       把坐标断层藏进 DOWN，target 从新基准 1:1 跟手无瞬移；</li>
+     *   <li>side==0（容器已归 0）：坐标原样转发，恢复方向由 target 原生滚动与 fling。</li>
+     * </ul>
+     */
+    private void forwardToTarget(MotionEvent ev, boolean asDown) {
+        View target = resolveTarget();
+        if (target == null) {
+            return;
+        }
+        MotionEvent copy;
+        if (asDown) {
+            copy = MotionEvent.obtain(ev);
+            mTargetDownX = ev.getX();
+            mTargetDownY = ev.getY();
+            mTargetReplayDown = false;
+            mTargetScrolled = false; // 新基准：target 视角从静止重新起算
+        } else if (mTargetReplayDown) {
+            // 越界端切换：先 CANCEL 结束上一段，再以当拍触点重放 DOWN 换基准
+            MotionEvent cancel = MotionEvent.obtain(ev);
+            cancel.setAction(MotionEvent.ACTION_CANCEL);
+            cancel.offsetLocation(-target.getLeft(), -target.getTop());
+            target.dispatchTouchEvent(cancel);
+            cancel.recycle();
+            copy = MotionEvent.obtain(ev);
+            copy.setAction(MotionEvent.ACTION_DOWN);
+            mTargetDownX = ev.getX();
+            mTargetDownY = ev.getY();
+            mTargetReplayDown = false;
+            mTargetScrolled = false;
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "handoff replay DOWN side=" + mOverdragSide);
+            }
+        } else {
+            copy = MotionEvent.obtain(ev);
+            if (mOverdragSide != 0) {
+                copy.setLocation(mTargetDownX, mTargetDownY);
+            } else if (!mTargetScrolled && Math.hypot(ev.getX() - mTargetDownX,
+                    ev.getY() - mTargetDownY) > mTouchSlop) {
+                mTargetScrolled = true; // 真实坐标滑出 slop：target 已进滚动态，UP 走 fling 不会点击
+            }
+        }
+        copy.offsetLocation(-target.getLeft(), -target.getTop());
+        target.dispatchTouchEvent(copy);
+        copy.recycle();
+        mTargetHasDown = true;
+        if (BuildConfig.DEBUG && asDown) {
+            Log.d(TAG, "handoff DOWN(synth) at=" + ev.getX() + "," + ev.getY());
+        }
+    }
+
+    /**
+     * 手势收口：target 真实滑动过（mTargetScrolled，已进滚动状态）发 UP 让它按真实速度
+     * fling；否则发 CANCEL——钉住段 target 视角手指静止（mTouchMode 停在 TAP），发 UP 会被
+     * AbsListView 以 pointToPosition(UP) 判成点击，把越界回弹拖拽误升级成条目选中。
+     */
+    private void finishForwardToTarget(MotionEvent ev, boolean forceCancel) {
+        if (!mTargetHasDown) {
+            return;
+        }
+        View target = resolveTarget();
+        mTargetHasDown = false;
+        if (target == null) {
+            return;
+        }
+        boolean cancel = forceCancel || !mTargetScrolled;
+        MotionEvent copy = MotionEvent.obtain(ev);
+        copy.setAction(cancel ? MotionEvent.ACTION_CANCEL : MotionEvent.ACTION_UP);
+        copy.offsetLocation(-target.getLeft(), -target.getTop());
+        target.dispatchTouchEvent(copy);
+        copy.recycle();
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "handoff " + (cancel ? "CANCEL" : "UP(target fling)")
+                    + " scrolled=" + mTargetScrolled);
+        }
+    }
+
+    private void recycleVelocityTracker() {
+        if (mVelocityTracker != null) {
+            mVelocityTracker.recycle();
+            mVelocityTracker = null;
+        }
+    }
+
+    /**
      * 动画中按下（或换手指）时的基准重映射：
      * 用反阻尼把当前容器偏移换算回等效手指位移，使下一拍 drag 的 delta
      * 恰好重现当前偏移——按住无跳变（对齐原版 checkVerticalScrollStart）。
      */
     private void checkScrollStart() {
-        int scrollY = getScrollY();
-        if (scrollY != 0) {
+        int scroll = axisScroll();
+        if (scroll != 0) {
             mIsBeingDragged = true;
+            mOverdragSide = scroll > 0 ? 1 : -1;
+            mEdgeEligible = true;
             float touch = obtainTouchDistance(
-                    Math.abs(scrollY),
-                    Math.abs(obtainMaxSpringBackDistance(DIRECTION_VERTICAL)),
-                    DIRECTION_VERTICAL);
-            if (scrollY < 0) {
-                mInitialDownY -= touch;
+                    Math.abs(scroll),
+                    Math.abs(obtainMaxSpringBackDistance(mOrientation)),
+                    mOrientation);
+            if (scroll < 0) {
+                mInitialDownPos -= touch;
             } else {
-                mInitialDownY += touch;
+                mInitialDownPos += touch;
             }
-            mInitialMotionY = mInitialDownY;
+            mInitialMotionPos = mInitialDownPos;
         } else {
             mIsBeingDragged = false;
+            mOverdragSide = 0;
         }
     }
-
+    
     /**
-     * 阻尼拖拽（统一处理顶部下拉/底部上拉/中段兜底，与原版三分支等价）：
-     * desired = 容器 scrollY 目标；越过当前边界时归零并交还控制权。
+     * 阻尼拖拽（越界端状态机）：side!=0 时按本端接受区间映射容器位移；手指反穿
+     * 本端边界把容器归 0、side 清 0——此后滚动由转发给 target 的事件原生驱动
+     * （恢复方向直接跟手，如 ScrollView 竖向）；target 滚到对侧边界且方向可拉出时
+     * 以当前触点重建基准再入越界（无跳变）。
      */
-    private void handleDrag(float y) {
-        float delta = y - mInitialMotionY;
-        float damped = obtainSpringBackDistance(delta, DIRECTION_VERTICAL);
+    private void handleDrag(float pos) {
+        float delta = pos - mInitialMotionPos;
+        float damped = obtainSpringBackDistance(delta, mOrientation);
         float desired = -Math.signum(delta) * damped;
-        boolean atTop = isTargetScrollToTop();
-        boolean atBottom = isTargetScrollToBottom();
-        // 顶部只接受负偏移（下拉）、底部只接受正偏移（上推）；越过边界仅归零本拍位移，
-        // 拖拽状态与活动指针保持不动（对齐原版 moveTarget(0) + return false）——
-        // 手指反向回穿边界时下一拍立即恢复跟手，快速上下交替不丢手势
-        if (atTop && !atBottom && desired >= 0) {
-            if (getScrollY() != 0) {
-                scrollTo(0, 0);
-            }
-            return;
-        }
-        if (atBottom && !atTop && desired <= 0) {
-            if (getScrollY() != 0) {
-                scrollTo(0, 0);
-            }
-            return;
+        if (BuildConfig.DEBUG && SystemClock.uptimeMillis() - mLastTouchLogAt > 300) {
+            mLastTouchLogAt = SystemClock.uptimeMillis();
+            Log.d(TAG, "drag side=" + mOverdragSide + " desired=" + desired
+                    + " scroll=" + axisScroll());
         }
         requestDisallowParentInterceptTouchEvent(true);
-        scrollTo(0, (int) desired);
+        if (mOverdragSide == 0) {
+            if (desired < 0 && isTargetAtStart()) {
+                mOverdragSide = -1;
+            } else if (desired > 0 && isTargetAtEnd()) {
+                mOverdragSide = 1;
+            } else {
+                return; // target 滚动中（或其不可滚方向）：容器保持 0，不干预
+            }
+            mInitialMotionPos = pos; // 当拍位移并入基准，越界从 0 起拉出无跳变
+            if (mTargetHasDown) {
+                mTargetReplayDown = true; // target 从滚动切入钉住：换基准
+            }
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "drag sideIn=" + mOverdragSide);
+            }
+            return;
+        }
+        if ((mOverdragSide < 0 && desired >= 0) || (mOverdragSide > 0 && desired <= 0)) {
+            // 反穿本端边界：归 0 并交还 target（本拍起 target 经转发事件继续滚）
+            if (axisScroll() != 0) {
+                scrollAxisTo(0);
+            }
+            mOverdragSide = 0;
+            if (mTargetHasDown) {
+                mTargetReplayDown = true; // target 从钉住恢复跟手：换基准
+            }
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "drag sideOut");
+            }
+            return;
+        }
+        scrollAxisTo((int) desired);
     }
 
     /** 把沿手势链的 disallow 请求向上传给真正的父容器（原版 requestDisallowParentInterceptTouchEvent）。 */
@@ -487,8 +859,10 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     public boolean onStartNestedScroll(@NonNull View child, @NonNull View target, int axes, int type) {
         mNestedScrollAxes = axes;
         boolean vertical = axes == ViewCompat.SCROLL_AXIS_VERTICAL;
-        if (!vertical) {
-            return false; // 仅竖直（原版 scrollOrientation 恒 VERTICAL）
+        if (!vertical || mOrientation != DIRECTION_VERTICAL) {
+            // 嵌套路径仅服务竖直容器（原版 scrollOrientation 恒 VERTICAL）；
+            // 水平容器的 target 为非嵌套 View，只走 touch 路径
+            return false;
         }
         if (mSpringBackEnable) {
             if (!isEnabled()) {
@@ -512,8 +886,8 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         if (mSpringBackEnable) {
             if (type == ViewCompat.TYPE_TOUCH) {
                 // 记录 touch 手势链起点的边缘状态（fling NON_TOUCH 不覆盖：同链延续）
-                mTargetStartedAtTop = isTargetScrollToTop();
-                mTargetStartedAtBottom = isTargetScrollToBottom();
+                mTargetStartedAtStart = isTargetAtStart();
+                mTargetStartedAtEnd = isTargetAtEnd();
             }
             boolean vertical = mNestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL;
             int dir = vertical ? DIRECTION_VERTICAL : 1;
@@ -562,7 +936,7 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         if (unconsumed == 0) {
             return;
         }
-        if (vertical && unconsumed < 0 && isTargetScrollToTop()) {
+        if (vertical && unconsumed < 0 && isTargetAtStart()) {
             if (type != ViewCompat.TYPE_TOUCH) {
                 // fling 撞顶：限幅累积越界（mVelocity 恒 0 → 原版限幅分支）
                 float max = obtainMaxSpringBackDistance(dir);
@@ -594,7 +968,7 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
                 moveTarget(obtainSpringBackDistance(mTotalScrollTopUnconsumed, dir), dir);
                 consumed[vertical ? 1 : 0] += unconsumed;
             }
-        } else if (vertical && unconsumed > 0 && isTargetScrollToBottom()) {
+        } else if (vertical && unconsumed > 0 && isTargetAtEnd()) {
             if (type != ViewCompat.TYPE_TOUCH) {
                 float max = obtainMaxSpringBackDistance(dir);
                 if (mVelocityY == 0 && mVelocityX == 0) {
@@ -832,6 +1206,33 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     // 回弹
     // ---------------------------------------------------------------------
 
+    /**
+     * touch 路径松手收口：越界拖拽带甩动初速回弹（“快甩惯性”——像手指把越界量
+     * 甩出去再弹回；零速 springBack 只是慢回位）。容器已归 0 时 target 的 fling
+     * 已由转发的 UP 提供，这里零速早退即可。
+     */
+    private void springBackOnRelease() {
+        float v = 0f;
+        if (mOverdragSide != 0 && axisScroll() != 0 && mVelocityTracker != null) {
+            mVelocityTracker.computeCurrentVelocity(1000);
+            float finger = mOrientation == DIRECTION_VERTICAL
+                    ? mVelocityTracker.getYVelocity(mActivePointerId)
+                    : mVelocityTracker.getXVelocity(mActivePointerId);
+            // 容器位移与手指位移反号（与 desired = -signum(delta)·damped 同构）
+            v = -finger;
+            if (Math.abs(v) < VELOCITY_THRESHOLD) {
+                v = 0f;
+            } else if (Math.abs(v) > MAX_RELEASE_FLING) {
+                v = Math.signum(v) * MAX_RELEASE_FLING;
+            }
+        }
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "release side=" + mOverdragSide + " v=" + v
+                    + " scroll=" + axisScroll());
+        }
+        springBack(v, mOrientation, true);
+    }
+
     /** 零初速回弹到 0（touch 路径的松手/取消、嵌套路径的停止回位）。 */
     private void springBack(int direction) {
         springBack(0f, direction, true);
@@ -846,13 +1247,14 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         }
         // 触发回弹效果时的振动反馈（对齐 HyperCeiler 观感）：仅"行进中撞到边缘"的回弹
         // 才振（手势链起点不在该边缘）；已停稳在边缘后再拖出的越界回弹不振（起点即在该边缘）
+        int pos = axisScroll();
         boolean haptic;
-        if (y < 0) {
-            haptic = !mTargetStartedAtTop;
-        } else if (y > 0) {
-            haptic = !mTargetStartedAtBottom;
+        if (pos < 0) {
+            haptic = !mTargetStartedAtStart;
+        } else if (pos > 0) {
+            haptic = !mTargetStartedAtEnd;
         } else {
-            haptic = !mTargetStartedAtTop && !mTargetStartedAtBottom;
+            haptic = !mTargetStartedAtStart && !mTargetStartedAtEnd;
         }
         long now = SystemClock.uptimeMillis();
         if (haptic && now - mLastSpringBackHapticAt > SPRING_BACK_HAPTIC_DEBOUNCE_MS) {
