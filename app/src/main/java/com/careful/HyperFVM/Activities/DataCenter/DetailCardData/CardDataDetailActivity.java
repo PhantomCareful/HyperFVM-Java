@@ -17,6 +17,7 @@ import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Scroll.HorizontalSpringBackUtil;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -66,6 +67,9 @@ public class CardDataDetailActivity extends BaseActivity {
         } else {
             setContentView(R.layout.activity_card_dara_detail);
         }
+        // 横向滚动组件适配越界回弹：全部包进水平 SpringBackLayout（两套布局通用，
+        // 与 CardDataDataFragment 同一工具，需在滚动联动 attach 前完成包裹）
+        HorizontalSpringBackUtil.wrapHorizontalScrollViews(findViewById(android.R.id.content));
 
         cardName = getIntent().getStringExtra("cardName");
         tableId = getIntent().getIntExtra("tableId", 1);
