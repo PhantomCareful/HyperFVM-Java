@@ -45,6 +45,13 @@ import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
  *     onViewStateRestored 中：nestedScrollUtil.restoreScrollY(savedInstanceState, "key");
  */
 public class NestedScrollUtil {
+    // 模糊背景层（eightbitlab BlurView）透明度下限：alpha 归 0 会破坏页面内 MIUI 硬件模糊混色
+    // （如关于页 logo blend）——HWUI 对 alpha==0 的 view 走跳过快路，
+    // BlurView 不参与绘制时其 RenderNodeBlurController 不把 BlurTarget 子树二次录进 blurNode，
+    // 双路径引用断裂导致 blend 不渲染（进页顶部无 blend、滑到顶 blend 消失均源于此）；
+    // 鉗到 0.01（2/255）视觉不可辨，但保证 alpha 恒非 0
+    private static final float BLUR_VIEW_MIN_ALPHA = 0.01f;
+
     private final View scrollContainer;   // ScrollView / NestedScrollView / RecyclerView
     @Nullable
     private final View springBackParent;  // 外层 SpringBackLayout 越界回弹容器（无包裹时为null）
@@ -220,7 +227,8 @@ public class NestedScrollUtil {
             topBarBottom.setAlpha(1f - progress);
         }
         if (blurViewTopBar != null) {
-            blurViewTopBar.setAlpha(progress);
+            // 鉗 BLUR_VIEW_MIN_ALPHA：联动可归零，但不真正写 0（机理见常量注释）
+            blurViewTopBar.setAlpha(Math.max(progress, BLUR_VIEW_MIN_ALPHA));
         }
         if (topBar != null) {
             topBar.setAlpha(progress);
@@ -237,7 +245,7 @@ public class NestedScrollUtil {
         if (!syncEnabled) return;
         float progress = computeProgress();
         animateAlphaTo(topBarBottom, 1f - progress, durationMs);
-        animateAlphaTo(blurViewTopBar, progress, durationMs);
+        animateAlphaTo(blurViewTopBar, Math.max(progress, BLUR_VIEW_MIN_ALPHA), durationMs);
         animateAlphaTo(topBar, progress, durationMs);
     }
 

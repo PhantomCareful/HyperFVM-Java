@@ -51,6 +51,14 @@ public final class MiuiLogoBlurUtil {
     /** 系统实时模糊总开关的 Settings key（尊重用户在系统设置中关闭模糊） */
     private static final String KEY_BACKGROUND_BLUR_ENABLE = "background_blur_enable";
 
+    /**
+     * blend 保持系数：OS1.0（Redmi K70 实测）alpha=1 时系统跳过 blend 渲染（表现为纯色），
+     * alpha<1（滚动渐隐一开始）blend 就完整出现；而显式 hardware layer 反而彻底屏蔽 blend
+     * （内容进独立 buffer 取样不到下层背景）。故将 alpha 钳在 0.999 使 view 恒处于
+     * 半透明渲染路径，blend 持续生效，视觉与 1.0 无感知差异
+     */
+    public static final float BLEND_ALPHA_CLAMP = 0.999f;
+
     // ---- 反射句柄：解析结果进程内缓存，四个句柄齐备才算可用 ----
     private static volatile boolean sResolved;
     private static boolean sAvailable;

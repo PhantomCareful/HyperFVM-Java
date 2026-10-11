@@ -255,6 +255,8 @@ public class AboutAppFragment extends Fragment {
 
         // 添加顶部栏滚动联动：上滑时悬浮小标题与模糊层淡入（本页无大标题topBarBottom，传0跳过淡出）
         // 页面自身的元素渐隐效果经滚动回调一并驱动，与顶部栏联动共用同一滚动监听
+        // blurViewTopBar 的 alpha 由 NestedScrollUtil 鉗制到 BLUR_VIEW_MIN_ALPHA 恒非 0：
+        // alpha 归 0 会破坏本页 logo 的 MIUI blend（机理见 NestedScrollUtil.BLUR_VIEW_MIN_ALPHA 注释）
         nestedScrollUtil = NestedScrollUtil.attach(root, R.id.scrollView,
                 0, R.id.topBar, R.id.blurViewTopBar, TOP_BAR_FADE_RANGE_DP,
                 this::applyBackgroundScrollEffect);
@@ -267,6 +269,15 @@ public class AboutAppFragment extends Fragment {
         ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(logoView, scrollY, logoMaxScroll);
         ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(appNameText, scrollY, appNameMaxScroll);
         ScrollEffectForBackgroundItem.applyScrollAlphaAndScaleEffect(versionInfoText, scrollY, appVersionMaxScroll);
+
+        // OS1.0 blend 补偿：渐隐计算会把顶部 alpha 写回 1.0，而 alpha=1 时系统跳过 blend 渲染；
+        // 将 alpha 保持在 0.999 以下使 blend 生效（机理与常量见 MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP，视觉无差）
+        if (logoView.getAlpha() > MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP) {
+            logoView.setAlpha(MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP);
+        }
+        if (appNameText.getAlpha() > MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP) {
+            appNameText.setAlpha(MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP);
+        }
 
         // 给LOGO设置点击彩蛋
         // 注意：如果图片的透明度变为0了，需要将点击事件清除，否则会影响下层组件的点击
