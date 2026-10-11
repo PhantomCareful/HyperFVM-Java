@@ -13,9 +13,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.ForDesign.MiuixBottomSheetModal;
+import com.careful.HyperFVM.utils.ForDesign.BottomSheet.MiuixBottomSheetModal;
 
 /**
  * 食神谱系列卡片的 Miuix BottomSheet 通用弹层（58 张卡共用，替换原
@@ -40,8 +41,11 @@ public final class CookeryBottomSheetModal {
 
     /* ===== 深浅色切换重建恢复（重建后凭以下静态状态重弹并恢复滚动位置） ===== */
     private static Class<?> sHostClass;
+    @SuppressLint("StaticFieldLeak")
     private static Activity sActiveHost;
+    @SuppressLint("StaticFieldLeak")
     private static MiuixBottomSheetModal sActiveModal;
+    @SuppressLint("StaticFieldLeak")
     private static View sActiveContent;
     private static boolean sPendingRestore;
     private static int sRestoreScrollY;
@@ -121,10 +125,9 @@ public final class CookeryBottomSheetModal {
      * 固定标题槽；判定不中（非 TextView 首子元素）时留原位，仅影响观感不崩。
      */
     private static void moveInlineTitleToSlot(View content, ViewGroup titleSlot) {
-        if (titleSlot == null || !(content instanceof ViewGroup)) {
+        if (titleSlot == null || !(content instanceof ViewGroup root)) {
             return;
         }
-        ViewGroup root = (ViewGroup) content;
         if (root.getChildCount() == 0 || !(root.getChildAt(0) instanceof TextView)) {
             return;
         }
@@ -168,7 +171,7 @@ public final class CookeryBottomSheetModal {
         sLifecycleRegistered = true;
         app.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
-            public void onActivityPreDestroyed(Activity activity) {
+            public void onActivityPreDestroyed(@NonNull Activity activity) {
                 // fan 弹层若未在重建时回调 dismiss，此处兜底（用户已关时 active 已清，不会误触）
                 if (sActiveModal != null && activity == sActiveHost && activity.isChangingConfigurations()) {
                     captureScrollY();
@@ -178,7 +181,7 @@ public final class CookeryBottomSheetModal {
             }
 
             @Override
-            public void onActivityResumed(Activity activity) {
+            public void onActivityResumed(@NonNull Activity activity) {
                 if (sPendingRestore && sHostClass != null && activity.getClass() == sHostClass
                         && sRestoreLayoutRes != 0 && sRestoreBinder != null) {
                     sPendingRestore = false;
@@ -189,27 +192,27 @@ public final class CookeryBottomSheetModal {
             }
 
             @Override
-            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            public void onActivityCreated(@NonNull Activity activity, Bundle savedInstanceState) {
             }
 
             @Override
-            public void onActivityStarted(Activity activity) {
+            public void onActivityStarted(@NonNull Activity activity) {
             }
 
             @Override
-            public void onActivityPaused(Activity activity) {
+            public void onActivityPaused(@NonNull Activity activity) {
             }
 
             @Override
-            public void onActivityStopped(Activity activity) {
+            public void onActivityStopped(@NonNull Activity activity) {
             }
 
             @Override
-            public void onActivityDestroyed(Activity activity) {
+            public void onActivityDestroyed(@NonNull Activity activity) {
             }
 
             @Override
-            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
             }
         });
     }
