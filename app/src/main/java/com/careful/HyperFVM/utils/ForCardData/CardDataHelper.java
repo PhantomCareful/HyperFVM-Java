@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentManager;
 
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList1Activity;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.AuxiliaryList.AuxiliaryList2Activity;
@@ -66,6 +65,7 @@ import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.Cookery
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_28;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_29;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_3;
+import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetModal;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_30;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_31;
 import com.careful.HyperFVM.Activities.DataCenter.DetailCardData.Cookery.CookeryBottomSheetFragment_3_32;
@@ -794,357 +794,356 @@ public class CardDataHelper {
      * 根据食神谱名称展示对应的BottomSheet
      * @param cookeryName 食神谱名称
      * @param container 承载点击事件的父容器
-     * @param fragmentManager 承载BottomSheet的FragmentManager（Activity中可通过getSupportFragmentManager()获取）
      */
-    public static void selectCookeryByName(String cookeryName, LinearLayout container, FragmentManager fragmentManager) {
+    public static void selectCookeryByName(String cookeryName, LinearLayout container) {
         switch (cookeryName) {
             case "南翔小笼包":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_1_1 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_1();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_1_1,
+                        CookeryBottomSheetFragment_1_1::bind));
                 break;
             case "咖啡奶茶":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_1_2 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_2();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_1_2,
+                        CookeryBottomSheetFragment_1_2::bind));
                 break;
             case "美食豪华套餐":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_1_3 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_3();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_1_3,
+                        CookeryBottomSheetFragment_1_3::bind));
                 break;
             case "冰镇西瓜":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_1_4 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_4();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_1_4,
+                        CookeryBottomSheetFragment_1_4::bind));
                 break;
             case "麻辣烫":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_1_5 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_5();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_1_5,
+                        CookeryBottomSheetFragment_1_5::bind));
                 break;
             case "葡式蛋挞":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_1_6 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_6();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_1_6,
+                        CookeryBottomSheetFragment_1_6::bind));
                 break;
             case "菠萝布丁":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_1_7 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_1_7();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_1_7,
+                        CookeryBottomSheetFragment_1_7::bind));
                 break;
             case "王府井包子":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_1 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_1();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_1,
+                        CookeryBottomSheetFragment_2_1::bind));
                 break;
             case "猫屎咖啡":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_2 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_2();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_2,
+                        CookeryBottomSheetFragment_2_2::bind));
                 break;
             case "酒蒸鸡":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_3 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_3();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_3,
+                        CookeryBottomSheetFragment_2_3::bind));
                 break;
             case "劲爆鸡米花":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_4 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_4();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_4,
+                        CookeryBottomSheetFragment_2_4::bind));
                 break;
             case "葡萄美酒":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_5 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_5();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_5,
+                        CookeryBottomSheetFragment_2_5::bind));
                 break;
             case "巧克力雪球":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_6 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_6();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_6,
+                        CookeryBottomSheetFragment_2_6::bind));
                 break;
             case "冷烤火鸡":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_7 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_7();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_7,
+                        CookeryBottomSheetFragment_2_7::bind));
                 break;
             case "麻婆豆腐":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_2_8 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_2_8();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_2_8,
+                        CookeryBottomSheetFragment_2_8::bind));
                 break;
             case "狗不理包子":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_1 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_1();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_1,
+                        CookeryBottomSheetFragment_3_1::bind));
                 break;
             case "鸡丝银鱼汤":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_2 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_2();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_2,
+                        CookeryBottomSheetFragment_3_2::bind));
                 break;
             case "毛血旺":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_3 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_3();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_3,
+                        CookeryBottomSheetFragment_3_3::bind));
                 break;
             case "番茄炒蛋":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_4 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_4();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_4,
+                        CookeryBottomSheetFragment_3_4::bind));
                 break;
             case "面包家族":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_5 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_5();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_5,
+                        CookeryBottomSheetFragment_3_5::bind));
                 break;
             case "关东煮":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_6 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_6();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_6,
+                        CookeryBottomSheetFragment_3_6::bind));
                 break;
             case "茶叶蛋":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_7 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_7();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_7,
+                        CookeryBottomSheetFragment_3_7::bind));
                 break;
             case "拉菲限量版":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_8 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_8();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_8,
+                        CookeryBottomSheetFragment_3_8::bind));
                 break;
             case "圣诞姜饼":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_9 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_9();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_9,
+                        CookeryBottomSheetFragment_3_9::bind));
                 break;
             case "水煮鱼":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_10 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_10();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_10,
+                        CookeryBottomSheetFragment_3_10::bind));
                 break;
             case "钻石风味香槟":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_11 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_11();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_11,
+                        CookeryBottomSheetFragment_3_11::bind));
                 break;
             case "川香冒菜":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_12 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_12();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_12,
+                        CookeryBottomSheetFragment_3_12::bind));
                 break;
             case "咖喱鱼蛋":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_13 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_13();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_13,
+                        CookeryBottomSheetFragment_3_13::bind));
                 break;
             case "海鲜烧烤":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_14 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_14();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_14,
+                        CookeryBottomSheetFragment_3_14::bind));
                 break;
             case "海星拉面":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_15 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_15();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_15,
+                        CookeryBottomSheetFragment_3_15::bind));
                 break;
             case "老北京涮锅":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_16 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_16();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_16,
+                        CookeryBottomSheetFragment_3_16::bind));
                 break;
             case "菲丽水":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_17 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_17();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_17,
+                        CookeryBottomSheetFragment_3_17::bind));
                 break;
             case "汉帝茅台":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_18 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_18();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_18,
+                        CookeryBottomSheetFragment_3_18::bind));
                 break;
             case "怀石料理":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_19 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_19();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_19,
+                        CookeryBottomSheetFragment_3_19::bind));
                 break;
             case "复活节彩蛋":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_20 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_20();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_20,
+                        CookeryBottomSheetFragment_3_20::bind));
                 break;
             case "铁板鱿鱼":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_21 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_21();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_21,
+                        CookeryBottomSheetFragment_3_21::bind));
                 break;
             case "法式焗海螺":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_22 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_22();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_22,
+                        CookeryBottomSheetFragment_3_22::bind));
                 break;
             case "普罗旺斯鱼汤":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_23 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_23();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_23,
+                        CookeryBottomSheetFragment_3_23::bind));
                 break;
             case "锤子肉片":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_24 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_24();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_24,
+                        CookeryBottomSheetFragment_3_24::bind));
                 break;
             case "幻露流光":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_25 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_25();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_25,
+                        CookeryBottomSheetFragment_3_25::bind));
                 break;
             case "椰子西米露":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_26 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_26();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_26,
+                        CookeryBottomSheetFragment_3_26::bind));
                 break;
             case "明炉炭烧":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_27 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_27();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_27,
+                        CookeryBottomSheetFragment_3_27::bind));
                 break;
             case "冰糖葫芦":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_28 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_28();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_28,
+                        CookeryBottomSheetFragment_3_28::bind));
                 break;
             case "海鲜大咖":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_29 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_29();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_29,
+                        CookeryBottomSheetFragment_3_29::bind));
                 break;
             case "沙坑羊排":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_30 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_30();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_30,
+                        CookeryBottomSheetFragment_3_30::bind));
                 break;
             case "雷城全家桶":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_31 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_31();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_31,
+                        CookeryBottomSheetFragment_3_31::bind));
                 break;
             case "奇境下午茶":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_32 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_32();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_32,
+                        CookeryBottomSheetFragment_3_32::bind));
                 break;
             case "M双层堡":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_33 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_33();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_33,
+                        CookeryBottomSheetFragment_3_33::bind));
                 break;
             case "太阳饼":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_34 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_34();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_34,
+                        CookeryBottomSheetFragment_3_34::bind));
                 break;
             case "杏仁芝麻茶":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_35 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_35();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_35,
+                        CookeryBottomSheetFragment_3_35::bind));
                 break;
             case "冰摇桃桃":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_36 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_36();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_36,
+                        CookeryBottomSheetFragment_3_36::bind));
                 break;
             case "烈焰熔岩蛋糕":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_37 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_37();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_37,
+                        CookeryBottomSheetFragment_3_37::bind));
                 break;
             case "火焰冰淇淋":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_38 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_38();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_38,
+                        CookeryBottomSheetFragment_3_38::bind));
                 break;
             case "营地炖肉":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_39 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_39();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_39,
+                        CookeryBottomSheetFragment_3_39::bind));
                 break;
             case "星云奶茶":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_40 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_40();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_40,
+                        CookeryBottomSheetFragment_3_40::bind));
                 break;
             case "多元料理":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_41 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_41();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_41,
+                        CookeryBottomSheetFragment_3_41::bind));
                 break;
             case "印度飞饼":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_42 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_42();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_42,
+                        CookeryBottomSheetFragment_3_42::bind));
                 break;
             case "暴打柠檬茶":
-                container.setOnClickListener(v -> {
-                    CookeryBottomSheetFragment_3_43 cookeryBottomSheetFragment = new CookeryBottomSheetFragment_3_43();
-                    cookeryBottomSheetFragment.show(fragmentManager, "食神谱");
-                });
+                container.setOnClickListener(v -> CookeryBottomSheetModal.show(
+                        container.getContext(),
+                        R.layout.fragment_bottom_sheet_cookery_3_43,
+                        CookeryBottomSheetFragment_3_43::bind));
                 break;
         }
     }

@@ -16,4 +16,9 @@
          使弹窗角圆心与底部按钮角圆心严格同心；由 DialogCornerRadiusUtil 读取，
          与设备屏幕物理圆角无关 -->
     <dimen name="dialog_corner_radius">46dp</dimen>
+
+    <!-- fan Miuix 弹层底部沉浸：覆盖 bottomsheet AAR 默认的 100dp 底部额外占位（extra_space_height_view
+     及 Behavior.extraHeight 均读此值），使其归零，内容得以延伸到导航栏后方；
+     配合 themes.xml 中 Widget.Miuix.BottomSheet.Modal.Custom 的 miuixPaddingBottomSystemWindowInsets=false -->
+    <dimen name="miuix_bottom_sheet_extra_height">0dp</dimen>
 </resources>

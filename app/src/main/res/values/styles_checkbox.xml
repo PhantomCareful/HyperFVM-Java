@@ -1,26 +1,20 @@
 <resources>
-    <!-- 圆形勾选框尺寸（控件盒子边长）与圆角半径单源：
-         半径 >= 盒宽一半 时 GradientDrawable 自动 clamp 为正圆；
-         想调圆的大小/半径只需改这两处，四个计算器页面全局生效 -->
-    <dimen name="checkbox_box_size">24dp</dimen>
-    <dimen name="checkbox_corner_radius">12dp</dimen>
-    <!-- 未选中态描边宽度 -->
-    <dimen name="checkbox_stroke_width">2dp</dimen>
-    <!-- 内嵌勾号 vector 边长（选中态实心圆内） -->
-    <dimen name="checkbox_check_size">18dp</dimen>
-
-    <!-- Material3 标准圆形勾选框：
-         未选中 = 描边空心圆（colorOnSurfaceVariant），选中 = 实心圆（colorPrimary）+ 白色勾号（colorOnPrimary），
-         随主题/深浅色自动适配；
-         buttonCompat 换成自定义圆形 selector（原生是矩形 morph 动画 drawable）；
-         buttonTint 必须置 @null：M3 基础样式带 buttonTint=@color/m3_checkbox_button_tint，
-         会以 SRC_IN 把整个自定义 drawable 染成单色，勾号会消失；
-         background 置 @null 去掉按下圆波纹：M3 样式 background=m3_selection_control_ripple
-         （无 mask、半径固定 20dp 的 RippleDrawable），点击行容器时 ViewGroup.dispatchSetPressed
-         会把 pressed 传播给不可点击的 child（clickable=false 恰是传播条件），导致该圆波被触发 -->
-    <style name="Checkbox.Round" parent="Widget.Material3.CompoundButton.CheckBox">
+    <!-- fan 链路圆形勾选框（与 Miuix 弹层试点同配方）：
+         parent 走 fan 的 Widget.CompoundButton.CheckBox，勾选 drawable 不用 buttonCompat，
+         而是经 themes.xml 全局注入链生效：
+         android:listChoiceIndicatorMultiple=?checkBoxDrawable -> @drawable/miuix_pilot_checkbox
+         （checkBoxDrawableTouchAnimEnable=true，附带按压缩放与勾选过渡动画，深浅色随 fan 资源切换）；
+         不再用 M3 parent 也因 m3_checkbox_button_tint 会以 SRC_IN 把自定义视觉染成单色；
+         显式 wrap_content 压 fan 基础样式的 0dp（该样式按 match_parent 场景设计）；
+         buttonTint 固定为 colorOnPrimary 与试点视觉一致；
+         background 置 @null 去掉按下圆波纹（原 M3 样式 m3_selection_control_ripple 的
+         dispatchSetPressed 传播隐患，点击行容器时会误触发 child 圆波）；
+         计算器页勾选框无标签文字，textColor 仅备后续加文案时主题自适应 -->
+    <style name="Checkbox.Round" parent="Widget.CompoundButton.CheckBox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@null</item>
-        <item name="buttonCompat">@drawable/checkbox_round_selector</item>
-        <item name="buttonTint">@null</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="buttonTint">?attr/colorOnPrimary</item>
     </style>
 </resources>

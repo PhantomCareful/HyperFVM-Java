@@ -60,7 +60,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_card_1_checkbox"
                                     android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_card_2_checkbox"
                                     android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_card_3_checkbox"
                                     android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_skill_1_checkbox"
                                     android:layout_width="wrap_content"
@@ -273,7 +273,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_skill_2_checkbox"
                                     android:layout_width="wrap_content"
@@ -322,7 +322,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_skill_3_checkbox"
                                     android:layout_width="wrap_content"
@@ -371,7 +371,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_skill_4_checkbox"
                                     android:layout_width="wrap_content"
@@ -437,7 +437,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_transfer_1_a_checkbox"
                                     android:layout_width="wrap_content"
@@ -486,7 +486,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_transfer_1_b_checkbox"
                                     android:layout_width="wrap_content"
@@ -535,7 +535,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_transfer_2_a_checkbox"
                                     android:layout_width="wrap_content"
@@ -584,7 +584,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_transfer_2_b_checkbox"
                                     android:layout_width="wrap_content"
@@ -633,7 +633,7 @@
                                 android:paddingVertical="10dp"
                                 android:paddingEnd="10dp">
 
-                                <com.google.android.material.checkbox.MaterialCheckBox
+                                <CheckBox
                                     style="@style/Checkbox.Round"
                                     android:id="@+id/decompose_calculator_for_animal_card_transfer_2_c_checkbox"
                                     android:layout_width="wrap_content"

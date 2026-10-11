@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Miuix BottomSheet 通用脚手架（58 张食神谱卡共用，见 CookeryBottomSheetModal）。
+  结构对齐 HyperCeiler fragment_custom_order 模式：固定标题 + SpringBackLayout 内容区。
+  show 时运行时 inflate 各卡布局（fragment_bottom_sheet_cookery_X_Y）进内容容器，
+  并把布局根的内嵌标题（模板统一为根首子元素 60dp 标题 TextView）搬到固定标题槽，
+  保持标题不随内容滚动的观感；判定不中时标题留原位（降级不崩）。
+  scrollOrientation/scrollableView 为声明性 attr（miuix_fan_stub.xml 照抄 springback
+  原定义）：项目 vendored SpringBackLayout 走代码配置（默认竖直、target=首个子 View），
+  不读取这两个 attr；此处保留声明以对齐原版布局语义。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface">
+
+    <!-- 固定标题槽（wrap_content：搬入标题后撑到 60dp；判定不中时为空不留白） -->
+    <FrameLayout
+        android:id="@+id/miuix_cookery_sheet_title_slot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        app:scrollOrientation="vertical"
+        app:scrollableView="@id/miuix_cookery_scroll">
+
+        <!-- 嵌套滚动子：滚到顶/底后剩余量由 SpringBackLayout 接管回弹，
+             并经 NestedScrollingChild3 转发给弹层 BottomSheetBehavior（跟手/回弹） -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/miuix_cookery_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- 内容容器：运行时 inflate 各卡布局（标题搬走后其余内容在此滚动） -->
+            <FrameLayout
+                android:id="@+id/miuix_cookery_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </androidx.core.widget.NestedScrollView>
+    </com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout>
+</LinearLayout>

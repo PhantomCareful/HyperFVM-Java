@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     fan 资源闭包补桩：appcompat 的 Theme.AppCompat.Dark 引用 color/miuix_appcompat_divider_line_dark，
+     但该色只定义在未随包的模块（7 个 aar 内仅有 _light=#27000000）。
+     dark 主题分隔线取对称的 16% 白；仅 fan 控件样式链使用，不触达 BottomSheet 与 Miuix Checkbox 路径。
+-->
+<resources>
+    <color name="miuix_appcompat_divider_line_dark">#27FFFFFF</color>
+
+    <!-- fan springback aar 的 2 个 attr（popupwidget/appcompat 的 fan 菜单布局引用；计划不引 springback aar，
+         format 照抄原定义；项目 vendored SpringBackLayout 走代码配置不占用这两个名字） -->
+    <attr name="scrollableView" format="reference" />
+    <attr name="scrollOrientation" format="integer|flags">
+        <flag name="angle" value="0x4" />
+        <flag name="horizontal" value="0x1" />
+        <flag name="vertical" value="0x2" />
+    </attr>
+</resources>

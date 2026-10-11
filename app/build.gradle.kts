@@ -157,4 +157,25 @@ dependencies {
     //Miuix Folme 动画库（动态背景弹簧换色，对齐 HyperCeiler；本地 aar，公共仓库无此构件）
     implementation(files("libs/animation-1.0.13.0.aar"))
 
+    //Miuix 弹层 BottomSheet（原版 aar；类/R/资源随 aar 提供，不解析 pom 传递依赖）
+    implementation(files("libs/bottomsheet-1.0.13.0.aar"))
+
+    //Miuix 核心容器（AttributeResolver/BlurableWidget/ExtraPaddingPolicy，bottomsheet 运行时依赖）
+    implementation(files("libs/core-1.0.13.0.aar"))
+
+    //Miuix 主题资源（fan.theme.R，bottomsheet 的颜色/圆角引用）
+    implementation(files("libs/theme-1.0.13.0.aar"))
+
+    //Miuix 弹出层基础控件（fan.popupwidget.R 等，bottomsheet 引用）
+    implementation(files("libs/popupwidget-1.0.13.0.aar"))
+
+    //Miuix appcompat 重打包版（已删内嵌 androidx 同名类与 7 个官方重名 Theme.AppCompat style；fan.appcompat.R 硬依赖）
+    implementation(files("libs/appcompat-repacked-1.0.13.0.aar"))
+
+    //Miuix 基础控件（appcompat 资源闭包的硬依赖：filter/edittext/progress/seekbar 样式与 attr 均定义于此）
+    implementation(files("libs/basewidget-1.0.13.0.aar"))
+
+    //Miuix 卡片/状态 drawable（bottomsheet 把手的 CardStateDrawable 与 width/useSmooth 等 attr 定义于此）
+    implementation(files("libs/cardview-1.0.13.0.aar"))
+
 }

@@ -13,6 +13,42 @@
         <!--BottomSheetDialog内部背景层透明化，使圆角/颜色/透明度由bottom_sheet_rounded控制-->
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.HyperFVMJava.BottomSheetDialog</item>
 
+        <!--fan Miuix BottomSheet（bottomsheet aar）布局依赖的主题 attr：
+            drag handle 的宽高/前景图、弹层背景/圆角/behavior 参数全靠这两个 style 提供，
+            主题链未注入时 ?attr 解析为空会直接崩 "You must supply a layout_width attribute"。
+            bottomSheetStyle 指向 Custom（背景覆盖为 colorSurface）：fan 默认 miuix surface 色
+            与内容布局 colorSurface 断层，顶部把手区/底部导航条预留区观感不匹配 -->
+        <item name="bottomSheetDragHandleStyle">@style/Widget.Miuix.BottomSheet.DragHandle.DayNight</item>
+        <item name="bottomSheetStyle">@style/Widget.Miuix.BottomSheet.Modal.Custom</item>
+
+        <!--fan 深浅色判定 + Miuix Checkbox 映射链（fan 的 Theme 主题系列未引入，
+            Widget.CompoundButton.CheckBox 的 button/textColor 全部悬空会退化成原生样式）：
+            isLightTheme 供 BottomSheetView/DragHandleView 判深浅选 drawable；
+            listChoiceIndicatorMultiple→checkBoxDrawable 提供 off_to_on/on_to_off 过渡动画 drawable；
+            light/dark 经 values 与 values-night 的别名资源自动切换（见 miuix_pilot.xml） -->
+        <item name="isLightTheme">@bool/miuix_is_light_theme</item>
+        <item name="android:isLightTheme">@bool/miuix_is_light_theme</item>
+        <item name="android:listChoiceIndicatorMultiple">?checkBoxDrawable</item>
+        <item name="checkBoxDrawable">@drawable/miuix_pilot_checkbox</item>
+        <item name="checkableButtonTextColorSingle">@color/miuix_pilot_checkable_text</item>
+        <!-- CheckWidgetDrawable 代码绘制的圈/勾参数（fan 在 Theme.AppCompat.Light/Dark 注入，
+             Light 版已随计划删除；缺失时 safeGetColor/safeGetInt 兜底为透明或黑） -->
+        <!-- strokeColor 置透明：fan 未选中圈底层会额外画 2px 白描边（原值 #ffffff、
+             Paint 默认 alpha 恒 255，浅色页可见白圈），透明色使构造侧 hasStroke=false
+             直接跳过描边绘制；未选中淡色底圈（disableBackgroundColor + normalAlpha）保留 -->
+        <item name="checkWidgetStrokeColor">@android:color/transparent</item>
+        <item name="checkWidgetStrokeNormalAlpha">@integer/miuix_pilot_cb_stroke_normal_alpha</item>
+        <item name="checkWidgetStrokeDisableAlpha">@integer/miuix_pilot_cb_stroke_disable_alpha</item>
+        <item name="checkWidgetBackgroundNormalAlpha">@integer/miuix_pilot_cb_background_normal_alpha</item>
+        <item name="checkWidgetBackgroundDisableAlpha">@integer/miuix_pilot_cb_background_disable_alpha</item>
+        <item name="checkWidgetOnAlphaDrawableBackgroundColor">@color/miuix_pilot_cb_background_disabled</item>
+        <item name="checkWidgetDisableDrawableBackgroundColor">@color/miuix_pilot_cb_background_disabled</item>
+        <item name="checkBoxOnDrawableForegroundColor">?attr/colorOnPrimary</item>
+        <item name="checkBoxOnDrawableBackgroundColor">?attr/colorPrimary</item>
+        <!-- 按压缩放动画（CheckWidgetDrawableAnims 的 Spring scale）：fan style 经
+             ?checkBoxDrawableTouchAnimEnable 引用，主题缺失时解析为空则按压无缩小反馈 -->
+        <item name="checkBoxDrawableTouchAnimEnable">true</item>
+
         <!--Button的默认样式-->
         <item name="materialButtonStyle">@style/Button.NoShadow</item>
 
@@ -102,6 +138,16 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
+    </style>
+
+    <!-- fan Miuix 弹层本体背景对齐项目 colorSurface（parent 继承 fan 的圆角/模糊/behavior 参数）。
+         miuixPaddingBottomSystemWindowInsets=false：BottomSheetView 标签的 style=?attr/bottomSheetStyle
+         会进入 BottomSheetBehavior 的 obtainStyledAttributes(attributeSet,...)，覆盖其默认 true，
+         去掉底部导航栏高度的 padding（Behavior L2283-2285），使弹层内容延伸到导航栏后方（Edge-to-Edge）。
+         配合 dimens.xml 的 miuix_bottom_sheet_extra_height=0dp 消除底部 100dp 额外占位 -->
+    <style name="Widget.Miuix.BottomSheet.Modal.Custom" parent="Widget.Miuix.BottomSheet.Modal.DayNight">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="miuixPaddingBottomSystemWindowInsets">false</item>
     </style>
 
 </resources>

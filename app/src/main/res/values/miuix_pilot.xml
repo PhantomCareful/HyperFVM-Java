@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  fan Miuix 弹层试点的浅色侧别名资源（深色侧见 values-night/miuix_pilot.xml）。
+  主题 Base.Theme.HyperFVMJava 单份引用这些名字，values 与 values-night 提供
+  不同指向实现深浅色自动切换（fan 自家 Theme.Light/Theme.Dark 系列未引入，
+  无法靠主题链区分深浅）。
+-->
+<resources>
+    <!-- fan BottomSheetView/DragHandleView 深浅色判定（fan appcompat 自有 attr） -->
+    <bool name="miuix_is_light_theme">true</bool>
+    <!-- Miuix Checkbox 的 off_to_on/on_to_off 过渡动画 drawable -->
+    <drawable name="miuix_pilot_checkbox">@drawable/miuix_appcompat_btn_checkbox_light</drawable>
+    <!-- Miuix Checkbox 勾选态文字色 -->
+    <color name="miuix_pilot_checkable_text">@color/miuix_appcompat_checkable_btn_text_color_light</color>
+    <!-- Miuix Checkbox 圈/勾颜色与 alpha（CheckWidgetDrawable 代码绘制，主题 attr 悬空时
+         safeGetColor 兜底为透明/黑：未选中圈不可见、选中黑圆的根因）。
+         圈/勾主色已改为主题 attr 直引（colorPrimary/colorOnPrimary，见 themes.xml）；
+         白描边已去除（checkWidgetStrokeColor=transparent，见 themes.xml） -->
+    <color name="miuix_pilot_cb_background_disabled">@color/miuix_appcompat_checkbox_btn_background_color_disabled_light</color>
+    <integer name="miuix_pilot_cb_stroke_normal_alpha">@integer/checkwidget_stroke_normal_alpha_light</integer>
+    <integer name="miuix_pilot_cb_stroke_disable_alpha">@integer/checkwidget_stroke_disable_alpha_light</integer>
+    <integer name="miuix_pilot_cb_background_normal_alpha">@integer/checkwidget_background_normal_alpha_light</integer>
+    <integer name="miuix_pilot_cb_background_disable_alpha">@integer/checkwidget_background_disable_alpha_light</integer>
+</resources>

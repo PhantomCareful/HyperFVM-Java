@@ -15,7 +15,10 @@ import android.view.ViewParent;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.NestedScrollingChild;
+import androidx.core.view.NestedScrollingChild3;
+import androidx.core.view.NestedScrollingChildHelper;
 import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
@@ -37,10 +40,11 @@ import com.careful.HyperFVM.BuildConfig;
  * <p>作用轴：默认竖直；{@link #setScrollOrientation(int)} 可把 touch 路径切到水平
  * （供 HorizontalScrollView 包裹使用，如卡牌详情星级表）；嵌套路径仅服务竖直容器。
  *
- * <p>与原版的差异（有意为之）：不实现向上层的 NestedScrollingChild 协议（本容器为顶层）、
- * 无 OnSpringListener/滚动状态分派（无消费者）、屏幕尺寸用 DisplayMetrics。
+ * <p>与原版的差异（有意为之）：向上层同步实现 NestedScrollingChild3 协议（把本容器
+ * 消费后剩余的嵌套量转发给上层，如 Miuix BottomSheet 弹层跟手）、无 OnSpringListener/
+ * 滚动状态分派（无消费者）、屏幕尺寸用 DisplayMetrics。
  */
-public class SpringBackLayout extends ViewGroup implements NestedScrollingParent3 {
+public class SpringBackLayout extends ViewGroup implements NestedScrollingParent3, NestedScrollingChild3 {
 
     private static final String TAG = "SpringBackLayout";
     /** 作用轴/方向（与 SpringScroller 的 orientation 语义一致）：2=竖直，1=水平 */
@@ -79,6 +83,10 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     private boolean mNestedScrollInProgress;
     private boolean mNestedFlingInProgress;
     private boolean mScrollByFling;
+    /** 向上层（祖父容器）转发嵌套量的 helper：本容器消费后把剩余量继续上抛 */
+    private final NestedScrollingChildHelper mChildHelper;
+    /** dispatchNestedPreScroll 的上抛消费数组（复用避免每帧分配） */
+    private final int[] mNestedUpConsumed = new int[2];
     private float mTotalScrollTopUnconsumed;
     private float mTotalScrollBottomUnconsumed;
     private float mTotalFlingUnconsumed;
@@ -147,6 +155,7 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         super(context, attrs, defStyleAttr);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mSpringScroller = new SpringScroller();
+        mChildHelper = new NestedScrollingChildHelper(this);
         updateScreenSize();
     }
 
@@ -873,6 +882,8 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
                 return false;
             }
         }
+        // 向祖父（如 BottomSheet 的 CoordinatorLayout）登记本次嵌套滚动
+        mChildHelper.startNestedScroll(axes, type);
         return true;
     }
 
@@ -926,6 +937,29 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
 
     @Override
     public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed,
+                               int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
+        int preX = consumed[0];
+        int preY = consumed[1];
+        onNestedScrollInternal(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed,
+                type, consumed);
+        // 本容器本轮消费 = consumed 增量；剩余未消费量上抛祖父（Miuix BottomSheet
+        // 弹层跟手/Behavior 协作入口），祖父消费回填 consumed 交回孩子
+        int mineX = consumed[0] - preX;
+        int mineY = consumed[1] - preY;
+        int remainX = dxUnconsumed - mineX;
+        int remainY = dyUnconsumed - mineY;
+        if (remainX != 0 || remainY != 0) {
+            mNestedUpConsumed[0] = 0;
+            mNestedUpConsumed[1] = 0;
+            mChildHelper.dispatchNestedScroll(dxConsumed + mineX, dyConsumed + mineY,
+                    remainX, remainY, null, type, mNestedUpConsumed);
+            consumed[0] += mNestedUpConsumed[0];
+            consumed[1] += mNestedUpConsumed[1];
+        }
+    }
+
+    /** 内部嵌套消费主体（原 onNestedScroll 实现）；向上转发由外层包装负责。 */
+    private void onNestedScrollInternal(@NonNull View target, int dxConsumed, int dyConsumed,
                                int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
         if (!mSpringBackEnable) {
             return;
@@ -1004,6 +1038,8 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     @Override
     public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed,
                                int dxUnconsumed, int dyUnconsumed, int type) {
+        mNestedConsumedCompat[0] = 0;
+        mNestedConsumedCompat[1] = 0;
         onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed,
                 type, mNestedConsumedCompat);
     }
@@ -1011,17 +1047,29 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
     @Override
     public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed,
                                int dxUnconsumed, int dyUnconsumed) {
+        mNestedConsumedCompat[0] = 0;
+        mNestedConsumedCompat[1] = 0;
         onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed,
                 ViewCompat.TYPE_TOUCH, mNestedConsumedCompat);
     }
 
     @Override
     public void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
-        if (!mSpringBackEnable) {
-            return;
-        }
-        if (mNestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL) {
+        if (mSpringBackEnable && mNestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL) {
             nestedPreScrollVertical(dy, consumed, type);
+        }
+        // 本容器消费后剩余的量经 dispatchNestedPreScroll 上抛祖父（Miuix BottomSheet
+        // 弹层跟手入口）；mSpringBackEnable=false 时全量转发；普通页面父容器非嵌套型
+        // → dispatch 返回 false，行为与接入前一致
+        int remainX = dx - consumed[0];
+        int remainY = dy - consumed[1];
+        if (remainX != 0 || remainY != 0) {
+            mNestedUpConsumed[0] = 0;
+            mNestedUpConsumed[1] = 0;
+            if (mChildHelper.dispatchNestedPreScroll(remainX, remainY, mNestedUpConsumed, null, type)) {
+                consumed[0] += mNestedUpConsumed[0];
+                consumed[1] += mNestedUpConsumed[1];
+            }
         }
     }
 
@@ -1158,6 +1206,8 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
                 stopNestedFlingScroll(dir);
             }
         }
+        // 同步注销祖父的嵌套滚动登记
+        mChildHelper.stopNestedScroll(type);
     }
 
     @Override
@@ -1200,6 +1250,98 @@ public class SpringBackLayout extends ViewGroup implements NestedScrollingParent
         } else {
             scrollTo((int) -distance, 0);
         }
+    }
+
+    // ---------------------------------------------------------------------
+    // 嵌套滚动子协议（NestedScrollingChild3，全量委托 helper）：把本容器作为
+    // Parent 消费后仍剩余的嵌套量继续上抛祖父容器（如 Miuix BottomSheet 的
+    // CoordinatorLayout/Behavior）。四个转发点（start/pre/scroll/stop）在上方
+    // Parent3 方法内完成，这里补齐接口方法；普通页面父容器非嵌套型时 dispatch
+    // 全 false，行为与接入前一致
+    // ---------------------------------------------------------------------
+
+    @Override
+    public void setNestedScrollingEnabled(boolean enabled) {
+        mChildHelper.setNestedScrollingEnabled(enabled);
+    }
+
+    @Override
+    public boolean isNestedScrollingEnabled() {
+        return mChildHelper.isNestedScrollingEnabled();
+    }
+
+    @Override
+    public boolean hasNestedScrollingParent() {
+        return mChildHelper.hasNestedScrollingParent();
+    }
+
+    @Override
+    public boolean hasNestedScrollingParent(int type) {
+        return mChildHelper.hasNestedScrollingParent(type);
+    }
+
+    @Override
+    public boolean startNestedScroll(int axes) {
+        return mChildHelper.startNestedScroll(axes);
+    }
+
+    @Override
+    public boolean startNestedScroll(int axes, int type) {
+        return mChildHelper.startNestedScroll(axes, type);
+    }
+
+    @Override
+    public void stopNestedScroll() {
+        mChildHelper.stopNestedScroll();
+    }
+
+    @Override
+    public void stopNestedScroll(int type) {
+        mChildHelper.stopNestedScroll(type);
+    }
+
+    @Override
+    public boolean dispatchNestedPreScroll(int dx, int dy, @Nullable int[] consumed,
+                                           @Nullable int[] offsetInWindow) {
+        return mChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedPreScroll(int dx, int dy, @Nullable int[] consumed,
+                                           @Nullable int[] offsetInWindow, int type) {
+        return mChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow, type);
+    }
+
+    @Override
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed,
+                                        int dyUnconsumed, @Nullable int[] offsetInWindow) {
+        return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed,
+                dyUnconsumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed,
+                                        int dyUnconsumed, @Nullable int[] offsetInWindow, int type) {
+        return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed,
+                dyUnconsumed, offsetInWindow, type);
+    }
+
+    @Override
+    public void dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed,
+                                     int dyUnconsumed, @Nullable int[] offsetInWindow, int type,
+                                     @NonNull int[] consumed) {
+        mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed,
+                dyUnconsumed, offsetInWindow, type, consumed);
+    }
+
+    @Override
+    public boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed) {
+        return mChildHelper.dispatchNestedFling(velocityX, velocityY, consumed);
+    }
+
+    @Override
+    public boolean dispatchNestedPreFling(float velocityX, float velocityY) {
+        return mChildHelper.dispatchNestedPreFling(velocityX, velocityY);
     }
 
     // ---------------------------------------------------------------------

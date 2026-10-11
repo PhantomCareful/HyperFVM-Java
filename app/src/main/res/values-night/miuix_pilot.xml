@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  fan Miuix 弹层试点的深色侧别名资源（浅色侧见 values/miuix_pilot.xml）。
+  与浅色侧同名，深色模式下资源系统自动解析到本文件的指向。
+-->
+<resources>
+    <bool name="miuix_is_light_theme">false</bool>
+    <drawable name="miuix_pilot_checkbox">@drawable/miuix_appcompat_btn_checkbox_dark</drawable>
+    <color name="miuix_pilot_checkable_text">@color/miuix_appcompat_checkable_btn_text_color_dark</color>
+    <!-- Miuix Checkbox 圈/勾颜色与 alpha（深色侧，浅色侧见 values/miuix_pilot.xml） -->
+    <color name="miuix_pilot_cb_background_disabled">@color/miuix_appcompat_checkbox_btn_background_color_disabled_dark</color>
+    <integer name="miuix_pilot_cb_stroke_normal_alpha">@integer/checkwidget_stroke_normal_alpha_dark</integer>
+    <integer name="miuix_pilot_cb_stroke_disable_alpha">@integer/checkwidget_stroke_disable_alpha_dark</integer>
+    <integer name="miuix_pilot_cb_background_normal_alpha">@integer/checkwidget_background_normal_alpha_dark</integer>
+    <integer name="miuix_pilot_cb_background_disable_alpha">@integer/checkwidget_background_disable_alpha_dark</integer>
+</resources>

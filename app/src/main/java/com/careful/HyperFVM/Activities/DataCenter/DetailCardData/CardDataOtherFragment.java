@@ -123,7 +123,7 @@ public class CardDataOtherFragment extends Fragment {
                     );
                     cookery_image.setImageResource(imageResId);
 
-                    CardDataHelper.selectCookeryByName(additionalInfoArray[i].split("- ")[1].split("；")[0], cookery_container, getParentFragmentManager());
+                    CardDataHelper.selectCookeryByName(additionalInfoArray[i].split("- ")[1].split("；")[0], cookery_container);
 
                 } else if (additionalInfoArray[i].contains("🔥秒产说明")) {
                     if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {

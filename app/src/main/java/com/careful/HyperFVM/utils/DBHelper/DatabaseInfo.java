@@ -125,6 +125,8 @@ public class DatabaseInfo {
      * 更新防御卡数据库
      * DB_VERSION = 112
      * settings表增加“主题-主题模式”“主题-强调色”设置（旧主题键废弃）
+     * DB_VERSION = 113
+     * 更新防御卡数据库
      */
-    public static final int DB_VERSION = 112;
+    public static final int DB_VERSION = 113;
 }
