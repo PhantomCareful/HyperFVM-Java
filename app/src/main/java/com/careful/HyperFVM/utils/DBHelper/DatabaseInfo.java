@@ -127,6 +127,8 @@ public class DatabaseInfo {
      * settings表增加“主题-主题模式”“主题-强调色”设置（旧主题键废弃）
      * DB_VERSION = 113
      * 更新防御卡数据库
+     * DB_VERSION = 114
+     * Miuix默认主题欢迎弹窗
      */
-    public static final int DB_VERSION = 113;
+    public static final int DB_VERSION = 114;
 }
