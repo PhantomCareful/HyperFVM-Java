@@ -346,13 +346,15 @@ public class MeishiWechatActivity extends BaseActivity {
         }
 
         // 添加按压动画
+        findViewById(R.id.tips_meishi_wechat_1).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
+        findViewById(R.id.tips_meishi_wechat_2).setOnTouchListener((v, event) ->
+                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
         findViewById(R.id.content_meishi_wechat_rules_1).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
         findViewById(R.id.content_meishi_wechat_rules_2).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
         findViewById(R.id.content_meishi_wechat_rules_3).setOnTouchListener((v, event) ->
-                setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
-        findViewById(R.id.tips_meishi_wechat).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));
         findViewById(R.id.content_meishi_wechat_get_gift_rules_1).setOnTouchListener((v, event) ->
                 setPressFeedbackAnimation(v, event, PressFeedbackAnimationUtils.PressFeedbackType.SINK));

@@ -315,12 +315,13 @@
     <string name="text_dashboard_last_day_of_month">月末了，请注意清空积分和金券</string>
     <string name="title_dashboard_meishi_wechat">温馨礼包</string>
     <string name="top_bar_meishi_wechat">温馨礼包链接管理</string>
+    <string name="description_meishi_wechat_permission_links">点击以快速配置</string>
+    <string name="tips_meishi_wechat">请妥善保管好您的openid，不要泄露给他人！</string>
     <string name="title_meishi_wechat_account_saved">已保存的账号</string>
     <string name="title_meishi_wechat_rules">使用说明</string>
     <string name="content_meishi_wechat_rules_1">点击右上角的添加按钮，输入您从微信公众号-美食中心复制过来的链接。</string>
     <string name="content_meishi_wechat_rules_2">添加成功后，当前界面会出现一个卡片，里面会显示您的账号信息(所在区服、角色ID)，您可以检查信息是否有误。</string>
     <string name="content_meishi_wechat_rules_3">若要删除账号，请长按该账号的信息卡片。</string>
-    <string name="tips_meishi_wechat">请妥善保管好您的openid，不要泄露给他人！</string>
     <string name="title_meishi_wechat_get_gift_rules">领取时机</string>
     <string name="content_meishi_wechat_get_gift_rules_1">您每次打开App都会自动执行一次领取操作。</string>
     <string name="content_meishi_wechat_get_gift_rules_2">您可以点击主界面仪表盘右上角的刷新内容按钮进行手动领取。</string>
