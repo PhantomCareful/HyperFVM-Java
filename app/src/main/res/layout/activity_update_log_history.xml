@@ -61,10 +61,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
+    <!-- 宽度必须用 0dp(match_constraint)：让左右 margin 参与宽度计算才能实现底栏三边距等宽；
+         改成 wrap_content 后胶囊宽度由内容决定，左右 margin 视觉失效 -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/tabLayoutContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
         android:layout_marginBottom="50dp"
         app:strokeWidth="0dp"
         app:cardCornerRadius="40dp"
