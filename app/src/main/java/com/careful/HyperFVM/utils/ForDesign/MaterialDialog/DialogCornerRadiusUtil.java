@@ -6,11 +6,15 @@ import android.graphics.drawable.ColorStateListDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.DeviceType.DeviceTypeUtil;
 import com.careful.HyperFVM.utils.ForDesign.Smooth.SmoothCornerTraverser;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RoundedCornerTreatment;
@@ -75,6 +79,31 @@ public final class DialogCornerRadiusUtil {
             android.util.Log.d(TAG, "apply: " + dialog.getClass().getSimpleName()
                     + " from=" + from);
         }
+        // HC 弹窗两端动画复刻（纯窗口级，WMS 播放），按物理屏幕形态分支：
+        // · 手机：屏幕下方飞入/飞出；PAD：屏幕中心淡入+微缩放/淡出。
+        // 必须在 show 前设置；退场动画（windowExitAnimation）由系统在移除窗口时加载——
+        // 动画资源内插值器必须是框架内置项，否则 WMS 进程解析失败导致退场直接消失
+        // （实测：自定义插值器报 Unknown interpolator name → 动画加载失败 → removeImmediately）。
+        final boolean tablet = DeviceTypeUtil.isTabletByPhysicalScreen();
+        final Window window = Objects.requireNonNull(dialog.getWindow());
+        // HC 弹窗位置（fan AlertController.getGravity：isTablet ? 17(CENTER) : 81(BOTTOM|CENTER_HORIZONTAL)）：
+        // 手机端贴屏幕底部居中、PAD 端屏幕居中；底部留 12dp 间距（fan miuix_appcompat_dialog_ime_margin
+        // 同值，fan 以 verticalMargin=间距/窗口高的比例实现，此处 show 前窗口尚未布局，用屏幕高度折算）。
+        // 与退场动画自洽：贴底窗口下移 100%p = 完全滑出屏幕底缘，进场则从底缘外滑入到位。
+        if (tablet) {
+            window.setGravity(Gravity.CENTER);
+        } else {
+            window.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+            final int bottomMargin = dialog.getContext().getResources()
+                    .getDimensionPixelSize(R.dimen.dialog_window_bottom_margin);
+            final float rootHeight = dialog.getContext().getResources()
+                    .getDisplayMetrics().heightPixels;
+            final WindowManager.LayoutParams attrs = window.getAttributes();
+            attrs.verticalMargin = rootHeight > 0 ? (float) bottomMargin / rootHeight : 0f;
+            window.setAttributes(attrs);
+        }
+        window.setWindowAnimations(
+                tablet ? R.style.DialogWindowAnim_Pad : R.style.DialogWindowAnim_Phone);
         // 全组件系统平滑圆角：弹窗为独立窗口，在 decor 上挂持续遍历，
         // 覆盖弹窗内全部视图（按钮、列表行等），并幂等补盖 applyLayers 换上的新背景
         SmoothCornerTraverser.install(decor);

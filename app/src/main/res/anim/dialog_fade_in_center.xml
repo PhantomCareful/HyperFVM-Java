@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- HC 弹窗动画复刻·PAD 端进入：屏幕中心淡入 + 微缩放。
+     对标 fan PadDialogAnim（AndroidUIThread 分支原参数）：
+     scale max(0.8, 1-60/max(w,h))→1、alpha 0→1、300ms、Decelerate(1.5)；
+     插值器用框架内置 decelerate_cubic（= factor 1.5，与 fan DecelerateInterpolator(1.5F)
+     严格等值；自定义插值器连字符标签会在 WMS 进程解析失败）；
+     全屏窗口绕中心缩放 = 面板（gravity 居中）原地缩放，与 fan 面板级动画视觉等效 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <scale
+        android:fromXScale="0.8"
+        android:fromYScale="0.8"
+        android:toXScale="1.0"
+        android:toYScale="1.0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:duration="150"
+        android:interpolator="@android:interpolator/decelerate_cubic" />
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="150"
+        android:interpolator="@android:interpolator/decelerate_cubic" />
+</set>

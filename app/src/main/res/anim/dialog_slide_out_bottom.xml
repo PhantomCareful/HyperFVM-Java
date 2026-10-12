@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- HC 弹窗动画复刻·手机端退出：面板向屏幕下方飞出。
+     对标 fan PhoneDialogAnim.dismissPanel：translationY → height、
+     new DecelerateInterpolator(1.5F)；原版 200ms，实测与 350ms 进场对比偏快，
+     按手感放宽至 250ms（进退比 1.75→1.4，仍保持退出比进入利落的节奏）。
+     插值器用框架内置 @android:interpolator/decelerate_cubic：framework 源码内容即
+     <decelerateInterpolator factor="1.5">，与 fan 参数严格等值。
+     自定义插值器文件必须避开：动画由 WMS 进程加载，且 AOSP createInterpolatorFromXml
+     只认 camelCase 标签，连字符写法 <decelerate-interpolator> 会抛 Unknown interpolator
+     name → 退场动画加载失败窗口直接移除"消失"；framework 资源则必然可加载 -->
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromYDelta="0"
+    android:toYDelta="100%p"
+    android:duration="350"
+    android:interpolator="@android:interpolator/decelerate_cubic" />
