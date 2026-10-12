@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- HC 弹窗动画复刻·PAD 端退出：中心淡出 + 微缩放。
-     对标 fan PadDialogAnim.dismissPanel：scale 1→0.8、alpha 1→0、Decelerate(1.5)；
-     原版 200ms，与进场对比偏快，按手感同步放宽至 250ms（与手机端退场一致）。
-     插值器用框架内置 decelerate_cubic（= factor 1.5，与 fan 严格等值）；必须避开自定义
-     插值器：连字符标签在 WMS 进程解析失败会导致退场动画加载失败直接消失 -->
+     对标 fan PadDialogAnim.dismissPanel：scale 1→0.8、alpha 1→0；原版 200ms+
+     Decelerate(1.5)（起手瞬时速度最大，窗口级实现下观感生硬），与进场同步改用
+     fast_out_slow_in S 曲线（平滑起收）实现 HC “非线性顺滑”观感，时长按手感 150ms；
+     必须避开自定义插值器：连字符标签在 WMS 进程解析失败会导致退场直接消失 -->
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <scale
         android:fromXScale="1.0"
@@ -13,10 +13,10 @@
         android:pivotX="50%"
         android:pivotY="50%"
         android:duration="150"
-        android:interpolator="@android:interpolator/decelerate_cubic" />
+        android:interpolator="@android:interpolator/fast_out_slow_in" />
     <alpha
         android:fromAlpha="1.0"
         android:toAlpha="0.0"
         android:duration="150"
-        android:interpolator="@android:interpolator/decelerate_cubic" />
+        android:interpolator="@android:interpolator/fast_out_slow_in" />
 </set>
