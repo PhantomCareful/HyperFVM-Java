@@ -183,14 +183,14 @@ public class DataImageIndexActivity extends BaseActivity {
         // 初始化各种装饰效果
         initDecoration();
 
+        // 初始化各入口卡片的点击事件
+        initViews();
+
         // 从云端仓库获取数据图信息（版本号、访问链接等）
         getDataImageInfoFromGit(new DataImageCatchResultCallBack() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess() {
-                // 获取成功了，再初始化各入口卡片的点击事件
-                mainHandler.post(() -> initViews());
-
                 // 获取成功以后，需要将所有图片的version与数据库存储的versionCode进行对比
                 // 如果有图片更新，则单独下载这些图片
                 // 如果是第一次使用，则数据库存储的versionCode为0，自然所有图片都需要更新
@@ -248,15 +248,14 @@ public class DataImageIndexActivity extends BaseActivity {
 
             @Override
             public void onFailed(Exception e) {
-                // 失败的话，用弹窗显示异常日志
-                DialogBuilderManager.showDialog(
-                        DataImageIndexActivity.this,
-                        "抛出异常",
-                        "❌",
-                        "请将本页面截图反馈给开发者：\n" + e,
-                        true,
-                        "好的"
-                );
+                // 失败的话，显示异常日志
+                data_image_index_update_info_title.setText("出现问题❌❌❌");
+                data_image_index_update_info_description.setText(e.getMessage());
+
+                // 虽然报错了，但是如果本地已经下载了图片，还是允许查看
+                if (localVersionCode != 0 && localVersionCode != 1) {
+                    setAllCardViewEnabled(true);
+                }
             }
         });
     }
