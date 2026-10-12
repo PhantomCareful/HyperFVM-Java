@@ -151,9 +151,6 @@ dependencies {
     //拼音转换：防御卡目录按完整拼音字典序排序（多音字校正表在运行时挂载）
     implementation(libs.tinypinyin)
 
-    //G2 连续 squircle 圆角（弹窗/BottomSheet 角曲线，AndroidX 官方库）
-    implementation(libs.androidx.graphics.shapes)
-
     //Miuix Folme 动画库（动态背景弹簧换色，对齐 HyperCeiler；本地 aar，公共仓库无此构件）
     implementation(files("libs/animation-1.0.13.0.aar"))
 
@@ -177,5 +174,8 @@ dependencies {
 
     //Miuix 卡片/状态 drawable（bottomsheet 把手的 CardStateDrawable 与 width/useSmooth 等 attr 定义于此）
     implementation(files("libs/cardview-1.0.13.0.aar"))
+
+    //Miuix 平滑圆角（SmoothCornerHelper 反射 View/Drawable.setSmoothCornerEnabled 系统 squircle；cardview/bottomsheet 运行时引用，minSdk 33 靠 Manifest overrideLibrary）
+    implementation(files("libs/smooth-1.0.13.0.aar"))
 
 }

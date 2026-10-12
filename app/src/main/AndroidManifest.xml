@@ -16,7 +16,7 @@
          31/32 设备不会触碰该库，此处仅用于通过 manifest merger -->
     <!-- bottomsheet/core/theme/popupwidget/appcompat/basewidget/cardview 7 个 aar 同样声明 minSdk 33，
          但依赖闭包已核过均为标准 API（31/32 可跑）：一并 override 以通过 manifest merger -->
-    <uses-sdk tools:overrideLibrary="fan.animation,fan.bottomsheet,fan.core,fan.theme,fan.popupwidget,fan.appcompat,fan.basewidget,fan.cardview" />
+    <uses-sdk tools:overrideLibrary="fan.animation,fan.bottomsheet,fan.core,fan.theme,fan.popupwidget,fan.appcompat,fan.basewidget,fan.cardview,fan.smooth" />
 
     <application
         android:name=".HyperFVMApplication"

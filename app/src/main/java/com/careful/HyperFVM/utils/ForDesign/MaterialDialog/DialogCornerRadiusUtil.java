@@ -5,13 +5,16 @@ import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorStateListDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import com.careful.HyperFVM.R;
 import com.google.android.material.shape.MaterialShapeDrawable;
-import com.google.android.material.shape.ShapeAppearanceModel;
+import com.google.android.material.shape.RoundedCornerTreatment;
+
+import fan.smooth.SmoothCornerHelper;
 
 import java.util.Objects;
 
@@ -24,12 +27,12 @@ import java.util.Objects;
  * 弹窗可见轮廓为单层：window 层背景（MaterialAlertDialogBuilder 设置的 InsetDrawable/MSD）
  * 直接设为透明、不再绘制；仅保留内容层根容器的 ?attr/colorSurface 背景（inflate 后为
  * ColorDrawable 或 framework ColorStateListDrawable——Android 13 实测为后者，仅判
- * ColorDrawable 会 SKIPPED 导致“完全矩形”，两者须一并取色），替换为
- * MaterialShapeDrawable 后表达 G2 连续曲率的 squircle 圆角，
- * 角形状由 {@link SquircleCornerTreatment} 提供），避免两层同形轮廓的双重 AA 叠加。
- * 弹窗内按钮保持 Material 默认圆角，不加 G2：按钮短边（约 40dp 级）小于翼曲线
- * 所需延伸 2(1+s)r（r=20、s=0.4 时 56dp），相邻角翼在直边上互相重叠会触发
- * ShapePath 的 overlap/UNION 规范化，在直边转入圆角处留下衔接折痕，实测无法规避。
+ * ColorDrawable 会 SKIPPED 导致“完全矩形”，两者须一并取色），替换为同色
+ * GradientDrawable 圆角背景，并经 fan.miuix.smooth 的 SmoothCornerHelper 反射
+ * View/Drawable.setSmoothCornerEnabled，由 HyperOS 系统把圆角渲染成原生 squircle。
+ * 非 HyperOS/MIUI（persist.sys.support_view_smoothcorner=false）反射静默跳过，
+ * 退化为普通圆角，半径逻辑不变。
+ * 弹窗内按钮保持 Material 默认圆角，与原 G2 版一致不在改造范围内。
  * <p>
  * 圆角取固定值 R.dimen.dialog_corner_radius（46dp = 按钮 margin 26dp + 按钮圆角
  * 20dp）：弹窗未贴屏幕边缘且居中显示，与屏幕物理圆角同心反而不协调；固定 46dp
@@ -97,7 +100,7 @@ public final class DialogCornerRadiusUtil {
 
     /**
      * 同步弹窗背景：① window 层背景设为透明（不再绘制）② 内容层根容器背景
-     * 替换为 G2 squircle 圆角的 MaterialShapeDrawable，弹窗可见轮廓仅此一层。
+     * 替换为同色 GradientDrawable 圆角并开系统 squircle，弹窗可见轮廓仅此一层。
      *
      * @return 内容层已就绪（或无需重试）返回 true；内容视图树未就绪返回 false
      */
@@ -117,7 +120,7 @@ public final class DialogCornerRadiusUtil {
         if (contentRoot != null) {
             applyContentBackground(contentRoot, radius);
         }
-        // ③ 按钮不加 G2：见类注释，短边不足会触发 ShapePath UNION 折痕
+        // ③ 按钮不处理：保持 Material 默认圆角，见类注释
         return contentRoot != null;
     }
 
@@ -136,23 +139,35 @@ public final class DialogCornerRadiusUtil {
     }
 
     /**
-     * 内容层根背景圆角化：G2 角曲线无法用 GradientDrawable 表达，统一替换为
-     * 同色 MaterialShapeDrawable（squircle 角处理）；已是本工具设置的
-     * MaterialShapeDrawable 时只更新模型（重复应用，保留既有填色）。
+     * 内容层根背景圆角化：统一替换为同色 GradientDrawable（四角 radius）并经
+     * SmoothCornerHelper 开启系统 squircle（HyperOS 把该 drawable/View 的圆角
+     * 渲染成原生 squircle）；已是本工具设置的 GradientDrawable 时只更新半径
+     * （重复应用，保留既有填色）。非 HyperOS/MIUI 反射静默跳过，退化普通圆角。
      */
     private static void applyContentBackground(View contentRoot, int radius) {
         Drawable background = contentRoot.getBackground();
-        if (background instanceof MaterialShapeDrawable) {
-            // 重复应用：原模型可能携带本工具外的 edges，toBuilder 保留后只换四角
-            MaterialShapeDrawable existing = (MaterialShapeDrawable) background.mutate();
-            existing.setShapeAppearanceModel(existing.getShapeAppearanceModel().toBuilder()
-                    .setAllCorners(new SquircleCornerTreatment())
-                    .setAllCornerSizes((float) radius)
-                    .build());
-            if (DEBUG) android.util.Log.d(TAG, "content layer: squircle(G2) model refreshed " + radius + "px");
+        if (background instanceof GradientDrawable) {
+            // 重复应用：只更新半径，保留既有填色（含本工具外的 tint 状态）
+            GradientDrawable existing = (GradientDrawable) background.mutate();
+            existing.setCornerRadius(radius);
+            SmoothCornerHelper.setDrawableSmoothCornerEnable(existing, true);
+            SmoothCornerHelper.setViewSmoothCornerEnable(contentRoot, true);
+            if (DEBUG) android.util.Log.d(TAG, "content layer: rounded refreshed " + radius + "px + system smooth");
             return;
         }
-        int color;
+        if (background instanceof MaterialShapeDrawable) {
+            // 主题原生 MSD 兜底：保留模型 edges，只把四角改回标准圆角并开 smooth
+            // （系统 squircle 不一定认 MSD 自绘 path，最差退化为普通圆角而非矩形）
+            MaterialShapeDrawable existing = (MaterialShapeDrawable) background.mutate();
+            existing.setShapeAppearanceModel(existing.getShapeAppearanceModel().toBuilder()
+                    .setAllCorners(new RoundedCornerTreatment())
+                    .setAllCornerSizes((float) radius)
+                    .build());
+            SmoothCornerHelper.setDrawableSmoothCornerEnable(existing, true);
+            SmoothCornerHelper.setViewSmoothCornerEnable(contentRoot, true);
+            if (DEBUG) android.util.Log.d(TAG, "content layer: MSD rounded " + radius + "px + system smooth");
+            return;
+        }
         ColorStateList bgColors = null;
         if (background instanceof ColorDrawable) {
             bgColors = ColorStateList.valueOf(((ColorDrawable) background).getColor());
@@ -162,21 +177,19 @@ public final class DialogCornerRadiusUtil {
             // 叠加 window 层已透明 = 完全矩形，故须一并取色
             bgColors = ((ColorStateListDrawable) background).getColorStateList();
         }
-        if (bgColors != null) {
-            color = bgColors.getDefaultColor();
-        } else {
-            // 真渐变/图片背景不处理：G2 曲线无法用它表达，而 framework 私有字段
-            // 已在 Android 17 移除、纯色无法可靠读取（真渐变也不能覆盖）——保持原背景
+        if (bgColors == null) {
+            // 真渐变/图片背景不处理：framework 私有字段已在 Android 17 移除、
+            // 纯色无法可靠读取（真渐变也不能覆盖）——保持原背景
             if (DEBUG) android.util.Log.d(TAG, "content layer: SKIPPED (bg type not handled): "
                     + background.getClass().getName());
             return;
         }
-        MaterialShapeDrawable shape = new MaterialShapeDrawable(new ShapeAppearanceModel().toBuilder()
-                .setAllCorners(new SquircleCornerTreatment())
-                .setAllCornerSizes((float) radius)
-                .build());
-        shape.setFillColor(ColorStateList.valueOf(color));
+        GradientDrawable shape = new GradientDrawable();
+        shape.setColor(bgColors);
+        shape.setCornerRadius(radius);
         contentRoot.setBackground(shape);
-        if (DEBUG) android.util.Log.d(TAG, "content layer: -> MaterialShapeDrawable squircle(G2) " + radius + "px");
+        SmoothCornerHelper.setDrawableSmoothCornerEnable(shape, true);
+        SmoothCornerHelper.setViewSmoothCornerEnable(contentRoot, true);
+        if (DEBUG) android.util.Log.d(TAG, "content layer: -> GradientDrawable rounded " + radius + "px + system smooth");
     }
 }
