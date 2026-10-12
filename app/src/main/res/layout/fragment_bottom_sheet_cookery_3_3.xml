@@ -328,23 +328,16 @@
                 app:cardBackgroundColor="?attr/ImportantCardViewBackground"
                 app:cardCornerRadius="20dp">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="@string/tips_auxiliary_card_data_cookery_3_3_1"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/TextViewColorOnImportantCardView"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground"/>
-
-                </LinearLayout>
+                    android:padding="16dp"
+                    android:text="@string/tips_auxiliary_card_data_cookery_3_3_1"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/TextViewColorOnImportantCardView"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"/>
 
             </androidx.cardview.widget.CardView>
 

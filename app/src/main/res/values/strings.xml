@@ -1889,7 +1889,7 @@
     <string name="description_card_data_cookery_3_3">如果没有与辣椒花椒比拼的勇气，谨吃慎食</string>
     <string name="reward_card_data_cookery_3_3">奖励750食神点</string>
     <string name="auxiliary_card_data_cookery_3_3_1">开启此食神谱后，以下卡片增幅倍率提升10%</string>
-    <string name="tips_auxiliary_card_data_cookery_3_3_1">🚨实际数据为增幅倍率提升0.1</string>
+    <string name="tips_auxiliary_card_data_cookery_3_3_1">实际数据为增幅倍率提升0.1</string>
 
     <string name="name_card_data_cookery_3_4">番茄炒蛋</string>
     <string name="description_card_data_cookery_3_4">家常小炒菜，虽说简单却色香味俱全</string>
@@ -1899,7 +1899,9 @@
     <string name="name_card_data_cookery_3_5">面包家族</string>
     <string name="description_card_data_cookery_3_5">面包是世界上食用群体最广的食物，种类繁多</string>
     <string name="reward_card_data_cookery_3_5">奖励480食神点</string>
-    <string name="auxiliary_card_data_cookery_3_5_1">开启此食神谱后，以下卡片体力提升20%，攻击间隔减少1.5秒</string>
+    <string name="auxiliary_card_data_cookery_3_5_1">开启此食神谱后，以下卡片体力提升20%，攻击间隔减少2秒</string>
+    <string name="tips_auxiliary_card_data_cookery_3_5_1_1">实际数据为攻击间隔减少1.5秒</string>
+    <string name="tips_auxiliary_card_data_cookery_3_5_1_2">15、16星的负离子面包吃不到攻击间隔加成</string>
     <string name="auxiliary_card_data_cookery_3_5_2">开启此食神谱后，以下卡片体力提升20%</string>
 
     <string name="name_card_data_cookery_3_6">关东煮</string>
@@ -1918,8 +1920,8 @@
     <string name="reward_card_data_cookery_3_8">奖励450食神点</string>
     <string name="description_get_card_data_cookery_star_energy_3_8">通过每日充值(日氪)收集星能碎片，使用400个星能碎片进行兑换</string>
     <string name="auxiliary_card_data_cookery_3_8_1">开启此食神谱后，以下卡片攻速提升5%</string>
-    <string name="tips_auxiliary_card_data_cookery_3_8_1_title">该食神谱无实际效果🚫</string>
-    <string name="tips_auxiliary_card_data_cookery_3_8_1_description">实际加成为3%，攻速缩减量小于1帧，因此无加成(你游20帧游戏这一块🙄)</string>
+    <string name="tips_auxiliary_card_data_cookery_3_8_1_1">实际数据为攻速提升3%</string>
+    <string name="tips_auxiliary_card_data_cookery_3_8_1_2">该食神谱无实际效果。攻速提升3%时，实际缩减量为0.6帧＜1帧(你游20帧游戏这一块🙄)</string>
 
     <string name="name_card_data_cookery_3_9">圣诞姜饼</string>
     <string name="description_card_data_cookery_3_9">美味镇圣诞节专用小吃，谁吃谁知道！</string>
