@@ -49,7 +49,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                            app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                             app:cardCornerRadius="20dp">
 
                             <LinearLayout
@@ -66,7 +66,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_link"
-                                    app:tint="?attr/VectorGraphicColorOnImportantCardView" />
+                                    app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
 
                                 <!-- 左侧文字 -->
                                 <LinearLayout
@@ -82,13 +82,13 @@
                                         android:text="@string/title_settings_permission_links"
                                         android:textSize="20sp"
                                         android:textStyle="bold"
-                                        android:textColor="?attr/TextViewColorOnImportantCardView" />
+                                        android:textColor="?attr/TextViewColorOnGeneralCardView" />
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/description_settings_permission_links"
+                                        android:text="@string/description_meishi_wechat_permission_links"
                                         android:textSize="15sp"
-                                        android:textColor="?attr/SummaryTextViewColorOnImportantCardView"/>
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
 
                                 </LinearLayout>
 
@@ -96,9 +96,29 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_arrow_right"
-                                    app:tint="?attr/SummaryTextViewColorOnImportantCardView" />
+                                    app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                             </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/tips_meishi_wechat_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:clickable="true"
+                            app:cardBackgroundColor="?attr/ImportantCardViewBackground"
+                            app:cardCornerRadius="20dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:text="@string/description_settings_permission_links"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/TextViewColorOnImportantCardView" />
 
                         </androidx.cardview.widget.CardView>
 
