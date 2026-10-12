@@ -20,6 +20,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.databinding.FragmentGetCalculatorForAnimalCardBinding;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
+import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 public class GetCalculatorForAnimalCardFragment extends Fragment {
@@ -92,7 +93,6 @@ public class GetCalculatorForAnimalCardFragment extends Fragment {
 
         // 初始化各种装饰效果
         initDecoration();
-
 
         if (SmallestWidthUtil.getSmallestWidthDp() < 600) {
             get_calculator_for_animal_card_result.setText("未显示的物品代表不可兑换\n兑换勾选的物品需消耗 0 个" + getItemName);
@@ -436,6 +436,24 @@ public class GetCalculatorForAnimalCardFragment extends Fragment {
         // 动态调整侧边距（手机/PAD）
         LinearLayout get_calculator_for_animal_card_container = root.findViewById(R.id.get_calculator_for_animal_card_container);
         CardView get_calculator_for_animal_card_result_container = root.findViewById(R.id.get_calculator_for_animal_card_result_container);
+        // 动态获取状态栏高度（Fragment 中直接监听自身 root；android.R.id.content 属于 Activity 视图树，
+        // 在 Fragment 布局里 findViewById 拿不到，会返回 null 导致 NPE）
+        InsetsUtil.setStatusBarHeight(requireContext(), root, height -> {
+            int topBarHeight = height + DensityUtil.dpToPx(requireContext(), 50);
+
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) get_calculator_for_animal_card_result_container.getLayoutParams();
+            params.topMargin = topBarHeight + DensityUtil.dpToPx(requireContext(), SmallestWidthUtil.getSmallestWidthDp() > 600 ? 20 : 10);
+            get_calculator_for_animal_card_result_container.setLayoutParams(params);
+
+            int resultContainerTopMarginAndHeight = params.topMargin + get_calculator_for_animal_card_result_container.getHeight();
+
+            get_calculator_for_animal_card_container.setPadding(
+                    get_calculator_for_animal_card_container.getPaddingLeft(),
+                    resultContainerTopMarginAndHeight + DensityUtil.dpToPx(requireContext(), SmallestWidthUtil.getSmallestWidthDp() > 600 ? 20 : 10),
+                    get_calculator_for_animal_card_container.getPaddingRight(),
+                    get_calculator_for_animal_card_container.getPaddingBottom()
+            );
+        });
         InsetsUtil.setMarginHorizontal(requireActivity(), get_calculator_for_animal_card_container, layout_marginHorizontal -> {
             Log.d("updateLog", String.valueOf(layout_marginHorizontal));
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) get_calculator_for_animal_card_container.getLayoutParams();
