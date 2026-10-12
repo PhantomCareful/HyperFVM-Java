@@ -3,9 +3,12 @@ package com.careful.HyperFVM.utils.ForDesign.Blur;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -108,7 +111,7 @@ public final class MiuiLogoBlurUtil {
      * @param logoViews 需要效果的 logo 元素（图标、应用名），允许含 null 自动跳过
      */
     public static void applyLogoEffect(Context context, View container, View... logoViews) {
-        if (context == null || container == null || logoViews.length == 0 || !isSupported(context)) {
+        if (container == null || logoViews.length == 0 || !isSupported(context)) {
             return;
         }
         try {
@@ -147,6 +150,61 @@ public final class MiuiLogoBlurUtil {
         } catch (Exception e) {
             Log.d(TAG, "applyLogoEffect failed, fallback to plain logo: " + e);
         }
+    }
+
+    /**
+     * 为增幅名单各页的卡片名 TextView 批量应用与 logo 相同的 blend 效果：
+     * 递归查找 id 形如 {@code card_data_index_background_image_*} 的单卡列容器（复数
+     * {@code images_} 为行容器，前缀不匹配自动排除），以列容器为模糊源、其内 TextView 为
+     * blend 目标逐个套用三层混色，并按 {@link #BLEND_ALPHA_CLAMP} 钳制 alpha
+     * （这些名称不参与滚动渐隐，钳一次即可）。
+     * 不满足支持条件时整体静默跳过。
+     */
+    public static void applyCardNameEffect(Context context, View rootView) {
+        if (rootView == null || !isSupported(context)) {
+            return;
+        }
+        applyCardNameEffectToTree(context, rootView);
+    }
+
+    /** 遍历视图树，对匹配的单卡列容器套用 blend（列容器内不再嵌套列容器，继续下探无副作用） */
+    private static void applyCardNameEffectToTree(Context context, View view) {
+        if (!(view instanceof ViewGroup group)) return;
+
+        if (isCardNameColumn(context, view)) {
+            TextView nameText = findDirectChildTextView(group);
+            if (nameText != null) {
+                applyLogoEffect(context, group, nameText);
+                if (nameText.getAlpha() > BLEND_ALPHA_CLAMP) {
+                    nameText.setAlpha(BLEND_ALPHA_CLAMP);
+                }
+            }
+        }
+
+        for (int i = 0; i < group.getChildCount(); i++) {
+            applyCardNameEffectToTree(context, group.getChildAt(i));
+        }
+    }
+
+    /** 是否为单卡列容器（id 以 card_data_index_background_image_ 开头，行容器 images_ 不匹配） */
+    private static boolean isCardNameColumn(Context context, View view) {
+        if (view.getId() == View.NO_ID) return false;
+        try {
+            return context.getResources().getResourceEntryName(view.getId())
+                    .startsWith("card_data_index_background_image_");
+        } catch (Resources.NotFoundException e) {
+            return false;
+        }
+    }
+
+    /** 取列容器的直接子 TextView（结构固定为 ImageView + TextView），没有则返回 null */
+    private static TextView findDirectChildTextView(ViewGroup group) {
+        for (int i = 0; i < group.getChildCount(); i++) {
+            if (group.getChildAt(i) instanceof TextView) {
+                return (TextView) group.getChildAt(i);
+            }
+        }
+        return null;
     }
 
     /**

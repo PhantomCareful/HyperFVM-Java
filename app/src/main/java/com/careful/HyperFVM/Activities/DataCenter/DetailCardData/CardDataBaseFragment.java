@@ -31,6 +31,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.Animation.ScrollEffectForBackgroundItem;
+import com.careful.HyperFVM.utils.ForDesign.Blur.MiuiLogoBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -583,6 +584,17 @@ public class CardDataBaseFragment extends Fragment {
     }
 
     /**
+     * 将卡片名的 alpha 钳到 BLEND_ALPHA_CLAMP，保证 MIUI blend 持续渲染
+     * （机理见 MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP：alpha=1 时系统跳过 blend）
+     */
+    private void clampBlendAlpha(int viewId) {
+        View view = root.findViewById(viewId);
+        if (view != null && view.getAlpha() > MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP) {
+            view.setAlpha(MiuiLogoBlurUtil.BLEND_ALPHA_CLAMP);
+        }
+    }
+
+    /**
      * 此方法用于完成当前界面的各种装饰，比如
      * 1.背景组件滑动渐隐渐显
      * 2.大图淡入过渡动画
@@ -592,6 +604,27 @@ public class CardDataBaseFragment extends Fragment {
     private void initDecoration() {
         // 获取滚动视图ScrollView
         NestedScrollView scrollView = root.findViewById(R.id.scrollView);
+
+        // 卡片名的 MIUI/HyperOS 模糊混色：透出下方动态背景（举一反三复用关于页 logo 的 blend，
+        // 借鉴 HyperCeiler VersionCard#setLogoBlur；仅“动态背景”启用且系统模糊开关打开时生效，
+        // 其余情况静默回退为普通显示）。手机/PAD 两个布局共用这批 ID，一处接入双端生效。
+        // 容器用名称所在行的普通父布局（与关于页一致：传 logo 的普通父布局作模糊源，
+        // 不用 blurView 的模糊目标 targetView——它与 MIUI 硬件模糊渲染流程可能互斥）
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled() && MiuiLogoBlurUtil.isSupported(requireContext())) {
+            Image_View_Card_Big_1_Container = root.findViewById(R.id.Image_View_Card_Big_1_Container);
+            Image_View_Card_Big_2_Container = root.findViewById(R.id.Image_View_Card_Big_2_Container);
+            MiuiLogoBlurUtil.applyLogoEffect(requireContext(), Image_View_Card_Big_1_Container,
+                    root.findViewById(R.id.card_name_1_1), root.findViewById(R.id.card_name_1_2));
+            MiuiLogoBlurUtil.applyLogoEffect(requireContext(), Image_View_Card_Big_2_Container,
+                    root.findViewById(R.id.card_name_2_1), root.findViewById(R.id.card_name_2_2));
+
+            // OS1.0 blend 补偿：alpha=1 时系统跳过 blend 渲染；4 个卡片名自身不参与滚动渐隐
+            // （渐隐作用于外层行容器），故在此钳一次到 BLEND_ALPHA_CLAMP 即可（机理见该常量注释）
+            clampBlendAlpha(R.id.card_name_1_1);
+            clampBlendAlpha(R.id.card_name_1_2);
+            clampBlendAlpha(R.id.card_name_2_1);
+            clampBlendAlpha(R.id.card_name_2_2);
+        }
 
         // 初始化大图片的淡入动画
         transition = new TransitionSet();

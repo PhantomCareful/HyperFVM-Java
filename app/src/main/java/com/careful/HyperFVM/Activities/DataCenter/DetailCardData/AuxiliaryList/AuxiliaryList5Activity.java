@@ -25,6 +25,7 @@ import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForCardData.CardDataHelper;
 import com.careful.HyperFVM.utils.ForDesign.BgEffect.BgEffectController;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
+import com.careful.HyperFVM.utils.ForDesign.Blur.MiuiLogoBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.SmallestWidth.SmallestWidthUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
@@ -125,6 +126,12 @@ public class AuxiliaryList5Activity extends BaseActivity {
                 bgEffectController.setDetailGoldenCardDataColorType(this);
                 bgEffectController.startDetailGoldenCardDataBgEffect();
             }
+        }
+
+        // 卡片名的 MIUI/HyperOS 模糊混色：透出下方流光背景（与卡片数据详情页同源，
+        // 仅“动态背景”启用且系统模糊开关打开时生效，其余情况静默回退为普通显示）
+        if (HyperFVMApplication.isContentDynamicBackgroundEnabled()) {
+            MiuiLogoBlurUtil.applyCardNameEffect(this, findViewById(android.R.id.content));
         }
 
         // 添加模糊材质
