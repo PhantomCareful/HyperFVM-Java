@@ -3,6 +3,8 @@ package com.careful.HyperFVM.utils.ForDesign.BottomSheet;
 import android.app.Activity;
 import android.widget.FrameLayout;
 
+import com.careful.HyperFVM.utils.ForDesign.Smooth.SmoothCornerTraverser;
+
 import fan.bottomsheet.BottomSheetBehavior;
 import fan.bottomsheet.BottomSheetModal;
 
@@ -46,5 +48,16 @@ public class MiuixBottomSheetModal extends BottomSheetModal {
      */
     public final void setDismissAction(Runnable action) {
         mDismissAction = action;
+    }
+
+    /**
+     * 全组件系统平滑圆角兜底：容器挂入 Activity decor 时补装持续遍历
+     *（BaseActivity 已在 decor 级安装，此处幂等重叠，防止未来 BottomSheet
+     * 脱离 BaseActivity decor 挂载方式后失去覆盖）
+     */
+    @Override
+    public void show() {
+        super.show();
+        SmoothCornerTraverser.install(getRootView());
     }
 }

@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import com.careful.HyperFVM.BuildConfig;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout;
+import com.careful.HyperFVM.utils.ForDesign.Smooth.SmoothCornerTraverser;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 
 import java.util.function.Consumer;
@@ -126,6 +127,14 @@ public final class DropdownPopupHelper {
                 });
                 clipTarget.setClipToOutline(true);
             }
+        }
+
+        // 全组件系统平滑圆角：popup 为独立窗口，在其根视图挂持续遍历，
+        // 覆盖菜单行（ListView 滚动时按需 inflate 新行）与浮层背景；
+        // 每次 show 均新建 popup/ListView（调用方既有模式），防重入 tag 不会误锁
+        ListView popupList = popup.getListView();
+        if (popupList != null) {
+            SmoothCornerTraverser.install(popupList.getRootView());
         }
     }
 

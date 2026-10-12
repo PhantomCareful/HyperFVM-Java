@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
+import com.careful.HyperFVM.utils.ForDesign.Smooth.SmoothCornerTraverser;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -110,6 +111,9 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 全组件系统平滑圆角：挂在 decor 上的持续遍历覆盖本页全部视图与后续动态子项
+        //（onCreate 早于子类 setContentView，首帧前的绘制前扫描才是真正的处理时机）
+        SmoothCornerTraverser.install(getWindow().getDecorView());
         showPendingUpgradeDialog();
     }
 

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.utils.ForDesign.Smooth.SmoothCornerTraverser;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RoundedCornerTreatment;
 
@@ -74,6 +75,9 @@ public final class DialogCornerRadiusUtil {
             android.util.Log.d(TAG, "apply: " + dialog.getClass().getSimpleName()
                     + " from=" + from);
         }
+        // 全组件系统平滑圆角：弹窗为独立窗口，在 decor 上挂持续遍历，
+        // 覆盖弹窗内全部视图（按钮、列表行等），并幂等补盖 applyLayers 换上的新背景
+        SmoothCornerTraverser.install(decor);
         if (applyLayers(dialog, resolveRadius(dialog))) {
             return;
         }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SmoothCornerTraverser：根视图防重复安装监听标记（View.setTag 的 key 须为应用资源 id） -->
+    <item name="smooth_corner_installed" type="id" />
+    <!-- SmoothCornerTraverser：每视图处理状态（记录已开 smooth 的背景实例，背景被替换时补开） -->
+    <item name="smooth_corner_state" type="id" />
+</resources>
