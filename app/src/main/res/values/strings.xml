@@ -318,6 +318,11 @@
     <string name="description_meishi_wechat_permission_links">点击以快速配置</string>
     <string name="tips_meishi_wechat">请妥善保管好您的openid，不要泄露给他人！</string>
     <string name="title_meishi_wechat_account_saved">已保存的账号</string>
+    <string name="title_meishi_wechat_import_and_export">备份与还原</string>
+    <string name="title_meishi_wechat_export_to_clipboard">备份到剪贴板</string>
+    <string name="title_meishi_wechat_import_from_clipboard">从剪贴板还原</string>
+    <string name="title_meishi_wechat_export_to_file">备份到文件</string>
+    <string name="title_meishi_wechat_import_from_file">从文件还原</string>
     <string name="title_meishi_wechat_rules">使用说明</string>
     <string name="content_meishi_wechat_rules_1">点击右上角的添加按钮，输入您从微信公众号-美食中心复制过来的链接。</string>
     <string name="content_meishi_wechat_rules_2">添加成功后，当前界面会出现一个卡片，里面会显示您的账号信息(所在区服、角色ID)，您可以检查信息是否有误。</string>

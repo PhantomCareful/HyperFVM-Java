@@ -3,12 +3,10 @@ package com.careful.HyperFVM.Activities.Necessary;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
-import android.app.AppOpsManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Process;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +32,7 @@ import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
+import com.careful.HyperFVM.utils.OtherUtils.ClipboardPermissionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -80,9 +79,6 @@ public class SettingsActivity extends BaseActivity {
 
     public static final String CONTENT_IS_BIOMETRIC_AUTH = "安全-生物认证";
 
-    // 剪贴板读/写操作对应的 AppOps 名称（即 AppOpsManager.OP_READ_CLIPBOARD / OP_WRITE_CLIPBOARD）
-    private static final String OP_READ_CLIPBOARD = "android:read_clipboard";
-    private static final String OP_WRITE_CLIPBOARD = "android:write_clipboard";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,21 +222,10 @@ public class SettingsActivity extends BaseActivity {
     }
 
     /**
-     * 检查是否拥有剪贴板读写权限：系统无对应运行时权限，经由 AppOps 读/写剪贴板操作码判定；
-     * 厂商（MIUI/HyperOS 等）在“权限管理”中撤销剪贴板权限时会将对应 AppOps 置为忽略/拒绝
+     * 检查是否拥有剪贴板读写权限（实现抽取至 ClipboardPermissionUtil，与温馨礼包备份还原共用单一来源）
      */
     private boolean hasClipboardPermission() {
-        AppOpsManager appOps = getSystemService(AppOpsManager.class);
-        return isClipboardOpGranted(appOps, OP_READ_CLIPBOARD)
-                && isClipboardOpGranted(appOps, OP_WRITE_CLIPBOARD);
-    }
-
-    /**
-     * 剪贴板 AppOps 模式是否为已授予（MODE_DEFAULT 表示系统未做限制，视为已授予）
-     */
-    private boolean isClipboardOpGranted(AppOpsManager appOps, String op) {
-        int mode = appOps.checkOpNoThrow(op, Process.myUid(), getPackageName());
-        return mode == AppOpsManager.MODE_ALLOWED || mode == AppOpsManager.MODE_DEFAULT;
+        return ClipboardPermissionUtil.hasPermission(this);
     }
 
     private void initThemeSelector() {

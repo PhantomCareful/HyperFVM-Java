@@ -5,6 +5,7 @@ import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimat
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
@@ -36,8 +39,10 @@ import com.careful.HyperFVM.utils.ForDesign.Blur.DialogBackgroundBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.ForMeishi.MeishiBackupUtil;
 import com.careful.HyperFVM.utils.ForMeishi.MeishiLinkUtil;
 import com.careful.HyperFVM.utils.ForSafety.BiometricAuthHelper;
+import com.careful.HyperFVM.utils.OtherUtils.ClipboardPermissionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
@@ -45,8 +50,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import eightbitlab.com.blurview.BlurView;
 
@@ -70,6 +77,45 @@ public class MeishiWechatActivity extends BaseActivity {
     private String playerName;
 
     private boolean isShow = false;
+
+    // 从文件还原：文件选择器（优先 HyperOS 安全访问 hyper.intent.action.OPEN_DOCUMENT，不可用则回退标准 ACTION_OPEN_DOCUMENT；仅授予所选单个文件的访问权；mime放开为*/*，内容格式由导入侧校验兜底）
+    private final ActivityResultLauncher<Intent> importFileLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                Intent data = result.getData();
+                android.net.Uri uri = data == null ? null : data.getData();
+                if (uri == null) {
+                    return; // 用户取消选择
+                }
+                String text = MeishiBackupUtil.readTextFromUri(this, uri);
+                if (text == null) {
+                    Toast.makeText(this, "读取备份文件失败", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                importFromJson(text);
+            });
+
+    /**
+     * 拉起文件选择器：优先尝试安全访问（金标联盟通用规范在 HyperOS 的落地组件，无需区分厂商），
+     * 无安全访问组件（旧版本系统等）时回退标准 SAF 文档选择器；标准接口 API 19 起系统必有，若仍异常则 Toast 提示
+     */
+    private void launchImportPicker() {
+        try {
+            importFileLauncher.launch(new Intent("hyper.intent.action.OPEN_DOCUMENT")
+                    .addCategory(Intent.CATEGORY_OPENABLE)
+                    .setType("*/*"));
+            return;
+        } catch (ActivityNotFoundException ignored) {
+            // 无安全访问组件，继续走标准 SAF
+        }
+        try {
+            importFileLauncher.launch(new Intent(Intent.ACTION_OPEN_DOCUMENT)
+                    .addCategory(Intent.CATEGORY_OPENABLE)
+                    .setType("*/*")
+                    .putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"*/*"}));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "系统缺少可用的文件选择器", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +176,26 @@ public class MeishiWechatActivity extends BaseActivity {
                 this.startActivity(appDetailsIntent);
             }
         });
+
+        // 备份与还原入口（PAD 双栏布局暂未放置备份区块，容器判空绑定）
+        bindBackupClick(R.id.export_to_clipboard_container, v -> exportToClipboard());
+        bindBackupClick(R.id.import_from_clipboard_container, v -> {
+            if (ensureClipboardPermission()) {
+                importFromClipboard();
+            }
+        });
+        bindBackupClick(R.id.export_to_file_container, v -> exportToFile());
+        bindBackupClick(R.id.import_from_file_container, v -> launchImportPicker());
+    }
+
+    /**
+     * 备份与还原入口的判空绑定：PAD 双栏布局未放置备份区块时静默跳过
+     */
+    private void bindBackupClick(int viewId, View.OnClickListener listener) {
+        View view = findViewById(viewId);
+        if (view != null) {
+            view.setOnClickListener(listener);
+        }
     }
 
     /**
@@ -275,6 +341,147 @@ public class MeishiWechatActivity extends BaseActivity {
         dbHelper.insertMeishiWechat(openId, serverName, playerName);
         Toast.makeText(MeishiWechatActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
         // 刷新列表
+        loadAccountList();
+    }
+
+    // ======================以下为温馨礼包数据备份与还原 ======================
+
+    /**
+     * 剪贴板读写权限未授权时 Toast 提示并跳转系统权限管理页
+     * （与设置页剪贴板卡片一致：米系直跳本应用权限管理页，其他设备回退应用详情页）
+     *
+     * @return true 表示已授权，可继续操作剪贴板
+     */
+    @SuppressLint("QueryPermissionsNeeded")
+    private boolean ensureClipboardPermission() {
+        if (ClipboardPermissionUtil.hasPermission(this)) {
+            return true;
+        }
+        Toast.makeText(this, "请先授予剪贴板权限", Toast.LENGTH_SHORT).show();
+
+        Intent intent;
+        if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
+            intent = new Intent("miui.intent.action.APP_PERM_EDITOR")
+                    .putExtra("extra_pkgname", getPackageName());
+        } else {
+            intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    .setData(android.net.Uri.parse("package:" + getPackageName()));
+        }
+
+        // 检查是否有可以处理此Intent的应用
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+        return false;
+    }
+
+    /**
+     * 开启生物认证时先验证，通过后才执行导出动作（与长按删除账号一致）
+     */
+    private void runWithBiometricAuth(Runnable action) {
+        if (HyperFVMApplication.isContentBiometricAuthEnabled(this)) {
+            BiometricAuthHelper.simpleBiometricAuth(this, action);
+        } else {
+            action.run();
+        }
+    }
+
+    /**
+     * 备份到剪贴板：数据非空校验 → 剪贴板权限 → 生物认证 → 写入剪贴板
+     */
+    private void exportToClipboard() {
+        List<DBHelper.PlayerInfo> infos = dbHelper.getAllMeishiWechat();
+        if (infos.isEmpty()) {
+            Toast.makeText(this, "暂无已保存的账号数据", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!ensureClipboardPermission()) {
+            return;
+        }
+
+        runWithBiometricAuth(() -> {
+            String json = MeishiBackupUtil.buildJson(infos);
+            if (json != null && MeishiBackupUtil.writeClipboard(this, json)) {
+                Toast.makeText(this, "已备份到剪贴板", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "备份失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /**
+     * 从剪贴板还原：剪贴板权限 → 读取文本 → 格式校验入库
+     */
+    private void importFromClipboard() {
+        String text = MeishiBackupUtil.readClipboard(this);
+        if (text == null) {
+            Toast.makeText(this, "剪贴板中没有可导入的数据", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        importFromJson(text);
+    }
+
+    /**
+     * 备份到文件：数据非空校验 → 生物认证 → 二次确认弹窗 → 写入 Download 根目录
+     */
+    private void exportToFile() {
+        List<DBHelper.PlayerInfo> infos = dbHelper.getAllMeishiWechat();
+        if (infos.isEmpty()) {
+            Toast.makeText(this, "暂无已保存的账号数据", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        runWithBiometricAuth(() -> DialogBuilderManager.showDialogWithCallBack(
+                this, "导出温馨礼包数据", "📦",
+                "数据将保存到：\nDownload/" + MeishiBackupUtil.EXPORT_FILE_NAME, true,
+                "咱手滑了", "一键导出", () -> {
+                    String json = MeishiBackupUtil.buildJson(infos);
+                    if (json != null && MeishiBackupUtil.saveToDownloads(this, json)) {
+                        DialogBuilderManager.showDialog(
+                                this,
+                                "导出成功",
+                                "🎉",
+                                "数据已保存到：\nDownload/" + MeishiBackupUtil.EXPORT_FILE_NAME,
+                                true,
+                                "好耶"
+                        );
+                    } else {
+                        Toast.makeText(this, "导出失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ));
+    }
+
+    /**
+     * 还原备份数据：格式校验 → 逐条入库（相同 openid 跳过，仅补新增）→ 立即刷新账号列表
+     */
+    private void importFromJson(String json) {
+        List<DBHelper.PlayerInfo> imported = MeishiBackupUtil.parseJson(json);
+        if (imported == null) {
+            Toast.makeText(this, "备份数据格式不正确", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 以现有 openid集合判断重复，仅补插入缺失的账号
+        Set<String> existingOpenids = new HashSet<>();
+        for (DBHelper.PlayerInfo info : dbHelper.getAllMeishiWechat()) {
+            existingOpenids.add(info.openid);
+        }
+
+        int addedCount = 0;
+        int skippedCount = 0;
+        for (DBHelper.PlayerInfo info : imported) {
+            if (existingOpenids.contains(info.openid)) {
+                skippedCount++;
+                continue;
+            }
+            dbHelper.insertMeishiWechat(info.openid, info.serverName, info.playerName);
+            addedCount++;
+        }
+
+        Toast.makeText(this, "导入完成：新增" + addedCount + "条，跳过已存在" + skippedCount + "条",
+                Toast.LENGTH_SHORT).show();
+        // 导入成功后立即刷新账号列表
         loadAccountList();
     }
 
