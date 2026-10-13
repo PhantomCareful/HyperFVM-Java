@@ -10,6 +10,7 @@ import android.view.Window;
 
 import com.careful.HyperFVM.R;
 
+import eightbitlab.com.blurview.BlurController;
 import eightbitlab.com.blurview.BlurTarget;
 import eightbitlab.com.blurview.BlurView;
 
@@ -19,6 +20,12 @@ public class BlurUtil {
     private final float radius = 20f;
     /** 模糊叠加色的透明度（0.5 = 50%） */
     private static final float OVERLAY_ALPHA = 0.5f;
+    /**
+     * 是否叠加库自带的蓝噪点纹理（库默认 true）。
+     * 该纹理以约 15% 不透明度平铺在模糊结果上，颗粒感明显；
+     * 置为 false 可获得更纯净的玻璃质感。
+     */
+    private static final boolean APPLY_NOISE = false;
 
     public BlurUtil(Context context) {
         this.context = context;
@@ -40,7 +47,7 @@ public class BlurUtil {
         BlurTarget target = ((Activity) context).findViewById(R.id.target);
         Drawable windowBackground = decorView.getBackground();
 
-        blurViewId.setupWith(target)
+        blurViewId.setupWith(target, BlurController.DEFAULT_SCALE_FACTOR, APPLY_NOISE)
                 .setFrameClearDrawable(windowBackground)
                 .setBlurRadius(radius)
                 .setBlurAutoUpdate(true);
@@ -62,7 +69,7 @@ public class BlurUtil {
         View decorView = window.getDecorView();
         Drawable windowBackground = decorView.getBackground();
 
-        blurViewId.setupWith(blurTarget)
+        blurViewId.setupWith(blurTarget, BlurController.DEFAULT_SCALE_FACTOR, APPLY_NOISE)
                 .setFrameClearDrawable(windowBackground)
                 .setBlurRadius(radius)
                 .setBlurAutoUpdate(true);
