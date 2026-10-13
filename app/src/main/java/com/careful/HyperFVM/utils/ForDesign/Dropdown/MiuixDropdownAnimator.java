@@ -7,6 +7,7 @@ import android.graphics.Outline;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -17,9 +18,12 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
 
 import androidx.appcompat.widget.ListPopupWindow;
 
+import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.SpringBackLayout;
 
 import java.lang.reflect.Field;
@@ -54,13 +58,14 @@ import fan.animation.utils.EaseManager;
  * <ul>
  *   <li>view 级变形要求窗口背景透明（窗口背景不随 view 变换）：show 前把原背景搬到
  *       listView，由它继续绘制菜单底与 16dp 圆角；</li>
- *   <li>收起拦截：条目点击/外部点击经 {@link #dismissAnimated} 走本动画；返回键由
- *       框架直接 dismiss 无法拦截，为直接关闭（遮罩经 OnDismissListener 淡出）；</li>
- *   <li>窗口动画全程清零（官方 view 级路径从不携带动画 style，窗口不带任何
- *       enter/exit 过场）：show 前 setAnimationStyle(0) 清掉 ListPopupWindow 构造时
- *       经主题 defStyle 带入的窗口动画，show 后把根 view 的 windowAnimations 清零
- *       并经 WindowManager.updateViewLayout 硬提交（与收起同一方法）——展开纯由
- *       view 级弹簧呈现，不叠加窗口级过场；</li>
+ *   <li>收起路径：条目点击/外部点击经 {@link #dismissAnimated} 走 view 级收起；返回
+ *       手势经反射替换框架的预测式返回回调（PopupWindow.mBackCallback，框架注册的是
+ *       直接 dismiss）为 {@link #dismissWithAnim}，三条路同一动画；拦不到的回落路径
+ *       （三键 BACK 经 PopupDecorView 直接 dismiss、Android 13 以下）由窗口 exit
+ *       窗口动画 150ms 淡收兜底，遮罩经 OnDismissListener 同步淡出；</li>
+ *   <li>窗口动画：enter 显式 @null（展开纯 view 级弹簧，不叠窗口级过场）、exit 保留
+ *       150ms 淡收供返回关闭兜底（style MiuixDropdownExitAnim）；view 级收起前经
+ *       {@link #disableWindowAnimations} 清零，两级不叠加；</li>
  *   <li>任一环节异常均静默降级（恢复静态形态或直接关闭），保证菜单始终可弹出、可关闭；</li>
  *   <li>动画驱动全走 Folme 自计时引擎（几何弹簧、展开/收起 alpha、遮罩淡入淡出），
  *       不用 ValueAnimator/ViewPropertyAnimator——后者受开发者选项 "Animator 时长缩放"
@@ -120,6 +125,11 @@ public final class MiuixDropdownAnimator {
     private ScaleListener mScaleListener;
     private ViewTreeObserver.OnPreDrawListener mPreDrawListener;
     private Runnable mOnDismissStart;
+    /**
+     * 我们注册的预测式返回回调（Android 13+）。以 Object 持有：字段类型直接声明
+     * OnBackInvokedCallback 会在类加载期引入高 API 类型，minSdk 31 设备有风险
+     */
+    private Object mBackCallback;
 
     private float mFraction;
     private float mOutlineRadiusPx;
@@ -169,10 +179,12 @@ public final class MiuixDropdownAnimator {
                 return null;
             }
             int gravity = estimateGravity(popup, anchor);
-            // 窗口动画 style 清零（对齐官方 view 级路径：窗口从不携带动画 style）：
-            // ListPopupWindow 构造时经主题 defStyle 带入了含 enter 的窗口动画，
-            // show 会把它固化进窗口参数，必须在 show 前清掉
-            frameworkPopup.setAnimationStyle(0);
+            // 窗口动画 style：enter 显式 @null（ListPopupWindow 构造时经主题 defStyle
+            // 带入的窗口动画会在 show 时固化进窗口参数，此处替换掉），展开保持纯
+            // view 级弹簧；exit 保留窗口兜底退场——返回手势/三键 BACK 由框架直接
+            // dismiss 无法拦截，WMS 将在窗口移除时播 popup_dropdown_exit（150ms 淡收）。
+            // view 级收起（dismissWithAnim）前会清零窗口动画，两级不叠加
+            frameworkPopup.setAnimationStyle(R.style.MiuixDropdownExitAnim);
             // 根因修复：框架 PopupWindow 的 content 级 enter/exit transition（主题
             // popupEnterTransition，独立于上面清零的 windowAnimations/animationStyle）
             // 会在 show 后把 PopupBackgroundView 从 (-186,-683) 类偏移平移入场并
@@ -218,10 +230,10 @@ public final class MiuixDropdownAnimator {
                     * mContent.getResources().getDisplayMetrics().density;
             applyOutlineProvider(mContent);
             mContentFolme = Folme.use(mContent);
-            // 窗口已添加：把窗口动画经 updateViewLayout 硬清零（与收起同一方法），
-            // 展开期间 WMS 侧窗口同样不携带 enter 过场，纯由 view 级弹簧呈现
-            disableWindowAnimations();
+            // 不再清零窗口动画：prepare 已把 enter 设为 @null（展开无窗口过场，
+            // 纯 view 级弹簧呈现），而 exit 须保留给返回关闭的 WMS 兜底退场
             installOutsideInterceptor();
+            installBackInterceptor();
             startEnterAnim();
         } catch (Throwable t) {
             Log.d(TAG, "onShown: FAILED -> degrade", t);
@@ -395,6 +407,57 @@ public final class MiuixDropdownAnimator {
     }
 
     /**
+     * 返回手势拦截（Android 13+ 预测式返回）：框架在 PopupDecorView.onAttachedToWindow
+     * 注册的回调是 PopupWindow.this::dismiss（直接关闭无动画），反射摘除后替换为
+     * {@link #dismissWithAnim}——返回手势与条目/外部点击走完全相同的 view 级收起。
+     * 拦截失败（字段更名/无 dispatcher）静默保留窗口 exit 兜底退场。
+     */
+    @SuppressLint("NewApi")
+    private void installBackInterceptor() {
+        if (Build.VERSION.SDK_INT < 33) {
+            return;
+        }
+        try {
+            View root = mFrameworkPopup.getContentView().getRootView();
+            OnBackInvokedDispatcher dispatcher = root.findOnBackInvokedDispatcher();
+            if (dispatcher == null) {
+                Log.d(TAG, "back: no dispatcher -> keep fallback exit");
+                return;
+            }
+            // 按类型扫描字段（不依赖字段名：API 37 实测已无 mBackCallback，
+            // android-36 源码字段名过时；回调字段声明类型必为 OnBackInvokedCallback）。
+            // 摘除框架回调（未注册/无字段时跳过）：否则框架回调后手会把动画中的
+            // 窗口直接 dismiss 截断；字段本身不动，框架内部的重复 unregister 无害
+            boolean found = false;
+            for (Field f : PopupWindow.class.getDeclaredFields()) {
+                if (!OnBackInvokedCallback.class.isAssignableFrom(f.getType())) {
+                    continue;
+                }
+                f.setAccessible(true);
+                Object cb = f.get(mFrameworkPopup);
+                if (cb instanceof OnBackInvokedCallback framework) {
+                    dispatcher.unregisterOnBackInvokedCallback(framework);
+                    found = true;
+                    Log.d(TAG, "back: framework cb field=" + f.getName() + " unregistered");
+                }
+            }
+            if (!found) {
+                Log.d(TAG, "back: no framework callback found -> register ours anyway");
+            }
+            OnBackInvokedCallback ours = this::dismissWithAnim;
+            // priority 必须高于 DEFAULT(0)：框架回调为 0，且它在窗口焦点就绪时
+            // 才注册（实测晚于 onShown 约 2ms），同级逆序后注册者上顶——手势实际
+            // 触发的是框架的。WindowOnBackInvokedDispatcher 按 priority 降序取 top
+            // 分发，app 注册仅校验非负（Checker），取 1 即可恒为 top
+            dispatcher.registerOnBackInvokedCallback(1, ours);
+            mBackCallback = ours;
+            Log.d(TAG, "back: interceptor installed");
+        } catch (Throwable t) {
+            Log.d(TAG, "back: interceptor FAILED -> keep fallback exit", t);
+        }
+    }
+
+    /**
      * 外部点击拦截：show 后框架 PopupDecorView.dispatchTouchEvent 会先询问
      * touchInterceptor，返回 true 即吞掉事件、不再走框架的 outside/BACK 分支中的
      * outside 分支。拦截 ACTION_OUTSIDE 与落点在窗口外的 ACTION_DOWN，转为带动画收起；
@@ -424,11 +487,8 @@ public final class MiuixDropdownAnimator {
     }
 
     /**
-     * 清零窗口 enter/exit 动画，保证窗口级过场不与 view 级变形叠加：
-     * 1. setAnimationStyle(0) 影响后续 update 重算；
-     * 2. 根 view 的 WindowManager.LayoutParams.windowAnimations 清零后经
-     *    WindowManager.updateViewLayout 硬提交（HC changeWindowDimAmount 同款路径，
-     *    WMS 读取的是最新提交值；show 后调用即覆盖展开期，与收起共用）。
+     * 清零窗口 enter/exit 动画（现仅收起路径使用），保证窗口级过场不与 view 级
+     * 变形叠加：view 级收缩开始前调用，框架随后的 dismiss 即无窗口 exit 可播。
      * 两步皆失败也仅是窗口过场叠加在 view 级动画上，视觉影响有限。
      */
     private void disableWindowAnimations() {
@@ -468,6 +528,22 @@ public final class MiuixDropdownAnimator {
         try {
             mPopup.dismiss();
         } catch (Throwable ignored) {
+        }
+        // 清理自己注册的预测式返回回调（框架 dismiss 内部只清它字段里的旧回调）；
+        // 窗口 detach 后 dispatcher 随之销毁，此处为防御性主动清理
+        if (mBackCallback != null) {
+            if (Build.VERSION.SDK_INT >= 33) {
+                try {
+                    View root = mFrameworkPopup.getContentView().getRootView();
+                    OnBackInvokedDispatcher dispatcher = root.findOnBackInvokedDispatcher();
+                    if (dispatcher != null) {
+                        dispatcher.unregisterOnBackInvokedCallback(
+                                (OnBackInvokedCallback) mBackCallback);
+                    }
+                } catch (Throwable ignored) {
+                }
+            }
+            mBackCallback = null;
         }
     }
 

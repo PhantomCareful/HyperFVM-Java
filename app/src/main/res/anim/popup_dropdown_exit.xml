@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Miuix 下拉菜单·返回关闭兜底退场（窗口级，WMS 播放）。
+     主力路径：返回手势经反射替换预测式回调（PopupWindow.mBackCallback）已走 view 级
+     收起（与条目/外部点击同款）；本动画仅服务于拦不到的回落路径——三键 BACK 经
+     PopupDecorView dispatchKeyEvent 直接 dismiss（先于 super，OnKeyListener 拦不到）
+     与 Android 13 以下无预测式回调的设备。遮罩同经 OnDismissListener 150ms 淡出。
+     view 级收起前已清零窗口动画，与本兜底不叠加。
+     插值器必须框架内置：动画由 WMS 进程加载，自定义插值器连字符标签会解析失败
+     （同弹窗退场的根因教训） -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0"
+        android:duration="150"
+        android:interpolator="@android:interpolator/fast_out_slow_in" />
+    <scale
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:toXScale="0.92"
+        android:toYScale="0.92"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:duration="150"
+        android:interpolator="@android:interpolator/fast_out_slow_in" />
+</set>

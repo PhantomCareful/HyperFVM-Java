@@ -33,4 +33,13 @@
         <item name="android:windowEnterAnimation">@anim/dialog_fade_in_center</item>
         <item name="android:windowExitAnimation">@anim/dialog_fade_out_center</item>
     </style>
+
+    <!-- Miuix 下拉菜单：展开不带窗口过场（纯 view 级弹簧，enter 显式 @null）；
+         返回手势已经反射替换预测式回调走 view 级收起（与条目/外部点击同款），
+         本 exit 仅兜底拦不到的回落路径（三键 BACK/Android 13 以下框架直接
+         dismiss）；条目/外部点击走 view 级收起前会清零窗口动画，两者不叠加 -->
+    <style name="MiuixDropdownExitAnim" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@anim/popup_dropdown_exit</item>
+    </style>
 </resources>
