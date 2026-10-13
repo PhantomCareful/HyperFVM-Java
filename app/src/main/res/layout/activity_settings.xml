@@ -106,12 +106,12 @@
 
                             </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/permission_current_state_notification"
+                            <ImageView
+                                android:id="@+id/status_settings_permission_notification"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -164,12 +164,12 @@
 
                             </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/permission_current_state_install"
+                            <ImageView
+                                android:id="@+id/status_settings_permission_install"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
 
                         </LinearLayout>
 
@@ -178,7 +178,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
+                        android:layout_marginBottom="10dp"
                         app:cardBackgroundColor="?attr/GeneralCardViewBackground"
                         app:cardCornerRadius="20dp">
 
@@ -231,6 +231,68 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="?attr/GeneralCardViewBackground"
+                        app:cardCornerRadius="20dp">
+
+                        <LinearLayout
+                            android:id="@+id/permission_clipboard_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:clickable="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_copy"
+                                app:tint="?attr/VectorGraphicColorOnGeneralCardView" />
+
+                            <!-- 左侧文字 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginHorizontal="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_settings_permission_clipboard"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:textColor="?attr/TextViewColorOnGeneralCardView" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/description_settings_permission_clipboard"
+                                    android:textSize="15sp"
+                                    android:textColor="?attr/SummaryTextViewColorOnGeneralCardView"/>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/status_settings_permission_clipboard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="?attr/SummaryTextViewColorOnGeneralCardView" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp" />
 
                     <TextView
                         android:layout_width="match_parent"

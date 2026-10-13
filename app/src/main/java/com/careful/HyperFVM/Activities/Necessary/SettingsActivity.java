@@ -3,16 +3,19 @@ package com.careful.HyperFVM.Activities.Necessary;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
+import android.app.AppOpsManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Process;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -77,6 +80,10 @@ public class SettingsActivity extends BaseActivity {
 
     public static final String CONTENT_IS_BIOMETRIC_AUTH = "安全-生物认证";
 
+    // 剪贴板读/写操作对应的 AppOps 名称（即 AppOpsManager.OP_READ_CLIPBOARD / OP_WRITE_CLIPBOARD）
+    private static final String OP_READ_CLIPBOARD = "android:read_clipboard";
+    private static final String OP_WRITE_CLIPBOARD = "android:write_clipboard";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 设置主题（必须在super.onCreate前调用才有效）
@@ -108,9 +115,10 @@ public class SettingsActivity extends BaseActivity {
 
     @SuppressLint("QueryPermissionsNeeded")
     private void checkPermissionStates() {
-        // 1 获取权限状态显示的TextView（根据实际布局ID调整）
-        TextView notificationStateTv = findViewById(R.id.permission_current_state_notification);
-        TextView installStateTv = findViewById(R.id.permission_current_state_install);
+        // 1. 获取权限状态图标（已授予显示对勾，未授予显示右箭头）
+        ImageView notificationStatusIv = findViewById(R.id.status_settings_permission_notification);
+        ImageView installStatusIv = findViewById(R.id.status_settings_permission_install);
+        ImageView clipboardStatusIv = findViewById(R.id.status_settings_permission_clipboard);
 
         // 2.1 跳转授予通知权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -162,9 +170,37 @@ public class SettingsActivity extends BaseActivity {
             }
         });
 
+        // 2.4 跳转授权剪贴板读写权限：米系设备直跳安全中心的本应用权限管理页（剪贴板开关在“其他权限”内），其他设备走应用详情页
+        findViewById(R.id.permission_clipboard_container).setOnClickListener(v -> {
+            Intent intent;
+        
+            if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
+                // MIUI/HyperOS权限编辑器action，可精准定位到本应用的权限管理页（包名extra的key为extra_pkgname，已真机验证）
+                intent = new Intent("miui.intent.action.APP_PERM_EDITOR")
+                        .putExtra("extra_pkgname", getPackageName());
+            } else {
+                // 其他设备无此action，直接跳转应用详情页，手动前往“权限管理”授予剪贴板权限
+                intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        .setData(android.net.Uri.parse("package:" + getPackageName()));
+            }
+        
+            // 检查是否有可以处理此Intent的应用
+            if (intent.resolveActivity(this.getPackageManager()) != null) {
+                this.startActivity(intent);
+            }
+        });
+
         // 更新UI
-        notificationStateTv.setText(hasNotificationPermission() ? "已授予✅" : "点我去授权👉");
-        installStateTv.setText(hasInstallPermission() ? "已授予✅" : "点我去授权👉");
+        updatePermissionStatusIcon(notificationStatusIv, hasNotificationPermission());
+        updatePermissionStatusIcon(installStatusIv, hasInstallPermission());
+        updatePermissionStatusIcon(clipboardStatusIv, hasClipboardPermission());
+    }
+
+    /**
+     * 根据权限授予状态切换卡片右侧图标：已授予显示对勾，未授予显示右箭头
+     */
+    private void updatePermissionStatusIcon(ImageView statusIv, boolean granted) {
+        statusIv.setImageResource(granted ? R.drawable.ic_check : R.drawable.ic_arrow_right);
     }
 
     /**
@@ -187,6 +223,24 @@ public class SettingsActivity extends BaseActivity {
      */
     private boolean hasInstallPermission() {
         return getPackageManager().canRequestPackageInstalls();
+    }
+
+    /**
+     * 检查是否拥有剪贴板读写权限：系统无对应运行时权限，经由 AppOps 读/写剪贴板操作码判定；
+     * 厂商（MIUI/HyperOS 等）在“权限管理”中撤销剪贴板权限时会将对应 AppOps 置为忽略/拒绝
+     */
+    private boolean hasClipboardPermission() {
+        AppOpsManager appOps = getSystemService(AppOpsManager.class);
+        return isClipboardOpGranted(appOps, OP_READ_CLIPBOARD)
+                && isClipboardOpGranted(appOps, OP_WRITE_CLIPBOARD);
+    }
+
+    /**
+     * 剪贴板 AppOps 模式是否为已授予（MODE_DEFAULT 表示系统未做限制，视为已授予）
+     */
+    private boolean isClipboardOpGranted(AppOpsManager appOps, String op) {
+        int mode = appOps.checkOpNoThrow(op, Process.myUid(), getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED || mode == AppOpsManager.MODE_DEFAULT;
     }
 
     private void initThemeSelector() {
