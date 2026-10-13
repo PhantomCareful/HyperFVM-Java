@@ -44,7 +44,7 @@ import fan.animation.utils.EaseManager;
  * 供 SettingsActivity / CookeryIndexActivity / OddsDisclosureIndexActivity 复用。
  * 另提供 createAdapter/showAnchored 公用构建：选项行渲染（文字高亮/图片/√）与就地弹出
  * 全流程（实测宽度恒为“最长条目+对勾”、四分支展开、右缘固定对齐、居中定位选中项），
- * 供 SettingsActivity（纯文本菜单）与 CardOddsCalculatorActivity（图片/图片+文字菜单）复用。
+ * 供 SettingsActivity（纯文本菜单）与 CardOddsCalculatorActivity（图片/图片+文字/预设预览菜单）复用。
  */
 public final class DropdownPopupHelper {
 
@@ -225,6 +225,21 @@ public final class DropdownPopupHelper {
     @NonNull
     public static ArrayAdapter<String> createAdapter(Activity activity, int selectedIndex,
                                                      String[] labels, int layoutId, int[] drawables) {
+        return createAdapter(activity, selectedIndex, labels, layoutId, drawables, null, null);
+    }
+
+    /**
+     * 多图预览行 adapter（标题 + N 个预览位 + √，供强卡概率计算器的预设组合菜单使用）：
+     * 在通用文字/√渲染（标题 colorPrimary 高亮、仅生效项显示√）基础上，
+     * 按 previewImageIds 顺序把 previewDrawables[position] 各预览位图片写入行内对应 ImageView
+     *
+     * @param previewImageIds  行内各预览位 view id（按预览顺序，与行布局声明顺序一致）
+     * @param previewDrawables 每个条目各预览位的图片资源（与 previewImageIds 一一对应）
+     */
+    @NonNull
+    public static ArrayAdapter<String> createAdapter(Activity activity, int selectedIndex,
+                                                     String[] labels, int layoutId, int[] drawables,
+                                                     int[] previewImageIds, int[][] previewDrawables) {
         final int checkedIndex = selectedIndex;
         // 选中项文字与√同用 colorPrimary，未选中恢复行布局声明的 colorOnSurface
         // （非传递 R 类下 Material 的 attr 需完全限定引用，与项目其他处一致）
@@ -252,9 +267,24 @@ public final class DropdownPopupHelper {
                         optionImage.setContentDescription(getItem(position));
                     }
                 }
-                // 仅当前选中项右侧显示对勾，其余不显示
+                // 多图预览行：按 previewImageIds 顺序写入本条目各预览位图片（行视图会被复用，需每次全量写入）
+                if (previewImageIds != null && previewDrawables != null
+                        && position < previewDrawables.length) {
+                    int[] previews = previewDrawables[position];
+                    if (previews != null) {
+                        for (int i = 0; i < previewImageIds.length && i < previews.length; i++) {
+                            ImageView preview = row.findViewById(previewImageIds[i]);
+                            if (preview != null) {
+                                preview.setImageResource(previews[i]);
+                            }
+                        }
+                    }
+                }
+                // 仅当前选中项右侧显示对勾，其余隐藏但保留占位（INVISIBLE 而非 GONE）：
+                // 对勾列宽度恒定，预设预览行的右对齐列（预览图）不会随对勾显隐左右错位，
+                // 左对齐的纯文字/纯图片行则完全不受影响
                 row.findViewById(R.id.option_check)
-                        .setVisibility(position == checkedIndex ? View.VISIBLE : View.GONE);
+                        .setVisibility(position == checkedIndex ? View.VISIBLE : View.INVISIBLE);
                 return row;
             }
         };

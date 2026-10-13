@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 下拉菜单预设选项项（强化成功率计算器的预设组合）：左侧标题（预设标题，如 20%·5+3）
+     + 右侧 5 张预览图（主卡、副卡1~3、四叶草，由 adapter 按预设逐位写入，
+     未选中位显示 card_data_x）+ 右侧√标记，√仅在当前生效预设显示；
+     标题列带 weight=1 占满中间空间把预览图与√顶到行尾，标题与预览图的间距由
+     layout_marginEnd 控制、预览图与√的间距由 option_check 的 layout_marginStart 控制
+     （想调整直接改这两个值），勾颜色由 app:tint 控制
+     （ic_check 自带的白色 tint 会被它覆盖为主题色） -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:paddingVertical="16dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/option_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface" />
+
+    <Space
+        android:layout_width="16dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/option_preview_main"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+
+    <Space
+        android:layout_width="8dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/option_preview_sub_1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/option_preview_sub_2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/option_preview_sub_3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/option_preview_clover"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+
+    <Space
+        android:layout_width="16dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/option_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_check"
+        app:tint="?attr/colorPrimary" />
+</LinearLayout>

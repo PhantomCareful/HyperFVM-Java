@@ -33,6 +33,7 @@ import eightbitlab.com.blurview.BlurView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +59,26 @@ public class CardOddsCalculatorActivity extends BaseActivity {
     private static final String STATE_SELECTED_FOUR_LEAF_CLOVER = "state_selected_four_leaf_clover";
     private static final String STATE_SELECTED_VIP = "state_selected_vip";
     private static final String STATE_SELECTED_CONSORTIA = "state_selected_consortia";
+    // 生效预设下标的保存键（记录当前界面命中的预设，菜单中给该条目√标记）
+    private static final String STATE_SELECTED_PRESET = "state_selected_preset";
+
+    // 预设字段下标（CardOddsData.Presets 解析后每条预设的 8 个逻辑值排列顺序）
+    private static final int PRESET_FIELD_MAIN = 0;
+    private static final int PRESET_FIELD_SUB_1 = 1;
+    private static final int PRESET_FIELD_SUB_1_CATEGORY = 2;
+    private static final int PRESET_FIELD_SUB_2 = 3;
+    private static final int PRESET_FIELD_SUB_2_CATEGORY = 4;
+    private static final int PRESET_FIELD_SUB_3 = 5;
+    private static final int PRESET_FIELD_SUB_3_CATEGORY = 6;
+    private static final int PRESET_FIELD_FOUR_LEAF_CLOVER = 7;
+    private static final int PRESET_FIELD_COUNT = 8;
+
+    // 预设行 5 个预览位的 view id（与 item_dropdown_preset_selection 声明顺序一致：
+    // 主卡、副卡1、副卡2、副卡3、四叶草）
+    private static final int[] PRESET_PREVIEW_IDS = {
+            R.id.option_preview_main, R.id.option_preview_sub_1, R.id.option_preview_sub_2,
+            R.id.option_preview_sub_3, R.id.option_preview_clover
+    };
 
     // 组索引（与保存键、dropdownGroups 数组顺序一一对应）
     private static final int GROUP_MAIN = 0;
@@ -116,6 +137,14 @@ public class CardOddsCalculatorActivity extends BaseActivity {
     // 持久化存储：按各组 stateKey 记录逻辑选中值（与旧单选器同键同义，跨升级兼容）
     private SharedPreferences prefs;
 
+    // 预设组合菜单：标题列表、解析后的逻辑值字段与 5 个预览位图片（首次打开菜单时懒解析缓存）
+    private String[] presetTitles;
+    private int[][] presetFields;
+    private int[][] presetPreviews;
+
+    // 当前生效的预设下标（-1=无生效预设；手动改动任意一组后清除，随界面重建与持久化恢复）
+    private int appliedPresetIndex;
+
     // 成功率结果展示组件：A部分、B部分、求和三段成功率分别写入这三张卡
     private TextView percentAView;
     private TextView percentBView;
@@ -155,6 +184,9 @@ public class CardOddsCalculatorActivity extends BaseActivity {
 
         // 持久化存储（各组选中值在构造各组时按 stateKey 恢复）
         prefs = getPreferences(MODE_PRIVATE);
+
+        // 当前生效的预设下标（菜单√标记用，越界在首次解析预设表时校正）
+        appliedPresetIndex = prefs.getInt(STATE_SELECTED_PRESET, -1);
 
         // 成功率与消耗/保底展示组件（同时记录各自原始字号，供文案超宽时缩字适配、文案变短时恢复）
         percentAView = bindResultView(R.id.percent_a);
@@ -369,7 +401,9 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         /** 菜单项点击：写入逻辑选中值并持久化，随后统一由 recalculate 刷新展示与结果 */
         private void selectByMenuIndex(int menuIndex) {
             logic = menuToLogic[menuIndex];
-            prefs.edit().putInt(stateKey, logic).apply();
+            // 手动改动任意一组即清除生效预设的√标记（组合已偏离预设）
+            appliedPresetIndex = -1;
+            prefs.edit().putInt(stateKey, logic).putInt(STATE_SELECTED_PRESET, -1).apply();
             recalculate();
         }
 
@@ -392,6 +426,128 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             logic = restored >= minLogic && restored <= maxLogic ? restored : defaultValue;
             prefs.edit().putInt(stateKey, logic).apply();
         }
+
+        /** 预设应用：外部直接写入本组逻辑值并持久化（越界回退默认值）；不触发重算，由调用方统一触发 */
+        void setLogic(int value) {
+            logic = value >= minLogic && value <= maxLogic ? value : defaultValue;
+            prefs.edit().putInt(stateKey, logic).apply();
+        }
+    }
+
+    /**
+     * 解析预设组合表 CardOddsData.Presets（首次打开预设菜单时执行一次并缓存）：
+     * 每行字段顺序 标题|主卡星级|副卡1星级|副卡1类型|副卡2星级|副卡2类型|副卡3星级|副卡3类型|四叶草；
+     * 星级直接取数字并钳进该组范围（越界回退 -1“不选”），类型按 好卡/中卡/差卡 映射概率表下标 2/1/0，
+     * 四叶草按 CardOddsData.FourLeafCloverNames 名字匹配（“不选”→-1，其余取名字下标-1）；
+     * 字段缺失或格式非法一律回退 -1，写入时由 setLogic 按各组规则兜底（如类型组回退默认“好卡”）
+     */
+    private void ensurePresetsParsed() {
+        if (presetTitles != null) return;
+        presetTitles = new String[CardOddsData.Presets.length];
+        presetFields = new int[CardOddsData.Presets.length][PRESET_FIELD_COUNT];
+        presetPreviews = new int[CardOddsData.Presets.length][];
+        for (int i = 0; i < CardOddsData.Presets.length; i++) {
+            String[] parts = CardOddsData.Presets[i].split("\\|", -1);
+            presetTitles[i] = parts[0].trim();
+            // 各字段默认 -1（不选/非法），从第 2 段起逐位解析覆盖
+            int[] fields = presetFields[i];
+            Arrays.fill(fields, -1);
+            if (parts.length > 1) fields[PRESET_FIELD_MAIN] = parseStarField(parts[1], 15);
+            if (parts.length > 2) fields[PRESET_FIELD_SUB_1] = parseStarField(parts[2], 16);
+            if (parts.length > 3) fields[PRESET_FIELD_SUB_1_CATEGORY] = parseCategoryField(parts[3]);
+            if (parts.length > 4) fields[PRESET_FIELD_SUB_2] = parseStarField(parts[4], 16);
+            if (parts.length > 5) fields[PRESET_FIELD_SUB_2_CATEGORY] = parseCategoryField(parts[5]);
+            if (parts.length > 6) fields[PRESET_FIELD_SUB_3] = parseStarField(parts[6], 16);
+            if (parts.length > 7) fields[PRESET_FIELD_SUB_3_CATEGORY] = parseCategoryField(parts[7]);
+            if (parts.length > 8) fields[PRESET_FIELD_FOUR_LEAF_CLOVER] = parseCloverField(parts[8]);
+
+            // 5 个预览位图片（主卡、副卡1~3、四叶草）：未选中/非法统一显示占位图 card_data_x
+            presetPreviews[i] = new int[]{
+                    starPreviewDrawable(fields[PRESET_FIELD_MAIN]),
+                    starPreviewDrawable(fields[PRESET_FIELD_SUB_1]),
+                    starPreviewDrawable(fields[PRESET_FIELD_SUB_2]),
+                    starPreviewDrawable(fields[PRESET_FIELD_SUB_3]),
+                    cloverPreviewDrawable(fields[PRESET_FIELD_FOUR_LEAF_CLOVER])};
+        }
+        // 生效预设下标随预设表校正：越界（如预设表删改后）回退“无生效预设”
+        if (appliedPresetIndex >= presetTitles.length) {
+            appliedPresetIndex = -1;
+        }
+    }
+
+    /**
+     * 弹出预设组合菜单（锚点为右上角悬浮列表按钮）：预览行显示“标题 + 主卡/副卡1~3/四叶草”
+     * 5 张预览图，当前生效预设标题高亮带√并打开时居中定位；
+     * 点击条目把该预设的 8 个字段写入对应组（VIP 与公会合成屋保持现状不动）并触发重算
+     */
+    private void showPresetDropdown() {
+        ensurePresetsParsed();
+        ArrayAdapter<String> adapter = DropdownPopupHelper.createAdapter(this, appliedPresetIndex,
+                presetTitles, R.layout.item_dropdown_preset_selection, null,
+                PRESET_PREVIEW_IDS, presetPreviews);
+        DropdownPopupHelper.showAnchored(this, findViewById(R.id.FloatButton_List), adapter,
+                presetTitles.length, appliedPresetIndex, this::applyPreset);
+    }
+
+    /**
+     * 应用预设：8 个字段逐组写入逻辑值并持久化（越界/非法字段由 setLogic 回退各组默认值），
+     * VIP 与公会合成屋两组不参与预设、保持现状；记录生效预设下标后统一重算
+     */
+    private void applyPreset(int presetIndex) {
+        ensurePresetsParsed();
+        if (presetIndex < 0 || presetIndex >= presetFields.length) return;
+        int[] fields = presetFields[presetIndex];
+        dropdownGroups[GROUP_MAIN].setLogic(fields[PRESET_FIELD_MAIN]);
+        dropdownGroups[GROUP_SUB_1].setLogic(fields[PRESET_FIELD_SUB_1]);
+        dropdownGroups[GROUP_SUB_1_CATEGORY].setLogic(fields[PRESET_FIELD_SUB_1_CATEGORY]);
+        dropdownGroups[GROUP_SUB_2].setLogic(fields[PRESET_FIELD_SUB_2]);
+        dropdownGroups[GROUP_SUB_2_CATEGORY].setLogic(fields[PRESET_FIELD_SUB_2_CATEGORY]);
+        dropdownGroups[GROUP_SUB_3].setLogic(fields[PRESET_FIELD_SUB_3]);
+        dropdownGroups[GROUP_SUB_3_CATEGORY].setLogic(fields[PRESET_FIELD_SUB_3_CATEGORY]);
+        dropdownGroups[GROUP_FOUR_LEAF_CLOVER].setLogic(fields[PRESET_FIELD_FOUR_LEAF_CLOVER]);
+        appliedPresetIndex = presetIndex;
+        prefs.edit().putInt(STATE_SELECTED_PRESET, appliedPresetIndex).apply();
+        recalculate();
+    }
+
+    /** 预设星级字段：取数字并钳进 [0,max]（与该组菜单条目范围一致），其余文本回退 -1“不选” */
+    private int parseStarField(String text, int max) {
+        try {
+            int value = Integer.parseInt(text.trim());
+            return value >= 0 && value <= max ? value : -1;
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    /** 预设副卡类型字段：好卡/中卡/差卡 → 概率表下标 2/1/0（与字符串资源比对，不硬编中文），其余回退 -1 */
+    private int parseCategoryField(String text) {
+        String trimmed = text.trim();
+        if (trimmed.equals(getString(R.string.title_card_odds_calculator_category_2))) return 2;
+        if (trimmed.equals(getString(R.string.title_card_odds_calculator_category_1))) return 1;
+        if (trimmed.equals(getString(R.string.title_card_odds_calculator_category_0))) return 0;
+        return -1;
+    }
+
+    /** 预设四叶草字段：按 CardOddsData.FourLeafCloverNames 名字匹配（首项“不选”→-1，其余取名字下标-1），未匹配回退 -1 */
+    private int parseCloverField(String text) {
+        String trimmed = text.trim();
+        for (int i = 0; i < CardOddsData.FourLeafCloverNames.length; i++) {
+            if (trimmed.equals(CardOddsData.FourLeafCloverNames[i])) {
+                return i - 1;
+            }
+        }
+        return -1;
+    }
+
+    /** 预设预览位：星级逻辑值 → 展示图（未选中或越界显示占位图 card_data_x） */
+    private static int starPreviewDrawable(int logic) {
+        return logic >= 0 && logic < STAR_DRAWABLES.length ? STAR_DRAWABLES[logic] : R.drawable.card_data_x;
+    }
+
+    /** 预设预览位：四叶草逻辑值 → 展示图（未选中或越界显示占位图 card_data_x） */
+    private static int cloverPreviewDrawable(int logic) {
+        return logic >= 0 && logic < CLOVER_DRAWABLES.length ? CLOVER_DRAWABLES[logic] : R.drawable.card_data_x;
     }
 
     /**
@@ -628,6 +784,7 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         BlurView blurViewTopBar = findViewById(R.id.blurViewTopBar);
         TextView topBar = findViewById(R.id.topBar);
         ImageButton floatButtonBack = findViewById(R.id.FloatButton_Back);
+        ImageButton floatButtonList = findViewById(R.id.FloatButton_List);
         View rootView = findViewById(android.R.id.content);
         // 动态获取状态栏高度
         InsetsUtil.setStatusBarHeight(this, rootView, height -> {
@@ -642,6 +799,10 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.topMargin = height + DensityUtil.dpToPx(this, 5);
             floatButtonBack.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonList.getLayoutParams();
+            params.topMargin = height + DensityUtil.dpToPx(this, 5);
+            floatButtonList.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout cardOddsCalculatorContainer = findViewById(R.id.CardOddsCalculator_Container);
@@ -654,10 +815,17 @@ public class CardOddsCalculatorActivity extends BaseActivity {
             params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.leftMargin = layout_marginHorizontal;
             floatButtonBack.setLayoutParams(params);
+
+            params = (ViewGroup.MarginLayoutParams) floatButtonList.getLayoutParams();
+            params.rightMargin = layout_marginHorizontal;
+            floatButtonList.setLayoutParams(params);
         });
 
         // 顺便设置返回按钮的功能
         floatButtonBack.setOnClickListener(v -> this.finish());
+
+        // 预设组合列表按钮：弹出预设菜单，点击条目即套用对应组合快速查询
+        floatButtonList.setOnClickListener(v -> showPresetDropdown());
 
         // 接入顶部栏滚动联动：滚动时模糊层与悬浮标题联动显现（topBarBottom 滚出后顶栏显现）
         nestedScrollUtil = NestedScrollUtil.attach(rootView,
@@ -708,6 +876,8 @@ public class CardOddsCalculatorActivity extends BaseActivity {
                 group.saveState(outState);
             }
         }
+        // 保存生效预设下标（菜单√标记），随界面重建一并恢复
+        outState.putInt(STATE_SELECTED_PRESET, appliedPresetIndex);
     }
 
     @Override
@@ -716,6 +886,9 @@ public class CardOddsCalculatorActivity extends BaseActivity {
         if (nestedScrollUtil != null) {
             nestedScrollUtil.restoreScrollY(savedInstanceState, STATE_SCROLL_Y);
         }
+
+        // 恢复生效预设下标（越界在首次解析预设表时校正）
+        appliedPresetIndex = savedInstanceState.getInt(STATE_SELECTED_PRESET, appliedPresetIndex);
 
         // 恢复重建前各组选中的逻辑值（restoreState 不触发重算，恢复完毕后统一处理）
         if (dropdownGroups != null) {
