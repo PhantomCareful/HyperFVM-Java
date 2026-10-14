@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.careful.HyperFVM.Activities.Necessary.UsingInstruction.UsingInstructionActivity;
@@ -66,6 +67,15 @@ public class OobeIntroductionFragment extends Fragment {
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) floatButtonBack.getLayoutParams();
             params.topMargin = height + DensityUtil.dpToPx(requireContext(), 5);
             floatButtonBack.setLayoutParams(params);
+        });
+        // 动态获取导航栏高度（小白条/三键导航）
+        CardView oobe_btn_next_container = view.findViewById(R.id.oobe_btn_next_container);
+        InsetsUtil.setNavigationBarHeight(requireContext(), view, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) oobe_btn_next_container.getLayoutParams();
+            params.bottomMargin = height;
+            params.leftMargin = height;
+            params.rightMargin = height;
+            oobe_btn_next_container.setLayoutParams(params);
         });
         // 动态调整侧边距（手机/PAD）
         LinearLayout oobe_introduction_container = view.findViewById(R.id.oobe_introduction_container);

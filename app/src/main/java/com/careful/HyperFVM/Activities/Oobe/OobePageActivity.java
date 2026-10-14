@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 /**
  * OOBE 子页面 Activity 基类（对齐 HC provision {@code BaseActivity}/{@code ProvisionDetailActivity}）。
@@ -52,8 +53,11 @@ public abstract class OobePageActivity extends BaseActivity implements IOnFocusL
         ThemeManager.applyTheme(this);
         super.onCreate(savedInstanceState);
 
-        // 全屏沉浸（与 MainActivity 同套：edge-to-edge，页面布局用 InsetsUtil 补系统栏）
+        // 小白条沉浸（MIUI/澎湃OS适配）
         EdgeToEdge.enable(this);
+        if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
+            NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
+        }
 
         FragmentManager fm = getSupportFragmentManager();
         mFragment = fm.findFragmentByTag(getFragmentTag());

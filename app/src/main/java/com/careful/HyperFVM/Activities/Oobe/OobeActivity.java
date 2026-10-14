@@ -14,6 +14,7 @@ import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.DarkModeManager;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.OtherUtils.NavigationBarForMIUIAndHyperOS;
 
 /**
  * OOBE 流程入口（对齐 HC provision DefaultActivity 的欢迎页职责，页面推进为标准栈式）。
@@ -44,8 +45,12 @@ public class OobeActivity extends BaseActivity implements IOnFocusListener {
         ThemeManager.applyTheme(this);
         super.onCreate(savedInstanceState);
 
-        // 全屏沉浸（与 MainActivity 同套：edge-to-edge + MIUI 小白条适配）
+        // 小白条沉浸（MIUI/澎湃OS适配）
         EdgeToEdge.enable(this);
+        if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
+            NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
+        }
+
         setContentView(R.layout.activity_oobe);
 
         // 欢迎 Fragment 常驻本页（back 回欢迎页时保留原位，HC StartupState 同责）

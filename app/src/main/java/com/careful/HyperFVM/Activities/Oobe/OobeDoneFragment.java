@@ -21,6 +21,7 @@ import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.ForDesign.Blur.MiuiLogoBlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.Glow.GlowController;
 import com.careful.HyperFVM.utils.ForDesign.Glow.RenderViewLayout;
+import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 
 import fan.animation.Folme;
 import fan.animation.FolmeEase;
@@ -75,6 +76,16 @@ public class OobeDoneFragment extends Fragment implements IOnFocusListener {
         View textLogo = view.findViewById(R.id.text_logo);
         View stateText = view.findViewById(R.id.done_state_text);
         View contentView = view.findViewById(R.id.content_view);
+
+        // 动态获取导航栏高度（小白条/三键导航）
+        InsetsUtil.setNavigationBarHeight(requireContext(), view, height -> {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mDoneNext.getLayoutParams();
+            params.bottomMargin = height;
+            params.topMargin = height;
+            params.leftMargin = height;
+            params.rightMargin = height;
+            mDoneNext.setLayoutParams(params);
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // glow 流光：与欢迎页同套降采样容器
