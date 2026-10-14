@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- OOBE 欢迎页（首启全屏第一屏），结构复刻 HyperCeiler provision_startup_layout：
-     底层 glow 流光（RenderViewLayout，0.2 降采样）+ 静态兜底图（降级时显示），
+     底层 glow 流光（RenderViewLayout，0.2 降采样；SDK<33 无 RuntimeShader，
+     由 Fragment 将根背景切换为主题 colorSurface 纯色），
      上层内容按 weight 30/40/20 分配（顶部留白 / logo+文字+下一步 / 底部留白），
      手机与 PAD 共用一套布局自适应 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,14 +17,6 @@
         android:layout_height="match_parent"
         android:contentDescription="@null"
         android:importantForAccessibility="no" />
-
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@null"
-        android:importantForAccessibility="no"
-        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:id="@+id/miui_enter_layout"

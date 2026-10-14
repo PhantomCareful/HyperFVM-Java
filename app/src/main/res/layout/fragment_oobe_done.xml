@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- OOBE 设置完毕页（复刻 HC provision_congratulation_layout）：
-     glow 流光背景（RenderViewLayout，0.2 降采样）+ 静态兜底图（SDK<33 降级），
+     glow 流光背景（RenderViewLayout，0.2 降采样；SDK<33 无 RuntimeShader，
+     由 Fragment 将根背景切换为主题 colorSurface 纯色），
      上层 logo 区（weight 20/40）+ 底部"开始"胶囊按钮；
      初始 alpha=0 / translationY=100px 防入场动画前闪现，按钮初始 disabled 防误触 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,14 +16,6 @@
         android:layout_height="match_parent"
         android:contentDescription="@null"
         android:importantForAccessibility="no" />
-
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@null"
-        android:importantForAccessibility="no"
-        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:id="@+id/content_view"

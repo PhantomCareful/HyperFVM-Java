@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +33,7 @@ import fan.animation.property.ViewProperty;
  *
  * <ul>
  *   <li>背景：glow 流光（onViewCreated 即 warmUp+start 提前渲染：Skia 首次编译挪到窗口首帧前、
- *       流光随转场起跑，消除“焦点才启动”造成的进入首帧纯黑；SDK&lt;33 降级静态兜底图）</li>
+ *       流光随转场起跑，消除“焦点才启动”造成的进入首帧纯黑；SDK&lt;33 根背景降级 ?attr/colorSurface 纯色）</li>
  *   <li>流光：logo/文字三层（HC Congratulation 原值）、"开始"按钮两层、状态文字两层（mode 19+3）</li>
  *   <li>入场：logo 区 translationY 100→0 + alpha quartOut 1500ms；按钮 alpha delay 1000ms、
  *       2s 后才 enable（HC 防误触）；alpha 终值一律 BLEND_ALPHA_CLAMP 防 OS1.0 blend 跳过</li>
@@ -88,9 +88,15 @@ public class OobeDoneFragment extends Fragment implements IOnFocusListener {
             mGlowController.warmUp();
             mGlowController.start(false);
         } else {
-            // 降级：静态兜底图（RuntimeShader 需 Android 13）
-            ((ImageView) view.findViewById(R.id.background_image))
-                    .setImageResource(R.drawable.oobe_background_fallback);
+            // 降级：RuntimeShader 需 Android 13，根背景改用主题 colorSurface 纯色
+            // （解析值跟随当前深浅色，与页内 colorOnSurface 文字形成正确对比）
+            TypedValue typedValue = new TypedValue();
+            if (requireContext().getTheme().resolveAttribute(
+                    com.google.android.material.R.attr.colorSurface, typedValue, true)
+                    && typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT
+                    && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+                view.setBackgroundColor(typedValue.data);
+            }
         }
 
         // 三组流光配色照抄 HC CongratulationFragment#setupBlurBackground：
@@ -126,7 +132,7 @@ public class OobeDoneFragment extends Fragment implements IOnFocusListener {
     public void onStart() {
         super.onStart();
         // 恢复场景：重建流光（无光圈）
-        // SDK 33 以下不存在 glow 流光（降级静态兜底图），控制器必为 null；版本判断同时满足 lint 的 API 级别检查
+        // SDK 33 以下不存在 glow 流光（根背景降级为 colorSurface 纯色），控制器必为 null；版本判断同时满足 lint 的 API 级别检查
         if (mEntered && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && mGlowController != null) {
             mGlowController.start(false);
         }

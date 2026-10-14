@@ -5,11 +5,11 @@ import static com.careful.HyperFVM.utils.ForDesign.Blur.MiuiLogoBlurUtil.BLEND_A
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +32,7 @@ import fan.animation.property.ViewProperty;
  *
  * <ul>
  *   <li>背景：glow AGSL 流光（{@link GlowController}，0.2 降采样），开场光圈从 logo 位置扩散；
- *       SDK&lt;33 时 RuntimeShader 不可用降级为静态兜底图</li>
+ *       SDK&lt;33 时 RuntimeShader 不可用，根背景降级为 ?attr/colorSurface 纯色</li>
  *   <li>文字/图标流光：{@link MiuiLogoBlurUtil} cross blur 透出下方 glow（系统模糊不支持时静默静态）</li>
  *   <li>入场动画：Folme logo 缩放两段 + 文字淡入 + 下一步按钮 delay 1340ms（对齐 HC AnimHelper）</li>
  *   <li>点"下一步"→ {@link OobeActivity#goToNextFromButton(View)} 系统级窗口从按钮展开进
@@ -73,7 +73,6 @@ public class OobeWelcomeFragment extends Fragment implements IOnFocusListener {
         mLogoImageWrapper = view.findViewById(R.id.logo_image_wrapper);
         mNextLayout = view.findViewById(R.id.next_layout);
         mNext = view.findViewById(R.id.next);
-        ImageView backgroundImage = view.findViewById(R.id.background_image);
         View textLogo = view.findViewById(R.id.text_logo);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -85,8 +84,15 @@ public class OobeWelcomeFragment extends Fragment implements IOnFocusListener {
             // 预热：shader 解析/编译提前到首帧前完成，避免编译顿挫落在开场光圈扩散期
             mGlowController.warmUp();
         } else {
-            // 降级：静态兜底图（RuntimeShader 需 Android 13）
-            backgroundImage.setImageResource(R.drawable.oobe_background_fallback);
+            // 降级：RuntimeShader 需 Android 13，根背景改用主题 colorSurface 纯色
+            // （解析值跟随当前深浅色，与页内 colorOnSurface 文字形成正确对比）
+            TypedValue typedValue = new TypedValue();
+            if (requireContext().getTheme().resolveAttribute(
+                    com.google.android.material.R.attr.colorSurface, typedValue, true)
+                    && typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT
+                    && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+                view.setBackgroundColor(typedValue.data);
+            }
         }
 
         if (!sFirstBoot) {
@@ -152,7 +158,7 @@ public class OobeWelcomeFragment extends Fragment implements IOnFocusListener {
 
         if (sFirstBoot) {
             sFirstBoot = false;
-            // SDK 33 以下不存在 glow 流光（降级静态兜底图），控制器必为 null；版本判断同时满足 lint 的 API 级别检查
+            // SDK 33 以下不存在 glow 流光（根背景降级为 colorSurface 纯色），控制器必为 null；版本判断同时满足 lint 的 API 级别检查
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && mGlowController != null) {
                 // 首启带开场光圈（uShowCircle=1），圆心对齐 logo 实际位置（需在 start 后，painter 已创建）
                 mGlowController.start(true);
