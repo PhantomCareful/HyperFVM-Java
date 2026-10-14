@@ -1,6 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--总体-->
     <string name="app_name">HyperFVM</string>
+
+    <!-- OOBE 多页流程（中间三页骨架 + 完毕页） -->
+    <string name="title_oobe_introduction">软件介绍</string>
+    <string name="tips_oobe_introduction_1">HyperFVM是为网页游戏《美食大战老师》制作的数据工具箱，查活动、查防御卡数据、看数据图，它都不在话下。\n如果您是第一次使用本App，强烈建议您先阅读《使用说明》，它可以帮助您快速上手。您后续也可以在App的关于软件→一些必要的东西→使用说明处随时查看。</string>
+    <string name="tips_oobe_introduction_2">为了保障您的使用体验，本软件永久免费，纯净无广。如果您是从任意渠道购买来的，请联系卖家退款。</string>
+    <string name="title_oobe_permission">权限申请</string>
+    <string name="tips_oobe_permission">为了您能使用HyperFVM的完整功能，建议您提前授予如下权限。HyperFVM不会收集您的任何个人隐私，请放心使用。\n后续您可以也在App的关于软件→一些必要的东西→App设置→授权检查处随时撤回授予的权限。</string>
+    <string name="title_oobe_theme">设置主题</string>
+    <string name="title_oobe_done_state">一切就绪</string>
+    <string name="text_oobe_btn_next">下一步</string>
+    <string name="text_oobe_btn_start">开始使用</string>
+
     <string name="top_bar_dashboard">仪表盘</string>
     <string name="label_dashboard_navigation">仪表盘</string>
     <string name="top_bar_data_center">数据中心</string>

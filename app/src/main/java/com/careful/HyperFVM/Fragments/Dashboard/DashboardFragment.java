@@ -4,9 +4,7 @@ import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -64,9 +62,6 @@ import eightbitlab.com.blurview.BlurView;
 
 public class DashboardFragment extends Fragment {
     private DBHelper dbHelper;
-    private SharedPreferences preferences;
-    private static final String PREFS_NAME = "app_preferences";
-    private static final String FIRST_RUN_KEY = "first_run";
     // 保存/恢复滚动位置的key，用于深浅色切换等界面重建后恢复顶部栏透明度状态
     private static final String STATE_SCROLL_Y = "state_dashboard_scroll_y";
     // 顶部栏渐变过渡区间（dp）：该界面经实测50dp最合适
@@ -193,8 +188,6 @@ public class DashboardFragment extends Fragment {
         // 初始化数据库
         dbHelper = HyperFVMApplication.getDBHelper();
 
-        preferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-
         // 初始化仪表盘组件
         floatButtonRefresh = root.findViewById(R.id.FloatButton_Refresh);
 
@@ -311,12 +304,6 @@ public class DashboardFragment extends Fragment {
         });
 
         return root;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        checkFirstRun();
     }
 
     /**
@@ -1056,16 +1043,6 @@ public class DashboardFragment extends Fragment {
                 }
             }
         })).start();
-    }
-
-    /**
-     * 检查是否首次启动App
-     */
-    private void checkFirstRun() {
-        if (preferences.getBoolean(FIRST_RUN_KEY, true)) {
-            DialogBuilderManager.showWelcomeDialog(requireContext());
-            preferences.edit().putBoolean(FIRST_RUN_KEY, false).apply();
-        }
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.careful.HyperFVM;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.careful.HyperFVM.Activities.Oobe.OobeActivity;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.Dashboard.DashboardFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
@@ -53,6 +55,20 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // 首启拦截：先于一切 UI 初始化跳转 OOBE 欢迎页（标记在 OOBE 完成时写入）。
+        // 此处不走主题/沉浸/签名校验等分支——本实例立即销毁；OOBE 完成后经
+        // CLEAR_TASK 重启本页，届时 first_run=false 正常进入
+        if (getSharedPreferences("app_preferences", MODE_PRIVATE).getBoolean("first_run", true)) {
+            super.onCreate(savedInstanceState);
+            // CLEAR_TOP|SINGLE_TOP：OOBE 进行中经桌面再入 → 回到既有 OobeActivity
+            // （onNewIntent 不重建），Fragment 栈与当前页保留、不重放开场光圈
+            Intent oobe = new Intent(this, OobeActivity.class);
+            oobe.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(oobe);
+            finish();
+            return;
+        }
+
         mainHandler = new Handler(Looper.getMainLooper()); // 初始化主线程 Handler
 
         // 启动时进行签名校验

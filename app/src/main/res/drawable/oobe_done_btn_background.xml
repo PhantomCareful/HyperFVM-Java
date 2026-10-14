@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OOBE 完毕页/骨架页底部胶囊按钮底（复刻 HC provision_next_btn_background：
+     16dp 圆角 + 60% 黑，置于浅色/glow 内容上形成半透明胶囊） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="20dp" />
+    <solid android:color="#FF000000" />
+</shape>

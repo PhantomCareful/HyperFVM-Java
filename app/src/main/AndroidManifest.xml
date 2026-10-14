@@ -200,6 +200,30 @@
             </intent-filter>
         </activity>
 
+        <!-- OOBE 流程入口（MainActivity.onCreate 首启拦截跳转），对齐 HC DefaultActivity 欢迎页职责：
+             欢迎页内置本页，中间四页各为独立 Activity 以标准栈式推进（前进不 finish、返回系统默认）；
+             singleTask：OOBE 期间按 HOME 再进图标时回到既有实例（上方页面被系统清除，
+             onNewIntent 重置回欢迎页），不叠栈 -->
+        <activity
+            android:name=".Activities.Oobe.OobeActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+
+        <!-- OOBE 中间页（对齐 HC provision 每页独立 Activity）：栈式前进
+             （startActivity 不 finish），返回交系统默认 back（支持预见式返回动画） -->
+        <activity
+            android:name=".Activities.Oobe.OobeIntroductionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Oobe.OobePermissionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Oobe.OobeThemeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Oobe.OobeDoneActivity"
+            android:exported="false" />
+
         <receiver
             android:name=".utils.ForDashboard.NotificationManager.NotificationDismissReceiver"
             android:exported="false" />

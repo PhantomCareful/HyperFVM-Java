@@ -111,34 +111,50 @@ public final class MiuiLogoBlurUtil {
      * @param logoViews 需要效果的 logo 元素（图标、应用名），允许含 null 自动跳过
      */
     public static void applyLogoEffect(Context context, View container, View... logoViews) {
-        if (container == null || logoViews.length == 0 || !isSupported(context)) {
+        if (container == null || logoViews.length == 0) {
+            return;
+        }
+        // 三层混色（颜色来自 values/values-night 的日夜两套资源）
+        int[] colors = {
+                context.getColor(R.color.about_app_logo_blur_color1),
+                context.getColor(R.color.about_app_logo_blur_color2),
+                context.getColor(R.color.about_app_logo_blur_color3),
+        };
+        int[] modes = {
+                isNightMode(context) ? BLEND_MODE_BASE_NIGHT : BLEND_MODE_BASE_DAY,
+                BLEND_MODE_SECOND,
+                BLEND_MODE_THIRD,
+        };
+        applyBlendEffect(context, container, colors, modes, logoViews);
+    }
+
+    /**
+     * 以调用方指定的混色层应用 cross blur（步骤与 {@link #applyLogoEffect} 一致，仅颜色/
+     * 层数由参数给定）。供 OOBE 欢迎页等使用固定配比的场景：HyperCeiler OOBE 对 logo 与
+     * 文字三层、下一步按钮两层，颜色直接硬编码对齐 HC（OOBE 为固定黑底界面，基础层恒用
+     * 日间模式 19，不做日夜切换）。不满足支持条件时整体静默跳过。
+     *
+     * @param colors 每层混色颜色（ARGB）
+     * @param modes  每层混色 blend mode，与 colors 一一对应
+     */
+    public static void applyBlendEffect(Context context, View container, int[] colors, int[] modes, View... logoViews) {
+        if (container == null || logoViews.length == 0 || colors.length == 0
+                || colors.length != modes.length || !isSupported(context)) {
             return;
         }
         try {
             // 1. 容器作为模糊源（对齐 fan MiuiBlurUtils.setBackgroundBlur 的三步：
-            //    先开 background 模式总闸=1，再设半径，最后 VersionCard 单独把 view 模式置 0）
+            //    先开 background 模式总闸，再设半径，最后单独把 view 模式置 0）
             int radiusPx = (int) (container.getResources().getDisplayMetrics().density * ROOT_BLUR_RADIUS_DP + 0.5f);
-            invoke(sSetBackgroundBlurMode, container, 1);
+            invoke(sSetBackgroundBlurMode, container, BACKGROUND_BLUR_MODE_ON);
             invoke(sSetContainerBlurRadius, container, radiusPx);
             invoke(sSetViewBlurMode, container, 0);
 
-            // 2. 三层混色（颜色来自 values/values-night 的日夜两套资源）
-            int[] colors = {
-                    context.getColor(R.color.about_app_logo_blur_color1),
-                    context.getColor(R.color.about_app_logo_blur_color2),
-                    context.getColor(R.color.about_app_logo_blur_color3),
-            };
-            int[] modes = {
-                    isNightMode(context) ? BLEND_MODE_BASE_NIGHT : BLEND_MODE_BASE_DAY,
-                    BLEND_MODE_SECOND,
-                    BLEND_MODE_THIRD,
-            };
-
-            // 3. 逐个 logo：cross 模式 + 清旧混色 + 叠三层
+            // 2. 逐个 logo：cross 模式 + 清旧混色 + 叠层
             int applied = 0;
             for (View logo : logoViews) {
                 if (logo == null) continue;
-                // 与 fan enableTextBlur 完全一致：view 模式 3 + 三层混色（不设 background 模式、不选容器）
+                // 与 fan enableTextBlur 完全一致：view 模式 3 + 混色（不设 background 模式、不选容器）
                 invoke(sSetViewBlurMode, logo, BLUR_MODE_CROSS);
                 invoke(sClearBlendColor, logo);
                 for (int i = 0; i < colors.length; i++) {
@@ -146,9 +162,10 @@ public final class MiuiLogoBlurUtil {
                 }
                 applied++;
             }
-            Log.d(TAG, "effect applied to " + applied + " views, baseMode=" + modes[0]);
+            Log.d(TAG, "effect applied to " + applied + " views, layers=" + colors.length
+                    + ", baseMode=" + modes[0]);
         } catch (Exception e) {
-            Log.d(TAG, "applyLogoEffect failed, fallback to plain logo: " + e);
+            Log.d(TAG, "applyBlendEffect failed, fallback to plain logo: " + e);
         }
     }
 
