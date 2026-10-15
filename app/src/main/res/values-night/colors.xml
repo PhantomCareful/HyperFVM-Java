@@ -54,6 +54,16 @@
     <color name="miuix_surface_container_high">#242424</color>
     <color name="miuix_surface_container_highest">#2D2D2D</color>
 
+    <!--Slider（Miuix SeekBar Thumb 变体：28dp 药丸轨道 + 20dp 内嵌圆钮）
+        禁用轨道/禁用进度同取 white_level10，禁用时整体退为单层淡白药丸-->
+    <color name="miuix_slider_track">#26FFFFFF</color>
+    <color name="miuix_slider_track_disabled">#14FFFFFF</color>
+    <color name="miuix_slider_progress_disabled">#14FFFFFF</color>
+    <!-- 禁用圆钮：Miuix 原版为 #E6FFFFFF 钮再乘 178/255 alpha 叠双层禁用进度
+         #454545 的合成色 (0.628×255 + 0.372×69 = 185.9)；M3 禁用先将钮位
+         CLEAR 擦至卡片底再画钮，故给不透明等效结果色对齐 Miuix 观感 -->
+    <color name="miuix_slider_thumb_disabled">#BABABA</color>
+
     <!--宫墙-->
     <color name="md_red_gongqiang_primary">#FFB4A4</color>
     <color name="md_red_gongqiang_onPrimary">#561F12</color>

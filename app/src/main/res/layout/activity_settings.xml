@@ -537,7 +537,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:layout_marginStart="16dp"
+                                        android:layout_marginHorizontal="16dp"
                                         android:orientation="vertical">
 
                                         <TextView
@@ -556,18 +556,24 @@
 
                                     </LinearLayout>
 
+                                    <TextView
+                                        android:id="@+id/font_scale_current_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15sp"
+                                        android:textColor="?attr/SummaryTextViewColorOnGeneralCardView" />
+
                                 </LinearLayout>
 
                                 <com.google.android.material.slider.Slider
                                     android:id="@+id/Slider_FontScale"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginVertical="16dp"
+                                    android:layout_marginBottom="6dp"
                                     android:value="1"
                                     android:valueFrom="0.8"
                                     android:valueTo="1.5"
-                                    android:stepSize="0.01"
-                                    app:labelBehavior="floating"
+                                    app:labelBehavior="gone"
                                     app:tickVisible="false" />
 
                             </LinearLayout>

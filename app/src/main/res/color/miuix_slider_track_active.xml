@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Slider（Miuix 风格）进度配色：正常态取主题 colorPrimary（Miuix 主题下即
+     miuix_primary #3482FF/#277AF7，与 fan.miuix SeekBar 进度蓝一致；其余主题
+     自动取各自主色）；禁用态按 Miuix 参考实现取固定色（深色值见 values-night
+     的 miuix_slider_progress_disabled） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/miuix_slider_progress_disabled" android:state_enabled="false"/>
+    <item android:color="?attr/colorPrimary"/>
+</selector>

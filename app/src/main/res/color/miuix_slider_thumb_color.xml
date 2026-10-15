@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Slider 圆钮色状态（Miuix 主题用）：启用项统一 ?attr/colorOnPrimary
+     （Miuix 主题下 = miuix_on_primary #FFFFFF）。Miuix 原版 SeekBar 禁用时将钮
+     oval 置 178/255 alpha 半透明叠在禁用进度上，M3 禁用先以 PorterDuff.CLEAR
+     擦除钮位下轨道再画钮（透出卡片底），故禁用项给不透明等效结果色
+     （见 miuix_slider_*_disabled）；非 Miuix 主题由 Slider.Miuix.M3Disabled
+     换用 m3 版 CSL（colorOnSurface × 0.38） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/miuix_slider_thumb_disabled" android:state_enabled="false" />
+    <item android:color="?attr/colorOnPrimary" />
+</selector>

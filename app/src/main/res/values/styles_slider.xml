@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Slider 的 Miuix 风格（复刻 fan.miuix SeekBar 的 Thumb 变体视觉）：
+         28dp 厚全圆角药丸轨道 + 20dp 内嵌圆钮（4+20+4=28dp，钮与轨道同心、
+         完全落入轨道内），进度色跟随主题 colorPrimary（Miuix 主题下 =
+         miuix_primary，与参考实现进度蓝一致），轨道/圆钮/禁用色为 Miuix
+         固定色板（见 colors.xml 的 miuix_slider_* 组）；
+         轨道圆角无需声明：Material 按 trackHeight 半高自动取全圆角 -->
+    <style name="Slider.Miuix" parent="Widget.Material3.Slider">
+        <!-- 轨道：28dp 高药丸（Miuix SeekBar seekbar_height=28dp） -->
+        <item name="trackHeight">28dp</item>
+        <!-- 圆钮：20dp 正圆（Miuix thumb drawable = 4dp 内缩 + 20dp oval） -->
+        <item name="thumbWidth">20dp</item>
+        <item name="thumbHeight">20dp</item>
+        <!-- 钮与进度块无缝相接（Miuix 中进度色延伸至钮中线、由钮覆盖） -->
+        <item name="thumbTrackGapSize">0dp</item>
+        <!-- 进度块靠近钮一侧切平：M3 默认 2dp 内圆角会在钮边缘露出弧角 -->
+        <item name="trackInsideCornerSize">0dp</item>
+        <!-- 去掉 M3 的轨道端点停止点（Miuix 无此装饰） -->
+        <item name="trackStopIndicatorSize">0dp</item>
+        <!-- 颜色：圆钮（CSL：启用=colorOnPrimary，禁用=Miuix 178/255 半透明钮
+             的等效结果色）、轨道半透明墨色、进度主题主色，禁用态由 CSL 处理 -->
+        <item name="thumbColor">@color/miuix_slider_thumb_color</item>
+        <item name="trackColorActive">@color/miuix_slider_track_active</item>
+        <item name="trackColorInactive">@color/miuix_slider_track_inactive</item>
+    </style>
+
+    <!-- Slider 的非 Miuix 主题版（Monet 等继承 Base.Theme.HyperFVMJava 的主题，
+         由 themes.xml 注入 sliderStyle）：形态同 Slider.Miuix，仅禁用配色按原生
+         M3 Slider 规范 = colorOnSurface × 0.38/0.12/0.38（进度/钮/轨道，
+         material-1.12.0 官方 opacity）；启用配色两版一致（钮=colorOnPrimary、
+         进度=colorPrimary、轨道=Miuix 墨色）；Miuix 主题在 miuix.xml 显式
+         覆盖回 Slider.Miuix -->
+    <style name="Slider.Miuix.M3Disabled" parent="Slider.Miuix">
+        <item name="thumbColor">@color/miuix_slider_thumb_color_m3</item>
+        <item name="trackColorActive">@color/miuix_slider_track_active_m3</item>
+        <item name="trackColorInactive">@color/miuix_slider_track_inactive_m3</item>
+    </style>
+</resources>

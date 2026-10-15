@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Slider 轨道色状态（非 Miuix 主题 / Monet 等用）：禁用按原生 M3 Slider
+     规范 = colorOnSurface × 0.12（m3_comp_slider_disabled_inactive_track_opacity，
+     material-1.12.0）；启用保持 Miuix 轨道墨色（仅禁用态随主题 surface） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:alpha="0.12" android:color="?attr/colorOnSurface" android:state_enabled="false" />
+    <item android:color="@color/miuix_slider_track" />
+</selector>

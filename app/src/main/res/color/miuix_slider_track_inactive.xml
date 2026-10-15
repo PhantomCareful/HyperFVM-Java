@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Slider（Miuix 风格）轨道背景配色：Miuix 半透明墨色（浅 #0F000000 / 深 #26FFFFFF）；
+     禁用态在深色下再降一档（#14FFFFFF），浅色下与正常态同值（参考实现如此） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/miuix_slider_track_disabled" android:state_enabled="false"/>
+    <item android:color="@color/miuix_slider_track"/>
+</selector>

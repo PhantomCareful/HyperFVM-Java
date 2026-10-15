@@ -10,6 +10,9 @@
         <!--MaterialSwitch默认样式：去掉未开启时的外圈描边-->
         <item name="materialSwitchStyle">@style/Switch.NoStroke</item>
 
+        <!--Slider默认样式：Miuix 风格（28dp 药丸轨道 + 20dp 内嵌圆钮）-->
+        <item name="sliderStyle">@style/Slider.Miuix</item>
+
         <!--标题文字颜色-->
         <item name="TitleTextViewColorOnSurface">@color/miuix_on_background_variant</item>
 

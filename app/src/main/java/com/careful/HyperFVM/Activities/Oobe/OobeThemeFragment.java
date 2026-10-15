@@ -1,8 +1,12 @@
 package com.careful.HyperFVM.Activities.Oobe;
 
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.ACCENT_DEFAULT;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_APP_THEME;
 import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_DIY_FONT_SCALE;
 import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_IS_DYNAMIC_BACKGROUND;
 import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_IS_FOLLOW_SYSTEM_FONT_SCALE;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.CONTENT_THEME_MODE;
+import static com.careful.HyperFVM.Activities.Necessary.SettingsActivity.FONT_SCALE_STEP;
 import static com.careful.HyperFVM.utils.ForDesign.Animation.PressFeedbackAnimationHelper.setPressFeedbackAnimation;
 
 import android.annotation.SuppressLint;
@@ -35,6 +39,7 @@ import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.slider.Slider;
 
+import java.util.Locale;
 import java.util.function.Consumer;
 
 /**
@@ -47,12 +52,6 @@ public class OobeThemeFragment extends Fragment {
 
     private DBHelper dbHelper;
 
-    // 强调色键（与 ThemeManager.KEY_ACCENT_COLOR 保持一致）
-    private static final String CONTENT_APP_THEME = "主题-强调色";
-    // 主题模式键（“Miuix/Monet（跟随系统/浅色/深色）”六选一），与 ThemeManager 保持一致
-    private static final String CONTENT_THEME_MODE = "主题-主题模式";
-    // 强调色的“默认”值：对应动态取色（壁纸取色），与 ThemeManager 保持一致
-    private static final String ACCENT_DEFAULT = "默认";
     private String currentTheme;
     private View themeSelectorContainer;
     private TextView themeCurrentSelection;
@@ -61,8 +60,12 @@ public class OobeThemeFragment extends Fragment {
     private TextView themeModeCurrentSelection;
 
     private Slider fontScaleSlider;
+    private TextView fontScaleCurrentValue;
     private float fontScale;
-    
+    /** 拖动跨档 tick 振动：tracking 门控（仅手指拖动振，程序 setValue 不振）+ 上次 tick 的档位序号 */
+    private boolean sliderTracking;
+    private int sliderLastTickStep;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -198,6 +201,18 @@ public class OobeThemeFragment extends Fragment {
         });
     }
 
+    /** 字体缩放显示值：档位值保留两位小数（显示值=生效值，字号随显示同步跳变） */
+    private String formatFontScale(float value) {
+        return String.format(Locale.CHINA, "%.2f", value);
+    }
+
+    /** 量化到可见档：滑条保持无级丝滑拖动，显示/写库/生效统一取档位值 */
+    private float quantizeFontScale(float value) {
+        // 与 SettingsActivity 同款修复：除法形式避免乘 0.01f 的浮点下漂（91*0.01f≠0.91f），
+        // 保证 "0.91" 档写库为规范 0.91f，不被半像素取整边界吞掉。
+        return Math.round(value / FONT_SCALE_STEP) / (1f / FONT_SCALE_STEP);
+    }
+
     /**
      * 从数据库读取状态并初始化开关和滑条
      */
@@ -211,8 +226,12 @@ public class OobeThemeFragment extends Fragment {
         // 自定义字体大小滑条
         fontScaleSlider = view.findViewById(R.id.Slider_FontScale);
         fontScaleSlider.setEnabled(!isFollowSystemFontScale);
-        fontScale = dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE);
+        fontScale = quantizeFontScale(dbHelper.getSettingFloatValue(CONTENT_DIY_FONT_SCALE));
         fontScaleSlider.setValue(fontScale);
+        // 当前值文本：changeListener 在 setup 阶段才注册，此处 setValue 不会回调，需显式初始化；
+        // 取 getValue() 而非 fontScale：库值越界时 setValue 会钳到 [valueFrom, valueTo]，以滑条实际值为准
+        fontScaleCurrentValue = view.findViewById(R.id.font_scale_current_value);
+        fontScaleCurrentValue.setText(formatFontScale(fontScaleSlider.getValue()));
         // 动态背景开关
         boolean isDynamicBackground = HyperFVMApplication.isContentDynamicBackgroundEnabled();
         materialSwitch = view.findViewById(R.id.Switch_isDynamicBackground);
@@ -241,17 +260,27 @@ public class OobeThemeFragment extends Fragment {
         });
         // 自定义字体大小滑条
         fontScaleSlider.addOnChangeListener((slider, v, b) -> {
-            fontScale = v;
-            dbHelper.updateSettingValue(CONTENT_DIY_FONT_SCALE, String.valueOf(v));
+            fontScale = quantizeFontScale(v);
+            fontScaleCurrentValue.setText(formatFontScale(fontScale));
+            dbHelper.updateSettingValue(CONTENT_DIY_FONT_SCALE, String.valueOf(fontScale));
+            // 拖动中每跨过一个量化档位 tick 一次振动（复刻 Miuix 滑条手感）；选型说明见 SettingsActivity 同款
+            int tickStep = Math.round(fontScale / FONT_SCALE_STEP);
+            if (sliderTracking && tickStep != sliderLastTickStep) {
+                sliderLastTickStep = tickStep;
+                slider.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
+            }
         });
         fontScaleSlider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             @Override
             public void onStartTrackingTouch(@NonNull Slider slider) {
-                // 啥也不做
+                // 落点同步档位序号：按住后未跨档不振、跨档才 tick；tracking 同时门控程序性 setValue 不振
+                sliderTracking = true;
+                sliderLastTickStep = Math.round(quantizeFontScale(slider.getValue()) / FONT_SCALE_STEP);
             }
 
             @Override
             public void onStopTrackingTouch(@NonNull Slider slider) {
+                sliderTracking = false;
                 // 松手时才刷新（拖动过程中仅写库，避免连续重建）
                 applyThemeChangeAndRefresh();
             }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Slider 圆钮色状态（非 Miuix 主题 / Monet 等用）：禁用按原生 M3 Slider
+     实测发现这里和Miuix保持相同配色更佳 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/miuix_slider_thumb_disabled" android:state_enabled="false" />
+    <item android:color="?attr/colorOnPrimary" />
+</selector>

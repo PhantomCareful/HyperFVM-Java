@@ -58,6 +58,11 @@
         <!--MaterialSwitch默认样式：去掉未开启时的外圈描边-->
         <item name="materialSwitchStyle">@style/Switch.NoStroke</item>
 
+        <!--Slider默认样式：Miuix 风格形态（28dp 药丸轨道 + 20dp 内嵌圆钮）；
+             Base/Monet 等非 Miuix 主题的禁用态按原生 M3 Slider 配色
+             （Miuix 主题在 miuix.xml 覆盖回 Slider.Miuix）-->
+        <item name="sliderStyle">@style/Slider.Miuix.M3Disabled</item>
+
         <!--标题文字颜色-->
         <item name="TitleTextViewColorOnSurface">?attr/colorPrimary</item>
 
