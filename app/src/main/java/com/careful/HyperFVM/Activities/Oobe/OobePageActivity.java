@@ -53,11 +53,9 @@ public abstract class OobePageActivity extends BaseActivity implements IOnFocusL
         ThemeManager.applyTheme(this);
         super.onCreate(savedInstanceState);
 
-        // 小白条沉浸（MIUI/澎湃OS适配）
+        // 小白条沉浸（当前场景所有设备都应该把导航栏的背景色设置为透明）
         EdgeToEdge.enable(this);
-        if (NavigationBarForMIUIAndHyperOS.isMIUIOrHyperOS()) {
-            NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
-        }
+        NavigationBarForMIUIAndHyperOS.edgeToEdgeForMIUIAndHyperOS(this);
 
         FragmentManager fm = getSupportFragmentManager();
         mFragment = fm.findFragmentByTag(getFragmentTag());
