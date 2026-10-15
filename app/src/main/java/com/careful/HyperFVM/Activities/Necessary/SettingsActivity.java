@@ -358,10 +358,14 @@ public class SettingsActivity extends BaseActivity {
         materialSwitch.setChecked(toastIsVisibleCardDataAuxiliaryList);
         materialSwitch = findViewById(R.id.Switch_isVisible_RefreshDashboard);
         materialSwitch.setChecked(toastIsVisibleRefreshDashboard);
-        // 生物认证开关
+        // 生物认证开关（注意：设备支持性判断必须与开关状态分离——
+        // isContentBiometricAuthEnabled() 是"开关已开启且设备支持"的功能门控，
+        // 若用它判断支持性，开关默认关闭时会被误判为设备不支持并禁用开关，
+        // 导致用户永远无法开启）
         materialSwitch = findViewById(R.id.Switch_BiometricAuth);
-        if (HyperFVMApplication.isContentBiometricAuthEnabled(this)) {
-            materialSwitch.setChecked(true);
+        if (BiometricAuthHelper.isBiometricAvailable(this)) {
+            // 设备支持：开关选中状态取用户设置值
+            materialSwitch.setChecked(dbHelper.getSettingBooleanValue(CONTENT_IS_BIOMETRIC_AUTH));
         } else {
             // 设备不支持生物认证
             materialSwitch.setChecked(false);

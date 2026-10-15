@@ -1,6 +1,7 @@
 package com.careful.HyperFVM.utils.ForSafety;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;
@@ -84,6 +85,8 @@ public class BiometricAuthHelper {
 
         int canAuthenticate = biometricManager.canAuthenticate(
                 androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK);
+        // 诊断日志：排查"设备已录指纹却提示不支持"类问题时确认返回值
+        Log.d("BiometricAuth", "canAuthenticate(BIOMETRIC_WEAK)=" + canAuthenticate);
 
         return canAuthenticate == androidx.biometric.BiometricManager.BIOMETRIC_SUCCESS;
     }
