@@ -2,6 +2,7 @@ package com.careful.HyperFVM;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.careful.HyperFVM.Activities.Oobe.OobeActivity;
+import com.careful.HyperFVM.Activities.Oobe.OobeDoneFragment;
 import com.careful.HyperFVM.Fragments.AboutApp.AboutAppFragment;
 import com.careful.HyperFVM.Fragments.Dashboard.DashboardFragment;
 import com.careful.HyperFVM.Fragments.DataCenter.DataCenterFragment;
@@ -58,7 +60,11 @@ public class MainActivity extends BaseActivity {
         // 首启拦截：先于一切 UI 初始化跳转 OOBE 欢迎页（标记在 OOBE 完成时写入）。
         // 此处不走主题/沉浸/签名校验等分支——本实例立即销毁；OOBE 完成后经
         // CLEAR_TASK 重启本页，届时 first_run=false 正常进入
-        if (getSharedPreferences("app_preferences", MODE_PRIVATE).getBoolean("first_run", true)) {
+        // OOBE 内容改版不改 first_run 键名：额外比对 oobe_version（老用户无记录按 0 处理），
+        // 落后于当前 OOBE_VERSION 即重进引导
+        SharedPreferences prefs = getSharedPreferences("app_preferences", MODE_PRIVATE);
+        if (prefs.getBoolean("first_run", true)
+                || prefs.getInt(OobeDoneFragment.OOBE_VERSION_KEY, 0) < OobeDoneFragment.OOBE_VERSION) {
             super.onCreate(savedInstanceState);
             // CLEAR_TOP|SINGLE_TOP：OOBE 进行中经桌面再入 → 回到既有 OobeActivity
             // （onNewIntent 不重建），Fragment 栈与当前页保留、不重放开场光圈

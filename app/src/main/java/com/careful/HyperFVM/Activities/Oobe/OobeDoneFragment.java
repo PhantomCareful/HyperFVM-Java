@@ -39,7 +39,7 @@ import fan.animation.property.ViewProperty;
  *   <li>入场：logo 区 translationY 100→0 + alpha quartOut 1500ms；按钮 alpha delay 1000ms、
  *       2s 后才 enable（HC 防误触）；alpha 终值一律 BLEND_ALPHA_CLAMP 防 OS1.0 blend 跳过</li>
  *   <li>点"开始"：启动 MainActivity（系统默认切换动画，不自定义转场），
- *       并写 first_run=false（流程走完才落标记，中途杀进程重进仍从欢迎页开始）</li>
+ *       并写 first_run=false 与 oobe_version=OOBE_VERSION（流程走完才落标记，中途杀进程重进仍从欢迎页开始）</li>
  * </ul>
  */
 public class OobeDoneFragment extends Fragment implements IOnFocusListener {
@@ -47,6 +47,10 @@ public class OobeDoneFragment extends Fragment implements IOnFocusListener {
     // 与宿主同一 SharedPreferences（首启标记在点"开始"时写入）
     private static final String PREFS_NAME = "app_preferences";
     private static final String FIRST_RUN_KEY = "first_run";
+    // OOBE 内容版本：每次改 OOBE 内容 +1，MainActivity 比对不到当前版本即重进引导
+    //（first_run 键名与语义不动；老用户无此记录 getInt 默认 0 天然落后）
+    public static final String OOBE_VERSION_KEY = "oobe_version";
+    public static final int OOBE_VERSION = 2;
 
     private RenderViewLayout mRenderViewLayout;
     private GlowController mGlowController;
@@ -212,8 +216,10 @@ public class OobeDoneFragment extends Fragment implements IOnFocusListener {
         mStarting = true;
 
         // 流程走完才落首启标记：中途杀进程/退出重进仍从欢迎页开始（HC provisioned 语义）
+        // 同步落 OOBE 内容版本号：后续改版只需提升 OOBE_VERSION 即可让老用户重走引导
         requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit()
-                .putBoolean(FIRST_RUN_KEY, false).apply();
+                .putBoolean(FIRST_RUN_KEY, false)
+                .putInt(OOBE_VERSION_KEY, OOBE_VERSION).apply();
 
         // CLEAR_TASK 清掉本页之上的残留实例（OOBE 期间按 HOME 再进图标不会叠栈）
         Intent intent = new Intent(requireActivity(), MainActivity.class);

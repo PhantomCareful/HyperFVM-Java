@@ -12,13 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
-import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Smooth.SmoothCornerTraverser;
 
 public class BaseActivity extends AppCompatActivity {
-
-    // 数据库升级欢迎弹窗标记（onUpgrade 写入，首个 Activity 弹出后清除），与 settings 表 content 列一一对应
-    private static final String CONTENT_MIUIX_WELCOME_DIALOG = "提示-Miuix主题欢迎弹窗";
 
     // 本实例创建时的 UI 配置版本快照（字段初始化在构造期执行，早于 onResume）
     private int seenUiConfigVersion = HyperFVMApplication.getUiConfigVersion();
@@ -114,21 +110,5 @@ public class BaseActivity extends AppCompatActivity {
         // 全组件系统平滑圆角：挂在 decor 上的持续遍历覆盖本页全部视图与后续动态子项
         //（onCreate 早于子类 setContentView，首帧前的绘制前扫描才是真正的处理时机）
         SmoothCornerTraverser.install(getWindow().getDecorView());
-        showPendingUpgradeDialog();
-    }
-
-    /**
-     * 数据库升级后的欢迎弹窗：onUpgrade 阶段没有 Activity，Application 主题缺少弹窗布局引用的 attr，
-     * 直接 inflate 会崩溃，故升级时只写标记，待首个 Activity 创建时用 Activity 主题弹出。
-     * 先清标记再弹窗，保证 recreate 或后续 Activity 不会重复弹出。
-     */
-    private void showPendingUpgradeDialog() {
-        DBHelper dbHelper = HyperFVMApplication.getDBHelper();
-        if (!dbHelper.getSettingBooleanValue(CONTENT_MIUIX_WELCOME_DIALOG)) {
-            return;
-        }
-        dbHelper.updateSettingValue(CONTENT_MIUIX_WELCOME_DIALOG, "false");
-        DialogBuilderManager.showDialog(this, "全新Miuix默认主题", "🎨",
-                "体验激动人心的HyperFVM吧！", true, "开始使用");
     }
 }

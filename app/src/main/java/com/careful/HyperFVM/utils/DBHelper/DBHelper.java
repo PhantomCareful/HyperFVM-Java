@@ -134,13 +134,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     "VALUES ('主题-主题模式', 'Miuix（跟随系统）')," +
                     "('主题-强调色', '默认')");
         }
-
-        // 版本114：Miuix默认主题欢迎弹窗（升级时还没有 Activity，Application 主题缺少弹窗布局引用的 attr，
-        // 直接 inflate 会抛 Failed to resolve attribute 闪退，故此处只写标记，由首个 Activity 弹出后清除）
-        if (oldVersion < 114) {
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_SETTINGS + " (content, value) " +
-                    "VALUES ('提示-Miuix主题欢迎弹窗', 'true')");
-        }
     }
 
     @Override
