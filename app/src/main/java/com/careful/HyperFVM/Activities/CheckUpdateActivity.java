@@ -3,9 +3,12 @@ package com.careful.HyperFVM.Activities;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContent;
 import static com.careful.HyperFVM.utils.ForDesign.Markdown.MarkdownUtil.getContentFromAssets;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,18 +20,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.careful.HyperFVM.BaseActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
+import com.careful.HyperFVM.Service.DownloadService;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
 import com.careful.HyperFVM.utils.ForDesign.Blur.BlurUtil;
 import com.careful.HyperFVM.utils.ForDesign.MaterialDialog.DialogBuilderManager;
 import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForDesign.ThemeManager.ThemeManager;
+import com.careful.HyperFVM.utils.ForDownload.DownloadStateStore;
+import com.careful.HyperFVM.utils.ForDownload.DownloadNotificationHelper;
 import com.careful.HyperFVM.utils.ForUpdate.AppUpdaterUtil;
 import com.careful.HyperFVM.utils.ForUpdate.LocalVersionUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
@@ -57,7 +66,17 @@ public class CheckUpdateActivity extends BaseActivity {
     private long serverVersionCode = -1;
     private String serverVersionName;
     private String downloadUrl;
-    private boolean isDownloading = false;
+    // 远程下载地址快照（下载失败后点击重试用）
+    private String apkRetryUrl;
+
+    // 通知权限请求（下载前检查，拒绝不阻塞下载，仅提示看不到进度通知）
+    private ActivityResultLauncher<String> notificationPermissionLauncher;
+    private Runnable pendingDownloadRunnable;
+
+    // 下载状态监听：onStart注册（注册即回放快照）、onStop注销，任意时刻回到本页同步进度
+    private final DownloadStateStore.Listener apkDownloadListener = this::applyApkDownloadSnapshot;
+    // 按钮当前是否正处于下载相关展示（下载中/暂停/完成/失败），用于识别“下载被取消”后的UI恢复
+    private boolean showingDownloadUi;
 
     private TextView version_info;
     private TextView app_log;
@@ -84,6 +103,18 @@ public class CheckUpdateActivity extends BaseActivity {
 
         // 初始化工具类
         appUpdaterUtil = AppUpdaterUtil.getInstance();
+
+        // 注册通知权限请求：下载前若未授予通知权限则先请求，拒绝也不阻塞下载
+        notificationPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(), isGranted -> {
+                    if (!isGranted) {
+                        Toast.makeText(this, "通知权限未开启，下载进度将不在通知栏展示", Toast.LENGTH_LONG).show();
+                    }
+                    if (pendingDownloadRunnable != null) {
+                        pendingDownloadRunnable.run();
+                        pendingDownloadRunnable = null;
+                    }
+                });
 
         initViews();
 
@@ -145,6 +176,14 @@ public class CheckUpdateActivity extends BaseActivity {
             } else if (buttonText.equals(getResources().getString(R.string.label_check_update_status_downloaded_past))) {
                 // 安装已下载的APK
                 installApk();
+            } else if (buttonText.equals("下载失败，点击重试")) {
+                // 下载失败：用快照中的远程地址重新发起下载
+                if (apkRetryUrl != null) {
+                    downloadUrl = apkRetryUrl;
+                    startAppDownload();
+                } else {
+                    getAppServerVersionAndCheckAppUpdate();
+                }
             } else {
                 // 检查更新
                 getAppServerVersionAndCheckAppUpdate();
@@ -185,6 +224,10 @@ public class CheckUpdateActivity extends BaseActivity {
                     public void onVersionCheckSuccess(long serverVersion, String updateLog) {
                         runOnUiThread(() -> {
                             serverVersionCode = serverVersion; // 保存服务器版本
+                            // 下载进行中时按钮显示以下载进度为准，版本检查结果不覆盖
+                            if (DownloadStateStore.getInstance().getSnapshot(DownloadStateStore.TASK_APK).isActive()) {
+                                return;
+                            }
                             try {
                                 if (serverVersion > localVersionCode) {
                                     // 发现新版本，接收更新日志
@@ -214,6 +257,9 @@ public class CheckUpdateActivity extends BaseActivity {
                     @Override
                     public void onVersionCheckFailure(String errorMsg) {
                         runOnUiThread(() -> {
+                            if (DownloadStateStore.getInstance().getSnapshot(DownloadStateStore.TASK_APK).isActive()) {
+                                return;
+                            }
                             float_button_update.setText(errorMsg);
                             downloadUrl = null;
                         });
@@ -222,6 +268,9 @@ public class CheckUpdateActivity extends BaseActivity {
                     @Override
                     public void onVersionParseError() {
                         runOnUiThread(() -> {
+                            if (DownloadStateStore.getInstance().getSnapshot(DownloadStateStore.TASK_APK).isActive()) {
+                                return;
+                            }
                             float_button_update.setText("版本信息错误");
                             downloadUrl = null;
                         });
@@ -322,7 +371,8 @@ public class CheckUpdateActivity extends BaseActivity {
     }
 
     /**
-     * 开始下载App更新
+     * 开始下载App更新（下载交由前台服务进行，不与当前界面绑定：
+     * 界面 finish 后下载继续，完成落库由服务负责，回到本页时同步进度）
      */
     private void startAppDownload() {
         if (downloadUrl == null || downloadUrl.isEmpty()) {
@@ -331,75 +381,109 @@ public class CheckUpdateActivity extends BaseActivity {
             return;
         }
 
-        isDownloading = true;
         float_button_update.setEnabled(false);
+        float_button_update.setText("⏳下载中: 0%⏳");
 
-        appUpdaterUtil.downloadApk(this, downloadUrl, new AppUpdaterUtil.DownloadCallback() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDownloadProgress(int progress) {
-                runOnUiThread(() ->
-                        float_button_update.setText("⏳下载中: " + progress + "%⏳")
-                );
-            }
-
-            @Override
-            public void onSuccess(String apkFilePath) {
-                runOnUiThread(() -> {
-                    isDownloading = false;
-                    float_button_update.setText(getResources().getString(R.string.label_check_update_status_downloaded_now));
-                    float_button_update.setEnabled(true);
-
-                    // 保存APK文件路径
-                    downloadUrl = apkFilePath;
-
-                    // 保存APK文件名和APK的版本号到数据库
-                    File apkFile = new File(apkFilePath);
-                    if (apkFile.exists()) {
-                        String apkFileName = apkFile.getName();
-                        dbHelper.updateDataStationValue("DownloadedApkFileName", apkFileName);
-                        dbHelper.updateDataStationValue("DownloadedApkFileVersionCode", String.valueOf(serverVersionCode));
-                        Log.d("ApkDownload", "Saved APK filename to DB: " + apkFileName);
-                        Log.d("ApkDownload", "Saved APK version code to DB: " + serverVersionCode);
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(String errorMsg) {
-                runOnUiThread(() -> {
-                    isDownloading = false;
-                    float_button_update.setText("下载失败，点击重试");
-                    float_button_update.setEnabled(true);
-                });
-            }
-        });
+        final String remoteUrl = downloadUrl;
+        ensureNotificationPermissionThen(() ->
+                DownloadService.startApkDownload(this, remoteUrl, serverVersionCode));
     }
 
     /**
-     * 安装APK文件
+     * 下载前确保通知权限：Android 13+ 未授予通知权限时先请求，
+     * 无论授予与否都继续执行下载（拒绝仅看不到通知栏进度）
+     */
+    private void ensureNotificationPermissionThen(Runnable action) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && !NotificationManagerCompat.from(this).areNotificationsEnabled()) {
+            pendingDownloadRunnable = action;
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        } else {
+            action.run();
+        }
+    }
+
+    /**
+     * 根据下载服务发布的快照同步按钮状态（主线程回调，含注册时的快照回放）
+     */
+    @SuppressLint("SetTextI18n")
+    private void applyApkDownloadSnapshot(DownloadStateStore.Snapshot snapshot) {
+        if (snapshot == null || snapshot.taskType != DownloadStateStore.TASK_APK) {
+            return;
+        }
+        // 记住远程下载地址用于失败重试
+        if (snapshot.apkDownloadUrl != null && !snapshot.apkDownloadUrl.isEmpty()) {
+            apkRetryUrl = snapshot.apkDownloadUrl;
+        }
+        if (snapshot.phase != DownloadStateStore.Phase.IDLE) {
+            showingDownloadUi = true;
+        }
+        switch (snapshot.phase) {
+            case IDLE:
+                // 空闲态不覆盖版本检查流程展示的按钮状态；
+                // 但若按钮正处于下载相关展示，说明下载被取消了，恢复为可重新下载的状态
+                if (showingDownloadUi) {
+                    showingDownloadUi = false;
+                    float_button_update.setEnabled(true);
+                    float_button_update.setText(getResources().getString(R.string.label_check_update_status_download_update));
+                }
+                return;
+            case DOWNLOADING:
+                float_button_update.setEnabled(false);
+                float_button_update.setText("⏳下载中: " + snapshot.percent + "%⏳");
+                break;
+            case SUCCESS:
+                // 完成落库由服务负责，这里同步按钮为“点击安装”
+                downloadUrl = snapshot.apkFilePath;
+                float_button_update.setEnabled(true);
+                float_button_update.setText(getResources().getString(R.string.label_check_update_status_downloaded_now));
+                break;
+            case FAILED:
+                float_button_update.setEnabled(true);
+                float_button_update.setText("下载失败，点击重试");
+                break;
+        }
+    }
+
+    /**
+     * 页面安装入口：补页面按钮文案（通用安装方法访问不到页面控件）后委托通用安装方法
      */
     @SuppressLint("QueryPermissionsNeeded")
     private void installApk() {
+        if (downloadUrl != null && !new File(downloadUrl).exists()) {
+            float_button_update.setText("安装文件不存在，请重新下载");
+        }
+        installApk(this, downloadUrl);
+    }
+
+    /**
+     * 拉起系统安装器安装指定APK（检查更新页与APK完成通知中转页共用的通用安装入口）
+     *
+     * @param context     用于权限引导弹窗/Toast/FileProvider——权限弹窗依赖Activity窗口，
+     *                    必须传Activity上下文
+     * @param apkFilePath 待安装APK的本地绝对路径
+     * @return 是否成功发起安装器启动
+     */
+    @SuppressLint("QueryPermissionsNeeded")
+    public static boolean installApk(Context context, String apkFilePath) {
         try {
             // 检查是否有安装未知应用的权限
-            if (!getPackageManager().canRequestPackageInstalls()) {
+            if (!context.getPackageManager().canRequestPackageInstalls()) {
                 // 引导用户开启安装权限
-                DialogBuilderManager.showPackageInstallPermissionDialog(this);
-                return;
+                DialogBuilderManager.showPackageInstallPermissionDialog(context);
+                return false;
             }
 
-            File apkFile = new File(downloadUrl);
+            File apkFile = new File(apkFilePath);
             if (!apkFile.exists()) {
-                Toast.makeText(this, "安装文件不存在", Toast.LENGTH_SHORT).show();
-                float_button_update.setText("安装文件不存在，请重新下载");
-                return;
+                Toast.makeText(context, "安装文件不存在", Toast.LENGTH_SHORT).show();
+                return false;
             }
 
             // 使用FileProvider获取Uri - 修改authority
             Uri apkUri = FileProvider.getUriForFile(
-                    this,
-                    getPackageName() + ".fileprovider",
+                    context,
+                    context.getPackageName() + ".fileprovider",
                     apkFile
             );
 
@@ -409,14 +493,17 @@ public class CheckUpdateActivity extends BaseActivity {
             installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             // 检查是否有可以处理此Intent的应用
-            if (installIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(installIntent);
+            if (installIntent.resolveActivity(context.getPackageManager()) != null) {
+                context.startActivity(installIntent);
+                return true;
             } else {
-                Toast.makeText(this, "没有找到可以安装应用的程序", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "没有找到可以安装应用的程序", Toast.LENGTH_SHORT).show();
+                return false;
             }
         } catch (Exception e) {
             Log.d("install", Objects.requireNonNull(e.getMessage()));
-            Toast.makeText(this, "安装失败: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "安装失败: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
@@ -511,6 +598,24 @@ public class CheckUpdateActivity extends BaseActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        // 注册下载状态监听（注册即回放快照）：回到本页立即同步当前下载进度
+        DownloadStateStore.getInstance().addListener(DownloadStateStore.TASK_APK, apkDownloadListener);
+        // 兜底撤下滞留的APK完成通知（promoted ongoing不可滑除，正常由点击通知的
+        // 安装中转页撤下）；下载进行中的进度通知保留（由服务继续更新）
+        if (!DownloadStateStore.getInstance().getSnapshot(DownloadStateStore.TASK_APK).isActive()) {
+            NotificationManagerCompat.from(this).cancel(DownloadNotificationHelper.NOTIF_ID_APK);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DownloadStateStore.getInstance().removeListener(apkDownloadListener);
+    }
+
+    @Override
     protected void onDestroy() {
         if (blurUtil != null) {
             blurUtil.release();
@@ -522,9 +627,7 @@ public class CheckUpdateActivity extends BaseActivity {
         setContentView(new FrameLayout(this));
 
         super.onDestroy();
-        // 取消下载
-        if (isDownloading) {
-            appUpdaterUtil.cancelDownload();
-        }
+        // 注意：此处不再取消下载——下载在前台服务中进行，与本界面生命周期解耦，
+        // 可通过通知栏的“取消”按钮手动终止
     }
 }

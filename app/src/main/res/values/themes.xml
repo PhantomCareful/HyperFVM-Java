@@ -145,6 +145,18 @@
         <item name="android:windowActionBar">false</item>
     </style>
 
+    <!-- APK完成通知点击中转页（蹦床）：全透明无界面。
+         不能用Theme.NoDisplay——它要求onCreate立即finish，而中转页会被放入的任务
+         （若非独立任务）在finish瞬间闪现栈下层页面；透明页改为等安装器窗口上台
+         （onPause）后再finish，且弹层直接浮在点通知时的前台画面上 -->
+    <style name="Theme.HyperFVMJava.Trampoline" parent="Base.Theme.HyperFVMJava.NoShadow">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
     <!-- fan Miuix 弹层本体背景对齐项目 colorSurface（parent 继承 fan 的圆角/模糊/behavior 参数）。
          miuixPaddingBottomSystemWindowInsets=false：BottomSheetView 标签的 style=?attr/bottomSheetStyle
          会进入 BottomSheetBehavior 的 obtainStyledAttributes(attributeSet,...)，覆盖其默认 true，

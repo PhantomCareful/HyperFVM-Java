@@ -1,10 +1,7 @@
 package com.careful.HyperFVM.utils.ForUpdate;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-
-import java.io.File;
 
 public class AppUpdaterUtil {
 
@@ -27,18 +24,6 @@ public class AppUpdaterUtil {
         void onSuccess(String downloadUrl);
         void onFailure(String errorMsg);
     }
-
-    // 下载回调接口
-    public interface DownloadCallback {
-        void onDownloadProgress(int progress);
-        void onSuccess(String apkFilePath);
-        void onFailure(String errorMsg);
-    }
-
-    // ========== 新增：下载取消相关变量 ==========
-    private String currentApkFilePath; // 保存当前下载的APK文件路径
-    private boolean isDownloadCancelled; // 下载取消标记
-    private String currentDownloadUrl; // 保存当前下载的URL
 
     // 单例模式
     private static AppUpdaterUtil instance;
@@ -120,85 +105,7 @@ public class AppUpdaterUtil {
         });
     }
 
-    /**
-     * 下载APK文件的方法
-     */
-    public void downloadApk(Context context, String downloadUrl, DownloadCallback callback) {
-        isDownloadCancelled = false;
-        currentDownloadUrl = downloadUrl;
-
-        // 存储不可用（如被系统禁用）时getExternalFilesDir返回null，
-        // 原requireNonNull会NPE导致主线程闪退，这里降级为失败回调
-        File externalDir = context.getExternalFilesDir("apk");
-        if (externalDir == null) {
-            mainHandler.post(() -> callback.onFailure("存储空间不可用，无法下载更新"));
-            return;
-        }
-
-        String apkFileName = "hyper_fvm_update_" + System.currentTimeMillis() + ".apk";
-        currentApkFilePath = externalDir + File.separator + apkFileName;
-
-        // 确保目录存在
-        File apkDir = new File(externalDir.getPath());
-        if (!apkDir.exists()) {
-            apkDir.mkdirs();
-        }
-
-        // 删除旧的APK文件
-        deleteFile(new File(currentApkFilePath));
-
-        httpUtil.downloadFileFromLink(downloadUrl, currentApkFilePath, new HttpUtil.OnDownloadCallback() {
-            @Override
-            public void onProgress(int progress) {
-                if (isDownloadCancelled) return;
-                mainHandler.post(() -> callback.onDownloadProgress(progress));
-            }
-
-            @Override
-            public void onSuccess(String filePath) {
-                if (isDownloadCancelled) {
-                    deleteFile(new File(filePath));
-                    mainHandler.post(() -> callback.onFailure("下载已取消"));
-                    return;
-                }
-                mainHandler.post(() -> callback.onSuccess(filePath));
-            }
-
-            @Override
-            public void onFailure(String errorMsg) {
-                String finalMsg = isDownloadCancelled ? "下载已取消" : errorMsg;
-                mainHandler.post(() -> callback.onFailure(finalMsg));
-            }
-        });
-    }
-
-    /**
-     * 新增：取消下载的核心方法
-     */
-    public void cancelDownload() {
-        isDownloadCancelled = true;
-
-        // 删除已下载的临时APK文件
-        if (currentApkFilePath != null) {
-            deleteFile(new File(currentApkFilePath));
-        }
-
-        // 取消HTTP下载请求
-        if (currentDownloadUrl != null && currentApkFilePath != null) {
-            httpUtil.cancelDownload(currentDownloadUrl, currentApkFilePath);
-        }
-
-        // 重置状态
-        currentDownloadUrl = null;
-        currentApkFilePath = null;
-    }
-
-    /**
-     * 删除文件
-     */
-    private void deleteFile(File file) {
-        if (file.exists()) {
-            file.delete();
-        }
-    }
+    // 注：APK的实际下载已迁移至 DownloadService（前台服务，
+    // 支持通知栏进度/暂停/取消/断点续传，与界面生命周期解耦），
+    // 本类仅保留版本检查与下载链接获取
 }

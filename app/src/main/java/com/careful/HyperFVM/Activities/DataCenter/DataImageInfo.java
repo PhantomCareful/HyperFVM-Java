@@ -1,6 +1,11 @@
 package com.careful.HyperFVM.Activities.DataCenter;
 
-public class DataImageInfo {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class DataImageInfo implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String fileName;
     private long version;
     private String url;

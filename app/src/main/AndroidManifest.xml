@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.POST_PROMOTED_NOTIFICATIONS" />
+    <!-- 下载前台服务（数据图/升级包）所需 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"
         tools:ignore="RequestInstallPackagesPolicy" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
@@ -131,6 +134,17 @@
         <activity
             android:name=".Activities.CheckUpdateActivity"
             android:exported="false" />
+        <!-- APK完成通知点击中转页（透明无界面）：taskAffinity=""独立任务——
+             通知点击不会把本App主任务（栈顶可能是检查更新页）带到前台；
+             撤下promoted完成通知并拉起系统安装器，等安装器窗口上台（onPause）
+             再finish，用户感知为通知直达安装器、不闪现任何App页面 -->
+        <activity
+            android:name=".Activities.ApkInstallTrampolineActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/Theme.HyperFVMJava.Trampoline" />
         <activity
             android:name=".Activities.Thanks.CoContributorTeamActivity"
             android:exported="false" />
@@ -245,6 +259,13 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+
+        <!-- 下载前台服务：数据图批量下载与APK升级包下载，不绑定任何Activity，
+             下载进度通过通知栏展示（Android 16+ 为 Live Update 实时通知） -->
+        <service
+            android:name=".Service.DownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
     </application>
 
 </manifest>
