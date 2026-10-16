@@ -80,7 +80,7 @@ public class BadgeDotUtil {
         // - rightMargin：距容器右缘，越大红点越靠左（贴向图标右缘）
         // - topMargin：距容器顶部，越大红点越靠下（压住图标上缘）
         params.topMargin = DensityUtil.dpToPx(tabLayout.getContext(), 10);
-        params.rightMargin = DensityUtil.dpToPx(tabLayout.getContext(), 14);
+        params.rightMargin = DensityUtil.dpToPx(tabLayout.getContext(), 4);
         container.addView(redDotView, params);
     }
 
