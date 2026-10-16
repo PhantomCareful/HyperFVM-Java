@@ -129,6 +129,8 @@ public class DatabaseInfo {
      * 更新防御卡数据库
      * DB_VERSION = 114
      * Miuix默认主题欢迎弹窗
+     * DB_VERSION = 115
+     * 更新防御卡数据库
      */
-    public static final int DB_VERSION = 114;
+    public static final int DB_VERSION = 115;
 }

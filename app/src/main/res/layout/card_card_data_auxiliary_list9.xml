@@ -29,11 +29,15 @@
         layout="@layout/card_card_data_index_x1112298a" />
 
     <include
+        android:id="@+id/card_card_data_index_x11122930"
+        layout="@layout/card_card_data_index_x11122930" />
+
+    <include
         android:id="@+id/card_card_data_index_x11122850"
         layout="@layout/card_card_data_index_x11122850" />
 
     <include
-        android:id="@+id/card_card_data_index_x11122930"
-        layout="@layout/card_card_data_index_x11122930" />
+        android:id="@+id/card_card_data_index_x11122950"
+        layout="@layout/card_card_data_index_x11122950" />
 
 </LinearLayout>
