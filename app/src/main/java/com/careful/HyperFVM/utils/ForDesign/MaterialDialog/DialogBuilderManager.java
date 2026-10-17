@@ -28,7 +28,6 @@ import android.widget.Toast;
 import com.careful.HyperFVM.Activities.DataCenter.DataImage.DataImageTiramisuActivity;
 import com.careful.HyperFVM.Activities.DataCenter.DataImageIndexActivity;
 import com.careful.HyperFVM.Activities.DataCenter.IcuFraudActivity;
-import com.careful.HyperFVM.Activities.Necessary.UsingInstruction.UsingInstructionActivity;
 import com.careful.HyperFVM.HyperFVMApplication;
 import com.careful.HyperFVM.R;
 import com.careful.HyperFVM.utils.DBHelper.DBHelper;
@@ -275,20 +274,6 @@ public class DialogBuilderManager {
         // 添加窗口遮罩
         DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
         dialog.show();
-    }
-
-    /**
-     * 第一次使用App时的弹窗
-     */
-    public static void showWelcomeDialog(Context context) {
-        showDialogWithCallBack(
-                context, "欢迎使用\nHyperFVM", "🎉",
-                "这是一款专为《美食大战老鼠》游戏制作的工具箱。如果您是第一次使用，强烈建议您先阅读使用说明，以便快速了解App。\n\nHyperFVM是免费软件，如果您是花钱买来的，请立即联系卖家退款。",
-                false, "我是老手", "去阅读", () -> {
-                    Intent intent = new Intent(context, UsingInstructionActivity.class);
-                    context.startActivity(intent);
-                }
-        );
     }
 
     /**
