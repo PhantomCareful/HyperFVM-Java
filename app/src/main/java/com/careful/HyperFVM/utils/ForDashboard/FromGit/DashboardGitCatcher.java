@@ -763,7 +763,7 @@ public class DashboardGitCatcher {
 
                             resultSimple = "结算期";
                             resultEmoji = "⏳";
-                            resultContentStatus = "第" + duringCount + "天/持续" + length + "天";
+                            resultContentStatus = "结算期\n第" + duringCount + "天/持续" + length + "天";
                             resultContentDetail = "很快就可以领奖了";
                         } else {
                             resultSimple = "今晚领奖";
