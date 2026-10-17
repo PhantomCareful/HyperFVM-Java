@@ -541,6 +541,77 @@ public class DialogBuilderManager {
 
     /**
      * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
+     * 仅适用于美食大赛
+     * @param title                 弹窗标题
+     * @param emoji                 弹窗中的大表情
+     * @param contentStatus         状态内容
+     * @param contentDetail         详细内容
+     */
+    @SuppressLint("SetTextI18n")
+    public static void showDashboardWorldBossDialog(Context context, String title, String emoji, String contentStatus, String contentDetail, String contentStartDate, String contentChallengeDate, String contentSettlementDate, String contentEndDate, String dashboardWorldBossUrlRule, String dashboardWorldBossUrlReward) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View dialogView = layoutInflater.inflate(R.layout.item_dialog_dashboard_world_boss, null);
+
+        TextView titleTextView = dialogView.findViewById(R.id.title);
+        TextView emojiTextView = dialogView.findViewById(R.id.emoji);
+        TextView contentStatusTextView = dialogView.findViewById(R.id.content_status);
+        TextView contentDetailTextView = dialogView.findViewById(R.id.content_detail);
+        TextView contentStartDateTextView = dialogView.findViewById(R.id.content_start_date);
+        TextView contentChallengeDateTextView = dialogView.findViewById(R.id.content_challenge_date);
+        TextView contentSettlementDateTextView = dialogView.findViewById(R.id.content_settlement_date);
+        TextView contentEndDateTextView = dialogView.findViewById(R.id.content_end_date);
+        TextView buttonWeek = dialogView.findViewById(R.id.button_rule);
+        TextView buttonReward = dialogView.findViewById(R.id.button_reward);
+        TextView buttonClose = dialogView.findViewById(R.id.button_close);
+
+        titleTextView.setText(title); // 设置标题
+        emojiTextView.setText(emoji); // 设置表情符号
+        contentStatusTextView.setText(contentStatus); // 设置状态文本
+        contentDetailTextView.setText(contentDetail); // 设置内容文本
+        contentStartDateTextView.setText(contentStartDate); // 设置开始时间文本
+        contentChallengeDateTextView.setText(contentChallengeDate); // 设置挑战时间文本
+        contentSettlementDateTextView.setText(contentSettlementDate); // 设置结算时间文本
+        contentEndDateTextView.setText(contentEndDate); // 设置结束时间文本
+
+        Dialog dialog = new MaterialAlertDialogBuilder(context, materialAlertDialogThemeStyleId)
+                .setView(dialogView)
+                .create();
+
+        buttonWeek.setOnClickListener(v -> {
+            // 创建打开浏览器的Intent
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(dashboardWorldBossUrlRule));
+
+            // 启动浏览器（添加try-catch处理没有浏览器的异常）
+            try {
+                context.startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context, "无法打开浏览器", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonReward.setOnClickListener(v -> {
+            // 创建打开浏览器的Intent
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(dashboardWorldBossUrlReward));
+
+            // 启动浏览器（添加try-catch处理没有浏览器的异常）
+            try {
+                context.startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context, "无法打开浏览器", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonClose.setOnClickListener(v -> dialog.dismiss());
+
+        // 添加窗口遮罩
+        DialogBackgroundBlurUtil.setDialogBackgroundScrim(dialog);
+        dialog.show();
+    }
+
+    /**
+     * 仪表盘：展示详细信息的弹窗，并可以跳转米鼠的图
      * 仅适用于百万消费
      * @param title                 弹窗标题
      * @param emoji                 弹窗中的大表情

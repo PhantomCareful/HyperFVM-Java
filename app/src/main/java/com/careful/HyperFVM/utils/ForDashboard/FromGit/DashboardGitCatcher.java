@@ -448,13 +448,12 @@ public class DashboardGitCatcher {
             contentStatus = "空空如也";
             contentDetail = "还没有新的活动呢";
         } else {
-            // 如果在结束当天过了上午10点，则也视为活动结束
+            // 如果在结束当天过了上午10点，则进入领奖期
             if (todayDate.equals(endDate) && TimeUtil.getCurrentHour() >= 10) {
-                Log.d(TAG, "福利打卡：活动已结束");
-                simple = "暂无";
-                emoji = "⏳";
-                contentStatus = "空空如也";
-                contentDetail = "还没有新的活动呢";
+                Log.d(TAG, "福利打卡：领奖期");
+                simple = "领奖期";
+                emoji = "🎁";
+                contentStatus = "领奖期";
             } else {
                 Log.d(TAG, "福利打卡：活动正在进行中");
                 int duringCount = TimeUtil.calculateDaysBetween(startDate, todayDate);
@@ -463,8 +462,8 @@ public class DashboardGitCatcher {
                 simple = duringCount + "/" + length;
                 emoji = "✊";
                 contentStatus = "第" + duringCount + "天/持续" + length + "天";
-                contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n页面关闭：" + closeDate + "\n\n👇本期新卡👇";
             }
+            contentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n页面关闭：" + closeDate + "\n\n👇本期新卡👇";
         }
 
         result.put("resultBirthdayActivitySimple", simple);
@@ -559,10 +558,10 @@ public class DashboardGitCatcher {
 
         if (today.before(start)) {
             Log.d(TAG, name + ": 活动尚未开始");
-            resultSimple = "尚未开始";
+            resultSimple = "即将开始";
             resultEmoji = "⏳";
             resultContentStatus = "等等等等";
-            resultContentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n活动还没开始呢";
+            resultContentDetail = "开始日期：" + startDate + "\n结束日期：" + endDate + "\n活动即将开始";
             switch (name) {
                 case "日氪":
                     result.put("resultDailyRechargeSimple", resultSimple);
@@ -582,10 +581,11 @@ public class DashboardGitCatcher {
                     result.put("resultGlobalNotificationContent", itemObj.getString("content"));
                     break;
                 case "世界BOSS":
-                    result.put("resultWorldBossIsShow", "true");
+                    result.put("resultWorldBossSimple", resultSimple);
+                    result.put("resultWorldBossEmoji", resultEmoji);
                     result.put("resultWorldBossTitle", itemObj.getString("title"));
-                    result.put("resultWorldBossContentDetail", itemObj.getString("content"));
-                    result.put("resultWorldBossContentStatus", "新赛季即将开始，请做好准备✊");
+                    result.put("resultWorldBossContentStatus", resultContentStatus);
+                    result.put("resultWorldBossContentDetail", "新赛季即将开始，请做好准备");
                     result.put("resultWorldBossStartDate", startDate);
                     result.put("resultWorldBossChallengeDate", itemObj.getString("challengeDate"));
                     result.put("resultWorldBossSettlementDate", itemObj.getString("settlementDate"));
@@ -638,10 +638,11 @@ public class DashboardGitCatcher {
                     result.put("resultGlobalNotificationContent", itemObj.getString("content"));
                     break;
                 case "世界BOSS":
-                    result.put("resultWorldBossIsShow", "false");
-                    result.put("resultWorldBossTitle", itemObj.getString("title"));
-                    result.put("resultWorldBossContentDetail", itemObj.getString("content"));
-                    result.put("resultWorldBossContentStatus", "赛季已结束，快去领取奖励吧🎉");
+                    result.put("resultWorldBossSimple", resultSimple);
+                    result.put("resultWorldBossEmoji", resultEmoji);
+                    result.put("resultWorldBossTitle", "巅峰对决");
+                    result.put("resultWorldBossContentStatus", resultContentStatus);
+                    result.put("resultWorldBossContentDetail", "赛季已结束，快去领取奖励吧");
                     result.put("resultWorldBossStartDate", startDate);
                     result.put("resultWorldBossChallengeDate", itemObj.getString("challengeDate"));
                     result.put("resultWorldBossSettlementDate", itemObj.getString("settlementDate"));
@@ -738,10 +739,44 @@ public class DashboardGitCatcher {
                         result.put("resultGlobalNotificationContent", itemObj.getString("content"));
                         break;
                     case "世界BOSS":
-                        result.put("resultWorldBossIsShow", "true");
+                        // 世界BOSS有两个时间点，需要单独判断
+                        String challengeDate = itemObj.getString("challengeDate");
+                        String settlementDate = itemObj.getString("settlementDate");
+                        Date challenge = TimeUtil.transformStringToDate(challengeDate);
+                        Date settlement = TimeUtil.transformStringToDate(settlementDate);
+                        if (today.before(challenge)) {
+                            resultSimple = "预热期";
+                            resultEmoji = "🔥";
+                            resultContentStatus = "预热期";
+                            resultContentDetail = "新赛季即将开始，请做好准备";
+                        } else if (today.before(settlement)) {
+                            duringCount = TimeUtil.calculateDaysBetween(challengeDate, todayDate);
+                            length = TimeUtil.calculateDaysBetween(challengeDate, settlementDate) - 1;
+
+                            resultSimple = duringCount + "/" + length;
+                            resultEmoji = "✊";
+                            resultContentStatus = "挑战期\n第" + duringCount + "天/持续" + length + "天";
+                            resultContentDetail = "23:50关闭入口，请注意把握时间";
+                        } else if (today.before(end)) {
+                            duringCount = TimeUtil.calculateDaysBetween(settlementDate, todayDate);
+                            length = TimeUtil.calculateDaysBetween(settlementDate, endDate) - 1;
+
+                            resultSimple = "结算期";
+                            resultEmoji = "⏳";
+                            resultContentStatus = "第" + duringCount + "天/持续" + length + "天";
+                            resultContentDetail = "很快就可以领奖了";
+                        } else {
+                            resultSimple = "今晚领奖";
+                            resultEmoji = "🎉";
+                            resultContentStatus = "今晚领奖";
+                            resultContentDetail = "22:00领奖，22:15抢购";
+                        }
+
+                        result.put("resultWorldBossSimple", resultSimple);
+                        result.put("resultWorldBossEmoji", resultEmoji);
                         result.put("resultWorldBossTitle", itemObj.getString("title"));
-                        result.put("resultWorldBossContentDetail", itemObj.getString("content"));
-                        result.put("resultWorldBossContentStatus", "");
+                        result.put("resultWorldBossContentStatus", resultContentStatus);
+                        result.put("resultWorldBossContentDetail", resultContentDetail);
                         result.put("resultWorldBossStartDate", startDate);
                         result.put("resultWorldBossChallengeDate", itemObj.getString("challengeDate"));
                         result.put("resultWorldBossSettlementDate", itemObj.getString("settlementDate"));

@@ -190,8 +190,6 @@
 
                 </GridLayout>
 
-                <include layout="@layout/card_dashboard_world_boss_detail"/>
-
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -47,13 +47,10 @@ import com.careful.HyperFVM.utils.ForDesign.Scroll.NestedScrollUtil;
 import com.careful.HyperFVM.utils.ForUpdate.BilibiliFVMUtil;
 import com.careful.HyperFVM.utils.OtherUtils.DensityUtil;
 import com.careful.HyperFVM.utils.OtherUtils.InsetsUtil;
-import com.careful.HyperFVM.utils.OtherUtils.TimeUtil;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -73,7 +70,6 @@ public class DashboardFragment extends Fragment {
     // 缓存数据和加载状态
     private static List<Map<String, String>> sCachedData = null;
     private static boolean sDataLoaded = false;
-    private static boolean isShowWorldBossCard = false;
 
     private LinearLayout dashboardContainer;
 
@@ -319,11 +315,6 @@ public class DashboardFragment extends Fragment {
                 // 数据异常时不能让整个App崩溃，降级提示后继续展示已有卡片
                 Log.e("DashboardFragment", "显示缓存数据失败", e);
                 Toast.makeText(requireContext(), "数据展示异常，请下拉刷新重试", Toast.LENGTH_SHORT).show();
-            }
-            if (isShowWorldBossCard) {
-                root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.VISIBLE);
-            } else {
-                root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.GONE);
             }
             return;
         }
@@ -696,159 +687,44 @@ public class DashboardFragment extends Fragment {
         );
 
         // 读取世界BOSS活动结果
-        if (Objects.equals(data.get(0).get("resultWorldBossIsShow"), "true")) {
-            String dashboardWorldBossTitle = data.get(0).get("resultWorldBossTitle");
-            String dashboardWorldBossContentDetail = data.get(0).get("resultWorldBossContentDetail");
-            String dashboardWorldBossContentStatus = data.get(0).get("resultWorldBossContentStatus");
-            TextView title = root.findViewById(R.id.dashboard_WorldBoss_Title);
-            TextView contentDetail = root.findViewById(R.id.dashboard_WorldBoss_Content_Detail);
-            TextView contentStatus = root.findViewById(R.id.dashboard_WorldBoss_Content_Status);
-            title.setText(dashboardWorldBossTitle);
-            contentDetail.setText(dashboardWorldBossContentDetail);
-
-            // 开始确定当前位于哪个阶段
-            // 将所有关键时间节点转换为日期类型
-            String todayDate = TimeUtil.getCurrentDate();
-            String startDate = data.get(0).get("resultWorldBossStartDate");
-            String challengeDate = data.get(0).get("resultWorldBossChallengeDate");
-            String settlementDate = data.get(0).get("resultWorldBossSettlementDate");
-            String endDate = data.get(0).get("resultWorldBossEndDate");
-
-            TextView dashboardWorldBossContentStatus1 = root.findViewById(R.id.dashboard_WorldBoss_Content_Status_1);
-            TextView dashboardWorldBossContentStatus2 = root.findViewById(R.id.dashboard_WorldBoss_Content_Status_2);
-            TextView dashboardWorldBossContentStatus3 = root.findViewById(R.id.dashboard_WorldBoss_Content_Status_3);
-            dashboardWorldBossContentStatus1.setText("预热期\n" + startDate);
-            dashboardWorldBossContentStatus2.setText("挑战期\n" + challengeDate);
-            dashboardWorldBossContentStatus3.setText("结算期\n" + settlementDate);
-
-            // 云端日期格式异常时transformStringToDate会抛RuntimeException，需兜底避免整个界面崩溃
-            Date today = null;
-            Date start = null;
-            Date challenge = null;
-            Date settlement = null;
-            Date end = null;
-            try {
-                today = TimeUtil.transformStringToDate(todayDate);
-                start = TimeUtil.transformStringToDate(startDate);
-                challenge = TimeUtil.transformStringToDate(challengeDate);
-                settlement = TimeUtil.transformStringToDate(settlementDate);
-                end = TimeUtil.transformStringToDate(endDate);
-            } catch (Exception e) {
-                Log.e("DashboardFragment", "世界BOSS日期解析失败", e);
-            }
-
-            // 获取进度条组件
-            LinearProgressIndicator progressIndicator = root.findViewById(R.id.dashboard_WorldBoss_LinearProgressIndicator);
-
-            if (today == null || start == null || challenge == null || settlement == null || end == null) {
-                // 日期数据异常：跳过阶段计算，降级展示避免崩溃
-                Log.e("DashboardFragment", "世界BOSS日期数据异常，跳过阶段计算");
-                dashboardWorldBoss.setText("暂无");
-            } else if (today.before(start)) {
-                // 情况1：早于预热期，进度设为0
-                Log.d("WorldBoss", "情况1：早于预热期");
-                progressIndicator.setProgressCompat(0, true);// 第二个参数表示是否使用动画
-
-                // 显示部分组件
-                progressIndicator.setVisibility(View.VISIBLE);
-                contentDetail.setVisibility(View.VISIBLE);
-
-                contentStatus.setText(dashboardWorldBossContentStatus);
-                dashboardWorldBoss.setText("即将开始");
-            } else if (today.before(challenge)) {
-                // 情况2：晚于预热期且早于挑战期，进度设为50
-                Log.d("WorldBoss", "情况2：晚于预热期且早于挑战期");
-                progressIndicator.setProgressCompat(50, true);
-
-                contentStatus.setText("预热期：新赛季即将开始，请做好准备✊");
-                dashboardWorldBoss.setText("预热期");
-            } else if (today.before(settlement)) {
-                // 情况3：晚于挑战期且早于结算期，进度按具体天数计算
-                Log.d("WorldBoss", "情况3：晚于挑战期且早于结算期");
-                int duringCount = TimeUtil.calculateDaysBetween(challengeDate, todayDate);
-                // 不包含结算期，天数要减1
-                int length = TimeUtil.calculateDaysBetween(challengeDate, settlementDate) - 1;
-                progressIndicator.setProgressCompat(100 * duringCount / (length + 1), true);
-
-                contentStatus.setText("挑战期：第" + duringCount + "天/持续" + length + "天\n" + "每天23:50关闭入口，请注意把握时间⏰");
-                dashboardWorldBoss.setText(duringCount + "/" + length);
-            } else if (today.before(end)) {
-                // 情况4：晚于结算期且早于结束日期，进度按具体天数计算
-                Log.d("WorldBoss", "情况4：晚于结算期且早于结束日期");
-                int duringCount = TimeUtil.calculateDaysBetween(settlementDate, todayDate);
-                // 不包含结算期，天数要减1
-                int length = TimeUtil.calculateDaysBetween(settlementDate, endDate) - 1;
-                progressIndicator.setProgressCompat(100 * duringCount / (length + 1), true);
-
-                contentStatus.setText("结算期：第" + duringCount + "天/持续" + length + "天⏳");
-                dashboardWorldBoss.setText("结算期");
-            } else if (today.equals(end)) {
-                // 情况5：等于结束日期，进度设为100
-                Log.d("WorldBoss", "情况5：等于结束日期");
-                progressIndicator.setProgressCompat(100, true);
-
-                // 隐藏部分组件
-                progressIndicator.setVisibility(View.GONE);
-                contentDetail.setVisibility(View.GONE);
-
-                contentStatus.setText("活动关闭~\n今晚22:00领奖，22:15抢购🎉");
-                dashboardWorldBoss.setText("今晚领奖");
-            }
-
-            // 为按钮设置点击事件
-            Log.d("WorldBoss", data.get(0).get("resultWorldBossUrlRule") == null ? "null" : Objects.requireNonNull(data.get(0).get("resultWorldBossUrlRule")));
-            Log.d("WorldBoss", data.get(0).get("resultWorldBossUrlReward") == null ? "null" : Objects.requireNonNull(data.get(0).get("resultWorldBossUrlReward")));
-            root.findViewById(R.id.button_action_1).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                    requireContext(), ContextCompat.getDrawable(requireContext(), R.drawable.ic_bilibili), 0,
-                    getResources().getString(R.string.dialog_title_bilibili), "巅峰对决赛季规则", data.get(0).get("resultWorldBossUrlRule")
-            ));
-            root.findViewById(R.id.button_action_2).setOnClickListener(v -> DialogBuilderManager.showDialogAndVisitUrl(
-                    requireContext(), ContextCompat.getDrawable(requireContext(), R.drawable.ic_bilibili), 0,
-                    getResources().getString(R.string.dialog_title_bilibili), "巅峰对决赛季奖励", data.get(0).get("resultWorldBossUrlReward")
-            ));
-
-            // 设置点击打开详情卡片
-            dashboardWorldBossContainer.setOnClickListener(v -> {
-                        if (root.findViewById(R.id.dashboard_WorldBossDetail_Container).getVisibility() == View.GONE) {
-                            TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-                            root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.VISIBLE);
-                            isShowWorldBossCard = true;
-                        } else {
-                            TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-                            root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.GONE);
-                            isShowWorldBossCard = false;
-                        }
+        dashboardWorldBoss.setText(data.get(0).get("resultWorldBossSimple"));
+        String dashboardWorldBossEmoji = data.get(0).get("resultWorldBossEmoji");
+        String dashboardWorldBossTitle = data.get(0).get("resultWorldBossTitle");
+        String dashboardWorldBossContentStatus = data.get(0).get("resultWorldBossContentStatus");
+        String dashboardWorldBossContentDetail = data.get(0).get("resultWorldBossContentDetail");
+        String dashboardWorldBossStartDate = data.get(0).get("resultWorldBossStartDate");
+        String dashboardWorldBossChallengeDate = data.get(0).get("resultWorldBossChallengeDate");
+        String dashboardWorldBossSettlementDate = data.get(0).get("resultWorldBossSettlementDate");
+        String dashboardWorldBossEndDate = data.get(0).get("resultWorldBossEndDate");
+        String dashboardWorldBossUrlRule = data.get(0).get("resultWorldBossUrlRule");
+        String dashboardWorldBossUrlReward = data.get(0).get("resultWorldBossUrlReward");
+        // 设置点击打开详情卡片
+        dashboardWorldBossContainer.setOnClickListener(v -> {
+                    if (Objects.requireNonNull(dashboardWorldBossContentStatus).equals("空空如也")) {
+                        DialogBuilderManager.showDashboardDetailDialog(
+                                requireContext(),
+                                dashboardWorldBossTitle,
+                                dashboardWorldBossEmoji,
+                                dashboardWorldBossContentStatus,
+                                dashboardWorldBossContentDetail
+                        );
+                    } else {
+                        DialogBuilderManager.showDashboardWorldBossDialog(
+                                requireContext(),
+                                dashboardWorldBossTitle,
+                                dashboardWorldBossEmoji,
+                                dashboardWorldBossContentStatus,
+                                dashboardWorldBossContentDetail,
+                                dashboardWorldBossStartDate,
+                                dashboardWorldBossChallengeDate,
+                                dashboardWorldBossSettlementDate,
+                                dashboardWorldBossEndDate,
+                                dashboardWorldBossUrlRule,
+                                dashboardWorldBossUrlReward
+                        );
                     }
-            );
-
-        } else {
-            dashboardWorldBoss.setText("暂无");
-
-            // 设置点击打开详情卡片
-            dashboardWorldBossContainer.setOnClickListener(null);
-
-            TransitionManager.beginDelayedTransition(dashboardContainer, transition);
-            root.findViewById(R.id.dashboard_WorldBossDetail_Container).setVisibility(View.GONE);
-            isShowWorldBossCard = false;
-        }
-
-        // 读取甜蜜岛活动结果
-        String sweetIslandResult = data.get(0).get("resultSweetIslandSimple");
-        sweetIslandEmoji = data.get(0).get("resultSweetIslandEmoji");
-        dashboardSweetIsland.setText(Objects.requireNonNull(sweetIslandResult).isEmpty() ? "null" : sweetIslandResult);
-        // 设置点击打开详情弹窗（弹窗内逐条展示甜蜜岛开放场次）
-        dashboardSweetIslandContainer.setOnClickListener(v -> {
-            String sweetIslandList = data.get(0).get("resultSweetIslandList");
-            List<SweetIslandActivityInfo> activityInfoList = SweetIslandActivityInfo.deserialize(sweetIslandList);
-            DialogBuilderManager.showDashboardAnimalAndSweetDialog(
-                    requireContext(),
-                    getResources().getString(R.string.title_dashboard_sweetis_land),
-                    sweetIslandEmoji.isEmpty() ? "null" : sweetIslandEmoji,
-                    data.get(0).get("resultSweetIslandContentStatus"),
-                    data.get(0).get("resultSweetIslandContentDetail"),
-                    activityInfoList
-            );
-        });
+                }
+        );
 
         // 读取走马观花活动结果
         String animalActivityResult = data.get(0).get("resultAnimalActivitySimple");
@@ -864,6 +740,24 @@ public class DashboardFragment extends Fragment {
                     animalActivityEmoji.isEmpty() ? "null" : animalActivityEmoji,
                     data.get(0).get("resultAnimalActivityContentStatus"),
                     data.get(0).get("resultAnimalActivityContentDetail"),
+                    activityInfoList
+            );
+        });
+
+        // 读取甜蜜岛活动结果
+        String sweetIslandResult = data.get(0).get("resultSweetIslandSimple");
+        sweetIslandEmoji = data.get(0).get("resultSweetIslandEmoji");
+        dashboardSweetIsland.setText(Objects.requireNonNull(sweetIslandResult).isEmpty() ? "null" : sweetIslandResult);
+        // 设置点击打开详情弹窗（弹窗内逐条展示甜蜜岛开放场次）
+        dashboardSweetIslandContainer.setOnClickListener(v -> {
+            String sweetIslandList = data.get(0).get("resultSweetIslandList");
+            List<SweetIslandActivityInfo> activityInfoList = SweetIslandActivityInfo.deserialize(sweetIslandList);
+            DialogBuilderManager.showDashboardAnimalAndSweetDialog(
+                    requireContext(),
+                    getResources().getString(R.string.title_dashboard_sweetis_land),
+                    sweetIslandEmoji.isEmpty() ? "null" : sweetIslandEmoji,
+                    data.get(0).get("resultSweetIslandContentStatus"),
+                    data.get(0).get("resultSweetIslandContentDetail"),
                     activityInfoList
             );
         });

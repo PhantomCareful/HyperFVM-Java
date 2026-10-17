@@ -347,10 +347,11 @@ public class ExecuteDailyTask {
                 result.put("resultGlobalNotificationContent", catchGitDashboardInfoResult.get(0).get("resultGlobalNotificationContent"));
 
                 // 世界BOSS
-                result.put("resultWorldBossIsShow", catchGitDashboardInfoResult.get(0).get("resultWorldBossIsShow"));
+                result.put("resultWorldBossSimple", catchGitDashboardInfoResult.get(0).get("resultWorldBossSimple"));
+                result.put("resultWorldBossEmoji", catchGitDashboardInfoResult.get(0).get("resultWorldBossEmoji"));
                 result.put("resultWorldBossTitle", catchGitDashboardInfoResult.get(0).get("resultWorldBossTitle"));
-                result.put("resultWorldBossContentDetail", catchGitDashboardInfoResult.get(0).get("resultWorldBossContentDetail"));
                 result.put("resultWorldBossContentStatus", catchGitDashboardInfoResult.get(0).get("resultWorldBossContentStatus"));
+                result.put("resultWorldBossContentDetail", catchGitDashboardInfoResult.get(0).get("resultWorldBossContentDetail"));
                 result.put("resultWorldBossStartDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossStartDate"));
                 result.put("resultWorldBossChallengeDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossChallengeDate"));
                 result.put("resultWorldBossSettlementDate", catchGitDashboardInfoResult.get(0).get("resultWorldBossSettlementDate"));
