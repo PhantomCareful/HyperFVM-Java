@@ -23,7 +23,7 @@
     <!-- ============ HC 弹窗两端动画复刻（窗口级，由 WMS 播放） ============
          手机：从屏幕下方飞入/飞出（对标 fan PhoneDialogAnim）
          PAD：屏幕中心淡入+微缩放/淡出（对标 fan PadDialogAnim）
-         经 DialogCornerRadiusUtil.apply 在 show 前按 DeviceTypeUtil 分支设置 -->
+         经 DialogCornerRadiusUtil.apply 在 show 前按当前窗口 smallestScreenWidthDp（与 sw600dp 布局同源）分支设置 -->
     <style name="DialogWindowAnim.Phone" parent="@android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/dialog_slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/dialog_slide_out_bottom</item>

@@ -14,7 +14,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.careful.HyperFVM.R;
-import com.careful.HyperFVM.utils.ForDesign.DeviceType.DeviceTypeUtil;
 import com.careful.HyperFVM.utils.ForDesign.Smooth.SmoothCornerTraverser;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RoundedCornerTreatment;
@@ -79,12 +78,17 @@ public final class DialogCornerRadiusUtil {
             android.util.Log.d(TAG, "apply: " + dialog.getClass().getSimpleName()
                     + " from=" + from);
         }
-        // HC 弹窗两端动画复刻（纯窗口级，WMS 播放），按物理屏幕形态分支：
-        // · 手机：屏幕下方飞入/飞出；PAD：屏幕中心淡入+微缩放/淡出。
+        // HC 弹窗两端动画复刻（纯窗口级，WMS 播放），按当前窗口最小宽度分支：
+        // · 手机（<600dp）：屏幕下方飞入/飞出；PAD（≥600dp）：屏幕中心淡入+微缩放/淡出。
+        // 判据取 Configuration.smallestScreenWidthDp——与 layout-sw600dp 布局选择同源，
+        // PAD 小窗（freeform）下页面用手机布局时动画同步跟随；不用 DeviceTypeUtil（物理屏，
+        // 小窗不变恒判 PAD），也不用 SmallestWidthUtil（Application context 的 window metrics
+        // 在小窗下是 display 最大值，不随任务窗口）。
         // 必须在 show 前设置；退场动画（windowExitAnimation）由系统在移除窗口时加载——
         // 动画资源内插值器必须是框架内置项，否则 WMS 进程解析失败导致退场直接消失
         // （实测：自定义插值器报 Unknown interpolator name → 动画加载失败 → removeImmediately）。
-        final boolean tablet = DeviceTypeUtil.isTabletByPhysicalScreen();
+        final boolean tablet = dialog.getContext().getResources().getConfiguration()
+                .smallestScreenWidthDp >= 600;
         final Window window = Objects.requireNonNull(dialog.getWindow());
         // HC 弹窗位置（fan AlertController.getGravity：isTablet ? 17(CENTER) : 81(BOTTOM|CENTER_HORIZONTAL)）：
         // 手机端贴屏幕底部居中、PAD 端屏幕居中；底部留 12dp 间距（fan miuix_appcompat_dialog_ime_margin
