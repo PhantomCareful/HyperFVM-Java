@@ -310,6 +310,14 @@ public class DownloadService extends Service {
                                 inflightPercents.put(fileIndex, 0);
                                 publishImagesProgress(imagesCompletedCount, imagesTotalCount, inflightPercents, true);
                             }
+
+                            @Override
+                            public void onRangeResumed() {
+                                // 续传实际成功（206）：撤下"不支持续传"说明态，
+                                // 否则某次CDN误回200置位后，后续每次暂停都会误提示将从头下载
+                                imagesRangeRestarted = false;
+                                publishImagesProgress(imagesCompletedCount, imagesTotalCount, inflightPercents, true);
+                            }
                         });
                 if (result == FileDownloader.Result.PAUSED) {
                     continue; // 回到循环顶部等待恢复，恢复后从临时文件断点续传
@@ -441,6 +449,13 @@ public class DownloadService extends Service {
                             // 否则旧百分比会停留到首个新进度回调才跳变，用户会误以为进度凭空清零
                             apkRangeRestarted = true;
                             publishApkProgress(0, true);
+                        }
+
+                        @Override
+                        public void onRangeResumed() {
+                            // 续传实际成功（206）：撤下"不支持续传"说明态并刷新通知
+                            apkRangeRestarted = false;
+                            publishApkProgress(apkPercent, true);
                         }
                     });
 

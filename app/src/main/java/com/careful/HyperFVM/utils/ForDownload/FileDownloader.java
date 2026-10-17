@@ -38,6 +38,12 @@ public class FileDownloader {
          */
         default void onRangeUnsupported() {
         }
+
+        /**
+         * 断点续传成功：本次Range请求拿到206，调用方可撤下此前的"不支持续传"说明态
+         */
+        default void onRangeResumed() {
+        }
     }
 
     /**
@@ -56,23 +62,38 @@ public class FileDownloader {
             long offset = tmpFile.exists() ? tmpFile.length() : 0;
 
             URL url = new URL(urlStr);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setConnectTimeout(15000);
-            connection.setReadTimeout(15000);
-            connection.setRequestMethod("GET");
-            if (offset > 0) {
-                connection.setRequestProperty("Range", "bytes=" + offset + "-");
-            }
-            // 先挂接再检查状态：避免与 pause()/cancel() 的断开动作交错导致漏断
-            control.attach(connection);
-            if (control.isCancelled()) return Result.CANCELLED;
-            if (control.isPaused()) return Result.PAUSED;
+            int responseCode;
+            boolean rangeRetried = false;
+            while (true) {
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setConnectTimeout(15000);
+                connection.setReadTimeout(15000);
+                connection.setRequestMethod("GET");
+                if (offset > 0) {
+                    connection.setRequestProperty("Range", "bytes=" + offset + "-");
+                }
+                // 先挂接再检查状态：避免与 pause()/cancel() 的断开动作交错导致漏断
+                control.attach(connection);
+                if (control.isCancelled()) return Result.CANCELLED;
+                if (control.isPaused()) return Result.PAUSED;
 
-            int responseCode = connection.getResponseCode();
+                responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK && offset > 0 && !rangeRetried) {
+                    // CDN边缘节点可能对某URL的首个Range请求回缓存的200全量
+                    // （实测Gitee raw即如此：首个Range请求200，之后的Range请求均206），
+                    // 立即重连重试一次再下结论，避免误判为不支持续传而从头重下
+                    rangeRetried = true;
+                    control.detach(connection);
+                    connection.disconnect();
+                    connection = null;
+                    continue;
+                }
+                break;
+            }
             boolean append;
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 if (offset > 0 && listener != null) {
-                    // 携带了Range仍返回200：服务器不支持断点续传，即将从头覆盖下载
+                    // 重试后携带Range仍返回200：服务器确实不支持断点续传，即将从头覆盖下载
                     listener.onRangeUnsupported();
                 }
                 // 服务器忽略 Range（或首次下载）：从头写入
@@ -81,6 +102,10 @@ public class FileDownloader {
             } else if (responseCode == 206) {
                 // 服务器支持断点续传：从临时文件末尾追加
                 append = true;
+                if (offset > 0 && listener != null) {
+                    // 续传实际成功：通知调用方撤下此前可能误置的"不支持续传"说明
+                    listener.onRangeResumed();
+                }
             } else {
                 Log.w(TAG, "服务器响应异常: HTTP " + responseCode + " - " + urlStr);
                 return Result.FAILED;

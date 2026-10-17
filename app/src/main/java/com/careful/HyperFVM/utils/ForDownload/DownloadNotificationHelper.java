@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.os.Bundle;
 
 import com.careful.HyperFVM.Activities.ApkInstallTrampolineActivity;
 import com.careful.HyperFVM.Activities.CheckUpdateActivity;
@@ -33,6 +34,12 @@ public class DownloadNotificationHelper {
     // 图片任务与APK任务各占一个通知ID，互不覆盖
     public static final int NOTIF_ID_IMAGES = 2101;
     public static final int NOTIF_ID_APK = 2102;
+
+    // promoted ongoing（Live Update）请求的 extras 键。
+    // Notification.EXTRA_REQUEST_PROMOTED_ONGOING 是 API 36.1 才加入的字段，直接引用会触发
+    // NewApi lint（min 31）；其值为公开契约字符串，编译期内联、运行时无任何 API 依赖，
+    // Android 16.0（36.0）起系统即按此键值识别 promoted 请求
+    private static final String EXTRA_REQUEST_PROMOTED_ONGOING = "android.requestPromotedOngoing";
 
     private DownloadNotificationHelper() {
     }
@@ -180,15 +187,18 @@ public class DownloadNotificationHelper {
                 .setOnlyAlertOnce(true)
                 .setOngoing(true);
 
-        if (Build.VERSION.SDK_INT_FULL >= Build.VERSION_CODES_FULL.BAKLAVA_1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
             // Android 16+ Live Update：ProgressStyle 进度模板 + promoted ongoing（置顶/锁屏展示）。
-            // progressMax 取所有 Segment 长度之和，这里用单段100表示百分比刻度
+            // progressMax 取所有 Segment 长度之和，这里用单段100表示百分比刻度。
+            // 注意：Builder#setRequestPromotedOngoing 是 36.1（BAKLAVA_1）才加入的 API，
+            // Android 16.0（SDK_INT_FULL=36.0）设备调用会 NoSuchMethodError；
+            // 改用 extras 直接声明，36.0 即生效（磁贴任务通知已实证可 promoted）
             Notification.ProgressStyle progressStyle = new Notification.ProgressStyle()
                     .setStyledByProgress(true)
                     .setProgressSegments(Collections.singletonList(new Notification.ProgressStyle.Segment(100)))
                     .setProgress(Math.max(0, Math.min(100, percent)));
             builder.setStyle(progressStyle)
-                    .setRequestPromotedOngoing(true)
+                    .addExtras(requestPromotedExtras())
                     .setShortCriticalText(paused ? "已暂停" : percent + "%");
         } else {
             // API 31-35 降级：经典进度条通知
@@ -235,9 +245,12 @@ public class DownloadNotificationHelper {
                 .setWhen(System.currentTimeMillis())
                 .setShowWhen(true);
 
-        if (liveUpdate && Build.VERSION.SDK_INT_FULL >= Build.VERSION_CODES_FULL.BAKLAVA_1) {
-            // Live Update 实时通知形态：promoted ongoing 置顶/锁屏/状态栏胶囊展示（不带进度条）
-            builder.setRequestPromotedOngoing(true)
+        if (liveUpdate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+            // Live Update 实时通知形态：promoted ongoing 置顶/锁屏/状态栏胶囊展示（不带进度条）。
+            // promoted 请求用 extras 方式（见 buildProgressNotification 内注释）；
+            // 官方要求 promoted 通知必须是标准样式，补 BigTextStyle
+            builder.setStyle(new Notification.BigTextStyle().bigText(text))
+                    .addExtras(requestPromotedExtras())
                     .setShortCriticalText("已完成")
                     .setOngoing(true);
         } else {
@@ -247,6 +260,17 @@ public class DownloadNotificationHelper {
                     .setAutoCancel(true);
         }
         return builder;
+    }
+
+    /**
+     * promoted ongoing（Live Update 实时通知）请求 extras。
+     * 不直接引用 Notification.EXTRA_REQUEST_PROMOTED_ONGOING（36.1 字段会触发 NewApi lint），
+     * 改用本地常量保存其契约字符串：编译期内联、系统只读 extras 键值，Android 16.0 即生效
+     */
+    private static Bundle requestPromotedExtras() {
+        Bundle extras = new Bundle();
+        extras.putBoolean(EXTRA_REQUEST_PROMOTED_ONGOING, true);
+        return extras;
     }
 
     /**
