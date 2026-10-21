@@ -657,6 +657,7 @@
     <string name="label_version_2">2.X.X</string>
     <string name="label_version_3">3.X.X</string>
     <string name="label_version_4">4.X.X</string>
+    <string name="label_version_5">5.X.X</string>
 
     <!--防御卡名称部分-->
     <string name="name_card_data_index_x11130060">双向水管</string>

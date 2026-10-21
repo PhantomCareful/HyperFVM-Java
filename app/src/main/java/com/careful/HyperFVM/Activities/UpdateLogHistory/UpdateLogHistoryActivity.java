@@ -67,6 +67,7 @@ public class UpdateLogHistoryActivity extends BaseActivity {
 
     private void initTabLayoutFragments(TabLayoutFragmentStateAdapter adapter) {
         //添加Fragment和对应的标题，按标签顺序
+        adapter.addFragment(new Version5UpdateLogFragment(), getResources().getString(R.string.label_version_5));
         adapter.addFragment(new Version4UpdateLogFragment(), getResources().getString(R.string.label_version_4));
         adapter.addFragment(new Version3UpdateLogFragment(), getResources().getString(R.string.label_version_3));
         adapter.addFragment(new Version2UpdateLogFragment(), getResources().getString(R.string.label_version_2));
