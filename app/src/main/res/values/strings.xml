@@ -616,11 +616,11 @@
     <string name="tips_using_instruction">这个App是我计划了很久的作品，承诺永久免费，纯净无广，希望大家能够喜欢。\n如果您是第一次使用HyperFVM，或者对其中的某些功能不太了解，可以阅读这里的使用说明来获取帮助。</string>
     <string name="title_using_instruction_1">仪表盘</string>
     <string name="description_using_instruction_1">不需要进入游戏，便可以在这里查看各种重要信息</string>
-    <string name="title_using_instruction_2">数据相关功能</string>
+    <string name="title_using_instruction_2">数据中心-特色功能</string>
     <string name="description_using_instruction_2">所有和游戏数据相关的内容都在这里</string>
-    <string name="title_using_instruction_3">美食数据站</string>
+    <string name="title_using_instruction_3">数据中心-美食数据站</string>
     <string name="description_using_instruction_3">这里是一些实用网站的入口，点击相应的卡片即可快捷跳转浏览器访问</string>
-    <string name="title_using_instruction_4">实用功能</string>
+    <string name="title_using_instruction_4">数据中心-实用功能</string>
     <string name="description_using_instruction_4">包含一些有趣的小功能</string>
     <string name="title_using_instruction_5">版本号</string>
     <string name="description_using_instruction_5">介绍每一位分别表示什么意思</string>
